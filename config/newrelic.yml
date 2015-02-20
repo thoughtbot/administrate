@@ -1,0 +1,34 @@
+common: &default_settings
+  app_name: "administrate-prototype"
+  audit_log:
+    enabled: false
+  browser_monitoring:
+    auto_instrument: true
+  capture_params: false
+  developer_mode: false
+  error_collector:
+    capture_source: true
+    enabled: true
+    ignore_errors: "ActionController::RoutingError,Sinatra::NotFound"
+  license_key: "<%= ENV["NEW_RELIC_LICENSE_KEY"] %>"
+  log_level: info
+  monitor_mode: true
+  transaction_tracer:
+    enabled: true
+    record_sql: obfuscated
+    stack_trace_threshold: 0.500
+    transaction_threshold: apdex_f
+development:
+  <<: *default_settings
+  monitor_mode: false
+  developer_mode: true
+test:
+  <<: *default_settings
+  monitor_mode: false
+production:
+  <<: *default_settings
+  monitor_mode: true
+staging:
+  <<: *default_settings
+  app_name: "administrate-prototype (Staging)"
+  monitor_mode: true

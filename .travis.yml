@@ -1,0 +1,21 @@
+before_install:
+  - "echo '--colour' > ~/.rspec"
+  - "echo 'gem: --no-document' > ~/.gemrc"
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+install:
+  - bin/setup
+branches:
+  only:
+    - master
+cache:
+  - bundler
+language:
+  - ruby
+notifications:
+  email: false
+rvm:
+  - 2.2.0
+addons:
+  postgresql: "9.3"
+sudo: false

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Run this script to deploy the app to Heroku.
+
+set -e
+
+branch="$(git symbolic-ref HEAD --short)"
+target="${1:-staging}"
+
+git push "$target" "$branch:master"
+heroku run rake db:migrate --remote "$target"
+heroku restart --remote "$target"

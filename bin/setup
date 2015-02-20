@@ -1,0 +1,56 @@
+#!/usr/bin/env sh
+
+# Set up Rails app. Run this script immediately after cloning the codebase.
+# https://github.com/thoughtbot/guides/tree/master/protocol
+
+# Exit if any subcommand fails
+set -e
+
+# Set up Ruby dependencies via Bundler
+gem install bundler --conservative
+bundle check || bundle install
+
+# Set up configurable environment variables
+if [ ! -f .env ]; then
+  cp .sample.env .env
+fi
+
+# Set up database and add any development seed data
+bundle exec rake db:setup dev:prime
+
+# Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
+mkdir -p .git/safe
+
+# Pick a port for Foreman
+if ! grep --quiet --no-messages --fixed-strings 'port' .foreman; then
+  printf 'port: 3000\n' >> .foreman
+fi
+
+if ! command -v foreman > /dev/null; then
+  printf 'Foreman is not installed.\n'
+  printf 'See https://github.com/ddollar/foreman for install instructions.\n'
+fi
+
+# Only if this isn't CI
+# if [ -z "$CI" ]; then
+# fi
+
+# Set up the staging and production apps.
+if heroku join --app administrate-prototype-staging &> /dev/null; then
+  git remote add staging git@heroku.com:administrate-prototype-staging.git || true
+  printf 'You are a collaborator on the "administrate-prototype-staging" Heroku app
+'
+else
+  printf 'Ask for access to the "administrate-prototype-staging" Heroku app
+'
+fi
+
+if heroku join --app administrate-prototype-production &> /dev/null; then
+  git remote add production git@heroku.com:administrate-prototype-production.git || true
+  printf 'You are a collaborator on the "administrate-prototype-production" Heroku app
+'
+else
+  printf 'Ask for access to the "administrate-prototype-production" Heroku app
+'
+fi
+

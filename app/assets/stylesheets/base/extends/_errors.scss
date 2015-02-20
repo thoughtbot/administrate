@@ -1,0 +1,11 @@
+%error {
+  color: darken($error-color, 60);
+}
+
+%warning {
+  color: darken($alert-color, 60);
+}
+
+%notice {
+  color: darken($notice-color, 60);
+}
