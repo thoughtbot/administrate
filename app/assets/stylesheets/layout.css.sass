@@ -1,0 +1,13 @@
+html
+  height: 100%
+
+body
+  @include outer-container(100%)
+  height: 100%
+
+.sidebar
+  @include span-columns(2 of 12)
+
+.content
+  @include span-columns(10 of 12)
+  @include omega

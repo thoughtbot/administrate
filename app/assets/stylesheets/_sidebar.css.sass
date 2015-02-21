@@ -1,0 +1,24 @@
+$sidebar-color: #2A3B4C
+
+.sidebar
+  background-color: $sidebar-color
+  height: 100%
+  .logo
+    height: 6em
+    background-color: lighten($sidebar-color, 60%)
+    img
+      padding-top: 1em
+      display: block
+      margin-left: auto
+      margin-right: auto
+      height: 80%
+  ul
+    @include fill-parent
+  li
+    padding: $gutter/2
+    @include fill-parent
+    &:hover
+      background-color: lighten($sidebar-color, 20%)
+  a
+    color: white
+    display: block
