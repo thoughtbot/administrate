@@ -1,29 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Customers</h1>
+<h1><%= @presenter.resource_name.pluralize.titleize %></h1>
+<%= link_to "New #{@presenter.resource_name.downcase}", @presenter.new_path %>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
+      <% @presenter.attribute_names.each do |attr_name| %>
+        <th><%= attr_name %></th>
+      <% end %>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @customers.each do |customer| %>
+    <% @resources.each do |resource| %>
       <tr>
-        <td><%= customer.name %></td>
-        <td><%= customer.email %></td>
-        <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% @presenter.attribute_names.each do |attr_name| %>
+          <td><%= @presenter.render_attribute(resource, attr_name) %></td>
+        <% end %>
+        <td><%= link_to 'Edit', @presenter.edit_path(resource) %></td>
+        <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Customer', new_customer_path %>

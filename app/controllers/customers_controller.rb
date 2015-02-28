@@ -1,8 +1,11 @@
+require "presenters/index_presenter"
+
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   def index
-    @customers = Customer.all
+    @resources = Customer.all
+    @presenter = IndexPresenter.new(CustomerDashboard.new)
   end
 
   def show

@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe CustomersController, type: :controller do
 
   describe "GET index" do
-    it "assigns all customers as @customers" do
+    it "assigns all customers as @resources" do
       customer = create(:customer)
 
       get :index
 
-      expect(assigns(:customers)).to eq([customer])
+      expect(assigns(:resources)).to eq([customer])
     end
   end
 
