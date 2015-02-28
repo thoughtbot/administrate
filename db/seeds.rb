@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+100.times do
+  name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
+  Customer.create(
+    name: name,
+    email: Faker::Internet.free_email(name),
+  )
+end
