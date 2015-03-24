@@ -113,7 +113,7 @@ GEM
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     high_voltage (2.2.1)
-    highline (1.7.0)
+    highline (1.7.1)
     hike (1.2.3)
     i18n (0.7.0)
     i18n-tasks (0.7.12)
