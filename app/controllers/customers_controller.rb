@@ -1,4 +1,5 @@
 require "presenters/index_presenter"
+require "presenters/show_presenter"
 
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
@@ -9,6 +10,7 @@ class CustomersController < ApplicationController
   end
 
   def show
+    @presenter = ShowPresenter.new(CustomerDashboard.new, @customer)
   end
 
   def new

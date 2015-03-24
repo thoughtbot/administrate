@@ -1,14 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @customer.name %>
-</p>
+<%= link_to 'Edit', @presenter.edit_path %>
 
-<p>
-  <strong>Email:</strong>
-  <%= @customer.email %>
-</p>
+<h1><%= @presenter.page_title %></h1>
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+<dl>
+  <% @presenter.attributes.each do |attr_name, attr_value| %>
+    <dt><%= attr_name.to_s.titleize %></dt>
+    <dd><%= attr_value %></dd>
+  <% end %>
+</dl>

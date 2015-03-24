@@ -1,0 +1,16 @@
+h1
+  margin-top: 1rem
+
+dl
+  @include fill-parent
+  @include clearfix
+  margin-top: $gutter
+  dt
+    @include span-columns(2 of 12)
+    margin-top: 0
+    text-align: right
+    color: #bbb
+  dd
+    @include span-columns(10 of 12)
+    @include omega
+    margin-bottom: $gutter

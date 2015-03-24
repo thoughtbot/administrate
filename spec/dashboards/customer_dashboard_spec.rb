@@ -9,12 +9,12 @@ RSpec.describe CustomerDashboard do
     end
   end
 
-  describe "#index_attributes" do
+  describe "#index_page_attributes" do
     it "includes the name and email" do
       dashboard = CustomerDashboard.new
 
-      expect(dashboard.index_attributes).to include(:name)
-      expect(dashboard.index_attributes).to include(:email)
+      expect(dashboard.index_page_attributes).to include(:name)
+      expect(dashboard.index_page_attributes).to include(:email)
     end
   end
 end

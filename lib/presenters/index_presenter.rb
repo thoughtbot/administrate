@@ -1,4 +1,6 @@
-class IndexPresenter
+require_relative "base_presenter"
+
+class IndexPresenter < BasePresenter
   include ActionView::Helpers::UrlHelper
 
   def initialize(dashboard)
@@ -6,20 +8,15 @@ class IndexPresenter
   end
 
   def attribute_names
-    dashboard.index_attributes
+    dashboard.index_page_attributes
   end
 
   def edit_path(resource)
-    Rails.application.routes.url_helpers.send(
-      "edit_#{resource_name}_path",
-      resource,
-    )
+    route(:edit, resource_name, resource)
   end
 
   def new_path
-    Rails.application.routes.url_helpers.send(
-      "new_#{resource_name}_path"
-    )
+    route(:new, resource_name)
   end
 
   def render_attribute(resource, attribute_name)
@@ -28,11 +25,6 @@ class IndexPresenter
     else
       attribute_html(resource, attribute_name)
     end
-  end
-
-  def resource_name
-    @resource_name ||=
-      dashboard.class.to_s.scan(/(.+)Dashboard/).first.first.downcase
   end
 
   protected
@@ -44,9 +36,6 @@ class IndexPresenter
   end
 
   def show_path(resource)
-    Rails.application.routes.url_helpers.send(
-      "#{resource_name}_path",
-      resource,
-    )
+    route(nil, resource_name, resource)
   end
 end
