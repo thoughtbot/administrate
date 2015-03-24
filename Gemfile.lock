@@ -107,6 +107,9 @@ GEM
       activesupport
       capybara
       i18n
+    fuubar (2.0.0)
+      rspec (~> 3.0)
+      ruby-progressbar (~> 1.4)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     high_voltage (2.2.1)
@@ -187,6 +190,10 @@ GEM
     recipient_interceptor (0.1.2)
       mail
     refills (0.1.0)
+    rspec (3.1.0)
+      rspec-core (~> 3.1.0)
+      rspec-expectations (~> 3.1.0)
+      rspec-mocks (~> 3.1.0)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -203,6 +210,7 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
+    ruby-progressbar (1.7.1)
     safe_yaml (1.0.4)
     sass (3.4.12)
     sass-rails (5.0.1)
@@ -280,6 +288,7 @@ DEPENDENCIES
   faker
   flutie
   formulaic
+  fuubar
   high_voltage
   i18n-tasks
   jquery-rails

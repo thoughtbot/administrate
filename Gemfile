@@ -46,6 +46,7 @@ group :test do
   gem "capybara-webkit", ">= 1.2.0"
   gem "database_cleaner"
   gem "formulaic"
+  gem "fuubar"
   gem "launchy"
   gem "shoulda-matchers", require: false
   gem "timecop"
