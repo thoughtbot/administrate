@@ -6,10 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Customer.destroy_all
+Product.destroy_all
+
 100.times do
   name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
   Customer.create(
     name: name,
     email: Faker::Internet.free_email(name),
   )
+end
+
+product_attributes = YAML.load_file("./db/seeds/products.yml")
+
+product_attributes.each do |attributes|
+  Product.create attributes.merge(price: 20 + rand(50))
 end

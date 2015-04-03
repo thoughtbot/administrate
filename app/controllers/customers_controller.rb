@@ -1,3 +1,5 @@
 class CustomersController < DashboardController
-  dashboard_controller_for(:customer)
+  def resource_name
+    :customer
+  end
 end

@@ -3,10 +3,6 @@ require "presenters/index_presenter"
 require "presenters/show_presenter"
 
 class DashboardController < ApplicationController
-  def self.dashboard_controller_for(resource_name)
-    @@resource_name = resource_name
-  end
-
   def index
     @resources = resource_class.all
     @presenter = IndexPresenter.new(dashboard)
@@ -57,10 +53,6 @@ class DashboardController < ApplicationController
 
   private
 
-  def resource_name
-    @@resource_name
-  end
-
   def resource_class
     Object.const_get(resource_class_name)
   end
@@ -86,7 +78,7 @@ class DashboardController < ApplicationController
   end
 
   def resource_class_name
-    @@resource_name.to_s.titleize
+    resource_name.to_s.titleize
   end
 
   def instance_variable
