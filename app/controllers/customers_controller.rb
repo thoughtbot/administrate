@@ -1,3 +1,4 @@
+require "presenters/form_presenter"
 require "presenters/index_presenter"
 require "presenters/show_presenter"
 
@@ -14,10 +15,11 @@ class CustomersController < ApplicationController
   end
 
   def new
-    @customer = Customer.new
+    @presenter = FormPresenter.new(CustomerDashboard.new, Customer.new)
   end
 
   def edit
+    @presenter = FormPresenter.new(CustomerDashboard.new, @customer)
   end
 
   def create

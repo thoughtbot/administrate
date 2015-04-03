@@ -1,5 +1,5 @@
-<h1>New Customer</h1>
+<h1>New <%= @presenter.resource_name.titleize %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', customers_path %>
+<%= link_to 'Back', @presenter.index_path %>

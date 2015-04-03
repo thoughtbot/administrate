@@ -23,10 +23,10 @@ RSpec.describe CustomersController, type: :controller do
   end
 
   describe "GET new" do
-    it "assigns a new customer as @customer" do
+    it "assigns a new form presenter as @presenter" do
       get :new
 
-      expect(assigns(:customer)).to be_a_new(Customer)
+      expect(assigns(:presenter)).to be_instance_of(FormPresenter)
     end
   end
 

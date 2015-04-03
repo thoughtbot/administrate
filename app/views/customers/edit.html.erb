@@ -1,6 +1,6 @@
-<h1>Editing Customer</h1>
+<h1>Editing <%= @presenter.page_title %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @customer %> |
-<%= link_to 'Back', customers_path %>
+<%= link_to 'Show', @presenter.resource %> |
+<%= link_to 'Back', @presenter.index_path %>

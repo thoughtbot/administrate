@@ -1,9 +1,10 @@
-<%= simple_form_for(@customer) do |f| %>
+<%= simple_form_for(@presenter.resource) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :email %>
+    <% @presenter.attribute_names.each do |attr_name| %>
+      <%= f.input attr_name %>
+    <% end %>
   </div>
 
   <div class="form-actions">

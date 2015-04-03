@@ -13,6 +13,13 @@ class CustomerDashboard
     attributes - [title_attribute]
   end
 
+  def form_attributes
+    [
+      :name,
+      :email,
+    ]
+  end
+
   private
 
   def attributes

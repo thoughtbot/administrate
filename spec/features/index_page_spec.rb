@@ -37,8 +37,4 @@ RSpec.describe "customer index page" do
 
     expect(current_path).to eq(new_customer_path)
   end
-
-  def have_header(title)
-    have_css("h1", text: title)
-  end
 end

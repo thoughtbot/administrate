@@ -26,8 +26,4 @@ RSpec.describe "customer show page" do
 
     expect(current_path).to eq(edit_path)
   end
-
-  def have_header(title)
-    have_css("h1", text: title)
-  end
 end
