@@ -18,7 +18,7 @@ RSpec.describe ShowPresenter do
       presenter = ShowPresenter.new(CustomerDashboard.new, customer)
 
       expect(presenter.attributes).to eq(
-        email: customer.email,
+        email: EmailAdapter.new(customer.email).render_show,
         lifetime_value: customer.lifetime_value,
       )
     end
@@ -32,7 +32,7 @@ RSpec.describe ShowPresenter do
 
       rendered = presenter.render_attribute(:email)
 
-      expect(rendered).to eq(email)
+      expect(rendered).to eq(EmailAdapter.new(email).render_show)
     end
   end
 

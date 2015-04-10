@@ -32,7 +32,7 @@ class IndexPresenter < BasePresenter
   attr_reader :dashboard
 
   def attribute_html(resource, attribute_name)
-    resource.public_send(attribute_name)
+    adapter(dashboard, resource, attribute_name).render_index
   end
 
   def show_path(resource)

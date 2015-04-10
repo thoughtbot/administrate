@@ -19,7 +19,7 @@ class ShowPresenter < BasePresenter
   end
 
   def render_attribute(attribute_name)
-    resource.public_send(attribute_name)
+    adapter(dashboard, resource, attribute_name).render_show
   end
 
   def edit_path

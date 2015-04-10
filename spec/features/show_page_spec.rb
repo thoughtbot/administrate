@@ -17,6 +17,14 @@ RSpec.describe "customer show page" do
     expect(page).to have_content(customer.email)
   end
 
+  it "link-ifies the email" do
+    customer = create(:customer)
+
+    visit customer_path(customer)
+
+    expect(page).to have_link(customer.email)
+  end
+
   it "links to the edit page" do
     customer = create(:customer)
     edit_path = edit_customer_path(customer)

@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :customer do
     sequence(:name) { |n| "Customer #{n}" }
-    email { name.downcase.underscore + "@example.com" }
+    email { name.downcase.gsub(" ", "_") + "@example.com" }
   end
 
   factory :product do

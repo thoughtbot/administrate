@@ -5,6 +5,14 @@ class CustomerDashboard
     :name
   end
 
+  def attribute_adapters
+    {
+      email: :email,
+      lifetime_value: :string,
+      name: :string,
+    }
+  end
+
   def index_page_attributes
     attributes
   end

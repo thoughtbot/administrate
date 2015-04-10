@@ -1,3 +1,6 @@
+require "adapters/email_adapter"
+require "adapters/string_adapter"
+
 class BasePresenter
   def resource_name
     @resource_name ||=
@@ -11,5 +14,19 @@ class BasePresenter
     arguments = [path_helper, resource].compact
 
     Rails.application.routes.url_helpers.public_send(*arguments)
+  end
+
+  def adapter(dashboard, resource, attribute_name)
+    adapter_name = dashboard.attribute_adapters[attribute_name]
+    value = resource.public_send(attribute_name)
+
+    adapter_registry[adapter_name].new(value)
+  end
+
+  def adapter_registry
+    {
+      email: EmailAdapter,
+      string: StringAdapter,
+    }
   end
 end
