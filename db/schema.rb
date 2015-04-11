@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403065618) do
+ActiveRecord::Schema.define(version: 20150411204433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,19 @@ ActiveRecord::Schema.define(version: 20150403065618) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.string   "address_line_one"
+    t.string   "address_line_two"
+    t.string   "address_city"
+    t.string   "address_state"
+    t.string   "address_zip"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.float    "price"
@@ -48,4 +61,5 @@ ActiveRecord::Schema.define(version: 20150403065618) do
     t.datetime "updated_at",  null: false
   end
 
+  add_foreign_key "orders", "customers"
 end
