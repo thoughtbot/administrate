@@ -25,7 +25,7 @@ RSpec.describe StringAdapter do
     form_object_double = double(text_field: string)
 
     adapter = StringAdapter.new(string)
-    rendered = adapter.render_edit(form_object_double, :attribute)
+    rendered = adapter.render_form_field(form_object_double, :attribute)
 
     expect(rendered).to eq string
     expect(form_object_double).to have_received(:text_field).with(:attribute)
