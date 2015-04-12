@@ -1,4 +1,6 @@
-class OrderDashboard
+require "base_dashboard"
+
+class OrderDashboard < BaseDashboard
   def attribute_adapters
     {
       id: :string,
@@ -7,6 +9,7 @@ class OrderDashboard
       address_city: :string,
       address_state: :string,
       address_zip: :string,
+      customer: :belongs_to,
     }
   end
 
@@ -32,6 +35,7 @@ class OrderDashboard
       :address_city,
       :address_state,
       :address_zip,
+      :customer,
     ]
   end
 end

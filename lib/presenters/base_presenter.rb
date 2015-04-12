@@ -1,3 +1,4 @@
+require "adapters/belongs_to_adapter"
 require "adapters/email_adapter"
 require "adapters/image_adapter"
 require "adapters/string_adapter"
@@ -26,6 +27,7 @@ class BasePresenter
 
   def adapter_registry
     {
+      belongs_to: BelongsToAdapter,
       email: EmailAdapter,
       image: ImageAdapter,
       string: StringAdapter,

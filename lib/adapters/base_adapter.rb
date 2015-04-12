@@ -11,8 +11,16 @@ class BaseAdapter
     data
   end
 
-  def render_edit(form, attribute_name)
-    form.text_field(attribute_name)
+  def render_form_field(form, attribute)
+    form.text_field(attribute)
+  end
+
+  def render_form_label(form, attribute)
+    form.label attribute
+  end
+
+  def self.permitted_attribute(attr)
+    attr
   end
 
   protected

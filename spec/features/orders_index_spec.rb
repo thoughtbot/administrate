@@ -1,17 +1,25 @@
 require "rails_helper"
 
-RSpec.describe "order index page" do
-  pending "displays orders' name and description" do
+describe "order index page" do
+  it "displays the order id" do
     order = create(:order)
 
     visit orders_path
 
     expect(page).to have_header("Orders")
     expect(page).to have_content(order.id)
-    expect(page).to have_link(order.customer.name)
   end
 
-  pending "links to the order show page" do
+  it "links to the customer" do
+    order = create(:order)
+
+    visit orders_path
+    click_on(order.customer.name)
+
+    expect(page).to have_header(order.customer.name)
+  end
+
+  it "links to the order show page" do
     order = create(:order)
 
     visit orders_path

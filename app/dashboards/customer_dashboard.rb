@@ -1,4 +1,6 @@
-class CustomerDashboard
+require "base_dashboard"
+
+class CustomerDashboard < BaseDashboard
   def attribute_adapters
     {
       email: :email,

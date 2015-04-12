@@ -20,6 +20,14 @@ class FormPresenter < BasePresenter
     route(nil, resource_name.pluralize)
   end
 
+  def render_form_label(form, attribute)
+    adapter(dashboard, resource, attribute).render_form_label(form, attribute)
+  end
+
+  def render_form_field(form, attribute)
+    adapter(dashboard, resource, attribute).render_form_field(form, attribute)
+  end
+
   protected
 
   attr_reader :dashboard

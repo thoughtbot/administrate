@@ -1,4 +1,6 @@
-class ProductDashboard
+require "base_dashboard"
+
+class ProductDashboard < BaseDashboard
   def attribute_adapters
     {
       description: :string,

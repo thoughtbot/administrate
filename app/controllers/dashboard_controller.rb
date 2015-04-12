@@ -77,7 +77,11 @@ class DashboardController < ApplicationController
   end
 
   def resource_params
-    params.require(:"#{resource_name}").permit(*dashboard.form_attributes)
+    params.require(:"#{resource_name}").permit(*permitted_attributes)
+  end
+
+  def permitted_attributes
+    dashboard.permitted_attributes
   end
 
   def dashboard_class
