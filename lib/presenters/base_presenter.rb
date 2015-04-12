@@ -20,7 +20,7 @@ class BasePresenter
     adapter_name = dashboard.attribute_adapters[attribute_name]
     value = resource.public_send(attribute_name)
 
-    adapter_registry[adapter_name].new(value)
+    adapter_registry.fetch(adapter_name).new(value)
   end
 
   def adapter_registry

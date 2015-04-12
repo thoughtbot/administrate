@@ -1,21 +1,8 @@
 require "action_controller/base"
+require_relative "base_adapter"
 
-class EmailAdapter
-  def initialize(data)
-    @data = data
-  end
-
-  def render_index
-    data
-  end
-
+class EmailAdapter < BaseAdapter
   def render_show
     ActionController::Base.helpers.mail_to(data)
   end
-
-  def render_edit(form, attribute_name)
-    form.text_field(attribute_name)
-  end
-
-  attr_reader :data
 end
