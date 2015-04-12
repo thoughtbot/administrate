@@ -20,10 +20,6 @@ class ProductDashboard
     attributes
   end
 
-  def title_attribute
-    :name
-  end
-
   private
 
   def attributes

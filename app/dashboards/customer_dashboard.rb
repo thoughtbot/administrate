@@ -1,8 +1,4 @@
 class CustomerDashboard
-  def title_attribute
-    :name
-  end
-
   def attribute_adapters
     {
       email: :email,
@@ -16,7 +12,7 @@ class CustomerDashboard
   end
 
   def show_page_attributes
-    attributes - [title_attribute]
+    attributes - [:name]
   end
 
   def form_attributes

@@ -22,10 +22,6 @@ class OrderDashboard
     attributes
   end
 
-  def title_attribute
-    :id
-  end
-
   private
 
   def attributes

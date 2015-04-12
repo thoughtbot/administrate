@@ -20,11 +20,11 @@ class IndexPresenter < BasePresenter
   end
 
   def render_attribute(resource, attribute_name)
-    if attribute_name == dashboard.title_attribute
-      link_to attribute_html(resource, attribute_name), show_path(resource)
-    else
-      attribute_html(resource, attribute_name)
-    end
+    attribute_html(resource, attribute_name)
+  end
+
+  def show_path(resource)
+    route(nil, resource_name, resource)
   end
 
   protected
@@ -33,9 +33,5 @@ class IndexPresenter < BasePresenter
 
   def attribute_html(resource, attribute_name)
     adapter(dashboard, resource, attribute_name).render_index
-  end
-
-  def show_path(resource)
-    route(nil, resource_name, resource)
   end
 end

@@ -13,7 +13,7 @@ class FormPresenter < BasePresenter
   end
 
   def page_title
-    resource.public_send(dashboard.title_attribute)
+    resource.to_s
   end
 
   def index_path

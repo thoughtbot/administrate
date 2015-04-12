@@ -8,4 +8,8 @@ class Order < ActiveRecord::Base
   validates :address_city, presence: true
   validates :address_state, presence: true
   validates :address_zip, presence: true
+
+  def to_s
+    id
+  end
 end
