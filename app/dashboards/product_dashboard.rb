@@ -2,7 +2,7 @@ class ProductDashboard
   def attribute_adapters
     {
       description: :string,
-      image_url: :string,
+      image_url: :image,
       name: :string,
       price: :string,
     }

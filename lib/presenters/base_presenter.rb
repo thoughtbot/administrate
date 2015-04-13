@@ -1,4 +1,5 @@
 require "adapters/email_adapter"
+require "adapters/image_adapter"
 require "adapters/string_adapter"
 
 class BasePresenter
@@ -26,6 +27,7 @@ class BasePresenter
   def adapter_registry
     {
       email: EmailAdapter,
+      image: ImageAdapter,
       string: StringAdapter,
     }
   end
