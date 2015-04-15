@@ -1,6 +1,4 @@
 class CustomerDashboard
-  include ActionView::Helpers::UrlHelper
-
   def title_attribute
     :name
   end
