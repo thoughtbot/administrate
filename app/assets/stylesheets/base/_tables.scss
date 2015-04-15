@@ -15,6 +15,10 @@ th {
 td {
   border-bottom: $base-border;
   padding: ($base-spacing / 2) 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  word-wrap: normal;
 }
 
 tr,
