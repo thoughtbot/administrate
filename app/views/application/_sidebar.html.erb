@@ -3,7 +3,13 @@
     <%= image_tag "logo.svg" %>
   </div>
 
-  <li><%= link_to "Customers", customers_path %></li>
-  <li><%= link_to "Products", products_path %></li>
-  <li><%= link_to "Orders", orders_path %></li>
+  <% [:customers, :products, :orders].each do |resource| %>
+    <li>
+      <%= link_to(
+        resource.to_s.titleize,
+        polymorphic_path(resource),
+        class: link_class(resource)
+      ) %>
+    </li>
+  <% end %>
 </ul>

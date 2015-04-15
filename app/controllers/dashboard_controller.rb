@@ -53,6 +53,13 @@ class DashboardController < ApplicationController
 
   private
 
+  helper_method :link_class
+  def link_class(resource)
+    if params[:controller] == resource.to_s
+      :active
+    end
+  end
+
   def resource_class
     Object.const_get(resource_class_name)
   end
