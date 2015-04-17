@@ -30,6 +30,7 @@ class DashboardController < ApplicationController
     if resource.save
       redirect_to resource, notice: notices[:created]
     else
+      @presenter = FormPresenter.new(dashboard, resource)
       render :new
     end
   end
@@ -40,6 +41,7 @@ class DashboardController < ApplicationController
     if resource.update(resource_params)
       redirect_to resource, notice: notices[:updated]
     else
+      @presenter = FormPresenter.new(dashboard, resource)
       render :edit
     end
   end

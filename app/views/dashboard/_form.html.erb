@@ -1,4 +1,19 @@
 <%= form_for(@presenter.resource) do |f| %>
+  <% if @presenter.resource.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@presenter.resource.errors.count, "error") %>
+        prohibited this <%= @presenter.resource_name %> from being saved:
+      </h2>
+
+      <ul>
+      <% @presenter.resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="form-inputs">
     <% @presenter.attribute_names.each do |attr_name| -%>
       <div class="field">
