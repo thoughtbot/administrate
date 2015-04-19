@@ -1,0 +1,17 @@
+class LineItem < ActiveRecord::Base
+  belongs_to :order
+  belongs_to :product
+
+  validates :product, presence: true
+  validates :order, presence: true
+  validates :unit_price, presence: true
+  validates :quantity, presence: true
+
+  def to_s
+    "Line Item #%04d" % id
+  end
+
+  def total_price
+    unit_price * quantity
+  end
+end

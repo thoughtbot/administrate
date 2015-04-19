@@ -4,6 +4,13 @@ FactoryGirl.define do
     email { name.downcase.gsub(" ", "_") + "@example.com" }
   end
 
+  factory :line_item do
+    order
+    product
+    unit_price 1.5
+    quantity 1
+  end
+
   factory :order do
     customer
     address_line_one "85 2nd St"

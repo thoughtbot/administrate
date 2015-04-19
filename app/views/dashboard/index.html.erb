@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @presenter.resource_name.pluralize.titleize %></h1>
-<%= link_to "New #{@presenter.resource_name.downcase}", @presenter.new_path %>
+<%= link_to "New #{@presenter.resource_name.titleize.downcase}", @presenter.new_path %>
 
 <table>
   <thead>

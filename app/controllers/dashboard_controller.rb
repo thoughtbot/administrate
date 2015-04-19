@@ -91,7 +91,7 @@ class DashboardController < ApplicationController
   end
 
   def resource_class_name
-    resource_name.to_s.titleize
+    resource_name.to_s.camelcase
   end
 
   def instance_variable
@@ -102,11 +102,15 @@ class DashboardController < ApplicationController
     Rails.application.routes.url_helpers.public_send(:"#{resource_name}s_path")
   end
 
+  def resource_title
+    resource_class_name.titleize
+  end
+
   def notices
     {
-      created: "#{resource_class_name} was successfully created.",
-      updated: "#{resource_class_name} was successfully updated.",
-      destroyed: "#{resource_class_name} was successfully destroyed.",
+      created: "#{resource_title} was successfully created.",
+      updated: "#{resource_title} was successfully updated.",
+      destroyed: "#{resource_title} was successfully destroyed.",
     }
   end
 end

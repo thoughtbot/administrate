@@ -6,7 +6,7 @@ require "adapters/string_adapter"
 class BasePresenter
   def resource_name
     @resource_name ||=
-      dashboard.class.to_s.scan(/(.+)Dashboard/).first.first.downcase
+      dashboard.class.to_s.scan(/(.+)Dashboard/).first.first.underscore
   end
 
   protected
