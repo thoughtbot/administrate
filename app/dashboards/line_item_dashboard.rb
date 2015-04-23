@@ -1,7 +1,7 @@
 require "base_dashboard"
 
 class LineItemDashboard < BaseDashboard
-  def index_page_attributes
+  def table_attributes
     attributes + [:total_price]
   end
 

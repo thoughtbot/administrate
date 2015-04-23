@@ -1,13 +1,9 @@
 require_relative "base"
 
 module Page
-  class Index < Page::Base
-    def initialize(dashboard)
-      @dashboard = dashboard
-    end
-
+  class Table < Page::Base
     def attribute_names
-      dashboard.index_page_attributes
+      dashboard.table_attributes
     end
 
     def attributes_for(resource)
@@ -16,8 +12,8 @@ module Page
       end
     end
 
-    protected
-
-    attr_reader :dashboard
+    def to_partial_path
+      "/dashboard/table"
+    end
   end
 end

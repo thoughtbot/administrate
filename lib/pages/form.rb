@@ -3,7 +3,7 @@ require_relative "base"
 module Page
   class Form < Page::Base
     def initialize(dashboard, resource)
-      @dashboard = dashboard
+      super(dashboard)
       @resource = resource
     end
 

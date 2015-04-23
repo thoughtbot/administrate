@@ -1,5 +1,6 @@
 require "fields/belongs_to"
 require "fields/email"
+require "fields/has_many"
 require "fields/image"
 require "fields/string"
 
@@ -20,6 +21,7 @@ class BaseDashboard
     {
       belongs_to: Field::BelongsTo,
       email: Field::Email,
+      has_many: Field::HasMany,
       image: Field::Image,
       string: Field::String,
     }

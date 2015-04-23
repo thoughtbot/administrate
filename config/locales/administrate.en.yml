@@ -1,0 +1,6 @@
+en:
+  administrate:
+    actions:
+      edit: Edit
+      destroy: Destroy
+      confirm: Are you sure?

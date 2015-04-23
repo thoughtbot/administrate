@@ -6,10 +6,11 @@ class CustomerDashboard < BaseDashboard
       email: :email,
       lifetime_value: :string,
       name: :string,
+      orders: :has_many,
     }
   end
 
-  def index_page_attributes
+  def table_attributes
     attributes
   end
 
@@ -31,6 +32,7 @@ class CustomerDashboard < BaseDashboard
       :name,
       :email,
       :lifetime_value,
+      :orders,
     ]
   end
 end

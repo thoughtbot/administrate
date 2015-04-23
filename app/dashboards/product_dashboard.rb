@@ -10,7 +10,7 @@ class ProductDashboard < BaseDashboard
     }
   end
 
-  def index_page_attributes
+  def table_attributes
     attributes
   end
 

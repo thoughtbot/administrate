@@ -1,0 +1,31 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= table_presenter.resource_name.titleize %></th>
+
+      <% table_presenter.attribute_names.each do |attr_name| %>
+        <th><%= attr_name.to_s.titleize %></th>
+      <% end %>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% resources.each do |resource| %>
+      <tr>
+        <td><%= link_to resource.to_s, resource %></td>
+
+        <% table_presenter.attributes_for(resource).each do |attribute| %>
+          <td><%= render attribute %></td>
+        <% end %>
+        <td><%= link_to t("administrate.actions.edit"), [:edit, resource] %></td>
+        <td><%= link_to(
+          t("administrate.actions.destroy"),
+          resource,
+          method: :delete,
+          data: { confirm: t("administrate.actions.confirm") }
+          ) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

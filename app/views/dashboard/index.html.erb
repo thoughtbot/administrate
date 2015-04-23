@@ -4,29 +4,4 @@
 <%= link_to "New #{@page.resource_name.titleize.downcase}",
   [:new, @page.resource_name] %>
 
-<table>
-  <thead>
-    <tr>
-      <th><%= @page.resource_name.titleize %></th>
-
-      <% @page.attribute_names.each do |attr_name| %>
-        <th><%= attr_name.to_s.titleize %></th>
-      <% end %>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @resources.each do |resource| %>
-      <tr>
-        <td><%= link_to resource.to_s, resource %></td>
-
-        <% @page.attributes_for(resource).each do |attribute| %>
-          <td><%= render attribute %></td>
-        <% end %>
-        <td><%= link_to 'Edit', [:edit, resource] %></td>
-        <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render "table", table_presenter: @page, resources: @resources %>

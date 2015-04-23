@@ -1,5 +1,9 @@
 module Page
   class Base
+    def initialize(dashboard)
+      @dashboard = dashboard
+    end
+
     def resource_name
       @resource_name ||=
         dashboard.class.to_s.scan(/(.+)Dashboard/).first.first.underscore
@@ -14,5 +18,9 @@ module Page
         field_class(attribute_name).
         new(attribute_name, value, page)
     end
+
+    protected
+
+    attr_reader :dashboard
   end
 end

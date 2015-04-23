@@ -1,11 +1,11 @@
 require "pages/form"
-require "pages/index"
+require "pages/table"
 require "pages/show"
 
 class DashboardController < ApplicationController
   def index
     @resources = resource_class.all
-    @page = Page::Index.new(dashboard)
+    @page = Page::Table.new(dashboard)
   end
 
   def show

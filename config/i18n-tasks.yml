@@ -5,6 +5,10 @@ search:
     - "app/pages"
     - "app/views"
 
+data:
+  read:
+    - config/locales/administrate.%{locale}.yml
+
 ignore_unused:
   - activerecord.*
   - date.*

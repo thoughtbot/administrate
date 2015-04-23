@@ -10,15 +10,17 @@ class OrderDashboard < BaseDashboard
       address_state: :string,
       address_zip: :string,
       customer: :belongs_to,
+      line_items: :has_many,
+      total_price: :string,
     }
   end
 
-  def index_page_attributes
+  def table_attributes
     attributes
   end
 
   def form_attributes
-    attributes - [:id]
+    attributes - [:id, :total_price]
   end
 
   def show_page_attributes
@@ -36,6 +38,8 @@ class OrderDashboard < BaseDashboard
       :address_state,
       :address_zip,
       :customer,
+      :line_items,
+      :total_price,
     ]
   end
 end
