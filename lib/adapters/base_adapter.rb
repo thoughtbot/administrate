@@ -39,7 +39,7 @@ class BaseAdapter < ActionController::Base
 
   attr_reader :data, :request
 
-  def template(template, options={})
+  def template(template, options = {})
     render_to_string(
       options.merge(template: template)
     ).strip.html_safe
