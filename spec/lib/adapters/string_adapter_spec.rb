@@ -1,11 +1,11 @@
-require "spec_helper"
+require "rails_helper"
 require "adapters/string_adapter"
 
-RSpec.describe StringAdapter do
+describe StringAdapter, type: :controller do
   it "renders the string for the show page" do
     string = "hello"
 
-    adapter = StringAdapter.new(string)
+    adapter = StringAdapter.new(string, request)
     rendered = adapter.render_show
 
     expect(rendered).to eq string
@@ -14,7 +14,7 @@ RSpec.describe StringAdapter do
   it "renders the string for the index page" do
     string = "hello"
 
-    adapter = StringAdapter.new(string)
+    adapter = StringAdapter.new(string, request)
     rendered = adapter.render_index
 
     expect(rendered).to eq string
@@ -24,7 +24,7 @@ RSpec.describe StringAdapter do
     string = "hello"
     form_object_double = double(text_field: string)
 
-    adapter = StringAdapter.new(string)
+    adapter = StringAdapter.new(string, request)
     rendered = adapter.render_form_field(form_object_double, :attribute)
 
     expect(rendered).to eq string

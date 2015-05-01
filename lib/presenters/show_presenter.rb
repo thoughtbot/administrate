@@ -1,9 +1,10 @@
 require_relative "base_presenter"
 
 class ShowPresenter < BasePresenter
-  def initialize(dashboard, resource)
+  def initialize(dashboard, resource, request)
     @dashboard = dashboard
     @resource = resource
+    super(request)
   end
 
   def page_title
