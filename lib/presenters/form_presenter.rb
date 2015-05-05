@@ -8,8 +8,10 @@ class FormPresenter < BasePresenter
 
   attr_reader :resource
 
-  def attribute_names
-    dashboard.form_attributes
+  def attributes
+    dashboard.form_attributes.map do |attribute|
+      adapter(dashboard, resource, attribute, :form)
+    end
   end
 
   def page_title
@@ -18,14 +20,6 @@ class FormPresenter < BasePresenter
 
   def index_path
     route(nil, resource_name.pluralize)
-  end
-
-  def render_form_label(form, attribute)
-    adapter(dashboard, resource, attribute).render_form_label(form, attribute)
-  end
-
-  def render_form_field(form, attribute)
-    adapter(dashboard, resource, attribute).render_form_field(form, attribute)
   end
 
   protected

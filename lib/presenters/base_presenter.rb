@@ -18,11 +18,11 @@ class BasePresenter
     Rails.application.routes.url_helpers.public_send(*arguments)
   end
 
-  def adapter(dashboard, resource, attribute_name)
+  def adapter(dashboard, resource, attribute_name, page)
     adapter_name = dashboard.attribute_adapters[attribute_name]
     value = resource.public_send(attribute_name)
 
-    adapter_registry.fetch(adapter_name).new(value)
+    adapter_registry.fetch(adapter_name).new(attribute_name, value, page)
   end
 
   def adapter_registry

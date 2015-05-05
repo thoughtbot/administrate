@@ -15,10 +15,9 @@
   <% end %>
 
   <div class="form-inputs">
-    <% @presenter.attribute_names.each do |attr_name| -%>
+    <% @presenter.attributes.each do |attribute| -%>
       <div class="field">
-        <%= @presenter.render_form_label(f, attr_name) %><br>
-        <%= @presenter.render_form_field(f, attr_name) %>
+        <%= render attribute, f: f %>
       </div>
     <% end -%>
   </div>

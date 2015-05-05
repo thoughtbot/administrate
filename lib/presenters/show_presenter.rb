@@ -11,15 +11,9 @@ class ShowPresenter < BasePresenter
   end
 
   def attributes
-    Hash[
-      dashboard.show_page_attributes.map do |attr_name|
-        [attr_name, render_attribute(attr_name)]
-      end
-    ]
-  end
-
-  def render_attribute(attribute_name)
-    adapter(dashboard, resource, attribute_name).render_show
+    dashboard.show_page_attributes.map do |attr_name|
+      adapter(dashboard, resource, attr_name, :show)
+    end
   end
 
   def edit_path

@@ -20,8 +20,8 @@
       <tr>
         <td><%= link_to resource.to_s, @presenter.show_path(resource) %></td>
 
-        <% @presenter.attribute_names.each do |attr_name| %>
-          <td><%= @presenter.render_attribute(resource, attr_name) %></td>
+        <% @presenter.attributes_for(resource).each do |attribute| %>
+          <td><%= render attribute %></td>
         <% end %>
         <td><%= link_to 'Edit', @presenter.edit_path(resource) %></td>
         <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>

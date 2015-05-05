@@ -1,33 +1,15 @@
 require "spec_helper"
 require "adapters/string_adapter"
 
-RSpec.describe StringAdapter do
-  it "renders the string for the show page" do
-    string = "hello"
+describe StringAdapter do
+  describe "#to_partial_path" do
+    it "returns a partial based on the page being rendered" do
+      page = :show
+      adapter = StringAdapter.new(:string, "hello", page)
 
-    adapter = StringAdapter.new(string)
-    rendered = adapter.render_show
+      path = adapter.to_partial_path
 
-    expect(rendered).to eq string
-  end
-
-  it "renders the string for the index page" do
-    string = "hello"
-
-    adapter = StringAdapter.new(string)
-    rendered = adapter.render_index
-
-    expect(rendered).to eq string
-  end
-
-  it "renders an input form for the edit page" do
-    string = "hello"
-    form_object_double = double(text_field: string)
-
-    adapter = StringAdapter.new(string)
-    rendered = adapter.render_form_field(form_object_double, :attribute)
-
-    expect(rendered).to eq string
-    expect(form_object_double).to have_received(:text_field).with(:attribute)
+      expect(path).to eq("/adapters/#{page}/string")
+    end
   end
 end

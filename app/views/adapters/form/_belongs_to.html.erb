@@ -1,0 +1,7 @@
+<%= f.label belongs_to.permitted_attribute %>
+<%= f.collection_select(
+  belongs_to.permitted_attribute,
+  belongs_to.candidate_records,
+  :id,
+  :to_s
+) %>

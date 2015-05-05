@@ -14,7 +14,7 @@ describe "order index page" do
     order = create(:order)
 
     visit orders_path
-    click_on(order.customer.name)
+    click_on(order.customer.to_s)
 
     expect(page).to have_header(order.customer.name)
   end

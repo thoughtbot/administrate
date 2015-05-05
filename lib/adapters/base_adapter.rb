@@ -1,29 +1,21 @@
 class BaseAdapter
-  def initialize(data)
+  def initialize(attribute, data, page)
+    @attribute = attribute
     @data = data
-  end
-
-  def render_show
-    data
-  end
-
-  def render_index
-    data
-  end
-
-  def render_form_field(form, attribute)
-    form.text_field(attribute)
-  end
-
-  def render_form_label(form, attribute)
-    form.label attribute
+    @page = page
   end
 
   def self.permitted_attribute(attr)
     attr
   end
 
-  protected
+  def name
+    attribute.to_s
+  end
 
-  attr_reader :data
+  def to_partial_path
+    "/adapters/#{page}/#{adapter_name}"
+  end
+
+  attr_reader :attribute, :data, :page
 end

@@ -17,6 +17,7 @@ class BaseDashboard
     {
       belongs_to: BelongsToAdapter,
       email: EmailAdapter,
+      image: ImageAdapter,
       string: StringAdapter,
     }
   end

@@ -11,16 +11,18 @@ class IndexPresenter < BasePresenter
     dashboard.index_page_attributes
   end
 
+  def attributes_for(resource)
+    attribute_names.map do |attr_name|
+      adapter(dashboard, resource, attr_name, :index)
+    end
+  end
+
   def edit_path(resource)
     route(:edit, resource_name, resource)
   end
 
   def new_path
     route(:new, resource_name)
-  end
-
-  def render_attribute(resource, attribute_name)
-    attribute_html(resource, attribute_name)
   end
 
   def show_path(resource)
@@ -30,8 +32,4 @@ class IndexPresenter < BasePresenter
   protected
 
   attr_reader :dashboard
-
-  def attribute_html(resource, attribute_name)
-    adapter(dashboard, resource, attribute_name).render_index
-  end
 end

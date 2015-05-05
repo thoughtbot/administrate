@@ -11,18 +11,6 @@ RSpec.describe FormPresenter do
     end
   end
 
-  describe "#attribute_names" do
-    it "returns attributes defined by the dashboard" do
-      customer = build(:customer, name: "Worf")
-      presenter = FormPresenter.new(CustomerDashboard.new, customer)
-
-      expect(presenter.attribute_names).to eq([
-        :name,
-        :email,
-      ])
-    end
-  end
-
   describe "#index_path" do
     it "returns the index path" do
       customer = Customer.new
