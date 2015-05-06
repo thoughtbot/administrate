@@ -6,7 +6,7 @@ class BaseAdapter < ActionController::Base
   def initialize(data, request)
     # TODO I'd like a more robust solution than this,
     # with support for arbitrarily-inherited attribute adapters
-    self.prepend_view_path("lib/adapters/views/#{adapter_view_path}")
+    prepend_view_path("lib/adapters/views/#{adapter_view_path}")
     @data = data
     @request = request
   end
