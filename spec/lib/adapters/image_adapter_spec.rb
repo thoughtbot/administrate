@@ -1,13 +1,13 @@
-require "spec_helper"
+require "rails_helper"
 require "adapters/image_adapter"
 
-RSpec.describe ImageAdapter do
+RSpec.describe ImageAdapter, type: :controller do
   describe "#render_show" do
     it "renders an image tag" do
       image = "http://placekitten.com/200/200"
       alt = "200"
 
-      adapter = ImageAdapter.new(image)
+      adapter = ImageAdapter.new(image, request)
       rendered = adapter.render_show
 
       expect(rendered).to eq "<img src=\"#{image}\" alt=\"#{alt}\" />"
@@ -19,7 +19,7 @@ RSpec.describe ImageAdapter do
       image = "http://placekitten.com/200/200"
       alt = "200"
 
-      adapter = ImageAdapter.new(image)
+      adapter = ImageAdapter.new(image, request)
       rendered = adapter.render_index
 
       expect(rendered).to eq "<img src=\"#{image}\" alt=\"#{alt}\" />"
@@ -31,7 +31,7 @@ RSpec.describe ImageAdapter do
       image = "http://placekitten.com/200/200"
       form_object_double = double(text_field: image)
 
-      adapter = ImageAdapter.new(image)
+      adapter = ImageAdapter.new(image, request)
       rendered = adapter.render_form_field(form_object_double, :attribute)
 
       expect(rendered).to eq image

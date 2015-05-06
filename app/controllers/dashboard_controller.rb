@@ -5,13 +5,13 @@ require "presenters/show_presenter"
 class DashboardController < ApplicationController
   def index
     @resources = resource_class.all
-    @presenter = IndexPresenter.new(dashboard)
+    @presenter = IndexPresenter.new(dashboard, request)
   end
 
   def show
     set_resource(resource_class.find(params[:id]))
 
-    @presenter = ShowPresenter.new(dashboard, resource)
+    @presenter = ShowPresenter.new(dashboard, resource, request)
   end
 
   def new

@@ -4,12 +4,18 @@ require "adapters/image_adapter"
 require "adapters/string_adapter"
 
 class BasePresenter
+  def initialize(request)
+    @request = request
+  end
+
   def resource_name
     @resource_name ||=
       dashboard.class.to_s.scan(/(.+)Dashboard/).first.first.underscore
   end
 
   protected
+
+  attr_reader :request
 
   def route(prefix, resource_name, resource = nil)
     path_helper = [prefix, resource_name, "path"].compact.join("_")
@@ -22,7 +28,7 @@ class BasePresenter
     adapter_name = dashboard.attribute_adapters[attribute_name]
     value = resource.public_send(attribute_name)
 
-    adapter_registry.fetch(adapter_name).new(value)
+    adapter_registry.fetch(adapter_name).new(value, request)
   end
 
   def adapter_registry

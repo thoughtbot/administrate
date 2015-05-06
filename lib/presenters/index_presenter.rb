@@ -3,7 +3,8 @@ require_relative "base_presenter"
 class IndexPresenter < BasePresenter
   include ActionView::Helpers::UrlHelper
 
-  def initialize(dashboard)
+  def initialize(dashboard, request)
+    super(request)
     @dashboard = dashboard
   end
 
