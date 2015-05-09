@@ -1,7 +1,7 @@
 require "base_dashboard"
 
 class ProductDashboard < BaseDashboard
-  def attribute_adapters
+  def attribute_types
     {
       description: :string,
       image_url: :image,

@@ -10,13 +10,13 @@ RSpec.describe CustomerDashboard do
     end
   end
 
-  describe "#attribute_adapters" do
-    it "maps each attribute to an adapter" do
+  describe "#attribute_types" do
+    it "maps each attribute to an attribute field" do
       dashboard = CustomerDashboard.new
 
-      expect(dashboard.attribute_adapters[:name]).to eq :string
-      expect(dashboard.attribute_adapters[:email]).to eq :email
-      expect(dashboard.attribute_adapters[:lifetime_value]).to eq :string
+      expect(dashboard.attribute_types[:name]).to eq(:string)
+      expect(dashboard.attribute_types[:email]).to eq(:email)
+      expect(dashboard.attribute_types[:lifetime_value]).to eq(:string)
     end
   end
 end

@@ -1,13 +1,13 @@
-<%= form_for(@presenter.resource) do |f| %>
-  <% if @presenter.resource.errors.any? %>
+<%= form_for(@page.resource) do |f| %>
+  <% if @page.resource.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@presenter.resource.errors.count, "error") %>
-        prohibited this <%= @presenter.resource_name %> from being saved:
+        <%= pluralize(@page.resource.errors.count, "error") %>
+        prohibited this <%= @page.resource_name %> from being saved:
       </h2>
 
       <ul>
-      <% @presenter.resource.errors.full_messages.each do |message| %>
+      <% @page.resource.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -15,7 +15,7 @@
   <% end %>
 
   <div class="form-inputs">
-    <% @presenter.attributes.each do |attribute| -%>
+    <% @page.attributes.each do |attribute| -%>
       <div class="field">
         <%= render attribute, f: f %>
       </div>

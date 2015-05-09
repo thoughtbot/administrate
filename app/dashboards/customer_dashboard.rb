@@ -1,7 +1,7 @@
 require "base_dashboard"
 
 class CustomerDashboard < BaseDashboard
-  def attribute_adapters
+  def attribute_types
     {
       email: :email,
       lifetime_value: :string,

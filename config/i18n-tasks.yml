@@ -2,7 +2,7 @@ search:
   paths:
     - "app/controllers"
     - "app/helpers"
-    - "app/presenters"
+    - "app/pages"
     - "app/views"
 
 ignore_unused:

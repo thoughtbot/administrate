@@ -1,27 +1,27 @@
-require "presenters/form_presenter"
-require "presenters/index_presenter"
-require "presenters/show_presenter"
+require "pages/form"
+require "pages/index"
+require "pages/show"
 
 class DashboardController < ApplicationController
   def index
     @resources = resource_class.all
-    @presenter = IndexPresenter.new(dashboard)
+    @page = Page::Index.new(dashboard)
   end
 
   def show
     set_resource(resource_class.find(params[:id]))
 
-    @presenter = ShowPresenter.new(dashboard, resource)
+    @page = Page::Show.new(dashboard, resource)
   end
 
   def new
-    @presenter = FormPresenter.new(dashboard, resource_class.new)
+    @page = Page::Form.new(dashboard, resource_class.new)
   end
 
   def edit
     set_resource(resource_class.find(params[:id]))
 
-    @presenter = FormPresenter.new(dashboard, resource)
+    @page = Page::Form.new(dashboard, resource)
   end
 
   def create
@@ -30,7 +30,7 @@ class DashboardController < ApplicationController
     if resource.save
       redirect_to resource, notice: notices[:created]
     else
-      @presenter = FormPresenter.new(dashboard, resource)
+      @page = Page::Form.new(dashboard, resource)
       render :new
     end
   end
@@ -41,7 +41,7 @@ class DashboardController < ApplicationController
     if resource.update(resource_params)
       redirect_to resource, notice: notices[:updated]
     else
-      @presenter = FormPresenter.new(dashboard, resource)
+      @page = Page::Form.new(dashboard, resource)
       render :edit
     end
   end

@@ -1,24 +1,27 @@
+require "fields/belongs_to"
+require "fields/email"
+require "fields/image"
+require "fields/string"
+
 class BaseDashboard
   def permitted_attributes
     form_attributes.map do |attr|
-      adapter_class(attr).permitted_attribute(attr)
+      field_class(attr).permitted_attribute(attr)
     end.uniq
+  end
+
+  def field_class(attr)
+    field_registry.fetch(attribute_types[attr])
   end
 
   private
 
-  def adapter_class(attr)
-    adapter_name = attribute_adapters[attr]
-
-    adapter_registry.fetch(adapter_name)
-  end
-
-  def adapter_registry
+  def field_registry
     {
-      belongs_to: BelongsToAdapter,
-      email: EmailAdapter,
-      image: ImageAdapter,
-      string: StringAdapter,
+      belongs_to: Field::BelongsTo,
+      email: Field::Email,
+      image: Field::Image,
+      string: Field::String,
     }
   end
 end

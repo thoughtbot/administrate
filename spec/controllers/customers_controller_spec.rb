@@ -23,10 +23,10 @@ RSpec.describe CustomersController, type: :controller do
   end
 
   describe "GET new" do
-    it "assigns a new form presenter as @presenter" do
+    it "assigns a new form page object as @page" do
       get :new
 
-      expect(assigns(:presenter)).to be_instance_of(FormPresenter)
+      expect(assigns(:page)).to be_instance_of(Page::Form)
     end
   end
 

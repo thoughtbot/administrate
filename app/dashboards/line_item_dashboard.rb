@@ -13,7 +13,7 @@ class LineItemDashboard < BaseDashboard
     attributes
   end
 
-  def attribute_adapters
+  def attribute_types
     {
       order: :belongs_to,
       product: :belongs_to,

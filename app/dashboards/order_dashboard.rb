@@ -1,7 +1,7 @@
 require "base_dashboard"
 
 class OrderDashboard < BaseDashboard
-  def attribute_adapters
+  def attribute_types
     {
       id: :string,
       address_line_one: :string,

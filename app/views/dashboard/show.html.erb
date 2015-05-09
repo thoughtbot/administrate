@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', @presenter.edit_path %>
+<%= link_to 'Edit', @page.edit_path %>
 
-<h1><%= @presenter.page_title %></h1>
+<h1><%= @page.page_title %></h1>
 
 <dl>
-  <% @presenter.attributes.each do |attribute| %>
+  <% @page.attributes.each do |attribute| %>
     <dt><%= attribute.name.titleize %></dt>
     <dd><%= render attribute %></dd>
   <% end %>

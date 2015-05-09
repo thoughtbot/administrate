@@ -34,12 +34,11 @@ In this demo app,
 the lib files should contain no references to `Customer`, `Product`, `Order`,
 or any of those models' attributes.
 
-- Presenters are in charge of displaying the information on a given page.
-  There are `IndexPresenter`, `ShowPresenter`, and `FormPresenter`.
+- [Pages] define how to display resources on a specific page.
+- [Fields] define how to display an attribute on each page.
 
-- Adapters are in charge of displaying a model's attributes on the page.
-  Examples are `StringAdapter` and `EmailAdapter`,
-  and new adapters are being added all the time.
+[Pages]: https://github.com/thoughtbot/administrate-demo/tree/master/lib/pages
+[Fields]: https://github.com/thoughtbot/administrate-demo/tree/master/lib/fields
 
 ## Getting Started
 

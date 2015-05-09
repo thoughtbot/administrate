@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @presenter.resource_name.pluralize.titleize %></h1>
-<%= link_to "New #{@presenter.resource_name.titleize.downcase}", @presenter.new_path %>
+<h1><%= @page.resource_name.pluralize.titleize %></h1>
+<%= link_to "New #{@page.resource_name.titleize.downcase}", @page.new_path %>
 
 <table>
   <thead>
     <tr>
-      <th><%= @presenter.resource_name.titleize %></th>
+      <th><%= @page.resource_name.titleize %></th>
 
-      <% @presenter.attribute_names.each do |attr_name| %>
+      <% @page.attribute_names.each do |attr_name| %>
         <th><%= attr_name.to_s.titleize %></th>
       <% end %>
       <th colspan="2"></th>
@@ -18,12 +18,12 @@
   <tbody>
     <% @resources.each do |resource| %>
       <tr>
-        <td><%= link_to resource.to_s, @presenter.show_path(resource) %></td>
+        <td><%= link_to resource.to_s, @page.show_path(resource) %></td>
 
-        <% @presenter.attributes_for(resource).each do |attribute| %>
+        <% @page.attributes_for(resource).each do |attribute| %>
           <td><%= render attribute %></td>
         <% end %>
-        <td><%= link_to 'Edit', @presenter.edit_path(resource) %></td>
+        <td><%= link_to 'Edit', @page.edit_path(resource) %></td>
         <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
