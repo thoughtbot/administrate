@@ -3,10 +3,12 @@ require "base_dashboard"
 class CustomerDashboard < BaseDashboard
   def attribute_types
     {
+      created_at: :datetime,
       email: :email,
       lifetime_value: :string,
       name: :string,
       orders: :has_many,
+      updated_at: :datetime,
     }
   end
 
@@ -33,6 +35,8 @@ class CustomerDashboard < BaseDashboard
       :email,
       :lifetime_value,
       :orders,
+      :created_at,
+      :updated_at,
     ]
   end
 end

@@ -20,9 +20,11 @@ class BaseDashboard
   def field_registry
     {
       belongs_to: Field::BelongsTo,
+      datetime: Field::String,
       email: Field::Email,
       has_many: Field::HasMany,
       image: Field::Image,
+      integer: Field::String,
       string: Field::String,
     }
   end
