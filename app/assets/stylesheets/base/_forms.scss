@@ -28,7 +28,7 @@ label {
 
 textarea,
 #{$all-text-inputs},
-select[multiple=multiple] {
+select {
   @include box-sizing(border-box);
   @include transition(border-color);
   background-color: white;
@@ -72,7 +72,7 @@ input[type="file"] {
 }
 
 select {
+  @include appearance(none);
+  background: image-url("dropdown.svg") no-repeat 97% 50% / 10px;
   margin-bottom: $base-spacing;
-  max-width: 100%;
-  width: auto;
 }

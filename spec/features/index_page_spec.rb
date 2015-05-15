@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "customer index page" do
+describe "customer index page" do
   it "displays customers' name and email" do
     customer = create(:customer)
 
@@ -15,9 +15,9 @@ RSpec.describe "customer index page" do
     customer = create(:customer)
 
     visit customers_path
-    click_on customer.name
+    find(index_row_css_for(customer)).click
 
-    expect(current_path).to eq(customer_path(customer))
+    expect(page).to have_header(customer.to_s)
     expect(page).to have_content(customer.name)
     expect(page).to have_content(customer.email)
   end

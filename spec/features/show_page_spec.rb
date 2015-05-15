@@ -27,9 +27,19 @@ RSpec.describe "customer show page" do
     visit customer_path(customer)
 
     orders.each do |order|
-      expect(page).to have_link(order.to_s)
       expect(page).to have_content(order.total_price)
     end
+  end
+
+  it "links to the customer's orders" do
+    customer = create(:customer)
+    order = create(:order, customer: customer)
+
+    visit customer_path(customer)
+
+    find(index_row_css_for(order)).click
+
+    expect(page).to have_header(order.to_s)
   end
 
   it "link-ifies the email" do

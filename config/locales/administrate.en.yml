@@ -1,6 +1,7 @@
 en:
   administrate:
     actions:
+      show: Show
       edit: Edit
       destroy: Destroy
       confirm: Are you sure?

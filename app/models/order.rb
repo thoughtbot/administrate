@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
   validates :address_zip, presence: true
 
   def to_s
-    id
+    "Order ##{id}"
   end
 
   def total_price

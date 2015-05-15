@@ -1,4 +1,4 @@
-<%= form_for(@page.resource) do |f| %>
+<%= form_for(@page.resource, class: "form") do |f| %>
   <% if @page.resource.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -7,16 +7,16 @@
       </h2>
 
       <ul>
-      <% @page.resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @page.resource.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="form-inputs">
     <% @page.attributes.each do |attribute| -%>
-      <div class="field">
+      <div class="form-field">
         <%= render attribute, f: f %>
       </div>
     <% end -%>

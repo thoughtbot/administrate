@@ -1,7 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<h1><%= @page.resource_name.pluralize.titleize %></h1>
-<%= link_to "New #{@page.resource_name.titleize.downcase}",
-  [:new, @page.resource_name] %>
+<header class="header">
+  <h1 class="header-heading"><%= @page.resource_name.pluralize.titleize %></h1>
+  <%= link_to(
+    "New #{@page.resource_name.titleize.downcase}",
+    [:new, @page.resource_name],
+    class: "button",
+  ) %>
+</header>
 
 <%= render "table", table_presenter: @page, resources: @resources %>

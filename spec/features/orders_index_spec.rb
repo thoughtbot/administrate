@@ -23,9 +23,9 @@ describe "order index page" do
     order = create(:order)
 
     visit orders_path
-    click_on order.id
+    find(index_row_css_for(order)).click
 
-    expect(current_path).to eq(order_path(order))
+    expect(page).to have_header(order.to_s)
     expect(page).to have_link(order.customer.name)
   end
 

@@ -1,0 +1,31 @@
+.form {
+  &-actions {
+    margin-left: 12em;
+  }
+
+  &-heading {
+    font-size: 1.75em;
+    margin: 0;
+    padding-bottom: 0.5em;
+  }
+
+  &-field {
+    align-items: baseline;
+    display: flex;
+    justify-content: flex-start;
+    margin: 1.2em 0;
+    width: 100%;
+
+    label {
+      margin-right: 2em;
+      text-align: right;
+      width: 10em;
+    }
+
+    input,
+    select {
+      background-color: $form-field-background-color;
+      max-width: 30em;
+    }
+  }
+}
