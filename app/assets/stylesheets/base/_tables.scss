@@ -6,7 +6,7 @@ table {
 }
 
 th {
-  border-bottom: 1px solid darken($base-border-color, 15);
+  border-bottom: $dark-border;
   font-weight: bold;
   padding: ($base-spacing / 2) 0;
   text-align: left;

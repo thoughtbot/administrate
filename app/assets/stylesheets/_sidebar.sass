@@ -1,26 +1,36 @@
-$sidebar-color: #2A3B4C
-
 .sidebar
-  background-color: $sidebar-color
+  flex: 0 0 280px
   height: 100%
   overflow-y: scroll
-  .logo
+
+  &-logo
     height: 6em
-    background-color: lighten($sidebar-color, 60%)
+    display: flex
+    justify-content: space-between
+    padding: 0 1em
+    align-items: center
+
     img
       padding-top: 1em
       display: block
-      margin-left: auto
-      margin-right: auto
       height: 80%
-  ul
+
+    &-heading
+      color: $grey-0
+      font-size: 1.6em
+
+  &-list
     @include fill-parent
+
   a
     display: block
-    padding: $gutter/2
+    padding: 0.5em 1em
     @include fill-parent
-    color: white
+    color: $grey-0
+    border-top-left-radius: 4px
+    border-bottom-left-radius: 4px
+    transition: background-color 0.05s linear
     &.active
-      background-color: lighten($sidebar-color, 10%)
+      background-color: $sidebar-active-color
     &:hover
-      background-color: lighten($sidebar-color, 20%)
+      background-color: $sidebar-hover-color

@@ -1,8 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', [:edit, @page.resource] %>
-
-<h1><%= @page.page_title %></h1>
+<header class="header">
+  <h1 class="header-heading"><%= @page.page_title %></h1>
+  <%= link_to 'Edit', [:edit, @page.resource], class: "button" %>
+</header>
 
 <dl>
   <% @page.attributes.each do |attribute| %>
