@@ -15,7 +15,7 @@ RSpec.describe "product index page" do
     product = create(:product)
 
     visit products_path
-    click_on product.name
+    find(index_row_css_for(product)).click
 
     expect(current_path).to eq(product_path(product))
     expect(page).to have_content(product.name)

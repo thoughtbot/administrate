@@ -1,5 +1,6 @@
 button,
-input[type="submit"] {
+input[type="submit"],
+.button {
   @extend %button;
   @include appearance(none);
   border: none;

@@ -10,20 +10,24 @@
     https://github.com/calebthompson/title#usage
   %>
   <title><%= title %></title>
+  <%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Lato:300,400,900", media: "all" %>
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body class="<%= body_class %>">
-  <div class="sidebar">
-    <%= render "sidebar" -%>
-  </div>
+  <main class="main">
+    <div class="sidebar">
+      <%= render "sidebar" -%>
+    </div>
 
-  <div class="content">
-    <%= render "flashes" -%>
+    <div class="content">
+      <%= render "flashes" -%>
 
-    <%= yield %>
+      <%= yield %>
 
-    <%= render "javascript" %>
-  </div>
+      <%= render "javascript" %>
+    </div>
+  </main>
 </body>
 </html>
