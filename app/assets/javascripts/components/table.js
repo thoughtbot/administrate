@@ -1,11 +1,10 @@
 $(function() {
-  sap = {ui:{keycodes:{SPACE:32, ENTER:13 }}};
+  var keycodes = { space: 32, enter: 13 };
 
   var visitDataUrl = function(event) {
-
     if (event.type=="click" ||
-        event.keyCode == sap.ui.keycodes.SPACE ||
-        event.keyCode == sap.ui.keycodes.ENTER) {
+        event.keyCode == keycodes.space ||
+        event.keyCode == keycodes.enter) {
 
       if(!event.target.href) {
         window.location = $(event.target).closest("tr").data("url");
