@@ -7,17 +7,17 @@ RSpec.describe "line item index page" do
     visit line_items_path
 
     expect(page).to have_header("Line Items")
-    expect(page).to have_content(line_item.to_s)
+    expect(page).to have_content(line_item.id)
     expect(page).to have_content(line_item.product.to_s)
   end
 
-  it "links to the line item show page" do
+  it "links to the line item show page", :js do
     line_item = create(:line_item)
 
     visit line_items_path
-    click_on line_item.to_s
+    find(index_row_css_for(line_item)).click
 
-    expect(current_path).to eq(line_item_path(line_item))
+    expect(page).to have_header(line_item.to_s)
     expect(page).to have_content(line_item.to_s)
     expect(page).to have_content(line_item.product.to_s)
   end

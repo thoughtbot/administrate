@@ -8,7 +8,7 @@ $(function() {
         event.keyCode == sap.ui.keycodes.ENTER) {
 
       if(!event.target.href) {
-        window.location = event.target.closest("tr").dataset["url"]
+        window.location = $(event.target).closest("tr").data("url");
       }
     }
   }
