@@ -9,24 +9,23 @@
     padding-bottom: 0.5em;
   }
 
-  &-inputs {
-    .field {
-      align-items: baseline;
-      display: flex;
-      justify-content: flex-start;
-      margin: 1.2em 0;
-      width: 100%;
+  &-field {
+    align-items: baseline;
+    display: flex;
+    justify-content: flex-start;
+    margin: 1.2em 0;
+    width: 100%;
 
-      label {
-        margin-right: 2em;
-        text-align: right;
-        width: 10em;
-      }
+    label {
+      margin-right: 2em;
+      text-align: right;
+      width: 10em;
+    }
 
-      input,
-      select {
-        max-width: 30em;
-      }
+    input,
+    select {
+      max-width: 30em;
+      background-color: white;
     }
   }
 }
