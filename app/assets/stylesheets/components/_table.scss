@@ -4,6 +4,7 @@ tr {
 
 .table-row {
   transition: background-color 0.05s linear;
+  z-index: 2;
 
   &:hover {
     background-color: $grey-1;
