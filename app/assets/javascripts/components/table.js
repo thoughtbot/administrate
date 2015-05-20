@@ -10,7 +10,7 @@ $(function() {
         window.location = $(event.target).closest("tr").data("url");
       }
     }
-  }
+  };
 
   $("table").on("click", ".table-row", visitDataUrl);
   $("table").on("keydown", ".table-row", visitDataUrl);
