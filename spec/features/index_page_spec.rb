@@ -15,7 +15,7 @@ describe "customer index page", :js do
     customer = create(:customer)
 
     visit customers_path
-    find(index_row_css_for(customer)).click
+    find(index_row_for(customer)).click
 
     expect(page).to have_header(customer.to_s)
     expect(page).to have_content(customer.name)
