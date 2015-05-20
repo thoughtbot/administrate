@@ -4,6 +4,7 @@ tr {
 
 .table-row {
   transition: background-color 0.05s linear;
+
   &:hover {
     background-color: $grey-1;
     cursor: pointer;

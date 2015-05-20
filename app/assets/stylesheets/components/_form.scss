@@ -11,17 +11,20 @@
 
   &-inputs {
     .field {
-      width: 100%;
+      align-items: baseline;
       display: flex;
       justify-content: flex-start;
-      align-items: baseline;
       margin: 1.2em 0;
+      width: 100%;
+
       label {
-        width: 10em;
-        text-align: right;
         margin-right: 2em;
+        text-align: right;
+        width: 10em;
       }
-      input, select {
+
+      input,
+      select {
         max-width: 30em;
       }
     }

@@ -1,8 +1,8 @@
 .header {
-  padding: $base-spacing 0;
   @include display(flex);
   @include justify-content(space-between);
   @include align-items(baseline);
+  padding: $base-spacing 0;
 
   &-heading {
     margin-top: 0;
