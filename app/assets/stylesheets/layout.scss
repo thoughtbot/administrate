@@ -18,9 +18,9 @@ body {
 }
 
 .content {
-  background-color: $content-background-color;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
   @include flex(1);
+  background-color: $content-background-color;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   height: 100%;
   min-height: 100%;
   overflow-y: auto;
