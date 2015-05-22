@@ -7,7 +7,7 @@ RSpec.describe "line item index page" do
     visit line_items_path
 
     expect(page).to have_header("Line Items")
-    expect(page).to have_content(line_item.id)
+    expect(page).to have_content(line_item.unit_price)
     expect(page).to have_content(line_item.product.to_s)
   end
 
