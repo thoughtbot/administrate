@@ -1,11 +1,29 @@
-tr {
-  padding: 0 $gutter;
+table {
+  @include card(1);
+}
+
+td, th {
+  &:first-child {
+    padding-left: 1em;
+  }
+}
+
+thead {
+  background-color: $blue;
+  color: $grey-0;
+  @include card(2);
+  z-index: 2;
 }
 
 .table-row {
+  background-color: $grey-0;
   transition: background-color 0.05s linear;
 
   &:hover {
+    border-left: 2px solid $blue;
+    td:first-child {
+      padding-left: calc(1em - 1px);
+    }
     background-color: $grey-1;
     cursor: pointer;
   }
