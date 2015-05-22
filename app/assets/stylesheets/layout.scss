@@ -19,7 +19,7 @@ body {
 
 .content {
   @include flex(1);
-  @include shadow;
+  @include card(2);
   background-color: $grey-1;
   height: 100%;
   min-height: 100%;

@@ -2,7 +2,8 @@ table {
   @include card(1);
 }
 
-td, th {
+td,
+th {
   &:first-child {
     padding-left: 1em;
   }
@@ -11,7 +12,6 @@ td, th {
 thead {
   background-color: $blue;
   color: $grey-0;
-  @include card(2);
   z-index: 2;
 }
 
@@ -20,11 +20,12 @@ thead {
   transition: background-color 0.05s linear;
 
   &:hover {
+    background-color: $grey-1;
     border-left: 2px solid $blue;
+    cursor: pointer;
+
     td:first-child {
       padding-left: calc(1em - 1px);
     }
-    background-color: $grey-1;
-    cursor: pointer;
   }
 }

@@ -36,10 +36,12 @@
     transition: background-color 0.05s linear;
 
     &.active {
+      @include card(1);
       background-color: $sidebar-active-color;
     }
 
     &:hover {
+      @include card(1);
       background-color: $sidebar-hover-color;
     }
   }
