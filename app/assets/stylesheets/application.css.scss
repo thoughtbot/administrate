@@ -4,10 +4,9 @@
 @import "bourbon";
 @import "base/grid-settings";
 @import "neat";
+@import "mixins/mixins";
 @import "base/base";
 @import "refills/flashes";
-
-@import "mixins/mixins";
 
 @import "layout";
 @import "sidebar";

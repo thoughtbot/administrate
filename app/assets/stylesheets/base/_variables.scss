@@ -1,17 +1,23 @@
 // Typography
-$sans-serif: $helvetica;
+$sans-serif: "Lato", $helvetica;
 $serif: $georgia;
 $base-font-family: $sans-serif;
 $header-font-family: $base-font-family;
 
 // Font Sizes
 $base-font-size: 1em;
+$small-font-size: 0.875em;
 $h1-font-size: $base-font-size * 2.25;
 $h2-font-size: $base-font-size * 2;
 $h3-font-size: $base-font-size * 1.75;
 $h4-font-size: $base-font-size * 1.5;
 $h5-font-size: $base-font-size * 1.25;
 $h6-font-size: $base-font-size;
+
+// Font Weights
+$light-font-weight: 300;
+$normal-font-weight: 400;
+$bold-font-weight: 900;
 
 // Line height
 $base-line-height: 1.5;
@@ -22,27 +28,30 @@ $base-border-radius: 3px;
 $base-spacing: $base-line-height * 1em;
 $base-z-index: 0;
 
+// Transitions
+$base-easing: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+$base-timing: 0.25s;
+$base-transition: all $base-timing $base-easing;
+
 // Colors
-$dark-blue: #214a63;
-$blue: #2d6586;
-$light-blue: #337799;
-$light-red: #fbe3e4;
-$light-yellow: #fff6bf;
-$light-green: #e6efc2;
+$dark-blue: #293f53;
+$blue: #2a94d6;
+$light-blue: #4eb1cb;
+$light-red: #cf5c60;
+$light-yellow: #f3ae4e;
+$light-green: #4ab471;
 
 $form-field-background-color: #fff;
-$grey-0: #f7fcfc;
-$grey-1: #e4edf6;
+$grey-0: #f6f7f7;
+$grey-1: #dfe0e1;
 $grey-2: #cfd8dc;
 $grey-3: #90acad;
-$grey-4: #648687;
+$grey-4: #7b808c;
 $grey-5: #4e6a68;
 $grey-6: #344346;
-$grey-7: #263238;
+$grey-7: #293f54;
 
 // Background Color
-$sidebar-active-color: $blue;
-$sidebar-hover-color: $light-blue;
 $base-background-color: $dark-blue;
 
 // Font Colors
@@ -50,10 +59,14 @@ $base-font-color: $grey-7;
 $base-accent-color: $blue;
 
 // Link Colors
-$base-link-color: $light-blue;
-$hover-link-color: $blue;
+$base-link-color: $blue;
+$hover-link-color: shade($blue, 10);
 $base-button-color: $base-link-color;
 $hover-button-color: $hover-link-color;
+
+// Sidebar Colors
+$sidebar-active-color: $base-link-color;
+$sidebar-hover-color: $hover-link-color;
 
 // Flash Colors
 $alert-color: $light-yellow;
@@ -62,10 +75,11 @@ $notice-color: lighten($base-accent-color, 40);
 $success-color: $light-green;
 
 // Border color
-$base-border-color: $grey-2;
-$base-border: 1px solid $base-border-color;
-$dark-border-color: $grey-3;
-$dark-border: 1px solid $dark-border-color;
+$base-border-color: $grey-1;
+$base-border-size: 1px;
+$base-border: $base-border-size solid $base-border-color;
+$dark-border-color: $grey-2;
+$dark-border: $base-border-size solid $dark-border-color;
 
 // Forms
 $form-border-color: $base-border-color;
