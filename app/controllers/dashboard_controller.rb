@@ -50,7 +50,8 @@ class DashboardController < ApplicationController
     set_resource(resource_class.find(params[:id]))
 
     resource.destroy
-    redirect_to index_url, notice: notices[:destroyed]
+    flash[:notice] = notices[:destroyed]
+    redirect_to action: :index
   end
 
   private
@@ -96,10 +97,6 @@ class DashboardController < ApplicationController
 
   def instance_variable
     "@#{resource_name}"
-  end
-
-  def index_url
-    Rails.application.routes.url_helpers.public_send(:"#{resource_name}s_path")
   end
 
   def resource_title

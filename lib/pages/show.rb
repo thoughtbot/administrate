@@ -7,6 +7,8 @@ module Page
       @resource = resource
     end
 
+    attr_reader :resource
+
     def page_title
       resource.to_s
     end
@@ -17,12 +19,8 @@ module Page
       end
     end
 
-    def edit_path
-      route(:edit, resource_name, resource)
-    end
-
     protected
 
-    attr_reader :dashboard, :resource
+    attr_reader :dashboard
   end
 end

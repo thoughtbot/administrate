@@ -19,10 +19,6 @@ module Page
       resource.to_s
     end
 
-    def index_path
-      route(nil, resource_name.pluralize)
-    end
-
     protected
 
     attr_reader :dashboard

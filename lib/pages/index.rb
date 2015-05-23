@@ -16,18 +16,6 @@ module Page
       end
     end
 
-    def edit_path(resource)
-      route(:edit, resource_name, resource)
-    end
-
-    def new_path
-      route(:new, resource_name)
-    end
-
-    def show_path(resource)
-      route(nil, resource_name, resource)
-    end
-
     protected
 
     attr_reader :dashboard

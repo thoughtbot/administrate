@@ -9,13 +9,4 @@ describe Page::Form do
       expect(page.page_title).to eq("Worf")
     end
   end
-
-  describe "#index_path" do
-    it "returns the index path" do
-      customer = Customer.new
-      page = Page::Form.new(CustomerDashboard.new, customer)
-
-      expect(page.index_path).to eq("/customers")
-    end
-  end
 end

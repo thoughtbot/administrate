@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @page.resource_name.pluralize.titleize %></h1>
-<%= link_to "New #{@page.resource_name.titleize.downcase}", @page.new_path %>
+<%= link_to "New #{@page.resource_name.titleize.downcase}",
+  [:new, @page.resource_name] %>
 
 <table>
   <thead>
@@ -18,12 +19,12 @@
   <tbody>
     <% @resources.each do |resource| %>
       <tr>
-        <td><%= link_to resource.to_s, @page.show_path(resource) %></td>
+        <td><%= link_to resource.to_s, resource %></td>
 
         <% @page.attributes_for(resource).each do |attribute| %>
           <td><%= render attribute %></td>
         <% end %>
-        <td><%= link_to 'Edit', @page.edit_path(resource) %></td>
+        <td><%= link_to 'Edit', [:edit, resource] %></td>
         <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
