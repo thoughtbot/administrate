@@ -4,7 +4,7 @@
       <% table_presenter.attribute_names.each do |attr_name| %>
         <th><%= attr_name.to_s.titleize %></th>
       <% end %>
-      <th colspan="2"></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -14,13 +14,26 @@
         <% table_presenter.attributes_for(resource).each do |attribute| %>
           <td><%= render attribute %></td>
         <% end %>
-        <td><%= link_to t("administrate.actions.edit"), [:edit, resource] %></td>
+
+        <td><%= link_to(
+          t("administrate.actions.show"),
+          resource,
+          class: "action-show",
+        ) %></td>
+
+        <td><%= link_to(
+          t("administrate.actions.edit"),
+          [:edit, resource],
+          class: "action-edit",
+        ) %></td>
+
         <td><%= link_to(
           t("administrate.actions.destroy"),
           resource,
+          class: "action-destroy",
           method: :delete,
           data: { confirm: t("administrate.actions.confirm") }
-          ) %></td>
+        ) %></td>
       </tr>
     <% end %>
   </tbody>

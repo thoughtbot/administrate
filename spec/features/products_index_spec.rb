@@ -11,7 +11,7 @@ RSpec.describe "product index page" do
     expect(page).to have_content(product.description)
   end
 
-  it "links to the product show page", :js do
+  it "links to the product show page" do
     product = create(:product)
 
     visit products_path

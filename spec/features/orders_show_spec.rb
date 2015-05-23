@@ -11,7 +11,7 @@ feature "order index page" do
     expect(page).to have_content(line_item.total_price)
   end
 
-  scenario "links to line items", :js do
+  scenario "links to line items" do
     line_item = create(:line_item)
 
     visit order_path(line_item.order)

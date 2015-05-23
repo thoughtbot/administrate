@@ -31,7 +31,7 @@ RSpec.describe "customer show page" do
     end
   end
 
-  it "links to the customer's orders", :js do
+  it "links to the customer's orders" do
     customer = create(:customer)
     order = create(:order, customer: customer)
 

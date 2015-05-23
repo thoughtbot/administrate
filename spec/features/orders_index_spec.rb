@@ -19,7 +19,7 @@ describe "order index page" do
     expect(page).to have_header(order.customer.name)
   end
 
-  it "links to the order show page", :js do
+  it "links to the order show page" do
     order = create(:order)
 
     visit orders_path

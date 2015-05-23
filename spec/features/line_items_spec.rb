@@ -11,7 +11,7 @@ RSpec.describe "line item index page" do
     expect(page).to have_content(line_item.product.to_s)
   end
 
-  it "links to the line item show page", :js do
+  it "links to the line item show page" do
     line_item = create(:line_item)
 
     visit line_items_path
