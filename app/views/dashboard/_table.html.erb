@@ -1,8 +1,6 @@
 <table>
   <thead>
     <tr>
-      <th><%= table_presenter.resource_name.titleize %></th>
-
       <% table_presenter.attribute_names.each do |attr_name| %>
         <th><%= attr_name.to_s.titleize %></th>
       <% end %>
@@ -12,9 +10,7 @@
 
   <tbody>
     <% resources.each do |resource| %>
-      <tr>
-        <td><%= link_to resource.to_s, resource %></td>
-
+      <tr class="table-row" role="link" tabindex="0" data-url="<%= polymorphic_path(resource) -%>">
         <% table_presenter.attributes_for(resource).each do |attribute| %>
           <td><%= render attribute %></td>
         <% end %>
