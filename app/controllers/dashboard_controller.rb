@@ -58,7 +58,7 @@ class DashboardController < ApplicationController
 
   helper_method :link_class
   def link_class(resource)
-    if params[:controller] == resource.to_s
+    if resource_name.to_s.pluralize == resource.to_s
       :active
     end
   end
@@ -109,5 +109,9 @@ class DashboardController < ApplicationController
       updated: "#{resource_title} was successfully updated.",
       destroyed: "#{resource_title} was successfully destroyed.",
     }
+  end
+
+  def resource_name
+    controller_name.singularize.to_sym
   end
 end
