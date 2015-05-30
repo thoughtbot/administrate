@@ -32,6 +32,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "ammeter"
   gem "awesome_print"
   gem "bundler-audit", require: false
   gem "byebug"
