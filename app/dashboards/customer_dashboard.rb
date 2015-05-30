@@ -11,6 +11,8 @@ class CustomerDashboard < BaseDashboard
   end
 
   def table_attributes
+    puts "foo",
+      "bar"
     attributes
   end
 
