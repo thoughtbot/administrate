@@ -7,6 +7,22 @@ module Field
       Page::Table.new(associated_dashboard)
     end
 
+    def self.permitted_attribute(attribute)
+      { "#{attribute.to_s.singularize}_ids".to_sym => [] }
+    end
+
+    def permitted_attribute
+      self.class.permitted_attribute(attribute)
+    end
+
+    def attribute_key
+      permitted_attribute.keys.first
+    end
+
+    def candidate_records
+      Object.const_get(resource_class_name).all
+    end
+
     private
 
     def associated_dashboard
