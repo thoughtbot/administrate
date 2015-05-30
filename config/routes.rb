@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :customers
-  resources :line_items
-  resources :products
-  resources :orders
+  DashboardManifest.new.dashboards.each do |dashboard_resource|
+    resources dashboard_resource
+  end
+
+  root controller: DashboardManifest.new.root_dashboard, action: :index
 end
