@@ -1,8 +1,15 @@
 class DashboardGenerator < Rails::Generators::NamedBase
   source_root File.expand_path("../templates", __FILE__)
 
-  def copy_dashboard_file
+  def create_dashboard_definition
     template "dashboard.rb.erb", "app/dashboards/#{file_name}_dashboard.rb"
+  end
+
+  def create_resource_controller
+    template(
+      "controller.rb.erb",
+      "app/controllers/admin/#{file_name.pluralize}_controller.rb"
+    )
   end
 
   private
