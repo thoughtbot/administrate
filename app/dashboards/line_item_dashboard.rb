@@ -1,6 +1,6 @@
-require "base_dashboard"
+require "administrate/base_dashboard"
 
-class LineItemDashboard < BaseDashboard
+class LineItemDashboard < Administrate::BaseDashboard
   def table_attributes
     attributes + [:total_price]
   end

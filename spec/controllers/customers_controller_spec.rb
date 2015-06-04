@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CustomersController, type: :controller do
-
+describe CustomersController, type: :controller do
   describe "GET index" do
     it "assigns all customers as @resources" do
       customer = create(:customer)
@@ -26,7 +25,7 @@ RSpec.describe CustomersController, type: :controller do
     it "assigns a new form page object as @page" do
       get :new
 
-      expect(assigns(:page)).to be_instance_of(Page::Form)
+      expect(assigns(:page)).to be_instance_of(Administrate::Page::Form)
     end
   end
 

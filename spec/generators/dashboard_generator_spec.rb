@@ -1,7 +1,7 @@
 require "rails_helper"
-require "generators/dashboard/dashboard_generator"
+require "generators/administrate/dashboard/dashboard_generator"
 
-describe DashboardGenerator, :generator do
+describe Administrate::Generators::DashboardGenerator, :generator do
   describe "dashboard definition file" do
     it "has valid syntax" do
       dashboard = file("app/dashboards/customer_dashboard.rb")

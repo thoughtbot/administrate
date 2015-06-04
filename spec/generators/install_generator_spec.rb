@@ -1,8 +1,8 @@
 require "spec_helper"
-require "generators/install/install_generator"
+require "generators/administrate/install/install_generator"
 require "support/generator_spec_helpers"
 
-describe InstallGenerator, :generator do
+describe Administrate::Generators::InstallGenerator, :generator do
   describe "dashboard_controller" do
     it "is copied to the application" do
       provide_existing_routes_file

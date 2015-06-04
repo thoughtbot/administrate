@@ -1,10 +1,10 @@
-require "pages/form"
+require "administrate/pages/form"
 
-describe Page::Form do
+describe Administrate::Page::Form do
   describe "#page_title" do
     it "is the value of the resource's key attribute" do
       customer = double(to_s: "Worf")
-      page = Page::Form.new(CustomerDashboard.new, customer)
+      page = Administrate::Page::Form.new(CustomerDashboard.new, customer)
 
       expect(page.page_title).to eq("Worf")
     end

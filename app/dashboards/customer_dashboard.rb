@@ -1,6 +1,6 @@
-require "base_dashboard"
+require "administrate/base_dashboard"
 
-class CustomerDashboard < BaseDashboard
+class CustomerDashboard < Administrate::BaseDashboard
   def attribute_types
     {
       created_at: :datetime,

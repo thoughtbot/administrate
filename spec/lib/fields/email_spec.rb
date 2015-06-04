@@ -1,11 +1,11 @@
 require "spec_helper"
-require "fields/email"
+require "administrate/fields/email"
 
-describe Field::Email do
+describe Administrate::Field::Email do
   describe "#to_partial_path" do
     it "returns a partial based on the page being rendered" do
       page = :show
-      field = Field::Email.new(:email, "foo@example.com", page)
+      field = Administrate::Field::Email.new(:email, "foo@example.com", page)
 
       path = field.to_partial_path
 

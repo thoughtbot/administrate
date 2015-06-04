@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CustomerDashboard do
+describe CustomerDashboard do
   describe "#table_attributes" do
     it "includes the name and email" do
       dashboard = CustomerDashboard.new

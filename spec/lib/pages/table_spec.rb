@@ -1,4 +1,4 @@
-require "pages/table"
+require "administrate/pages/table"
 
-describe Page::Table do
+describe Administrate::Page::Table do
 end

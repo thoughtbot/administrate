@@ -1,27 +1,27 @@
-require "pages/form"
-require "pages/table"
-require "pages/show"
+require "administrate/pages/form"
+require "administrate/pages/table"
+require "administrate/pages/show"
 
 class DashboardController < ApplicationController
   def index
     @resources = resource_class.all
-    @page = Page::Table.new(dashboard)
+    @page = Administrate::Page::Table.new(dashboard)
   end
 
   def show
     set_resource(resource_class.find(params[:id]))
 
-    @page = Page::Show.new(dashboard, resource)
+    @page = Administrate::Page::Show.new(dashboard, resource)
   end
 
   def new
-    @page = Page::Form.new(dashboard, resource_class.new)
+    @page = Administrate::Page::Form.new(dashboard, resource_class.new)
   end
 
   def edit
     set_resource(resource_class.find(params[:id]))
 
-    @page = Page::Form.new(dashboard, resource)
+    @page = Administrate::Page::Form.new(dashboard, resource)
   end
 
   def create
@@ -30,7 +30,7 @@ class DashboardController < ApplicationController
     if resource.save
       redirect_to resource, notice: notices[:created]
     else
-      @page = Page::Form.new(dashboard, resource)
+      @page = Administrate::Page::Form.new(dashboard, resource)
       render :new
     end
   end
@@ -41,7 +41,7 @@ class DashboardController < ApplicationController
     if resource.update(resource_params)
       redirect_to resource, notice: notices[:updated]
     else
-      @page = Page::Form.new(dashboard, resource)
+      @page = Administrate::Page::Form.new(dashboard, resource)
       render :edit
     end
   end

@@ -1,12 +1,12 @@
 require "spec_helper"
-require "fields/belongs_to"
+require "administrate/fields/belongs_to"
 
-describe Field::BelongsTo do
+describe Administrate::Field::BelongsTo do
   describe "#to_partial_path" do
     it "returns a partial based on the page being rendered" do
       page = :show
       owner = double
-      field = Field::BelongsTo.new(:owner, owner, page)
+      field = Administrate::Field::BelongsTo.new(:owner, owner, page)
 
       path = field.to_partial_path
 

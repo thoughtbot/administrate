@@ -1,6 +1,6 @@
-require "base_dashboard"
+require "administrate/base_dashboard"
 
-class OrderDashboard < BaseDashboard
+class OrderDashboard < Administrate::BaseDashboard
   def attribute_types
     {
       id: :string,
