@@ -11,6 +11,7 @@ data:
 
 ignore_unused:
   - activerecord.*
+  - administrate.*
   - date.*
   - simple_form.*
   - time.*

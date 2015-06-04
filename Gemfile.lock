@@ -1,3 +1,10 @@
+PATH
+  remote: administrate
+  specs:
+    administrate (0.0.1)
+      neat (~> 1.7.0)
+      rails (~> 4.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -277,10 +284,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  administrate!
   airbrake
   ammeter
   awesome_print
-  bourbon (~> 4.1.0)
   bundler-audit
   byebug
   capybara-webkit (>= 1.2.0)
@@ -298,7 +305,6 @@ DEPENDENCIES
   i18n-tasks
   jquery-rails
   launchy
-  neat (~> 1.7.0)
   newrelic_rpm
   normalize-rails (~> 3.0.0)
   pg

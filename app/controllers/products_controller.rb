@@ -1,2 +1,2 @@
-class ProductsController < DashboardController
+class ProductsController < Administrate::ApplicationController
 end

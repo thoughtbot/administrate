@@ -1,2 +1,2 @@
-class LineItemsController < DashboardController
+class LineItemsController < Administrate::ApplicationController
 end

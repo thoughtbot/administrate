@@ -13,7 +13,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
       expect(controller).to exist
       expect(controller).to have_correct_syntax
       expect(controller).to contain(
-        "class Admin::DashboardController < ApplicationController"
+        "class Admin::DashboardController < Administrate::ApplicationController"
       )
     end
   end

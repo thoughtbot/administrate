@@ -35,7 +35,7 @@ module Administrate
           :belongs_to
         else
           throw "Unknown association type: #{reflection.inspect}\n" +
-          "Please open an issue on the Administrate repo."
+            "Please open an issue on the Administrate repo."
         end
       end
 
