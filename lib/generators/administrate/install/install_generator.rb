@@ -27,9 +27,13 @@ module Administrate
       private
 
       def dashboard_resources
-        database_models.map do |model_class|
-          model_class.to_s.pluralize.underscore
+        valid_dashboard_models.map do |model|
+          model.to_s.pluralize.underscore
         end
+      end
+
+      def valid_dashboard_models
+        database_models.reject { |model| model.to_s.include?("::") }
       end
 
       def database_models

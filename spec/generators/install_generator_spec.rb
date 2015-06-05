@@ -43,6 +43,15 @@ describe Administrate::Generators::InstallGenerator, :generator do
       end
       expect(manifest).not_to contain("Delayed::Backend::ActiveRecord::Job")
     end
+
+    it "skips namespaced models with a warning" do
+      provide_existing_routes_file
+      manifest = file("app/dashboards/dashboard_manifest.rb")
+
+      run_generator
+
+      expect(manifest).not_to contain("delayed/backend/active_record/jobs")
+    end
   end
 
   describe "config/routes.rb" do
