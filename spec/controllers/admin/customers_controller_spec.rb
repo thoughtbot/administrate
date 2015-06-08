@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CustomersController, type: :controller do
+describe Admin::CustomersController, type: :controller do
   describe "GET index" do
     it "assigns all customers as @resources" do
       customer = create(:customer)
@@ -57,7 +57,7 @@ describe CustomersController, type: :controller do
       it "redirects to the created customer" do
         post :create, {customer: attributes_for(:customer)}
 
-        expect(response).to redirect_to(Customer.last)
+        expect(response).to redirect_to([:admin, Customer.last])
       end
     end
 
@@ -108,7 +108,7 @@ describe CustomersController, type: :controller do
 
         put :update, {id: customer.to_param, customer: valid_attributes}
 
-        expect(response).to redirect_to(customer)
+        expect(response).to redirect_to([:admin, customer])
       end
     end
 
@@ -147,7 +147,7 @@ describe CustomersController, type: :controller do
 
       delete :destroy, {id: customer.to_param}
 
-      expect(response).to redirect_to(customers_url)
+      expect(response).to redirect_to(admin_customers_url)
     end
   end
 end

@@ -4,7 +4,7 @@ RSpec.describe "line item index page" do
   it "displays line items' information" do
     line_item = create(:line_item)
 
-    visit line_items_path
+    visit admin_line_items_path
 
     expect(page).to have_header("Line Items")
     expect(page).to have_content(line_item.unit_price)
@@ -14,7 +14,7 @@ RSpec.describe "line item index page" do
   it "links to the line item show page" do
     line_item = create(:line_item)
 
-    visit line_items_path
+    visit admin_line_items_path
     find(index_row_css_for(line_item)).click
 
     expect(page).to have_header(line_item.to_s)
@@ -25,16 +25,16 @@ RSpec.describe "line item index page" do
   it "links to the edit page" do
     line_item = create(:line_item)
 
-    visit line_items_path
+    visit admin_line_items_path
     click_on "Edit"
 
-    expect(current_path).to eq(edit_line_item_path(line_item))
+    expect(page).to have_header("Edit #{line_item}")
   end
 
   it "links to the new page" do
-    visit line_items_path
+    visit admin_line_items_path
     click_on("New line item")
 
-    expect(current_path).to eq(new_line_item_path)
+    expect(page).to have_header("New Line Item")
   end
 end

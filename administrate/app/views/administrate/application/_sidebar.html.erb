@@ -8,7 +8,7 @@
     <li>
       <%= link_to(
         resource.to_s.titleize,
-        resource,
+        [Administrate::NAMESPACE, resource],
         class: link_class(resource)
       ) %>
     </li>

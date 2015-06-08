@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe "sidebar" do
+describe "sidebar" do
   it "highlights the link to the current page's resource type" do
-    visit customers_path
+    visit admin_customers_path
 
     active_link = find(".sidebar .active")
 

@@ -4,7 +4,7 @@ RSpec.describe "customer show page" do
   it "displays the customer's title attribute as the header" do
     customer = create(:customer)
 
-    visit customer_path(customer)
+    visit admin_customer_path(customer)
 
     expect(page).to have_header(customer.name)
   end
@@ -12,7 +12,7 @@ RSpec.describe "customer show page" do
   it "displays the customer's other attributes" do
     customer = create(:customer)
 
-    visit customer_path(customer)
+    visit admin_customer_path(customer)
 
     expect(page).to have_content(customer.email)
   end
@@ -24,7 +24,7 @@ RSpec.describe "customer show page" do
       create(:line_item, order: order, unit_price: 10, quantity: index)
     end
 
-    visit customer_path(customer)
+    visit admin_customer_path(customer)
 
     orders.each do |order|
       expect(page).to have_content(order.total_price)
@@ -35,7 +35,7 @@ RSpec.describe "customer show page" do
     customer = create(:customer)
     order = create(:order, customer: customer)
 
-    visit customer_path(customer)
+    visit admin_customer_path(customer)
 
     find(index_row_css_for(order)).click
 
@@ -45,18 +45,17 @@ RSpec.describe "customer show page" do
   it "link-ifies the email" do
     customer = create(:customer)
 
-    visit customer_path(customer)
+    visit admin_customer_path(customer)
 
     expect(page).to have_link(customer.email)
   end
 
   it "links to the edit page" do
     customer = create(:customer)
-    edit_path = edit_customer_path(customer)
 
-    visit customer_path(customer)
+    visit admin_customer_path(customer)
     click_on "Edit"
 
-    expect(current_path).to eq(edit_path)
+    expect(page).to have_header("Edit #{customer}")
   end
 end

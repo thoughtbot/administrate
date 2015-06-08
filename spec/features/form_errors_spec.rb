@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "form errors" do
   scenario "error messages for new resource" do
-    visit new_customer_path
+    visit new_admin_customer_path
     fill_in("Name", with: "")
     click_on "Create Customer"
 
@@ -12,7 +12,7 @@ feature "form errors" do
   scenario "error messages for editing resource" do
     customer = create(:customer)
 
-    visit edit_customer_path(customer)
+    visit edit_admin_customer_path(customer)
     fill_in("Name", with: "")
     click_on "Update Customer"
 

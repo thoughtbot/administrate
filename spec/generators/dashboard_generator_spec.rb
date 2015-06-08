@@ -58,13 +58,13 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       expect(controller).to have_correct_syntax
     end
 
-    it "subclasses DashboardController" do
+    it "subclasses Admin::ApplicationController" do
       controller = file("app/controllers/admin/customers_controller.rb")
 
       run_generator ["customer"]
 
       expect(controller).to contain(
-        "class Admin::CustomersController < Admin::DashboardController"
+        "class Admin::CustomersController < Admin::ApplicationController"
       )
     end
   end

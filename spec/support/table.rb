@@ -6,6 +6,10 @@ module Features
   private
 
   def url_for(model)
-    "/#{model.class.to_s.underscore.pluralize}/#{model.id}"
+    "/" + [
+      Administrate::NAMESPACE,
+      model.class.to_s.underscore.pluralize,
+      model.to_param,
+    ].join("/")
   end
 end

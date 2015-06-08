@@ -2,7 +2,7 @@
   <h1 class="header-heading"><%= @page.resource_name.pluralize.titleize %></h1>
   <%= link_to(
     "New #{@page.resource_name.titleize.downcase}",
-    [:new, @page.resource_name],
+    [:new, Administrate::NAMESPACE, @page.resource_name],
     class: "button",
   ) %>
 </header>

@@ -1,11 +1,11 @@
 <header class="header">
   <h1 class="header-heading"><%= @page.page_title %></h1>
-  <%= link_to 'Edit', [:edit, @page.resource], class: "button" %>
+  <%= link_to 'Edit', [:edit, Administrate::NAMESPACE, @page.resource], class: "button" %>
 </header>
 
 <dl>
   <% @page.attributes.each do |attribute| %>
     <dt><%= attribute.name.titleize %></dt>
-    <dd><%= render attribute %></dd>
+    <dd><%= render_field attribute %></dd>
   <% end %>
 </dl>

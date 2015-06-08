@@ -1,3 +1,4 @@
+require "administrate/namespace"
 require "administrate/pages/form"
 require "administrate/pages/table"
 require "administrate/pages/show"
@@ -29,7 +30,10 @@ module Administrate
       set_resource(resource_class.new(resource_params))
 
       if resource.save
-        redirect_to resource, notice: notices[:created]
+        redirect_to(
+          [Administrate::NAMESPACE, resource],
+          notice: notices[:created],
+        )
       else
         @page = Administrate::Page::Form.new(dashboard, resource)
         render :new
@@ -40,7 +44,10 @@ module Administrate
       set_resource
 
       if resource.update(resource_params)
-        redirect_to resource, notice: notices[:updated]
+        redirect_to(
+          [Administrate::NAMESPACE, resource],
+          notice: notices[:updated],
+        )
       else
         @page = Administrate::Page::Form.new(dashboard, resource)
         render :edit

@@ -1,4 +1,4 @@
-<%= form_for(@page.resource, class: "form") do |f| %>
+<%= form_for([Administrate::NAMESPACE, @page.resource], class: "form") do |f| %>
   <% if @page.resource.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -17,7 +17,7 @@
   <div class="form-inputs">
     <% @page.attributes.each do |attribute| -%>
       <div class="form-field">
-        <%= render attribute, f: f %>
+        <%= render_field attribute, f: f %>
       </div>
     <% end -%>
   </div>

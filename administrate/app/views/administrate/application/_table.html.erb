@@ -10,26 +10,30 @@
 
   <tbody>
     <% resources.each do |resource| %>
-      <tr class="table-row" role="link" tabindex="0" data-url="<%= polymorphic_path(resource) -%>">
+      <tr class="table-row"
+          role="link"
+          tabindex="0"
+          data-url="<%= polymorphic_path([Administrate::NAMESPACE, resource]) -%>"
+          >
         <% table_presenter.attributes_for(resource).each do |attribute| %>
-          <td><%= render attribute %></td>
+          <td><%= render_field attribute %></td>
         <% end %>
 
         <td><%= link_to(
           t("administrate.actions.show"),
-          resource,
+          [Administrate::NAMESPACE, resource],
           class: "action-show",
         ) %></td>
 
         <td><%= link_to(
           t("administrate.actions.edit"),
-          [:edit, resource],
+          [:edit, Administrate::NAMESPACE, resource],
           class: "action-edit",
         ) %></td>
 
         <td><%= link_to(
           t("administrate.actions.destroy"),
-          resource,
+          [Administrate::NAMESPACE, resource],
           class: "action-destroy",
           method: :delete,
           data: { confirm: t("administrate.actions.confirm") }

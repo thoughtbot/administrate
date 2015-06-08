@@ -1,6 +1,6 @@
-require "base_dashboard"
+require "administrate/base_dashboard"
 
-class <%= class_name %>Dashboard < BaseDashboard
+class <%= class_name %>Dashboard < Administrate::BaseDashboard
 
   # This method returns a hash
   # that describes the type of each of the model's fields.
@@ -16,7 +16,7 @@ class <%= class_name %>Dashboard < BaseDashboard
 
   # This method returns an array of attributes
   # that will be displayed on the model's index page.
-  def index_page_attributes
+  def table_attributes
     attributes
   end
 
