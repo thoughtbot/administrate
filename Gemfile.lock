@@ -3,6 +3,7 @@ PATH
   specs:
     administrate (0.0.1)
       neat (~> 1.7.0)
+      normalize-rails (~> 3.0.0)
       rails (~> 4.2.0)
 
 GEM
@@ -306,7 +307,6 @@ DEPENDENCIES
   jquery-rails
   launchy
   newrelic_rpm
-  normalize-rails (~> 3.0.0)
   pg
   pry-rails
   rack-timeout

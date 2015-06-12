@@ -1,4 +1,5 @@
 require "neat"
+require "normalize-rails"
 
 module Administrate
   class Engine < ::Rails::Engine

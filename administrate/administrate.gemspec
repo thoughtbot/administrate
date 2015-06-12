@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.2.0"
   s.add_dependency "neat", "~> 1.7.0"
+  s.add_dependency "normalize-rails", "~> 3.0.0"
 
   s.add_development_dependency "sqlite3"
 
