@@ -2,9 +2,9 @@ PATH
   remote: administrate
   specs:
     administrate (0.0.1)
-      neat (~> 1.7.0)
-      normalize-rails (~> 3.0.0)
-      rails (~> 4.2.0)
+      neat (~> 1.7)
+      normalize-rails (~> 3.0)
+      rails (~> 4.2)
 
 GEM
   remote: https://rubygems.org/
