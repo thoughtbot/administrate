@@ -8,8 +8,8 @@ module Administrate
 
       def create_dashboard_controller
         copy_file(
-          "dashboard_controller.rb",
-          "app/controllers/admin/dashboard_controller.rb"
+          "application_controller.rb",
+          "app/controllers/admin/application_controller.rb"
         )
       end
 

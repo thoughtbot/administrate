@@ -3,10 +3,10 @@ require "generators/administrate/install/install_generator"
 require "support/generator_spec_helpers"
 
 describe Administrate::Generators::InstallGenerator, :generator do
-  describe "dashboard_controller" do
+  describe "admin/application_controller" do
     it "is copied to the application" do
       provide_existing_routes_file
-      controller = file("app/controllers/admin/dashboard_controller.rb")
+      controller = file("app/controllers/admin/application_controller.rb")
 
       run_generator
 
