@@ -31,11 +31,8 @@ module Administrate
         reflection = klass.reflections[attribute.to_s]
         if reflection.collection?
           :has_many
-        elsif reflection.belongs_to?
-          :belongs_to
         else
-          throw "Unknown association type: #{reflection.inspect}\n" +
-            "Please open an issue on the Administrate repo."
+          :belongs_to
         end
       end
 

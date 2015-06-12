@@ -21,6 +21,7 @@ module Administrate
     def field_registry
       {
         belongs_to: Administrate::Field::BelongsTo,
+        boolean: Administrate::Field::String,
         datetime: Administrate::Field::String,
         email: Administrate::Field::Email,
         float: Administrate::Field::String,
