@@ -5,7 +5,7 @@ require "support/generator_spec_helpers"
 describe Administrate::Generators::InstallGenerator, :generator do
   describe "admin/application_controller" do
     it "is copied to the application" do
-      provide_existing_routes_file
+      stub_generator_dependencies
       controller = file("app/controllers/admin/application_controller.rb")
 
       run_generator
@@ -20,7 +20,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
 
   describe "dashboard_manifest" do
     it "is copied to the dashboards folder" do
-      provide_existing_routes_file
+      stub_generator_dependencies
       manifest = file("app/dashboards/dashboard_manifest.rb")
 
       run_generator
@@ -33,7 +33,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
     end
 
     it "populates default dashboards based on current ActiveRecord models" do
-      provide_existing_routes_file
+      stub_generator_dependencies
       manifest = file("app/dashboards/dashboard_manifest.rb")
 
       run_generator
@@ -45,7 +45,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
     end
 
     it "skips namespaced models with a warning" do
-      provide_existing_routes_file
+      stub_generator_dependencies
       manifest = file("app/dashboards/dashboard_manifest.rb")
 
       run_generator
@@ -56,7 +56,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
 
   describe "config/routes.rb" do
     it "inserts an admin namespace with dashboard resources" do
-      provide_existing_routes_file
+      stub_generator_dependencies
       routes = file("config/routes.rb")
 
       run_generator
@@ -70,7 +70,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
     end
 
     it "creates a root route for the admin namespace" do
-      provide_existing_routes_file
+      stub_generator_dependencies
       routes = file("config/routes.rb")
 
       run_generator
@@ -79,5 +79,23 @@ describe Administrate::Generators::InstallGenerator, :generator do
         "root controller: DashboardManifest.new.root_dashboard, action: :index"
       )
     end
+  end
+
+  describe "resource dashboards" do
+    it "is generated" do
+      stub_generator_dependencies
+
+      run_generator
+
+      %w[customer order product line_item].each do |resource|
+        expect(Rails::Generators).to have_received(:invoke).
+          with("administrate:dashboard", [resource])
+      end
+    end
+  end
+
+  def stub_generator_dependencies
+    provide_existing_routes_file
+    allow(Rails::Generators).to receive(:invoke)
   end
 end

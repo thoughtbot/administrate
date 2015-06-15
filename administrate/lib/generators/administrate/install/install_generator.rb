@@ -24,7 +24,17 @@ module Administrate
         route(dashboard_routes)
       end
 
+      def run_dashboard_generators
+        singular_dashboard_resources.each do |resource|
+          Rails::Generators.invoke("administrate:dashboard", [resource])
+        end
+      end
+
       private
+
+      def singular_dashboard_resources
+        dashboard_resources.map(&:singularize)
+      end
 
       def dashboard_resources
         valid_dashboard_models.map do |model|
