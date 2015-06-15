@@ -1,0 +1,3 @@
+test:
+  pre:
+    - cp .sample.env .env
