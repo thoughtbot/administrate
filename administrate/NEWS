@@ -1,0 +1,13 @@
+New in 0.0.3:
+
+* Improvement: the `administrate:install` generator now runs
+  the dashboard generator for each resource it finds.
+* Compatibility: Relax the required version of Neat down to ~> 1.1.0
+
+New in 0.0.2:
+
+* Bug Fix: Re-package the gem from the correct directory to include generators.
+
+New in 0.0.1:
+
+* First release!
