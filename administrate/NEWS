@@ -1,3 +1,8 @@
+New in 0.0.4:
+
+* Interface: remove the "Show" link from tables - it was redundant because
+  clicking on the row itself took the user to the same place.
+
 New in 0.0.3:
 
 * Improvement: the `administrate:install` generator now runs

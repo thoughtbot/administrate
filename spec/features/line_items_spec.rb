@@ -11,11 +11,11 @@ RSpec.describe "line item index page" do
     expect(page).to have_content(line_item.product.to_s)
   end
 
-  it "links to the line item show page" do
+  it "links to the line item show page", :js do
     line_item = create(:line_item)
 
     visit admin_line_items_path
-    find(index_row_css_for(line_item)).click
+    click_row_for(line_item)
 
     expect(page).to have_header(line_item.to_s)
     expect(page).to have_content(line_item.to_s)

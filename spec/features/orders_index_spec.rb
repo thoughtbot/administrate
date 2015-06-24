@@ -19,11 +19,11 @@ describe "order index page" do
     expect(page).to have_header(order.customer.name)
   end
 
-  it "links to the order show page" do
+  it "links to the order show page", :js do
     order = create(:order)
 
     visit admin_orders_path
-    find(index_row_css_for(order)).click
+    click_row_for(order)
 
     expect(page).to have_header(order.to_s)
     expect(page).to have_link(order.customer.name)

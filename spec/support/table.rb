@@ -1,9 +1,13 @@
 module Features
-  def index_row_css_for(model)
-    "tr[data-url='#{url_for(model)}'] .action-show"
+  def click_row_for(model)
+    all(index_row_css_for(model)).first.click
   end
 
   private
+
+  def index_row_css_for(model)
+    "tr[data-url='#{url_for(model)}'] .field-string"
+  end
 
   def url_for(model)
     "/" + [

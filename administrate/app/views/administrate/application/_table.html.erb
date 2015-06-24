@@ -4,7 +4,7 @@
       <% table_presenter.attribute_names.each do |attr_name| %>
         <th><%= attr_name.to_s.titleize %></th>
       <% end %>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -16,14 +16,10 @@
           data-url="<%= polymorphic_path([Administrate::NAMESPACE, resource]) -%>"
           >
         <% table_presenter.attributes_for(resource).each do |attribute| %>
-          <td><%= render_field attribute %></td>
+          <td class="field-<%= attribute.html_class %>">
+            <%= render_field attribute %>
+          </td>
         <% end %>
-
-        <td><%= link_to(
-          t("administrate.actions.show"),
-          [Administrate::NAMESPACE, resource],
-          class: "action-show",
-        ) %></td>
 
         <td><%= link_to(
           t("administrate.actions.edit"),

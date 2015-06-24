@@ -11,11 +11,11 @@ RSpec.describe "product index page" do
     expect(page).to have_content(product.description)
   end
 
-  it "links to the product show page" do
+  it "links to the product show page", :js do
     product = create(:product)
 
     visit admin_products_path
-    find(index_row_css_for(product)).click
+    click_row_for(product)
 
     expect(current_path).to eq(admin_product_path(product))
     expect(page).to have_content(product.name)

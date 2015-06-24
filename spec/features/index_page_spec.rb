@@ -11,11 +11,11 @@ describe "customer index page" do
     expect(page).to have_content(customer.email)
   end
 
-  it "links to the customer show page" do
+  it "links to the customer show page", :js do
     customer = create(:customer)
 
     visit admin_customers_path
-    find(index_row_css_for(customer)).click
+    click_row_for(customer)
 
     expect(page).to have_header(customer.to_s)
     expect(page).to have_content(customer.name)

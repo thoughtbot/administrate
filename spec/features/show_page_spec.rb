@@ -31,13 +31,13 @@ RSpec.describe "customer show page" do
     end
   end
 
-  it "links to the customer's orders" do
+  it "links to the customer's orders", :js do
     customer = create(:customer)
     order = create(:order, customer: customer)
 
     visit admin_customer_path(customer)
 
-    find(index_row_css_for(order)).click
+    click_row_for(order)
 
     expect(page).to have_header(order.to_s)
   end
