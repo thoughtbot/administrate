@@ -11,6 +11,10 @@ module Administrate
         attr
       end
 
+      def html_class
+        field_name.dasherize
+      end
+
       def name
         attribute.to_s
       end

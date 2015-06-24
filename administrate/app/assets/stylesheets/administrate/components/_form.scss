@@ -23,9 +23,11 @@
     }
 
     input,
-    select {
+    select,
+    .selectize-control {
       background-color: $form-field-background-color;
       max-width: 30em;
+      width: 30em;
     }
   }
 }

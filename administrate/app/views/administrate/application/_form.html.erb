@@ -16,7 +16,7 @@
 
   <div class="form-inputs">
     <% @page.attributes.each do |attribute| -%>
-      <div class="form-field">
+      <div class="form-field form-field-<%= attribute.html_class %>">
         <%= render_field attribute, f: f %>
       </div>
     <% end -%>
