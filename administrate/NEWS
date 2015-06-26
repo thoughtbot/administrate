@@ -1,5 +1,7 @@
 New in 0.0.4:
 
+* Improvement: Use [selectize.js](http://brianreavis.github.io/selectize.js/)
+  to improve has_many form field interaction.
 * Interface: remove the "Show" link from tables - it was redundant because
   clicking on the row itself took the user to the same place.
 
