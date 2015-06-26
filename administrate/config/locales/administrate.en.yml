@@ -5,3 +5,6 @@ en:
       edit: Edit
       destroy: Destroy
       confirm: Are you sure?
+    fields:
+      has_many:
+        none: None
