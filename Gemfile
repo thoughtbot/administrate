@@ -12,10 +12,10 @@ gem "faker"
 gem "flutie"
 gem "high_voltage"
 gem "i18n-tasks"
-gem "jquery-rails"
+gem "jquery-rails", ">= 4.0.4"
 gem "newrelic_rpm"
 gem "pg"
-gem "rails", "4.2.0"
+gem "rails", "4.2.2"
 gem "recipient_interceptor"
 gem "refills"
 gem "sass-rails", "~> 5.0"
@@ -27,7 +27,7 @@ gem "unicorn"
 group :development do
   gem "spring"
   gem "spring-commands-rspec"
-  gem "web-console"
+  gem "web-console", ">= 2.1.3"
 end
 
 group :development, :test do
