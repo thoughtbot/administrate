@@ -32,7 +32,7 @@ module Administrate
       if resource.save
         redirect_to(
           [Administrate::NAMESPACE, resource],
-          notice: notices[:created],
+          notice: translate("create.success", resource: resource_title),
         )
       else
         @page = Administrate::Page::Form.new(dashboard, resource)
@@ -46,7 +46,7 @@ module Administrate
       if resource.update(resource_params)
         redirect_to(
           [Administrate::NAMESPACE, resource],
-          notice: notices[:updated],
+          notice: translate("update.success", resource: resource_title),
         )
       else
         @page = Administrate::Page::Form.new(dashboard, resource)
@@ -58,7 +58,7 @@ module Administrate
       set_resource
 
       resource.destroy
-      flash[:notice] = notices[:destroyed]
+      flash[:notice] = translate("destroy.success", resource: resource_title)
       redirect_to action: :index
     end
 
@@ -112,16 +112,12 @@ module Administrate
       resource_class_name.titleize
     end
 
-    def notices
-      {
-        created: "#{resource_title} was successfully created.",
-        updated: "#{resource_title} was successfully updated.",
-        destroyed: "#{resource_title} was successfully destroyed.",
-      }
-    end
-
     def resource_name
       controller_name.singularize.to_sym
+    end
+
+    def translate(key, options)
+      t("administrate.controller.#{key}", options)
     end
   end
 end

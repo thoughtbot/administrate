@@ -14,6 +14,9 @@ describe "order form" do
     click_on "Create Order"
 
     expect(page).to have_link(customer.name)
+    expect(page).to have_flash(
+      t("administrate.controller.create.success", resource: "Order")
+    )
   end
 
   describe "has_many relationships" do
@@ -42,6 +45,9 @@ describe "order form" do
 
       order.reload
       expect(order.line_items).to be_empty
+      expect(page).to have_flash(
+        t("administrate.controller.update.success", resource: "Order")
+      )
     end
 
     def find_option(associated_model, field_id)
