@@ -1,4 +1,4 @@
-require "administrate/pages/form"
+require "administrate/page/form"
 
 describe Administrate::Page::Form do
   describe "#page_title" do

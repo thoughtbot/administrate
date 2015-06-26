@@ -1,7 +1,7 @@
 require "administrate/namespace"
-require "administrate/pages/form"
-require "administrate/pages/table"
-require "administrate/pages/show"
+require "administrate/page/form"
+require "administrate/page/table"
+require "administrate/page/show"
 
 module Administrate
   class ApplicationController < ActionController::Base

@@ -1,5 +1,5 @@
 require_relative "base"
-require "administrate/pages/table"
+require "administrate/page/table"
 
 module Administrate
   module Field

@@ -1,4 +1,4 @@
-require "administrate/pages/show"
+require "administrate/page/show"
 
 describe Administrate::Page::Show do
   describe "#page_title" do
