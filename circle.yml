@@ -1,3 +1,9 @@
+dependencies:
+  post:
+    - bundle exec appraisal install
 test:
   pre:
     - cp .sample.env .env
+  override:
+    - bundle exec rake
+    - bundle exec appraisal rake

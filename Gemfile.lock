@@ -1,10 +1,11 @@
 PATH
   remote: administrate
   specs:
-    administrate (0.0.4)
+    administrate (0.0.5)
       neat (~> 1.1)
       normalize-rails (~> 3.0)
       rails (~> 4.2)
+      sass (~> 3.4)
       selectize-rails (~> 0.6)
 
 GEM
@@ -53,6 +54,11 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec-rails (>= 2.2)
+    appraisal (2.0.1)
+      activesupport (>= 3.2.21)
+      bundler
+      rake
+      thor (>= 0.14.0)
     arel (6.0.0)
     awesome_print (1.6.1)
     binding_of_caller (0.7.2)
@@ -231,7 +237,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
-    selectize-rails (0.12.0)
+    selectize-rails (0.12.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     simple_form (3.1.0)
@@ -286,6 +292,7 @@ DEPENDENCIES
   administrate!
   airbrake
   ammeter
+  appraisal
   awesome_print
   bundler-audit
   byebug

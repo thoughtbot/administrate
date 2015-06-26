@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "neat", "~> 1.1"
+  s.add_dependency "sass", "~> 3.4"
   s.add_dependency "normalize-rails", "~> 3.0"
   s.add_dependency "rails", "~> 4.2"
   s.add_dependency "selectize-rails", "~> 0.6"

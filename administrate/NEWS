@@ -1,3 +1,13 @@
+New in 0.0.5:
+
+* Compatibility: Administrate relies on the `&-suffix` feature of SASS,
+  which was [released in 3.3.0], as well as using `&` in SassScript,
+  which was [released in 3.4.0]. We've declared an explicit dependency
+  on `sass ~> 3.4`.
+
+[released in 3.3.0]: http://sass-lang.com/documentation/file.SASS_CHANGELOG.html#330_7_march_2014
+[released in 3.4.0]: http://sass-lang.com/documentation/file.SASS_CHANGELOG.html#340_18_august_2014
+
 New in 0.0.4:
 
 * Improvement: Use [selectize.js](http://brianreavis.github.io/selectize.js/)
