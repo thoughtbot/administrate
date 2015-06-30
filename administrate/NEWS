@@ -1,3 +1,7 @@
+* Improvement: Limit index pages to showing 20 items by default.
+  Developers can customize the action to update or remove the limit,
+  or to implement pagination with the system of their choice.
+
 New in 0.0.5:
 
 * Compatibility: Administrate relies on the `&-suffix` feature of SASS,

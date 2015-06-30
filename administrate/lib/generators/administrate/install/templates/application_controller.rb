@@ -10,4 +10,14 @@ class Admin::ApplicationController < Administrate::ApplicationController
   def authenticate_admin
     # TODO Add authentication logic here.
   end
+
+  def index
+    super
+
+    flash[:alert] =
+      "For performance, Administrate limits the index page to show 20 items.
+      Customize this action to update/remove the limit,
+      or implement the pagination library of your choice."
+    @resources = @resources.limit(20)
+  end
 end
