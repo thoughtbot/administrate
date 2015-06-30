@@ -14,9 +14,11 @@ describe CustomerDashboard do
     it "maps each attribute to an attribute field" do
       dashboard = CustomerDashboard.new
 
-      expect(dashboard.attribute_types[:name]).to eq(:string)
-      expect(dashboard.attribute_types[:email]).to eq(:email)
-      expect(dashboard.attribute_types[:lifetime_value]).to eq(:string)
+      fields = dashboard.attribute_types
+
+      expect(fields[:name]).to eq(Administrate::Field::String)
+      expect(fields[:email]).to eq(Administrate::Field::Email)
+      expect(fields[:lifetime_value]).to eq(Administrate::Field::String)
     end
   end
 end

@@ -3,10 +3,10 @@ require "administrate/base_dashboard"
 class ProductDashboard < Administrate::BaseDashboard
   def attribute_types
     {
-      description: :string,
-      image_url: :image,
-      name: :string,
-      price: :string,
+      description: Field::String,
+      image_url: Field::Image,
+      name: Field::String,
+      price: Field::String,
     }
   end
 

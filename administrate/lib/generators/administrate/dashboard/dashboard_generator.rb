@@ -25,16 +25,23 @@ module Administrate
       end
 
       def field_type(attribute)
-        klass.type_for_attribute(attribute).type ||
+        if klass.type_for_attribute(attribute).type
+          default_field_type
+        else
           association_type(attribute)
+        end
+      end
+
+      def default_field_type
+        "Field::String"
       end
 
       def association_type(attribute)
         reflection = klass.reflections[attribute.to_s]
         if reflection.collection?
-          :has_many
+          "Field::HasMany"
         else
-          :belongs_to
+          "Field::BelongsTo"
         end
       end
 

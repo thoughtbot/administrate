@@ -18,9 +18,9 @@ describe Administrate::Generators::DashboardGenerator, :generator do
 
         run_generator ["customer"]
 
-        expect(dashboard).to contain("id: :integer,")
-        expect(dashboard).to contain("created_at: :datetime,")
-        expect(dashboard).to contain("updated_at: :datetime,")
+        expect(dashboard).to contain("id: Field::String,")
+        expect(dashboard).to contain("created_at: Field::String,")
+        expect(dashboard).to contain("updated_at: Field::String,")
       end
 
       it "includes user-defined database columns" do
@@ -28,8 +28,8 @@ describe Administrate::Generators::DashboardGenerator, :generator do
 
         run_generator ["customer"]
 
-        expect(dashboard).to contain("name: :string,")
-        expect(dashboard).to contain("email: :string,")
+        expect(dashboard).to contain("name: Field::String,")
+        expect(dashboard).to contain("email: Field::String,")
       end
 
       it "includes has_many relationships" do
@@ -37,7 +37,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
 
         run_generator ["customer"]
 
-        expect(dashboard).to contain("orders: :has_many")
+        expect(dashboard).to contain("orders: Field::HasMany")
       end
 
       it "includes belongs_to relationships" do
@@ -45,7 +45,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
 
         run_generator ["order"]
 
-        expect(dashboard).to contain("customer: :belongs_to")
+        expect(dashboard).to contain("customer: Field::BelongsTo")
       end
     end
 

@@ -6,31 +6,12 @@ require "administrate/fields/string"
 
 module Administrate
   class BaseDashboard
+    include Administrate
+
     def permitted_attributes
       form_attributes.map do |attr|
-        field_class(attr).permitted_attribute(attr)
+        attribute_types[attr].permitted_attribute(attr)
       end.uniq
-    end
-
-    def field_class(attr)
-      field_registry.fetch(attribute_types[attr])
-    end
-
-    private
-
-    def field_registry
-      {
-        belongs_to: Administrate::Field::BelongsTo,
-        boolean: Administrate::Field::String,
-        datetime: Administrate::Field::String,
-        email: Administrate::Field::Email,
-        float: Administrate::Field::String,
-        has_many: Administrate::Field::HasMany,
-        image: Administrate::Field::Image,
-        integer: Administrate::Field::String,
-        string: Administrate::Field::String,
-        text: Administrate::Field::String,
-      }
     end
   end
 end

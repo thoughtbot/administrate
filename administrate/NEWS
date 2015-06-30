@@ -1,3 +1,8 @@
+* Change: use field classes for `attribute_types` instead of symbols.
+  The new interface adds the `.with_options` class method,
+  which allows developers to specify options that will be applied
+  when the field object is initialized.
+
 New in 0.0.6:
 
 * Improvement: Add an outline to links on their focus state

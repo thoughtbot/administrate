@@ -3,15 +3,15 @@ require "administrate/base_dashboard"
 class OrderDashboard < Administrate::BaseDashboard
   def attribute_types
     {
-      id: :string,
-      address_line_one: :string,
-      address_line_two: :string,
-      address_city: :string,
-      address_state: :string,
-      address_zip: :string,
-      customer: :belongs_to,
-      line_items: :has_many,
-      total_price: :string,
+      id: Field::String,
+      address_line_one: Field::String,
+      address_line_two: Field::String,
+      address_city: Field::String,
+      address_state: Field::String,
+      address_zip: Field::String,
+      customer: Field::BelongsTo,
+      line_items: Field::HasMany,
+      total_price: Field::String,
     }
   end
 

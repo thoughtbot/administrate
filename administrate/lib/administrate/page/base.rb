@@ -16,7 +16,7 @@ module Administrate
         value = resource.public_send(attribute_name)
 
         dashboard.
-          field_class(attribute_name).
+          attribute_types[attribute_name].
           new(attribute_name, value, page)
       end
 

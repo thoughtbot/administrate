@@ -15,11 +15,11 @@ class LineItemDashboard < Administrate::BaseDashboard
 
   def attribute_types
     {
-      order: :belongs_to,
-      product: :belongs_to,
-      quantity: :string,
-      total_price: :string,
-      unit_price: :string,
+      order: Field::BelongsTo,
+      product: Field::BelongsTo,
+      quantity: Field::String,
+      total_price: Field::String,
+      unit_price: Field::String,
     }
   end
 

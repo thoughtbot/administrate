@@ -3,12 +3,12 @@ require "administrate/base_dashboard"
 class CustomerDashboard < Administrate::BaseDashboard
   def attribute_types
     {
-      created_at: :datetime,
-      email: :email,
-      lifetime_value: :string,
-      name: :string,
-      orders: :has_many,
-      updated_at: :datetime,
+      created_at: Field::String,
+      email: Field::Email,
+      lifetime_value: Field::String,
+      name: Field::String,
+      orders: Field::HasMany,
+      updated_at: Field::String,
     }
   end
 

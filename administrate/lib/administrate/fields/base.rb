@@ -1,10 +1,17 @@
+require_relative "deferred"
+
 module Administrate
   module Field
     class Base
-      def initialize(attribute, data, page)
+      def self.with_options(options = {})
+        Deferred.new(self, options)
+      end
+
+      def initialize(attribute, data, page, options = {})
         @attribute = attribute
         @data = data
         @page = page
+        @options = options
       end
 
       def self.permitted_attribute(attr)
