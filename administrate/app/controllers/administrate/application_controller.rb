@@ -2,6 +2,7 @@ require "administrate/namespace"
 require "administrate/page/form"
 require "administrate/page/table"
 require "administrate/page/show"
+require "administrate/resource_resolver"
 
 module Administrate
   class ApplicationController < ActionController::Base
@@ -32,7 +33,7 @@ module Administrate
       if resource.save
         redirect_to(
           [Administrate::NAMESPACE, resource],
-          notice: translate("create.success", resource: resource_title),
+          notice: translate("create.success"),
         )
       else
         @page = Administrate::Page::Form.new(dashboard, resource)
@@ -46,7 +47,7 @@ module Administrate
       if resource.update(resource_params)
         redirect_to(
           [Administrate::NAMESPACE, resource],
-          notice: translate("update.success", resource: resource_title),
+          notice: translate("update.success"),
         )
       else
         @page = Administrate::Page::Form.new(dashboard, resource)
@@ -58,7 +59,7 @@ module Administrate
       set_resource
 
       resource.destroy
-      flash[:notice] = translate("destroy.success", resource: resource_title)
+      flash[:notice] = translate("destroy.success")
       redirect_to action: :index
     end
 
@@ -71,12 +72,8 @@ module Administrate
       end
     end
 
-    def resource_class
-      Object.const_get(resource_class_name)
-    end
-
     def dashboard
-      @dashboard ||= dashboard_class.new
+      @dashboard ||= resource_resolver.dashboard_class.new
     end
 
     def set_resource(resource = nil)
@@ -89,35 +86,29 @@ module Administrate
     end
 
     def resource_params
-      params.require(:"#{resource_name}").permit(*permitted_attributes)
+      params.require(resource_name).permit(*permitted_attributes)
     end
 
     def permitted_attributes
       dashboard.permitted_attributes
     end
 
-    def dashboard_class
-      Object.const_get("#{resource_class_name}Dashboard")
-    end
-
-    def resource_class_name
-      resource_name.to_s.camelcase
-    end
-
     def instance_variable
       "@#{resource_name}"
     end
 
-    def resource_title
-      resource_class_name.titleize
+    delegate :resource_class, :resource_name, to: :resource_resolver
+
+    def resource_resolver
+      @resource_resolver ||=
+        Administrate::ResourceResolver.new(controller_path)
     end
 
-    def resource_name
-      controller_name.singularize.to_sym
-    end
-
-    def translate(key, options)
-      t("administrate.controller.#{key}", options)
+    def translate(key)
+      t(
+        "administrate.controller.#{key}",
+        resource: resource_resolver.resource_title,
+      )
     end
   end
 end
