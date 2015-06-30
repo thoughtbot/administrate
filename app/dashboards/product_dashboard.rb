@@ -6,7 +6,7 @@ class ProductDashboard < Administrate::BaseDashboard
       description: :string,
       image_url: :image,
       name: :string,
-      price: :string,
+      price: :currency,
     }
   end
 

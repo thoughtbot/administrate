@@ -16,7 +16,7 @@ describe CustomerDashboard do
 
       expect(dashboard.attribute_types[:name]).to eq(:string)
       expect(dashboard.attribute_types[:email]).to eq(:email)
-      expect(dashboard.attribute_types[:lifetime_value]).to eq(:string)
+      expect(dashboard.attribute_types[:lifetime_value]).to eq(:currency)
     end
   end
 end

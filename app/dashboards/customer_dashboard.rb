@@ -5,7 +5,7 @@ class CustomerDashboard < Administrate::BaseDashboard
     {
       created_at: :datetime,
       email: :email,
-      lifetime_value: :string,
+      lifetime_value: :currency,
       name: :string,
       orders: :has_many,
       updated_at: :datetime,
