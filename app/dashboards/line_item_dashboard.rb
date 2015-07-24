@@ -18,8 +18,8 @@ class LineItemDashboard < Administrate::BaseDashboard
       order: :belongs_to,
       product: :belongs_to,
       quantity: :string,
-      total_price: :string,
-      unit_price: :string,
+      total_price: :currency,
+      unit_price: :currency,
     }
   end
 

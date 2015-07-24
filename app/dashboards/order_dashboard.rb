@@ -11,7 +11,7 @@ class OrderDashboard < Administrate::BaseDashboard
       address_zip: :string,
       customer: :belongs_to,
       line_items: :has_many,
-      total_price: :string,
+      total_price: :currency,
     }
   end
 

@@ -1,4 +1,5 @@
 require "administrate/fields/belongs_to"
+require "administrate/fields/currency"
 require "administrate/fields/email"
 require "administrate/fields/has_many"
 require "administrate/fields/image"
@@ -22,6 +23,7 @@ module Administrate
       {
         belongs_to: Administrate::Field::BelongsTo,
         boolean: Administrate::Field::String,
+        currency: Administrate::Field::Currency,
         datetime: Administrate::Field::String,
         email: Administrate::Field::Email,
         float: Administrate::Field::String,
