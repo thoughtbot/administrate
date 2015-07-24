@@ -1,3 +1,5 @@
+New in 0.0.6:
+
 * Improvement: Add an outline to links on their focus state
   to improve accessibility through keyboard navigation.
 * Improvement: Limit index pages
