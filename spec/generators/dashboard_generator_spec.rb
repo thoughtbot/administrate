@@ -12,39 +12,55 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       expect(dashboard).to have_correct_syntax
     end
 
-    it "includes standard model attributes" do
-      dashboard = file("app/dashboards/customer_dashboard.rb")
+    describe "#attribute_types" do
+      it "includes standard model attributes" do
+        dashboard = file("app/dashboards/customer_dashboard.rb")
 
-      run_generator ["customer"]
+        run_generator ["customer"]
 
-      expect(dashboard).to contain("id: :integer,")
-      expect(dashboard).to contain("created_at: :datetime,")
-      expect(dashboard).to contain("updated_at: :datetime,")
+        expect(dashboard).to contain("id: :integer,")
+        expect(dashboard).to contain("created_at: :datetime,")
+        expect(dashboard).to contain("updated_at: :datetime,")
+      end
+
+      it "includes user-defined database columns" do
+        dashboard = file("app/dashboards/customer_dashboard.rb")
+
+        run_generator ["customer"]
+
+        expect(dashboard).to contain("name: :string,")
+        expect(dashboard).to contain("email: :string,")
+      end
+
+      it "includes has_many relationships" do
+        dashboard = file("app/dashboards/customer_dashboard.rb")
+
+        run_generator ["customer"]
+
+        expect(dashboard).to contain("orders: :has_many")
+      end
+
+      it "includes belongs_to relationships" do
+        dashboard = file("app/dashboards/order_dashboard.rb")
+
+        run_generator ["order"]
+
+        expect(dashboard).to contain("customer: :belongs_to")
+      end
     end
 
-    it "includes user-defined database columns" do
-      dashboard = file("app/dashboards/customer_dashboard.rb")
+    describe "#table_attributes" do
+      it "is limited to a reasonable number of items" do
+        dashboard = file("app/dashboards/customer_dashboard.rb")
+        limit =
+          Administrate::Generators::DashboardGenerator::TABLE_ATTRIBUTE_LIMIT
 
-      run_generator ["customer"]
+        run_generator ["customer"]
 
-      expect(dashboard).to contain("name: :string,")
-      expect(dashboard).to contain("email: :string,")
-    end
-
-    it "includes has_many relationships" do
-      dashboard = file("app/dashboards/customer_dashboard.rb")
-
-      run_generator ["customer"]
-
-      expect(dashboard).to contain("orders: :has_many")
-    end
-
-    it "includes belongs_to relationships" do
-      dashboard = file("app/dashboards/order_dashboard.rb")
-
-      run_generator ["order"]
-
-      expect(dashboard).to contain("customer: :belongs_to")
+        expect(dashboard).to contain(
+          "def table_attributes\n    attributes.first(#{limit})"
+        )
+      end
     end
   end
 

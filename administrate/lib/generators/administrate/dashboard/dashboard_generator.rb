@@ -3,6 +3,8 @@ require "rails/generators/named_base"
 module Administrate
   module Generators
     class DashboardGenerator < Rails::Generators::NamedBase
+      TABLE_ATTRIBUTE_LIMIT = 4
+
       source_root File.expand_path("../templates", __FILE__)
 
       def create_dashboard_definition

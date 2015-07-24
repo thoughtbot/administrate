@@ -16,8 +16,11 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
 
   # This method returns an array of attributes
   # that will be displayed on the model's index page.
+  #
+  # By default, it's limited to four items to reduce clutter on index pages.
+  # Feel free to remove the limit or customize the returned array.
   def table_attributes
-    attributes
+    attributes.first(<%= TABLE_ATTRIBUTE_LIMIT %>)
   end
 
   # This method returns an array of attributes
