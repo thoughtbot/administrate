@@ -1,3 +1,5 @@
+* Improvement: Add an outline to links on their focus state
+  to improve accessibility through keyboard navigation.
 * Improvement: Limit index pages to showing 20 items by default.
   Developers can customize the action to update or remove the limit,
   or to implement pagination with the system of their choice.

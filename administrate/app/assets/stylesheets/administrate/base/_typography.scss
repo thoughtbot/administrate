@@ -55,11 +55,6 @@ a {
   &:hover {
     color: $hover-link-color;
   }
-
-  &:active, &:focus {
-    color: $hover-link-color;
-    outline: none;
-  }
 }
 
 hr {
