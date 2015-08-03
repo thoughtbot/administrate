@@ -40,6 +40,19 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         expect(dashboard).to contain("orders: Field::HasMany")
       end
 
+      it "looks for class_name options on has_many fields" do
+        class Customer < ActiveRecord::Base
+          has_many :purchases, class_name: "Order", foreign_key: "purchase_id"
+        end
+        dashboard = file("app/dashboards/customer_dashboard.rb")
+
+        run_generator ["customer"]
+
+        expect(dashboard).to contain(
+          'purchases: Field::HasMany.with_options(class_name: "Order")',
+        )
+      end
+
       it "includes belongs_to relationships" do
         dashboard = file("app/dashboards/order_dashboard.rb")
 
@@ -58,7 +71,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         run_generator ["customer"]
 
         expect(dashboard).to contain(
-          "def table_attributes\n    attributes.first(#{limit})"
+          "def table_attributes\n    attributes.first(#{limit})",
         )
       end
     end
@@ -80,7 +93,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       run_generator ["customer"]
 
       expect(controller).to contain(
-        "class Admin::CustomersController < Admin::ApplicationController"
+        "class Admin::CustomersController < Admin::ApplicationController",
       )
     end
   end

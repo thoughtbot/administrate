@@ -1,3 +1,5 @@
+* Improvement: Support `has_many` associations
+  with a custom `class_name` option.
 * Change: use field classes for `attribute_types` instead of symbols.
   The new interface adds the `.with_options` class method,
   which allows developers to specify options that will be applied

@@ -39,7 +39,7 @@ module Administrate
       def association_type(attribute)
         reflection = klass.reflections[attribute.to_s]
         if reflection.collection?
-          "Field::HasMany"
+          "Field::HasMany" + has_many_options_string(reflection)
         else
           "Field::BelongsTo"
         end
@@ -47,6 +47,26 @@ module Administrate
 
       def klass
         @klass ||= Object.const_get(class_name)
+      end
+
+      def has_many_options_string(reflection)
+        options = reflection.options.slice(*allowed_has_many_options)
+
+        if options.any?
+          ".with_options(#{hash_to_string(options)})"
+        else
+          ""
+        end
+      end
+
+      def allowed_has_many_options
+        [
+          :class_name,
+        ]
+      end
+
+      def hash_to_string(hash)
+        hash.map { |key, value| "#{key}: #{value.inspect}" }.join(", ")
       end
     end
   end
