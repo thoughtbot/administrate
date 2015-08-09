@@ -52,22 +52,18 @@ module Administrate
       end
 
       def has_many_options_string(reflection)
-        options = reflection.options.slice(*allowed_has_many_options)
-
-        if options.any?
-          ".with_options(#{hash_to_string(options)})"
+        if reflection.class_name != reflection.name.to_s.classify
+          options_string(class_name: reflection.class_name)
         else
           ""
         end
       end
 
-      def allowed_has_many_options
-        [
-          :class_name,
-        ]
+      def options_string(options)
+        ".with_options(#{inspect_hash_as_ruby(options)})"
       end
 
-      def hash_to_string(hash)
+      def inspect_hash_as_ruby(hash)
         hash.map { |key, value| "#{key}: #{value.inspect}" }.join(", ")
       end
     end
