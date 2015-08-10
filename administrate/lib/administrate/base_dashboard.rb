@@ -1,6 +1,7 @@
 require "administrate/fields/belongs_to"
 require "administrate/fields/email"
 require "administrate/fields/has_many"
+require "administrate/fields/has_one"
 require "administrate/fields/image"
 require "administrate/fields/string"
 

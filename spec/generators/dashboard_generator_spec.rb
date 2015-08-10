@@ -60,6 +60,30 @@ describe Administrate::Generators::DashboardGenerator, :generator do
 
         expect(dashboard).to contain("customer: Field::BelongsTo")
       end
+
+      it "detects has_one relationships" do
+        ActiveRecord::Schema.define do
+          create_table :accounts, force: true
+
+          create_table :profiles, force: true do |t|
+            t.references :account
+          end
+        end
+
+        class Account < ActiveRecord::Base
+          has_one :profile
+        end
+
+        class Ticket < ActiveRecord::Base
+          belongs_to :account
+        end
+
+        dashboard = file("app/dashboards/account_dashboard.rb")
+
+        run_generator ["account"]
+
+        expect(dashboard).to contain("profile: Field::HasOne")
+      end
     end
 
     describe "#table_attributes" do

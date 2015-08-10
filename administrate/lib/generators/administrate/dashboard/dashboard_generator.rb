@@ -38,7 +38,9 @@ module Administrate
 
       def association_type(attribute)
         reflection = klass.reflections[attribute.to_s]
-        if reflection.collection?
+        if reflection.has_one?
+          "Field::HasOne"
+        elsif reflection.collection?
           "Field::HasMany" + has_many_options_string(reflection)
         else
           "Field::BelongsTo"

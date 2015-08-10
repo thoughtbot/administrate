@@ -1,3 +1,4 @@
+* Improvement: Support `has_one` relationships
 * Improvement: Support `has_many` associations
   with a custom `class_name` option.
 * Change: use field classes for `attribute_types` instead of symbols.
