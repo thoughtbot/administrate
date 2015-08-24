@@ -9,7 +9,7 @@ describe Administrate::Field::Email do
 
       path = field.to_partial_path
 
-      expect(path).to eq("/fields/#{page}/email")
+      expect(path).to eq("/fields/email/#{page}")
     end
   end
 end

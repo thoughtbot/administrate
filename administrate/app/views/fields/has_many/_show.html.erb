@@ -1,0 +1,9 @@
+<% if field.data.any? %>
+  <%= render(
+    "table",
+    table_presenter: field.associated_table,
+    resources: field.data
+  ) %>
+<% else %>
+  <%= t("administrate.fields.has_many.none") %>
+<% end %>

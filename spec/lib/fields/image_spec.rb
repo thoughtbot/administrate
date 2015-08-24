@@ -9,7 +9,7 @@ describe Administrate::Field::Image do
 
       path = field.to_partial_path
 
-      expect(path).to eq("/fields/#{page}/image")
+      expect(path).to eq("/fields/image/#{page}")
     end
   end
 end

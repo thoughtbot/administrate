@@ -27,7 +27,7 @@ module Administrate
       end
 
       def to_partial_path
-        "/fields/#{page}/#{field_name}"
+        "/fields/#{field_name}/#{page}"
       end
 
       attr_reader :attribute, :data, :page

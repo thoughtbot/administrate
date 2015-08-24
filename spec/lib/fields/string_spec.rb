@@ -9,7 +9,7 @@ describe Administrate::Field::String do
 
       path = field.to_partial_path
 
-      expect(path).to eq("/fields/#{page}/string")
+      expect(path).to eq("/fields/string/#{page}")
     end
   end
 end

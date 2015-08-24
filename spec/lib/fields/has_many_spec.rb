@@ -10,7 +10,7 @@ describe Administrate::Field::HasMany do
 
       path = field.to_partial_path
 
-      expect(path).to eq("/fields/#{page}/has_many")
+      expect(path).to eq("/fields/has_many/#{page}")
     end
   end
 

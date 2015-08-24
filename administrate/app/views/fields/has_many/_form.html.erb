@@ -1,0 +1,11 @@
+<%= f.label field.attribute_key %>
+
+<%= f.collection_select(
+  field.attribute_key,
+  field.candidate_records,
+  :id,
+  :to_s,
+  {},
+  { multiple: true },
+)
+%>
