@@ -1,3 +1,5 @@
+New in 0.0.7:
+
 * Improvement: Support `has_one` relationships
 * Improvement: Support `has_many :through` associations
   with a custom `source` option.
