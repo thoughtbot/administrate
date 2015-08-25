@@ -28,8 +28,8 @@ describe Administrate::Generators::InstallGenerator, :generator do
       expect(manifest).to exist
       expect(manifest).to have_correct_syntax
       expect(manifest).to contain("class DashboardManifest")
-      expect(manifest).to contain("def dashboards")
-      expect(manifest).to contain("def root_dashboard")
+      expect(manifest).to contain("DASHBOARDS = [")
+      expect(manifest).to contain("ROOT_DASHBOARD = DASHBOARDS.first")
     end
 
     it "populates default dashboards based on current ActiveRecord models" do
@@ -64,7 +64,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
       expect(routes).to have_correct_syntax
       expect(routes).to contain("namespace :admin do")
       expect(routes).to contain(
-        "DashboardManifest.new.dashboards.each do |dashboard_resource|"
+        "DashboardManifest::DASHBOARDS.each do |dashboard_resource|",
       )
       expect(routes).to contain("resources dashboard_resource")
     end
@@ -76,7 +76,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
       run_generator
 
       expect(routes).to contain(
-        "root controller: DashboardManifest.new.root_dashboard, action: :index"
+        "root controller: DashboardManifest::ROOT_DASHBOARD, action: :index",
       )
     end
   end

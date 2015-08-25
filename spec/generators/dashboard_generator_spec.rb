@@ -134,17 +134,30 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       end
     end
 
-    describe "#table_attributes" do
+    describe "TABLE_ATTRIBUTES" do
       it "is limited to a reasonable number of items" do
-        dashboard = file("app/dashboards/customer_dashboard.rb")
-        limit =
-          Administrate::Generators::DashboardGenerator::TABLE_ATTRIBUTE_LIMIT
+        begin
+          ActiveRecord::Schema.define do
+            create_table :foos do |t|
+              %i(a b c d e f g).each { |attr| t.string attr }
+            end
+          end
+          class Foo < ActiveRecord::Base; end
 
-        run_generator ["customer"]
+          run_generator ["foo"]
+          load file("app/dashboards/foo_dashboard.rb")
+          all_attrs = FooDashboard::ATTRIBUTE_TYPES.keys
+          table_attrs = FooDashboard::TABLE_ATTRIBUTES
 
-        expect(dashboard).to contain(
-          "def table_attributes\n    attributes.first(#{limit})",
-        )
+          expect(table_attrs).to eq(all_attrs.first(table_attribute_limit))
+          expect(table_attrs).not_to eq(all_attrs)
+        ensure
+          remove_constants :Foo, :FooDashboard
+        end
+      end
+
+      def table_attribute_limit
+        Administrate::Generators::DashboardGenerator::TABLE_ATTRIBUTE_LIMIT
       end
     end
   end

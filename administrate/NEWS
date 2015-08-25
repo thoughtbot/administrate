@@ -1,3 +1,10 @@
+* Change: Change the `DashboardManifest` and `ModelDashboard` APIs
+  to use constants instead of methods. Recognized constants are:
+  * `ATTRIBUTE_TYPES`
+  * `FORM_ATTRIBUTES`
+  * `SHOW_PAGE_ATTRIBUTES`
+  * `FORM_ATTRIBUTES`
+
 New in 0.0.7:
 
 * Improvement: Support `has_one` relationships
