@@ -21,7 +21,7 @@ gem "refills"
 gem "sass-rails", "~> 5.0"
 gem "simple_form"
 gem "title"
-gem "uglifier"
+gem "uglifier", ">= 2.7.2"
 gem "unicorn"
 
 group :development do
