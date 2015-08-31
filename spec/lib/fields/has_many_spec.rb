@@ -1,5 +1,6 @@
 require "spec_helper"
 require "administrate/fields/has_many"
+require "support/constant_helpers"
 
 describe Administrate::Field::HasMany do
   describe "#to_partial_path" do
@@ -27,17 +28,22 @@ describe Administrate::Field::HasMany do
 
   describe "class_name option" do
     it "determines what dashboard is used to present the association" do
-      FooDashboard = Class.new
-      dashboard_double = double(table_attributes: [])
-      allow(FooDashboard).to receive(:new).and_return(dashboard_double)
+      begin
+        FooDashboard = Class.new
+        dashboard_double = double(table_attributes: [])
+        allow(FooDashboard).to receive(:new).and_return(dashboard_double)
 
-      association = Administrate::Field::HasMany.with_options(class_name: "Foo")
-      field = association.new(:customers, [], :show)
-      table = field.associated_table
-      attributes = table.attribute_names
+        association = Administrate::Field::HasMany.
+          with_options(class_name: "Foo")
+        field = association.new(:customers, [], :show)
+        table = field.associated_table
+        attributes = table.attribute_names
 
-      expect(dashboard_double).to have_received(:table_attributes)
-      expect(attributes).to eq([])
+        expect(dashboard_double).to have_received(:table_attributes)
+        expect(attributes).to eq([])
+      ensure
+        remove_constants :FooDashboard
+      end
     end
   end
 end
