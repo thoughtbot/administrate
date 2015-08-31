@@ -12,6 +12,6 @@ $(function() {
     }
   };
 
-  $("table").on("click", ".table-row", visitDataUrl);
-  $("table").on("keydown", ".table-row", visitDataUrl);
+  $("table").on("click", ".table__row", visitDataUrl);
+  $("table").on("keydown", ".table__row", visitDataUrl);
 });
