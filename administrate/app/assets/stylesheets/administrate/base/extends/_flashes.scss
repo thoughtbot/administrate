@@ -11,28 +11,24 @@
   }
 }
 
-%flash-base {
-  font-weight: bold;
-  margin-bottom: $base-spacing / 2;
+.flash {
+  border-radius: $base-border-radius;
+  margin-top: $base-spacing;
   padding: $base-spacing / 2;
-}
 
-%flash-alert {
-  @extend %flash-base;
-  @include flash($alert-color);
-}
+  &--alert {
+    @include flash($alert-color);
+  }
 
-%flash-error {
-  @extend %flash-base;
-  @include flash($error-color);
-}
+  &--error {
+    @include flash($error-color);
+  }
 
-%flash-notice {
-  @extend %flash-base;
-  @include flash($notice-color);
-}
+  &--notice {
+    @include flash($notice-color);
+  }
 
-%flash-success {
-  @extend %flash-base;
-  @include flash($success-color);
+  &--success {
+    @include flash($success-color);
+  }
 }
