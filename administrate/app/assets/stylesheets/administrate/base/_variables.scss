@@ -27,6 +27,8 @@ $header-line-height: 1.25;
 $base-border-radius: 3px;
 $base-spacing: $base-line-height * 1em;
 $base-z-index: 0;
+$small-spacing: $base-spacing / 2;
+$sidebar-width: 150px;
 
 // Transitions
 $base-easing: cubic-bezier(0.215, 0.610, 0.355, 1);
@@ -52,8 +54,7 @@ $grey-5: #4e6a68;
 $grey-6: #344346;
 $grey-7: #293f54;
 
-// Background Color
-$base-background-color: $dark-blue;
+$base-background-color: $grey-0;
 
 // Font Colors
 $base-font-color: $grey-7;
@@ -64,10 +65,6 @@ $base-link-color: $blue;
 $hover-link-color: shade($blue, 10);
 $base-button-color: $base-link-color;
 $hover-button-color: $hover-link-color;
-
-// Sidebar Colors
-$sidebar-active-color: $base-link-color;
-$sidebar-hover-color: $hover-link-color;
 
 // Flash Colors
 $alert-color: $light-yellow;

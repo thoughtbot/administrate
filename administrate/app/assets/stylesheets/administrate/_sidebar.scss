@@ -1,24 +1,14 @@
 .sidebar {
-  flex: 0 0 280px;
-  height: 100%;
+  flex: 0 0 $sidebar-width;
   overflow-y: auto;
 
   &-logo {
-    align-items: center;
-    display: flex;
     height: 6em;
-    justify-content: space-between;
-    padding: 0 1em;
 
     img {
       display: block;
-      height: 80%;
-      padding-top: 1em;
-    }
-
-    &-heading {
-      color: $grey-0;
-      font-size: 1.6em;
+      height: 100%;
+      padding-top: $base-spacing;
     }
   }
 
@@ -28,21 +18,18 @@
 
   a {
     @include fill-parent;
-    border-bottom-left-radius: 4px;
-    border-top-left-radius: 4px;
-    color: $grey-0;
+    color: $base-font-color;
     display: block;
-    padding: 0.5em 1em;
-    transition: background-color 0.05s linear;
+    padding-top: $base-spacing;
+    transition: color 0.05s linear;
 
     &.active {
-      @include card(1);
-      background-color: $sidebar-active-color;
+      color: $blue;
+      font-weight: $bold-font-weight;
     }
 
     &:hover {
-      @include card(1);
-      background-color: $sidebar-hover-color;
+      color: $blue;
     }
   }
 }

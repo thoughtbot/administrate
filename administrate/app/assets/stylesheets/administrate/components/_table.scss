@@ -4,7 +4,7 @@
   transition: $base-transition;
 
   &:hover {
-    background-color: $grey-0;
+    background-color: $base-background-color;
     border-left-color: $blue;
     cursor: pointer;
   }
