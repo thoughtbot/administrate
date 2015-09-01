@@ -1,7 +1,7 @@
 .header {
-  @include display(flex);
-  @include justify-content(space-between);
-  @include align-items(flex-end);
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
   margin-bottom: $base-spacing;
 
   &-heading {

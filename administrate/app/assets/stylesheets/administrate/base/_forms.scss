@@ -29,16 +29,16 @@ label {
 textarea,
 #{$all-text-inputs},
 select {
-  @include box-sizing(border-box);
-  @include transition(border-color);
   background-color: white;
   border-radius: $form-border-radius;
   border: 1px solid $form-border-color;
   box-shadow: $form-box-shadow;
+  box-sizing: border-box;
   font-family: $form-font-family;
   font-size: $form-font-size;
   margin-bottom: $base-spacing / 2;
   padding: ($base-spacing / 3) ($base-spacing / 3);
+  transition: border-color;
   width: 100%;
 
   &:hover {
@@ -57,7 +57,7 @@ textarea {
 }
 
 input[type="search"] {
-  @include appearance(none);
+  appearance: none;
 }
 
 input[type="checkbox"],
@@ -72,7 +72,7 @@ input[type="file"] {
 }
 
 select {
-  @include appearance(none);
+  appearance: none;
   background: image-url("dropdown.svg") no-repeat 97% 50% / 10px;
   margin-bottom: $base-spacing;
 }

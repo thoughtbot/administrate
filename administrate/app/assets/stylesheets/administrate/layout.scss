@@ -11,16 +11,16 @@ body {
 
 .main {
   @include clearfix;
-  @include align-items(stretch);
-  @include display(flex);
+  align-items: stretch;
+  display: flex;
   margin: 0 auto;
   max-width: 100em;
 }
 
 .content {
-  @include flex(1);
   @include card(1);
   background-color: $white;
+  flex: 1;
   overflow-y: auto;
   padding: $base-spacing;
 }

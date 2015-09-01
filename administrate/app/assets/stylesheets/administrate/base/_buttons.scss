@@ -2,7 +2,7 @@ button,
 input[type="submit"],
 .button {
   @extend %button;
-  @include appearance(none);
+  appearance: none;
   border: none;
   cursor: pointer;
   user-select: none;
