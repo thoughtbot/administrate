@@ -5,7 +5,7 @@
 
 <dl>
   <% @page.attributes.each do |attribute| %>
-    <dt><%= attribute.name.titleize %></dt>
+    <dt class="attribute-label"><%= attribute.name.titleize %></dt>
     <dd><%= render_field attribute %></dd>
   <% end %>
 </dl>

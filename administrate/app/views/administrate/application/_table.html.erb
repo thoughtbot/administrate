@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <% table_presenter.attribute_names.each do |attr_name| %>
-        <th><%= attr_name.to_s.titleize %></th>
+        <th class="attribute-label"><%= attr_name.to_s.titleize %></th>
       <% end %>
       <th colspan="2"></th>
     </tr>
