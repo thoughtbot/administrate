@@ -21,7 +21,9 @@ module Administrate
       end
 
       def candidate_records
-        Object.const_get(resource_class_name).all
+        Object.const_get(resource_class_name).all.map do |resource|
+          ResourceWrapper.new(resource)
+        end
       end
 
       private
@@ -32,6 +34,14 @@ module Administrate
 
       def resource_class_name
         @options[:class_name] || attribute.to_s.singularize.camelcase
+      end
+
+      class ResourceWrapper < SimpleDelegator
+        include Administrate::ApplicationHelper
+
+        def to_s
+          display_resource(__getobj__)
+        end
       end
     end
   end

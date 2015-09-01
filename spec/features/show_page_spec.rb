@@ -39,7 +39,7 @@ RSpec.describe "customer show page" do
 
     click_row_for(order)
 
-    expect(page).to have_header(order.to_s)
+    expect(page).to have_header("Order ##{order.id}")
   end
 
   it "link-ifies the email" do

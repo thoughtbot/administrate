@@ -3,6 +3,8 @@ require_relative "base"
 module Administrate
   module Page
     class Show < Page::Base
+      include Administrate::ApplicationHelper
+
       def initialize(dashboard, resource)
         super(dashboard)
         @resource = resource
@@ -11,7 +13,7 @@ module Administrate
       attr_reader :resource
 
       def page_title
-        resource.to_s
+        display_resource(resource)
       end
 
       def attributes

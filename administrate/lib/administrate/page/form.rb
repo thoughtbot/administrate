@@ -3,6 +3,8 @@ require_relative "base"
 module Administrate
   module Page
     class Form < Page::Base
+      include Administrate::ApplicationHelper
+
       def initialize(dashboard, resource)
         super(dashboard)
         @resource = resource
@@ -17,7 +19,7 @@ module Administrate
       end
 
       def page_title
-        resource.to_s
+        display_resource(resource)
       end
 
       protected
