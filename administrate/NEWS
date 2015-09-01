@@ -1,3 +1,5 @@
+* Improvement: If a custom `#to_s` is not defined on a model,
+  Administrate will display the object using its class and database id.
 * Improvement: Stop flash from index page from persisting across requests
 * UI: Use a light background
 * UI: Improve element spacing on index page
