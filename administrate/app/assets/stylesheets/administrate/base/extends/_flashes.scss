@@ -1,6 +1,7 @@
 @mixin flash($color) {
   background: $color;
   color: darken($color, 60);
+  margin-bottom: $base-spacing;
 
   a {
     color: darken($color, 70);
@@ -13,7 +14,6 @@
 
 .flash {
   border-radius: $base-border-radius;
-  margin-top: $base-spacing;
   padding: $base-spacing / 2;
 
   &--alert {

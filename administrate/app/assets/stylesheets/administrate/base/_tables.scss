@@ -1,12 +1,11 @@
 table {
   border-collapse: separate;
-  margin: $small-spacing 0;
   width: 100%;
 }
 
 th {
   border-bottom: $dark-border;
-  padding: $small-spacing 0;
+  padding-bottom: $small-spacing;
   text-align: left;
 }
 

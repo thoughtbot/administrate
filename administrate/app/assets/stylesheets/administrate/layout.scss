@@ -22,5 +22,5 @@ body {
   @include card(1);
   background-color: $white;
   overflow-y: auto;
-  padding: 0 $gutter;
+  padding: $base-spacing;
 }
