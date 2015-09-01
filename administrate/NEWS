@@ -1,3 +1,7 @@
+* Improvement: Stop flash from index page from persisting across requests
+* UI: Use a light background
+* UI: Improve element spacing on index page
+
 New in 0.0.8:
 
 * Change: Change the `DashboardManifest` and `ModelDashboard` APIs

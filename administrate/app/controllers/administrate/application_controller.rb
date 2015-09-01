@@ -65,10 +65,12 @@ module Administrate
 
     private
 
-    helper_method :link_class
-    def link_class(resource)
+    helper_method :nav_link_state
+    def nav_link_state(resource)
       if resource_name.to_s.pluralize == resource.to_s
         :active
+      else
+        :inactive
       end
     end
 
