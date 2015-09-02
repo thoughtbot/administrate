@@ -1,9 +1,3 @@
-require "administrate/namespace"
-require "administrate/page/form"
-require "administrate/page/table"
-require "administrate/page/show"
-require "administrate/resource_resolver"
-
 module Administrate
   class ApplicationController < ActionController::Base
     def index
