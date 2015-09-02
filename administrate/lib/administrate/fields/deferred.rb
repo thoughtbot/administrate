@@ -1,20 +1,22 @@
 module Administrate
   module Field
     class Deferred
-      def initialize(klass, options = {})
-        @klass = klass
+      def initialize(deferred_class, options = {})
+        @deferred_class = deferred_class
         @options = options
       end
 
+      attr_reader :deferred_class, :options
+
       def new(*args)
-        klass.new(*args, options)
+        deferred_class.new(*args, options)
       end
 
-      delegate :permitted_attribute, to: :klass
+      def ==(other)
+        deferred_class == other.deferred_class && options == other.options
+      end
 
-      private
-
-      attr_reader :klass, :options
+      delegate :permitted_attribute, to: :deferred_class
     end
   end
 end

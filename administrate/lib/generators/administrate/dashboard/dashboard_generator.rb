@@ -3,6 +3,11 @@ require "rails/generators/named_base"
 module Administrate
   module Generators
     class DashboardGenerator < Rails::Generators::NamedBase
+      ATTRIBUTE_TYPE_MAPPING = {
+        integer: "Field::Number",
+        float: "Field::Number",
+      }
+      DEFAULT_FIELD_TYPE = "Field::String"
       TABLE_ATTRIBUTE_LIMIT = 4
 
       source_root File.expand_path("../templates", __FILE__)
@@ -25,15 +30,13 @@ module Administrate
       end
 
       def field_type(attribute)
-        if klass.type_for_attribute(attribute).type
-          default_field_type
+        type = klass.column_types[attribute.to_s].type
+
+        if type
+          ATTRIBUTE_TYPE_MAPPING.fetch(type, DEFAULT_FIELD_TYPE)
         else
           association_type(attribute)
         end
-      end
-
-      def default_field_type
-        "Field::String"
       end
 
       def association_type(attribute)

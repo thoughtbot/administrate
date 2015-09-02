@@ -31,7 +31,7 @@ module Administrate
       end
 
       def resource_class_name
-        @options[:class_name] || attribute.to_s.singularize.camelcase
+        options[:class_name] || attribute.to_s.singularize.camelcase
       end
     end
   end

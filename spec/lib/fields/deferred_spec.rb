@@ -14,4 +14,27 @@ describe Administrate::Field::Deferred do
         to have_received(:permitted_attribute).with(:foo)
     end
   end
+
+  describe "#==" do
+    it "returns false for different deferred classes" do
+      one = Administrate::Field::Deferred.new(String)
+      two = Administrate::Field::Deferred.new(Integer)
+
+      expect(one).not_to eq(two)
+    end
+
+    it "returns false for different options" do
+      one = Administrate::Field::Deferred.new(String, a: 12)
+      two = Administrate::Field::Deferred.new(String, a: :b)
+
+      expect(one).not_to eq(two)
+    end
+
+    it "returns true if deferred class and options are equal" do
+      one = Administrate::Field::Deferred.new(String, a: :b)
+      two = Administrate::Field::Deferred.new(String, a: :b)
+
+      expect(one).to eq(two)
+    end
+  end
 end

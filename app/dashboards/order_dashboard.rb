@@ -14,7 +14,7 @@ class OrderDashboard < Administrate::BaseDashboard
   ]
 
   ATTRIBUTE_TYPES = {
-    id: Field::String,
+    id: Field::Number,
     address_line_one: Field::String,
     address_line_two: Field::String,
     address_city: Field::String,
@@ -22,7 +22,7 @@ class OrderDashboard < Administrate::BaseDashboard
     address_zip: Field::String,
     customer: Field::BelongsTo,
     line_items: Field::HasMany,
-    total_price: Field::String,
+    total_price: Field::Number.with_options(prefix: "$"),
   }
 
   TABLE_ATTRIBUTES = ATTRIBUTES

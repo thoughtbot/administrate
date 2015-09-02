@@ -13,7 +13,7 @@ class CustomerDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     created_at: Field::String,
     email: Field::Email,
-    lifetime_value: Field::String,
+    lifetime_value: Field::Number.with_options(prefix: "$"),
     name: Field::String,
     orders: Field::HasMany,
     updated_at: Field::String,

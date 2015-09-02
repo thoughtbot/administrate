@@ -1,5 +1,9 @@
 New in 0.1.0:
 
+* Improvement: Add `Administrate::Field::Number`
+  for displaying currency, integers, and floats.
+  Supports options `prefix` and `decimals`.
+
 New in 0.0.9:
 
 * Bug Fix: Improve development environment;

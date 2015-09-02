@@ -34,6 +34,8 @@ module Administrate
 
       protected
 
+      attr_reader :options
+
       def field_name
         self.class.to_s.split("::").last.underscore
       end

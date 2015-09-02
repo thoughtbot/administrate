@@ -11,9 +11,9 @@ class LineItemDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     order: Field::BelongsTo,
     product: Field::BelongsTo,
-    quantity: Field::String,
-    total_price: Field::String,
-    unit_price: Field::String,
+    quantity: Field::Number,
+    total_price: Field::Number.with_options(prefix: "$"),
+    unit_price: Field::Number.with_options(prefix: "$"),
   }
 
   TABLE_ATTRIBUTES = ATTRIBUTES + [:total_price]

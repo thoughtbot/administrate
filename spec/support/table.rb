@@ -1,12 +1,18 @@
 module Features
   def click_row_for(model)
-    all(index_row_css_for(model)).first.click
+    within(row_css_for(model)) do
+      all(clickable_table_elements).first.click
+    end
   end
 
   private
 
-  def index_row_css_for(model)
-    "tr[data-url='#{url_for(model)}'] .field-string"
+  def row_css_for(model)
+    "tr[data-url='#{url_for(model)}']"
+  end
+
+  def clickable_table_elements
+    ".field-string, .field-number"
   end
 
   def url_for(model)

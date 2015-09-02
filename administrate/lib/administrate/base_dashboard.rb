@@ -3,6 +3,7 @@ require "administrate/fields/email"
 require "administrate/fields/has_many"
 require "administrate/fields/has_one"
 require "administrate/fields/image"
+require "administrate/fields/number"
 require "administrate/fields/string"
 
 module Administrate

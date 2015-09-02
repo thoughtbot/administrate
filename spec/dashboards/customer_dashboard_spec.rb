@@ -18,7 +18,8 @@ describe CustomerDashboard do
 
       expect(fields[:name]).to eq(Administrate::Field::String)
       expect(fields[:email]).to eq(Administrate::Field::Email)
-      expect(fields[:lifetime_value]).to eq(Administrate::Field::String)
+      expect(fields[:lifetime_value]).
+        to eq(Administrate::Field::Number.with_options(prefix: "$"))
     end
   end
 end
