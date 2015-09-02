@@ -25,7 +25,7 @@ feature "order index page" do
     visit admin_orders_path
     click_row_for(order)
 
-    expect(page).to have_header(order.to_s)
+    expect(page).to have_header("Order ##{order.id}")
     expect(page).to have_link(order.customer.name)
   end
 

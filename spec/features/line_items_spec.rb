@@ -17,8 +17,7 @@ RSpec.describe "line item index page" do
     visit admin_line_items_path
     click_row_for(line_item)
 
-    expect(page).to have_header(line_item.to_s)
-    expect(page).to have_content(line_item.to_s)
+    expect(page).to have_header("Line Item ##{line_item.id}")
     expect(page).to have_content(line_item.product.to_s)
   end
 
@@ -28,7 +27,7 @@ RSpec.describe "line item index page" do
     visit admin_line_items_path
     click_on "Edit"
 
-    expect(page).to have_header("Edit #{line_item}")
+    expect(page).to have_header("Edit Line Item ##{line_item.id}")
   end
 
   it "links to the new page" do

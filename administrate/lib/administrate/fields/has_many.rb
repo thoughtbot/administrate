@@ -21,7 +21,9 @@ module Administrate
       end
 
       def candidate_records
-        Object.const_get(resource_class_name).all
+        Object.const_get(resource_class_name).all.map do |resource|
+          ResourceDecorator.new(resource)
+        end
       end
 
       private

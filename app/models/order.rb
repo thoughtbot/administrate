@@ -10,10 +10,6 @@ class Order < ActiveRecord::Base
   validates :address_state, presence: true
   validates :address_zip, presence: true
 
-  def to_s
-    "Order ##{id}"
-  end
-
   def total_price
     line_items.map(&:total_price).reduce(0, :+)
   end

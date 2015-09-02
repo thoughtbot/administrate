@@ -12,7 +12,13 @@ module Administrate
       end
 
       def candidate_records
-        Object.const_get(attribute.to_s.camelcase).all
+        Object.const_get(attribute.to_s.camelcase).all.map do |resource|
+          ResourceDecorator.new(resource)
+        end
+      end
+
+      def decorated_data
+        ResourceDecorator.new(data)
       end
     end
   end

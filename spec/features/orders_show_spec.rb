@@ -17,6 +17,6 @@ feature "order index page" do
     visit admin_order_path(line_item.order)
     click_row_for(line_item)
 
-    expect(page).to have_header(line_item.to_s)
+    expect(page).to have_header("Line Item ##{line_item.id}")
   end
 end
