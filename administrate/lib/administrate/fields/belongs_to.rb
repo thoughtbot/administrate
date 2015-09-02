@@ -13,18 +13,12 @@ module Administrate
 
       def candidate_records
         Object.const_get(attribute.to_s.camelcase).all.map do |resource|
-          ResourceWrapper.new(resource)
+          ResourceDecorator.new(resource)
         end
       end
 
-      private
-
-      class ResourceWrapper < SimpleDelegator
-        include Administrate::ApplicationHelper
-
-        def to_s
-          display_resource(__getobj__)
-        end
+      def decorated_data
+        ResourceDecorator.new(data)
       end
     end
   end

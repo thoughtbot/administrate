@@ -1,7 +1,7 @@
 require "rails_helper"
 
-describe Administrate::ApplicationHelper do
-  describe "#display_resource" do
+describe Administrate::ResourceDecorator do
+  describe "#to_s" do
     context "when the resource does not have #to_s defined" do
       it "renders the class name and resource id" do
         model_class = Class.new do
@@ -15,9 +15,9 @@ describe Administrate::ApplicationHelper do
         end
 
         model = model_class.new
-        display_string = display_resource(model)
+        decorated_model = Administrate::ResourceDecorator.new(model)
 
-        expect(display_string).to eq("Some Class #1")
+        expect(decorated_model.to_s).to eq("Some Class #1")
       end
     end
 
@@ -30,9 +30,9 @@ describe Administrate::ApplicationHelper do
         end
 
         model = model_class.new
-        display_string = display_resource(model)
+        decorated_model = Administrate::ResourceDecorator.new(model)
 
-        expect(display_string).to eq("Woohoo!")
+        expect(decorated_model.to_s).to eq("Woohoo!")
       end
     end
   end

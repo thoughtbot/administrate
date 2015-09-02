@@ -19,7 +19,7 @@ module Administrate
       end
 
       def page_title
-        display_resource(resource)
+        ResourceDecorator.new(resource).to_s
       end
 
       protected
