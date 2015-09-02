@@ -3,8 +3,6 @@ require_relative "base"
 module Administrate
   module Page
     class Show < Page::Base
-      include Administrate::ApplicationHelper
-
       def initialize(dashboard, resource)
         super(dashboard)
         @resource = resource
