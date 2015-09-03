@@ -1,7 +1,7 @@
 PATH
   remote: administrate
   specs:
-    administrate (0.0.8)
+    administrate (0.0.9)
       autoprefixer-rails
       neat (~> 1.1)
       normalize-rails (~> 3.0)

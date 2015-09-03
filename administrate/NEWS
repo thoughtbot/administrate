@@ -1,9 +1,13 @@
+New in 0.0.9:
+
 * Bug Fix: Improve development environment;
-  developers can now edit Administrate-related files
+  developers can now edit Administrate-related files in their app
   without needing to restart their server afterwards.
-* Improvement: Stop flash from index page from persisting across requests
+* Bug Fix: Stop flash from index page from persisting across requests
 * UI: Use a light background
 * UI: Improve element spacing on index page
+* UI: Improve flash message appearance
+* UI: make elements more consistent between index and show pages
 
 New in 0.0.8:
 
