@@ -13,6 +13,10 @@ module Administrate
         end
       end
 
+      def attribute_types
+        dashboard.attribute_types.slice(*attribute_names)
+      end
+
       def to_partial_path
         "/dashboard/table"
       end

@@ -12,7 +12,7 @@ module Features
   end
 
   def clickable_table_elements
-    ".field-string, .field-number"
+    ".cell-data--string, .cell-data--number"
   end
 
   def url_for(model)

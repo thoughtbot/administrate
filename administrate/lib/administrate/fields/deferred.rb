@@ -16,7 +16,7 @@ module Administrate
         deferred_class == other.deferred_class && options == other.options
       end
 
-      delegate :permitted_attribute, to: :deferred_class
+      delegate :html_class, :permitted_attribute, to: :deferred_class
     end
   end
 end

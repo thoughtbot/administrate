@@ -3,30 +3,22 @@ table {
   width: 100%;
 }
 
+th,
+td {
+  padding: $small-spacing;
+  vertical-align: middle;
+}
+
 th {
   border-bottom: $dark-border;
-  padding-bottom: $small-spacing;
+  padding-top: 0;
   text-align: left;
 }
 
 td {
   border-bottom: $base-border;
   overflow: hidden;
-  padding: $small-spacing 0;
   text-overflow: ellipsis;
   white-space: nowrap;
   word-wrap: normal;
-}
-
-td,
-th {
-  &:first-child {
-    padding-left: 1em;
-  }
-}
-
-tr,
-td,
-th {
-  vertical-align: middle;
 }

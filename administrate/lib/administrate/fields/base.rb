@@ -7,6 +7,10 @@ module Administrate
         Deferred.new(self, options)
       end
 
+      def self.html_class
+        field_type.dasherize
+      end
+
       def initialize(attribute, data, page, options = {})
         @attribute = attribute
         @data = data
@@ -19,7 +23,7 @@ module Administrate
       end
 
       def html_class
-        field_name.dasherize
+        self.class.html_class
       end
 
       def name
@@ -27,7 +31,7 @@ module Administrate
       end
 
       def to_partial_path
-        "/fields/#{field_name}/#{page}"
+        "/fields/#{self.class.field_type}/#{page}"
       end
 
       attr_reader :attribute, :data, :page
@@ -36,8 +40,8 @@ module Administrate
 
       attr_reader :options
 
-      def field_name
-        self.class.to_s.split("::").last.underscore
+      def self.field_type
+        to_s.split("::").last.underscore
       end
     end
   end

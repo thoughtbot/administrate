@@ -1,8 +1,10 @@
 <table>
   <thead>
     <tr>
-      <% table_presenter.attribute_names.each do |attr_name| %>
-        <th class="attribute-label"><%= attr_name.to_s.titleize %></th>
+      <% table_presenter.attribute_types.each do |attr_name, attr_type| %>
+        <th class="cell-label cell-label--<%= attr_type.html_class %>">
+          <%= attr_name.to_s.titleize %>
+        </th>
       <% end %>
       <th colspan="2"></th>
     </tr>
@@ -16,7 +18,7 @@
           data-url="<%= polymorphic_path([Administrate::NAMESPACE, resource]) -%>"
           >
         <% table_presenter.attributes_for(resource).each do |attribute| %>
-          <td class="field-<%= attribute.html_class %>">
+          <td class="cell-data cell-data--<%= attribute.html_class %>">
             <%= render_field attribute %>
           </td>
         <% end %>
