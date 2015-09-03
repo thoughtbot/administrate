@@ -18,7 +18,7 @@ module Administrate
       end
 
       def decimals
-        options.fetch(:decimals, 2)
+        options.fetch(:decimals, 0)
       end
     end
   end

@@ -83,8 +83,10 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/inventory_item_dashboard.rb")
           attrs = InventoryItemDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:quantity]).to eq(Administrate::Field::Number)
-          expect(attrs[:price]).to eq(Administrate::Field::Number)
+          expect(attrs[:price]).
+            to eq(Administrate::Field::Number.with_options(decimals: 2))
+          expect(attrs[:quantity]).
+            to eq(Administrate::Field::Number)
         ensure
           remove_constants :InventoryItem, :InventoryItemDashboard
         end

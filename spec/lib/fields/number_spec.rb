@@ -18,19 +18,19 @@ describe Administrate::Field::Number do
 
     it { should_permit_param(:foo, for_attribute: :foo) }
 
-    it "defaults to displaying two decimal points" do
+    it "defaults to displaying no decimal points" do
       int = Administrate::Field::Number.new(:quantity, 3, :show)
       float = Administrate::Field::Number.new(:quantity, 3.1415926, :show)
 
-      expect(int.to_s).to eq("3.00")
-      expect(float.to_s).to eq("3.14")
+      expect(int.to_s).to eq("3")
+      expect(float.to_s).to eq("3")
     end
 
     context "with `prefix` option" do
       it "displays the given prefix" do
         number = number_with_options(13, prefix: "$")
 
-        expect(number.to_s).to eq("$13.00")
+        expect(number.to_s).to eq("$13")
       end
     end
 

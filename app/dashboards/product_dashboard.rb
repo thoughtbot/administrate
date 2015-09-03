@@ -12,7 +12,7 @@ class ProductDashboard < Administrate::BaseDashboard
     description: Field::String,
     image_url: Field::Image,
     name: Field::String,
-    price: Field::Number.with_options(prefix: "$"),
+    price: Field::Number.with_options(prefix: "$", decimals: 2),
   }
 
   TABLE_ATTRIBUTES = ATTRIBUTES

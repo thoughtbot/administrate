@@ -7,6 +7,11 @@ module Administrate
         integer: "Field::Number",
         float: "Field::Number",
       }
+
+      ATTRIBUTE_OPTIONS_MAPPING = {
+        float: { decimals: 2 },
+      }
+
       DEFAULT_FIELD_TYPE = "Field::String"
       TABLE_ATTRIBUTE_LIMIT = 4
 
@@ -33,7 +38,8 @@ module Administrate
         type = klass.column_types[attribute.to_s].type
 
         if type
-          ATTRIBUTE_TYPE_MAPPING.fetch(type, DEFAULT_FIELD_TYPE)
+          ATTRIBUTE_TYPE_MAPPING.fetch(type, DEFAULT_FIELD_TYPE) +
+            options_string(ATTRIBUTE_OPTIONS_MAPPING.fetch(type, {}))
         else
           association_type(attribute)
         end
@@ -63,7 +69,11 @@ module Administrate
       end
 
       def options_string(options)
-        ".with_options(#{inspect_hash_as_ruby(options)})"
+        if options.any?
+          ".with_options(#{inspect_hash_as_ruby(options)})"
+        else
+          ""
+        end
       end
 
       def inspect_hash_as_ruby(hash)

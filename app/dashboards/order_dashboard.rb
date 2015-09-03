@@ -22,7 +22,7 @@ class OrderDashboard < Administrate::BaseDashboard
     address_zip: Field::String,
     customer: Field::BelongsTo,
     line_items: Field::HasMany,
-    total_price: Field::Number.with_options(prefix: "$"),
+    total_price: Field::Number.with_options(prefix: "$", decimals: 2),
   }
 
   TABLE_ATTRIBUTES = ATTRIBUTES

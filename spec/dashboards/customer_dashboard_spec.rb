@@ -12,14 +12,15 @@ describe CustomerDashboard do
 
   describe "#attribute_types" do
     it "maps each attribute to an attribute field" do
+      Field = Administrate::Field
       dashboard = CustomerDashboard.new
 
       fields = dashboard.attribute_types
 
-      expect(fields[:name]).to eq(Administrate::Field::String)
-      expect(fields[:email]).to eq(Administrate::Field::Email)
+      expect(fields[:name]).to eq(Field::String)
+      expect(fields[:email]).to eq(Field::Email)
       expect(fields[:lifetime_value]).
-        to eq(Administrate::Field::Number.with_options(prefix: "$"))
+        to eq(Field::Number.with_options(prefix: "$", decimals: 2))
     end
   end
 end
