@@ -55,4 +55,35 @@ describe "order form" do
       field.find("option", text: associated_model.to_s)
     end
   end
+
+  describe "datetime field" do
+    pending "correctly parses dates" do
+      order = create(:order)
+
+      visit edit_admin_order_path(order)
+      fill_in("Shipped at", with: "09/03/2015 7:18 AM")
+      click_on "Update Order"
+
+      expect(page).to have_content("Thu, Sep 3, 2015 at 07:18:00 AM")
+    end
+
+    it "responds to the date/time picker date format", :js do
+      order = create(:order)
+
+      visit edit_admin_order_path(order)
+      select_from_datepicker(Time.new(2015, 01, 02, 03, 04, 05))
+      click_on "Update Order"
+
+      expect(page).to have_content("Fri, Jan 2, 2015 at 03:04:05 AM")
+    end
+
+    def select_from_datepicker(time)
+      time_string = time.to_s[0..-7]
+
+      page.execute_script(<<-JS)
+        var date = moment("#{time_string}", "YYYY-MM-DD hh:mm:ss");
+        $(".datetimepicker").data("DateTimePicker").date(date);
+      JS
+    end
+  end
 end

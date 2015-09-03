@@ -1,5 +1,7 @@
 New in 0.1.0:
 
+* Improvement: Add `Administrate::Field::DateTime`
+  for displaying dates, times, and datetimes.
 * Improvement: Add `Administrate::Field::Number`
   for displaying currency, integers, and floats.
   Supports options `prefix` and `decimals`.

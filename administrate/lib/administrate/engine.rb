@@ -1,6 +1,8 @@
 require "neat"
 require "normalize-rails"
 require "selectize-rails"
+require "momentjs-rails"
+require "datetime_picker_rails"
 
 require "administrate/namespace"
 require "administrate/page/form"

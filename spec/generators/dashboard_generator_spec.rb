@@ -28,8 +28,8 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           attrs = FooDashboard::ATTRIBUTE_TYPES
 
           expect(attrs[:id]).to eq(Administrate::Field::Number)
-          expect(attrs[:created_at]).to eq(Administrate::Field::String)
-          expect(attrs[:updated_at]).to eq(Administrate::Field::String)
+          expect(attrs[:created_at]).to eq(Administrate::Field::DateTime)
+          expect(attrs[:updated_at]).to eq(Administrate::Field::DateTime)
         ensure
           remove_constants :Foo, :FooDashboard
         end
@@ -89,6 +89,32 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             to eq(Administrate::Field::Number)
         ensure
           remove_constants :InventoryItem, :InventoryItemDashboard
+        end
+      end
+
+      it "assigns dates, times, and datetimes a type of `DateTime`" do
+        begin
+          ActiveRecord::Schema.define do
+            create_table :events do |t|
+              t.date :start_date
+              t.time :start_time
+              t.datetime :ends_at
+            end
+          end
+
+          class Event < ActiveRecord::Base
+            reset_column_information
+          end
+
+          run_generator ["event"]
+          load file("app/dashboards/event_dashboard.rb")
+          attrs = EventDashboard::ATTRIBUTE_TYPES
+
+          expect(attrs[:start_date]).to eq(Administrate::Field::DateTime)
+          expect(attrs[:start_time]).to eq(Administrate::Field::DateTime)
+          expect(attrs[:ends_at]).to eq(Administrate::Field::DateTime)
+        ensure
+          remove_constants :Event, :EventDashboard
         end
       end
 

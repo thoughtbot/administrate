@@ -9,6 +9,8 @@ class LineItemDashboard < Administrate::BaseDashboard
   ]
 
   ATTRIBUTE_TYPES = {
+    created_at: Field::DateTime,
+    updated_at: Field::DateTime,
     order: Field::BelongsTo,
     product: Field::BelongsTo,
     quantity: Field::Number,

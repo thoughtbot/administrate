@@ -4,8 +4,11 @@ module Administrate
   module Generators
     class DashboardGenerator < Rails::Generators::NamedBase
       ATTRIBUTE_TYPE_MAPPING = {
-        integer: "Field::Number",
+        date: "Field::DateTime",
+        datetime: "Field::DateTime",
         float: "Field::Number",
+        integer: "Field::Number",
+        time: "Field::DateTime",
       }
 
       ATTRIBUTE_OPTIONS_MAPPING = {

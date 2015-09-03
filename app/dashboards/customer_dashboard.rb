@@ -11,12 +11,12 @@ class CustomerDashboard < Administrate::BaseDashboard
   ]
 
   ATTRIBUTE_TYPES = {
-    created_at: Field::String,
+    created_at: Field::DateTime,
     email: Field::Email,
     lifetime_value: Field::Number.with_options(prefix: "$", decimals: 2),
     name: Field::String,
     orders: Field::HasMany,
-    updated_at: Field::String,
+    updated_at: Field::DateTime,
   }
 
   TABLE_ATTRIBUTES = ATTRIBUTES

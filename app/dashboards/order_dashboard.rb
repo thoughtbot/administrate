@@ -1,20 +1,10 @@
 require "administrate/base_dashboard"
 
 class OrderDashboard < Administrate::BaseDashboard
-  ATTRIBUTES = [
-    :id,
-    :address_line_one,
-    :address_line_two,
-    :address_city,
-    :address_state,
-    :address_zip,
-    :customer,
-    :line_items,
-    :total_price,
-  ]
-
   ATTRIBUTE_TYPES = {
     id: Field::Number,
+    created_at: Field::DateTime,
+    updated_at: Field::DateTime,
     address_line_one: Field::String,
     address_line_two: Field::String,
     address_city: Field::String,
@@ -23,9 +13,17 @@ class OrderDashboard < Administrate::BaseDashboard
     customer: Field::BelongsTo,
     line_items: Field::HasMany,
     total_price: Field::Number.with_options(prefix: "$", decimals: 2),
+    shipped_at: Field::DateTime,
   }
 
-  TABLE_ATTRIBUTES = ATTRIBUTES
-  FORM_ATTRIBUTES = ATTRIBUTES - [:id, :total_price]
-  SHOW_PAGE_ATTRIBUTES = ATTRIBUTES
+  READ_ONLY_ATTRIBUTES = [
+    :id,
+    :total_price,
+    :created_at,
+    :updated_at,
+  ]
+
+  TABLE_ATTRIBUTES = ATTRIBUTE_TYPES.keys
+  FORM_ATTRIBUTES = ATTRIBUTE_TYPES.keys - READ_ONLY_ATTRIBUTES
+  SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys
 end

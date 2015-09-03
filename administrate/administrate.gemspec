@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   s.add_dependency "normalize-rails", "~> 3.0"
   s.add_dependency "rails", "~> 4.2"
   s.add_dependency "selectize-rails", "~> 0.6"
+  s.add_dependency "momentjs-rails", ">= 2.9.0"
+  s.add_dependency "datetime_picker_rails", "~> 0.0.4"
   s.add_dependency "autoprefixer-rails"
 
   s.description = <<-DESCRIPTION
