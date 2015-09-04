@@ -1,7 +1,7 @@
 module Administrate
   class ApplicationController < ActionController::Base
     def index
-      @resources = resource_class.all
+      @resources = resolver.resource_class.all
       @page = Administrate::Page::Table.new(dashboard)
     end
 
@@ -12,7 +12,9 @@ module Administrate
     end
 
     def new
-      @page = Administrate::Page::Form.new(dashboard, resource_class.new)
+      @page = Administrate::Page::Form.new(
+        dashboard, resolver.resource_class.new
+      )
     end
 
     def edit
@@ -22,7 +24,7 @@ module Administrate
     end
 
     def create
-      set_resource(resource_class.new(resource_params))
+      set_resource(resolver.resource_class.new(resource_params))
 
       if resource.save
         redirect_to(
@@ -61,7 +63,7 @@ module Administrate
 
     helper_method :nav_link_state
     def nav_link_state(resource)
-      if resource_name.to_s.pluralize == resource.to_s
+      if resolver.resource_name.to_s.pluralize == resource.to_s
         :active
       else
         :inactive
@@ -69,11 +71,11 @@ module Administrate
     end
 
     def dashboard
-      @dashboard ||= resource_resolver.dashboard_class.new
+      @dashboard ||= resolver.dashboard_class.new
     end
 
     def set_resource(resource = nil)
-      resource ||= resource_class.find(params[:id])
+      resource ||= resolver.resource_class.find(params[:id])
       instance_variable_set(instance_variable, resource)
     end
 
@@ -82,7 +84,7 @@ module Administrate
     end
 
     def resource_params
-      params.require(resource_name).permit(*permitted_attributes)
+      params.require(resolver.resource_name).permit(*permitted_attributes)
     end
 
     def permitted_attributes
@@ -90,20 +92,21 @@ module Administrate
     end
 
     def instance_variable
-      "@#{resource_name}"
+      "@#{resolver.resource_name}"
     end
 
-    delegate :resource_class, :resource_name, to: :resource_resolver
+    def resolver
+      @resolver ||= Administrate::ResourceResolver.new(resource_class)
+    end
 
-    def resource_resolver
-      @resource_resolver ||=
-        Administrate::ResourceResolver.new(controller_path)
+    def resource_class
+      params.fetch(:resource_class, controller_path).to_s
     end
 
     def translate(key)
       t(
         "administrate.controller.#{key}",
-        resource: resource_resolver.resource_title,
+        resource: resolver.resource_title,
       )
     end
   end

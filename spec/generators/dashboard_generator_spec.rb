@@ -235,25 +235,4 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       end
     end
   end
-
-  describe "resource controller" do
-    it "has valid syntax" do
-      controller = file("app/controllers/admin/customers_controller.rb")
-
-      run_generator ["customer"]
-
-      expect(controller).to exist
-      expect(controller).to have_correct_syntax
-    end
-
-    it "subclasses Admin::ApplicationController" do
-      controller = file("app/controllers/admin/customers_controller.rb")
-
-      run_generator ["customer"]
-
-      expect(controller).to contain(
-        "class Admin::CustomersController < Admin::ApplicationController",
-      )
-    end
-  end
 end

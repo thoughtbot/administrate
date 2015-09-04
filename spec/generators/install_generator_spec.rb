@@ -56,28 +56,37 @@ describe Administrate::Generators::InstallGenerator, :generator do
 
   describe "config/routes.rb" do
     it "inserts an admin namespace with dashboard resources" do
-      stub_generator_dependencies
-      routes = file("config/routes.rb")
+      begin
+        stub_generator_dependencies
 
-      run_generator
+        clear_routes
+        run_generator
+        load file("config/routes.rb")
 
-      expect(routes).to have_correct_syntax
-      expect(routes).to contain("namespace :admin do")
-      expect(routes).to contain(
-        "DashboardManifest::DASHBOARDS.each do |dashboard_resource|",
-      )
-      expect(routes).to contain("resources dashboard_resource")
+        routes = Rails.application.routes.routes.named_routes
+        customers_controller = routes["admin_customers"].defaults[:controller]
+        expect(customers_controller).to eq("admin/application")
+      ensure
+        reset_routes
+      end
     end
 
     it "creates a root route for the admin namespace" do
-      stub_generator_dependencies
-      routes = file("config/routes.rb")
+      begin
+        stub_generator_dependencies
 
-      run_generator
+        clear_routes
+        run_generator
+        load file("config/routes.rb")
 
-      expect(routes).to contain(
-        "root controller: DashboardManifest::ROOT_DASHBOARD, action: :index",
-      )
+        routes = Rails.application.routes.routes.named_routes
+        root_info = routes["admin_root"].defaults
+        expect(root_info[:controller]).to eq("admin/application")
+        expect(root_info[:resource_class]).
+          to eq(DashboardManifest::ROOT_DASHBOARD)
+      ensure
+        reset_routes
+      end
     end
   end
 
@@ -97,5 +106,14 @@ describe Administrate::Generators::InstallGenerator, :generator do
   def stub_generator_dependencies
     provide_existing_routes_file
     allow(Rails::Generators).to receive(:invoke)
+  end
+
+  def reset_routes
+    clear_routes
+    load Rails.root.to_s + "/config/routes.rb"
+  end
+
+  def clear_routes
+    Rails.application.routes.clear!
   end
 end
