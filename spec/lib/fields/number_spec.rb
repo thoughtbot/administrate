@@ -15,9 +15,11 @@ describe Administrate::Field::Number do
 
       expect(path).to eq("/fields/number/#{page}")
     end
+  end
 
-    it { should_permit_param(:foo, for_attribute: :foo) }
+  it { should_permit_param(:foo, for_attribute: :foo) }
 
+  describe "#to_s" do
     it "defaults to displaying no decimal points" do
       int = Administrate::Field::Number.new(:quantity, 3, :show)
       float = Administrate::Field::Number.new(:quantity, 3.1415926, :show)
@@ -49,6 +51,14 @@ describe Administrate::Field::Number do
         number = number_with_options(12, decimals: 2)
 
         expect(number.to_s).to eq("12.00")
+      end
+    end
+
+    context "when data is nil" do
+      it "returns a dash" do
+        number = Administrate::Field::Number.new(:number, nil, :page)
+
+        expect(number.to_s).to eq("-")
       end
     end
 
