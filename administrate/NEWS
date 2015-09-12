@@ -4,7 +4,9 @@ New in 0.1.0:
   such as `post_id` or `post_type`.
 * Bug Fix: Squash several 500 errors caused by polymorphic relationships.
 * Improvement: support models that have a custom `to_param` method.
-* UI: Improve formatting of strings on `index` and `show` pages
+* UI: Show whitespace in strings on `show` pages
+* Improvement: Truncate strings on index page,
+  with an optional argument for truncation length
 * Improvement: Generate a single controller to serve all resources,
   to reduce noise after running the install generator.
 * Improvement: Add `Administrate::Field::DateTime`

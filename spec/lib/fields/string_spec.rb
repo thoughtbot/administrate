@@ -17,4 +17,30 @@ describe Administrate::Field::String do
   end
 
   it { should_permit_param(:foo, for_attribute: :foo) }
+
+  describe "#truncate" do
+    it "defaults to displaying up to 50 characters" do
+      short = Administrate::Field::String.new(:title, lorem(30), :show)
+      long = Administrate::Field::String.new(:description, lorem(60), :show)
+
+      expect(short.truncate).to eq(lorem(30))
+      expect(long.truncate).to eq(lorem(50))
+    end
+
+    context "with a `truncate` option" do
+      it "shortens to the given length" do
+        string = string_with_options(lorem(30), truncate: 20)
+
+        expect(string.truncate).to eq(lorem(20))
+      end
+    end
+  end
+
+  def string_with_options(string, options)
+    Administrate::Field::String.new(:string, string, :page, options)
+  end
+
+  def lorem(n)
+    "a" * n
+  end
 end
