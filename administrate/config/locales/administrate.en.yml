@@ -8,6 +8,8 @@ en:
     fields:
       has_many:
         none: None
+      polymorphic:
+        not_supported: "Polymorphic relationship forms are not supported yet. Sorry!"
     controller:
       create:
         success: "%{resource} was successfully created."

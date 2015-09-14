@@ -1,5 +1,8 @@
 New in 0.1.0:
 
+* Improvement: Don't display redundant attributes for belongs_to relationships,
+  such as `post_id` or `post_type`.
+* Bug Fix: Squash several 500 errors caused by polymorphic relationships.
 * Improvement: support models that have a custom `to_param` method.
 * UI: Improve formatting of strings on `index` and `show` pages
 * Improvement: Generate a single controller to serve all resources,

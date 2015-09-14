@@ -166,12 +166,47 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
       end
 
-      it "includes belongs_to relationships" do
-        dashboard = file("app/dashboards/order_dashboard.rb")
+      it "detects belongs_to relationships" do
+        begin
+          ActiveRecord::Schema.define do
+            create_table(:comments) { |t| t.references :post }
+          end
+          class Comment < ActiveRecord::Base
+            belongs_to :post
+          end
 
-        run_generator ["order"]
+          run_generator ["comment"]
+          load file("app/dashboards/comment_dashboard.rb")
+          attrs = CommentDashboard::ATTRIBUTE_TYPES
 
-        expect(dashboard).to contain("customer: Field::BelongsTo")
+          expect(attrs[:post]).to eq(Administrate::Field::BelongsTo)
+          expect(attrs.keys).not_to include(:post_id)
+        ensure
+          remove_constants :Comment, :CommentDashboard
+        end
+      end
+
+      it "detects polymorphic belongs_to relationships" do
+        begin
+          ActiveRecord::Schema.define do
+            create_table :comments do |t|
+              t.references :commentable, polymorphic: true
+            end
+          end
+          class Comment < ActiveRecord::Base
+            belongs_to :commentable, polymorphic: true
+          end
+
+          run_generator ["comment"]
+          load file("app/dashboards/comment_dashboard.rb")
+          attrs = CommentDashboard::ATTRIBUTE_TYPES
+
+          expect(attrs[:commentable]).to eq(Administrate::Field::Polymorphic)
+          expect(attrs.keys).not_to include(:commentable_id)
+          expect(attrs.keys).not_to include(:commentable_type)
+        ensure
+          remove_constants :Comment, :CommentDashboard
+        end
       end
 
       it "detects has_one relationships" do

@@ -27,7 +27,22 @@ module Administrate
       private
 
       def attributes
-        klass.attribute_names + klass.reflections.keys
+        klass.reflections.keys + klass.attribute_names - redundant_attributes
+      end
+
+      def redundant_attributes
+        klass.reflections.keys.flat_map do |relationship|
+          redundant_attributes_for(relationship)
+        end.compact
+      end
+
+      def redundant_attributes_for(relationship)
+        case association_type(relationship)
+        when "Field::Polymorphic"
+          [relationship + "_id", relationship + "_type"]
+        when "Field::BelongsTo"
+          relationship + "_id"
+        end
       end
 
       def field_type(attribute)
@@ -42,11 +57,13 @@ module Administrate
       end
 
       def association_type(attribute)
-        reflection = klass.reflections[attribute.to_s]
-        if reflection.has_one?
+        relationship = klass.reflections[attribute.to_s]
+        if relationship.has_one?
           "Field::HasOne"
-        elsif reflection.collection?
-          "Field::HasMany" + has_many_options_string(reflection)
+        elsif relationship.collection?
+          "Field::HasMany" + has_many_options_string(relationship)
+        elsif relationship.polymorphic?
+          "Field::Polymorphic"
         else
           "Field::BelongsTo"
         end
@@ -56,9 +73,9 @@ module Administrate
         @klass ||= Object.const_get(class_name)
       end
 
-      def has_many_options_string(reflection)
-        if reflection.class_name != reflection.name.to_s.classify
-          options_string(class_name: reflection.class_name)
+      def has_many_options_string(relationship)
+        if relationship.class_name != relationship.name.to_s.classify
+          options_string(class_name: relationship.class_name)
         else
           ""
         end

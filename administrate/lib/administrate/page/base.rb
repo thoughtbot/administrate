@@ -13,14 +13,18 @@ module Administrate
       protected
 
       def attribute_field(dashboard, resource, attribute_name, page)
-        value = resource.public_send(attribute_name)
+        value = get_attribute_value(resource, attribute_name)
 
         dashboard.
           attribute_types[attribute_name].
           new(attribute_name, value, page)
       end
 
-      protected
+      def get_attribute_value(resource, attribute_name)
+        resource.public_send(attribute_name)
+      rescue NameError
+        nil
+      end
 
       attr_reader :dashboard
     end

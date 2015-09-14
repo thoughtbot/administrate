@@ -1,0 +1,6 @@
+<% if field.data %>
+  <%= link_to(
+    field.data.to_s,
+    polymorphic_path([:admin, field.data])
+  ) %>
+<% end %>
