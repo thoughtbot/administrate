@@ -1,5 +1,6 @@
 New in 0.1.0:
 
+* Improvement: support models that have a custom `to_param` method.
 * UI: Improve formatting of strings on `index` and `show` pages
 * Improvement: Generate a single controller to serve all resources,
   to reduce noise after running the install generator.

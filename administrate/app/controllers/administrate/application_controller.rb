@@ -75,8 +75,12 @@ module Administrate
     end
 
     def set_resource(resource = nil)
-      resource ||= resolver.resource_class.find(params[:id])
+      resource ||= find_resource(params[:id])
       instance_variable_set(instance_variable, resource)
+    end
+
+    def find_resource(param)
+      resolver.resource_class.find(param)
     end
 
     def resource

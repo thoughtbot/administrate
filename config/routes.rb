@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :customers
+    resources :products
 
     DashboardManifest::DASHBOARDS.each do |resource_class|
       resources(

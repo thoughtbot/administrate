@@ -21,7 +21,7 @@ FactoryGirl.define do
   end
 
   factory :product do
-    name "Monopoly"
+    sequence(:name) { |n| "Monopoly #{n}" }
     price 10.50
     description "A cutthroat game of financial conquest"
     image_url \
