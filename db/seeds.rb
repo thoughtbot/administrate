@@ -11,7 +11,7 @@ Order.destroy_all
 Customer.destroy_all
 Product.destroy_all
 
-20.times do
+100.times do
   name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
   Customer.create(
     name: name,

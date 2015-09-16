@@ -16,13 +16,15 @@
       <%= render "sidebar" -%>
     </div>
 
-    <div class="content">
-      <%= render "flashes" -%>
-
-      <%= yield %>
-
-      <%= render "javascript" %>
+    <div class="container">
+      <%= content_for(:search) %>
+      <div class="content">
+        <%= render "flashes" -%>
+        <%= yield %>
+      </div>
     </div>
   </main>
+
+  <%= render "javascript" %>
 </body>
 </html>

@@ -1,7 +1,8 @@
 module Administrate
   class ApplicationController < ActionController::Base
     def index
-      @resources = resource_class.all
+      @search_term = params[:search].to_s.strip
+      @resources = Administrate::Search.new(resource_resolver, @search_term).run
       @page = Administrate::Page::Table.new(dashboard)
     end
 

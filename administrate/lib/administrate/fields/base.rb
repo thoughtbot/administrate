@@ -11,6 +11,10 @@ module Administrate
         field_type.dasherize
       end
 
+      def self.searchable?
+        false
+      end
+
       def initialize(attribute, data, page, options = {})
         @attribute = attribute
         @data = data

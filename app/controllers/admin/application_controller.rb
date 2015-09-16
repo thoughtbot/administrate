@@ -14,10 +14,9 @@ class Admin::ApplicationController < Administrate::ApplicationController
   def index
     super
 
-    flash.now[:alert] =
-      "For performance, Administrate limits the index page to show 20 items.
-      Customize this action to update/remove the limit,
-      or implement the pagination library of your choice."
-    @resources = @resources.limit(20)
+    if @resources.count > 20
+      flash.now[:alert] = "Showing 20 of #{@resources.count} items."
+      @resources = @resources.limit(20)
+    end
   end
 end

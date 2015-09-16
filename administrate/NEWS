@@ -1,3 +1,4 @@
+* Improvement: Implement searching over string and email attributes
 * Improvement: Generate resource-specific controller subclasses.
 * UI: Remove logo from the sidebar
 * Bug Fix: Fix an bug where `nil` in a string field would cause a 500 error.

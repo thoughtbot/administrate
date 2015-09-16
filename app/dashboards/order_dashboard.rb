@@ -23,7 +23,15 @@ class OrderDashboard < Administrate::BaseDashboard
     :updated_at,
   ]
 
-  TABLE_ATTRIBUTES = ATTRIBUTE_TYPES.keys
+  TABLE_ATTRIBUTES = [
+    :id,
+    :customer,
+    :address_state,
+    :total_price,
+    :line_items,
+    :shipped_at,
+  ]
+
   FORM_ATTRIBUTES = ATTRIBUTE_TYPES.keys - READ_ONLY_ATTRIBUTES
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys
 end

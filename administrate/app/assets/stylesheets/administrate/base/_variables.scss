@@ -47,17 +47,31 @@ $white: #fff;
 $grey-0: #f6f7f7;
 $grey-1: #dfe0e1;
 $grey-2: #cfd8dc;
-$grey-3: #90acad;
-$grey-4: #7b808c;
-$grey-5: #4e6a68;
-$grey-6: #344346;
 $grey-7: #293f54;
+
+$hint-grey: #7b808c;
 
 $base-background-color: $grey-0;
 
 // Font Colors
 $base-font-color: $grey-7;
 $base-accent-color: $blue;
+
+// Override text inputs for lower specificity
+$all-text-inputs: '[type="color"]',
+                  '[type="date"]',
+                  '[type="datetime"]',
+                  '[type="datetime-local"]',
+                  '[type="email"]',
+                  '[type="month"]',
+                  '[type="number"]',
+                  '[type="password"]',
+                  '[type="search"]',
+                  '[type="tel"]',
+                  '[type="text"]',
+                  '[type="time"]',
+                  '[type="url"]',
+                  '[type="week"]';
 
 // Link Colors
 $base-link-color: $blue;
