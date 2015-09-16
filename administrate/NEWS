@@ -1,3 +1,4 @@
+* Improvement: Add `Administrate::Field::Boolean` for displaying boolean data.
 * Improvement: support a `class_name` option in `belongs_to` relationships.
   The class name is now detected by the dashboard generator.
 

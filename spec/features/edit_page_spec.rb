@@ -17,4 +17,14 @@ describe "customer edit page" do
     expect(page).to have_content("Name")
     expect(page).to have_content("Email")
   end
+
+  it "displays boolean values as check boxes" do
+    customer = create(:customer, email_subscriber: false)
+
+    visit edit_admin_customer_path(customer)
+    check "Email subscriber"
+    click_on "Update Customer"
+
+    expect(page).to have_content("true")
+  end
 end

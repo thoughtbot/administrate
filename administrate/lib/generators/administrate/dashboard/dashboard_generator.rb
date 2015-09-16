@@ -4,6 +4,7 @@ module Administrate
   module Generators
     class DashboardGenerator < Rails::Generators::NamedBase
       ATTRIBUTE_TYPE_MAPPING = {
+        boolean: "Field::Boolean",
         date: "Field::DateTime",
         datetime: "Field::DateTime",
         float: "Field::Number",

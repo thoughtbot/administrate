@@ -92,6 +92,23 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
       end
 
+      it "detects boolean values" do
+        begin
+          ActiveRecord::Schema.define do
+            create_table(:users) { |t| t.boolean :active }
+          end
+          class User < ActiveRecord::Base; end
+
+          run_generator ["user"]
+          load file("app/dashboards/user_dashboard.rb")
+          attrs = UserDashboard::ATTRIBUTE_TYPES
+
+          expect(attrs[:active]).to eq(Administrate::Field::Boolean)
+        ensure
+          remove_constants :User, :UserDashboard
+        end
+      end
+
       it "assigns dates, times, and datetimes a type of `DateTime`" do
         begin
           ActiveRecord::Schema.define do
