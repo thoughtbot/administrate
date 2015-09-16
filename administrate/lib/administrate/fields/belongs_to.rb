@@ -12,7 +12,13 @@ module Administrate
       end
 
       def candidate_records
-        Object.const_get(attribute.to_s.camelcase).all
+        Object.const_get(associated_class_name).all
+      end
+
+      private
+
+      def associated_class_name
+        options.fetch(:class_name, attribute.to_s.camelcase)
       end
     end
   end

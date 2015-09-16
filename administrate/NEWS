@@ -1,3 +1,6 @@
+* Improvement: support a `class_name` option in `belongs_to` relationships.
+  The class name is now detected by the dashboard generator.
+
 New in 0.0.10:
 
 * Improvement: support lookup for models that have a custom `to_param` method.

@@ -1,47 +1,53 @@
 require "spec_helper"
+require "support/constant_helpers"
 require "administrate/resource_resolver"
 
 describe Administrate::ResourceResolver do
-  # Fixture classes
-  class UserDashboard
-  end
-
-  class User
-  end
-
-  module Blog
-    class Post
-    end
-
-    class PostDashboard
-    end
-  end
-
   describe "#resource_class" do
     it "handles global-namepsace models" do
-      resolver = Administrate::ResourceResolver.new("admin/users")
+      begin
+        class User; end
+        resolver = Administrate::ResourceResolver.new("admin/users")
 
-      expect(resolver.resource_class).to eq(User)
+        expect(resolver.resource_class).to eq(User)
+      ensure
+        remove_constants :User
+      end
     end
 
     it "handles namespaced models" do
-      resolver = Administrate::ResourceResolver.new("admin/blog/posts")
+      begin
+        module Blog; class Post; end; end
+        resolver = Administrate::ResourceResolver.new("admin/blog/posts")
 
-      expect(resolver.resource_class).to eq(Blog::Post)
+        expect(resolver.resource_class).to eq(Blog::Post)
+      ensure
+        remove_constants :Blog
+      end
     end
   end
 
   describe "#dashboard_class" do
     it "handles global-namepsace models" do
-      resolver = Administrate::ResourceResolver.new("admin/users")
+      begin
+        class UserDashboard; end
+        resolver = Administrate::ResourceResolver.new("admin/users")
 
-      expect(resolver.dashboard_class).to eq(UserDashboard)
+        expect(resolver.dashboard_class).to eq(UserDashboard)
+      ensure
+        remove_constants :UserDashboard
+      end
     end
 
     it "handles namespaced models" do
-      resolver = Administrate::ResourceResolver.new("admin/blog/posts")
+      begin
+        module Blog; class PostDashboard; end; end
+        resolver = Administrate::ResourceResolver.new("admin/blog/posts")
 
-      expect(resolver.dashboard_class).to eq(Blog::PostDashboard)
+        expect(resolver.dashboard_class).to eq(Blog::PostDashboard)
+      ensure
+        remove_constants :Blog
+      end
     end
   end
 

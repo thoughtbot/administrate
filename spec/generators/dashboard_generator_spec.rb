@@ -186,6 +186,34 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
       end
 
+      it "detects custom class names for belongs_to relationships" do
+        begin
+          ActiveRecord::Schema.define do
+            create_table :users
+            create_table :invitations do |t|
+              t.references :sender
+              t.references :recipient
+            end
+          end
+          class User < ActiveRecord::Base; end
+          class Invitation < ActiveRecord::Base
+            belongs_to :sender, class_name: User
+            belongs_to :recipient, class_name: "User"
+          end
+
+          run_generator ["invitation"]
+          load file("app/dashboards/invitation_dashboard.rb")
+          attrs = InvitationDashboard::ATTRIBUTE_TYPES
+
+          expected_field = Administrate::Field::BelongsTo.
+            with_options(class_name: "User")
+          expect(attrs[:sender]).to eq(expected_field)
+          expect(attrs[:recipient]).to eq(expected_field)
+        ensure
+          remove_constants :User, :Invitation, :InvitationDashboard
+        end
+      end
+
       it "detects polymorphic belongs_to relationships" do
         begin
           ActiveRecord::Schema.define do

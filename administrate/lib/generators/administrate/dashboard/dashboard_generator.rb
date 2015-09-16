@@ -61,11 +61,11 @@ module Administrate
         if relationship.has_one?
           "Field::HasOne"
         elsif relationship.collection?
-          "Field::HasMany" + has_many_options_string(relationship)
+          "Field::HasMany" + relationship_options_string(relationship)
         elsif relationship.polymorphic?
           "Field::Polymorphic"
         else
-          "Field::BelongsTo"
+          "Field::BelongsTo" + relationship_options_string(relationship)
         end
       end
 
@@ -73,7 +73,7 @@ module Administrate
         @klass ||= Object.const_get(class_name)
       end
 
-      def has_many_options_string(relationship)
+      def relationship_options_string(relationship)
         if relationship.class_name != relationship.name.to_s.classify
           options_string(class_name: relationship.class_name)
         else

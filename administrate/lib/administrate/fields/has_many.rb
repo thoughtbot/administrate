@@ -21,17 +21,17 @@ module Administrate
       end
 
       def candidate_records
-        Object.const_get(resource_class_name).all
+        Object.const_get(associated_class_name).all
       end
 
       private
 
       def associated_dashboard
-        Object.const_get("#{resource_class_name}Dashboard").new
+        Object.const_get("#{associated_class_name}Dashboard").new
       end
 
-      def resource_class_name
-        options[:class_name] || attribute.to_s.singularize.camelcase
+      def associated_class_name
+        options.fetch(:class_name, attribute.to_s.singularize.camelcase)
       end
     end
   end
