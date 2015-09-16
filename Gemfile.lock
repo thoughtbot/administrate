@@ -1,7 +1,7 @@
 PATH
   remote: administrate
   specs:
-    administrate (0.0.10)
+    administrate (0.0.11)
       autoprefixer-rails
       datetime_picker_rails (~> 0.0.4)
       momentjs-rails (>= 2.9.0)
