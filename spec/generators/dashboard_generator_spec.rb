@@ -315,4 +315,31 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       end
     end
   end
+
+  describe "resource controller" do
+    it "has valid syntax" do
+      controller = file("app/controllers/admin/customers_controller.rb")
+
+      run_generator ["customer"]
+
+      expect(controller).to exist
+      expect(controller).to have_correct_syntax
+    end
+
+    it "subclasses Admin::ApplicationController" do
+      begin
+        ActiveRecord::Schema.define { create_table :foos }
+        class Foo < ActiveRecord::Base; end
+
+        run_generator ["foo"]
+        load file("app/controllers/admin/foos_controller.rb")
+
+        expect(Admin::FoosController.ancestors).
+          to include(Admin::ApplicationController)
+      ensure
+        remove_constants :Foo
+        Admin.send(:remove_const, :FoosController)
+      end
+    end
+  end
 end

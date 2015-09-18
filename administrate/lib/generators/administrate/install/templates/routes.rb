@@ -1,15 +1,7 @@
 namespace :admin do
-    DashboardManifest::DASHBOARDS.each do |resource_class|
-      resources(
-        resource_class,
-        controller: :application,
-        resource_class: resource_class,
-      )
+    DashboardManifest::DASHBOARDS.each do |dashboard_resource|
+      resources dashboard_resource
     end
 
-    root(
-      action: :index,
-      controller: :application,
-      resource_class: DashboardManifest::ROOT_DASHBOARD,
-    )
+    root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
   end
