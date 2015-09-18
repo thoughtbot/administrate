@@ -1,8 +1,4 @@
 <ul class="sidebar__list">
-  <div class="sidebar__logo">
-    <%= image_tag "logo.svg" %>
-  </div>
-
   <% DashboardManifest::DASHBOARDS.each do |resource| %>
     <li>
       <%= link_to(

@@ -1,3 +1,4 @@
+* UI: Remove logo from the sidebar
 * Bug Fix: Fix an bug where `nil` in a string field would cause a 500 error.
 
 New in 0.0.11:

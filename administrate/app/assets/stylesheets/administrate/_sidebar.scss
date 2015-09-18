@@ -4,16 +4,6 @@
   overflow-y: auto;
   padding: 0 $base-spacing;
 
-  &__logo {
-    height: 6em;
-
-    img {
-      display: block;
-      height: 100%;
-      padding-top: $base-spacing;
-    }
-  }
-
   &__link {
     @include fill-parent;
     color: $base-font-color;
