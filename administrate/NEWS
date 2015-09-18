@@ -3,6 +3,9 @@
   * Customizable by overriding `Admin::ApplicationController#records_per_page`
   * Customizable through HTTP param `per_page`
 * Improvement: Generate resource-specific controller subclasses.
+* Improvement: Add a `limit` option to `Administrate::Field::HasMany`,
+  with a default of 5.
+  This option limits the number of items shown in the relationship table.
 * UI: Remove logo from the sidebar
 * Bug Fix: Fix an bug where `nil` in a string field would cause a 500 error.
 

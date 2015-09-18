@@ -1,9 +1,10 @@
-<% if field.data.any? %>
+<% if field.resources.any? %>
   <%= render(
     "table",
     table_presenter: field.associated_table,
-    resources: field.data
+    resources: field.resources
   ) %>
+  <span>Showing <%= field.limit %> of <%= field.data.count %>.</span>
 <% else %>
   <%= t("administrate.fields.has_many.none") %>
 <% end %>

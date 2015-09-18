@@ -1,6 +1,7 @@
 require "spec_helper"
 require "administrate/fields/has_many"
 require "support/constant_helpers"
+require "support/mock_relation"
 
 describe Administrate::Field::HasMany do
   describe "#to_partial_path" do
@@ -43,6 +44,29 @@ describe Administrate::Field::HasMany do
         expect(attributes).to eq([])
       ensure
         remove_constants :FooDashboard
+      end
+    end
+  end
+
+  describe "#resources" do
+    it "limits the number of records shown" do
+      limit = Administrate::Field::HasMany::DEFAULT_LIMIT
+      resources = MockRelation.new([:a] * (limit + 1))
+
+      association = Administrate::Field::HasMany
+      field = association.new(:customers, resources, :show)
+
+      expect(field.resources).to eq([:a] * limit)
+    end
+
+    context "with `limit` option" do
+      it "limits the number of items returned" do
+        resources = MockRelation.new([:a, :b, :c])
+
+        association = Administrate::Field::HasMany.with_options(limit: 1)
+        field = association.new(:customers, resources, :show)
+
+        expect(field.resources).to eq([:a])
       end
     end
   end

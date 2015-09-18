@@ -3,7 +3,7 @@ require "rails_helper"
 describe "fields/has_many/_show", type: :view do
   context "without any associated records" do
     it "displays 'None'" do
-      has_many = double(data: [])
+      has_many = double(resources: [])
 
       render(
         partial: "fields/has_many/show.html.erb",
