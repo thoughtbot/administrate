@@ -19,6 +19,12 @@ describe Administrate::Field::String do
   it { should_permit_param(:foo, for_attribute: :foo) }
 
   describe "#truncate" do
+    it "renders an empty string for nil" do
+      string = Administrate::Field::String.new(:description, nil, :show)
+
+      expect(string.truncate).to eq("")
+    end
+
     it "defaults to displaying up to 50 characters" do
       short = Administrate::Field::String.new(:title, lorem(30), :show)
       long = Administrate::Field::String.new(:description, lorem(60), :show)

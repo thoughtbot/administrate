@@ -4,7 +4,7 @@ module Administrate
   module Field
     class String < Field::Base
       def truncate
-        data[0...truncation_length]
+        data.to_s[0...truncation_length]
       end
 
       private
