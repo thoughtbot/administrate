@@ -5,6 +5,7 @@ PATH
       autoprefixer-rails
       datetime_picker_rails (~> 0.0.4)
       inline_svg (~> 0.6)
+      kaminari (~> 0.16)
       momentjs-rails (>= 2.9.0)
       neat (~> 1.1)
       normalize-rails (~> 3.0)
@@ -161,6 +162,9 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.9.3)
     launchy (2.4.3)
       addressable (~> 2.3)

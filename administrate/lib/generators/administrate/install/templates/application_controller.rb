@@ -1,4 +1,4 @@
-# All Administrate controllers inherit from this `ApplicationController`,
+# All Administrate controllers inherit from this `Admin::ApplicationController`,
 # making it the ideal place to put authentication logic or other
 # before_filters.
 #
@@ -11,13 +11,9 @@ class Admin::ApplicationController < Administrate::ApplicationController
     # TODO Add authentication logic here.
   end
 
-  def index
-    super
-
-    flash.now[:alert] =
-      "For performance, Administrate limits the index page to show 20 items.
-      Customize this action to update/remove the limit,
-      or implement the pagination library of your choice."
-    @resources = @resources.limit(20)
-  end
+  # Override this value to specify the number of elements to display at a time
+  # on index pages. Defaults to 20.
+  # def records_per_page
+  #   params[:per_page] || 20
+  # end
 end

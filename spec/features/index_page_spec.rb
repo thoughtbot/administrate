@@ -37,4 +37,14 @@ describe "customer index page" do
 
     expect(current_path).to eq(new_admin_customer_path)
   end
+
+  it "paginates records based on a constant" do
+    customers = create_list(:customer, 2)
+
+    visit admin_customers_path(per_page: 1)
+
+    expect(page).not_to have_content(customers.last.name)
+    click_on "Next"
+    expect(page).to have_content(customers.last.name)
+  end
 end
