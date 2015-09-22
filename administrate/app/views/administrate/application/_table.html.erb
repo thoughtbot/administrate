@@ -2,8 +2,20 @@
   <thead>
     <tr>
       <% table_presenter.attribute_types.each do |attr_name, attr_type| %>
-        <th class="cell-label cell-label--<%= attr_type.html_class %>">
-          <%= attr_name.to_s.titleize %>
+        <th class="cell-label cell-label--<%= attr_type.html_class %>
+          cell-label--<%= table_presenter.ordered_html_class(attr_name) %>
+        ">
+        <%= link_to(params.merge(
+          table_presenter.order_params_for(attr_name)
+        )) do %>
+            <%= attr_name.to_s.titleize %>
+
+            <% if table_presenter.ordered_by?(attr_name) %>
+              <span class="cell-label__sort-indicator cell-label__sort-indicator--<%= table_presenter.ordered_html_class(attr_name) %>">
+                <%= inline_svg("administrate/sort_arrow.svg") %>
+              </span>
+            <% end %>
+          <% end %>
         </th>
       <% end %>
       <th colspan="2"></th>

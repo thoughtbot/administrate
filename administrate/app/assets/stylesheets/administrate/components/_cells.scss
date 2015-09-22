@@ -4,7 +4,55 @@
   font-size: $small-font-size;
   font-weight: $normal-font-weight;
   letter-spacing: 0.0357em;
+  position: relative;
   text-transform: uppercase;
+
+  a {
+    @include fill-parent;
+    color: inherit;
+    display: inline-block;
+    transition: $base-transition;
+  }
+
+  &--asc,
+  &--desc {
+    font-weight: bold;
+  }
+
+  &__sort-indicator {
+    display: inline-block;
+    height: 1em;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+
+    &--desc {
+      transform: rotate(180deg);
+    }
+
+    svg {
+      height: 100%;
+      transition: $base-transition;
+    }
+
+    path {
+      fill: $hint-grey;
+    }
+  }
+
+  &:hover {
+    a {
+      color: $base-accent-color;
+    }
+
+    path {
+      fill: $base-accent-color;
+    }
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .cell-data--number,

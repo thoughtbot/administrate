@@ -3,8 +3,9 @@ module Administrate
     def index
       @search_term = params[:search].to_s.strip
       @resources = Administrate::Search.new(resource_resolver, @search_term).run
+      @resources = order.apply(@resources)
       @resources = @resources.page(params[:page]).per(records_per_page)
-      @page = Administrate::Page::Table.new(dashboard)
+      @page = Administrate::Page::Table.new(dashboard, order: order)
     end
 
     def show
@@ -72,6 +73,10 @@ module Administrate
 
     def records_per_page
       params[:per_page] || 20
+    end
+
+    def order
+      @order ||= Administrate::Order.new(params[:order], params[:direction])
     end
 
     def dashboard

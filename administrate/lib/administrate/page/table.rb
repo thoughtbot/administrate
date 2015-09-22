@@ -20,6 +20,18 @@ module Administrate
       def to_partial_path
         "/dashboard/table"
       end
+
+      def ordered_html_class(attr)
+        ordered_by?(attr) && order.direction
+      end
+
+      delegate :ordered_by?, :order_params_for, to: :order
+
+      private
+
+      def order
+        options[:order] || Order.new
+      end
     end
   end
 end

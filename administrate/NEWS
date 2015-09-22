@@ -2,6 +2,8 @@
 * Improvement: Add pagination to index views
   * Customizable by overriding `Admin::ApplicationController#records_per_page`
   * Customizable through HTTP param `per_page`
+* Imprrovement: Add sorting by column
+  * Clicking on the column header multiple times changes sort direction
 * Improvement: Generate resource-specific controller subclasses.
 * Improvement: Add a `limit` option to `Administrate::Field::HasMany`,
   with a default of 5.
