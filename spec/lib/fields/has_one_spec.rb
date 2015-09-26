@@ -1,22 +1,17 @@
 require "spec_helper"
-require "administrate/fields/belongs_to"
+require "administrate/fields/has_one"
 require "support/constant_helpers"
-require "support/field_matchers"
 
-describe Administrate::Field::BelongsTo do
-  include FieldMatchers
-
-  it { should_permit_param(:foo_id, for_attribute: :foo) }
-
+describe Administrate::Field::HasOne do
   describe "#to_partial_path" do
     it "returns a partial based on the page being rendered" do
       page = :show
       owner = double
-      field = Administrate::Field::BelongsTo.new(:owner, owner, page)
+      field = Administrate::Field::HasOne.new(:owner, owner, page)
 
       path = field.to_partial_path
 
-      expect(path).to eq("/fields/belongs_to/#{page}")
+      expect(path).to eq("/fields/has_one/#{page}")
     end
   end
 
@@ -26,7 +21,7 @@ describe Administrate::Field::BelongsTo do
         Foo = Class.new
         allow(Foo).to receive(:all).and_return([])
 
-        association = Administrate::Field::BelongsTo.
+        association = Administrate::Field::HasOne.
           with_options(class_name: "Foo")
         field = association.new(:customers, [], :show)
         candidates = field.candidate_records

@@ -1,4 +1,5 @@
 require_relative "base"
+require_relative "belongs_to"
 
 module Administrate
   module Field
