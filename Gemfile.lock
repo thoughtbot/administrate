@@ -1,7 +1,7 @@
 PATH
   remote: administrate
   specs:
-    administrate (0.0.11)
+    administrate (0.0.12)
       autoprefixer-rails
       datetime_picker_rails (~> 0.0.4)
       inline_svg (~> 0.6)

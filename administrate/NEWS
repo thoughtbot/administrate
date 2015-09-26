@@ -1,3 +1,5 @@
+New in 0.0.12:
+
 * Improvement: Implement searching over string and email attributes
 * Improvement: Add pagination to index views
   * Customizable by overriding `Admin::ApplicationController#records_per_page`
