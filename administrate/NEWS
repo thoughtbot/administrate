@@ -9,6 +9,7 @@
   with a default of 5.
   This option limits the number of items shown in the relationship table.
 * UI: Remove logo from the sidebar
+* UI: Fix alignment issue with string fields on show pages
 * Bug Fix: Fix an bug where `nil` in a string field would cause a 500 error.
 
 New in 0.0.11:
