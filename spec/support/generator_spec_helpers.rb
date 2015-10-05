@@ -9,6 +9,12 @@ module GeneratorSpecHelpers
     copy_to_generator_root("config", "routes.rb")
   end
 
+  def contents_for_application_template(view_name)
+    File.read(
+      "administrate/app/views/administrate/application/#{view_name}.html.erb",
+    )
+  end
+
   private
 
   def copy_to_generator_root(destination, template)
