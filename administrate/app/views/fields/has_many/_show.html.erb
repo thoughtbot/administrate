@@ -4,7 +4,17 @@
     table_presenter: field.associated_table,
     resources: field.resources
   ) %>
-  <span>Showing <%= field.limit %> of <%= field.data.count %>.</span>
+
+  <% if field.more_than_limit? %>
+    <span>
+      <%= t(
+        'administrate.fields.has_many.more',
+        count: field.limit,
+        total_count: field.data.count,
+      ) %>
+    </span>
+  <% end %>
+
 <% else %>
   <%= t("administrate.fields.has_many.none") %>
 <% end %>

@@ -48,6 +48,28 @@ describe Administrate::Field::HasMany do
     end
   end
 
+  describe "#more_than_limit?" do
+    it "returns true if record count > limit" do
+      limit = Administrate::Field::HasMany::DEFAULT_LIMIT
+      resources = MockRelation.new([:a] * (limit + 1))
+
+      association = Administrate::Field::HasMany
+      field = association.new(:customers, resources, :show)
+
+      expect(field.more_than_limit?).to eq(true)
+    end
+
+    it "returns false if record count <= limit" do
+      limit = Administrate::Field::HasMany::DEFAULT_LIMIT
+      resources = MockRelation.new([:a] * limit)
+
+      association = Administrate::Field::HasMany
+      field = association.new(:customers, resources, :show)
+
+      expect(field.more_than_limit?).to eq(false)
+    end
+  end
+
   describe "#resources" do
     it "limits the number of records shown" do
       limit = Administrate::Field::HasMany::DEFAULT_LIMIT

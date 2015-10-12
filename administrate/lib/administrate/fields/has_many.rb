@@ -34,6 +34,10 @@ module Administrate
         data.limit(limit)
       end
 
+      def more_than_limit?
+        data.count > limit
+      end
+
       private
 
       def associated_dashboard

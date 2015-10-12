@@ -3,7 +3,7 @@ class MockRelation
     @data = data
   end
 
-  delegate :==, to: :@data
+  delegate :==, :count, to: :@data
 
   def limit(n)
     @data.first(n)
