@@ -1,3 +1,16 @@
+.attribute-label {
+  @include data-label;
+  @include span-columns(2 of 12);
+  margin-top: 0;
+  text-align: right;
+}
+
 .attribute-data--string {
   white-space: pre;
+}
+
+.attribute-data {
+  @include span-columns(10 of 12);
+  @include omega;
+  margin-bottom: $base-spacing;
 }

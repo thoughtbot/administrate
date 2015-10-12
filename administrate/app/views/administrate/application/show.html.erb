@@ -11,7 +11,7 @@
   <% @page.attributes.each do |attribute| %>
     <dt class="attribute-label"><%= attribute.name.titleize %></dt>
 
-    <dd class="attribute-data--<%=attribute.html_class%>"
+    <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
         ><%= render_field attribute %></dd>
   <% end %>
 </dl>

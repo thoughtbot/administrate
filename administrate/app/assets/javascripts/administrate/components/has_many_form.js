@@ -1,3 +1,3 @@
 $(function() {
-  $(".form-field-has-many select").selectize({});
+  $(".form-field--has-many select").selectize({});
 });

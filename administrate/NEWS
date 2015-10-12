@@ -1,3 +1,4 @@
+* UI: Give form and show pages more consistent label styles
 * Improvement: Add generators for copying view templates into host application
 
 New in 0.0.12:
