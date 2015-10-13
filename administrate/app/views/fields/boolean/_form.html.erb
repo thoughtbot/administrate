@@ -1,2 +1,19 @@
+<%#
+# Boolean Form Partial
+
+This partial renders an input element for a boolean attribute.
+By default, the input is a checkbox.
+
+## Local variables:
+
+- `f`:
+  A Rails form generator, used to help create the appropriate input fields.
+- `field`:
+  An instance of [Administrate::Field::Boolean][1].
+  A wrapper around the boolean value pulled from the database.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Boolean
+%>
+
 <%= f.label field.attribute %>
 <%= f.check_box field.attribute %>

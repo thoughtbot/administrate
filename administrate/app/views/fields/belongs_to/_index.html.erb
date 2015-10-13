@@ -1,3 +1,20 @@
+<%#
+# BelongsTo Index Partial
+
+This partial renders a belongs_to relationship,
+to be displayed on a resource's index page.
+
+By default, the relationship is rendered as a link to the associated object.
+
+## Local variables:
+
+- `field`:
+  An instance of [Administrate::Field::BelongsTo][1].
+  A wrapper around the belongs_to relationship pulled from the database.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/BelongsTo
+%>
+
 <% if field.data %>
   <%= link_to field.data, [Administrate::NAMESPACE, field.data] %>
 <% end %>

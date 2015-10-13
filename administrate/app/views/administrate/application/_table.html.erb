@@ -1,3 +1,23 @@
+<%#
+# Table
+
+This partial is used on the `index` and `show` pages
+to display a collection of resources in an HTML table.
+
+## Local variables:
+
+- `table_presenter`:
+  An instance of [Administrate::Page::Table][1].
+  The table presenter uses `ResourceDashboard::TABLE_ATTRIBUTES` to determine
+  the columns displayed in the table
+- `resources`:
+  An ActiveModel::Relation collection of resources to be displayed in the table.
+  By default, the number of resources is limited by pagination
+  or by a hard limit to prevent excessive page load times
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Table
+%>
+
 <table>
   <thead>
     <tr>

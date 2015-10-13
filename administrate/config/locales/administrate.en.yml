@@ -19,3 +19,5 @@ en:
         none: None
       polymorphic:
         not_supported: Polymorphic relationship forms are not supported yet. Sorry!
+      has_one:
+        not_supported: HasOne relationship forms are not supported yet. Sorry!

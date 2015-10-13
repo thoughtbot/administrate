@@ -1,3 +1,21 @@
+<%#
+# BelongsTo Form Partial
+
+This partial renders an input element for belongs_to relationships.
+By default, the input is a collection select box
+that displays all possible records to associate with.
+
+## Local variables:
+
+- `f`:
+  A Rails form generator, used to help create the appropriate input fields.
+- `field`:
+  An instance of [Administrate::Field::BelongsTo][1].
+  Contains helper methods for displaying a collection select box.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/BelongsTo
+%>
+
 <%= f.label field.permitted_attribute %>
 <%= f.collection_select(
   field.permitted_attribute,

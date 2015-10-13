@@ -6,6 +6,8 @@
 * Documentation: Update README with a better description of the repo.
 * Improvement: Add generators for copying view templates into host application
 * UI: Give form and show pages more consistent label styles
+* Documentation: Add comments to all template files
+  describing what variables will be available
 * Bug Fix: Remove erroneous "Showing 5 of 1" messages
   from has_many relationships on the `show` page.
 * Improvement: Add sensible dynamic titles to the dashboard pages.

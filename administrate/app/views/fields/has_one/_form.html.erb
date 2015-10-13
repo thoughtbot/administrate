@@ -1,2 +1,22 @@
+<%#
+# HasOne Form Partial
+
+This partial renders an input element for has_one relationships.
+
+At the moment, has_one form fields are not supported,
+so this partial renders a message to that effect.
+
+## Local variables:
+
+- `f`:
+  A Rails form generator, used to help create the appropriate input fields.
+- `field`:
+  An instance of [Administrate::Field::HasOne][1].
+  A wrapper around the has_one relationship pulled from the database.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/HasOne
+%>
+
 <%= f.label field.permitted_attribute %>
-HasOne relationship forms are not supported yet. Sorry!
+
+<%= t("administrate.fields.has_one.not_supported") %>

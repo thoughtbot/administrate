@@ -1,3 +1,20 @@
+<%#
+# Edit
+
+This view is the template for the edit page.
+
+It displays a header, and renders the `_form` partial to do the heavy lifting.
+
+## Instance variables:
+
+- `@page`:
+  An instance of [Administrate::Page::Form][1].
+  Contains helper methods to help display a form,
+  and knows which attributes should be displayed in the resource's form.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Form
+%>
+
 <% content_for(:title) { "Edit #{@page.page_title}" } %>
 
 <header class="header">

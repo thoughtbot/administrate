@@ -1,3 +1,12 @@
+<%#
+# Sidebar
+
+This partial is used to display the sidebar in Administrate.
+By default, the sidebar contains navigation links
+for all resources in the admin dashboard,
+as defined by the DashboardManifest.
+%>
+
 <ul class="sidebar__list">
   <% DashboardManifest::DASHBOARDS.each do |resource| %>
     <li>
