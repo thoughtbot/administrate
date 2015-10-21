@@ -11,10 +11,11 @@
   label {
     @include data-label;
     @include span-columns(2 of 12);
+    padding: $form-input-padding 0;
     text-align: right;
   }
 
-  input,
+  #{$all-text-inputs},
   select,
   textarea,
   .selectize-control {
@@ -30,5 +31,10 @@
 
   textarea {
     @include span-columns(6 of 12);
+  }
+
+  [type="checkbox"],
+  [type="radio"] {
+    margin: $small-spacing 0 ($base-spacing + $form-input-padding);
   }
 }

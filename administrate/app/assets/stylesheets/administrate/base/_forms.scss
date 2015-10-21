@@ -36,8 +36,8 @@ select {
   box-sizing: border-box;
   font-family: $form-font-family;
   font-size: $form-font-size;
-  margin-bottom: $base-spacing / 2;
-  padding: ($base-spacing / 3) ($base-spacing / 3);
+  margin-bottom: $small-spacing;
+  padding: $form-input-padding;
   transition: border-color;
   width: 100%;
 
