@@ -2,7 +2,7 @@
 
 <header class="header">
   <h1 class="header-heading"><%= content_for(:title) %></h1>
-  <%= link_to 'Back', @page.resource_name.pluralize, class: "button" %>
+  <%= link_to 'Back', :back, class: "button" %>
 </header>
 
 <%= render 'form' %>
