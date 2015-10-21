@@ -8,6 +8,10 @@
     border-left-color: $blue;
     cursor: pointer;
   }
+
+  img {
+    max-height: $table-image-height;
+  }
 }
 
 .table__action--destroy {
