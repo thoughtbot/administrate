@@ -1,5 +1,7 @@
+<% content_for(:title) { "Edit #{@page.page_title}" } %>
+
 <header class="header">
-  <h1 class="header-heading">Edit <%= @page.page_title %></h1>
+  <h1 class="header-heading"><%= content_for(:title) %></h1>
   <%= link_to "Show #{@page.resource}", [Administrate::NAMESPACE, @page.resource], class: "button" %>
 </header>
 

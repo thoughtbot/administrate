@@ -1,3 +1,5 @@
+<% content_for(:title) { @page.resource_name.pluralize.titleize } %>
+
 <% content_for(:search) do %>
   <form class="search">
     <span class="search__icon">
@@ -17,7 +19,7 @@
 <% end %>
 
 <header class="header">
-  <h1 class="header-heading"><%= @page.resource_name.pluralize.titleize %></h1>
+  <h1 class="header-heading"><%= content_for(:title) %></h1>
   <%= link_to(
     "New #{@page.resource_name.titleize.downcase}",
     [:new, Administrate::NAMESPACE, @page.resource_name],
