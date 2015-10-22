@@ -16,9 +16,19 @@
 
   input,
   select,
+  textarea,
   .selectize-control {
-    @include span-columns(4 of 12);
     background-color: $form-field-background-color;
     margin-bottom: $base-spacing;
+  }
+
+  input,
+  select,
+  .selectize-control {
+    @include span-columns(4 of 12);
+  }
+
+  textarea {
+    @include span-columns(6 of 12);
   }
 }

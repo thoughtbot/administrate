@@ -11,7 +11,7 @@ class ProductDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    description: Field::String,
+    description: Field::Text,
     image_url: Field::Image,
     name: Field::String,
     price: Field::Number.with_options(prefix: "$", decimals: 2),

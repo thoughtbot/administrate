@@ -8,6 +8,7 @@ require "administrate/fields/image"
 require "administrate/fields/number"
 require "administrate/fields/polymorphic"
 require "administrate/fields/string"
+require "administrate/fields/text"
 
 module Administrate
   class BaseDashboard

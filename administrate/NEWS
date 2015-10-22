@@ -4,6 +4,7 @@
 * Bug Fix: Remove erroneous "Showing 5 of 1" messages
   from has_many relationships on the `show` page.
 * Improvement: Add sensible dynamic titles to the dashboard pages.
+* Improvement: Add text field type.
 
 New in 0.0.12:
 
