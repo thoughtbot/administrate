@@ -10,6 +10,7 @@ module Administrate
         float: "Field::Number",
         integer: "Field::Number",
         time: "Field::DateTime",
+        text: "Field::Text",
       }
 
       ATTRIBUTE_OPTIONS_MAPPING = {
