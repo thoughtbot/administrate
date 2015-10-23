@@ -1,68 +1,66 @@
-# Administrate-prototype
+# Administrate
 
-This project is a demo app for Administrate.
-Administrate is a library that makes it easy to create
-flexible admin dashboards in Rails.
+A Rails engine that helps you put together a super-flexible admin dashboard.
+[Try the demo][demo].
 
-This demo app is a fairly standard e-commerce app,
-similar to [ActiveAdmin's demo site](http://demo.activeadmin.info/).
+![administrate](https://images.thoughtbot.com/announcing-administrate/DdP2CQfnSE23PI8AAnDc_Administrate.png)
 
-Administrate is currently being developed in this repository,
-and will be extracted into a gem when it is stable enough to stand on its own.
+## Guiding Principles
 
-# Project architecture
+Administrate is heavily inspired by projects
+like [Rails Admin] and [ActiveAdmin],
+but aims to provide a better user experience for site admins,
+and to be easier for developers to customize.
 
-## Application code
+To do that, Administrate follows a few simple rules:
 
-Located in the `app` directory.
+- No DSLs (domain-specific languages)
+- Support the simplest use cases, and let the user override defaults with
+  standard tools such as plain Rails controllers and views.
+- Break up the library into core components and plugins,
+  so each component stays small and easy to maintain.
 
-This is code that a developer would write to get their admin dashboard set up.
-It contains all domain-specific code.
-
-- A user defines a dashboard for each model
-  in `app/dashboards/model_dashboard.rb`.
-
-## Library code
-
-Located in the `lib` directory,
-as well as in `app/controllers/dashboard_controller` and `app/views/dashboard`.
-
-Library code is on track to be extracted into the Administrate gem,
-and should not contain any domain-specific code.
-
-In this demo app,
-the lib files should contain no references to `Customer`, `Product`, `Order`,
-or any of those models' attributes.
-
-- [Pages] define how to display resources on a specific page.
-- [Fields] define how to display an attribute on each page.
-
-[Pages]: https://github.com/thoughtbot/administrate-demo/tree/master/lib/pages
-[Fields]: https://github.com/thoughtbot/administrate-demo/tree/master/lib/fields
+[Rails Admin]: https://github.com/sferik/rails_admin
+[ActiveAdmin]: http://activeadmin.info/
 
 ## Getting Started
 
-After you have cloned this repo, run this setup script to set up your machine
-with the necessary dependencies to run and test this app:
+Add Administrate to your Gemfile:
 
-    % ./bin/setup
+```ruby
+# Gemfile
+gem "administrate"
+```
 
-It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
+Re-bundle, then run the installer:
 
-[this script]: https://github.com/thoughtbot/laptop
+```bash
+$ rails generate administrate:install
+```
 
-After setting up, you can run the application using [foreman]:
+Restart your server, and visit http://localhost:3000/admin
+to see your new dashboard in action.
 
-    % foreman start
+To customize the appearance, behavior, and contents of the dashboard,
+see the guides at http://administrate-docs.herokuapp.com.
 
-If you don't have `foreman`, see [Foreman's install instructions][foreman]. It
-is [purposefully excluded from the project's `Gemfile`][exclude].
+## Repository Structure
 
-[foreman]: https://github.com/ddollar/foreman
-[exclude]: https://github.com/ddollar/foreman/pull/437#issuecomment-41110407
+This repository contains both the source code for Administrate,
+and a demo Rails app that uses Administrate.
+The demo app is [hosted publicly on Heroku][demo].
 
-## Guidelines
+- The gem's source code lives in the `administrate` subdirectory.
+- The demo app is at the repository root,
+  in order to support deployment on Heroku.
+
+With this structure, developing a typical feature looks like:
+
+- Add tests in `spec/`
+- Implement a feature in `administrate/`
+- Exercise the feature using the root-level rails app (`app/`)
+
+## Contributing Guidelines
 
 Use the following guides for getting things done, programming well, and
 programming in style.
@@ -71,10 +69,4 @@ programming in style.
 * [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
 * [Style](http://github.com/thoughtbot/guides/blob/master/style)
 
-## Deploying
-
-If you have previously run the `./bin/setup` script,
-you can deploy to staging and production with:
-
-    $ ./bin/deploy staging
-    $ ./bin/deploy production
+[demo]: https://administrate-prototype.herokuapp.com/admin
