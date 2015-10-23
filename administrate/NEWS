@@ -1,3 +1,4 @@
+* Improvement: Add a generator for creating custom field types
 * Improvement: Add generators for copying view templates into host application
 * UI: Give form and show pages more consistent label styles
 * Bug Fix: Remove erroneous "Showing 5 of 1" messages
