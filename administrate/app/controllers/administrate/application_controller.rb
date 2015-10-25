@@ -5,7 +5,7 @@ module Administrate
       @resources = Administrate::Search.new(resource_resolver, @search_term).run
       @resources = order.apply(@resources)
       @resources = @resources.page(params[:page]).per(records_per_page)
-      @page = Administrate::Page::Table.new(dashboard, order: order)
+      @page = Administrate::Page::Collection.new(dashboard, order: order)
     end
 
     def show

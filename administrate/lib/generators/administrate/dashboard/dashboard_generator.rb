@@ -18,7 +18,7 @@ module Administrate
       }
 
       DEFAULT_FIELD_TYPE = "Field::String"
-      TABLE_ATTRIBUTE_LIMIT = 4
+      COLLECTION_ATTRIBUTE_LIMIT = 4
       READ_ONLY_ATTRIBUTES = %w[id created_at updated_at]
 
       source_root File.expand_path("../templates", __FILE__)

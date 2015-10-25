@@ -21,17 +21,17 @@ to display a collection of resources in an HTML table.
 <table>
   <thead>
     <tr>
-      <% table_presenter.attribute_types.each do |attr_name, attr_type| %>
+      <% collection_presenter.attribute_types.each do |attr_name, attr_type| %>
         <th class="cell-label cell-label--<%= attr_type.html_class %>
-          cell-label--<%= table_presenter.ordered_html_class(attr_name) %>
+          cell-label--<%= collection_presenter.ordered_html_class(attr_name) %>
         ">
         <%= link_to(params.merge(
-          table_presenter.order_params_for(attr_name)
+          collection_presenter.order_params_for(attr_name)
         )) do %>
             <%= attr_name.to_s.titleize %>
 
-            <% if table_presenter.ordered_by?(attr_name) %>
-              <span class="cell-label__sort-indicator cell-label__sort-indicator--<%= table_presenter.ordered_html_class(attr_name) %>">
+            <% if collection_presenter.ordered_by?(attr_name) %>
+              <span class="cell-label__sort-indicator cell-label__sort-indicator--<%= collection_presenter.ordered_html_class(attr_name) %>">
                 <%= inline_svg("administrate/sort_arrow.svg") %>
               </span>
             <% end %>
@@ -49,7 +49,7 @@ to display a collection of resources in an HTML table.
           tabindex="0"
           data-url="<%= polymorphic_path([Administrate::NAMESPACE, resource]) -%>"
           >
-        <% table_presenter.attributes_for(resource).each do |attribute| %>
+        <% collection_presenter.attributes_for(resource).each do |attribute| %>
           <td class="cell-data cell-data--<%= attribute.html_class %>">
             <%= render_field attribute %>
           </td>

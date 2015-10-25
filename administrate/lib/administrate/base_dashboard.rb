@@ -32,8 +32,8 @@ module Administrate
       self.class::SHOW_PAGE_ATTRIBUTES
     end
 
-    def table_attributes
-      self.class::TABLE_ATTRIBUTES
+    def collection_attributes
+      self.class::COLLECTION_ATTRIBUTES
     end
   end
 end

@@ -13,14 +13,14 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
 <% end -%>
   }
 
-  # TABLE_ATTRIBUTES
+  # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  TABLE_ATTRIBUTES = [
+  COLLECTION_ATTRIBUTES = [
 <%=
-  attributes.first(TABLE_ATTRIBUTE_LIMIT).map do |attr|
+  attributes.first(COLLECTION_ATTRIBUTE_LIMIT).map do |attr|
     "    :#{attr},"
   end.join("\n")
 %>

@@ -17,7 +17,7 @@ class ProductDashboard < Administrate::BaseDashboard
     price: Field::Number.with_options(prefix: "$", decimals: 2),
   }
 
-  TABLE_ATTRIBUTES = ATTRIBUTES
+  COLLECTION_ATTRIBUTES = ATTRIBUTES
   FORM_ATTRIBUTES = ATTRIBUTES
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTES
 end

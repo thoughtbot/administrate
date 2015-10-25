@@ -20,8 +20,8 @@ from the associated resource class's dashboard.
 
 <% if field.resources.any? %>
   <%= render(
-    "table",
-    table_presenter: field.associated_table,
+    "collection",
+    collection_presenter: field.associated_collection,
     resources: field.resources
   ) %>
 

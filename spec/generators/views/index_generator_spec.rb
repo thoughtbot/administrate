@@ -13,11 +13,12 @@ describe Administrate::Generators::Views::IndexGenerator, :generator do
       expect(contents).to eq(expected_contents)
     end
 
-    it "copies the table partial into the `admin/application` namespace" do
-      expected_contents = contents_for_application_template("_table")
+    it "copies the collection partial into the `admin/application` namespace" do
+      expected_contents = contents_for_application_template("_collection")
+      generated_file = file("app/views/admin/application/_collection.html.erb")
 
       run_generator []
-      contents = File.read(file("app/views/admin/application/_table.html.erb"))
+      contents = File.read(generated_file)
 
       expect(contents).to eq(expected_contents)
     end
@@ -33,11 +34,11 @@ describe Administrate::Generators::Views::IndexGenerator, :generator do
       expect(contents).to eq(expected_contents)
     end
 
-    it "copies the table partial into the `admin/resource` namespace" do
-      expected_contents = contents_for_application_template("_table")
+    it "copies the collection partial into the `admin/resource` namespace" do
+      expected_contents = contents_for_application_template("_collection")
 
       run_generator ["users"]
-      contents = File.read(file("app/views/admin/users/_table.html.erb"))
+      contents = File.read(file("app/views/admin/users/_collection.html.erb"))
 
       expect(contents).to eq(expected_contents)
     end

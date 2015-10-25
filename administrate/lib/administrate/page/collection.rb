@@ -2,9 +2,9 @@ require_relative "base"
 
 module Administrate
   module Page
-    class Table < Page::Base
+    class Collection < Page::Base
       def attribute_names
-        dashboard.table_attributes
+        dashboard.collection_attributes
       end
 
       def attributes_for(resource)
@@ -15,10 +15,6 @@ module Administrate
 
       def attribute_types
         dashboard.attribute_types.slice(*attribute_names)
-      end
-
-      def to_partial_path
-        "/dashboard/table"
       end
 
       def ordered_html_class(attr)

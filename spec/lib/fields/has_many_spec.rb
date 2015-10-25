@@ -16,14 +16,14 @@ describe Administrate::Field::HasMany do
     end
   end
 
-  describe "#associated_table" do
+  describe "#associated_collection" do
     it "returns an index page for the dashboard of the associated attribute" do
       orders = []
       field = Administrate::Field::HasMany.new(:orders, orders, :show)
 
-      page = field.associated_table
+      page = field.associated_collection
 
-      expect(page).to be_instance_of(Administrate::Page::Table)
+      expect(page).to be_instance_of(Administrate::Page::Collection)
     end
   end
 
@@ -31,16 +31,16 @@ describe Administrate::Field::HasMany do
     it "determines what dashboard is used to present the association" do
       begin
         FooDashboard = Class.new
-        dashboard_double = double(table_attributes: [])
+        dashboard_double = double(collection_attributes: [])
         allow(FooDashboard).to receive(:new).and_return(dashboard_double)
 
         association = Administrate::Field::HasMany.
           with_options(class_name: "Foo")
         field = association.new(:customers, [], :show)
-        table = field.associated_table
-        attributes = table.attribute_names
+        collection = field.associated_collection
+        attributes = collection.attribute_names
 
-        expect(dashboard_double).to have_received(:table_attributes)
+        expect(dashboard_double).to have_received(:collection_attributes)
         expect(attributes).to eq([])
       ensure
         remove_constants :FooDashboard

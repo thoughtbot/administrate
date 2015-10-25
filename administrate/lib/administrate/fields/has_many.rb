@@ -1,5 +1,5 @@
 require_relative "base"
-require "administrate/page/table"
+require "administrate/page/collection"
 
 module Administrate
   module Field
@@ -10,8 +10,8 @@ module Administrate
         { "#{attribute.to_s.singularize}_ids".to_sym => [] }
       end
 
-      def associated_table
-        Administrate::Page::Table.new(associated_dashboard)
+      def associated_collection
+        Administrate::Page::Collection.new(associated_dashboard)
       end
 
       def attribute_key

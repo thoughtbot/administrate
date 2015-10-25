@@ -11,7 +11,7 @@ class CustomerDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime,
   }
 
-  TABLE_ATTRIBUTES = ATTRIBUTE_TYPES.keys
+  COLLECTION_ATTRIBUTES = ATTRIBUTE_TYPES.keys
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys - [:name]
   FORM_ATTRIBUTES = [:name, :email, :email_subscriber]
 end

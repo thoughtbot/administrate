@@ -18,7 +18,7 @@ class LineItemDashboard < Administrate::BaseDashboard
     unit_price: Field::Number.with_options(prefix: "$", decimals: 2),
   }
 
-  TABLE_ATTRIBUTES = ATTRIBUTES + [:total_price]
+  COLLECTION_ATTRIBUTES = ATTRIBUTES + [:total_price]
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTES + [:total_price]
   FORM_ATTRIBUTES = ATTRIBUTES
 end

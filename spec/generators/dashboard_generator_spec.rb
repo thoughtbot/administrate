@@ -285,7 +285,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       end
     end
 
-    describe "TABLE_ATTRIBUTES" do
+    describe "COLLECTION_ATTRIBUTES" do
       it "is limited to a reasonable number of items" do
         begin
           ActiveRecord::Schema.define do
@@ -301,7 +301,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           run_generator ["foo"]
           load file("app/dashboards/foo_dashboard.rb")
           all_attrs = FooDashboard::ATTRIBUTE_TYPES.keys
-          table_attrs = FooDashboard::TABLE_ATTRIBUTES
+          table_attrs = FooDashboard::COLLECTION_ATTRIBUTES
 
           expect(table_attrs).to eq(all_attrs.first(table_attribute_limit))
           expect(table_attrs).not_to eq(all_attrs)
@@ -311,7 +311,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       end
 
       def table_attribute_limit
-        Administrate::Generators::DashboardGenerator::TABLE_ATTRIBUTE_LIMIT
+        Administrate::Generators::DashboardGenerator::COLLECTION_ATTRIBUTE_LIMIT
       end
     end
 

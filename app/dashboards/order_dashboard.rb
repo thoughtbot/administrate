@@ -23,7 +23,7 @@ class OrderDashboard < Administrate::BaseDashboard
     :updated_at,
   ]
 
-  TABLE_ATTRIBUTES = [
+  COLLECTION_ATTRIBUTES = [
     :id,
     :customer,
     :address_state,

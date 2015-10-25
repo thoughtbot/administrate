@@ -8,7 +8,7 @@ module Administrate
 
         def copy_template
           copy_resource_template("index")
-          copy_resource_template("_table")
+          copy_resource_template("_collection")
         end
       end
     end

@@ -1,4 +1,4 @@
-require "administrate/page/table"
+require "administrate/page/collection"
 
-describe Administrate::Page::Table do
+describe Administrate::Page::Collection do
 end

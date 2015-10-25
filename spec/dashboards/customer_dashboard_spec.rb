@@ -1,12 +1,12 @@
 require "rails_helper"
 
 describe CustomerDashboard do
-  describe "#table_attributes" do
+  describe "#collection_attributes" do
     it "includes the name and email" do
       dashboard = CustomerDashboard.new
 
-      expect(dashboard.table_attributes).to include(:name)
-      expect(dashboard.table_attributes).to include(:email)
+      expect(dashboard.collection_attributes).to include(:name)
+      expect(dashboard.collection_attributes).to include(:email)
     end
   end
 
