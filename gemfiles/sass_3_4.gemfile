@@ -22,7 +22,7 @@ gem "refills"
 gem "sass-rails", "~> 5.0"
 gem "simple_form"
 gem "title"
-gem "uglifier"
+gem "uglifier", ">= 2.7.2"
 gem "unicorn"
 gem "sass", "3.4.0"
 
@@ -50,7 +50,7 @@ group :test do
   gem "formulaic"
   gem "fuubar"
   gem "launchy"
-  gem "shoulda-matchers", :require => false
+  gem "shoulda-matchers", "~> 2.8.0", :require => false
   gem "timecop"
   gem "webmock"
 end

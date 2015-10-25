@@ -48,7 +48,7 @@ group :test do
   gem "formulaic"
   gem "fuubar"
   gem "launchy"
-  gem "shoulda-matchers", require: false
+  gem "shoulda-matchers", "~> 2.8.0", require: false
   gem "timecop"
   gem "webmock"
 end

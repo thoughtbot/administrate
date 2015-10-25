@@ -340,7 +340,7 @@ DEPENDENCIES
   refills
   rspec-rails (~> 3.1.0)
   sass-rails (~> 5.0)
-  shoulda-matchers
+  shoulda-matchers (~> 2.8.0)
   simple_form
   spring
   spring-commands-rspec
