@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "autoprefixer-rails"
-  s.add_dependency "datetime_picker_rails", "~> 0.0.4"
+  s.add_dependency "datetime_picker_rails", "~> 0.0.5"
   s.add_dependency "inline_svg", "~> 0.6"
   s.add_dependency "kaminari", "~> 0.16"
   s.add_dependency "momentjs-rails", ">= 2.9.0"
