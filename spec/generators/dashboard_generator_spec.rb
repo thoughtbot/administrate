@@ -314,6 +314,31 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         Administrate::Generators::DashboardGenerator::TABLE_ATTRIBUTE_LIMIT
       end
     end
+
+    describe "FORM_ATTRIBUTES" do
+      it "does not include read-only attributes" do
+        begin
+          ActiveRecord::Schema.define do
+            create_table :foos do |t|
+              t.string :name
+              t.timestamps
+            end
+          end
+
+          class Foo < ActiveRecord::Base
+            reset_column_information
+          end
+
+          run_generator ["foo"]
+          load file("app/dashboards/foo_dashboard.rb")
+          attrs = FooDashboard::FORM_ATTRIBUTES
+
+          expect(attrs).to match_array([:name])
+        ensure
+          remove_constants :Foo, :FooDashboard
+        end
+      end
+    end
   end
 
   describe "resource controller" do

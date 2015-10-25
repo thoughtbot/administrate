@@ -1,12 +1,6 @@
 require "administrate/base_dashboard"
 
 class <%= class_name %>Dashboard < Administrate::BaseDashboard
-  READ_ONLY_ATTRIBUTES = [
-    :id,
-    :created_at,
-    :updated_at,
-  ]
-
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -23,8 +17,14 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's index page.
   #
   # By default, it's limited to four items to reduce clutter on index pages.
-  # Feel free to remove the limit or customize the returned array.
-  TABLE_ATTRIBUTES = ATTRIBUTE_TYPES.keys.first(<%= TABLE_ATTRIBUTE_LIMIT %>)
+  # Feel free to add, remove, or rearrange items.
+  TABLE_ATTRIBUTES = [
+<%=
+  attributes.first(TABLE_ATTRIBUTE_LIMIT).map do |attr|
+    "    :#{attr},"
+  end.join("\n")
+%>
+  ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
@@ -33,5 +33,11 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = ATTRIBUTE_TYPES.keys - READ_ONLY_ATTRIBUTES
+  FORM_ATTRIBUTES = [
+<%=
+  form_attributes.map do |attr|
+    "    :#{attr},"
+  end.join("\n")
+%>
+  ]
 end
