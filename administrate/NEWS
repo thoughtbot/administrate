@@ -5,6 +5,7 @@
   from has_many relationships on the `show` page.
 * Improvement: Add sensible dynamic titles to the dashboard pages.
 * Improvement: Add text field type.
+* UI: Fix checkbox styling and label alignment
 
 New in 0.0.12:
 
