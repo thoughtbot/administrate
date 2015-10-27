@@ -7,7 +7,8 @@ $(function() {
 
   $.fn.textWidth = function(text, font) {
     if (!$.fn.textWidth.fakeEl) {
-      $.fn.textWidth.fakeEl = $("<span>").appendTo(document.body);
+      $.fn.textWidth.fakeEl = $('<span style="display: none;">')
+                              .appendTo(document.body);
     }
 
     var htmlText = text || this.val() || this.text();

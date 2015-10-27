@@ -38,7 +38,7 @@
 }
 
 .search__hint {
-  @include position(absolute, 1em null null null);
+  @include position(absolute, 1em 0 null null);
   @include transition($base-transition);
   color: $hint-grey;
   opacity: 0;
