@@ -1,3 +1,4 @@
+* Bug Fix: Fix missing `dropdown.svg` asset.
 * Bug Fix: Fix asset precompilation issue for `datetime_picker_rails` gem.
 * Improvement: Add a generator for copying field views to host application
 * Improvement: Generated dashboards are more explicit,
