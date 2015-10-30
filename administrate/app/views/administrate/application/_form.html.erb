@@ -4,26 +4,26 @@
 This partial is rendered on a resource's `new` and `edit` pages,
 and renders all form fields for a resource's editable attributes.
 
-## Instance variables:
+## Local variables:
 
-- `@page`:
-  Instance of [Administrate::Page::Form][1].
+- `page`:
+  An instance of [Administrate::Page::Form][1].
   Contains helper methods to display a form,
   and knows which attributes should be displayed in the resource's form.
 
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Form
 %>
 
-<%= form_for([Administrate::NAMESPACE, @page.resource], class: "form") do |f| %>
-  <% if @page.resource.errors.any? %>
+<%= form_for([Administrate::NAMESPACE, page.resource], class: "form") do |f| %>
+  <% if page.resource.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@page.resource.errors.count, "error") %>
-        prohibited this <%= @page.resource_name %> from being saved:
+        <%= pluralize(page.resource.errors.count, "error") %>
+        prohibited this <%= page.resource_name %> from being saved:
       </h2>
 
       <ul>
-        <% @page.resource.errors.full_messages.each do |message| %>
+        <% page.resource.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -31,7 +31,7 @@ and renders all form fields for a resource's editable attributes.
   <% end %>
 
   <div class="form-inputs">
-    <% @page.attributes.each do |attribute| -%>
+    <% page.attributes.each do |attribute| -%>
       <div class="form-field form-field--<%= attribute.html_class %>">
         <%= render_field attribute, f: f %>
       </div>

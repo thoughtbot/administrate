@@ -5,9 +5,9 @@ This view is the template for the show page.
 It renders the attributes of a resource,
 as well as a link to its edit page.
 
-## Instance variables:
+## Local variables:
 
-- `@page`:
+- `page`:
   An instance of [Administrate::Page::Show][1].
   Contains methods for accessing the resource to be displayed on the page,
   as well as helpers for describing how each attribute of the resource
@@ -16,19 +16,19 @@ as well as a link to its edit page.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Show
 %>
 
-<% content_for(:title) { @page.page_title } %>
+<% content_for(:title) { page.page_title } %>
 
 <header class="header">
   <h1 class="header-heading"><%= content_for(:title) %></h1>
   <%= link_to(
     "Edit",
-    [:edit, Administrate::NAMESPACE, @page.resource],
+    [:edit, Administrate::NAMESPACE, page.resource],
     class: "button",
   ) %>
 </header>
 
 <dl>
-  <% @page.attributes.each do |attribute| %>
+  <% page.attributes.each do |attribute| %>
     <dt class="attribute-label"><%= attribute.name.titleize %></dt>
 
     <dd class="attribute-data attribute-data--<%=attribute.html_class%>"

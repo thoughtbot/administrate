@@ -5,9 +5,9 @@ This view is the template for the "new resource" page.
 It displays a header, and then renders the `_form` partial
 to do the heavy lifting.
 
-## Instance variables:
+## Local variables:
 
-- `@page`:
+- `page`:
   An instance of [Administrate::Page::Form][1].
   Contains helper methods to help display a form,
   and knows which attributes should be displayed in the resource's form.
@@ -15,11 +15,11 @@ to do the heavy lifting.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Form
 %>
 
-<% content_for(:title) { "New #{@page.resource_name.titleize}" } %>
+<% content_for(:title) { "New #{page.resource_name.titleize}" } %>
 
 <header class="header">
   <h1 class="header-heading"><%= content_for(:title) %></h1>
   <%= link_to 'Back', :back, class: "button" %>
 </header>
 
-<%= render 'form' %>
+<%= render 'form', page: page %>

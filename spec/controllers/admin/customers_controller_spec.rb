@@ -1,41 +1,75 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Admin::CustomersController, type: :controller do
   describe "GET index" do
-    it "assigns all customers as @resources" do
+    it "passes all customers to the view" do
       customer = create(:customer)
 
-      get :index
+      locals = capture_view_locals { get :index }
+      expect(locals[:resources]).to eq([customer])
+    end
 
-      expect(assigns(:resources)).to eq([customer])
+    it "passes the search term to the view" do
+      locals = capture_view_locals do
+        get :index, search: "foo"
+      end
+
+      expect(locals[:search_term]).to eq("foo")
+    end
+
+    it "passes the page object to the view" do
+      locals = capture_view_locals { get :index }
+
+      expect(locals[:page]).to be_instance_of(Administrate::Page::Collection)
+    end
+  end
+
+  def expect_locals
+    first_call = true
+
+    expect(@controller).to have_received(:render).twice do |options|
+      if first_call
+        expect(options).not_to be_nil
+        yield options[:locals]
+      end
+
+      first_call = false
     end
   end
 
   describe "GET show" do
-    it "assigns the requested customer as @customer" do
+    it "passes a page object to the view" do
       customer = create(:customer)
 
-      get :show, {id: customer.to_param}
+      locals = capture_view_locals do
+        get :show, id: customer.to_param
+      end
 
-      expect(assigns(:customer)).to eq(customer)
+      page = locals[:page]
+      expect(page).to be_instance_of(Administrate::Page::Show)
+      expect(page.resource).to eq(customer)
     end
   end
 
   describe "GET new" do
-    it "assigns a new form page object as @page" do
-      get :new
+    it "passes a new form page object to the view" do
+      locals = capture_view_locals { get :new }
 
-      expect(assigns(:page)).to be_instance_of(Administrate::Page::Form)
+      expect(locals[:page]).to be_instance_of(Administrate::Page::Form)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested customer as @customer" do
+    it "passes the page object to the view" do
       customer = create(:customer)
 
-      get :edit, {id: customer.to_param}
+      locals = capture_view_locals do
+        get :edit, id: customer.to_param
+      end
 
-      expect(assigns(:customer)).to eq(customer)
+      page = locals[:page]
+      expect(page).to be_instance_of(Administrate::Page::Form)
+      expect(page.resource).to eq(customer)
     end
   end
 
@@ -43,37 +77,34 @@ describe Admin::CustomersController, type: :controller do
     describe "with valid params" do
       it "creates a new Customer" do
         expect {
-          post :create, {customer: attributes_for(:customer)}
+          post :create, customer: attributes_for(:customer)
         }.to change(Customer, :count).by(1)
       end
 
-      it "assigns a newly created customer as @customer" do
-        post :create, {customer: attributes_for(:customer)}
-
-        expect(assigns(:customer)).to be_a(Customer)
-        expect(assigns(:customer)).to be_persisted
-      end
-
       it "redirects to the created customer" do
-        post :create, {customer: attributes_for(:customer)}
+        post :create, customer: attributes_for(:customer)
 
         expect(response).to redirect_to([:admin, Customer.last])
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved customer as @customer" do
-        invalid_attributes = { name: '' }
+      it "passes a form page object to the view" do
+        invalid_attributes = { name: "" }
 
-        post :create, {customer: invalid_attributes}
+        locals = capture_view_locals do
+          post :create, customer: invalid_attributes
+        end
 
-        expect(assigns(:customer)).to be_a_new(Customer)
+        page = locals[:page]
+        expect(page).to be_instance_of(Administrate::Page::Form)
+        expect(page.resource).to be_a_new(Customer)
       end
 
       it "re-renders the 'new' template" do
-        invalid_attributes = { name: '' }
+        invalid_attributes = { name: "" }
 
-        post :create, {customer: invalid_attributes}
+        post :create, customer: invalid_attributes
 
         expect(response).to render_template("new")
       end
@@ -87,48 +118,43 @@ describe Admin::CustomersController, type: :controller do
         new_name = "new name"
         new_attributes = { name: new_name }
 
-        put :update, {id: customer.to_param, customer: new_attributes}
+        put :update, id: customer.to_param, customer: new_attributes
 
         customer.reload
         expect(customer.name).to eq new_name
-      end
-
-      it "assigns the requested customer as @customer" do
-        customer = create(:customer)
-        valid_attributes = attributes_for(:customer)
-
-        put :update, {id: customer.to_param, customer: valid_attributes}
-
-        expect(assigns(:customer)).to eq(customer)
       end
 
       it "redirects to the customer" do
         customer = create(:customer)
         valid_attributes = attributes_for(:customer)
 
-        put :update, {id: customer.to_param, customer: valid_attributes}
+        put :update, id: customer.to_param, customer: valid_attributes
 
         expect(response).to redirect_to([:admin, customer])
       end
     end
 
     describe "with invalid params" do
-      it "assigns the customer as @customer" do
-        customer = create(:customer)
-        invalid_attributes = { name: '' }
-
-        put :update, {id: customer.to_param, customer: invalid_attributes}
-
-        expect(assigns(:customer)).to eq(customer)
-      end
-
       it "re-renders the 'edit' template" do
         customer = create(:customer)
-        invalid_attributes = { name: '' }
+        invalid_attributes = { name: "" }
 
-        put :update, {id: customer.to_param, customer: invalid_attributes}
+        put :update, id: customer.to_param, customer: invalid_attributes
 
         expect(response).to render_template("edit")
+      end
+
+      it "passes a form page object to the view" do
+        customer = create(:customer)
+        invalid_attributes = { name: "" }
+
+        locals = capture_view_locals do
+          put :update, id: customer.to_param, customer: invalid_attributes
+        end
+
+        page = locals[:page]
+        expect(page).to be_instance_of(Administrate::Page::Form)
+        expect(page.resource).to eq(customer)
       end
     end
   end
@@ -137,17 +163,30 @@ describe Admin::CustomersController, type: :controller do
     it "destroys the requested customer" do
       customer = create(:customer)
 
-      expect {
+      expect do
         delete :destroy, {id: customer.to_param}
-      }.to change(Customer, :count).by(-1)
+      end.to change(Customer, :count).by(-1)
     end
 
     it "redirects to the customers list" do
       customer = create(:customer)
 
-      delete :destroy, {id: customer.to_param}
+      delete :destroy, id: customer.to_param
 
       expect(response).to redirect_to(admin_customers_url)
     end
+  end
+
+  def capture_view_locals
+    allow(@controller).to receive(:render)
+    yield
+
+    locals = nil
+    expect(@controller).to have_received(:render).at_least(1).times do |*args|
+      args.each do |arg|
+        locals ||= arg.try(:fetch, :locals, nil)
+      end
+    end
+    locals
   end
 end

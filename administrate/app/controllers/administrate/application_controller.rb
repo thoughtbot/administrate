@@ -1,31 +1,39 @@
 module Administrate
   class ApplicationController < ActionController::Base
     def index
-      @search_term = params[:search].to_s.strip
-      @resources = Administrate::Search.new(resource_resolver, @search_term).run
-      @resources = order.apply(@resources)
-      @resources = @resources.page(params[:page]).per(records_per_page)
-      @page = Administrate::Page::Collection.new(dashboard, order: order)
+      search_term = params[:search].to_s.strip
+      resources = Administrate::Search.new(resource_resolver, search_term).run
+      resources = order.apply(resources)
+      resources = resources.page(params[:page]).per(records_per_page)
+      page = Administrate::Page::Collection.new(dashboard, order: order)
+
+      render locals: {
+        resources: resources.page(params[:page]).per(records_per_page),
+        search_term: search_term,
+        page: page,
+      }
     end
 
     def show
-      set_resource
-
-      @page = Administrate::Page::Show.new(dashboard, resource)
+      render locals: {
+        page: Administrate::Page::Show.new(dashboard, requested_resource),
+      }
     end
 
     def new
-      @page = Administrate::Page::Form.new(dashboard, resource_class.new)
+      render locals: {
+        page: Administrate::Page::Form.new(dashboard, resource_class.new),
+      }
     end
 
     def edit
-      set_resource
-
-      @page = Administrate::Page::Form.new(dashboard, resource)
+      render locals: {
+        page: Administrate::Page::Form.new(dashboard, requested_resource),
+      }
     end
 
     def create
-      set_resource(resource_class.new(resource_params))
+      resource = resource_class.new(resource_params)
 
       if resource.save
         redirect_to(
@@ -33,29 +41,27 @@ module Administrate
           notice: translate("create.success"),
         )
       else
-        @page = Administrate::Page::Form.new(dashboard, resource)
-        render :new
+        render :new, locals: {
+          page: Administrate::Page::Form.new(dashboard, resource),
+        }
       end
     end
 
     def update
-      set_resource
-
-      if resource.update(resource_params)
+      if requested_resource.update(resource_params)
         redirect_to(
-          [Administrate::NAMESPACE, resource],
+          [Administrate::NAMESPACE, requested_resource],
           notice: translate("update.success"),
         )
       else
-        @page = Administrate::Page::Form.new(dashboard, resource)
-        render :edit
+        render :edit, locals: {
+          page: Administrate::Page::Form.new(dashboard, requested_resource),
+        }
       end
     end
 
     def destroy
-      set_resource
-
-      resource.destroy
+      requested_resource.destroy
       flash[:notice] = translate("destroy.success")
       redirect_to action: :index
     end
@@ -76,24 +82,19 @@ module Administrate
     end
 
     def order
-      @order ||= Administrate::Order.new(params[:order], params[:direction])
+      @_order ||= Administrate::Order.new(params[:order], params[:direction])
     end
 
     def dashboard
-      @dashboard ||= resource_resolver.dashboard_class.new
+      @_dashboard ||= resource_resolver.dashboard_class.new
     end
 
-    def set_resource(resource = nil)
-      resource ||= find_resource(params[:id])
-      instance_variable_set(instance_variable, resource)
+    def requested_resource
+      @_requested_resource ||= find_resource(params[:id])
     end
 
     def find_resource(param)
       resource_class.find(param)
-    end
-
-    def resource
-      instance_variable_get(instance_variable)
     end
 
     def resource_params
@@ -104,14 +105,10 @@ module Administrate
       dashboard.permitted_attributes
     end
 
-    def instance_variable
-      "@#{resource_name}"
-    end
-
     delegate :resource_class, :resource_name, to: :resource_resolver
 
     def resource_resolver
-      @resource_resolver ||=
+      @_resource_resolver ||=
         Administrate::ResourceResolver.new(controller_path)
     end
 

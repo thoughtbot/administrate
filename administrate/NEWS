@@ -1,3 +1,4 @@
+* Change: Render views using local variables, not instance variables.
 * Bug Fix: Fix missing `dropdown.svg` asset.
 * Change: Rename `table` -> `collection` throughout the engine.
   * API for dashboard classes now relies on `COLLECTION_ATTRIBUTES` constant
