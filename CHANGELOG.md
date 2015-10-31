@@ -14,6 +14,11 @@
 
 ## Changes
 
+### Upcoming Release
+
+* [DOC] Add CircleCI badge to README
+* [DOC] Add CodeClimate badge to README
+
 ### 0.1.0 (October 30, 2015)
 
 * [CHANGE] Render views using local variables, not instance variables.
