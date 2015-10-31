@@ -16,6 +16,7 @@
 
 ### Upcoming Release
 
+* [DOC] Add Rubygems version badge to README
 * [DOC] Add CircleCI badge to README
 * [DOC] Add CodeClimate badge to README
 * [UI] Preserve whitespace when rendering text fields

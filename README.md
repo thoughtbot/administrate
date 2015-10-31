@@ -1,6 +1,7 @@
 # Administrate
 
 [![Circle CI](https://circleci.com/gh/thoughtbot/administrate/tree/master.svg?style=svg)](https://circleci.com/gh/thoughtbot/administrate/tree/master)
+[![Gem Version](https://badge.fury.io/rb/administrate.svg)](https://badge.fury.io/rb/administrate)
 [![Code Climate](https://codeclimate.com/github/thoughtbot/administrate/badges/gpa.svg)](https://codeclimate.com/github/thoughtbot/administrate)
 
 A Rails engine that helps you put together a super-flexible admin dashboard.
