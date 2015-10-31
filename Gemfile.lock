@@ -2,11 +2,11 @@ PATH
   remote: administrate
   specs:
     administrate (0.0.12)
-      autoprefixer-rails
+      autoprefixer-rails (~> 6.0)
       datetime_picker_rails (~> 0.0.5)
       inline_svg (~> 0.6)
       kaminari (~> 0.16)
-      momentjs-rails (>= 2.9.0)
+      momentjs-rails (~> 2.8)
       neat (~> 1.1)
       normalize-rails (~> 3.0)
       rails (~> 4.2)

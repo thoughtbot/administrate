@@ -34,6 +34,7 @@
 * [BUGFIX] Fix asset precompilation issue for `datetime_picker_rails` gem.
 * [BUGFIX] Remove erroneous "Showing 5 of 1" messages
   from has_many relationships on the `show` page.
+* [COMPAT] Use optimistic versioning for all dependencies.
 * [DOC] Update README with a better description of the repo.
 * [DOC] Move changelog to root of repository, improve labels, add key.
 * [DOC] Add comments to all template files
