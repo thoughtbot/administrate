@@ -14,7 +14,6 @@ By default, the relationship is rendered as a link to the associated object.
 
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/BelongsTo
 %>
-
 <% if field.data %>
-  <%= link_to field.data, [Administrate::NAMESPACE, field.data] %>
+  <%= link_to field.data, [Administrate::NAMESPACE, field.data] -%>
 <% end %>

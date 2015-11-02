@@ -15,10 +15,9 @@ By default, the relationship is rendered as a link to the associated object.
 
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Polymorphic
 %>
-
 <% if field.data %>
   <%= link_to(
     field.data.to_s,
     polymorphic_path([:admin, field.data])
-  ) %>
+  ) -%>
 <% end %>
