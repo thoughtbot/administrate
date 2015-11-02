@@ -3,6 +3,8 @@
   @include span-columns(2 of 12);
   margin-top: 0;
   text-align: right;
+  margin-bottom: 1.85em;
+  clear: left;
 }
 
 .attribute-data--string {
