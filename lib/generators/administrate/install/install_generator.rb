@@ -47,7 +47,7 @@ module Administrate
       end
 
       def database_models
-        ActiveRecord::Base.descendants
+        ActiveRecord::Base.descendants.select(&:table_exists?)
       end
 
       def dashboard_routes

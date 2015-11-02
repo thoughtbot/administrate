@@ -1,6 +1,7 @@
 require "spec_helper"
 require "generators/administrate/install/install_generator"
 require "support/generator_spec_helpers"
+require "support/constant_helpers"
 
 describe Administrate::Generators::InstallGenerator, :generator do
   describe "admin/application_controller" do
@@ -51,6 +52,20 @@ describe Administrate::Generators::InstallGenerator, :generator do
       run_generator
 
       expect(manifest).not_to contain("delayed/backend/active_record/jobs")
+    end
+
+    it "skips models that aren't backed by the database" do
+      begin
+        class ModelWithoutDBTable < ActiveRecord::Base; end
+        stub_generator_dependencies
+        manifest = file("app/dashboards/dashboard_manifest.rb")
+
+        run_generator
+
+        expect(manifest).not_to contain("model_without_db_table")
+      ensure
+        remove_constants :ModelWithoutDBTable
+      end
     end
   end
 
