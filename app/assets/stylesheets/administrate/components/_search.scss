@@ -9,17 +9,32 @@
   width: 100%;
 }
 
+.search__clear,
 .search__icon {
   svg {
     @include size(1em);
   }
+}
 
+.search__icon {
   path {
     @include transition($base-transition);
     fill: $hint-grey;
   }
 
   &--active path {
+    fill: $base-accent-color;
+  }
+}
+
+.search__clear {
+  z-index: 2;
+
+  rect {
+    fill: $hint-grey;
+  }
+
+  &:hover rect {
     fill: $base-accent-color;
   }
 }
@@ -38,6 +53,7 @@
 }
 
 .search__hint {
+  z-index: 1;
   @include position(absolute, 1em 0 null null);
   @include transition($base-transition);
   color: $hint-grey;

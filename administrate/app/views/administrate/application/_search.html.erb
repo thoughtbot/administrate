@@ -1,0 +1,20 @@
+<form class="search">
+  <span class="search__icon">
+    <%= inline_svg "administrate/search.svg" %>
+  </span>
+  <input
+    type="text"
+    name="search"
+    class="search__input"
+    placeholder="Search"
+    value="<%= search_term %>"
+  />
+  <span class="search__hint">
+    Press enter to search
+  </span>
+  <span class="search__clear">
+    <%= link_to params.except(:search) do %>
+      <%= inline_svg "administrate/cancel.svg" %>
+    <% end %>
+  </span>
+</form>
