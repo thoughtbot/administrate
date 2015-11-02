@@ -18,6 +18,7 @@
 
 * [DOC] Add CircleCI badge to README
 * [DOC] Add CodeClimate badge to README
+* [UI] Preserve whitespace when rendering text fields
 
 ### 0.1.0 (October 30, 2015)
 
