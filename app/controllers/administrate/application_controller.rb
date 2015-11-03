@@ -38,7 +38,7 @@ module Administrate
       if resource.save
         redirect_to(
           [Administrate::NAMESPACE, resource],
-          notice: translate("create.success"),
+          notice: translate_with_resource("create.success"),
         )
       else
         render :new, locals: {
@@ -51,7 +51,7 @@ module Administrate
       if requested_resource.update(resource_params)
         redirect_to(
           [Administrate::NAMESPACE, requested_resource],
-          notice: translate("update.success"),
+          notice: translate_with_resource("update.success"),
         )
       else
         render :edit, locals: {
@@ -62,7 +62,7 @@ module Administrate
 
     def destroy
       requested_resource.destroy
-      flash[:notice] = translate("destroy.success")
+      flash[:notice] = translate_with_resource("destroy.success")
       redirect_to action: :index
     end
 
@@ -112,7 +112,7 @@ module Administrate
         Administrate::ResourceResolver.new(controller_path)
     end
 
-    def translate(key)
+    def translate_with_resource(key)
       t(
         "administrate.controller.#{key}",
         resource: resource_resolver.resource_title,

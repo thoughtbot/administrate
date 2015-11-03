@@ -16,6 +16,8 @@
 
 ### Upcoming Release
 
+* [COMPAT] Update repository structure so Bundler can pull the gem from github.
+  (e.g. `gem "administrate", github: "thoughtbot/administrate"`)
 * [DOC] Add Rubygems version badge to README
 * [DOC] Add CircleCI badge to README
 * [DOC] Add CodeClimate badge to README

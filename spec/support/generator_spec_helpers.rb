@@ -11,7 +11,7 @@ module GeneratorSpecHelpers
 
   def contents_for_application_template(view_name)
     File.read(
-      "administrate/app/views/administrate/application/#{view_name}.html.erb",
+      "app/views/administrate/application/#{view_name}.html.erb",
     )
   end
 

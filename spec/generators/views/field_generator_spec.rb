@@ -36,7 +36,7 @@ describe Administrate::Generators::Views::FieldGenerator, :generator do
 
   def contents_for_field_template(field_name, partial_name)
     File.read(
-      "administrate/app/views/fields/#{field_name}/_#{partial_name}.html.erb",
+      "app/views/fields/#{field_name}/_#{partial_name}.html.erb",
     )
   end
 end
