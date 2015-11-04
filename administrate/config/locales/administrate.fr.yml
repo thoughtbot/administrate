@@ -1,5 +1,5 @@
 ---
-en:
+fr:
   administrate:
     actions:
       confirm: Êtes-vous sûr ?
@@ -18,6 +18,6 @@ en:
         more: %{count} sur %{total_count}
         none: Aucun
       polymorphic:
-        not_supported: Les relations Polymorphic dans les formulaires n'est pas encore supporté. Desolé !
+        not_supported: Les relations polymorphiques dans les formulaires ne sont pas encore supportées. Désolé !
       has_one:
-        not_supported: Les relations HasOne dans les formulaires n'est pas encore supporté. Desolé !
+        not_supported: Les relations HasOne dans les formulaires ne sont pas encore supportées. Désolé !
