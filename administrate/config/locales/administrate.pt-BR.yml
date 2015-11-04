@@ -16,9 +16,9 @@ pt-BR:
         success: "%{resource} foi atualizado com sucesso."
     fields:
       has_many:
-        more: Mostrando %{count} de %{total_count}
+        more: "Mostrando %{count} de %{total_count}"
         none: Nenhum
       polymorphic:
-        not_supported: Relações polimórmficas nos formulários não é suportada ainda. Desculpe.
+        not_supported: Relações polimórmficas nos formulários não são suportadas ainda. Desculpe!
       has_one:
-        not_supported: Relações um para muitos não é suportad ainda nos formulários. Desculpe!
+        not_supported: Relações um para muitos nos formulários não são suportadas ainda. Desculpe!
