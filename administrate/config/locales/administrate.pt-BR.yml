@@ -1,0 +1,24 @@
+# encoding: UTF-8
+---
+pt-BR:
+  administrate:
+    actions:
+      confirm: Você tem certeza?
+      destroy: Deletar
+      edit: Editar
+      show: Visualizar
+    controller:
+      create:
+        success: "%{resource} foi criado com sucesso."
+      destroy:
+        success: "%{resource} foi deletado com sucesso."
+      update:
+        success: "%{resource} foi atualizado com sucesso."
+    fields:
+      has_many:
+        more: "Exibindo %{count} de %{total_count}"
+        none: Nenhum
+      polymorphic:
+        not_supported: Relações polimórmficas nos formulários não são suportadas ainda. Desculpe!
+      has_one:
+        not_supported: Relações um para muitos nos formulários não são suportadas ainda. Desculpe!
