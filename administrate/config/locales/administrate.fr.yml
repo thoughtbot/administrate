@@ -15,7 +15,7 @@ fr:
         success: "%{resource} a été correctement modifié."
     fields:
       has_many:
-        more: %{count} sur %{total_count}
+        more: "%{count} sur %{total_count}"
         none: Aucun
       polymorphic:
         not_supported: Les relations polymorphiques dans les formulaires ne sont pas encore supportées. Désolé !
