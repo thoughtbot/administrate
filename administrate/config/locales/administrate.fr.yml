@@ -1,0 +1,23 @@
+---
+fr:
+  administrate:
+    actions:
+      confirm: Êtes-vous sûr ?
+      destroy: Supprimer
+      edit: Modifier
+      show: Voir
+    controller:
+      create:
+        success: "%{resource} a été correctement créé(e)."
+      destroy:
+        success: "%{resource} a été correctement supprimé(e)."
+      update:
+        success: "%{resource} a été correctement modifié(e)."
+    fields:
+      has_many:
+        more: "%{count} sur %{total_count}"
+        none: Aucun
+      polymorphic:
+        not_supported: Les relations polymorphiques dans les formulaires ne sont pas encore supportées. Désolé !
+      has_one:
+        not_supported: Les relations HasOne dans les formulaires ne sont pas encore supportées. Désolé !
