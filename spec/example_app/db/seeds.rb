@@ -19,7 +19,7 @@ Product.destroy_all
   )
 end
 
-product_attributes = YAML.load_file("./db/seeds/products.yml")
+product_attributes = YAML.load_file(Rails.root.join('db/seeds/products.yml'))
 
 product_attributes.each do |attributes|
   Product.create attributes.merge(price: 20 + rand(50))
