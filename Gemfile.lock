@@ -10,7 +10,7 @@ PATH
       neat (~> 1.1)
       normalize-rails (~> 3.0)
       rails (~> 4.2)
-      sass (~> 3.4)
+      sass-rails (~> 5.0)
       selectize-rails (~> 0.6)
 
 GEM
@@ -332,7 +332,6 @@ DEPENDENCIES
   recipient_interceptor
   refills
   rspec-rails (~> 3.1.0)
-  sass-rails (~> 5.0)
   shoulda-matchers (~> 2.8.0)
   simple_form
   timecop
