@@ -1,0 +1,23 @@
+---
+ru:
+  administrate:
+    actions:
+      confirm: Вы уверены?
+      destroy: Удалить
+      edit: Редактировать
+      show: Показать
+    controller:
+      create:
+        success: "%{resource} был успешно создан."
+      destroy:
+        success: "%{resource} был успешно удален."
+      update:
+        success: "%{resource} был успешно обновлен."
+    fields:
+      has_many:
+        more: "%{count} из %{total_count}"
+        none: Нет
+      polymorphic:
+        not_supported: Полиморфные отношения в формах не поддерживаются. Извините!
+      has_one:
+        not_supported: HasOne отношения в формах не поддерживаются. Извините!
