@@ -1,0 +1,23 @@
+---
+zh-CN:
+  administrate:
+    actions:
+      confirm: 确定?
+      destroy: 删除
+      edit: 编辑
+      show: 查看
+    controller:
+      create:
+        success: "%{resource} 创建成功."
+      destroy:
+        success: "%{resource} 删除成功."
+      update:
+        success: "%{resource} 更新成功."
+    fields:
+      has_many:
+        more: 显示所有 %{total_count} 中 %{count} 条
+        none: 无
+      polymorphic:
+        not_supported: 对不起，Polymorphic 关系暂不支持!
+      has_one:
+        not_supported: 对不起，HasOne 关系暂不支持!
