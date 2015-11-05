@@ -16,6 +16,7 @@
 
 ### Upcoming Release
 
+* [UI] Polish translation
 * [DOC] Add Rubygems version badge to README
 * [DOC] Add CircleCI badge to README
 * [DOC] Add CodeClimate badge to README

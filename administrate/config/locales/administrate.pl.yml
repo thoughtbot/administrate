@@ -1,0 +1,23 @@
+---
+pl:
+  administrate:
+    actions:
+      confirm: Czy jesteś pewnien/a?
+      destroy: Usuń
+      edit: Edycja
+      show: Pokaż
+    controller:
+      create:
+        success: "%{resource} został utworzony."
+      destroy:
+        success: "%{resource} został usunięty."
+      update:
+        success: "%{resource} został zaktualizowany."
+    fields:
+      has_many:
+        more: Pokazuje %{count} z %{total_count}
+        none: Brak
+      polymorphic:
+        not_supported: Relacje polimorficzne nie sa obecnie obsługiwane. Przepraszamy!
+      has_one:
+        not_supported: Formularze z relacjami has_one nie są obecnie obsługiwane. Przepraszamy!
