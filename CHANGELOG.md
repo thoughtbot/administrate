@@ -16,6 +16,7 @@
 
 ### Upcoming Release
 
+* [#147] [FEATURE] Translation: German
 * [DOC] Add Rubygems version badge to README
 * [DOC] Add CircleCI badge to README
 * [DOC] Add CodeClimate badge to README
