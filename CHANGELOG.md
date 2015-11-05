@@ -11,6 +11,7 @@
 * `[COMPAT]`: Compatibility improvements - changes to make Administrate more
   compatible with different dependency versions.
 * `[DOC]`: Documentation changes. No changes to the library's behavior.
+* `[FEATURE]`: Add zh-CN translation for i18n.
 
 ## Changes
 
