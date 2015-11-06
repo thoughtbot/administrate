@@ -11,7 +11,7 @@ as defined by the DashboardManifest.
   <% DashboardManifest::DASHBOARDS.each do |resource| %>
     <li>
       <%= link_to(
-        resource.to_s.titleize,
+        resource.to_s.classify.constantize.model_name.human(default: resource.to_s.titleize),
         [Administrate::NAMESPACE, resource],
         class: "sidebar__link sidebar__link--#{nav_link_state(resource)}"
       ) %>
