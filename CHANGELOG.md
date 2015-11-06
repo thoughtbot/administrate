@@ -17,6 +17,7 @@
 ### Upcoming Release
 
 * [#142] [FEATURE] Translation: Brazilian Portuguese
+* [#171] [FEATURE] Translation: Polish
 * [#156] [COMPAT] Include missing `sass-rails` dependency in gemspec
 * [COMPAT] Update repository structure so Bundler can pull the gem from github.
   (e.g. `gem "administrate", github: "thoughtbot/administrate"`)
