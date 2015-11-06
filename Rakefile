@@ -29,16 +29,4 @@ if defined? RSpec
   end
 end
 
-namespace :deploy do
-  desc "Deploy the example app to Heroku staging"
-  task :staging do
-    exec %(git push staging `git subtree split --prefix spec/example_app`:master --force)
-  end
-
-  desc "Deploy the example app to Heroku production"
-  task :production do
-    exec %(git push production `git subtree split --prefix spec/example_app`:master --force)
-  end
-end
-
 task default: "bundler:audit"
