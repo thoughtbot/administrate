@@ -16,6 +16,7 @@
 
 ### Upcoming Release
 
+* [FEATURE] Add russian i18n
 * [#156] [COMPAT] Include missing `sass-rails` dependency in gemspec
 * [COMPAT] Update repository structure so Bundler can pull the gem from github.
   (e.g. `gem "administrate", github: "thoughtbot/administrate"`)
