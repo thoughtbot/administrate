@@ -8,4 +8,14 @@ describe "sidebar" do
 
     expect(active_link.text).to eq "Customers"
   end
+
+  it "displays translated name of model" do
+    allow(Customer.model_name).to receive(:human).and_return('Users')
+
+    visit admin_customers_path
+
+    sidebar = find(".sidebar__list")
+    expect(sidebar).to have_link("Users")
+    expect(page).to have_header("Users")
+  end
 end
