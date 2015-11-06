@@ -4,23 +4,9 @@ ruby "2.2.0"
 
 gemspec
 
-gem "airbrake"
-gem "coffee-rails", "~> 4.1.0"
 gem "delayed_job_active_record"
-gem "email_validator"
-gem "faker"
-gem "flutie"
 gem "high_voltage"
-gem "i18n-tasks"
-gem "jquery-rails", ">= 4.0.4"
-gem "newrelic_rpm"
 gem "pg"
-gem "rails", "4.2.2"
-gem "recipient_interceptor"
-gem "refills"
-gem "simple_form"
-gem "title"
-gem "uglifier", ">= 2.7.2"
 gem "unicorn"
 
 group :development do
@@ -34,6 +20,8 @@ group :development, :test do
   gem "byebug"
   gem "dotenv-rails"
   gem "factory_girl_rails"
+  gem "faker"
+  gem "i18n-tasks"
   gem "pry-rails"
   gem "rspec-rails", "~> 3.1.0"
 end

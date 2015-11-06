@@ -27,6 +27,7 @@
 * [#193] [BUGFIX] Don't assume that unrecognized db column types are searchable
 * [#194] [BUGFIX] Don't clear out datetime values in form fields
 * [#156] [COMPAT] Include missing `sass-rails` dependency in gemspec
+* [#174] [COMPAT] Make several missing dependencies explicit.
 * [COMPAT] Update repository structure so Bundler can pull the gem from github.
   (e.g. `gem "administrate", github: "thoughtbot/administrate"`)
 * [COMPAT] Use ANSI SQL standards for case-insensitive search
