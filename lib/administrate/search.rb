@@ -18,11 +18,11 @@ module Administrate
     delegate :resource_class, to: :resolver
 
     def query
-      search_attributes.map { |attr| "#{attr} ILIKE ?" }.join(" OR ")
+      search_attributes.map { |attr| "lower(#{attr}) LIKE ?" }.join(" OR ")
     end
 
     def search_terms
-      ["%#{term}%"] * search_attributes.count
+      ["%#{term.downcase}%"] * search_attributes.count
     end
 
     def search_attributes
