@@ -1,6 +1,6 @@
 # Administrate
 
-[![Circle CI](https://circleci.com/gh/thoughtbot/administrate/tree/master.svg?style=svg)](https://circleci.com/gh/thoughtbot/administrate/tree/master)
+[![Circle CI](https://img.shields.io/circleci/project/thoughtbot/administrate/master.svg)](https://circleci.com/gh/thoughtbot/administrate/tree/master)
 [![Gem Version](https://badge.fury.io/rb/administrate.svg)](https://badge.fury.io/rb/administrate)
 [![Code Climate](https://codeclimate.com/github/thoughtbot/administrate/badges/gpa.svg)](https://codeclimate.com/github/thoughtbot/administrate)
 
