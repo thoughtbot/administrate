@@ -15,7 +15,7 @@ Product.destroy_all
   name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
   Customer.create(
     name: name,
-    email: Faker::Internet.free_email(name),
+    email: Faker::Internet.safe_email(name),
   )
 end
 
