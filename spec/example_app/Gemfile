@@ -2,7 +2,11 @@ source "https://rubygems.org"
 
 ruby "2.2.0"
 
-gem "administrate", github: "thoughtbot/administrate"
+if ENV["RACK_ENV"] == "production"
+  gem "administrate", github: "thoughtbot/administrate"
+else
+  gem "administrate", path: "../.."
+end
 
 gem "airbrake"
 gem "coffee-rails", "~> 4.1.0"

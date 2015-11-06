@@ -1,0 +1,6 @@
+/.env
+/.foreman
+/log/*
+/public/assets
+/public/system
+/tmp/*
