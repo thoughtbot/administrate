@@ -8,4 +8,25 @@ describe "sidebar" do
 
     expect(active_link.text).to eq "Customers"
   end
+
+  it "displays translated name of model" do
+    translations = {
+      activerecord: {
+        models: {
+          customer: {
+            one: "User",
+            other: "Users",
+          },
+        },
+      },
+    }
+
+    with_translations(:en, translations) do
+      visit admin_customers_path
+
+      sidebar = find(".sidebar__list")
+      expect(sidebar).to have_link("Users")
+      expect(page).to have_header("Users")
+    end
+  end
 end

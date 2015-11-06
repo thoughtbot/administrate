@@ -20,6 +20,7 @@
 
 * [#251] [FEATURE] Raise a helpful error when an attribute is missing from
   `ATTRIBUTE_TYPES`
+* [#298] [FEATURE] Support ActiveRecord model I18n translations
 * [#231] [UI] Fix layout issue on show page where a long label next to an empty
   value would cause following fields on the page to be mis-aligned.
 * [#259] [BUGFIX] Make installation generator more robust
