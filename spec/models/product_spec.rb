@@ -6,5 +6,20 @@ RSpec.describe Product do
     it { should validate_presence_of(:image_url) }
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:price) }
+
+    it "should not allow names that produce empty slugs" do
+      product = build(:product, name: "???")
+
+      product.validate
+
+      expect(product.errors[:name]).
+        to include("must have letters or numbers for the URL")
+    end
+
+    context "with other products in the database" do
+      subject { build(:product) }
+
+      it { should validate_uniqueness_of(:slug) }
+    end
   end
 end
