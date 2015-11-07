@@ -5,7 +5,7 @@ fr:
       confirm: Êtes-vous sûr ?
       destroy: Supprimer
       edit: Modifier
-      show: Voir
+      show: Détails
     controller:
       create:
         success: "%{resource} a été correctement créé(e)."
