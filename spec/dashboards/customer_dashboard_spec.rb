@@ -23,4 +23,15 @@ describe CustomerDashboard do
         to eq(Field::Number.with_options(prefix: "$", decimals: 2))
     end
   end
+
+  describe "#display_resource" do
+    it "returns the customer's name" do
+      customer = double(name: "Example Customer")
+      dashboard = CustomerDashboard.new
+
+      rendered_resource = dashboard.display_resource(customer)
+
+      expect(rendered_resource).to eq(customer.name)
+    end
+  end
 end

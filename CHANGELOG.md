@@ -16,6 +16,17 @@
 
 ### Upcoming Release
 
+* [#191] [CHANGE] Improve API for specifying how resources are displayed
+  across the dashboard.
+  * Models are now displayed with a sensible default - (e.g. "User #2")
+  * Users can define `ModelDashboard#display_resource(resource)` for custom
+    display behavior
+  * Users who have generated views for the following field types
+    may need to update them to take advantage of the new API:
+    * HasOne
+    * HasMany
+    * PolyMorphic
+    * BelongsTo
 * [#223] [FEATURE] Translation: Vietnamese
 * [#161] [FEATURE] Translation: Mandarin Chinese
 * [#196] [FEATURE] Translation: Taiwanese Mandarin

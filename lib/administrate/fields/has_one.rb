@@ -1,9 +1,8 @@
-require_relative "base"
-require_relative "belongs_to"
+require_relative "associative"
 
 module Administrate
   module Field
-    class HasOne < BelongsTo
+    class HasOne < Associative
       def self.permitted_attribute(attr)
         attr
       end

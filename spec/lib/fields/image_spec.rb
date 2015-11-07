@@ -1,4 +1,3 @@
-require "spec_helper"
 require "administrate/fields/image"
 
 describe Administrate::Field::Image do

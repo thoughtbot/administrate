@@ -1,8 +1,8 @@
-require_relative "base"
+require_relative "associative"
 
 module Administrate
   module Field
-    class BelongsTo < Field::Base
+    class BelongsTo < Associative
       def self.permitted_attribute(attr)
         :"#{attr}_id"
       end
@@ -11,14 +11,20 @@ module Administrate
         self.class.permitted_attribute(attribute)
       end
 
-      def candidate_records
-        Object.const_get(associated_class_name).all
+      def associated_resource_options
+        candidate_resources.map do |resource|
+          [display_candidate_resource(resource), resource.id]
+        end
       end
 
       private
 
-      def associated_class_name
-        options.fetch(:class_name, attribute.to_s.camelcase)
+      def candidate_resources
+        associated_class.all
+      end
+
+      def display_candidate_resource(resource)
+        associated_dashboard.display_resource(resource)
       end
     end
   end

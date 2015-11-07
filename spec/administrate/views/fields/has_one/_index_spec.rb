@@ -1,13 +1,13 @@
 require "rails_helper"
 
-describe "fields/polymorphic/_index", type: :view do
+describe "fields/has_one/_index", type: :view do
   context "without an associated records" do
     it "displays nothing" do
-      polymorphic = double(data: nil)
+      has_one = double(data: nil)
 
       render(
-        partial: "fields/polymorphic/index.html.erb",
-        locals: { field: polymorphic },
+        partial: "fields/has_one/index.html.erb",
+        locals: { field: has_one },
       )
 
       expect(rendered.strip).to eq("")
@@ -18,15 +18,15 @@ describe "fields/polymorphic/_index", type: :view do
     it "renders a link to the record" do
       product = create(:product)
       product_path = polymorphic_path([:admin, product])
-      polymorphic = instance_double(
-        "Administrate::Field::Polymorphic",
+      has_one = instance_double(
+        "Administrate::Field::HasOne",
         data: product,
         display_associated_resource: product.name,
       )
 
       render(
-        partial: "fields/polymorphic/index.html.erb",
-        locals: { field: polymorphic },
+        partial: "fields/has_one/index.html.erb",
+        locals: { field: has_one },
       )
 
       expected = "<a href=\"#{product_path}\">#{product.name}</a>"

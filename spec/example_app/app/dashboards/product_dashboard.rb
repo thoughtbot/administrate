@@ -20,4 +20,8 @@ class ProductDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = ATTRIBUTES
   FORM_ATTRIBUTES = ATTRIBUTES
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTES
+
+  def display_resource(resource)
+    resource.name
+  end
 end

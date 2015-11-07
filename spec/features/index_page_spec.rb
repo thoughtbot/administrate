@@ -17,7 +17,7 @@ describe "customer index page" do
     visit admin_customers_path
     click_row_for(customer)
 
-    expect(page).to have_header(customer.to_s)
+    expect(page).to have_header(displayed(customer))
     expect(page).to have_content(customer.name)
     expect(page).to have_content(customer.email)
   end

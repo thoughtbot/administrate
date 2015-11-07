@@ -1,9 +1,9 @@
-require_relative "base"
+require_relative "associative"
 require "administrate/page/collection"
 
 module Administrate
   module Field
-    class HasMany < Field::Base
+    class HasMany < Associative
       DEFAULT_LIMIT = 5
 
       def self.permitted_attribute(attribute)
@@ -18,8 +18,10 @@ module Administrate
         permitted_attribute.keys.first
       end
 
-      def candidate_records
-        Object.const_get(associated_class_name).all
+      def associated_resource_options
+        candidate_resources.map do |resource|
+          [display_candidate_resource(resource), resource.id]
+        end
       end
 
       def limit
@@ -40,12 +42,12 @@ module Administrate
 
       private
 
-      def associated_dashboard
-        Object.const_get("#{associated_class_name}Dashboard").new
+      def candidate_resources
+        associated_class.all
       end
 
-      def associated_class_name
-        options.fetch(:class_name, attribute.to_s.singularize.camelcase)
+      def display_candidate_resource(resource)
+        associated_dashboard.display_resource(resource)
       end
     end
   end

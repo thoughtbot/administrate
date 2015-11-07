@@ -17,9 +17,6 @@ that displays all possible records to associate with.
 %>
 
 <%= f.label field.permitted_attribute %>
-<%= f.collection_select(
-  field.permitted_attribute,
-  field.candidate_records,
-  :id,
-  :to_s,
-) %>
+<%= f.select(field.permitted_attribute) do %>
+  <%= options_for_select(field.associated_resource_options) %>
+<% end %>

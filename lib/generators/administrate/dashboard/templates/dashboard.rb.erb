@@ -40,4 +40,11 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   end.join("\n")
 %>
   ]
+
+  # Overwrite this method to customize how <%= file_name.pluralize.humanize.downcase %> are displayed
+  # across all pages of the admin dashboard.
+  #
+  # def display_resource(<%= file_name %>)
+  #   "<%= class_name %> ##{<%= file_name %>.id}"
+  # end
 end

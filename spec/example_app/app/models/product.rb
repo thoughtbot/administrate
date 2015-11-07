@@ -6,10 +6,6 @@ class Product < ActiveRecord::Base
   validates :slug, uniqueness: true
   validate :valid_slug
 
-  def to_s
-    name
-  end
-
   def name=(value)
     self.slug = value.to_s.parameterize
     super(value)

@@ -1,8 +1,8 @@
-require_relative "base"
+require_relative "associative"
 
 module Administrate
   module Field
-    class Polymorphic < Base
+    class Polymorphic < Associative
     end
   end
 end

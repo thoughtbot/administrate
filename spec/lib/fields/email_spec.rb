@@ -1,4 +1,3 @@
-require "spec_helper"
 require "administrate/fields/email"
 
 describe Administrate::Field::Email do

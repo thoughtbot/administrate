@@ -39,7 +39,7 @@ RSpec.describe "customer show page" do
 
     click_row_for(order)
 
-    expect(page).to have_header(order.to_s)
+    expect(page).to have_header(displayed(order))
   end
 
   it "link-ifies the email" do
@@ -56,6 +56,6 @@ RSpec.describe "customer show page" do
     visit admin_customer_path(customer)
     click_on "Edit"
 
-    expect(page).to have_header("Edit #{customer}")
+    expect(page).to have_header("Edit #{displayed(customer)}")
   end
 end

@@ -7,10 +7,6 @@ class LineItem < ActiveRecord::Base
   validates :unit_price, presence: true
   validates :quantity, presence: true
 
-  def to_s
-    "Line Item #%04d" % id
-  end
-
   def total_price
     unit_price * quantity
   end

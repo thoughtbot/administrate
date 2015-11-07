@@ -7,8 +7,4 @@ class Customer < ActiveRecord::Base
   def lifetime_value
     orders.map(&:total_price).reduce(0, :+)
   end
-
-  def to_s
-    name
-  end
 end

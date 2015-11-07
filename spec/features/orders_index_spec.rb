@@ -14,7 +14,7 @@ feature "order index page" do
     order = create(:order)
 
     visit admin_orders_path
-    click_on(order.customer.to_s)
+    click_on(displayed(order.customer))
 
     expect(page).to have_header(order.customer.name)
   end
@@ -25,7 +25,7 @@ feature "order index page" do
     visit admin_orders_path
     click_row_for(order)
 
-    expect(page).to have_header(order.to_s)
+    expect(page).to have_header(displayed(order))
     expect(page).to have_link(order.customer.name)
   end
 

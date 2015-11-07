@@ -18,7 +18,7 @@ By default, the relationship is rendered as a link to the associated object.
 
 <% if field.data %>
   <%= link_to(
-    field.data.to_s,
-    polymorphic_path([:admin, field.data])
+    field.display_associated_resource,
+    [:admin, field.data],
   ) %>
 <% end %>

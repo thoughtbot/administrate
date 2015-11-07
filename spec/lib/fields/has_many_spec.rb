@@ -1,4 +1,3 @@
-require "spec_helper"
 require "administrate/fields/has_many"
 require "support/constant_helpers"
 require "support/mock_relation"
@@ -18,12 +17,17 @@ describe Administrate::Field::HasMany do
 
   describe "#associated_collection" do
     it "returns an index page for the dashboard of the associated attribute" do
-      orders = []
-      field = Administrate::Field::HasMany.new(:orders, orders, :show)
+      begin
+        WidgetDashboard = Class.new
+        widgets = []
+        field = Administrate::Field::HasMany.new(:widgets, widgets, :show)
 
-      page = field.associated_collection
+        page = field.associated_collection
 
-      expect(page).to be_instance_of(Administrate::Page::Collection)
+        expect(page).to be_instance_of(Administrate::Page::Collection)
+      ensure
+        remove_constants :WidgetDashboard
+      end
     end
   end
 

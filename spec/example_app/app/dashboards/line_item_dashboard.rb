@@ -21,4 +21,8 @@ class LineItemDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = ATTRIBUTES + [:total_price]
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTES + [:total_price]
   FORM_ATTRIBUTES = ATTRIBUTES
+
+  def display_resource(line_item)
+    "Line Item #%04d" % line_item.id
+  end
 end

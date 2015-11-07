@@ -17,7 +17,7 @@ module Administrate
       end
 
       def page_title
-        resource.to_s
+        dashboard.display_resource(resource)
       end
 
       protected

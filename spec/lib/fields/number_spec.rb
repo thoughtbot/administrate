@@ -1,4 +1,3 @@
-require "spec_helper"
 require "administrate/fields/number"
 require "support/field_matchers"
 

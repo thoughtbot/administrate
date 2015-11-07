@@ -14,4 +14,8 @@ class CustomerDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = ATTRIBUTE_TYPES.keys
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys - [:name]
   FORM_ATTRIBUTES = [:name, :email, :email_subscriber]
+
+  def display_resource(customer)
+    customer.name
+  end
 end

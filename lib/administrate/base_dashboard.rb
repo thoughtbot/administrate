@@ -35,5 +35,9 @@ module Administrate
     def collection_attributes
       self.class::COLLECTION_ATTRIBUTES
     end
+
+    def display_resource(resource)
+      "#{resource.class} ##{resource.id}"
+    end
   end
 end
