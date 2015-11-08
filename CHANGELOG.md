@@ -21,6 +21,7 @@
 * [#171] [FEATURE] Translation: Polish
 * [#153] [FEATURE] Translation: Russian
 * [#148] [FEATURE] Translation: French
+* [#193] [BUGFIX] Don't assume that unrecognized db column types are searchable
 * [#156] [COMPAT] Include missing `sass-rails` dependency in gemspec
 * [COMPAT] Update repository structure so Bundler can pull the gem from github.
   (e.g. `gem "administrate", github: "thoughtbot/administrate"`)

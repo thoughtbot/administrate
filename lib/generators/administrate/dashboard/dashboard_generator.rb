@@ -11,13 +11,14 @@ module Administrate
         integer: "Field::Number",
         time: "Field::DateTime",
         text: "Field::Text",
+        string: "Field::String",
       }
 
       ATTRIBUTE_OPTIONS_MAPPING = {
         float: { decimals: 2 },
       }
 
-      DEFAULT_FIELD_TYPE = "Field::String"
+      DEFAULT_FIELD_TYPE = "Field::String.with_options(searchable: false)"
       COLLECTION_ATTRIBUTE_LIMIT = 4
       READ_ONLY_ATTRIBUTES = %w[id created_at updated_at]
 

@@ -36,12 +36,44 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       end
 
       it "includes user-defined database columns" do
-        dashboard = file("app/dashboards/customer_dashboard.rb")
+        begin
+          ActiveRecord::Schema.define do
+            create_table(:foos) { |t| t.string :name }
+          end
 
-        run_generator ["customer"]
+          class Foo < ActiveRecord::Base
+            reset_column_information
+          end
 
-        expect(dashboard).to contain("name: Field::String,")
-        expect(dashboard).to contain("email: Field::String,")
+          run_generator ["foo"]
+          load file("app/dashboards/foo_dashboard.rb")
+          attrs = FooDashboard::ATTRIBUTE_TYPES
+
+          expect(attrs[:name]).to eq(Administrate::Field::String)
+        ensure
+          remove_constants :Foo, :FooDashboard
+        end
+      end
+
+      it "defaults to a string column that is not searchable" do
+        begin
+          ActiveRecord::Schema.define do
+            create_table(:foos) { |t| t.inet :ip_address }
+          end
+
+          class Foo < ActiveRecord::Base
+            reset_column_information
+          end
+
+          run_generator ["foo"]
+          load file("app/dashboards/foo_dashboard.rb")
+          attrs = FooDashboard::ATTRIBUTE_TYPES
+
+          expect(attrs[:ip_address]).
+            to eq(Administrate::Field::String.with_options(searchable: false))
+        ensure
+          remove_constants :Foo, :FooDashboard
+        end
       end
 
       it "includes has_many relationships" do

@@ -16,10 +16,13 @@ module Administrate
         deferred_class == other.deferred_class && options == other.options
       end
 
+      def searchable?
+        options.fetch(:searchable, deferred_class.searchable?)
+      end
+
       delegate(
         :html_class,
         :permitted_attribute,
-        :searchable?,
         to: :deferred_class,
       )
     end
