@@ -4,6 +4,7 @@ require File.expand_path("../../spec/example_app/config/environment", __FILE__)
 
 require "rspec/rails"
 require "shoulda/matchers"
+require "capybara/poltergeist"
 
 Dir[Rails.root.join("../../spec/support/**/*.rb")].each { |file| require file }
 
@@ -21,7 +22,5 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 end
 
-Capybara::Webkit.configure(&:block_unknown_urls)
-
 ActiveRecord::Migration.maintain_test_schema!
-Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :poltergeist

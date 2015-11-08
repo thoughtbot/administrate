@@ -57,16 +57,6 @@ describe "order form" do
   end
 
   describe "datetime field" do
-    pending "correctly parses dates" do
-      order = create(:order)
-
-      visit edit_admin_order_path(order)
-      fill_in("Shipped at", with: "09/03/2015 7:18 AM")
-      click_on "Update Order"
-
-      expect(page).to have_content("Thu, Sep 3, 2015 at 07:18:00 AM")
-    end
-
     it "responds to the date/time picker date format", :js do
       order = create(:order)
 
@@ -75,6 +65,16 @@ describe "order form" do
       click_on "Update Order"
 
       expect(page).to have_content("Fri, Jan 2, 2015 at 03:04:05 AM")
+    end
+
+    it "populates and persists the existing value", :js do
+      time = Time.new(2015, 01, 02, 03, 04, 05)
+      order = create(:order, shipped_at: time)
+
+      visit edit_admin_order_path(order)
+      click_on "Update Order"
+
+      expect(order.reload.shipped_at).to eq(time)
     end
 
     def select_from_datepicker(time)
