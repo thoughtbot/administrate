@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 require "generators/administrate/install/install_generator"
 require "support/generator_spec_helpers"
 require "support/constant_helpers"

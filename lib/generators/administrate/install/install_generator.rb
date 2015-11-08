@@ -30,6 +30,18 @@ module Administrate
         end
       end
 
+      def warn_about_invalid_models
+        namespaced_models.each do |invalid_model|
+          puts "WARNING: Unable to generate a dashboard for #{invalid_model}."
+          puts "         Administrate does not yet support namespaced models."
+        end
+
+        models_without_tables.each do |invalid_model|
+          puts "WARNING: Unable to generate a dashboard for #{invalid_model}."
+          puts "         It is not connected to a database table."
+        end
+      end
+
       private
 
       def singular_dashboard_resources
@@ -43,11 +55,23 @@ module Administrate
       end
 
       def valid_dashboard_models
-        database_models.reject { |model| model.to_s.include?("::") }
+        database_models - invalid_database_models
       end
 
       def database_models
-        ActiveRecord::Base.descendants.select(&:table_exists?)
+        ActiveRecord::Base.descendants
+      end
+
+      def invalid_database_models
+        models_without_tables + namespaced_models
+      end
+
+      def models_without_tables
+        database_models.reject(&:table_exists?)
+      end
+
+      def namespaced_models
+        database_models.select { |model| model.to_s.include?("::") }
       end
 
       def dashboard_routes
