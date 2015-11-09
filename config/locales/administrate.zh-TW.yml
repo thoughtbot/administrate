@@ -1,0 +1,23 @@
+---
+zh-TW:
+  administrate:
+    actions:
+      confirm: 確定？
+      destroy: 刪除
+      edit: 編輯
+      show: 檢視
+    controller:
+      create:
+        success: "已成功新增 %{resource}。"
+      destroy:
+        success: "已成功刪除 %{resource}。"
+      update:
+        success: "已成功更新 %{resource}。"
+    fields:
+      has_many:
+        more: 顯示 %{total_count} 筆中的 %{count} 筆資料
+        none: 無
+      polymorphic:
+        not_supported: 很抱歉，表單尚未支援 Polymorphic 關聯。
+      has_one:
+        not_supported: 很抱歉，表單尚未支援 HasOne 關聯。
