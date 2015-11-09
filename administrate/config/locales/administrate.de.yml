@@ -1,0 +1,23 @@
+---
+de:
+  administrate:
+    actions:
+      confirm: Sind sie sicher?
+      destroy: Löschen
+      edit: Editieren
+      show: Anzeigen
+    controller:
+      create:
+        success: "%{resource} wurde erfolgreich erstellt."
+      destroy:
+        success: "%{resource} wurde erfolgreich gelöscht."
+      update:
+        success: "%{resource} wurde erfolgreich aktualisiert."
+    fields:
+      has_many:
+        more: %{count} von %{total_count}
+        none: Keine
+      polymorphic:
+        not_supported: Polymorphe Beziehungen werden noch nicht unterstützt. Sorry!
+      has_one:
+        not_supported: HasOne-beziehungen werden noch nicht unterstützt. Sorry!
