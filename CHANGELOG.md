@@ -17,6 +17,7 @@
 ### Upcoming Release
 
 * [#161] [FEATURE] Translation: Mandarin Chinese
+* [#196] [FEATURE] Translation: Taiwanese Mandarin
 * [#142] [FEATURE] Translation: Brazilian Portuguese
 * [#171] [FEATURE] Translation: Polish
 * [#153] [FEATURE] Translation: Russian
