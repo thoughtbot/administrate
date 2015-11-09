@@ -11,6 +11,10 @@
     padding-top: $base-spacing;
     transition: color 0.05s linear;
 
+    &:last-child {
+      padding-bottom: $base-spacing;
+    }
+
     &--active {
       color: $blue;
       font-weight: $bold-font-weight;
