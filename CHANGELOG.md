@@ -16,6 +16,7 @@
 
 ### Upcoming Release
 
+* [UI] Fix menu style for the sidebar
 * [#161] [FEATURE] Translation: Mandarin Chinese
 * [#142] [FEATURE] Translation: Brazilian Portuguese
 * [#171] [FEATURE] Translation: Polish
