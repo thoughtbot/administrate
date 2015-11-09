@@ -16,6 +16,7 @@
 
 ### Upcoming Release
 
+* [UI] Fixed pagination styles if kaminari already used in Rails-app
 * [#161] [FEATURE] Translation: Mandarin Chinese
 * [#142] [FEATURE] Translation: Brazilian Portuguese
 * [#171] [FEATURE] Translation: Polish

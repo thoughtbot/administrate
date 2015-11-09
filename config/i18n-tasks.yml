@@ -4,6 +4,8 @@ search:
     - "app/helpers"
     - "app/pages"
     - "app/views"
+  exclude:
+    - "app/views/administrate/kaminari"
 
 data:
   read:

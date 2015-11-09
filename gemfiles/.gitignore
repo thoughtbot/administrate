@@ -1,1 +1,3 @@
 *.gemfile.lock
+.bundle
+vendor
