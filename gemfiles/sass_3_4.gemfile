@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby "2.2.0"
+ruby "2.2.3"
 
 gem "delayed_job_active_record"
 gem "high_voltage"
@@ -34,6 +34,7 @@ group :test do
   gem "formulaic"
   gem "fuubar"
   gem "launchy"
+  gem "percy-capybara"
   gem "shoulda-matchers", "~> 2.8.0", :require => false
   gem "timecop"
   gem "webmock"
@@ -42,6 +43,7 @@ end
 group :staging, :production do
   gem "rack-timeout"
   gem "rails_stdout_logging"
+  gem "uglifier"
 end
 
 gemspec :path => "../"
