@@ -26,6 +26,7 @@
 * [#309] [UI] Fix layout issue in datetime pickers where months and years
   would not wrap correctly.
 * [#306] [UI] Wrap long text lines (on word breaks) on show pages
+* [#214] [UI] Improve header layout when there is a long page title
 * [#259] [BUGFIX] Make installation generator more robust
   by ignoring dynamically generated, unnamed models
 * [#243] [BUGFIX] Fix up a "Show" button on the edit page that was not using the
