@@ -1,0 +1,23 @@
+---
+nl:
+  administrate:
+    actions:
+      confirm: Weet u het zeker?
+      destroy: Verwijder
+      edit: Bewerk
+      show: Toon
+    controller:
+      create:
+        success: "%{resource} was succesvol aangemaakt."
+      destroy:
+        success: "%{resource} was succesvol verwijderd."
+      update:
+        success: "%{resource} was succesvol geupdated."
+    fields:
+      has_many:
+        more: Resultaat %{count} van %{total_count}
+        none: Geen
+      polymorphic:
+        not_supported: Polymorphische relaties formulieren worden nog niet ondersteund. Sorry!
+      has_one:
+        not_supported: HasOne relaties formulieren worden nog niet ondersteund. Sorry!
