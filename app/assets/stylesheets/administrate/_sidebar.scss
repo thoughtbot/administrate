@@ -4,11 +4,15 @@
   overflow-y: auto;
   padding: 0 $base-spacing;
 
+  &__list li:first-child a {
+    padding-top: $base-spacing;
+  }
+
   &__link {
     @include fill-parent;
     color: $base-font-color;
     display: block;
-    padding-top: $base-spacing;
+    padding-bottom: $base-spacing;
     transition: color 0.05s linear;
 
     &--active {
