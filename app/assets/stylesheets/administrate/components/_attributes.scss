@@ -3,6 +3,7 @@
   @include span-columns(2 of 12);
   margin-top: 0;
   text-align: right;
+  clear: left;
 }
 
 .preserve-whitespace {
