@@ -7,6 +7,9 @@
 A Rails engine that helps you put together a super-flexible admin dashboard.
 [Try the demo][demo].
 
+> Note: Administrate is still pre-1.0,
+> and there may be occasional breaking changes to the API.
+
 ![administrate](https://images.thoughtbot.com/announcing-administrate/DdP2CQfnSE23PI8AAnDc_Administrate.png)
 
 ## Guiding Principles
@@ -33,7 +36,7 @@ Add Administrate to your Gemfile:
 
 ```ruby
 # Gemfile
-gem "administrate"
+gem "administrate", "~> 0.1.1"
 ```
 
 Re-bundle, then run the installer:

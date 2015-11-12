@@ -10,11 +10,14 @@
 * `[BUGFIX]`: Fixes a bug with a non-breaking change.
 * `[COMPAT]`: Compatibility improvements - changes to make Administrate more
   compatible with different dependency versions.
+* `[I18n]`: Internationalization. Changes to translations or localizations.
 * `[DOC]`: Documentation changes. No changes to the library's behavior.
 
 ## Changes
 
 ### Upcoming Release
+
+### 0.1.1 (November 12, 2015)
 
 * [#191] [CHANGE] Improve API for specifying how resources are displayed
   across the dashboard.
@@ -25,29 +28,29 @@
     may need to update them to take advantage of the new API:
     * HasOne
     * HasMany
-    * PolyMorphic
+    * Polymorphic
     * BelongsTo
-* [#223] [FEATURE] Translation: Vietnamese
-* [#161] [FEATURE] Translation: Mandarin Chinese
-* [#196] [FEATURE] Translation: Taiwanese Mandarin
-* [#142] [FEATURE] Translation: Brazilian Portuguese
-* [#171] [FEATURE] Translation: Polish
-* [#153] [FEATURE] Translation: Russian
-* [#148] [FEATURE] Translation: French
-* [#147] [FEATURE] Translation: German
-* [#193] [BUGFIX] Don't assume that unrecognized db column types are searchable
+* [#126] [UI] Preserve whitespace when rendering text fields
 * [#194] [BUGFIX] Don't clear out datetime values in form fields
+* [#193] [BUGFIX] Don't assume that unrecognized db column types are searchable
+* [#124] [BUGFIX] Better detection of application models
 * [#156] [COMPAT] Include missing `sass-rails` dependency in gemspec
 * [#174] [COMPAT] Make several missing dependencies explicit.
-* [COMPAT] Update repository structure so Bundler can pull the gem from github.
+* [#144] [COMPAT] Update repository structure so Bundler can pull the gem from github.
   (e.g. `gem "administrate", github: "thoughtbot/administrate"`)
-* [COMPAT] Use ANSI SQL standards for case-insensitive search
-* [DOC] Add Rubygems version badge to README
-* [#124] [BUGFIX] Better detection of application models
-* [DOC] Add CircleCI badge to README
-* [DOC] Add CodeClimate badge to README
-* [UI] Preserve whitespace when rendering text fields
-* [#154] [FEATURE] Add Spanish translation for i18n
+* [#166] [COMPAT] Use ANSI SQL standards for case-insensitive search
+* [#223] [I18n] Vietnamese
+* [#161] [I18n] Mandarin Chinese
+* [#196] [I18n] Taiwanese Mandarin
+* [#142] [I18n] Brazilian Portuguese
+* [#171] [I18n] Polish
+* [#153] [I18n] Russian
+* [#148] [I18n] French
+* [#147] [I18n] German
+* [#154] [I18n] Spanish
+* [#120] [DOC] Add Rubygems version badge to README
+* [#165] [DOC] Add CircleCI badge to README
+* [#119] [DOC] Add CodeClimate badge to README
 
 ### 0.1.0 (October 30, 2015)
 
