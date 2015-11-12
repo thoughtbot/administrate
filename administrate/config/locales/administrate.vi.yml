@@ -1,0 +1,23 @@
+---
+vi:
+  administrate:
+    actions:
+      confirm: Bạn có chắc không?
+      destroy: Xóa
+      edit: Sửa
+      show: Xem
+    controller:
+      create:
+        success: "%{resource} đã được tạo thành công."
+      destroy:
+        success: "%{resource} đã được xóa thành công."
+      update:
+        success: "%{resource} đã được cập nhật thành công."
+    fields:
+      has_many:
+        more: "%{count} trên %{total_count}"
+        none: Không
+      polymorphic:
+        not_supported: Quan hệ Polymorphic chưa được hỗ trợ. Xin lỗi!
+      has_one:
+        not_supported: Quan hệ HasOne chưa được hỗ trợ. Xin lỗi!
