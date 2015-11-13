@@ -17,6 +17,8 @@
 
 ### Upcoming Release
 
+* [#237] [I18n] Fix broken paths for several I18n files (de, es, fr, pt-BR, vi).
+
 ### 0.1.1 (November 12, 2015)
 
 * [#191] [CHANGE] Improve API for specifying how resources are displayed
