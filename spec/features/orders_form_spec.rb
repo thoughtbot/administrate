@@ -60,6 +60,16 @@ describe "order form" do
       )
     end
 
+    it "has stored values selected" do
+      order = create(:order)
+      create_list(:line_item, 3, order: order)
+
+      visit edit_admin_order_path(order)
+      expect(find("#order_line_item_ids").value).to eq(
+        order.line_items.pluck(:id).map(&:to_s)
+      )
+    end
+
     def find_option(associated_model, field_id)
       field = find("#order_" + field_id)
       field.find("option", text: displayed(associated_model))
