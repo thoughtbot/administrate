@@ -17,6 +17,8 @@
 
 ### Upcoming Release
 
+* [#247] [BUGFIX] Populate `has_many` and `belongs_to` select boxes
+  with the current value of the relationship.
 * [#237] [I18n] Fix broken paths for several I18n files (de, es, fr, pt-BR, vi).
 
 ### 0.1.1 (November 12, 2015)
