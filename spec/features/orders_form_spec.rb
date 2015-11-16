@@ -19,6 +19,16 @@ describe "order form" do
     )
   end
 
+  describe "belongs_to relationships" do 
+    it 'uses the stored value as the selected value' do 
+      order = create(:order)
+      customer = order.customer
+
+      visit edit_admin_order_path(order)
+      expect(page).to have_select('Customer', selected: customer.name)
+    end
+  end
+
   describe "has_many relationships" do
     it "can select multiple options" do
       order = create(:order)
