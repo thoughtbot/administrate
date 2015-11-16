@@ -31,15 +31,12 @@ describe "order form" do
     it "pre-fills belongs_to select boxes" do
       create(:customer)
       order = create(:order)
-
+      
       visit edit_admin_order_path(order)
       value = find("select[name='order[customer_id]']").value
-
       expect(value).to eq(order.customer_id.to_s)
-    end 
+    end
   end
-
-
 
   describe "has_many relationships" do
     it "can select multiple options" do
