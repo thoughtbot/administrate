@@ -19,6 +19,7 @@
 
 * [#251] [FEATURE] Raise a helpful error when an attribute is missing from
   `ATTRIBUTE_TYPES`
+* [#248] [BUGFIX] Improve polymorphic relationship's dashboard class detection.
 * [#247] [BUGFIX] Populate `has_many` and `belongs_to` select boxes
   with the current value of the relationship.
 * [#237] [I18n] Fix broken paths for several I18n files (de, es, fr, pt-BR, vi).
