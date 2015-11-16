@@ -21,6 +21,8 @@
   `ATTRIBUTE_TYPES`
 * [#231] [UI] Fix layout issue on show page where a long label next to an empty
   value would cause following fields on the page to be mis-aligned.
+* [#243] [BUGFIX] Fix up a "Show" button on the edit page that was not using the
+  `display_resource` method.
 * [#248] [BUGFIX] Improve polymorphic relationship's dashboard class detection.
 * [#247] [BUGFIX] Populate `has_many` and `belongs_to` select boxes
   with the current value of the relationship.

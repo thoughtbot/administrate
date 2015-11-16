@@ -9,6 +9,14 @@ describe "customer edit page" do
     expect(page).to have_header("Edit #{customer.name}")
   end
 
+  it "has button to view customer details" do
+    customer = create(:customer)
+
+    visit edit_admin_customer_path(customer)
+
+    expect(page).to have_link("Show #{displayed(customer)}")
+  end
+
   it "has forms for the customer's attributes" do
     customer = create(:customer)
 
