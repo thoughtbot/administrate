@@ -24,6 +24,10 @@ module Administrate
         end
       end
 
+      def selected_options
+        data && data.map(&:id)
+      end
+
       def limit
         options.fetch(:limit, DEFAULT_LIMIT)
       end

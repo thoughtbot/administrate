@@ -19,6 +19,17 @@ describe "order form" do
     )
   end
 
+  describe "belongs_to relationships" do
+    it "has stored value selected" do
+      create(:customer)
+      order = create(:order)
+
+      visit edit_admin_order_path(order)
+      expected = order.customer.id.to_s
+      expect(find_field("Customer").value).to eq expected
+    end
+  end
+
   describe "has_many relationships" do
     it "can select multiple options" do
       order = create(:order)
@@ -48,6 +59,16 @@ describe "order form" do
       expect(page).to have_flash(
         t("administrate.controller.update.success", resource: "Order")
       )
+    end
+
+    it "has stored values selected" do
+      order = create(:order)
+      create_list(:line_item, 3, order: order)
+
+      visit edit_admin_order_path(order)
+
+      expected = order.line_items.pluck(:id).map(&:to_s)
+      expect(find("#order_line_item_ids").value).to eq expected
     end
 
     def find_option(associated_model, field_id)

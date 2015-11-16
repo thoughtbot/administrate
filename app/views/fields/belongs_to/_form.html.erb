@@ -18,5 +18,5 @@ that displays all possible records to associate with.
 
 <%= f.label field.permitted_attribute %>
 <%= f.select(field.permitted_attribute) do %>
-  <%= options_for_select(field.associated_resource_options) %>
+  <%= options_for_select(field.associated_resource_options, field.selected_option) %>
 <% end %>

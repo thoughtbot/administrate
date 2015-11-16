@@ -17,6 +17,10 @@ module Administrate
         end
       end
 
+      def selected_option
+        data && data.id
+      end
+
       private
 
       def candidate_resources

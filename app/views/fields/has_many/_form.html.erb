@@ -22,5 +22,5 @@ and is augmented with [Selectize].
 <%= f.label field.attribute_key %>
 
 <%= f.select(field.attribute_key, nil, {}, multiple: true) do %>
-  <%= options_for_select(field.associated_resource_options) %>
+  <%= options_for_select(field.associated_resource_options, field.selected_options) %>
 <% end %>
