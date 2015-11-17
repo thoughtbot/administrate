@@ -15,10 +15,8 @@ module Administrate
 
       def attribute_field(dashboard, resource, attribute_name, page)
         value = get_attribute_value(resource, attribute_name)
-
-        dashboard.
-          attribute_types[attribute_name].
-          new(attribute_name, value, page)
+        field = dashboard.attribute_type_for(attribute_name)
+        field.new(attribute_name, value, page)
       end
 
       def get_attribute_value(resource, attribute_name)

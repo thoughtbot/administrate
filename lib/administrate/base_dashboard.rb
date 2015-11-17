@@ -18,6 +18,18 @@ module Administrate
       self.class::ATTRIBUTE_TYPES
     end
 
+    def attribute_type_for(attribute_name)
+      attribute_types.fetch(attribute_name) do
+        fail attribute_not_found_message(attribute_name)
+      end
+    end
+
+    def attribute_types_for(attribute_names)
+      attribute_names.each_with_object({}) do |name, attributes|
+        attributes[name] = attribute_type_for(name)
+      end
+    end
+
     def form_attributes
       self.class::FORM_ATTRIBUTES
     end
@@ -38,6 +50,12 @@ module Administrate
 
     def display_resource(resource)
       "#{resource.class} ##{resource.id}"
+    end
+
+    private
+
+    def attribute_not_found_message(attr)
+      "Attribute #{attr} could not be found in #{self.class}::ATTRIBUTE_TYPES"
     end
   end
 end
