@@ -19,7 +19,7 @@ describe "order form" do
     )
   end
 
-  describe "belongs_to relationships" do 
+  describe "belongs_to relationships" do
     it "uses the stored value as the selected value" do
       order = create(:order)
       customer = order.customer
@@ -31,7 +31,6 @@ describe "order form" do
     it "pre-fills belongs_to select boxes" do
       create(:customer)
       order = create(:order)
-      
       visit edit_admin_order_path(order)
       value = find("select[name='order[customer_id]']").value
       expect(value).to eq(order.customer_id.to_s)
