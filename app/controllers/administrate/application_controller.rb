@@ -8,7 +8,7 @@ module Administrate
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
       render locals: {
-        resources: resources.page(params[:page]).per(records_per_page),
+        resources: resources,
         search_term: search_term,
         page: page,
       }
