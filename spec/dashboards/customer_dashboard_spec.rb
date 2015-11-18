@@ -24,6 +24,10 @@ describe CustomerDashboard do
     end
   end
 
+  def missing_attribute_message(attribute, dashboard_class)
+    "Attribute #{attribute} could not be found in #{dashboard_class}::ATTRIBUTE_TYPES"
+  end
+
   describe "#attribute_type_for" do
     context "for an existing attribute" do
       it "returns the attribute field" do
@@ -37,7 +41,7 @@ describe CustomerDashboard do
       it "raises an exception" do
         dashboard = CustomerDashboard.new
         expect { dashboard.attribute_type_for(:foo) }.
-          to raise_error /Attribute foo not in CustomerDashboard/
+          to raise_error missing_attribute_message("foo", "CustomerDashboard")
       end
     end
   end
@@ -58,7 +62,7 @@ describe CustomerDashboard do
       it "raises an exception" do
         dashboard = CustomerDashboard.new
         expect { dashboard.attribute_types_for(:name, :foo) }.
-          to raise_error /Attribute foo not in CustomerDashboard/
+          to raise_error missing_attribute_message("foo", "CustomerDashboard")
       end
     end
   end

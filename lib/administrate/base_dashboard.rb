@@ -20,7 +20,7 @@ module Administrate
 
     def attribute_type_for(attribute_name)
       attribute_types.fetch(attribute_name) do
-        fail "Attribute #{attribute_name} not in #{self.class}::ATTRIBUTE_TYPES"
+        fail "Attribute #{attribute_name} could not be found in #{self.class}::ATTRIBUTE_TYPES"
       end
     end
 
