@@ -30,6 +30,7 @@ describe Administrate::Field::Polymorphic do
 
         field = Administrate::Field::Polymorphic.new(:foo, Thing.new, :show)
         display = field.display_associated_resource
+
         expect(display).to eq :success
       ensure
         remove_constants :Thing, :ThingDashboard
