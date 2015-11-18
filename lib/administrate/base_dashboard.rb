@@ -20,7 +20,7 @@ module Administrate
 
     def attribute_type_for(attribute_name)
       attribute_types.fetch(attribute_name) do
-        fail "Attribute #{attribute_name} could not be found in #{self.class}::ATTRIBUTE_TYPES"
+        fail attribute_not_found_message(attribute_name)
       end
     end
 
@@ -50,6 +50,12 @@ module Administrate
 
     def display_resource(resource)
       "#{resource.class} ##{resource.id}"
+    end
+
+    private
+
+    def attribute_not_found_message(attr)
+      "Attribute #{attr} could not be found in #{self.class}::ATTRIBUTE_TYPES"
     end
   end
 end
