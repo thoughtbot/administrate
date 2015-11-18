@@ -15,14 +15,7 @@ module Administrate
 
       def attribute_field(dashboard, resource, attribute_name, page)
         value = get_attribute_value(resource, attribute_name)
-
-        field = dashboard.attribute_types.fetch(attribute_name) do
-          fail <<-ERROR_MESSAGE.strip_heredoc
-          Attribute :#{attribute_name} not found in #{dashboard.class}.
-          Perhaps you misspelled it or it is missing in
-          #{dashboard.class}::ATTRIBUTE_TYPES?
-          ERROR_MESSAGE
-        end
+        field = dashboard.attribute_type_for(attribute_name)
         field.new(attribute_name, value, page)
       end
 

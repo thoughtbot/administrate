@@ -18,6 +18,18 @@ module Administrate
       self.class::ATTRIBUTE_TYPES
     end
 
+    def attribute_type_for(attribute_name)
+      attribute_types.fetch(attribute_name) do
+        fail "Attribute #{attribute_name} not in #{self.class}::ATTRIBUTE_TYPES"
+      end
+    end
+
+    def attribute_types_for(*attribute_names)
+      attribute_names.each_with_object({}) do |name, attributes|
+        attributes[name] = attribute_type_for(name)
+      end
+    end
+
     def form_attributes
       self.class::FORM_ATTRIBUTES
     end

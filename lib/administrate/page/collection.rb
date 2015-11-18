@@ -14,7 +14,7 @@ module Administrate
       end
 
       def attribute_types
-        dashboard.attribute_types.slice(*attribute_names)
+        dashboard.attribute_types_for(*attribute_names)
       end
 
       def ordered_html_class(attr)

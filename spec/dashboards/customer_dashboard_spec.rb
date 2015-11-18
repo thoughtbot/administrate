@@ -24,6 +24,45 @@ describe CustomerDashboard do
     end
   end
 
+  describe "#attribute_type_for" do
+    context "for an existing attribute" do
+      it "returns the attribute field" do
+        dashboard = CustomerDashboard.new
+        field = dashboard.attribute_type_for(:name)
+        expect(field).to eq Administrate::Field::String
+      end
+    end
+
+    context "for a non-existent attribute" do
+      it "raises an exception" do
+        dashboard = CustomerDashboard.new
+        expect { dashboard.attribute_type_for(:foo) }.
+          to raise_error /Attribute foo not in CustomerDashboard/
+      end
+    end
+  end
+
+  describe "#attribute_types_for" do
+    context "for existing attributes" do
+      it "returns the attribute fields" do
+        dashboard = CustomerDashboard.new
+        fields = dashboard.attribute_types_for(:name, :email)
+        expect(fields).to match(
+          name: Administrate::Field::String,
+          email: Administrate::Field::Email,
+        )
+      end
+    end
+
+    context "for one non-existent attribute" do
+      it "raises an exception" do
+        dashboard = CustomerDashboard.new
+        expect { dashboard.attribute_types_for(:name, :foo) }.
+          to raise_error /Attribute foo not in CustomerDashboard/
+      end
+    end
+  end
+
   describe "#display_resource" do
     it "returns the customer's name" do
       customer = double(name: "Example Customer")
