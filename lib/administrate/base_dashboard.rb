@@ -24,7 +24,7 @@ module Administrate
       end
     end
 
-    def attribute_types_for(*attribute_names)
+    def attribute_types_for(attribute_names)
       attribute_names.each_with_object({}) do |name, attributes|
         attributes[name] = attribute_type_for(name)
       end

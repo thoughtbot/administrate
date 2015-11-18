@@ -50,7 +50,7 @@ describe CustomerDashboard do
     context "for existing attributes" do
       it "returns the attribute fields" do
         dashboard = CustomerDashboard.new
-        fields = dashboard.attribute_types_for(:name, :email)
+        fields = dashboard.attribute_types_for([:name, :email])
         expect(fields).to match(
           name: Administrate::Field::String,
           email: Administrate::Field::Email,
@@ -61,7 +61,7 @@ describe CustomerDashboard do
     context "for one non-existent attribute" do
       it "raises an exception" do
         dashboard = CustomerDashboard.new
-        expect { dashboard.attribute_types_for(:name, :foo) }.
+        expect { dashboard.attribute_types_for([:name, :foo]) }.
           to raise_error missing_attribute_message("foo", "CustomerDashboard")
       end
     end
