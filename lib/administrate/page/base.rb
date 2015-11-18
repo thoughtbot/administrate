@@ -16,11 +16,14 @@ module Administrate
       def attribute_field(dashboard, resource, attribute_name, page)
         value = get_attribute_value(resource, attribute_name)
 
-        dashboard.
-          attribute_types[attribute_name].
-          new(attribute_name, value, page)
-      rescue NoMethodError
-        raise NoMethodError.new(error_message(attribute_name), :new)
+        field = dashboard.attribute_types.fetch(attribute_name) do
+          fail <<-ERROR_MESSAGE.strip_heredoc
+          Attribute :#{attribute_name} not found in #{dashboard.class}.
+          Perhaps you misspelled it or it is missing in
+          #{dashboard.class}::ATTRIBUTE_TYPES?
+          ERROR_MESSAGE
+        end
+        field.new(attribute_name, value, page)
       end
 
       def get_attribute_value(resource, attribute_name)
@@ -30,15 +33,6 @@ module Administrate
       end
 
       attr_reader :dashboard, :options
-
-      private
-
-      def error_message(attribute_name)
-        <<ERROR_MESSAGE
-Attribute `:#{attribute_name}' not found in dashboard #{dashboard.class}.
-Perhaps you misspelled it or it is missing in `#{dashboard.class}::ATTRIBUTE_TYPES'?
-ERROR_MESSAGE
-      end
     end
   end
 end
