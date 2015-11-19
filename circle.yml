@@ -1,3 +1,6 @@
+machine:
+  ruby:
+    version: 2.2.3
 dependencies:
   post:
     - bundle exec appraisal install
