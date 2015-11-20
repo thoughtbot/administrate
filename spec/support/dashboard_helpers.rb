@@ -6,7 +6,3 @@ module DashboardHelpers
       display_resource(resource)
   end
 end
-
-RSpec.configure do |config|
-  config.include DashboardHelpers
-end
