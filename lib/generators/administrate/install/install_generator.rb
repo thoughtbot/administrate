@@ -40,6 +40,10 @@ module Administrate
           puts "WARNING: Unable to generate a dashboard for #{invalid_model}."
           puts "         It is not connected to a database table."
         end
+
+        unnamed_constants.each do |invalid_model|
+          puts "NOTICE: Skipping dynamically generated model #{invalid_model}."
+        end
       end
 
       private
@@ -63,7 +67,7 @@ module Administrate
       end
 
       def invalid_database_models
-        models_without_tables + namespaced_models
+        models_without_tables + namespaced_models + unnamed_constants
       end
 
       def models_without_tables
@@ -72,6 +76,10 @@ module Administrate
 
       def namespaced_models
         database_models.select { |model| model.to_s.include?("::") }
+      end
+
+      def unnamed_constants
+        ActiveRecord::Base.descendants.reject { |d| d.name == d.to_s }
       end
 
       def dashboard_routes

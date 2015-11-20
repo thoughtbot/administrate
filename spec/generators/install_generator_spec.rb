@@ -67,6 +67,21 @@ describe Administrate::Generators::InstallGenerator, :generator do
         remove_constants :ModelWithoutDBTable
       end
     end
+
+    it "skips models that don't have a named constant" do
+      stub_generator_dependencies
+      ActiveRecord::Schema.define { create_table(:foos) }
+      _unnamed_model = Class.new(ActiveRecord::Base) do
+        def self.table_name
+          :foos
+        end
+      end
+
+      run_generator
+
+      manifest = file("app/dashboards/dashboard_manifest.rb")
+      expect(manifest).to have_correct_syntax
+    end
   end
 
   describe "config/routes.rb" do
