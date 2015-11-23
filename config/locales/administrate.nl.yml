@@ -18,6 +18,6 @@ nl:
         more: Resultaat %{count} van %{total_count}
         none: Geen
       polymorphic:
-        not_supported: Polymorphische relaties formulieren worden nog niet ondersteund. Sorry!
+        not_supported: Polymorphische relaties formulieren worden niet ondersteund.
       has_one:
-        not_supported: HasOne relaties formulieren worden nog niet ondersteund. Sorry!
+        not_supported: HasOne relaties formulieren worden niet ondersteund.
