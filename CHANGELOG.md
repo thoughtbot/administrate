@@ -18,6 +18,7 @@
 
 ### Upcoming Release
 
+* [#269] [FEATURE] Add a generator for copying default layout files
 * [#295] [FEATURE] Add dashboard detection for ActiveRecord::Enum fields.
 * [#297] [I18n] Add Italian translations
 * [#307] [I18n] Fix German grammatical errors
