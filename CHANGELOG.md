@@ -31,6 +31,7 @@
   with the current value of the relationship.
 * [#217] [I18n] Dutch
 * [#263] [I18n] Swedish
+* [#272] [I18n] Danish
 * [#270] [I18n] Don't apologize about missing relationship support.
 * [#237] [I18n] Fix broken paths for several I18n files (de, es, fr, pt-BR, vi).
 * [#266] [OPTIM] Save a few database queries by using cached counts
