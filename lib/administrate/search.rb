@@ -8,8 +8,17 @@ module Administrate
     def run
       if @term.blank?
         resource_class.all
+      elsif (@scope = search_scope)
+        resource_class.send @scope
       else
         resource_class.where(query, *search_terms)
+      end
+    end
+
+    def search_scope
+      if (@term[-1, 1] == ':')
+        possible_scope = @term[0..-2]
+        possible_scope if resource_class.respond_to?(possible_scope)
       end
     end
 
