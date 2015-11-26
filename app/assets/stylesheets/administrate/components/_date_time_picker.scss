@@ -1,3 +1,8 @@
 .form-field {
   position: relative;
 }
+
+.bootstrap-datetimepicker-widget table td, 
+.bootstrap-datetimepicker-widget table th {
+  white-space: normal;
+}
