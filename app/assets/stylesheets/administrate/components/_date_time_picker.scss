@@ -2,9 +2,7 @@
   position: relative;
 }
 
-.bootstrap-datetimepicker-widget {
-  table td,
-  table th {
-    white-space: normal;
-  }
+.bootstrap-datetimepicker-widget table td,
+.bootstrap-datetimepicker-widget table th {
+  white-space: normal;
 }
