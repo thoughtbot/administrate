@@ -30,4 +30,17 @@ feature "Search" do
     expect(page).to have_content(email_match.email)
     expect(page).not_to have_content(mismatch.email)
   end
+
+  scenario "admin searches using a model scope", :js do
+    query = "subscribed:"
+    subscribed_customer = create(:customer, name: "Dan Croak", email_subscriber: true)
+    other_customer = create(:customer, name: "Foo Bar", email_subscriber: false)
+
+    visit admin_customers_path
+    fill_in :search, with: query
+    page.execute_script("$('.search').submit()")
+
+    expect(page).to have_content(subscribed_customer.name)
+    expect(page).not_to have_content(other_customer.name)
+  end
 end
