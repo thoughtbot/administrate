@@ -16,7 +16,7 @@ module Administrate
     end
 
     def search_scope
-      if (@term[-1, 1] == ':')
+      if (@term[-1, 1] == ":")
         possible_scope = @term[0..-2]
         possible_scope if resource_class.respond_to?(possible_scope)
       end
