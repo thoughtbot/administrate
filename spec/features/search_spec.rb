@@ -33,10 +33,12 @@ feature "Search" do
 
   scenario "admin searches using a model scope", :js do
     query = "subscribed:"
-    subscribed_customer = create(:customer,
+    subscribed_customer = create(
+      :customer,
       name: "Dan Croak",
       email_subscriber: true)
-    other_customer = create(:customer,
+    other_customer = create(
+      :customer,
       name: "Foo Bar",
       email_subscriber: false)
 
