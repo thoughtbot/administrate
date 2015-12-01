@@ -21,7 +21,9 @@ module Administrate
       end
 
       def insert_dashboard_routes
-        route(dashboard_routes)
+        unless File.new(rails_routes_file_path).read.include?(dashboard_routes)
+          route(dashboard_routes)
+        end
       end
 
       def run_dashboard_generators
@@ -84,6 +86,10 @@ module Administrate
 
       def dashboard_routes
         File.read(routes_file_path)
+      end
+
+      def rails_routes_file_path
+        "config/routes.rb"
       end
 
       def routes_file_path
