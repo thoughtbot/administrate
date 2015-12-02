@@ -49,4 +49,17 @@ feature "Search" do
     expect(page).to have_content(subscribed_customer.name)
     expect(page).not_to have_content(other_customer.name)
   end
+
+  scenario "ignores malicious scope searches", :js do
+    query = "destroy_all:"
+    customer = create(
+      :customer,
+      name: "FooBar destroy_all: user",
+      email_subscriber: false)
+
+    visit admin_customers_path
+    fill_in :search, with: query
+    page.execute_script("$('.search').submit()")
+    expect(page).to have_content(customer.name)
+  end
 end
