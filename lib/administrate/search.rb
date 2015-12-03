@@ -1,24 +1,22 @@
 module Administrate
   class Search
+    attr_reader :resolver, :term, :scope
+
+    BLACKLISTED_WORDS = %w{destroy remove delete update create}
+ 
     def initialize(resolver, term)
       @resolver = resolver
+      @scope = search_scope(term)
       @term = term
     end
 
     def run
       if @term.blank?
         resource_class.all
-      elsif (@scope = search_scope)
-        resource_class.send @scope
+      elsif scope
+        resource_class.send scope
       else
         resource_class.where(query, *search_terms)
-      end
-    end
-
-    def search_scope
-      if (@term[-1, 1] == ":")
-        possible_scope = @term[0..-2]
-        possible_scope if resource_class.respond_to?(possible_scope)
       end
     end
 
@@ -40,6 +38,24 @@ module Administrate
       end.keys
     end
 
-    attr_reader :resolver, :term
+    def search_scope(term)
+      if (term[-1, 1] == ':')
+        possible_scope = term[0..-2]
+        possible_scope if resource_class.respond_to?(possible_scope) and
+                          not banged?(possible_scope) and
+                          not blacklisted_scope?(possible_scope)
+      end
+    end
+
+    def banged?(method)
+      method[-1, 1] == '!'
+    end
+
+    def blacklisted_scope?(scope)
+      BLACKLISTED_WORDS.each do |word|
+        return true if scope =~ /.*#{word}.*/i
+      end
+      return false
+    end
   end
 end
