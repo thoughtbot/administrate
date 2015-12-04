@@ -10,49 +10,64 @@ describe Administrate::Search do
       Administrate::ResourceResolver.new(controller_path)
     end
     let(:scope) { "active" }
-    let(:query) { "#{scope}:" }
 
-    it "give us the search scope" do
-      begin
+    before do
+      class User; end
+    end
+
+    after do
+      remove_constants :User
+    end
+
+    describe "the query is only the scope" do
+      let(:query) { "#{scope}:" }
+
+      it "returns nil if the model does not respond to the possible scope" do
+        search = Administrate::Search.new(resource_resolver, query)
+        expect(search.scope).to eq(nil)
+      end
+
+      it "returns the scope if the model responds to it" do
         class User
           def self.active; end
         end
+
         search = Administrate::Search.new(resource_resolver, query)
         expect(search.scope).to eq(scope)
-      ensure
-        remove_constants :User
       end
-    end
 
-    it "returns nil if the name of the scope looks suspicious" do
-      begin
+      it "returns nil if the name of the scope looks suspicious" do
         class User
-          class << self
-            def destroy_all; end
-          end
+          def self.destroy_all; end
         end
 
         Administrate::Search::BLACKLISTED_WORDS.each do |word|
           search = Administrate::Search.new(resource_resolver, "#{word}_all:")
           expect(search.scope).to eq(nil)
         end
-      ensure
-        remove_constants :User
       end
-    end
 
-    it "returns nil if the name of the scope ends with an exclamation mark" do
-      begin
+      it "returns nil if the name of the scope ends with an exclamation mark" do
         class User
-          class << self
-            def bang!; end
-          end
+          def self.bang!; end
         end
 
         search = Administrate::Search.new(resource_resolver, "bang!:")
         expect(search.scope).to eq(nil)
-      ensure
-        remove_constants :User
+      end
+    end
+
+    describe "the query is the scope followed by the term" do
+      let(:term) { "foobar" }
+      let(:query) { "#{scope}: #{term}" }
+
+      it "returns the scope and the term" do
+        class User
+          def self.active; end
+        end
+        search = Administrate::Search.new(resource_resolver, query)
+        expect(search.scope).to eq(scope)
+        expect(search.term).to eq(term)
       end
     end
   end

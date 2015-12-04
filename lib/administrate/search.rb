@@ -6,8 +6,8 @@ module Administrate
 
     def initialize(resolver, term)
       @resolver = resolver
-      @scope = search_scope(term)
-      @term = term
+      @scope = search_scope(term.split.first)
+      @term = term[scope_length..-1].strip
     end
 
     def run
@@ -45,6 +45,10 @@ module Administrate
                           !banged?(possible_scope) &&
                           !blacklisted_scope?(possible_scope)
       end
+    end
+
+    def scope_length
+      (@scope && (@scope.length + 1)) || 0
     end
 
     def banged?(method)
