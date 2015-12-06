@@ -315,6 +315,7 @@ DEPENDENCIES
   high_voltage
   i18n-tasks
   launchy
+  nokogiri (~> 1.6.6.4)
   percy-capybara
   pg
   poltergeist
