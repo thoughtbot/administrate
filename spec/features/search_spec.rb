@@ -62,4 +62,31 @@ feature "Search" do
     page.execute_script("$('.search').submit()")
     expect(page).to have_content(customer.name)
   end
+
+  scenario "admin searches into a model scope", :js do
+    searching_for = "Lua"
+    query = "subscribed: #{searching_for}"
+    subscribed_frog = create(
+      :customer,
+      name: "John Croak",
+      email_subscriber: true)
+    subscribed_cat = create(
+      :customer,
+      name: "#{searching_for} Miau",
+      email_subscriber: true)
+    unsubscribed_cat = create(
+      :customer,
+      name: "#{searching_for} Doe",
+      email_subscriber: false)
+
+    visit admin_customers_path
+    fill_in :search, with: query
+    page.execute_script("$('.search').submit()")
+
+    page.within("tr.table__row", match: :first) do
+      expect(page).to have_content(subscribed_cat.name)
+    end
+    expect(page).not_to have_content(subscribed_frog.name)
+    expect(page).not_to have_content(unsubscribed_cat.name)
+  end
 end

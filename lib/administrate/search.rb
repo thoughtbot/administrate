@@ -12,11 +12,11 @@ module Administrate
 
     def run
       if @term.blank?
-        resource_class.all
-      elsif scope
-        resource_class.send scope
+        scope ? resource_class.send(scope) : resource_class.all
       else
-        resource_class.where(query, *search_terms)
+        resources = resource_class.where(query, *search_terms)
+        resources = resources.send(scope) if scope
+        resources
       end
     end
 
@@ -39,7 +39,7 @@ module Administrate
     end
 
     def search_scope(term)
-      if (term[-1, 1] == ":")
+      if term && (term[-1, 1] == ":")
         possible_scope = term[0..-2]
         possible_scope if resource_class.respond_to?(possible_scope) &&
                           !banged?(possible_scope) &&
