@@ -18,6 +18,7 @@
 
 ### Upcoming Release
 
+* [#297] [I18n] Add Italian translations
 * [#307] [I18n] Fix German grammatical errors
 
 ### 0.1.2 (December 09, 2015)
