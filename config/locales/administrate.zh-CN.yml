@@ -18,6 +18,6 @@ zh-CN:
         more: 显示所有 %{total_count} 中 %{count} 条
         none: 无
       polymorphic:
-        not_supported: 对不起，Polymorphic 关系暂不支持!
+        not_supported: Polymorphic 关系暂不支持
       has_one:
-        not_supported: 对不起，HasOne 关系暂不支持!
+        not_supported: HasOne 关系暂不支持.
