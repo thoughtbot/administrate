@@ -158,7 +158,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.6.2)
-    mini_portile (0.6.2)
+    mini_portile2 (2.0.0)
     minitest (5.8.1)
     momentjs-rails (2.10.6)
       railties (>= 3.1)
@@ -167,8 +167,8 @@ GEM
     neat (1.7.2)
       bourbon (>= 4.0)
       sass (>= 3.3)
-    nokogiri (1.6.6.4)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.6.7)
+      mini_portile2 (~> 2.0.0.rc2)
     normalize-rails (3.0.3)
     percy-capybara (1.0.0)
       percy-client (>= 1.0.0)
@@ -310,7 +310,6 @@ DEPENDENCIES
   high_voltage
   i18n-tasks
   launchy
-  nokogiri (~> 1.6.6.4)
   percy-capybara
   pg
   poltergeist
