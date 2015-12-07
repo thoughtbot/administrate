@@ -15,6 +15,11 @@ if [ ! -f .env ]; then
   cp .sample.env .env
 fi
 
+# Create the recommended .ruby-version configuration file
+if [ ! -f .ruby-version ]; then
+  echo "2.2.3" > .ruby-version
+fi
+
 # Set up database and add any development seed data
 bundle exec rake db:setup dev:prime
 
