@@ -11,6 +11,7 @@
 * `[COMPAT]`: Compatibility improvements - changes to make Administrate more
   compatible with different dependency versions.
 * `[I18n]`: Internationalization. Changes to translations or localizations.
+* `[OPTIM]`: Optimization or performance increase.
 * `[DOC]`: Documentation changes. No changes to the library's behavior.
 
 ## Changes
@@ -32,6 +33,7 @@
 * [#263] [I18n] Swedish
 * [#270] [I18n] Don't apologize about missing relationship support.
 * [#237] [I18n] Fix broken paths for several I18n files (de, es, fr, pt-BR, vi).
+* [#266] [OPTIM] Save a few database queries by using cached counts
 
 ### 0.1.1 (November 12, 2015)
 
