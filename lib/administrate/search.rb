@@ -26,7 +26,7 @@ module Administrate
     end
 
     def search_attributes
-      attribute_types.keys.select! do |attribute|
+      attribute_types.keys.select do |attribute|
         type = attribute_types[attribute]
         type.searchable?
       end
