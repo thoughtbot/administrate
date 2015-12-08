@@ -26,10 +26,9 @@ module Administrate
     end
 
     def search_attributes
-      [].tap do |keys|
-        attribute_types.each do |key, type|
-          keys << key if type.searchable?
-        end
+      attribute_types.keys.select! do |attribute|
+        type = attribute_types[attribute]
+        type.searchable?
       end
     end
 
