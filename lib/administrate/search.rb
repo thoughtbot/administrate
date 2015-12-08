@@ -26,9 +26,14 @@ module Administrate
     end
 
     def search_attributes
-      resolver.dashboard_class::ATTRIBUTE_TYPES.select do |_, type|
+      attribute_types.keys.select do |attribute|
+        type = attribute_types[attribute]
         type.searchable?
-      end.keys
+      end
+    end
+
+    def attribute_types
+      resolver.dashboard_class::ATTRIBUTE_TYPES
     end
 
     attr_reader :resolver, :term
