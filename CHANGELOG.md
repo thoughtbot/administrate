@@ -18,6 +18,8 @@
 
 ### Upcoming Release
 
+* [#307] [I18n] Fix German grammatical errors
+
 ### 0.1.2 (December 09, 2015)
 
 * [#251] [FEATURE] Raise a helpful error when an attribute is missing from
