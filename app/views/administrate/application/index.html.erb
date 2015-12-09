@@ -21,7 +21,9 @@ It renders the `_table` partial to display details about the resources.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Table
 %>
 
-<% content_for(:title) { page.resource_name.pluralize.titleize } %>
+<% content_for(:title) do %>
+  <%= display_resource_name(page.resource_name) %>
+<% end %>
 
 <% content_for(:search) do %>
   <form class="search">

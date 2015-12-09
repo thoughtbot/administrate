@@ -33,9 +33,13 @@ module Administrate
     end
 
     def search_attributes
-      resolver.dashboard_class::ATTRIBUTE_TYPES.select do |_, type|
-        type.searchable?
-      end.keys
+      attribute_types.keys.select do |attribute|
+        attribute_types[attribute].searchable?
+      end
+    end
+
+    def attribute_types
+      resolver.dashboard_class::ATTRIBUTE_TYPES
     end
 
     def search_scope(term)

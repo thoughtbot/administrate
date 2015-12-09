@@ -1,0 +1,23 @@
+---
+da:
+  administrate:
+    actions:
+      confirm: Er du sikker?
+      destroy: Slet
+      edit: Rediger
+      show: Vis
+    controller:
+      create:
+        success: "%{resource} blev oprettet."
+      destroy:
+        success: "%{resource} er nu slettet."
+      update:
+        success: "%{resource} blev opdateret."
+    fields:
+      has_many:
+        more: "Viser %{count} af %{total_count}"
+        none: Ingen
+      polymorphic:
+        not_supported: "Formularer med polymorphic relationships er ikke understøttede."
+      has_one:
+        not_supported: "Formularer med has_one associationer er ikke understøttede."
