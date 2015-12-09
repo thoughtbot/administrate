@@ -3,7 +3,7 @@ PATH
   specs:
     administrate (0.1.1)
       autoprefixer-rails (~> 6.0)
-      datetime_picker_rails (~> 0.0.5)
+      datetime_picker_rails (~> 0.0.6)
       inline_svg (~> 0.6)
       jquery-rails (~> 4.0)
       kaminari (~> 0.16)
@@ -62,7 +62,7 @@ GEM
       rake
       thor (>= 0.14.0)
     arel (6.0.3)
-    autoprefixer-rails (6.1.0.1)
+    autoprefixer-rails (6.1.2)
       execjs
       json
     awesome_print (1.6.1)
@@ -87,7 +87,7 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     database_cleaner (1.5.1)
-    datetime_picker_rails (0.0.5)
+    datetime_picker_rails (0.0.6)
       momentjs-rails (>= 2.8.1)
     debug_inspector (0.0.2)
     delayed_job (4.1.1)
