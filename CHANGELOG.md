@@ -18,6 +18,8 @@
 
 ### Upcoming Release
 
+### 0.1.2 (December 09, 2015)
+
 * [#251] [FEATURE] Raise a helpful error when an attribute is missing from
   `ATTRIBUTE_TYPES`
 * [#298] [FEATURE] Support ActiveRecord model I18n translations
