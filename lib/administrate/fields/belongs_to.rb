@@ -12,7 +12,7 @@ module Administrate
       end
 
       def associated_resource_options
-        candidate_resources.map do |resource|
+        [nil] + candidate_resources.map do |resource|
           [display_candidate_resource(resource), resource.id]
         end
       end
