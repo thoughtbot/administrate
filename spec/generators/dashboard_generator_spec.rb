@@ -124,6 +124,30 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
       end
 
+      it "detects enum field as `String`" do
+        begin
+          ActiveRecord::Schema.define do
+            create_table :shipments do |t|
+              t.integer :status
+            end
+          end
+
+          class Shipment < ActiveRecord::Base
+            enum status: [:ready, :processing, :shipped]
+            reset_column_information
+          end
+
+          run_generator ["shipment"]
+          load file("app/dashboards/shipment_dashboard.rb")
+          attrs = ShipmentDashboard::ATTRIBUTE_TYPES
+
+          expect(attrs[:status]).
+            to eq(Administrate::Field::String.with_options(searchable: false))
+        ensure
+          remove_constants :Shipment, :ShipmentDashboard
+        end
+      end
+
       it "detects boolean values" do
         begin
           ActiveRecord::Schema.define do
