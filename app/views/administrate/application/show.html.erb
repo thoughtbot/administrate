@@ -20,11 +20,13 @@ as well as a link to its edit page.
 
 <header class="header">
   <h1 class="header-heading"><%= content_for(:title) %></h1>
-  <%= link_to(
-    "Edit",
-    [:edit, Administrate::NAMESPACE, page.resource],
-    class: "button",
-  ) %>
+  <div class="header-actions">
+    <%= link_to(
+      "Edit",
+      [:edit, Administrate::NAMESPACE, page.resource],
+      class: "button",
+    ) %>
+  </div>
 </header>
 
 <dl>

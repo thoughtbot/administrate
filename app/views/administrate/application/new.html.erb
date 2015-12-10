@@ -19,7 +19,9 @@ to do the heavy lifting.
 
 <header class="header">
   <h1 class="header-heading"><%= content_for(:title) %></h1>
-  <%= link_to 'Back', :back, class: "button" %>
+  <div class="header-actions">
+    <%= link_to 'Back', :back, class: "button" %>
+  </div>
 </header>
 
 <%= render 'form', page: page %>
