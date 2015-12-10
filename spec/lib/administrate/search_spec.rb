@@ -22,7 +22,7 @@ describe Administrate::Search do
     it "returns all records when no search term" do
       begin
         class User; end
-
+        resolver = double(resource_class: User, dashboard_class: MockDashboard)
         search = described_class.new(resolver, nil)
         expect(User).to receive(:all)
 
@@ -35,6 +35,7 @@ describe Administrate::Search do
     it "returns all records when search is empty" do
       begin
         class User; end
+        resolver = double(resource_class: User, dashboard_class: MockDashboard)
         search = described_class.new(resolver, "   ")
         expect(User).to receive(:all)
 
@@ -47,6 +48,7 @@ describe Administrate::Search do
     it "searches using lower() + LIKE for all searchable fields" do
       begin
         class User; end
+        resolver = double(resource_class: User, dashboard_class: MockDashboard)
         search = described_class.new(resolver, "test")
         expected_query = [
           "lower(name) LIKE ? OR lower(email) LIKE ?",
