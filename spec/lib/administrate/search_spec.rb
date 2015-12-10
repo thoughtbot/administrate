@@ -15,10 +15,6 @@ end
 
 describe Administrate::Search do
   describe "#run" do
-    let(:resolver) do
-      double(resource_class: User, dashboard_class: MockDashboard)
-    end
-
     it "returns all records when no search term" do
       begin
         class User; end
