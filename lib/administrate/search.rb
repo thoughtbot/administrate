@@ -1,3 +1,6 @@
+require "active_support/core_ext/module/delegation"
+require "active_support/core_ext/object/blank"
+
 module Administrate
   class Search
     def initialize(resolver, term)
