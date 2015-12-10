@@ -5,7 +5,7 @@ require "administrate/fields/email"
 require "administrate/fields/number"
 require "administrate/search"
 
-class MockDashboardClass
+class MockDashboard
   ATTRIBUTE_TYPES = {
     name: Administrate::Field::String,
     email: Administrate::Field::Email,
@@ -15,7 +15,9 @@ end
 
 describe Administrate::Search do
   describe "#run" do
-    let(:resolver) { double(resource_class: User, dashboard_class: MockDashboardClass) }
+    let(:resolver) { double(
+      resource_class: User,
+      dashboard_class: MockDashboard) }
 
     it "returns all records when no search term" do
       begin
