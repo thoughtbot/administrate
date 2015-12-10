@@ -13,19 +13,9 @@ class MockDashboardClass
   }
 end
 
-class MockResolver
-  def resource_class
-    User
-  end
-
-  def dashboard_class
-    MockDashboardClass
-  end
-end
-
 describe Administrate::Search do
   describe "#run" do
-    let(:resolver) { MockResolver.new }
+    let(:resolver) { double(resource_class: User, dashboard_class: MockDashboardClass) }
 
     it "returns all records when no search term" do
       begin
