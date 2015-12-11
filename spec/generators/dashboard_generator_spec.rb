@@ -142,8 +142,8 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           attrs = ShipmentDashboard::ATTRIBUTE_TYPES
 
           expect(attrs[:status]).
-            to eq(Administrate::Field::Enum.with_options(enum: {
-              "pending" => 0, "confirmed" => 1 }))
+            to eq(Administrate::Field::Enum.with_options(
+              enum: { "pending" => 0, "confirmed" => 1 }))
         ensure
           remove_constants :Shipment, :ShipmentDashboard
         end
