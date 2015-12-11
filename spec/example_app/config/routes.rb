@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
     root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
   end
+
+  root to: redirect("/admin")
 end

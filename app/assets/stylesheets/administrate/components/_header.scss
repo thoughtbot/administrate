@@ -1,10 +1,14 @@
 .header {
-  align-items: flex-end;
+  align-items: baseline;
   display: flex;
   justify-content: space-between;
   margin-bottom: $base-spacing * 2;
 
   &-heading {
     margin-top: 0;
+  }
+
+  &-actions {
+    margin-left: $base-spacing;
   }
 }

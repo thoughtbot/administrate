@@ -36,5 +36,6 @@
   [type="checkbox"],
   [type="radio"] {
     margin: $small-spacing 0 ($base-spacing + $form-input-padding);
+    width: auto;
   }
 }

@@ -31,7 +31,7 @@ describe Administrate::Field::BelongsTo do
         candidates = field.associated_resource_options
 
         expect(Foo).to have_received(:all)
-        expect(candidates).to eq([])
+        expect(candidates).to eq([nil])
       ensure
         remove_constants :Foo
       end

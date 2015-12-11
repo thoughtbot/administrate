@@ -28,12 +28,12 @@ end
 
 group :test do
   gem "ammeter"
-  gem "poltergeist"
   gem "database_cleaner"
   gem "formulaic"
   gem "fuubar"
   gem "launchy"
   gem "percy-capybara"
+  gem "poltergeist"
   gem "shoulda-matchers", "~> 2.8.0", require: false
   gem "timecop"
   gem "webmock"
