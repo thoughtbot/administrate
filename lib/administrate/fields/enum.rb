@@ -11,7 +11,7 @@ module Administrate
         end
       end
 
-      def self.search_term(attribute, term, options)
+      def self.search_term(_attribute, term, options)
         if options.keys.include?(term)
           options[term]
         else

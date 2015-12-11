@@ -16,11 +16,11 @@ module Administrate
         false
       end
 
-      def self.search_predicate(attribute, term)
+      def self.search_predicate(attribute, _term)
         "lower(#{attribute}) LIKE ?"
       end
 
-      def self.search_term(attribute, term)
+      def self.search_term(_attribute, term)
         "%#{term}%"
       end
 
