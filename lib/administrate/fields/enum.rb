@@ -6,16 +6,12 @@ module Administrate
       def self.search_predicate(attribute, term, options)
         if options.keys.include?(term)
           "#{attribute} = ?"
-        else
-          nil
         end
       end
 
       def self.search_term(_attribute, term, options)
         if options.keys.include?(term)
           options[term]
-        else
-          nil
         end
       end
 
@@ -24,7 +20,7 @@ module Administrate
       end
 
       def enum_options
-        options[:enum].keys.map {|k| [k.humanize, k]}
+        options[:enum].keys.map { |k| [k.humanize, k] }
       end
     end
   end

@@ -12,7 +12,9 @@ class MockDashboard
     email: Administrate::Field::Email,
     phone: Administrate::Field::Number,
     status: Administrate::Field::Enum.with_options(
-      enum: {'pending' => 0, 'confirmed' => 1}),
+      enum: {
+        "pending" => 0, "confirmed" => 1
+      }),
   }
 end
 

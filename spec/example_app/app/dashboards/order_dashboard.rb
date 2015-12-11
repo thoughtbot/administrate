@@ -14,7 +14,7 @@ class OrderDashboard < Administrate::BaseDashboard
     line_items: Field::HasMany,
     total_price: Field::Number.with_options(prefix: "$", decimals: 2),
     shipped_at: Field::DateTime,
-    status: Field::Enum.with_options(enum: {'pending' => 0, 'confirmed' => 1}),
+    status: Field::Enum.with_options(enum: { "pending" => 0, "confirmed" => 1 }),
   }
 
   READ_ONLY_ATTRIBUTES = [

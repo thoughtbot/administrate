@@ -76,7 +76,7 @@ module Administrate
         base_options = ATTRIBUTE_OPTIONS_MAPPING.fetch(type, {})
 
         if type == :enum
-          base_options.merge({enum: klass.send(attr.pluralize)})
+          base_options.merge(enum: klass.send(attr.pluralize))
         else
           base_options
         end

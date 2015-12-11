@@ -34,7 +34,7 @@ Customer.all.each do |customer|
       address_city: Faker::Address.city,
       address_state: Faker::Address.state_abbr,
       address_zip: Faker::Address.zip,
-      status: [0,1].sample,
+      status: [0, 1].sample,
     )
 
     item_count = (1..3).to_a.sample

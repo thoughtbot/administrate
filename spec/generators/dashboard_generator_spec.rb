@@ -133,7 +133,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           end
 
           class Shipment < ActiveRecord::Base
-            enum status: [:ready, :processing, :shipped]
+            enum status: [:pending, :confirmed]
             reset_column_information
           end
 
@@ -142,7 +142,8 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           attrs = ShipmentDashboard::ATTRIBUTE_TYPES
 
           expect(attrs[:status]).
-            to eq(Administrate::Field::Enum.with_options(enum: {'ready' => 0, 'processing' => 1, 'shipped' => 2}))
+            to eq(Administrate::Field::Enum.with_options(enum: {
+              "pending" => 0, "confirmed" => 1 }))
         ensure
           remove_constants :Shipment, :ShipmentDashboard
         end

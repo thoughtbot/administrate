@@ -33,14 +33,15 @@ module Administrate
     end
 
     def search_attributes
-      @search_attributes ||= attribute_types.keys.inject({}) do |attrs, attribute|
-        field_class = attribute_types[attribute]
-        if field_class.searchable?
-          attrs.merge(attribute => field_class)
-        else
-          attrs
+      @search_attributes ||=
+        attribute_types.keys.reduce({}) do |attrs, attribute|
+          field_class = attribute_types[attribute]
+          if field_class.searchable?
+            attrs.merge(attribute => field_class)
+          else
+            attrs
+          end
         end
-      end
     end
 
     def attribute_types
