@@ -13,9 +13,10 @@ describe Administrate::Generators::InstallGenerator, :generator do
 
       expect(controller).to exist
       expect(controller).to have_correct_syntax
-      expect(controller).to contain(
-        "class Admin::ApplicationController < Administrate::ApplicationController"
-      )
+      expect(controller).to contain <<-RB.strip_heredoc
+        module Admin
+          class ApplicationController < Administrate::ApplicationController
+      RB
     end
   end
 

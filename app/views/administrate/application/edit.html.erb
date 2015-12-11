@@ -19,11 +19,13 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
 
 <header class="header">
   <h1 class="header-heading"><%= content_for(:title) %></h1>
-  <%= link_to(
-    "Show #{page.page_title}",
-    [Administrate::NAMESPACE, page.resource],
-    class: "button",
-  ) %>
+  <div class="header-actions">
+    <%= link_to(
+      "Show #{page.page_title}",
+      [Administrate::NAMESPACE, page.resource],
+      class: "button",
+    ) %>
+  </div>
 </header>
 
 <%= render "form", page: page %>

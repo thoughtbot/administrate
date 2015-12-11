@@ -11,16 +11,28 @@
 * `[COMPAT]`: Compatibility improvements - changes to make Administrate more
   compatible with different dependency versions.
 * `[I18n]`: Internationalization. Changes to translations or localizations.
+* `[OPTIM]`: Optimization or performance increase.
 * `[DOC]`: Documentation changes. No changes to the library's behavior.
 
 ## Changes
 
 ### Upcoming Release
 
+### 0.1.2 (December 09, 2015)
+
 * [#251] [FEATURE] Raise a helpful error when an attribute is missing from
   `ATTRIBUTE_TYPES`
+* [#298] [FEATURE] Support ActiveRecord model I18n translations
+* [#312] [FEATURE] Add a `nil` option to `belongs_to` form fields
 * [#231] [UI] Fix layout issue on show page where a long label next to an empty
   value would cause following fields on the page to be mis-aligned.
+* [#309] [UI] Fix layout issue in datetime pickers where months and years
+  would not wrap correctly.
+* [#306] [UI] Wrap long text lines (on word breaks) on show pages
+* [#214] [UI] Improve header layout when there is a long page title
+* [#198] [UI] Improve spacing around bottom link in sidebar
+* [#206] [UI] Left-align checkboxes in boolean form fields
+* [#315] [UI] Remove the `IDS` suffix for `HasMany` form field labels
 * [#259] [BUGFIX] Make installation generator more robust
   by ignoring dynamically generated, unnamed models
 * [#243] [BUGFIX] Fix up a "Show" button on the edit page that was not using the
@@ -30,7 +42,10 @@
   with the current value of the relationship.
 * [#217] [I18n] Dutch
 * [#263] [I18n] Swedish
+* [#272] [I18n] Danish
+* [#270] [I18n] Don't apologize about missing relationship support.
 * [#237] [I18n] Fix broken paths for several I18n files (de, es, fr, pt-BR, vi).
+* [#266] [OPTIM] Save a few database queries by using cached counts
 
 ### 0.1.1 (November 12, 2015)
 

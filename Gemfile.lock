@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    administrate (0.1.1)
+    administrate (0.1.2)
       autoprefixer-rails (~> 6.0)
-      datetime_picker_rails (~> 0.0.5)
+      datetime_picker_rails (~> 0.0.6)
       inline_svg (~> 0.6)
       jquery-rails (~> 4.0)
       kaminari (~> 0.16)
@@ -62,7 +62,7 @@ GEM
       rake
       thor (>= 0.14.0)
     arel (6.0.3)
-    autoprefixer-rails (6.1.0.1)
+    autoprefixer-rails (6.1.2)
       execjs
       json
     awesome_print (1.6.1)
@@ -87,7 +87,7 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     database_cleaner (1.5.1)
-    datetime_picker_rails (0.0.5)
+    datetime_picker_rails (0.0.6)
       momentjs-rails (>= 2.8.1)
     debug_inspector (0.0.2)
     delayed_job (4.1.1)
@@ -158,7 +158,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.6.2)
-    mini_portile (0.6.2)
+    mini_portile2 (2.0.0)
     minitest (5.8.1)
     momentjs-rails (2.10.6)
       railties (>= 3.1)
@@ -167,8 +167,8 @@ GEM
     neat (1.7.2)
       bourbon (>= 4.0)
       sass (>= 3.3)
-    nokogiri (1.6.6.2)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.6.7)
+      mini_portile2 (~> 2.0.0.rc2)
     normalize-rails (3.0.3)
     percy-capybara (1.0.0)
       percy-client (>= 1.0.0)

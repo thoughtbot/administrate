@@ -18,6 +18,6 @@ de:
         more: "%{count} von %{total_count}"
         none: Keine
       polymorphic:
-        not_supported: Polymorphe Beziehungen werden noch nicht unterstützt. Sorry!
+        not_supported: Polymorphe Beziehungen werden nicht unterstützt.
       has_one:
-        not_supported: HasOne-beziehungen werden noch nicht unterstützt. Sorry!
+        not_supported: HasOne-beziehungen werden nicht unterstützt.
