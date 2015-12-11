@@ -21,8 +21,10 @@ module Administrate
     end
 
     def new
+      build_resource =
+        resource_class.new(params[resource_name].nil? ? {} : resource_params)
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, resource_class.new),
+        page: Administrate::Page::Form.new(dashboard, build_resource),
       }
     end
 
@@ -66,7 +68,7 @@ module Administrate
       redirect_to action: :index
     end
 
-    private
+    protected
 
     helper_method :nav_link_state
     def nav_link_state(resource)
