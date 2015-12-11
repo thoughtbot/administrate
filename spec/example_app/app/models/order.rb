@@ -10,6 +10,8 @@ class Order < ActiveRecord::Base
   validates :address_state, presence: true
   validates :address_zip, presence: true
 
+  enum status: [:pending, :confirmed]
+
   def total_price
     line_items.map(&:total_price).reduce(0, :+)
   end

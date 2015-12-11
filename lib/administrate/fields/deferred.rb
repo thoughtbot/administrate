@@ -24,6 +24,26 @@ module Administrate
         options.fetch(:searchable, deferred_class.searchable?)
       end
 
+      def enum_options
+        options.fetch(:enum, nil)
+      end
+
+      def search_predicate(attribute, term)
+        if enum_options
+          deferred_class.search_predicate(attribute, term, enum_options)
+        else
+          deferred_class.search_predicate(attribute, term)
+        end
+      end
+
+      def search_term(attribute, term)
+        if enum_options
+          deferred_class.search_term(attribute, term, enum_options)
+        else
+          deferred_class.search_term(attribute, term)
+        end
+      end
+
       delegate(
         :html_class,
         :permitted_attribute,

@@ -7,7 +7,7 @@ module Administrate
         boolean: "Field::Boolean",
         date: "Field::DateTime",
         datetime: "Field::DateTime",
-        enum: "Field::String",
+        enum: "Field::Enum",
         float: "Field::Number",
         integer: "Field::Number",
         time: "Field::DateTime",
@@ -16,7 +16,6 @@ module Administrate
       }
 
       ATTRIBUTE_OPTIONS_MAPPING = {
-        enum: { searchable: false },
         float: { decimals: 2 },
       }
 
@@ -67,9 +66,19 @@ module Administrate
 
         if type
           ATTRIBUTE_TYPE_MAPPING.fetch(type, DEFAULT_FIELD_TYPE) +
-            options_string(ATTRIBUTE_OPTIONS_MAPPING.fetch(type, {}))
+            options_string(attribute_type_options(type, attribute.to_s))
         else
           association_type(attribute)
+        end
+      end
+
+      def attribute_type_options(type, attr)
+        base_options = ATTRIBUTE_OPTIONS_MAPPING.fetch(type, {})
+
+        if type == :enum
+          base_options.merge({enum: klass.send(attr.pluralize)})
+        else
+          base_options
         end
       end
 

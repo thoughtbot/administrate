@@ -16,6 +16,14 @@ module Administrate
         false
       end
 
+      def self.search_predicate(attribute, term)
+        "lower(#{attribute}) LIKE ?"
+      end
+
+      def self.search_term(attribute, term)
+        "%#{term}%"
+      end
+
       def initialize(attribute, data, page, options = {})
         @attribute = attribute
         @data = data

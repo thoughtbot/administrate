@@ -9,6 +9,7 @@ require "administrate/fields/number"
 require "administrate/fields/polymorphic"
 require "administrate/fields/string"
 require "administrate/fields/text"
+require "administrate/fields/enum"
 
 module Administrate
   class BaseDashboard
