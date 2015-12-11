@@ -14,7 +14,7 @@ class OrderDashboard < Administrate::BaseDashboard
     line_items: Field::HasMany,
     total_price: Field::Number.with_options(prefix: "$", decimals: 2),
     shipped_at: Field::DateTime,
-    status: Field::Enum,
+    status: Field::Enum.with_options(enum: {'pending' => 0, 'confirmed' => 1}),
   }
 
   READ_ONLY_ATTRIBUTES = [
@@ -31,6 +31,7 @@ class OrderDashboard < Administrate::BaseDashboard
     :total_price,
     :line_items,
     :shipped_at,
+    :status,
   ]
 
   FORM_ATTRIBUTES = ATTRIBUTE_TYPES.keys - READ_ONLY_ATTRIBUTES

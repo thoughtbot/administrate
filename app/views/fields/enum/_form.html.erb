@@ -1,0 +1,19 @@
+<%#
+# Enum Form Partial
+
+This partial renders an input element for a string attribute.
+By default, the input is a text field.
+
+## Local variables:
+
+- `f`:
+  A Rails form generator, used to help create the appropriate input fields.
+- `field`:
+  An instance of [Administrate::Field::Enum][1].
+  A wrapper around the Enum pulled from the database.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Enum
+%>
+
+<%= f.label field.attribute %>
+<%= f.select field.attribute, field.enum_options %>

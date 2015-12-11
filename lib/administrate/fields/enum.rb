@@ -18,6 +18,14 @@ module Administrate
           nil
         end
       end
+
+      def data
+        @data.to_s[0...truncation_length]
+      end
+
+      def enum_options
+        options[:enum].keys.map {|k| [k.humanize, k]}
+      end
     end
   end
 end
