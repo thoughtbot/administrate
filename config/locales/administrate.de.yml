@@ -2,7 +2,7 @@
 de:
   administrate:
     actions:
-      confirm: Sind sie sicher?
+      confirm: Sind Sie sicher?
       destroy: Löschen
       edit: Editieren
       show: Anzeigen
@@ -20,4 +20,4 @@ de:
       polymorphic:
         not_supported: Polymorphe Beziehungen werden nicht unterstützt.
       has_one:
-        not_supported: HasOne-beziehungen werden nicht unterstützt.
+        not_supported: HasOne Beziehungen werden nicht unterstützt.

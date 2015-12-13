@@ -1,3 +1,6 @@
+require "active_support/core_ext/module/delegation"
+require "active_support/core_ext/object/blank"
+
 module Administrate
   class Search
     BLACKLISTED_WORDS = %w{destroy remove delete update create}
@@ -5,6 +8,7 @@ module Administrate
     attr_reader :resolver, :term, :scope
 
     def initialize(resolver, term)
+      term ||= ''
       @resolver = resolver
       @scope = search_scope(term.split.first)
       @term = term[scope_length..-1].strip

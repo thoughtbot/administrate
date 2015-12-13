@@ -1,15 +1,70 @@
+require "spec_helper"
 require "support/constant_helpers"
-require "active_support/core_ext/module"
+require "administrate/fields/string"
+require "administrate/fields/email"
+require "administrate/fields/number"
 require "administrate/search"
-require "administrate/resource_resolver"
+
+class MockDashboard
+  ATTRIBUTE_TYPES = {
+    name: Administrate::Field::String,
+    email: Administrate::Field::Email,
+    phone: Administrate::Field::Number,
+  }
+end
 
 describe Administrate::Search do
-  describe "#scope" do
-    let(:controller_path) { "admin/users" }
-    let(:resource_resolver) do
-      Administrate::ResourceResolver.new(controller_path)
+  describe "#run" do
+    it "returns all records when no search term" do
+      begin
+        class User; end
+        resolver = double(resource_class: User, dashboard_class: MockDashboard)
+        search = Administrate::Search.new(resolver, nil)
+        expect(User).to receive(:all)
+
+        search.run
+      ensure
+        remove_constants :User
+      end
     end
+
+    it "returns all records when search is empty" do
+      begin
+        class User; end
+        resolver = double(resource_class: User, dashboard_class: MockDashboard)
+        search = Administrate::Search.new(resolver, "   ")
+        expect(User).to receive(:all)
+
+        search.run
+      ensure
+        remove_constants :User
+      end
+    end
+
+    it "searches using lower() + LIKE for all searchable fields" do
+      begin
+        class User; end
+        resolver = double(resource_class: User, dashboard_class: MockDashboard)
+        search = Administrate::Search.new(resolver, "test")
+        expected_query = [
+          "lower(name) LIKE ? OR lower(email) LIKE ?",
+          "%test%",
+          "%test%",
+        ]
+        expect(User).to receive(:where).with(*expected_query)
+
+        search.run
+      ensure
+        remove_constants :User
+      end
+    end
+  end
+
+  describe "#scope" do
     let(:scope) { "active" }
+    let(:resolver) do
+      double(resource_class: User, dashboard_class: MockDashboard)
+    end
 
     before do
       class User; end
@@ -23,7 +78,7 @@ describe Administrate::Search do
       let(:query) { "#{scope}:" }
 
       it "returns nil if the model does not respond to the possible scope" do
-        search = Administrate::Search.new(resource_resolver, query)
+        search = Administrate::Search.new(resolver, query)
         expect(search.scope).to eq(nil)
       end
 
@@ -32,7 +87,7 @@ describe Administrate::Search do
           def self.active; end
         end
 
-        search = Administrate::Search.new(resource_resolver, query)
+        search = Administrate::Search.new(resolver, query)
         expect(search.scope).to eq(scope)
       end
 
@@ -42,7 +97,7 @@ describe Administrate::Search do
         end
 
         Administrate::Search::BLACKLISTED_WORDS.each do |word|
-          search = Administrate::Search.new(resource_resolver, "#{word}_all:")
+          search = Administrate::Search.new(resolver, "#{word}_all:")
           expect(search.scope).to eq(nil)
         end
       end
@@ -52,7 +107,7 @@ describe Administrate::Search do
           def self.bang!; end
         end
 
-        search = Administrate::Search.new(resource_resolver, "bang!:")
+        search = Administrate::Search.new(resolver, "bang!:")
         expect(search.scope).to eq(nil)
       end
     end
@@ -65,7 +120,7 @@ describe Administrate::Search do
         class User
           def self.active; end
         end
-        search = Administrate::Search.new(resource_resolver, query)
+        search = Administrate::Search.new(resolver, query)
         expect(search.scope).to eq(scope)
         expect(search.term).to eq(term)
       end

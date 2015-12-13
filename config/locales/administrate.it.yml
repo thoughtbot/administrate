@@ -1,0 +1,23 @@
+---
+it:
+  administrate:
+    actions:
+      confirm: Sei sicuro?
+      destroy: Elimina
+      edit: Modifica
+      show: Visualizza
+    controller:
+      create:
+        success: "%{resource} è stato creato con successo."
+      destroy:
+        success: "%{resource} è stato eliminato con successo."
+      update:
+        success: "%{resource} è stato modificato con successo."
+    fields:
+      has_many:
+        more: Visualizzo %{count} di %{total_count}
+        none: Nessuno
+      polymorphic:
+        not_supported: Associazioni polimorfiche non ancora supportate. Spiacenti!
+      has_one:
+        not_supported: Associazioni HasOne non ancora supportate. Spiacenti!
