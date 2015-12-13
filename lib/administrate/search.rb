@@ -8,7 +8,7 @@ module Administrate
     attr_reader :resolver, :term, :scope
 
     def initialize(resolver, term)
-      term ||= ''
+      term ||= ""
       @resolver = resolver
       @scope = search_scope(term.split.first)
       @term = term[scope_length..-1].strip
