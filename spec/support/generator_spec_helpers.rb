@@ -15,6 +15,10 @@ module GeneratorSpecHelpers
     )
   end
 
+  def invoke_generator(*args)
+    have_received(:invoke).with(*args)
+  end
+
   private
 
   def copy_to_generator_root(destination, template)
