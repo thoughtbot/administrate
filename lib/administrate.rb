@@ -2,9 +2,14 @@ require "administrate/engine"
 
 module Administrate
   module Config
+    @admin_directory = "admin"
+
     module ClassMethods
       attr_accessor :admin_directory
-      @@admin_directory = "admin"
+
+      def admin_namespace
+        admin_directory.camelize
+      end
     end
     extend ClassMethods
   end
