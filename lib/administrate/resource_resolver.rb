@@ -1,5 +1,3 @@
-require "administrate/namespace"
-
 module Administrate
   class ResourceResolver
     def initialize(controller_path)
@@ -33,7 +31,7 @@ module Administrate
     end
 
     def controller_path_parts
-      controller_path.singularize.split("/") - [Administrate::NAMESPACE.to_s]
+      controller_path.singularize.split("/") - [Administrate::Config.admin_directory.to_s]
     end
 
     attr_reader :controller_path

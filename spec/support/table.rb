@@ -17,7 +17,7 @@ module Features
 
   def url_for(model)
     "/" + [
-      Administrate::NAMESPACE,
+      Administrate::Config.admin_directory,
       model.class.to_s.underscore.pluralize,
       model.to_param,
     ].join("/")

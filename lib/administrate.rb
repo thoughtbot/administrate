@@ -1,5 +1,3 @@
-require "administrate/engine"
-
 module Administrate
   module Config
     @admin_directory = "admin"
@@ -18,3 +16,5 @@ module Administrate
     yield Administrate::Config
   end
 end
+
+require "administrate/engine"
