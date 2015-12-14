@@ -9,7 +9,12 @@ module Administrate
       def create_dashboard_controller
         copy_file(
           "application_controller.rb",
-          "app/controllers/#{Administrate::Config.admin_directory}/application_controller.rb"
+          File.join(
+            "app",
+            "controllers",
+            Administrate::Config.admin_directory,
+            "application_controller.rb",
+          ),
         )
       end
 
