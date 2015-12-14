@@ -26,13 +26,10 @@ describe Administrate::Generators::Views::LayoutGenerator, :generator do
     end
 
     it "copies the sidebar partial into the `admin/application` namespace" do
-      expected_contents = contents_for_application_template("_sidebar")
-      generated_file = file("app/views/admin/application/_sidebar.html.erb")
+      allow(Rails::Generators).to receive(:invoke)
 
       run_generator []
-      contents = File.read(generated_file)
-
-      expect(contents).to eq(expected_contents)
+      expect(Rails::Generators).to invoke_generator("administrate:views:sidebar")
     end
 
     it "copies the javascript partial into the `admin/application` namespace" do

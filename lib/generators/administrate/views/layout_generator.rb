@@ -12,7 +12,7 @@ module Administrate
             "app/views/layouts/admin/application.html.erb",
           )
 
-          copy_resource_template("_sidebar")
+          Rails::Generators.invoke("administrate:views:sidebar")
           copy_resource_template("_javascript")
           copy_resource_template("_flashes")
         end
