@@ -8,7 +8,7 @@ It renders the `_table` partial to display details about the resources.
 ## Local variables:
 
 - `page`:
-  An instance of [Administrate::Page::Table][1].
+  An instance of [Administrate::Page::Collection][1].
   Contains helper methods to help display a table,
   and knows which attributes should be displayed in the resource's table.
 - `resources`:
@@ -18,7 +18,7 @@ It renders the `_table` partial to display details about the resources.
 - `search_term`:
   A string containing the term the user has searched for, if any.
 
-[1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Table
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Collection
 %>
 
 <% content_for(:title) do %>
