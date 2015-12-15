@@ -5,7 +5,9 @@ module Admin
     #
     # def index
     #   super
-    #   @resources = <%= class_name %>.all.paginate(10, params[:page])
+    #   @resources = <%= class_name %>.
+    #     page(params[:page]).
+    #     per(10)
     # end
 
     # Define a custom finder by overriding the `find_resource` method:
