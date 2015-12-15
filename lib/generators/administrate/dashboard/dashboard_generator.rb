@@ -33,7 +33,12 @@ module Administrate
       def create_resource_controller
         template(
           "controller.rb.erb",
-          "app/controllers/admin/#{file_name.pluralize}_controller.rb",
+          File.join(
+            "app",
+            "controllers",
+            Administrate::Config.admin_directory,
+            "#{file_name.pluralize}_controller.rb",
+          ),
         )
       end
 

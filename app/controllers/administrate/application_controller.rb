@@ -37,7 +37,7 @@ module Administrate
 
       if resource.save
         redirect_to(
-          [Administrate::NAMESPACE, resource],
+          [Administrate::Config.admin_namespace, resource],
           notice: translate_with_resource("create.success"),
         )
       else
@@ -50,7 +50,7 @@ module Administrate
     def update
       if requested_resource.update(resource_params)
         redirect_to(
-          [Administrate::NAMESPACE, requested_resource],
+          [Administrate::Config.admin_directory, requested_resource],
           notice: translate_with_resource("update.success"),
         )
       else
