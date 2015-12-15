@@ -1,18 +1,18 @@
 <%#
-# String Form Partial
+# Password Form Partial
 
-This partial renders an input element for a string attribute.
-By default, the input is a text field.
+This partial renders a password element for an attribute.
+By default, the input is a password field.
 
 ## Local variables:
 
 - `f`:
   A Rails form generator, used to help create the appropriate input fields.
 - `field`:
-  An instance of [Administrate::Field::String][1].
-  A wrapper around the String pulled from the database.
+  An instance of [Administrate::Field::Password][1].
+  A wrapper around the Password pulled from the database.
 
-[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/String
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Password
 %>
 
 <%= f.label field.attribute %>

@@ -1,18 +1,18 @@
 <%#
-# String Index Partial
+# Password Index Partial
 
-This partial renders a string attribute
+This partial renders a password attribute
 to be displayed on a resource's index page.
 
-By default, the attribute is rendered as a truncated string.
+By default, the attribute is rendered as a truncated string of `*`.
 
 ## Local variables:
 
 - `field`:
-  An instance of [Administrate::Field::String][1].
-  A wrapper around the String pulled from the database.
+  An instance of [Administrate::Field::Password][1].
+  A wrapper around the Password pulled from the database.
 
-[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/String
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Password
 %>
 
 <%= field.truncate %>

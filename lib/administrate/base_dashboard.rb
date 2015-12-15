@@ -6,9 +6,9 @@ require "administrate/fields/has_many"
 require "administrate/fields/has_one"
 require "administrate/fields/image"
 require "administrate/fields/number"
+require "administrate/fields/password"
 require "administrate/fields/polymorphic"
 require "administrate/fields/string"
-require "administrate/fields/password"
 require "administrate/fields/text"
 
 module Administrate
