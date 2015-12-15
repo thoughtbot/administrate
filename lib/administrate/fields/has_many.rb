@@ -47,8 +47,11 @@ module Administrate
       private
 
       def candidate_resources
-        query = options.fetch(:scope, -> { associated_class.all })
-        query.call
+        if associated_class.respond_to?(attribute)
+          associated_class.public_send(attribute)
+        else
+          associated_class.all
+        end
       end
 
       def display_candidate_resource(resource)
