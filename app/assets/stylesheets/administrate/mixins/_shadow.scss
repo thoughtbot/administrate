@@ -1,7 +1,3 @@
-@mixin shadow {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
 /// Computes a top-shadow for a card effect.
 /// @param {Number} $depth - depth level
 /// @return {List}
@@ -30,6 +26,6 @@
   } @else if $depth > 5 {
     @warn "Invalid $depth `#{$depth}` for mixin `card`.";
   } @else {
-    box-shadow: bottom-shadow($depth), top-shadow($depth);  
+    box-shadow: bottom-shadow($depth), top-shadow($depth);
   }
 }
