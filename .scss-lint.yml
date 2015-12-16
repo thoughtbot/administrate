@@ -2,7 +2,6 @@ scss_files: "**/*.scss"
 linters:
   SelectorFormat:
     enabled: true
-    allow_leading_underscore: true
     convention: hyphenated_BEM
   NestingDepth:
     enabled: true
