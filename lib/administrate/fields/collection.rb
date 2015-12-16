@@ -3,7 +3,7 @@ require "administrate/page/collection"
 
 module Administrate
   module Field
-    class HasMany < Associative
+    class Collection < Associative
       DEFAULT_LIMIT = 5
 
       def self.permitted_attribute(attribute)
@@ -44,15 +44,14 @@ module Administrate
         data.count > limit
       end
 
-      private
+      protected
 
       def candidate_resources
-        if associated_class.respond_to?(attribute)
-          associated_class.public_send(attribute)
-        else
-          associated_class.all
-        end
+        query = options.fetch(:candidate_resources)
+        query.call
       end
+
+      private
 
       def display_candidate_resource(resource)
         associated_dashboard.display_resource(resource)
