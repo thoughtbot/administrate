@@ -15,12 +15,12 @@ to do the heavy lifting.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Form
 %>
 
-<% content_for(:title) { "New #{page.resource_name.titleize}" } %>
+<% content_for(:title) { "#{t("administrate.actions.new")} #{page.resource_name.titleize}" } %>
 
 <header class="header">
   <h1 class="header__heading"><%= content_for(:title) %></h1>
   <div class="header__actions">
-    <%= link_to 'Back', :back, class: "button" %>
+    <%= link_to t("administrate.actions.back"), :back, class: "button" %>
   </div>
 </header>
 
