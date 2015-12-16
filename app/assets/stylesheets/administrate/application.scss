@@ -8,10 +8,10 @@
 @import "selectize";
 @import "datetime_picker";
 
-@import "mixins/mixins";
+@import "mixins/**/*";
 @import "base/base";
 
 @import "layout";
 @import "sidebar";
 
-@import "components/components";
+@import "components/**/*";
