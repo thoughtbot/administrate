@@ -7,6 +7,8 @@ pt-BR:
       destroy: Deletar
       edit: Editar
       show: Visualizar
+      new: Criar
+      back: Voltar
     controller:
       create:
         success: "%{resource} foi criado com sucesso."
