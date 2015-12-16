@@ -16,10 +16,10 @@ module Administrate
 
     def run
       if @term.blank?
-        scope ? resource_class.send(scope) : resource_class.all
+        scope ? resource_class.public_send(scope) : resource_class.all
       else
         resources = resource_class.where(query, *search_terms)
-        resources = resources.send(scope) if scope
+        resources = resources.public_send(scope) if scope
         resources
       end
     end
