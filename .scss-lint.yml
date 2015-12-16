@@ -1,3 +1,5 @@
+# Up-to-date with SCSS-Lint v0.43.2
+
 scss_files: "**/*.scss"
 
 linters:
