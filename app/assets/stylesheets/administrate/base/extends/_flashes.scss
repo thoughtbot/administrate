@@ -1,34 +1,18 @@
-@mixin flash($color) {
-  background: $color;
-  color: darken($color, 60);
-  margin-bottom: $base-spacing;
+@each $flash-type, $flash-color in $flash-colors {
+  .flash--#{$flash-type} {
+    background-color: $flash-color;
+    border-radius: $base-border-radius;
+    color: darken($flash-color, 60%);
+    margin-bottom: $base-spacing;
+    padding: $small-spacing;
 
-  a {
-    color: darken($color, 70);
+    a {
+      color: darken($flash-color, 70%);
 
-    &:hover {
-      color: darken($color, 90);
+      &:focus,
+      &:hover {
+        color: darken($flash-color, 90%);
+      }
     }
-  }
-}
-
-.flash {
-  border-radius: $base-border-radius;
-  padding: $base-spacing / 2;
-
-  &--alert {
-    @include flash($alert-color);
-  }
-
-  &--error {
-    @include flash($error-color);
-  }
-
-  &--notice {
-    @include flash($notice-color);
-  }
-
-  &--success {
-    @include flash($success-color);
   }
 }

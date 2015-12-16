@@ -81,10 +81,12 @@ $base-button-color: $base-link-color;
 $hover-button-color: $hover-link-color;
 
 // Flash Colors
-$alert-color: $light-yellow;
-$error-color: $light-red;
-$notice-color: lighten($base-accent-color, 40);
-$success-color: $light-green;
+$flash-colors: (
+  alert: $light-yellow,
+  error: $light-red,
+  notice: lighten($base-accent-color, 40%),
+  success: $light-green
+);
 
 // Border color
 $base-border-color: $grey-1;
