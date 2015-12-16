@@ -1,0 +1,6 @@
+.container {
+  @include card(1);
+  background-color: $white;
+  flex: 1;
+  overflow-y: auto;
+}
