@@ -50,10 +50,6 @@ select {
     box-shadow: $form-box-shadow-focus;
     outline: none;
   }
-
-  @include placeholder {
-    color: $hint-grey;
-  }
 }
 
 textarea {

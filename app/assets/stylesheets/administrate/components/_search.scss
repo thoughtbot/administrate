@@ -15,8 +15,8 @@
   }
 
   path {
-    @include transition($base-transition);
     fill: $hint-grey;
+    transition: $base-transition;
   }
 
   &--active path {
@@ -39,9 +39,9 @@
 
 .search__hint {
   @include position(absolute, 1em 0 null null);
-  @include transition($base-transition);
   color: $hint-grey;
   opacity: 0;
+  transition: $base-transition;
 
   svg {
     @include size(100%);

@@ -17,13 +17,6 @@ body {
   max-width: 100em;
 }
 
-.container {
-  @include card(1);
-  background-color: $white;
-  flex: 1;
-  overflow-y: auto;
-}
-
 .content {
   padding: $base-spacing;
 }

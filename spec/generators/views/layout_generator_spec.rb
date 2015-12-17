@@ -5,6 +5,7 @@ require "support/generator_spec_helpers"
 describe Administrate::Generators::Views::LayoutGenerator, :generator do
   describe "administrate:views:layout" do
     it "copies the layout template into the `admin/application` namespace" do
+      allow(Rails::Generators).to receive(:invoke)
       expected_contents = File.read(
         "app/views/layouts/administrate/application.html.erb",
       )
@@ -16,6 +17,7 @@ describe Administrate::Generators::Views::LayoutGenerator, :generator do
     end
 
     it "copies the flashes partial into the `admin/application` namespace" do
+      allow(Rails::Generators).to receive(:invoke)
       expected_contents = contents_for_application_template("_flashes")
       generated_file = file("app/views/admin/application/_flashes.html.erb")
 
@@ -35,6 +37,7 @@ describe Administrate::Generators::Views::LayoutGenerator, :generator do
     end
 
     it "copies the javascript partial into the `admin/application` namespace" do
+      allow(Rails::Generators).to receive(:invoke)
       expected_contents = contents_for_application_template("_javascript")
       generated_file = file("app/views/admin/application/_javascript.html.erb")
 

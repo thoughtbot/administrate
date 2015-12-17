@@ -1,2 +1,3 @@
 scss:
-  config_file: .scss-style.yml
+  enabled: true
+  config_file: .scss-lint.yml

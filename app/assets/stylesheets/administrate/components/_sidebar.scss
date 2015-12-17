@@ -5,7 +5,6 @@
   padding: 0 $base-spacing;
 
   &__link {
-    @include fill-parent;
     color: $base-font-color;
     display: block;
     padding-top: $base-spacing;

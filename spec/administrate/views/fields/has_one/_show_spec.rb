@@ -2,7 +2,7 @@ require "rails_helper"
 require "administrate/fields/has_one"
 
 describe "fields/has_one/_show", type: :view do
-  context "without an associated records" do
+  context "without an associated record" do
     it "displays nothing" do
       has_one = instance_double(
         "Administrate::Field::HasOne",
@@ -31,7 +31,7 @@ describe "fields/has_one/_show", type: :view do
 
       render(
         partial: "fields/has_one/show.html.erb",
-        locals: { field: has_one },
+        locals: { field: has_one, namespace: "admin" },
       )
 
       expected = "<a href=\"#{product_path}\">#{product.name}</a>"
