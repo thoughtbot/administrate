@@ -55,6 +55,24 @@ module Administrate
       end
     end
 
+    # WIP: use COLLECTION_SCOPES as whitelist
+    #
+    # def search_scope(term)
+    #   if term && (term[-1, 1] == ":")
+    #     possible_scope = term[0..-2]
+    #     possible_scope if resource_class.respond_to?(possible_scope) &&
+    #                       valid_scope?(possible_scope)
+    #   end
+    # end
+    #
+    # def valid_scope?(method)
+    #   if self.class.const_defined?(:COLLECTION_SCOPES)
+    #     COLLECTION_SCOPES.includes? method.to_sym
+    #   else
+    #     !banged?(method) && !blacklisted_scope?(method)
+    #   end
+    # end
+
     def scope_length
       (@scope && (@scope.length + 1)) || 0
     end

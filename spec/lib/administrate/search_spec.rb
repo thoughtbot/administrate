@@ -110,6 +110,23 @@ describe Administrate::Search do
         search = Administrate::Search.new(resolver, "bang!:")
         expect(search.scope).to eq(nil)
       end
+
+      it "uses COLLECTION_SCOPES as whitelist" do
+        pending "problem with COLLECTION_SCOPES definition in the spec's context"
+
+        class User
+          def self.active; end
+        end
+
+        class UserDashboard < Administrate::BaseDashboard
+          COLLECTION_SCOPES = []
+        end
+
+        search = Administrate::Search.new(resolver, query)
+        expect(search.scope).to eq(nil)
+
+        remove_constants :UserDashboard
+      end
     end
 
     describe "the query is the scope followed by the term" do
