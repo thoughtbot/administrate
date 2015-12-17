@@ -1,6 +1,5 @@
 // Typography
 $sans-serif: "Lato", $helvetica;
-$serif: $georgia;
 $base-font-family: $sans-serif;
 $header-font-family: $base-font-family;
 
@@ -14,7 +13,6 @@ $header-line-height: 1.25;
 // Other Sizes
 $base-border-radius: 3px;
 $base-spacing: $base-line-height * 1em;
-$base-z-index: 0;
 $small-spacing: $base-spacing / 2;
 
 // Transitions
@@ -23,9 +21,7 @@ $base-timing: 0.25s;
 $base-transition: all $base-timing $base-easing;
 
 // Colors
-$dark-blue: #293f53;
 $blue: #2a94d6;
-$light-blue: #4eb1cb;
 $light-red: #c77067;
 $light-yellow: #f0cd66;
 $light-green: #4ab471;
