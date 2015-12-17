@@ -18,8 +18,4 @@ describe Administrate::Generators::ViewsGenerator, :generator do
       end
     end
   end
-
-  def invoke_generator(*args)
-    have_received(:invoke).with(*args)
-  end
 end
