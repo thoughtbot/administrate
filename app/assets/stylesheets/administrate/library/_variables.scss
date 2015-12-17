@@ -63,9 +63,7 @@ $all-text-inputs: '[type="color"]',
 
 // Link Colors
 $base-link-color: $blue;
-$hover-link-color: shade($blue, 10);
-$base-button-color: $base-link-color;
-$hover-button-color: $hover-link-color;
+$hover-link-color: shade($base-link-color, 10%);
 
 // Flash Colors
 $flash-colors: (

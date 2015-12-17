@@ -1,6 +1,6 @@
 %button {
   -webkit-font-smoothing: antialiased;
-  background-color: $base-button-color;
+  background-color: $base-link-color;
   border-radius: $base-border-radius;
   color: white;
   display: inline-block;
@@ -12,7 +12,7 @@
   transition: background-color $base-timing $base-easing;
 
   &:hover {
-    background-color: $hover-button-color;
+    background-color: shade($base-link-color, 10%);
     color: white;
   }
 
