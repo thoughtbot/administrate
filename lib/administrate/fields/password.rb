@@ -8,17 +8,13 @@ module Administrate
       end
 
       def truncate
-        pretty_data.to_s[0...truncation_length]
+        pretty_data.to_s[0...6]
       end
 
       private
 
       def pretty_data
         data.gsub(/./, "•") unless data.nil?
-      end
-
-      def truncation_length
-        options.fetch(:truncate, 8)
       end
     end
   end

@@ -14,6 +14,9 @@ By default, the input is a password field.
 
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Password
 %>
-
-<%= f.label field.attribute %>
-<%= f.password_field field.attribute %>
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.password_field field.attribute %>
+</div>
