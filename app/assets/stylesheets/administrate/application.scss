@@ -2,14 +2,12 @@
 
 @import "normalize-rails";
 @import "bourbon";
-@import "base/grid-settings";
 @import "neat";
 
 @import "selectize";
 @import "datetime_picker";
 
 @import "library/**/*";
-@import "base/base";
+@import "base/**/*";
 @import "components/**/*";
-
 @import "layout";

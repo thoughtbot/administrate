@@ -20,7 +20,7 @@
   }
 
   &--active path {
-    fill: $base-accent-color;
+    fill: $action-color;
   }
 }
 
@@ -49,7 +49,7 @@
 
   path,
   rect {
-    fill: $base-accent-color;
+    fill: $action-color;
   }
 
   &--active {

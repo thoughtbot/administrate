@@ -11,15 +11,13 @@
   label {
     @include data-label;
     @include span-columns(2 of 12);
-    padding: $form-input-padding 0;
+    padding: ($base-spacing / 3) 0;
     text-align: right;
   }
 
-  #{$all-text-inputs},
   select,
-  textarea,
   .selectize-control {
-    background-color: $form-field-background-color;
+    background-color: $white;
     margin-bottom: $base-spacing;
   }
 
@@ -35,7 +33,13 @@
 
   [type="checkbox"],
   [type="radio"] {
-    margin: $small-spacing 0 ($base-spacing + $form-input-padding);
+    margin: $small-spacing 0 ($base-spacing + ($base-spacing / 3));
     width: auto;
+  }
+
+  select {
+    appearance: none;
+    background: image-url("administrate/dropdown.svg") no-repeat 97% 50% / 10px;
+    margin-bottom: $base-spacing;
   }
 }
