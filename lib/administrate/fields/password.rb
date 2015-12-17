@@ -14,7 +14,7 @@ module Administrate
       private
 
       def pretty_data
-        data.gsub(/./, "*") unless data.nil?
+        data.gsub(/./, "•") unless data.nil?
       end
 
       def truncation_length

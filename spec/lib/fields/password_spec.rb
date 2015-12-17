@@ -27,14 +27,14 @@ describe Administrate::Field::Password do
     it "defaults to displaying up to 8 characters" do
       long_pwd = Administrate::Field::Password.new(:long_pwd, lorem(30), :show)
 
-      expect(long_pwd.truncate).to eq("*" * 8)
+      expect(long_pwd.truncate).to eq("•" * 8)
     end
 
     context "with a `truncate` option" do
       it "shortens to the given length" do
         password = password_with_options(lorem(30), truncate: 20)
 
-        expect(password.truncate).to eq("*" * 20)
+        expect(password.truncate).to eq("•" * 20)
       end
     end
   end
