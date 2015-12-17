@@ -16,7 +16,7 @@
 
   path {
     fill: $hint-grey;
-    transition: $base-transition;
+    transition: fill $base-duration $base-timing;
   }
 
   &--active path {
@@ -41,7 +41,7 @@
   @include position(absolute, 1em 0 null null);
   color: $hint-grey;
   opacity: 0;
-  transition: $base-transition;
+  transition: opacity $base-duration $base-timing;
 
   svg {
     @include size(100%);

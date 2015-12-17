@@ -1,7 +1,7 @@
 .table__row {
   background-color: $white;
   border-left: 2px solid transparent;
-  transition: $base-transition;
+  transition: background-color $base-duration $base-timing;
 
   &:hover {
     background-color: $base-background-color;

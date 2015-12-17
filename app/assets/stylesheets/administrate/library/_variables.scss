@@ -16,9 +16,8 @@ $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
 
 // Transitions
-$base-easing: cubic-bezier(0.215, 0.610, 0.355, 1);
-$base-timing: 0.25s;
-$base-transition: all $base-timing $base-easing;
+$base-duration: 250ms;
+$base-timing: $ease-out-cubic;
 
 // Colors
 $blue: #2a94d6;
