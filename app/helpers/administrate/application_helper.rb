@@ -42,5 +42,11 @@ module Administrate
     def clear_search_params
       params.except(:search, :page).permit(:order, :direction, :per_page)
     end
+
+    def link_to_if_route_exists(text, *routing_args)
+      link_to text, *routing_args
+    rescue StandardError
+      text
+    end
   end
 end
