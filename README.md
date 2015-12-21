@@ -4,7 +4,7 @@
 [![Gem Version](https://badge.fury.io/rb/administrate.svg)](https://badge.fury.io/rb/administrate)
 [![Code Climate](https://codeclimate.com/github/thoughtbot/administrate/badges/gpa.svg)](https://codeclimate.com/github/thoughtbot/administrate)
 
-A Rails engine that helps you put together a super-flexible admin dashboard.
+A framework for creating flexible, powerful admin dashboards in Rails.
 [Try the demo][demo].
 
 > Note: Administrate is still pre-1.0,
@@ -12,14 +12,19 @@ A Rails engine that helps you put together a super-flexible admin dashboard.
 
 ![administrate](https://images.thoughtbot.com/announcing-administrate/DdP2CQfnSE23PI8AAnDc_Administrate.png)
 
-## Guiding Principles
+## What Is Administrate?
 
-Administrate is heavily inspired by projects
-like [Rails Admin] and [ActiveAdmin],
+Administrate is a library for Rails apps
+that automatically generates admin dashboards.
+Administrate's admin dashboards give non-technical users clean interfaces
+that allow them to create, edit, search, and delete records
+for any model in the application.
+
+Administrate solves the same problem as [Rails Admin] and [ActiveAdmin],
 but aims to provide a better user experience for site admins,
 and to be easier for developers to customize.
 
-To do that, Administrate follows a few simple rules:
+To accomplish these goals, Administrate follows a few guiding principles:
 
 - No DSLs (domain-specific languages)
 - Support the simplest use cases, and let the user override defaults with
