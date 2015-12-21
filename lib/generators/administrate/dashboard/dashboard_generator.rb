@@ -27,14 +27,18 @@ module Administrate
       source_root File.expand_path("../templates", __FILE__)
 
       def create_dashboard_definition
-        template "dashboard.rb.erb", "app/dashboards/#{file_name}_dashboard.rb"
+        template(
+          "dashboard.rb.erb",
+          Rails.root.join("app/dashboards/#{file_name}_dashboard.rb"),
+        )
       end
 
       def create_resource_controller
-        template(
-          "controller.rb.erb",
+        destination = Rails.root.join(
           "app/controllers/admin/#{file_name.pluralize}_controller.rb",
         )
+
+        template("controller.rb.erb", destination)
       end
 
       private

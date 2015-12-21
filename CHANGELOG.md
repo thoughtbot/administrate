@@ -20,6 +20,9 @@
 
 * [#269] [FEATURE] Add a generator for copying default layout files
 * [#328] [FEATURE] Add a generator for copying default sidebar partial
+* [#362] [FEATURE] Add a generator for only the dashboard manifest.
+  Customizing this manifest before running the `administrate:install` generator
+  will change which dashboards get generated.
 * [#295] [FEATURE] Add dashboard detection for ActiveRecord::Enum fields.
 * [#364] [FEATURE] Improve dashboard generator by explicitly listing out the
   generated `SHOW_PAGE_ATTRIBUTES` array elements.
