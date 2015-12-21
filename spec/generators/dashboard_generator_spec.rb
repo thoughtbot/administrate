@@ -397,6 +397,31 @@ describe Administrate::Generators::DashboardGenerator, :generator do
     end
   end
 
+  describe "SHOW_PAGE_ATTRIBUTES" do
+    it "includes all attributes" do
+      begin
+        ActiveRecord::Schema.define do
+          create_table :foos do |t|
+            t.string :name
+            t.timestamps
+          end
+        end
+
+        class Foo < ActiveRecord::Base
+          reset_column_information
+        end
+
+        run_generator ["foo"]
+        load file("app/dashboards/foo_dashboard.rb")
+
+        attrs = FooDashboard::SHOW_PAGE_ATTRIBUTES
+        expect(attrs).to match_array([:name, :id, :created_at, :updated_at])
+      ensure
+        remove_constants :Foo, :FooDashboard
+      end
+    end
+  end
+
   describe "resource controller" do
     it "has valid syntax" do
       controller = file("app/controllers/admin/customers_controller.rb")

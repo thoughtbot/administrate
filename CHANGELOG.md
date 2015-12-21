@@ -21,6 +21,8 @@
 * [#269] [FEATURE] Add a generator for copying default layout files
 * [#328] [FEATURE] Add a generator for copying default sidebar partial
 * [#295] [FEATURE] Add dashboard detection for ActiveRecord::Enum fields.
+* [#364] [FEATURE] Improve dashboard generator by explicitly listing out the
+  generated `SHOW_PAGE_ATTRIBUTES` array elements.
 * [#297] [I18n] Add Italian translations
 * [#307] [I18n] Fix German grammatical errors
 
