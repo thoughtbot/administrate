@@ -128,7 +128,7 @@ describe Administrate::Search do
       end
 
       describe "with COLLECTION_SCOPES defined" do
-        let(:wresolver) do
+        let(:resolver) do
           double(resource_class: User, dashboard_class: DashboardWithDefinedScopes)
         end
 
@@ -139,7 +139,7 @@ describe Administrate::Search do
               def self.active; end
             end
 
-            search = Administrate::Search.new(wresolver, 'closed:')
+            search = Administrate::Search.new(resolver, 'closed:')
             expect(search.scope).to eq(nil)
           ensure
             remove_constants :User
@@ -153,7 +153,7 @@ describe Administrate::Search do
               def self.active; end
             end
 
-            search = Administrate::Search.new(wresolver, 'active:')
+            search = Administrate::Search.new(resolver, 'active:')
             expect(search.scope).to eq("active")
           ensure
             remove_constants :User
