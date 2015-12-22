@@ -156,6 +156,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    markdown-rails (0.2.1)
+      rails
+      rdiscount (>= 1.6.8, < 2.0)
     method_source (0.8.2)
     mime-types (2.6.2)
     mini_portile2 (2.0.0)
@@ -218,6 +221,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.15.0)
     rake (10.4.2)
+    rdiscount (1.6.8)
+    redcarpet (3.3.3)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -310,12 +315,14 @@ DEPENDENCIES
   high_voltage
   i18n-tasks
   launchy
+  markdown-rails
   percy-capybara
   pg
   poltergeist
   pry-rails
   rack-timeout
   rails_stdout_logging
+  redcarpet
   rspec-rails (~> 3.1.0)
   shoulda-matchers (~> 2.8.0)
   timecop

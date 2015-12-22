@@ -6,7 +6,9 @@ gemspec
 
 gem "delayed_job_active_record"
 gem "high_voltage"
+gem "markdown-rails"
 gem "pg"
+gem "redcarpet"
 gem "unicorn"
 
 group :development do

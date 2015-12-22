@@ -1,0 +1,39 @@
+<html>
+<head>
+  <%= stylesheet_link_tag "docs", media: "all" %>
+  <link href='//fonts.googleapis.com/css?family=Lato|Source+Code+Pro|Fjalla+One' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+</head>
+
+<body>
+  <div class="content">
+    <div class="sidebar">
+      <h1>Administrate</h1>
+
+      <ul class="sidebar-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="https://github.com/thoughtbot/administrate/issues/new">Feedback</a></li>
+      </ul>
+
+      <h3>Documentation</h3>
+
+      <ul class="sidebar-links">
+        <li><a href="/">README</a></li>
+        <li><a href="/getting_started">Getting Started</a></li>
+        <li><a href="/customizing_dashboards">Customizing Dashboards</a></li>
+        <li><a href="/customizing_page_views">Customizing Page Views</a></li>
+        <li><a href="/customizing_attribute_partials">Customizing Attribute Partials</a></li>
+        <li><a href="/adding_custom_field_types">Adding Custom Field Types</a></li>
+        <li><a href="/customizing_controller_actions">Customizing Controller Actions</a></li>
+      </ul>
+    </div>
+
+    <div class="main">
+      <%= yield %>
+    </div>
+  </div>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

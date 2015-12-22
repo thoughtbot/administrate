@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
   end
 
-  root to: redirect("/admin")
+  get "/:page", to: "docs#show"
+  root to: "docs#index"
 end
