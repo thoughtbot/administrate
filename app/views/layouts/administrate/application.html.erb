@@ -25,19 +25,20 @@ By default, it renders:
 </head>
 
 <body>
-  <main class="main">
+
+  <div class="app-container">
+
     <div class="sidebar">
       <%= render "sidebar" -%>
     </div>
 
-    <div class="container">
+    <main class="main-content" role="main">
       <%= content_for(:search) %>
-      <div class="content">
-        <%= render "flashes" -%>
-        <%= yield %>
-      </div>
-    </div>
-  </main>
+      <%= render "flashes" -%>
+      <%= yield %>
+    </main>
+
+  </div>
 
   <%= render "javascript" %>
 </body>

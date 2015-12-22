@@ -1,10 +1,10 @@
 .search {
+  @include padding(null $base-spacing);
   align-items: center;
   border-bottom: $base-border;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding: 0 $base-spacing;
   position: relative;
   width: 100%;
 }

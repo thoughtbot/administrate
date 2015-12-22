@@ -1,3 +1,7 @@
+.collection-data {
+  @include padding(null $base-spacing);
+}
+
 .table__row {
   background-color: $white;
   border-left: 2px solid transparent;
