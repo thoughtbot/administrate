@@ -30,6 +30,8 @@
   `ATTRIBUTE_TYPES`
 * [#298] [FEATURE] Support ActiveRecord model I18n translations
 * [#312] [FEATURE] Add a `nil` option to `belongs_to` form fields
+* [#282] [FEATURE] Running the install generator multiple times
+  no longer generates duplicate routes
 * [#231] [UI] Fix layout issue on show page where a long label next to an empty
   value would cause following fields on the page to be mis-aligned.
 * [#309] [UI] Fix layout issue in datetime pickers where months and years

@@ -1,3 +1,5 @@
+ruby:
+  config_file: .ruby-style.yml
 scss:
   enabled: true
   config_file: .scss-lint.yml
