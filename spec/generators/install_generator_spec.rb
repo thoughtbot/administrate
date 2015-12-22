@@ -110,6 +110,18 @@ describe Administrate::Generators::InstallGenerator, :generator do
         "root controller: DashboardManifest::ROOT_DASHBOARD, action: :index",
       )
     end
+
+    it "skips the routes if they've already been generated" do
+      stub_generator_dependencies
+      insert_generated_routes
+      routes_file = file("config/routes.rb")
+
+      run_generator
+
+      routes = File.read(routes_file)
+      matches = routes.scan("DashboardManifest::DASHBOARDS")
+      expect(matches.count).to eq(1)
+    end
   end
 
   describe "resource dashboards" do
@@ -128,5 +140,21 @@ describe Administrate::Generators::InstallGenerator, :generator do
   def stub_generator_dependencies
     provide_existing_routes_file
     allow(Rails::Generators).to receive(:invoke)
+    allow(Rails).to receive(:root).and_return(Pathname.new(file(".")))
+  end
+
+  def insert_generated_routes
+    insert_into_file_after_line(
+      1,
+      file("config/routes.rb"),
+      File.read("lib/generators/administrate/install/templates/routes.rb"),
+    )
+  end
+
+  def insert_into_file_after_line(lines_before, file, insertion)
+    lines = File.read(file).lines
+    before = lines.shift(lines_before)
+    new_lines = before + [insertion] + lines
+    File.write(file, new_lines.join)
   end
 end
