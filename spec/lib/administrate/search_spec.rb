@@ -13,6 +13,14 @@ class MockDashboard
   }
 end
 
+class DashboardWithDefinedScopes
+  ATTRIBUTE_TYPES = {
+    name: Administrate::Field::String
+  }
+
+  COLLECTION_SCOPES = [:active]
+end
+
 describe Administrate::Search do
   describe "#run" do
     it "returns all records when no search term" do
@@ -66,49 +74,91 @@ describe Administrate::Search do
       double(resource_class: User, dashboard_class: MockDashboard)
     end
 
-    before do
-      class User; end
-    end
-
-    after do
-      remove_constants :User
-    end
-
     describe "the query is only the scope" do
       let(:query) { "#{scope}:" }
 
       it "returns nil if the model does not respond to the possible scope" do
-        search = Administrate::Search.new(resolver, query)
-        expect(search.scope).to eq(nil)
+        begin
+          class User; end
+          search = Administrate::Search.new(resolver, query)
+          expect(search.scope).to eq(nil)
+        ensure
+          remove_constants :User
+        end
       end
 
       it "returns the scope if the model responds to it" do
-        class User
-          def self.active; end
+        begin
+          class User
+            def self.active; end
+          end
+          search = Administrate::Search.new(resolver, query)
+          expect(search.scope).to eq(scope)
+        ensure
+          remove_constants :User
         end
-
-        search = Administrate::Search.new(resolver, query)
-        expect(search.scope).to eq(scope)
       end
 
       it "returns nil if the name of the scope looks suspicious" do
-        class User
-          def self.destroy_all; end
-        end
+        begin
+          class User
+            def self.destroy_all; end
+          end
 
-        Administrate::Search::BLACKLISTED_WORDS.each do |word|
-          search = Administrate::Search.new(resolver, "#{word}_all:")
-          expect(search.scope).to eq(nil)
+          Administrate::Search::BLACKLISTED_WORDS.each do |word|
+            search = Administrate::Search.new(resolver, "#{word}_all:")
+            expect(search.scope).to eq(nil)
+          end
+        ensure
+          remove_constants :User
         end
       end
 
       it "returns nil if the name of the scope ends with an exclamation mark" do
-        class User
-          def self.bang!; end
+        begin
+          class User
+            def self.bang!; end
+          end
+
+          search = Administrate::Search.new(resolver, "bang!:")
+          expect(search.scope).to eq(nil)
+        ensure
+          remove_constants :User
+        end
+      end
+
+      describe "with COLLECTION_SCOPES defined" do
+        let(:wresolver) do
+          double(resource_class: User, dashboard_class: DashboardWithDefinedScopes)
         end
 
-        search = Administrate::Search.new(resolver, "bang!:")
-        expect(search.scope).to eq(nil)
+        it "ignores the scope if it isn't included" do
+          begin
+            class User
+              def self.closed; end
+              def self.active; end
+            end
+
+            search = Administrate::Search.new(wresolver, 'closed:')
+            expect(search.scope).to eq(nil)
+          ensure
+            remove_constants :User
+          end
+        end
+
+        it "returns the scope if it is included into COLLECION_SCOPES" do
+          begin
+            class User
+              def self.closed; end
+              def self.active; end
+            end
+
+            search = Administrate::Search.new(wresolver, 'active:')
+            expect(search.scope).to eq("active")
+          ensure
+            remove_constants :User
+          end
+        end
       end
     end
 
@@ -117,12 +167,17 @@ describe Administrate::Search do
       let(:query) { "#{scope}: #{term}" }
 
       it "returns the scope and the term" do
-        class User
-          def self.active; end
+        begin
+          class User
+            def self.active; end
+          end
+
+          search = Administrate::Search.new(resolver, query)
+          expect(search.scope).to eq(scope)
+          expect(search.term).to eq(term)
+        ensure
+          remove_constants :User
         end
-        search = Administrate::Search.new(resolver, query)
-        expect(search.scope).to eq(scope)
-        expect(search.term).to eq(term)
       end
     end
   end

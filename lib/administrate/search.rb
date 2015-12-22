@@ -27,6 +27,7 @@ module Administrate
     private
 
     delegate :resource_class, to: :resolver
+    delegate :dashboard_class, to: :resolver
 
     def query
       search_attributes.map { |attr| "lower(#{attr}) LIKE ?" }.join(" OR ")
@@ -50,8 +51,15 @@ module Administrate
       if term && (term[-1, 1] == ":")
         possible_scope = term[0..-2]
         possible_scope if resource_class.respond_to?(possible_scope) &&
-                          !banged?(possible_scope) &&
-                          !blacklisted_scope?(possible_scope)
+                          valid_scope?(possible_scope)
+      end
+    end
+    
+    def valid_scope?(method)
+      if dashboard_class.const_defined?(:COLLECTION_SCOPES)
+        dashboard_class.const_get("COLLECTION_SCOPES").include? method.to_sym
+      else
+        !banged?(method) && !blacklisted_scope?(method)
       end
     end
 
@@ -68,6 +76,14 @@ module Administrate
         return true if scope =~ /.*#{word}.*/i
       end
       false
+    end
+
+    def collection_scopes
+      if dashboard_class.const_defined?(:COLLECTION_SCOPES)
+        dashboard_class.const_get(:COLLECTION_SCOPES)
+      else
+        []
+      end
     end
   end
 end
