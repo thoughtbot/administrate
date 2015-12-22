@@ -78,7 +78,7 @@ module Administrate
     end
 
     def records_per_page
-      params[:per_page] || 20
+      params[:per_page] || resource_class.default_per_page
     end
 
     def order
