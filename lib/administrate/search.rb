@@ -54,7 +54,7 @@ module Administrate
                           valid_scope?(possible_scope)
       end
     end
-    
+
     def valid_scope?(method)
       if dashboard_class.const_defined?(:COLLECTION_SCOPES)
         dashboard_class.const_get("COLLECTION_SCOPES").include? method.to_sym

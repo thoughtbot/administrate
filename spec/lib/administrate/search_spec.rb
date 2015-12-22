@@ -15,7 +15,7 @@ end
 
 class DashboardWithDefinedScopes
   ATTRIBUTE_TYPES = {
-    name: Administrate::Field::String
+    name: Administrate::Field::String,
   }
 
   COLLECTION_SCOPES = [:active]
@@ -129,7 +129,8 @@ describe Administrate::Search do
 
       describe "with COLLECTION_SCOPES defined" do
         let(:resolver) do
-          double(resource_class: User, dashboard_class: DashboardWithDefinedScopes)
+          double(resource_class: User,
+                 dashboard_class: DashboardWithDefinedScopes)
         end
 
         it "ignores the scope if it isn't included" do
@@ -138,8 +139,7 @@ describe Administrate::Search do
               def self.closed; end
               def self.active; end
             end
-
-            search = Administrate::Search.new(resolver, 'closed:')
+            search = Administrate::Search.new(resolver, "closed:")
             expect(search.scope).to eq(nil)
           ensure
             remove_constants :User
@@ -152,8 +152,7 @@ describe Administrate::Search do
               def self.closed; end
               def self.active; end
             end
-
-            search = Administrate::Search.new(resolver, 'active:')
+            search = Administrate::Search.new(resolver, "active:")
             expect(search.scope).to eq("active")
           ensure
             remove_constants :User
