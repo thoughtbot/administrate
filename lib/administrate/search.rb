@@ -48,8 +48,8 @@ module Administrate
     end
 
     def search_scope(term)
-      if term && (term[-1, 1] == ":")
-        possible_scope = term[0..-2]
+      if term && (term[0..5] =~ /scope:/i)
+        possible_scope = term[6..-1]
         possible_scope if resource_class.respond_to?(possible_scope) &&
                           valid_scope?(possible_scope)
       end
@@ -64,7 +64,7 @@ module Administrate
     end
 
     def scope_length
-      (@scope && (@scope.length + 1)) || 0
+      (@scope && (@scope.length + 6)) || 0
     end
 
     def banged?(method)

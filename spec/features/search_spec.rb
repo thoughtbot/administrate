@@ -32,7 +32,7 @@ feature "Search" do
   end
 
   scenario "admin searches using a model scope", :js do
-    query = "subscribed:"
+    query = "scope:subscribed"
     subscribed_customer = create(
       :customer,
       name: "Dan Croak",
@@ -51,7 +51,7 @@ feature "Search" do
   end
 
   scenario "ignores malicious scope searches", :js do
-    query = "destroy_all:"
+    query = "scope:destroy_all"
     customer = create(
       :customer,
       name: "FooBar destroy_all: user",
@@ -65,7 +65,7 @@ feature "Search" do
 
   scenario "admin searches into a model scope", :js do
     searching_for = "Lua"
-    query = "subscribed: #{searching_for}"
+    query = "scope:subscribed #{searching_for}"
     subscribed_frog = create(
       :customer,
       name: "John Croak",
