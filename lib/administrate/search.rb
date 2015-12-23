@@ -56,8 +56,8 @@ module Administrate
     end
 
     def valid_scope?(method)
-      if dashboard_class.const_defined?(:COLLECTION_SCOPES)
-        dashboard_class.const_get("COLLECTION_SCOPES").include? method.to_sym
+      if collection_scopes.any?
+        collection_scopes.include? method.to_sym
       else
         !banged?(method) && !blacklisted_scope?(method)
       end
