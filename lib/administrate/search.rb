@@ -48,8 +48,7 @@ module Administrate
     end
 
     def search_scope(term)
-      if term && (term[0..5] =~ /scope:/i)
-        possible_scope = term[6..-1]
+      if term && (/scope:(?<possible_scope>.+)/i =~ term)
         possible_scope if resource_class.respond_to?(possible_scope) &&
                           valid_scope?(possible_scope)
       end
