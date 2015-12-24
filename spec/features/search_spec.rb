@@ -89,4 +89,23 @@ feature "Search" do
     expect(page).not_to have_content(subscribed_frog.name)
     expect(page).not_to have_content(unsubscribed_cat.name)
   end
+
+  scenario "admin clicks a scope button", :js do
+    subscribed = create(
+      :customer,
+      name: "Lua Miaus",
+      email_subscriber: true)
+    unsubscribed = create(
+      :customer,
+      name: "John Doe",
+      email_subscriber: false)
+
+    visit admin_customers_path
+    click_on 'subscribed'
+
+    page.within("tr.table__row", match: :first) do
+      expect(page).to have_content(subscribed.name)
+    end
+    expect(page).not_to have_content(unsubscribed.name)
+  end
 end
