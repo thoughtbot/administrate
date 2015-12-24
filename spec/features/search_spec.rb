@@ -68,11 +68,11 @@ feature "Search" do
     query = "scope:subscribed #{searching_for}"
     subscribed_frog = create(
       :customer,
-      name: "John Croak",
+      name: "Kermit Croaks",
       email_subscriber: true)
     subscribed_cat = create(
       :customer,
-      name: "#{searching_for} Miau",
+      name: "#{searching_for} Miaus",
       email_subscriber: true)
     unsubscribed_cat = create(
       :customer,
