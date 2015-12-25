@@ -99,7 +99,7 @@ module Administrate
           words_and_scopes_of terms, words, scopes.push(scope)
         else
           words_and_scopes_of terms, words.push(first_term), scopes
-        end  
+        end
       else
         [words, scopes]
       end
