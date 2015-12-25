@@ -12,15 +12,14 @@
 .search__icon {
   svg {
     @include size(1em);
-  }
-
-  path {
     fill: $hint-grey;
     transition: $base-transition;
   }
 
-  &--active path {
-    fill: $base-accent-color;
+  &--active {
+    svg {
+      fill: $base-accent-color;
+    }
   }
 }
 
