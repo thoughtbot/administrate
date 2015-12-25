@@ -22,7 +22,7 @@ module Administrate
         scope ? resource_class.public_send(scope) : resource_class.all
       else
         resources = resource_class.where(query, *search_terms)
-        resources = resources.public_send(scope) if scope
+        @scopes.each {|s| resources = resources.public_send(s)}
         resources
       end
     end
