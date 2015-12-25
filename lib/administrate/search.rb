@@ -5,13 +5,16 @@ module Administrate
   class Search
     BLACKLISTED_WORDS = %w{destroy remove delete update create}
 
-    attr_reader :resolver, :term, :scope
+    attr_reader :resolver, :term, :scopes, :words
 
     def initialize(resolver, term)
-      term ||= ""
+      @term = term
       @resolver = resolver
-      @scope = search_scope(term.split.first)
-      @term = term[scope_length..-1].strip
+      @words, @scopes = words_and_scopes_of(term ? term.split : [])
+    end
+
+    def scope
+      @scopes.first
     end
 
     def run
@@ -34,7 +37,7 @@ module Administrate
     end
 
     def search_terms
-      ["%#{term.downcase}%"] * search_attributes.count
+      ["%#{words.join.downcase}%"] * search_attributes.count
     end
 
     def search_attributes
@@ -47,6 +50,8 @@ module Administrate
       resolver.dashboard_class::ATTRIBUTE_TYPES
     end
 
+    # Extracts the possible scope from the term (a single word string) and
+    # returns it if the model responds to it and is a valid_scope?
     def search_scope(term)
       if term && (/scope:(?<possible_scope>.+)/i =~ term)
         possible_scope if resource_class.respond_to?(possible_scope) &&
@@ -54,16 +59,15 @@ module Administrate
       end
     end
 
+    # If the Dashboard has defined its COLLECTION_SCOPES returns true if the
+    # method is included in it. Otherwise returns true if it's not blacklisted
+    # nor ending with an exclamation mark (banged).
     def valid_scope?(method)
       if collection_scopes.any?
         collection_scopes.include? method.to_sym
       else
         !banged?(method) && !blacklisted_scope?(method)
       end
-    end
-
-    def scope_length
-      (@scope && (@scope.length + 6)) || 0
     end
 
     def banged?(method)
@@ -82,6 +86,22 @@ module Administrate
         dashboard_class.const_get(:COLLECTION_SCOPES)
       else
         []
+      end
+    end
+
+    # Recursive function that takes a splited search string (term) as input and
+    # returns an array with two arrays: the first with the ordinary words and
+    # the other with the scopes.
+    def words_and_scopes_of(terms, words = [], scopes = [])
+      if terms.any?
+        first_term = terms.shift
+        if scope = search_scope(first_term)
+          words_and_scopes_of terms, words, scopes.push(scope)
+        else
+          words_and_scopes_of terms, words.push(first_term), scopes
+        end  
+      else
+        [words, scopes]
       end
     end
   end
