@@ -12,15 +12,14 @@
 .search__icon {
   svg {
     @include size(1em);
-  }
-
-  path {
     fill: $hint-grey;
     transition: fill $base-duration $base-timing;
   }
 
-  &--active path {
-    fill: $action-color;
+  &--active {
+    svg {
+      fill: $action-color;
+    }
   }
 }
 
