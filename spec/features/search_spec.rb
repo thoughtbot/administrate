@@ -101,7 +101,7 @@ feature "Search" do
       email_subscriber: false)
 
     visit admin_customers_path
-    click_on 'subscribed'
+    click_on "subscribed"
 
     page.within("tr.table__row", match: :first) do
       expect(page).to have_content(subscribed.name)
