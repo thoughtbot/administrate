@@ -142,4 +142,9 @@ feature "Search" do
     end
     expect(page).not_to have_content(unsubscribed.name)
   end
+
+  scenario "admin searches using a model scope w/ an argument", :js do
+    pending
+    query = "scope:name_starts_with(A)"
+  end
 end

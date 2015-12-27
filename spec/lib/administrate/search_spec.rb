@@ -247,5 +247,43 @@ describe Administrate::Search do
         end
       end
     end
+
+    describe "the query is one scope with an argument" do
+      let(:scope) { "name_starts_with" }
+      let(:argument) { "A" }
+      let(:query) { "scope:#{scope}(#{argument})" }
+
+      it "returns the [scope] and #arguments the [argument]" do
+        begin
+          class User
+            def self.name_starts_with; end
+          end
+          search = Administrate::Search.new(resolver, query)
+          expect(search.scopes).to eq([scope])
+          expect(search.arguments).to eq([argument])
+        ensure
+          remove_constants :User
+        end
+      end
+
+      describe "plus a word" do
+        let(:word) { "foobar" }
+        let(:query) { "scope:#{scope}(#{argument}) #{word}" }
+
+        it "returns [scope], #arguments [argument] and #words [word]" do
+          begin
+            class User
+              def self.name_starts_with; end
+            end
+            search = Administrate::Search.new(resolver, query)
+            expect(search.words).to eq([word])
+            expect(search.scopes).to eq([scope])
+            expect(search.arguments).to eq([argument])
+          ensure
+            remove_constants :User
+          end
+        end
+      end
+    end
   end
 end

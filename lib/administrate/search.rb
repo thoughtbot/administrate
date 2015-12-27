@@ -5,7 +5,7 @@ module Administrate
   class Search
     BLACKLISTED_WORDS = %w{destroy remove delete update create}
 
-    attr_reader :resolver, :term, :scopes, :words
+    attr_reader :resolver, :term, :words
 
     def initialize(resolver, term)
       @term = term
@@ -13,16 +13,24 @@ module Administrate
       @words, @scopes = words_and_scopes_of(term ? term.split : [])
     end
 
+    def scopes
+      @scopes.map(&:name)
+    end
+
+    def arguments
+      @scopes.map(&:argument)
+    end
+
     def scope
-      @scopes.first
+      scopes.first
     end
 
     def run
-      if @term.blank?
-        scope ? resource_class.public_send(scope) : resource_class.all
+      if @term.blank? and @scopes.empty?
+        resource_class.all
       else
-        resources = resource_class.where(query, *search_terms)
-        @scopes.each {|s| resources = resources.public_send(s)}
+        resources = resource_class.where(query, *search_terms) unless @term.blank?
+        @scopes.each { |s| resources = resources.public_send(s.name) }
         resources
       end
     end
@@ -50,12 +58,21 @@ module Administrate
       resolver.dashboard_class::ATTRIBUTE_TYPES
     end
 
-    # Extracts the possible scope from the term (a single word string) and
+    # Extracts the possible scope from *term* (a single word string) and
     # returns it if the model responds to it and is a valid_scope?
-    def search_scope(term)
+    def scope_object(term)
       if term && (/scope:(?<possible_scope>.+)/i =~ term)
-        possible_scope if resource_class.respond_to?(possible_scope) &&
-                          valid_scope?(possible_scope)
+        obj = build_scope_ostruct(possible_scope)
+        obj if resource_class.respond_to?(obj.name) &&
+            valid_scope?(obj.name)
+      end
+    end
+
+    def build_scope_ostruct(user_input)
+      if /(?<scope_name>\w+)\((?<argument>\w+)\)/ =~ user_input
+        OpenStruct.new(name: scope_name, argument: argument)
+      else
+        OpenStruct.new(name: user_input, argument: nil)
       end
     end
 
@@ -95,8 +112,8 @@ module Administrate
     def words_and_scopes_of(terms, words = [], scopes = [])
       if terms.any?
         first_term = terms.shift
-        if scope = search_scope(first_term)
-          words_and_scopes_of terms, words, scopes.push(scope)
+        if scope_obj = scope_object(first_term)
+          words_and_scopes_of terms, words, scopes.push(scope_obj)
         else
           words_and_scopes_of terms, words.push(first_term), scopes
         end
