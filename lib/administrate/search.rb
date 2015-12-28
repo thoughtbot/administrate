@@ -32,10 +32,10 @@ module Administrate
         resources = resource_class.where(query, *search_terms) unless @term.blank?
         @scopes.each do |scope|
           resources = if scope.argument
-            resources.public_send scope.name, scope.argument
-          else
-            resources.public_send scope.name
-          end
+                        resources.public_send scope.name, scope.argument
+                      else
+                        resources.public_send scope.name
+                      end
         end
         resources
       end
