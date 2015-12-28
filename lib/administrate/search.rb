@@ -30,7 +30,13 @@ module Administrate
         resource_class.all
       else
         resources = resource_class.where(query, *search_terms) unless @term.blank?
-        @scopes.each { |s| resources = resources.public_send(s.name) }
+        @scopes.each do |scope|
+          resources = if scope.argument
+            resources.public_send scope.name, scope.argument
+          else
+            resources.public_send scope.name
+          end
+        end
         resources
       end
     end

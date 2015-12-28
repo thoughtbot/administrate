@@ -144,7 +144,21 @@ feature "Search" do
   end
 
   scenario "admin searches using a model scope w/ an argument", :js do
-    pending
-    query = "scope:name_starts_with(A)"
+    query = "scope:name_starts_with(L)"
+    match = create(
+      :customer,
+      name: "Lua Miaus")
+    unmatch = create(
+      :customer,
+      name: "John Doe")
+
+    visit admin_customers_path
+    fill_in :search, with: query
+    page.execute_script("$('.search').submit()")
+
+    page.within("tr.table__row", match: :first) do
+      expect(page).to have_content(match.name)
+    end
+    expect(page).not_to have_content(unmatch.name)
   end
 end
