@@ -6,14 +6,14 @@
 
   &__item {
     &:last-child {
-      padding-bottom: $base-spacing;
+      margin-bottom: $base-spacing;
     }
   }
 
   &__link {
     color: $base-font-color;
     display: block;
-    padding-top: $base-spacing;
+    margin-top: $base-spacing;
     transition: color 0.05s linear;
 
     &--active {
