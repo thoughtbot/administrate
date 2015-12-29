@@ -70,7 +70,7 @@ module Administrate
       if term && (/scope:(?<possible_scope>.+)/i =~ term)
         obj = build_scope_ostruct(possible_scope)
         obj if resource_class.respond_to?(obj.name) &&
-            valid_scope?(obj.name)
+            valid_scope?(possible_scope)
       end
     end
 
@@ -83,13 +83,14 @@ module Administrate
     end
 
     # If the Dashboard has defined its COLLECTION_SCOPES returns true if the
-    # method is included in it. Otherwise returns true if it's not blacklisted
-    # nor ending with an exclamation mark (banged).
-    def valid_scope?(method)
+    # possible_scope is included in it (i.e. whitelisted). Otherwise returns
+    # true if it's not blacklisted nor ending with an exclamation mark.
+    def valid_scope?(possible_scope)
       if collection_scopes.any?
-        collection_scopes.include? method.to_sym
+        collection_scopes.include?(possible_scope) ||
+          collection_scopes.include?(possible_scope.to_sym)
       else
-        !banged?(method) && !blacklisted_scope?(method)
+        !banged?(possible_scope) && !blacklisted_scope?(possible_scope)
       end
     end
 

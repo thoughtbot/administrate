@@ -18,7 +18,7 @@ class DashboardWithDefinedScopes
     name: Administrate::Field::String,
   }
 
-  COLLECTION_SCOPES = [:active]
+  COLLECTION_SCOPES = [:active, "with_argument(3)"]
 end
 
 describe Administrate::Search do
@@ -158,7 +158,7 @@ describe Administrate::Search do
           end
         end
 
-        it "returns the scope if it is included into COLLECION_SCOPES" do
+        it "returns the scope if it's included into COLLECION_SCOPES" do
           begin
             class User
               def self.closed; end
@@ -166,6 +166,25 @@ describe Administrate::Search do
             end
             search = Administrate::Search.new(resolver, "scope:active")
             expect(search.scope).to eq("active")
+          ensure
+            remove_constants :User
+          end
+        end
+
+        # The following should match with what is declared by COLLECTION_SCOPES
+        # up within the DashboardWithDefinedScopes class.
+        let(:scope) { "with_argument" }
+        let(:argument) { "3" }
+        let(:scope_with_argument) { "#{scope}(#{argument})" }
+        it "returns the scope even if its key in COLLECTION_SCOPES has an argument" do
+          begin
+            class User
+              def self.with_argument(argument); argument; end
+            end
+            search = Administrate::Search.new(resolver, "scope:#{scope_with_argument}")
+            expect(search.scope).to eq(scope)
+            expect(search.scopes).to eq([scope])
+            expect(search.arguments).to eq([argument])
           ensure
             remove_constants :User
           end
@@ -228,7 +247,7 @@ describe Administrate::Search do
         end
       end
 
-      describe "mixed" do
+      describe "with the word between the two scopes" do
         let(:query) { "scope:#{scope} #{word} scope:#{other_scope}" }
 
         it "returns the scopes and #words the word" do
