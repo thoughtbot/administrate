@@ -149,7 +149,6 @@ describe Administrate::Search do
           begin
             class User
               def self.closed; end
-              def self.active; end
             end
             search = Administrate::Search.new(resolver, "scope:closed")
             expect(search.scope).to eq(nil)
@@ -161,7 +160,6 @@ describe Administrate::Search do
         it "returns the scope if it's included into COLLECION_SCOPES" do
           begin
             class User
-              def self.closed; end
               def self.active; end
             end
             search = Administrate::Search.new(resolver, "scope:active")
@@ -176,12 +174,13 @@ describe Administrate::Search do
         let(:scope) { "with_argument" }
         let(:argument) { "3" }
         let(:scope_with_argument) { "#{scope}(#{argument})" }
-        it "returns the scope even if its key in COLLECTION_SCOPES has an argument" do
+        it "returns the scope even if its key has an argument" do
           begin
             class User
               def self.with_argument(argument); argument; end
             end
-            search = Administrate::Search.new(resolver, "scope:#{scope_with_argument}")
+            search = Administrate::Search.new(resolver,
+                                              "scope:#{scope_with_argument}")
             expect(search.scope).to eq(scope)
             expect(search.scopes).to eq([scope])
             expect(search.arguments).to eq([argument])
@@ -235,6 +234,7 @@ describe Administrate::Search do
           begin
             class User
               def self.active; end
+
               def self.subscribed; end
             end
  
@@ -254,6 +254,7 @@ describe Administrate::Search do
           begin
             class User
               def self.active; end
+
               def self.subscribed; end
             end
  
