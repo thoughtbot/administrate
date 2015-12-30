@@ -107,7 +107,8 @@ module Administrate
 
     def collection_scopes
       if dashboard_class.const_defined?(:COLLECTION_SCOPES)
-        dashboard_class.const_get(:COLLECTION_SCOPES)
+        const = dashboard_class.const_get(:COLLECTION_SCOPES)
+        const.is_a?(Array) ? const : const.values.flatten
       else
         []
       end

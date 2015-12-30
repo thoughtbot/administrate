@@ -63,7 +63,7 @@ feature "Search" do
     expect(page).to have_content(customer.name)
   end
 
-  scenario "admin searches into a model scope", :js do
+  scenario "admin searches a word into a model scope", :js do
     searching_for = "Lua"
     query = "scope:subscribed #{searching_for}"
     subscribed_unmathed = create(
@@ -124,7 +124,7 @@ feature "Search" do
     expect(page).not_to have_content(subscribed_match_but_new.name)
   end
 
-  scenario "admin clicks a scope button", :js do
+  scenario "admin clicks a scope button defined in an array", :js do
     subscribed = create(
       :customer,
       name: "Lua Miaus",
@@ -135,12 +135,33 @@ feature "Search" do
       email_subscriber: false)
 
     visit admin_customers_path
+
+    # Included into the COLLECTION_SCOPES array of the CustomersDashboard
     click_on "subscribed"
 
     page.within("tr.table__row", match: :first) do
       expect(page).to have_content(subscribed.name)
     end
     expect(page).not_to have_content(unsubscribed.name)
+  end
+
+  scenario "admin clicks a scope button defined in a hash", :js do
+    address_zip = "00000-9999"
+    searched = create(:order, address_zip: address_zip)
+    # other = create(:order) # not used, explained below
+    create(:order)
+
+    visit admin_orders_path
+
+    # Included into the COLLECTION_SCOPES hash of the OrdersDashboard
+    click_on "zip_prefix(00000)"
+
+    page.within("tr.table__row", match: :first) do
+      expect(page).to have_content(searched.id)
+      expect(page).to have_content(searched.customer.name)
+    end
+    # *id* is not a valid field to check exclusion from results :(
+    # expect(page).not_to have_content(other.id)
   end
 
   scenario "admin searches using a model scope w/ an argument", :js do

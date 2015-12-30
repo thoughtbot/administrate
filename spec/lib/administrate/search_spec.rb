@@ -21,6 +21,17 @@ class DashboardWithDefinedScopes
   COLLECTION_SCOPES = [:active, "with_argument(3)"]
 end
 
+class DashboardWithHashOfScopesDefined
+  ATTRIBUTE_TYPES = {
+    name: Administrate::Field::String,
+  }
+
+  COLLECTION_SCOPES = {
+    status: [:active, :inactive],
+    other: [:last_week, :old, "with_argument(3)"]
+  }
+end
+
 describe Administrate::Search do
   describe "#run" do
     it "returns all records when no search term" do
@@ -139,7 +150,7 @@ describe Administrate::Search do
         end
       end
 
-      describe "with COLLECTION_SCOPES defined" do
+      describe "with COLLECTION_SCOPES defined as an array" do
         let(:resolver) do
           double(resource_class: User,
                  dashboard_class: DashboardWithDefinedScopes)
@@ -171,6 +182,58 @@ describe Administrate::Search do
 
         # The following should match with what is declared by COLLECTION_SCOPES
         # up within the DashboardWithDefinedScopes class.
+        let(:scope) { "with_argument" }
+        let(:argument) { "3" }
+        let(:scope_with_argument) { "#{scope}(#{argument})" }
+        it "returns the scope even if its key has an argument" do
+          begin
+            class User
+              def self.with_argument(argument); argument; end
+            end
+            search = Administrate::Search.new(resolver,
+                                              "scope:#{scope_with_argument}")
+            expect(search.scope).to eq(scope)
+            expect(search.scopes).to eq([scope])
+            expect(search.arguments).to eq([argument])
+          ensure
+            remove_constants :User
+          end
+        end
+      end
+
+      # Folloing are the same previous specs using a Hash instead of an array.
+      describe "with COLLECTION_SCOPES defined as a hash of arrays w/ scopes" do
+        let(:resolver) do
+          double(resource_class: User,
+                 dashboard_class: DashboardWithHashOfScopesDefined)
+        end
+
+        it "ignores the scope if it isn't included in COLLECTION_SCOPES keys" do
+          begin
+            class User
+              def self.closed; end
+            end
+            search = Administrate::Search.new(resolver, "scope:closed")
+            expect(search.scope).to eq(nil)
+          ensure
+            remove_constants :User
+          end
+        end
+
+        it "returns the scope if it's included into COLLECION_SCOPES keys" do
+          begin
+            class User
+              def self.active; end
+            end
+            search = Administrate::Search.new(resolver, "scope:active")
+            expect(search.scope).to eq("active")
+          ensure
+            remove_constants :User
+          end
+        end
+
+        # The following should match with what is declared by COLLECTION_SCOPES
+        # up within the DashboardWithHashOfScopesDefined class.
         let(:scope) { "with_argument" }
         let(:argument) { "3" }
         let(:scope_with_argument) { "#{scope}(#{argument})" }

@@ -10,6 +10,10 @@ class Order < ActiveRecord::Base
   validates :address_state, presence: true
   validates :address_zip, presence: true
 
+  scope :unshipped,  ->         { where shipped_at: nil }
+  scope :shipped,    ->         { where.not shipped_at: nil }
+  scope :zip_prefix, ->(prefix) { where("address_zip LIKE ?", "#{prefix}%") }
+
   def total_price
     line_items.map(&:total_price).reduce(0, :+)
   end
