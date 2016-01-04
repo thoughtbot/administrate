@@ -57,6 +57,8 @@ textarea {
 }
 
 input[type="search"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
 
@@ -72,7 +74,10 @@ input[type="file"] {
 }
 
 select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
+  line-height: 19px;
   background: image-url("administrate/dropdown.svg") no-repeat 97% 50% / 10px;
   margin-bottom: $base-spacing;
 }
