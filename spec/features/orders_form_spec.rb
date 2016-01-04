@@ -11,7 +11,7 @@ describe "order form" do
     fill_in "Address city", with: "Example"
     fill_in "Address state", with: "Example"
     fill_in "Address zip", with: "Example"
-    click_on "Create Order"
+    find(".form-actions input").click
 
     expect(page).to have_link(customer.name)
     expect(page).to have_flash(
@@ -38,7 +38,7 @@ describe "order form" do
       visit edit_admin_order_path(order)
       find_option(line_items.first, "line_item_ids").select_option
       find_option(line_items.last, "line_item_ids").select_option
-      click_on "Update Order"
+      find(".form-actions input").click
 
       order.reload
       expect(order.line_items).to include(line_items.first)
@@ -52,7 +52,7 @@ describe "order form" do
 
       visit edit_admin_order_path(order)
       find_option(line_item, "line_item_ids").unselect_option
-      click_on "Update Order"
+      find(".form-actions input").click
 
       order.reload
       expect(order.line_items).to be_empty
@@ -83,7 +83,7 @@ describe "order form" do
 
       visit edit_admin_order_path(order)
       select_from_datepicker(Time.new(2015, 01, 02, 03, 04, 05))
-      click_on "Update Order"
+      find(".form-actions input").click
 
       expect(page).to have_content("Fri, Jan 2, 2015 at 03:04:05 AM")
     end
@@ -93,7 +93,7 @@ describe "order form" do
       order = create(:order, shipped_at: time)
 
       visit edit_admin_order_path(order)
-      click_on "Update Order"
+      find(".form-actions input").click
 
       expect(order.reload.shipped_at).to eq(time)
     end

@@ -37,9 +37,8 @@ ActiveRecord::Schema.define(version: 20160119024340) do
     t.string   "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
-
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "line_items", force: :cascade do |t|
     t.integer  "order_id"
@@ -48,10 +47,9 @@ ActiveRecord::Schema.define(version: 20160119024340) do
     t.integer  "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
+    t.index ["product_id"], name: "index_line_items_on_product_id", using: :btree
   end
-
-  add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
-  add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "customer_id"
@@ -63,9 +61,8 @@ ActiveRecord::Schema.define(version: 20160119024340) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.datetime "shipped_at"
+    t.index ["customer_id"], name: "index_orders_on_customer_id", using: :btree
   end
-
-  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -75,9 +72,8 @@ ActiveRecord::Schema.define(version: 20160119024340) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "slug",        null: false
+    t.index ["slug"], name: "index_products_on_slug", unique: true, using: :btree
   end
-
-  add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
 
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
