@@ -19,8 +19,8 @@ as well as a link to its edit page.
 <% content_for(:title) { page.page_title } %>
 
 <header class="header">
-  <h1 class="header-heading"><%= content_for(:title) %></h1>
-  <div class="header-actions">
+  <h1 class="header__heading"><%= content_for(:title) %></h1>
+  <div class="header__actions">
     <%= link_to(
       "Edit",
       [:edit, namespace, page.resource],
