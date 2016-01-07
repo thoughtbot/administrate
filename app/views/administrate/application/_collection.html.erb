@@ -56,20 +56,22 @@ to display a collection of resources in an HTML table.
           >
         <% collection_presenter.attributes_for(resource).each do |attribute| %>
           <td class="cell-data cell-data--<%= attribute.html_class %>">
-            <%= render_field attribute %>
+            <%= link_to render_field(attribute),
+                        polymorphic_path([namespace, resource]),
+                        class: 'cell-link' %>
           </td>
         <% end %>
 
-        <td><%= link_to(
+        <td class="cell-action"><%= link_to(
           t("administrate.actions.edit"),
           [:edit, namespace, resource],
-          class: "action-edit",
+          class: "cell-action-link action-edit",
         ) %></td>
 
-        <td><%= link_to(
+        <td class="cell-action"><%= link_to(
           t("administrate.actions.destroy"),
           [namespace, resource],
-          class: "table__action--destroy",
+          class: "cell-action-link table__action--destroy",
           method: :delete,
           data: { confirm: t("administrate.actions.confirm") }
         ) %></td>

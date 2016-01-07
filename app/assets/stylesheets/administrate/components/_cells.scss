@@ -47,3 +47,20 @@
 .cell-label--number {
   text-align: right;
 }
+
+.cell-link {
+  color: inherit;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.cell-action-link {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
