@@ -22,6 +22,7 @@ By default, it renders:
   <%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Lato:300,400,900", media: "all" %>
   <%= stylesheet_link_tag "administrate/application", media: "all" %>
   <%= csrf_meta_tags %>
+  <%= content_for(:page_head) %>
 </head>
 
 <body class="administrate">
