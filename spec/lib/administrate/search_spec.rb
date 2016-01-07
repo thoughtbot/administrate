@@ -65,6 +65,36 @@ describe Administrate::Search do
       end
     end
 
+    it "searches in all fields defined by SEARCH_ATTRIBUTES" do
+      begin
+        class User
+          def self.connection
+            ActiveRecord::Base.connection
+          end
+        end
+
+        class MockDashboardWithSearchAttributes
+          SEARCH_ATTRIBUTES = [:foo, :bar]
+        end
+
+        resolver = double(resource_class: User,
+                          dashboard_class: MockDashboardWithSearchAttributes)
+        search = Administrate::Search.new(resolver, "test")
+        quoted_foo = quote_attr(:foo)
+        quoted_bar = quote_attr(:bar)
+        expected_query = [
+          "lower(#{quoted_foo}) LIKE ? OR lower(#{quoted_bar}) LIKE ?",
+          "%test%",
+          "%test%",
+        ]
+        expect(User).to receive(:where).with(*expected_query)
+
+        search.run
+      ensure
+        remove_constants :User, :MockDashboardWithSearchAttributes
+      end
+    end
+
     def quote_attr(attr)
       ActiveRecord::Base.connection.quote_column_name(attr)
     end

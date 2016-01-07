@@ -32,8 +32,12 @@ module Administrate
     end
 
     def search_attributes
-      attribute_types.keys.select do |attribute|
-        attribute_types[attribute].searchable?
+      if defined?(@resolver.dashboard_class::SEARCH_ATTRIBUTES)
+        @resolver.dashboard_class::SEARCH_ATTRIBUTES
+      else
+        attribute_types.keys.select do |attribute|
+          attribute_types[attribute].searchable?
+        end
       end
     end
 
