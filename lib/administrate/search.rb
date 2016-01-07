@@ -21,7 +21,10 @@ module Administrate
     delegate :resource_class, to: :resolver
 
     def query
-      search_attributes.map { |attr| "lower(#{attr}) LIKE ?" }.join(" OR ")
+      conditions = search_attributes.map do |attr|
+        "lower(#{quote_attr(attr)}) LIKE ?"
+      end
+      conditions.join(" OR ")
     end
 
     def search_terms
@@ -36,6 +39,10 @@ module Administrate
 
     def attribute_types
       resolver.dashboard_class::ATTRIBUTE_TYPES
+    end
+
+    def quote_attr(attr)
+      resource_class.connection.quote_column_name(attr)
     end
 
     attr_reader :resolver, :term
