@@ -7,7 +7,7 @@ describe Administrate::Field::HasMany do
     it "returns a partial based on the page being rendered" do
       page = :show
       items = double
-      field = Administrate::Field::HasMany.new(:items, items, page)
+      field = Administrate::Field::HasMany.new(:items, nil, items, page)
 
       path = field.to_partial_path
 
@@ -20,7 +20,7 @@ describe Administrate::Field::HasMany do
       begin
         WidgetDashboard = Class.new
         widgets = []
-        field = Administrate::Field::HasMany.new(:widgets, widgets, :show)
+        field = Administrate::Field::HasMany.new(:widgets, nil, widgets, :show)
 
         page = field.associated_collection
 
@@ -40,7 +40,7 @@ describe Administrate::Field::HasMany do
 
         association = Administrate::Field::HasMany.
           with_options(class_name: "Foo")
-        field = association.new(:customers, [], :show)
+        field = association.new(:customers, nil, [], :show)
         collection = field.associated_collection
         attributes = collection.attribute_names
 
@@ -58,7 +58,7 @@ describe Administrate::Field::HasMany do
       resources = MockRelation.new([:a] * (limit + 1))
 
       association = Administrate::Field::HasMany
-      field = association.new(:customers, resources, :show)
+      field = association.new(:customers, nil, resources, :show)
 
       expect(field.more_than_limit?).to eq(true)
     end
@@ -68,7 +68,7 @@ describe Administrate::Field::HasMany do
       resources = MockRelation.new([:a] * limit)
 
       association = Administrate::Field::HasMany
-      field = association.new(:customers, resources, :show)
+      field = association.new(:customers, nil, resources, :show)
 
       expect(field.more_than_limit?).to eq(false)
     end
@@ -80,7 +80,7 @@ describe Administrate::Field::HasMany do
       resources = MockRelation.new([:a] * (limit + 1))
 
       association = Administrate::Field::HasMany
-      field = association.new(:customers, resources, :show)
+      field = association.new(:customers, nil, resources, :show)
 
       expect(field.resources).to eq([:a] * limit)
     end
@@ -90,7 +90,7 @@ describe Administrate::Field::HasMany do
         resources = MockRelation.new([:a, :b, :c])
 
         association = Administrate::Field::HasMany.with_options(limit: 1)
-        field = association.new(:customers, resources, :show)
+        field = association.new(:customers, nil, resources, :show)
 
         expect(field.resources).to eq([:a])
       end

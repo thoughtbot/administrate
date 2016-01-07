@@ -6,7 +6,7 @@ describe Administrate::Field::HasOne do
     it "returns a partial based on the page being rendered" do
       page = :show
       owner = double
-      field = Administrate::Field::HasOne.new(:owner, owner, page)
+      field = Administrate::Field::HasOne.new(:owner, nil, owner, page)
 
       path = field.to_partial_path
 

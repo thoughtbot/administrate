@@ -9,7 +9,7 @@ describe Administrate::Field::Boolean do
     it "returns a partial based on the page being rendered" do
       page = :show
       boolean = double
-      field = Administrate::Field::Boolean.new(:price, boolean, page)
+      field = Administrate::Field::Boolean.new(:price, nil, boolean, page)
 
       path = field.to_partial_path
 
@@ -21,8 +21,8 @@ describe Administrate::Field::Boolean do
 
   describe "#to_s" do
     it "prints true or false" do
-      t = Administrate::Field::Boolean.new(:quantity, true, :show)
-      f = Administrate::Field::Boolean.new(:quantity, false, :show)
+      t = Administrate::Field::Boolean.new(:quantity, nil, true, :show)
+      f = Administrate::Field::Boolean.new(:quantity, nil, false, :show)
 
       expect(t.to_s).to eq("true")
       expect(f.to_s).to eq("false")
@@ -30,7 +30,7 @@ describe Administrate::Field::Boolean do
 
     context "when data is nil" do
       it "returns a dash" do
-        boolean = Administrate::Field::Boolean.new(:boolean, nil, :page)
+        boolean = Administrate::Field::Boolean.new(:boolean, nil, nil, :page)
 
         expect(boolean.to_s).to eq("-")
       end
