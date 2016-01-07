@@ -43,11 +43,17 @@ describe Administrate::Search do
 
     it "searches using lower() + LIKE for all searchable fields" do
       begin
-        class User; end
+        class User
+          def self.connection
+            ActiveRecord::Base.connection
+          end
+        end
         resolver = double(resource_class: User, dashboard_class: MockDashboard)
         search = Administrate::Search.new(resolver, "test")
+        quoted_name = quote_attr(:name)
+        quoted_email = quote_attr(:email)
         expected_query = [
-          "lower(name) LIKE ? OR lower(email) LIKE ?",
+          "lower(#{quoted_name}) LIKE ? OR lower(#{quoted_email}) LIKE ?",
           "%test%",
           "%test%",
         ]
@@ -57,6 +63,10 @@ describe Administrate::Search do
       ensure
         remove_constants :User
       end
+    end
+
+    def quote_attr(attr)
+      ActiveRecord::Base.connection.quote_column_name(attr)
     end
   end
 end
