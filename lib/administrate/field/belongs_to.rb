@@ -24,7 +24,11 @@ module Administrate
       private
 
       def candidate_resources
-        associated_class.all
+        scope = associated_class
+        if options[:order]
+          scope = scope.order(options[:order])
+        end
+        scope.all
       end
 
       def display_candidate_resource(resource)
