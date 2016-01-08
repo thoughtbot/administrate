@@ -26,6 +26,7 @@
 * [#295] [FEATURE] Add dashboard detection for ActiveRecord::Enum fields.
 * [#364] [FEATURE] Improve dashboard generator by explicitly listing out the
   generated `SHOW_PAGE_ATTRIBUTES` array elements.
+* [#390] [BUGFIX] Fix timestamp deprecation warnings
 * [#396] [I18n] Ukrainian
 * [#297] [I18n] Add Italian translations
 * [#307] [I18n] Fix German grammatical errors
