@@ -30,6 +30,7 @@
 * [#297] [I18n] Add Italian translations
 * [#307] [I18n] Fix German grammatical errors
 * [#363] [DOC] Move documentation into main repository, at the root URL
+* [#395] [DOC] Update inline documentation for collection partial
 
 ### 0.1.2 (December 09, 2015)
 
