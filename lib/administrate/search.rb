@@ -3,6 +3,7 @@ require "active_support/core_ext/object/blank"
 
 module Administrate
   class Search
+    # Only used if dashboard's COLLECTION_SCOPES is not defined
     BLACKLISTED_WORDS = %w{destroy remove delete update create}
 
     attr_reader :resolver, :term, :words
@@ -26,18 +27,15 @@ module Administrate
     end
 
     def run
-      if @term.blank? and @scopes.empty?
+      if @term.blank?
         resource_class.all
       else
-        resources = resource_class.where(query, *search_terms) unless @term.blank?
-        @scopes.each do |scope|
-          resources = if scope.argument
-                        resources.public_send scope.name, scope.argument
-                      else
-                        resources.public_send scope.name
-                      end
+        resources = if @words.empty?
+          resource_class.all
+        else  
+          resource_class.where(query, *search_terms)
         end
-        resources
+        filter_with_scopes(resources)
       end
     end
 
@@ -45,6 +43,17 @@ module Administrate
 
     delegate :resource_class, to: :resolver
     delegate :dashboard_class, to: :resolver
+
+    def filter_with_scopes(resources)
+      @scopes.each do |scope|
+        resources = if scope.argument
+                      resources.public_send scope.name, scope.argument
+                    else
+                      resources.public_send scope.name
+                    end
+      end
+      resources 
+    end
 
     def query
       search_attributes.map { |attr| "lower(#{attr}) LIKE ?" }.join(" OR ")
