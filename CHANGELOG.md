@@ -18,6 +18,7 @@
 
 ### Upcoming Release
 
+* [FEATURE] Add ukrainian i18n
 * [#269] [FEATURE] Add a generator for copying default layout files
 * [#328] [FEATURE] Add a generator for copying default sidebar partial
 * [#362] [FEATURE] Add a generator for only the dashboard manifest.
