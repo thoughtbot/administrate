@@ -57,15 +57,18 @@ This repository contains both the source code for Administrate,
 and a demo Rails app that uses Administrate.
 The demo app is [hosted publicly on Heroku][demo].
 
-- The gem's source code lives in the `administrate` subdirectory.
-- The demo app is at the repository root,
-  in order to support deployment on Heroku.
+- The gem's source code lives in the `app` and `lib` subdirectories.
+- The demo app is nested within `spec/example_app`.
+
+Rails configuration files have been changed
+to recognize the app in the new location,
+so running the server or deploying to Heroku works normally.
 
 With this structure, developing a typical feature looks like:
 
 - Add tests in `spec/`
 - Implement a feature in `administrate/`
-- Exercise the feature using the root-level rails app (`app/`)
+- Exercise the feature using the demo rails app (`spec/example_app/app/`)
 
 ## Contributing Guidelines
 
