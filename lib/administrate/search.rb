@@ -31,10 +31,10 @@ module Administrate
         resource_class.all
       else
         resources = if @words.empty?
-          resource_class.all
-        else  
-          resource_class.where(query, *search_terms)
-        end
+                      resource_class.all
+                    else
+                      resource_class.where(query, *search_terms)
+                    end
         filter_with_scopes(resources)
       end
     end
@@ -52,7 +52,7 @@ module Administrate
                       resources.public_send scope.name
                     end
       end
-      resources 
+      resources
     end
 
     def query
