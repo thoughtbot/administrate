@@ -14,5 +14,9 @@ This partial renders a textarea element for a text attribute.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Text
 %>
 
-<%= f.label field.attribute %>
-<%= f.text_area field.attribute %>
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.text_area field.attribute %>
+</div>
