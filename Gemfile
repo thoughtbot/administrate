@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+git_source(:github){ |repo_name| "https://github.com/#{repo_name}" } if respond_to?(:git_source)
 
 ruby "2.2.3"
 

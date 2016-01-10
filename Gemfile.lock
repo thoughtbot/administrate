@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/amatsuda/kaminari.git
+  remote: https://github.com/amatsuda/kaminari
   revision: 1002b14aee62d4360c383ae1f14f5b5b72e76e2a
   ref: 0-17-stable
   specs:
@@ -8,7 +8,7 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
-  remote: git://github.com/jnicklas/capybara.git
+  remote: https://github.com/jnicklas/capybara
   revision: 4b3093f4bd12a682b41d8e88d3958d33e70f4662
   specs:
     capybara (2.6.0.dev)
@@ -19,7 +19,7 @@ GIT
       xpath (~> 2.0)
 
 GIT
-  remote: git://github.com/rails/rails-controller-testing.git
+  remote: https://github.com/rails/rails-controller-testing
   revision: 838b7e30d742cae8b3c7697f1a2970916e6b2f35
   specs:
     rails-controller-testing (0.0.3)
@@ -28,14 +28,14 @@ GIT
       activesupport (>= 4.2)
 
 GIT
-  remote: git://github.com/rspec/rspec-core.git
+  remote: https://github.com/rspec/rspec-core
   revision: 5800249ae9f15056f8457dfd257f778096b550a9
   specs:
     rspec-core (3.5.0.pre)
       rspec-support (= 3.5.0.pre)
 
 GIT
-  remote: git://github.com/rspec/rspec-expectations.git
+  remote: https://github.com/rspec/rspec-expectations
   revision: d17110bdd0dca2e8daa3339c0fcfafcc5dc31a9c
   specs:
     rspec-expectations (3.5.0.pre)
@@ -43,7 +43,7 @@ GIT
       rspec-support (= 3.5.0.pre)
 
 GIT
-  remote: git://github.com/rspec/rspec-mocks.git
+  remote: https://github.com/rspec/rspec-mocks
   revision: 7369e6b949585114bc1e9f20885d64a65f95cc31
   specs:
     rspec-mocks (3.5.0.pre)
@@ -51,7 +51,7 @@ GIT
       rspec-support (= 3.5.0.pre)
 
 GIT
-  remote: git://github.com/rspec/rspec-rails.git
+  remote: https://github.com/rspec/rspec-rails
   revision: b2ac99c4202245598f3a15f14aa22ae3cd1b66b7
   specs:
     rspec-rails (3.5.0.pre)
@@ -64,7 +64,7 @@ GIT
       rspec-support (= 3.5.0.pre)
 
 GIT
-  remote: git://github.com/rspec/rspec-support.git
+  remote: https://github.com/rspec/rspec-support
   revision: 4b938ec512d2fbee945913afbb957b510244ecb3
   specs:
     rspec-support (3.5.0.pre)
