@@ -2,20 +2,18 @@
   @include clearfix;
   @include fill-parent;
   align-items: baseline;
+  margin-bottom: $base-spacing;
   position: relative;
-  width: 100%;
 
   label {
     @include data-label;
     @include span-columns(2 of 12);
-    padding: ($base-spacing / 3) 0;
     text-align: right;
   }
 
   select,
   .selectize-control {
     background-color: $white;
-    margin-bottom: $base-spacing;
   }
 
   input,
@@ -30,13 +28,11 @@
 
   [type="checkbox"],
   [type="radio"] {
-    margin: $small-spacing 0 ($base-spacing + ($base-spacing / 3));
     width: auto;
   }
 
   select {
     appearance: none;
     background: image-url("administrate/dropdown.svg") no-repeat 97% 50% / 10px;
-    margin-bottom: $base-spacing;
   }
 }

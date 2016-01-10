@@ -14,7 +14,6 @@ legend {
 label {
   display: block;
   font-weight: 600;
-  margin-bottom: $small-spacing / 2;
 }
 
 input,
@@ -48,7 +47,6 @@ select[multiple] {
   box-sizing: border-box;
   font-family: $base-font-family;
   font-size: $base-font-size;
-  margin-bottom: $small-spacing;
   padding: $base-spacing / 3;
   transition: border-color $base-duration $base-timing;
   width: 100%;
@@ -88,12 +86,10 @@ textarea {
 }
 
 [type="file"] {
-  margin-bottom: $small-spacing;
   width: 100%;
 }
 
 select {
-  margin-bottom: $base-spacing;
   max-width: 100%;
   width: auto;
 }
