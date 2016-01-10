@@ -67,7 +67,7 @@ input[type="radio"] {
 }
 
 input[type="file"] {
-  padding-bottom: $base-spacing / 2;
+  padding: ($base-spacing / 4) 0;
   width: 100%;
 }
 
