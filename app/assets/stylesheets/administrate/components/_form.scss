@@ -1,7 +1,3 @@
 .form {
   @include padding(null $base-spacing);
 }
-
-.form-actions {
-  @include shift(2);
-}
