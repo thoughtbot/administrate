@@ -6,7 +6,7 @@
   @include shift(2);
 }
 
-.form-field {
+.field-unit {
   @include clearfix;
   @include fill-parent;
   align-items: baseline;
