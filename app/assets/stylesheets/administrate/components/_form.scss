@@ -8,34 +8,36 @@
   align-items: baseline;
   width: 100%;
 
-  label {
-    @include data-label;
-    @include span-columns(2 of 12);
-    padding: $form-input-padding 0;
-    text-align: right;
-  }
+  > {
+    label {
+      @include data-label;
+      @include span-columns(2 of 12);
+      padding: $form-input-padding 0;
+      text-align: right;
+    }
 
-  #{$all-text-inputs},
-  select,
-  textarea,
-  .selectize-control {
-    background-color: $form-field-background-color;
-    margin-bottom: $base-spacing;
-  }
+    #{$all-text-inputs},
+    select,
+    textarea,
+    .selectize-control {
+      background-color: $form-field-background-color;
+      margin-bottom: $base-spacing;
+    }
 
-  input,
-  select,
-  .selectize-control {
-    @include span-columns(4 of 12);
-  }
+    input,
+    select,
+    .selectize-control {
+      @include span-columns(4 of 12);
+    }
 
-  textarea {
-    @include span-columns(6 of 12);
-  }
+    textarea {
+      @include span-columns(6 of 12);
+    }
 
-  [type="checkbox"],
-  [type="radio"] {
-    margin: $small-spacing 0 ($base-spacing + $form-input-padding);
-    width: auto;
+    [type="checkbox"],
+    [type="radio"] {
+      margin: $small-spacing 0 ($base-spacing + $form-input-padding);
+      width: auto;
+    }
   }
 }
