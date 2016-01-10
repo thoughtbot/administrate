@@ -1,0 +1,42 @@
+.field-unit {
+  @include clearfix;
+  @include fill-parent;
+  align-items: baseline;
+  position: relative;
+  width: 100%;
+
+  label {
+    @include data-label;
+    @include span-columns(2 of 12);
+    padding: ($base-spacing / 3) 0;
+    text-align: right;
+  }
+
+  select,
+  .selectize-control {
+    background-color: $white;
+    margin-bottom: $base-spacing;
+  }
+
+  input,
+  select,
+  .selectize-control {
+    @include span-columns(4 of 12);
+  }
+
+  textarea {
+    @include span-columns(6 of 12);
+  }
+
+  [type="checkbox"],
+  [type="radio"] {
+    margin: $small-spacing 0 ($base-spacing + ($base-spacing / 3));
+    width: auto;
+  }
+
+  select {
+    appearance: none;
+    background: image-url("administrate/dropdown.svg") no-repeat 97% 50% / 10px;
+    margin-bottom: $base-spacing;
+  }
+}
