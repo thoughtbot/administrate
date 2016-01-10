@@ -10,6 +10,7 @@
   @include clearfix;
   @include fill-parent;
   align-items: baseline;
+  position: relative;
   width: 100%;
 
   label {
