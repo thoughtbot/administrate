@@ -9,7 +9,7 @@ as defined by the DashboardManifest.
 
 <ul class="sidebar__list">
   <% DashboardManifest::DASHBOARDS.each do |resource| %>
-    <li>
+    <li class="sidebar__item">
       <%= link_to(
         display_resource_name(resource),
         [namespace, resource],
