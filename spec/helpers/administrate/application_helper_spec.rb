@@ -41,4 +41,48 @@ RSpec.describe Administrate::ApplicationHelper do
       end
     end
   end
+
+  describe "#svg_tag" do
+    subject do
+      Nokogiri::HTML svg_tag("logo.svg", "logo")
+    end
+
+    it "returns use tag with xlink:href attribute" do
+      use_tag = subject.xpath("//svg//use['xlink:href']")
+
+      expect(use_tag.size).to eq(1)
+    end
+
+    it "returns use tag with svg file path in xlink:href attribute" do
+      use_tag = subject.xpath("//svg//use['xlink:href']")
+      attribute = use_tag[0].attributes["xlink:href"]
+
+      expect(attribute.value).to eq("/logo.svg#logo")
+    end
+
+    context "with size attributes" do
+      subject do
+        Nokogiri::HTML svg_tag(
+          "logo.svg",
+          "logo",
+          height: "15",
+          width: "20",
+        )
+      end
+
+      it "returns use tag with height" do
+        use_tag = subject.xpath("//svg//use['height']")
+        attribute = use_tag[0].attributes["height"]
+
+        expect(attribute.value).to eq("15")
+      end
+
+      it "returns use tag with width" do
+        use_tag = subject.xpath("//svg//use['width']")
+        attribute = use_tag[0].attributes["width"]
+
+        expect(attribute.value).to eq("20")
+      end
+    end
+  end
 end

@@ -4,7 +4,6 @@ PATH
     administrate (0.1.2)
       autoprefixer-rails (~> 6.0)
       datetime_picker_rails (~> 0.0.6)
-      inline_svg (~> 0.6)
       jquery-rails (~> 4.0)
       kaminari (~> 0.16)
       momentjs-rails (~> 2.8)
@@ -137,10 +136,6 @@ GEM
       i18n
       term-ansicolor (>= 1.3.2)
       terminal-table (>= 1.5.1)
-    inline_svg (0.6.1)
-      activesupport (>= 4.0.4)
-      loofah (>= 2.0)
-      nokogiri (~> 1.6)
     jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)

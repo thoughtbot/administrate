@@ -26,10 +26,8 @@
 
     svg {
       height: 100%;
+      width: 1em;
       transition: $base-transition;
-    }
-
-    path {
       fill: $hint-grey;
     }
   }
@@ -39,11 +37,8 @@
       color: $base-accent-color;
     }
 
-    path {
-      fill: $base-accent-color;
-    }
-
     svg {
+      fill: $base-accent-color;
       transform: rotate(180deg);
     }
   }

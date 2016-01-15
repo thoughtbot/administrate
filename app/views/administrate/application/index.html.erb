@@ -27,9 +27,13 @@ It renders the `_table` partial to display details about the resources.
 
 <% content_for(:search) do %>
   <form class="search">
-    <span class="search__icon">
-      <%= inline_svg "administrate/search.svg" %>
+    <span class='search__icon'>
+      <%= svg_tag "administrate/search.svg",
+        "search",
+        width: "16",
+        height: "16" %>
     </span>
+
     <input
       type="text"
       name="search"
