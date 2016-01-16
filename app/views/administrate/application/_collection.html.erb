@@ -24,7 +24,7 @@ to display a collection of resources in an HTML table.
       <% collection_presenter.attribute_types.each do |attr_name, attr_type| %>
         <th class="cell-label cell-label--<%= attr_type.html_class %>
           cell-label--<%= collection_presenter.ordered_html_class(attr_name) %>
-        ">
+        " scope="col">
         <%= link_to(params.merge(
           collection_presenter.order_params_for(attr_name)
         )) do %>
@@ -38,7 +38,7 @@ to display a collection of resources in an HTML table.
           <% end %>
         </th>
       <% end %>
-      <th colspan="2"></th>
+      <th colspan="2" scope="col"></th>
     </tr>
   </thead>
 
