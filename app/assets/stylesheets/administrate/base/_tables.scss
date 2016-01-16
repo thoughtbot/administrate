@@ -16,6 +16,10 @@ td {
 
 td {
   border-bottom: $base-border;
+  font-feature-settings: "kern", "liga", "clig", "calt", "lnum", "tnum";
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures, contextual;
+  font-variant-numeric: lining-nums, tabular-nums;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
