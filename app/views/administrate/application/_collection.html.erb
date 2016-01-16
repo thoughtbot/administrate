@@ -18,7 +18,7 @@ to display a collection of resources in an HTML table.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Table
 %>
 
-<table class="collection-data">
+<table class="collection-data" aria-labelledby="page-title">
   <thead>
     <tr>
       <% collection_presenter.attribute_types.each do |attr_name, attr_type| %>
