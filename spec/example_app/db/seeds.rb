@@ -11,6 +11,7 @@ Order.destroy_all
 Customer.destroy_all
 Product.destroy_all
 ProductMetaTag.destroy_all
+Series.destroy_all
 
 100.times do
   name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
@@ -52,3 +53,5 @@ Customer.all.each do |customer|
     end
   end
 end
+
+Series.create(name: "An example")
