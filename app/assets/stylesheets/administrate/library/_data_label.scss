@@ -1,7 +1,7 @@
 @mixin data-label {
   color: $hint-grey;
-  font-size: $small-font-size;
-  font-weight: $normal-font-weight;
+  font-size: modular-scale(-1);
+  font-weight: 400;
   letter-spacing: 0.0357em;
   position: relative;
   text-transform: uppercase;

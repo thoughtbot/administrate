@@ -1,14 +1,15 @@
 .header {
-  align-items: baseline;
+  align-items: flex-start;
   display: flex;
   justify-content: space-between;
-  margin-bottom: $base-spacing * 2;
+  padding: $base-spacing;
+}
 
-  &-heading {
-    margin-top: 0;
-  }
+.header__heading {
+  font-size: modular-scale(3);
+  margin-top: 0;
+}
 
-  &-actions {
-    margin-left: $base-spacing;
-  }
+.header__actions {
+  margin-left: $base-spacing;
 }

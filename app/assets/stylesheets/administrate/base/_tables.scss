@@ -3,16 +3,15 @@ table {
   width: 100%;
 }
 
+th {
+  border-bottom: 1px solid shade($base-border-color, 25%);
+  text-align: left;
+}
+
 th,
 td {
   padding: $small-spacing;
   vertical-align: middle;
-}
-
-th {
-  border-bottom: $dark-border;
-  padding-top: 0;
-  text-align: left;
 }
 
 td {

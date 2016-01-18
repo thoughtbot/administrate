@@ -13,7 +13,7 @@ By default, it renders:
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
 <head>
   <meta charset="utf-8" />
   <meta name="ROBOTS" content="NOODP" />
@@ -24,20 +24,21 @@ By default, it renders:
   <%= csrf_meta_tags %>
 </head>
 
-<body class="administrate">
-  <main class="main">
+<body>
+
+  <div class="app-container">
+
     <div class="sidebar">
       <%= render "sidebar" -%>
     </div>
 
-    <div class="container">
+    <main class="main-content" role="main">
       <%= content_for(:search) %>
-      <div class="content">
-        <%= render "flashes" -%>
-        <%= yield %>
-      </div>
-    </div>
-  </main>
+      <%= render "flashes" -%>
+      <%= yield %>
+    </main>
+
+  </div>
 
   <%= render "javascript" %>
 </body>
