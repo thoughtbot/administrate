@@ -34,12 +34,12 @@ It renders the `_table` partial to display details about the resources.
       Search <%= content_for(:title) %>
     </label>
     <input
-      type="search"
-      name="search"
       class="search__input"
       id="search-input"
-      placeholder="Search <%= content_for(:title) %>"
+      name="search"
+      type="search"
       value="<%= search_term %>"
+      placeholder="Search <%= content_for(:title) %>"
     />
     <span class="search__hint">
       Press enter to search
