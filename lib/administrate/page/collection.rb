@@ -30,7 +30,7 @@ module Administrate
         if dashboard.collection_scopes.is_a?(Hash)
           dashboard.collection_scopes.keys
         else
-          dashboard.collection_scopes ? [:scopes] : []
+          dashboard.collection_scopes.any? ? [:scopes] : []
         end
       end
 
