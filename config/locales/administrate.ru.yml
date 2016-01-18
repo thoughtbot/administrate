@@ -21,3 +21,5 @@ ru:
         not_supported: Полиморфные отношения в формах не поддерживаются.
       has_one:
         not_supported: HasOne отношения в формах не поддерживаются.
+    search:
+      hint: Press enter to search

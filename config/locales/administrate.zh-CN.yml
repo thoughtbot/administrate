@@ -21,3 +21,5 @@ zh-CN:
         not_supported: Polymorphic 关系暂不支持
       has_one:
         not_supported: HasOne 关系暂不支持.
+    search:
+      hint: Press enter to search
