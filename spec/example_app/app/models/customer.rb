@@ -4,6 +4,11 @@ class Customer < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true
 
+  KINDS = [
+    :standard,
+    :vip,
+  ]
+
   def lifetime_value
     orders.map(&:total_price).reduce(0, :+)
   end

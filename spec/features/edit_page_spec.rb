@@ -35,4 +35,26 @@ describe "customer edit page" do
 
     expect(page).to have_content("true")
   end
+
+  it "displays selectable strings as dropdowns", :js do
+    customer = create(:customer, kind: :standard)
+
+    visit edit_admin_customer_path(customer)
+
+    select "vip", from: "Kind"
+
+    click_on "Update Customer"
+
+    expect(page).to have_content("KIND")
+    expect(page).to have_content("vip")
+
+    click_on "Edit"
+
+    select "standard", from: "Kind"
+
+    click_on "Update Customer"
+
+    expect(page).to have_content("KIND")
+    expect(page).to have_content("standard")
+  end
 end
