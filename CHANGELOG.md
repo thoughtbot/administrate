@@ -18,6 +18,12 @@
 
 ### Upcoming Release
 
+* [#422] [FEATURE] Add a `Select` field for displaying a drop-down menu of
+  options on form pages.
+  Options:
+  ```ruby
+  Field::Select.with_options(collection: [:foo, :bar])
+  ```
 * [#458] [BUGFIX] Update the custom field generator to match the new HTML
   structure of forms
 

@@ -60,6 +60,7 @@ specify, including:
 - `Field::Image`
 - `Field::Number`
 - `Field::Polymorphic`
+- `Field::Select`
 - `Field::String`
 
 Each of the `Field` types take a different set of options,
