@@ -20,6 +20,15 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
 <header class="header">
   <h1 class="header__heading"><%= content_for(:title) %></h1>
   <div class="header__actions">
+    <%- if page.model_translates? %>
+      <%- (I18n.available_locales - [I18n.locale]).each do |other_locale| -%>
+        <%= link_to(
+          ":#{other_locale}",
+          [:edit, namespace, page.resource, other_locale],
+          class: "button",
+        ) %>
+      <%- end -%>
+    <%- end -%>
     <%= link_to(
       "Show #{page.page_title}",
       [namespace, page.resource],

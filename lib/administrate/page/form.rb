@@ -17,7 +17,7 @@ module Administrate
       end
 
       def page_title
-        dashboard.display_resource(resource)
+        dashboard.display_resource(resource) + locale_title
       end
 
       protected

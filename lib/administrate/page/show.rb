@@ -11,7 +11,7 @@ module Administrate
       attr_reader :resource
 
       def page_title
-        dashboard.display_resource(resource)
+        dashboard.display_resource(resource) + locale_title
       end
 
       def attributes
