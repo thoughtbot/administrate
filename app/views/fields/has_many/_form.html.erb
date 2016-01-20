@@ -19,8 +19,11 @@ and is augmented with [Selectize].
 [Selectize]: http://brianreavis.github.io/selectize.js
 %>
 
-<%= f.label field.attribute_key, field.attribute %>
-
-<%= f.select(field.attribute_key, nil, {}, multiple: true) do %>
-  <%= options_for_select(field.associated_resource_options, field.selected_options) %>
-<% end %>
+<div class="field-unit__label">
+  <%= f.label field.attribute_key, field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.select(field.attribute_key, nil, {}, multiple: true) do %>
+    <%= options_for_select(field.associated_resource_options, field.selected_options) %>
+  <% end %>
+</div>

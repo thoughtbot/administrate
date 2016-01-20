@@ -17,6 +17,8 @@ so this partial renders a message to that effect.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/HasOne
 %>
 
-<%= f.label field.attribute %>
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
 
 <%= t("administrate.fields.has_one.not_supported") %>
