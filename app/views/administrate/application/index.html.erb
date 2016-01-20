@@ -30,14 +30,13 @@ It renders the `_table` partial to display details about the resources.
     <span class="search__icon">
       <%= svg_tag "administrate/search.svg", "search", width: 16, height: 16 %>
     </span>
-    <label class="visually-hidden" for="search-input">Search</label>
     <input
       type="text"
       name="search"
       class="search__input"
-      id="search-input"
       placeholder="Search"
       value="<%= search_term %>"
+      aria-label="Search"
     />
     <span class="search__hint">
       Press enter to search
