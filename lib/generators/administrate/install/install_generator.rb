@@ -1,8 +1,10 @@
 require "rails/generators/base"
+require "administrate/generator_helpers"
 
 module Administrate
   module Generators
     class InstallGenerator < Rails::Generators::Base
+      include Administrate::GeneratorHelpers
       source_root File.expand_path("../templates", __FILE__)
 
       def create_dashboard_controller
@@ -20,7 +22,7 @@ module Administrate
 
       def run_dashboard_generators
         singular_dashboard_resources.each do |resource|
-          Rails::Generators.invoke("administrate:dashboard", [resource])
+          call_generator("administrate:dashboard", resource)
         end
       end
 
@@ -36,7 +38,7 @@ module Administrate
 
       def manifest
         unless defined?(DashboardManifest)
-          Rails::Generators.invoke("administrate:manifest")
+          call_generator("administrate:manifest")
         end
 
         DashboardManifest
