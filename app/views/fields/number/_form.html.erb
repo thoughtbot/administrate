@@ -15,5 +15,9 @@ By default, the input is a text field.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Number
 %>
 
-<%= f.label field.attribute %>
-<%= f.text_field field.attribute %>
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.text_field field.attribute %>
+</div>

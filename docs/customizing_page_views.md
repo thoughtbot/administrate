@@ -11,19 +11,19 @@ call the generators with no arguments.
 
 ```bash
 rails generate administrate:views:index
- # -> app/views/administrate/application/index.html.erb
- # -> app/views/administrate/application/_table.html.erb
+ # -> app/views/admin/application/index.html.erb
+ # -> app/views/admin/application/_table.html.erb
 
 rails generate administrate:views:show
- # -> app/views/administrate/application/show.html.erb
+ # -> app/views/admin/application/show.html.erb
 
 rails generate administrate:views:edit
- # -> app/views/administrate/application/edit.html.erb
- # -> app/views/administrate/application/_form.html.erb
+ # -> app/views/admin/application/edit.html.erb
+ # -> app/views/admin/application/_form.html.erb
 
 rails generate administrate:views:new
- # -> app/views/administrate/application/new.html.erb
- # -> app/views/administrate/application/_form.html.erb
+ # -> app/views/admin/application/new.html.erb
+ # -> app/views/admin/application/_form.html.erb
 
 rails generate administrate:views
  # -> all of the above
@@ -42,19 +42,19 @@ pass in the resource name to the view generators.
 
 ```bash
 rails generate administrate:views:index User
- # -> app/views/administrate/users/index.html.erb
- # -> app/views/administrate/users/_table.html.erb
+ # -> app/views/admin/users/index.html.erb
+ # -> app/views/admin/users/_table.html.erb
 
 rails generate administrate:views:show User
- # -> app/views/administrate/users/show.html.erb
+ # -> app/views/admin/users/show.html.erb
 
 rails generate administrate:views:edit User
- # -> app/views/administrate/users/edit.html.erb
- # -> app/views/administrate/users/_form.html.erb
+ # -> app/views/admin/users/edit.html.erb
+ # -> app/views/admin/users/_form.html.erb
 
 rails generate administrate:views:new User
- # -> app/views/administrate/users/new.html.erb
- # -> app/views/administrate/users/_form.html.erb
+ # -> app/views/admin/users/new.html.erb
+ # -> app/views/admin/users/_form.html.erb
 
 rails generate administrate:views User
  # -> all of the above

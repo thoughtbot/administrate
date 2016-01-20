@@ -7,11 +7,8 @@
     }
 
     svg {
-      transform: rotate(180deg);
-    }
-
-    path {
       fill: $action-color;
+      transform: rotate(180deg);
     }
   }
 
@@ -38,9 +35,6 @@
   svg {
     height: 100%;
     transition: transform $base-duration $base-timing;
-  }
-
-  path {
     fill: $hint-grey;
   }
 }

@@ -16,5 +16,9 @@ By default, the input is a text field that is augmented with [DateTimePicker].
 [DateTimePicker]: https://github.com/Eonasdan/bootstrap-datetimepicker
 %>
 
-<%= f.label field.attribute %>
-<%= f.text_field field.attribute, class: "datetimepicker" %>
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.text_field field.attribute, class: "datetimepicker" %>
+</div>
