@@ -21,3 +21,5 @@ it:
         not_supported: Associazioni polimorfiche non ancora supportate. Spiacenti!
       has_one:
         not_supported: Associazioni HasOne non ancora supportate. Spiacenti!
+    search:
+      hint: Press enter to search

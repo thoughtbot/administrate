@@ -21,3 +21,5 @@ de:
         not_supported: Polymorphe Beziehungen werden nicht unterstützt.
       has_one:
         not_supported: HasOne Beziehungen werden nicht unterstützt.
+    search:
+      hint: Press enter to search

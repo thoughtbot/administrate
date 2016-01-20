@@ -21,3 +21,5 @@ es:
         not_supported: Los formularios con relaciones polimórficas no están soportados.
       has_one:
         not_supported: Los formularios con relaciones HasOne no están soportados.
+    search:
+      hint: Press enter to search
