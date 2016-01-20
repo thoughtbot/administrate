@@ -56,7 +56,7 @@ It renders the `_table` partial to display details about the resources.
 </header>
 
 <% page.scope_groups.each do |group| %>
-<div class="scope-buttons">
+<div class="buttons-group">
   <%= group.to_s.capitalize %>:
   <% page.scope_names(group).each do |scope| %>
   <%= link_to_unless_current(scope, {search: "scope:#{scope}"}, class: "button") %>
