@@ -4,7 +4,7 @@ require "active_support/core_ext/object/blank"
 module Administrate
   class Search
     # Only used if dashboard's COLLECTION_SCOPES is not defined
-    BLACKLISTED_WORDS = %w{destroy remove delete update create}
+    BLACKLISTED_WORDS = %w{destroy remove delete update create}.freeze
 
     attr_reader :resolver, :term, :words
 
