@@ -53,8 +53,21 @@ $ rails generate administrate:install
 Restart your server, and visit http://localhost:3000/admin
 to see your new dashboard in action.
 
+The dashboard automatically creates controllers and dashboards for the models in your project.
+
+In order to create dashboards for future models, run:
+
+```bash
+$ rails generate administrate:dashboard
+```
+
+Customize which models are displayed via `/app/dashboards/dashboard_manifest.rb`
+
+
 To customize the appearance, behavior, and contents of the dashboard,
 see the guides at http://administrate-docs.herokuapp.com.
+
+
 
 ## Repository Structure
 
