@@ -1,0 +1,23 @@
+---
+uk:
+  administrate:
+    actions:
+      confirm: Ви впевнені?
+      destroy: Видалити
+      edit: Редагувати
+      show: Показати
+    controller:
+      create:
+        success: "%{resource} було успішно створено."
+      destroy:
+        success: "%{resource} було успішно видалено."
+      update:
+        success: "%{resource} було успішно оновлено."
+    fields:
+      has_many:
+        more: "%{count} із %{total_count}"
+        none: Немає
+      polymorphic:
+        not_supported: Поліморфні відношення у формах не підтримуються.
+      has_one:
+        not_supported: HasOne відношення у формах не підтримуються.

@@ -10,7 +10,7 @@ gem "markdown-rails"
 gem "pg"
 gem "redcarpet"
 gem "unicorn"
-gem "sass", "3.4.0"
+gem "bourbon", "5.0.0.alpha.0"
 
 group :development do
   gem "web-console", ">= 2.1.3"

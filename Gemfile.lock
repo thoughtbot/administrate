@@ -3,7 +3,7 @@ PATH
   specs:
     administrate (0.1.2)
       autoprefixer-rails (~> 6.0)
-      datetime_picker_rails (~> 0.0.6)
+      datetime_picker_rails (~> 0.0.7)
       jquery-rails (~> 4.0)
       kaminari (~> 0.16)
       momentjs-rails (~> 2.8)
@@ -86,7 +86,7 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     database_cleaner (1.5.1)
-    datetime_picker_rails (0.0.6)
+    datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
     debug_inspector (0.0.2)
     delayed_job (4.1.1)
@@ -165,7 +165,7 @@ GEM
     neat (1.7.2)
       bourbon (>= 4.0)
       sass (>= 3.3)
-    nokogiri (1.6.7.1)
+    nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     normalize-rails (3.0.3)
     percy-capybara (1.0.0)
@@ -327,4 +327,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
