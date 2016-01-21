@@ -79,7 +79,7 @@ module Administrate
       if term && (/scope:(?<possible_scope>.+)/i =~ term)
         obj = build_scope_ostruct(possible_scope)
         obj if resource_class.respond_to?(obj.name) &&
-            valid_scope?(possible_scope)
+               valid_scope?(possible_scope)
       end
     end
 
