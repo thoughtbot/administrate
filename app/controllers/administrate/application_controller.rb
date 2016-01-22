@@ -4,7 +4,10 @@ module Administrate
       resources = search.run
       resources = order.apply(resources)
       resources = resources.page(params[:page]).per(records_per_page)
-      page = Administrate::Page::Collection.new(dashboard, order: order)
+      page = Administrate::Page::Collection.new(
+        dashboard,
+        search: search,
+        order: order)
 
       render locals: {
         resources: resources,

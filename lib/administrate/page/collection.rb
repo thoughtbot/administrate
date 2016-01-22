@@ -50,6 +50,14 @@ module Administrate
         end
       end
 
+      def search
+        @options[:search]
+      end
+
+      def scoped_with?(scope)
+        search.term.include? scope.to_s
+      end
+
       delegate :ordered_by?, :order_params_for, to: :order
 
       private
