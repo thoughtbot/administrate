@@ -33,6 +33,21 @@ class DashboardWithHashOfScopesDefined
 end
 
 describe Administrate::Search do
+  describe "#new(resolver, query)" do
+    let(:symbol) { :amazing }
+    let(:between_whitespaces) { " \t\v #{symbol}\f \r\n" }
+
+    it "accepts the query as a symbol" do
+      search = Administrate::Search.new(nil, symbol)
+      expect(search.term).to eq(symbol.to_s)
+    end
+
+    it "removes whitespaces from the query" do
+      search = Administrate::Search.new(nil, between_whitespaces)
+      expect(search.term).to eq(symbol.to_s)
+    end
+  end
+
   describe "#run" do
     it "returns all records when no search term" do
       begin

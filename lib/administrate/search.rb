@@ -9,9 +9,9 @@ module Administrate
     attr_reader :resolver, :term, :words
 
     def initialize(resolver, term)
-      @term = term
+      @term = term.to_s.strip
       @resolver = resolver
-      @words, @scopes = words_and_scopes_of(term ? term.split : [])
+      @words, @scopes = words_and_scopes_of(@term ? @term.split : [])
     end
 
     def scopes
