@@ -46,6 +46,12 @@ module Administrate
         search.term.include? scope.to_s
       end
 
+      def scope_group(scope)
+        scope_groups.detect do |group|
+          scope_names(group).include?(scope.to_s)
+        end
+      end
+
       delegate :ordered_by?, :order_params_for, to: :order
 
       private
