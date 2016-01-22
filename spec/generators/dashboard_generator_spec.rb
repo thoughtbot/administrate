@@ -124,6 +124,30 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
       end
 
+      it "detects enum field as `String`" do
+        begin
+          ActiveRecord::Schema.define do
+            create_table :shipments do |t|
+              t.integer :status
+            end
+          end
+
+          class Shipment < ActiveRecord::Base
+            enum status: [:ready, :processing, :shipped]
+            reset_column_information
+          end
+
+          run_generator ["shipment"]
+          load file("app/dashboards/shipment_dashboard.rb")
+          attrs = ShipmentDashboard::ATTRIBUTE_TYPES
+
+          expect(attrs[:status]).
+            to eq(Administrate::Field::String.with_options(searchable: false))
+        ensure
+          remove_constants :Shipment, :ShipmentDashboard
+        end
+      end
+
       it "detects boolean values" do
         begin
           ActiveRecord::Schema.define do
@@ -353,7 +377,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           ActiveRecord::Schema.define do
             create_table :foos do |t|
               t.string :name
-              t.timestamps
+              t.timestamps null: true
             end
           end
 
@@ -369,6 +393,31 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         ensure
           remove_constants :Foo, :FooDashboard
         end
+      end
+    end
+  end
+
+  describe "SHOW_PAGE_ATTRIBUTES" do
+    it "includes all attributes" do
+      begin
+        ActiveRecord::Schema.define do
+          create_table :foos do |t|
+            t.string :name
+            t.timestamps null: true
+          end
+        end
+
+        class Foo < ActiveRecord::Base
+          reset_column_information
+        end
+
+        run_generator ["foo"]
+        load file("app/dashboards/foo_dashboard.rb")
+
+        attrs = FooDashboard::SHOW_PAGE_ATTRIBUTES
+        expect(attrs).to match_array([:name, :id, :created_at, :updated_at])
+      ensure
+        remove_constants :Foo, :FooDashboard
       end
     end
   end

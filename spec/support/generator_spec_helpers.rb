@@ -15,6 +15,20 @@ module GeneratorSpecHelpers
     )
   end
 
+  def invoke_generator(generator, args = [], options = { behavior: :invoke })
+    have_received(:invoke).with(generator, args, options)
+  end
+
+  def each_file_in(path)
+    files = Dir.glob(path)
+
+    files.each do |file_path|
+      if File.file?(file_path)
+        yield file_path
+      end
+    end
+  end
+
   private
 
   def copy_to_generator_root(destination, template)

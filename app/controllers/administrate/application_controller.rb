@@ -39,7 +39,7 @@ module Administrate
 
       if resource.save
         redirect_to(
-          [Administrate::NAMESPACE, resource],
+          [namespace, resource],
           notice: translate_with_resource("create.success"),
         )
       else
@@ -52,7 +52,7 @@ module Administrate
     def update
       if requested_resource.update(resource_params)
         redirect_to(
-          [Administrate::NAMESPACE, requested_resource],
+          [namespace, requested_resource],
           notice: translate_with_resource("update.success"),
         )
       else
@@ -107,7 +107,8 @@ module Administrate
       dashboard.permitted_attributes
     end
 
-    delegate :resource_class, :resource_name, to: :resource_resolver
+    delegate :resource_class, :resource_name, :namespace, to: :resource_resolver
+    helper_method :namespace
 
     def resource_resolver
       @_resource_resolver ||=

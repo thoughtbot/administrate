@@ -18,12 +18,38 @@
 
 ### Upcoming Release
 
+### 0.1.3 (January 22, 2016)
+
+* [#269] [FEATURE] Add a generator for copying default layout files
+* [#328] [FEATURE] Add a generator for copying default sidebar partial
+* [#362] [FEATURE] Add a generator for only the dashboard manifest.
+  Customizing this manifest before running the `administrate:install` generator
+  will change which dashboards get generated.
+* [#295] [FEATURE] Add dashboard detection for ActiveRecord::Enum fields.
+* [#364] [FEATURE] Improve dashboard generator by explicitly listing out the
+  generated `SHOW_PAGE_ATTRIBUTES` array elements.
+* [#416] [UI] Add an accessibility label to the search input
+* [#411] [UI] Use tabular figures in table cells
+* [#409] [UI] Use default system fonts
+* [#424] [BUGFIX] Fix a bug where running `rails destroy GENERATOR_NAME`
+  would not work for several of the generators
+* [#390] [BUGFIX] Fix timestamp deprecation warnings
+* [#365] [COMPAT] Remove dependency on `inline_svg`
+* [#396] [I18n] Ukrainian
+* [#297] [I18n] Italian
+* [#307] [I18n] Fix German grammatical errors
+* [#363] [DOC] Move documentation into main repository, at the root URL
+* [#395] [DOC] Update inline documentation for collection partial
+* [#387] [DOC] Fix incorrect path for generators in the docs
+
 ### 0.1.2 (December 09, 2015)
 
 * [#251] [FEATURE] Raise a helpful error when an attribute is missing from
   `ATTRIBUTE_TYPES`
 * [#298] [FEATURE] Support ActiveRecord model I18n translations
 * [#312] [FEATURE] Add a `nil` option to `belongs_to` form fields
+* [#282] [FEATURE] Running the install generator multiple times
+  no longer generates duplicate routes
 * [#231] [UI] Fix layout issue on show page where a long label next to an empty
   value would cause following fields on the page to be mis-aligned.
 * [#309] [UI] Fix layout issue in datetime pickers where months and years

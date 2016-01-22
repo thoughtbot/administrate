@@ -1,5 +1,6 @@
 .pagination {
-  margin: $base-spacing 0;
+  @include margin($base-spacing null ($base-spacing * 4));
+  @include padding(null $base-spacing);
   text-align: center;
 
   .first,
@@ -11,6 +12,6 @@
   }
 
   .current {
-    font-weight: bold;
+    font-weight: $bold-font-weight;
   }
 }

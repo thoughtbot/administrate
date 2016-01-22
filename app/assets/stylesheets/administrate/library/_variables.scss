@@ -1,0 +1,57 @@
+// Typography
+$base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+$heading-font-family: $base-font-family;
+
+$base-font-size: 1em;
+
+$bold-font-weight: 600;
+
+$base-line-height: 1.5;
+$heading-line-height: 1.2;
+
+// Other Sizes
+$modular-scale-ratio: $minor-third;
+$base-border-radius: 3px;
+$base-spacing: $base-line-height * 1em;
+$small-spacing: $base-spacing / 2;
+
+// Colors
+$white: #fff;
+$black: #000;
+
+$blue: #2a94d6;
+$light-red: #c77067;
+$light-yellow: #f0cd66;
+$light-green: #4ab471;
+
+$grey-0: #f6f7f7;
+$grey-1: #dfe0e1;
+$grey-2: #cfd8dc;
+$grey-7: #293f54;
+
+$hint-grey: #7b808c;
+
+// Font Colors
+$base-font-color: $grey-7;
+$action-color: $blue;
+
+// Background Colors
+$base-background-color: $grey-0;
+
+// Flash Colors
+$flash-colors: (
+  alert: $light-yellow,
+  error: $light-red,
+  notice: tint($blue, 50%),
+  success: $light-green
+);
+
+// Border
+$base-border-color: $grey-1;
+$base-border: 1px solid $base-border-color;
+
+// Transitions
+$base-duration: 250ms;
+$base-timing: $ease-out-cubic;

@@ -15,5 +15,9 @@ By default, the input is a text box.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Email
 %>
 
-<%= f.label field.attribute %>
-<%= f.email_field field.attribute %>
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.email_field field.attribute %>
+</div>

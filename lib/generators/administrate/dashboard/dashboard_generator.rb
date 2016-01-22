@@ -7,6 +7,7 @@ module Administrate
         boolean: "Field::Boolean",
         date: "Field::DateTime",
         datetime: "Field::DateTime",
+        enum: "Field::String",
         float: "Field::Number",
         integer: "Field::Number",
         time: "Field::DateTime",
@@ -15,6 +16,7 @@ module Administrate
       }
 
       ATTRIBUTE_OPTIONS_MAPPING = {
+        enum: { searchable: false },
         float: { decimals: 2 },
       }
 
@@ -25,14 +27,18 @@ module Administrate
       source_root File.expand_path("../templates", __FILE__)
 
       def create_dashboard_definition
-        template "dashboard.rb.erb", "app/dashboards/#{file_name}_dashboard.rb"
+        template(
+          "dashboard.rb.erb",
+          Rails.root.join("app/dashboards/#{file_name}_dashboard.rb"),
+        )
       end
 
       def create_resource_controller
-        template(
-          "controller.rb.erb",
+        destination = Rails.root.join(
           "app/controllers/admin/#{file_name.pluralize}_controller.rb",
         )
+
+        template("controller.rb.erb", destination)
       end
 
       private
@@ -61,7 +67,7 @@ module Administrate
       end
 
       def field_type(attribute)
-        type = klass.column_types[attribute.to_s].type
+        type = column_type_for_attribute(attribute.to_s)
 
         if type
           ATTRIBUTE_TYPE_MAPPING.fetch(type, DEFAULT_FIELD_TYPE) +
@@ -69,6 +75,19 @@ module Administrate
         else
           association_type(attribute)
         end
+      end
+
+      def column_type_for_attribute(attr)
+        if enum_column?(attr)
+          :enum
+        else
+          klass.column_types[attr].type
+        end
+      end
+
+      def enum_column?(attr)
+        klass.respond_to?(:defined_enums) &&
+          klass.defined_enums.keys.include?(attr)
       end
 
       def association_type(attribute)

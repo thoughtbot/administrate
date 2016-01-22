@@ -1,0 +1,16 @@
+@each $flash-type, $flash-color in $flash-colors {
+  .flash--#{$flash-type} {
+    background-color: $flash-color;
+    color: darken($flash-color, 60%);
+    padding: $small-spacing $base-spacing;
+
+    a {
+      color: darken($flash-color, 70%);
+
+      &:focus,
+      &:hover {
+        color: darken($flash-color, 90%);
+      }
+    }
+  }
+}

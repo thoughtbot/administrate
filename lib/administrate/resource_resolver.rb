@@ -1,5 +1,3 @@
-require "administrate/namespace"
-
 module Administrate
   class ResourceResolver
     def initialize(controller_path)
@@ -8,6 +6,10 @@ module Administrate
 
     def dashboard_class
       Object.const_get(resource_class_name + "Dashboard")
+    end
+
+    def namespace
+      controller_path.split("/").first
     end
 
     def resource_class
@@ -33,7 +35,7 @@ module Administrate
     end
 
     def controller_path_parts
-      controller_path.singularize.split("/") - [Administrate::NAMESPACE.to_s]
+      controller_path.singularize.split("/")[1..-1]
     end
 
     attr_reader :controller_path

@@ -18,6 +18,8 @@ so this partial renders a message to that effect.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Polymorphic
 %>
 
-<%= f.label field.name %>
+<div class="field-unit__label">
+  <%= f.label field.name %>
+</div>
 
 <%= t("administrate.fields.polymorphic.not_supported") %>

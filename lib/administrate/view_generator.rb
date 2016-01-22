@@ -1,7 +1,10 @@
 require "rails/generators/base"
+require "administrate/generator_helpers"
 
 module Administrate
   class ViewGenerator < Rails::Generators::Base
+    include Administrate::GeneratorHelpers
+
     private
 
     def self.template_source_path

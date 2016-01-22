@@ -1,0 +1,22 @@
+.sidebar {
+  flex: 0 0 auto;
+  max-width: 12em;
+  overflow-y: auto;
+  padding: 0 $base-spacing $base-spacing;
+}
+
+.sidebar__link {
+  color: $base-font-color;
+  display: block;
+  padding-top: $base-spacing;
+  transition: color 0.05s linear;
+
+  &:hover {
+    color: $blue;
+  }
+}
+
+.sidebar__link--active {
+  color: $blue;
+  font-weight: $bold-font-weight;
+}

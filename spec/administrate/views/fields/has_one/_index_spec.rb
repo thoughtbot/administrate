@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "fields/has_one/_index", type: :view do
-  context "without an associated records" do
+  context "without an associated record" do
     it "displays nothing" do
       has_one = double(data: nil)
 
@@ -26,7 +26,7 @@ describe "fields/has_one/_index", type: :view do
 
       render(
         partial: "fields/has_one/index.html.erb",
-        locals: { field: has_one },
+        locals: { field: has_one, namespace: "admin" },
       )
 
       expected = "<a href=\"#{product_path}\">#{product.name}</a>"
