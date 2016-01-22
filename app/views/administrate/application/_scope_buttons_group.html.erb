@@ -1,0 +1,6 @@
+<div class="buttons-group">
+  <%= scope_buttons_group.to_s.capitalize %>:
+  <% page.scope_names(scope_buttons_group).each do |scope| %>
+    <%= link_to_unless_current scope, {search: "scope:#{scope}"}, class: "button" %>
+  <% end %>
+</div>
