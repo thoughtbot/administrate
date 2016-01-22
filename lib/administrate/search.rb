@@ -22,6 +22,10 @@ module Administrate
       @scopes.map(&:argument)
     end
 
+    def scopes_with_arguments
+      @scopes.map(&:user_input)
+    end
+
     def scope
       scopes.first
     end
@@ -85,9 +89,9 @@ module Administrate
 
     def build_scope_ostruct(user_input)
       if /(?<scope_name>\w+)\((?<argument>\w+)\)/ =~ user_input
-        OpenStruct.new(name: scope_name, argument: argument)
+        OpenStruct.new(user_input: user_input, name: scope_name, argument: argument)
       else
-        OpenStruct.new(name: user_input, argument: nil)
+        OpenStruct.new(user_input: user_input, name: user_input, argument: nil)
       end
     end
 
