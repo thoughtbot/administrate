@@ -4,6 +4,7 @@ require "administrate/page/collection"
 require "administrate/search"
 
 describe Administrate::Page::Collection do
+  # Constants defined in spec_helper.rb
   let(:scopes_array) { DashboardWithAnArrayOfScopes::COLLECTION_SCOPES }
   let(:scopes_hash) { DashboardWithAHashOfScopes::COLLECTION_SCOPES }
   let(:dashboard_without_scopes) { MockDashboard.new }
@@ -67,6 +68,8 @@ describe Administrate::Page::Collection do
     end
   end
 
+  # #scope_group(scope) receives an scope declared in the dashboard's
+  # collection_scopes and returns the group of the array in which is found.
   describe "#scope_group(scope)" do
     describe "with no scopes defined" do
       it "returns nil" do
@@ -101,6 +104,9 @@ describe Administrate::Page::Collection do
     end
   end
 
+  # #scoped_groups returns an array with the COLLECTION_SCOPES' keys (i.e.
+  # group name) which array contains a scope that is used in the current
+  # search.
   describe "#scoped_groups" do
     let(:search) { Administrate::Search.new(nil, "searched words") }
 
@@ -197,6 +203,9 @@ describe Administrate::Page::Collection do
     end
   end
 
+  # #current_scope_of(group) receives a key (*group*) of the
+  # collection_scopes hash (i.e. COLLECTION_SCOPES) and returns the scope
+  # used in the current search that is into its array, or nil if none.
   describe "#current_scope_of(group)" do
     let(:search) { Administrate::Search.new(nil, "searched words") }
 
@@ -277,6 +286,102 @@ describe Administrate::Page::Collection do
                                                     search: search_with_scope)
           # the :old scope is defined in the :other group (see spec_helper.rb).
           expect(page.current_scope_of(:status)).to eq(nil)
+        ensure
+          remove_constants :User
+        end
+      end
+    end
+  end
+
+  # #term_using_scope(scope) receives an scope and adds it to the current
+  # search avoiding duplication and collision with another scope of the
+  # same group (assuming that together will give no results).
+  describe "#term_using_scope(scope)" do
+    describe "with no scopes defined" do
+      it "returns the term with the scope" do
+        begin
+          class User
+            def self.old; end
+          end
+          resolver = double(resource_class: User,
+                            dashboard_class: DashboardWithAnArrayOfScopes)
+          search = Administrate::Search.new(resolver, "")
+
+          page = Administrate::Page::Collection.new(dashboard_without_scopes,
+                                                    search: search)
+          expect(page.term_using_scope("old")).to eq("scope:old")
+        ensure
+          remove_constants :User
+        end
+      end
+
+      it "doesn't duplicate the scope if its already" do
+        begin
+          class User
+            def self.old; end
+          end
+          resolver = double(resource_class: User,
+                            dashboard_class: DashboardWithAnArrayOfScopes)
+          search = Administrate::Search.new(resolver, "scope:old")
+
+          page = Administrate::Page::Collection.new(dashboard_without_scopes,
+                                                    search: search)
+          expect(page.term_using_scope("old")).to eq("scope:old")
+        ensure
+          remove_constants :User
+        end
+      end
+    end
+
+    describe "with an array of scopes defined" do
+      it "replaces the current scope with the new one" do
+        begin
+          class User
+            def self.old; end
+          end
+          resolver = double(resource_class: User,
+                            dashboard_class: DashboardWithAnArrayOfScopes)
+          search = Administrate::Search.new(resolver, "scope:old")
+
+          page = Administrate::Page::Collection.new(dashboard_with_scopes_array,
+                                                    search: search)
+          expect(page.term_using_scope("active")).to eq("scope:active")
+        ensure
+          remove_constants :User
+        end
+      end
+    end
+
+    describe "with a hash of scopes" do
+      it "replaces the current scope with the new one" do
+        begin
+          class User
+            def self.active; end
+            def self.inactive; end
+          end
+          resolver = double(resource_class: User,
+                            dashboard_class: DashboardWithAHashOfScopes)
+          search = Administrate::Search.new(resolver, "scope:inactive")
+          page = Administrate::Page::Collection.new(dashboard_with_scopes_hash,
+                                                    search: search)
+          expect(page.term_using_scope("active")).to eq("scope:active")
+        ensure
+          remove_constants :User
+        end
+      end
+
+      it "adds the scope if is included in other group" do
+        begin
+          class User
+            def self.old; end
+            def self.active; end
+          end
+          resolver = double(resource_class: User,
+                            dashboard_class: DashboardWithAHashOfScopes)
+          search = Administrate::Search.new(resolver, "scope:old")
+          page = Administrate::Page::Collection.new(dashboard_with_scopes_hash,
+                                                    search: search)
+          expect(page.term_using_scope("active")).to eq("scope:old scope:active")
         ensure
           remove_constants :User
         end

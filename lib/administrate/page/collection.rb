@@ -43,9 +43,11 @@ module Administrate
       end
 
       def scoped_with?(scope)
-        search.term.include? scope.to_s
+        search.term.include? "scope:#{scope}"
       end
 
+      # #scope_group(scope) receives an scope declared in the dashboard's
+      # collection_scopes and returns the group of the array in which is found.
       def scope_group(scope)
         scope_groups.detect do |group|
           scope_names(group).include?(scope.to_s)
@@ -64,6 +66,22 @@ module Administrate
       # used in the current search that is into its array, or nil if none.
       def current_scope_of(group)
         search.scopes_with_arguments.detect {|s| scope_group(s) == group}
+      end
+
+      # #term_using_scope(scope) receives an scope and adds it to the current
+      # search avoiding duplication and collision with another scope of the
+      # same group (assuming that together will give no results).
+      def term_using_scope(scope)
+        if scoped_with?(scope)
+          search.term
+        else
+          group = scope_group(scope)
+          if scoped_groups.include? group
+            search.term.sub "scope:#{current_scope_of(group)}", "scope:#{scope}"
+          else
+            "#{search.term} scope:#{scope}".strip
+          end
+        end
       end
 
       delegate :ordered_by?, :order_params_for, to: :order
