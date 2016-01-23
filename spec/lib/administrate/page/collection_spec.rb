@@ -1,15 +1,13 @@
 require "spec_helper"
 require "support/constant_helpers"
-require "administrate/fields/string"
 require "administrate/page/collection"
 require "administrate/search"
-require "administrate/base_dashboard"
 
 describe Administrate::Page::Collection do
   let(:scopes_hash) do
     {
-      :symbol_key => [ :active, :inactive, "active_since(1992)" ],
-      "string_key" => [ "funny", :sad ]
+      :symbol_key => [:active, :inactive, "active_since(1992)"],
+      "string_key" => ["funny", :sad]
     }
   end
 
@@ -17,7 +15,7 @@ describe Administrate::Page::Collection do
   # always grouped reading Dashboard#collection_scopes (COLLECTION_SCOPES).
   describe "#scope_groups" do
     let(:scope) { :mellow }
-    let(:array_of_scopes) { [ scope ] }
+    let(:array_of_scopes) { [scope] }
 
     describe "with no scopes defined" do
       let(:dashboard) { double(collection_scopes: []) }
@@ -53,9 +51,9 @@ describe Administrate::Page::Collection do
   # ["valid", "awesome_since(2004)"]).
   describe "#scope_names([group])" do
     let(:scope_symbol) { :mellow }
-    let(:array_of_symbols) { [ scope_symbol ] }
+    let(:array_of_symbols) { [scope_symbol] }
     let(:scope_string) { "immature" }
-    let(:array_of_strings) { [ scope_string ] }
+    let(:array_of_strings) { [scope_string] }
 
     describe "with no scopes defined" do
       let(:dashboard) { double(collection_scopes: []) }
@@ -99,8 +97,8 @@ describe Administrate::Page::Collection do
   describe "#scope_group(scope)" do
     let(:scope) { :mellow }
     let(:scope_string) { "active_since(1992)" }
-    let(:array_of_symbols) { [ scope ] }
-    let(:array_of_strings) { [ scope_string ] }
+    let(:array_of_symbols) { [scope] }
+    let(:array_of_strings) { [scope_string] }
 
     describe "with no scopes defined" do
       let(:dashboard) { double(collection_scopes: []) }
@@ -196,14 +194,6 @@ describe Administrate::Page::Collection do
     end
 
     describe "with an Array of scopes" do
-      class DashboardWithAnArrayOfScopes < Administrate::BaseDashboard
-        ATTRIBUTE_TYPES = {
-          name: Administrate::Field::String,
-        }
-
-        COLLECTION_SCOPES = [:last_week, :old, "with_argument(3)"]
-      end
-
       let(:dashboard) { DashboardWithAnArrayOfScopes.new }
 
       it "returns an empty array if the query has no scopes" do
@@ -217,7 +207,7 @@ describe Administrate::Page::Collection do
             def self.old; end
           end
           resolver = double(resource_class: User,
-                            dashboard_class: DashboardWithHashOfScopes)
+                            dashboard_class: DashboardWithAnArrayOfScopes)
           search_with_scope = Administrate::Search.new(resolver, "scope:old")
 
           page = Administrate::Page::Collection.new(dashboard, search: search_with_scope)
@@ -234,7 +224,7 @@ describe Administrate::Page::Collection do
             def self.new; end
           end
           resolver = double(resource_class: User,
-                            dashboard_class: DashboardWithHashOfScopes)
+                            dashboard_class: DashboardWithAHashOfScopes)
           search_with_scope = Administrate::Search.new(resolver, "scope:new")
 
           page = Administrate::Page::Collection.new(dashboard, search: search_with_scope)
@@ -246,18 +236,7 @@ describe Administrate::Page::Collection do
     end
 
     describe "with a Hash of scopes" do
-      class DashboardWithHashOfScopes < Administrate::BaseDashboard
-        ATTRIBUTE_TYPES = {
-          name: Administrate::Field::String,
-        }
-
-        COLLECTION_SCOPES = {
-          status: [:active, :inactive],
-          other: [:last_week, :old, "with_argument(3)"]
-        }
-      end
-
-      let(:dashboard) { DashboardWithHashOfScopes.new }
+      let(:dashboard) { DashboardWithAHashOfScopes.new }
 
       it "returns an empty array if the query has no scopes" do
         page = Administrate::Page::Collection.new(dashboard, search: search)
@@ -270,7 +249,7 @@ describe Administrate::Page::Collection do
             def self.old; end
           end
           resolver = double(resource_class: User,
-                            dashboard_class: DashboardWithHashOfScopes)
+                            dashboard_class: DashboardWithAHashOfScopes)
           search_with_scope = Administrate::Search.new(resolver, "scope:old")
 
           page = Administrate::Page::Collection.new(dashboard, search: search_with_scope)
@@ -287,7 +266,7 @@ describe Administrate::Page::Collection do
             def self.old; end
           end
           resolver = double(resource_class: User,
-                            dashboard_class: DashboardWithHashOfScopes)
+                            dashboard_class: DashboardWithAHashOfScopes)
           search_with_scope = Administrate::Search.new(resolver, "scope:new")
 
           page = Administrate::Page::Collection.new(dashboard, search: search_with_scope)
@@ -298,4 +277,130 @@ describe Administrate::Page::Collection do
       end
     end
   end
+
+#  describe "#scope_for_group(group)" do
+#    # following definitions should match with the scopes_hash definition above:
+#    let(:scope) { :inactive }          # :inactive should be...
+#    let(:scoped_group) { :symbol_key } # ...into the :symbol_key's array.
+#    let(:array_of_scopes) { scopes_hash[scoped_group] }
+#    let(:search) { Administrate::Search.new(nil, "gold") }
+#
+#    describe "with no scopes defined" do
+#      class DashboardWithoutScopes < Administrate::BaseDashboard
+#        ATTRIBUTE_TYPES = {
+#          name: Administrate::Field::String,
+#        }
+#      end
+#      let(:dashboard) { DashboardWithoutScopes.new }
+#
+#      it "returns an empty array" do
+#        page = Administrate::Page::Collection.new(dashboard, search: search)
+#        expect(page.scoped_groups).to eq([])
+#      end
+#    end
+#
+#    describe "with an Array of scopes" do
+#      class DashboardWithAnArrayOfScopes < Administrate::BaseDashboard
+#        ATTRIBUTE_TYPES = {
+#          name: Administrate::Field::String,
+#        }
+#
+#        COLLECTION_SCOPES = [:last_week, :old, "with_argument(3)"]
+#      end
+#
+#      let(:dashboard) { DashboardWithAnArrayOfScopes.new }
+#
+#      it "returns an empty array if the query has no scopes" do
+#        page = Administrate::Page::Collection.new(dashboard, search: search)
+#        expect(page.scoped_groups).to eq([])
+#      end
+#
+#      it "returns an array with the default key (:scopes) if the query has a valid scope" do
+#        begin
+#          class User
+#            def self.old; end
+#          end
+#          resolver = double(resource_class: User,
+#                            dashboard_class: DashboardWithHashOfScopes)
+#          search_with_scope = Administrate::Search.new(resolver, "scope:old")
+#
+#          page = Administrate::Page::Collection.new(dashboard, search: search_with_scope)
+#          expect(page.scoped_groups).to eq([:scopes])
+#        ensure
+#          remove_constants :User
+#        end
+#      end
+#
+#      # same as above, but with "new" instead of "old" which is not valid
+#      it "returns an empty array if that array doesn't include the scope" do
+#        begin
+#          class User
+#            def self.new; end
+#          end
+#          resolver = double(resource_class: User,
+#                            dashboard_class: DashboardWithHashOfScopes)
+#          search_with_scope = Administrate::Search.new(resolver, "scope:new")
+#
+#          page = Administrate::Page::Collection.new(dashboard, search: search_with_scope)
+#          expect(page.scoped_groups).to eq([])
+#        ensure
+#          remove_constants :User
+#        end
+#      end
+#    end
+#
+#    describe "with a Hash of scopes" do
+#      class DashboardWithHashOfScopes < Administrate::BaseDashboard
+#        ATTRIBUTE_TYPES = {
+#          name: Administrate::Field::String,
+#        }
+#
+#        COLLECTION_SCOPES = {
+#          status: [:active, :inactive],
+#          other: [:last_week, :old, "with_argument(3)"]
+#        }
+#      end
+#
+#      let(:dashboard) { DashboardWithHashOfScopes.new }
+#
+#      it "returns an empty array if the query has no scopes" do
+#        page = Administrate::Page::Collection.new(dashboard, search: search)
+#        expect(page.scoped_groups).to eq([])
+#      end
+#
+#      it "returns an array with the key of the array that includes the scope" do
+#        begin
+#          class User
+#            def self.old; end
+#          end
+#          resolver = double(resource_class: User,
+#                            dashboard_class: DashboardWithHashOfScopes)
+#          search_with_scope = Administrate::Search.new(resolver, "scope:old")
+#
+#          page = Administrate::Page::Collection.new(dashboard, search: search_with_scope)
+#          expect(page.scoped_groups).to eq([:other])
+#        ensure
+#          remove_constants :User
+#        end
+#      end
+#
+#      # same as above, but with "new" instead of "old" which is not valid
+#      it "returns an empty array if the scope isn't included in any array" do
+#        begin
+#          class User
+#            def self.old; end
+#          end
+#          resolver = double(resource_class: User,
+#                            dashboard_class: DashboardWithHashOfScopes)
+#          search_with_scope = Administrate::Search.new(resolver, "scope:new")
+#
+#          page = Administrate::Page::Collection.new(dashboard, search: search_with_scope)
+#          expect(page.scoped_groups).to eq([])
+#        ensure
+#          remove_constants :User
+#        end
+#      end
+#    end
+#  end
+
 end

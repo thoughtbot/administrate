@@ -1,36 +1,6 @@
 require "spec_helper"
 require "support/constant_helpers"
-require "administrate/fields/string"
-require "administrate/fields/email"
-require "administrate/fields/number"
 require "administrate/search"
-
-class MockDashboard
-  ATTRIBUTE_TYPES = {
-    name: Administrate::Field::String,
-    email: Administrate::Field::Email,
-    phone: Administrate::Field::Number,
-  }
-end
-
-class DashboardWithDefinedScopes
-  ATTRIBUTE_TYPES = {
-    name: Administrate::Field::String,
-  }
-
-  COLLECTION_SCOPES = [:active, "with_argument(3)"]
-end
-
-class DashboardWithHashOfScopesDefined
-  ATTRIBUTE_TYPES = {
-    name: Administrate::Field::String,
-  }
-
-  COLLECTION_SCOPES = {
-    status: [:active, :inactive],
-    other: [:last_week, :old, "with_argument(3)"]
-  }
-end
 
 describe Administrate::Search do
   describe "#new(resolver, query)" do
@@ -168,7 +138,7 @@ describe Administrate::Search do
       describe "with COLLECTION_SCOPES defined as an array" do
         let(:resolver) do
           double(resource_class: User,
-                 dashboard_class: DashboardWithDefinedScopes)
+                 dashboard_class: DashboardWithAnArrayOfScopes)
         end
 
         it "ignores the scope if it isn't included in COLLECTION_SCOPES" do
@@ -196,7 +166,7 @@ describe Administrate::Search do
         end
 
         # The following should match with what is declared by COLLECTION_SCOPES
-        # up within the DashboardWithDefinedScopes class.
+        # up within the DashboardWithAnArrayOfScopes class.
         let(:scope) { "with_argument" }
         let(:argument) { "3" }
         let(:scope_with_argument) { "#{scope}(#{argument})" }
@@ -220,7 +190,7 @@ describe Administrate::Search do
       describe "with COLLECTION_SCOPES defined as a hash of arrays w/ scopes" do
         let(:resolver) do
           double(resource_class: User,
-                 dashboard_class: DashboardWithHashOfScopesDefined)
+                 dashboard_class: DashboardWithAHashOfScopes)
         end
 
         it "ignores the scope if it isn't included in COLLECTION_SCOPES keys" do
@@ -248,7 +218,7 @@ describe Administrate::Search do
         end
 
         # The following should match with what is declared by COLLECTION_SCOPES
-        # up within the DashboardWithHashOfScopesDefined class.
+        # up within the DashboardWithAHashOfScopes class.
         let(:scope) { "with_argument" }
         let(:argument) { "3" }
         let(:scope_with_argument) { "#{scope}(#{argument})" }
