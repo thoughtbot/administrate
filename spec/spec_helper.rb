@@ -32,7 +32,7 @@ class DashboardWithAnArrayOfScopes < Administrate::BaseDashboard
     name: Administrate::Field::String,
   }
 
-  COLLECTION_SCOPES = [:active, :old, "with_argument(3)"]
+  COLLECTION_SCOPES = [:active, :old, "with_argument(3)", "idle"]
 end
 
 class DashboardWithAHashOfScopes < Administrate::BaseDashboard
@@ -41,7 +41,7 @@ class DashboardWithAHashOfScopes < Administrate::BaseDashboard
   }
 
   COLLECTION_SCOPES = {
-    status: [:active, :inactive],
-    other: [:last_week, :old, "with_argument(3)"],
+    status: [:active, :inactive, "idle"],
+    other: [:last_week, :old, "with_argument(3)",],
   }
 end
