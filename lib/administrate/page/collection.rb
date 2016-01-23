@@ -52,6 +52,13 @@ module Administrate
         end
       end
 
+      # #scoped_groups returns an array with the COLLECTION_SCOPES' keys (i.e.
+      # group name) which array contains a scope that is used in the current
+      # search.
+      def scoped_groups
+        search.scopes_with_arguments.map {|s| scope_group(s)}
+      end
+
       delegate :ordered_by?, :order_params_for, to: :order
 
       private
