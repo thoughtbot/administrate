@@ -59,6 +59,13 @@ module Administrate
         search.scopes_with_arguments.map {|s| scope_group(s)}
       end
 
+      # #current_scope_of(group) receives a key (*group*) of the
+      # collection_scopes hash (i.e. COLLECTION_SCOPES) and returns the scope
+      # used in the current search that is into its array, or nil if none.
+      def current_scope_of(group)
+        search.scopes_with_arguments.detect {|s| scope_group(s) == group}
+      end
+
       delegate :ordered_by?, :order_params_for, to: :order
 
       private
