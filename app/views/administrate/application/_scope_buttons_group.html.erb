@@ -4,7 +4,7 @@
     <% if page.scoped_with?(scope) %>
       <span class="active"><%= scope %></span>
     <% else %>
-      <%= link_to scope, {search: "scope:#{scope}"}, class: "button" %>
+      <%= link_to scope, {search: page.term_using_scope(scope)}, class: "button" %>
     <% end %>
   <% end %>
 </div>
