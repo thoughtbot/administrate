@@ -10,7 +10,7 @@
   font-family: $base-font-family;
   font-size: $base-font-size;
   -webkit-font-smoothing: antialiased;
-  font-weight: 600;
+  font-weight: $bold-font-weight;
   line-height: 1;
   padding: $small-spacing $base-spacing;
   text-decoration: none;
