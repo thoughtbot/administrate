@@ -11,6 +11,11 @@ module Administrate
           dashboard.class.to_s.scan(/(.+)Dashboard/).first.first.underscore
       end
 
+      def field_for(attribute, page = :form)
+        attribute_field(dashboard, resource, attribute, page)
+      end
+
+
       protected
 
       def attribute_field(dashboard, resource, attribute_name, page)
