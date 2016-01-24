@@ -89,8 +89,8 @@ describe Administrate::Generators::InstallGenerator, :generator do
       run_generator
 
       %w[customer order product line_item].each do |resource|
-        expect(Rails::Generators).to have_received(:invoke).
-          with("administrate:dashboard", [resource])
+        expect(Rails::Generators).
+          to invoke_generator("administrate:dashboard", [resource])
       end
     end
   end
