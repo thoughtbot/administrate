@@ -21,3 +21,5 @@ vi:
         not_supported: Quan hệ Polymorphic chưa được hỗ trợ.
       has_one:
         not_supported: Quan hệ HasOne chưa được hỗ trợ.
+    scopes:
+      scopes: Bộ lọc
