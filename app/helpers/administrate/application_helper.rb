@@ -32,5 +32,30 @@ module Administrate
         content_tag :use, nil, svg_attributes
       end
     end
+
+    SCOPES_LOCALE_SCOPE = [:administrate, :scopes].freeze
+    # #translated_scope(key, resource_name): Retries the translation in the
+    # root scope ('administrate.scopes') as fallback if translation for that
+    # specific model doesn't exist. For example, calling *translated_scope
+    # :active, :job_offer* with this yaml:
+    #
+    #   es:
+    #     scopes:
+    #       active: Activos
+    #       job_offer:
+    #         active: Activas
+    #
+    # ...will return "Activas", but calling *translated_scope :active, :job*
+    # will return "Activos" since there's not specific translation for the
+    # job model.
+    # *NOTICE:* current code manages translation of a *scope_group* as if it
+    # were another scope, and the translations of the default group name for
+    # an array of scopes (*:scopes*) has been translated to do English (Filter)
+    # and spanish (Filtros)... collaborations welcome!
+    def translated_scope(key, resource_name)
+      I18n.t key,
+             scope: SCOPES_LOCALE_SCOPE + [resource_name],
+             default: I18n.t(key, scope: SCOPES_LOCALE_SCOPE)
+    end
   end
 end

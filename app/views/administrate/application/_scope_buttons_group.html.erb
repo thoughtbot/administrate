@@ -1,10 +1,12 @@
 <div class="buttons-group">
-  <%= scope_buttons_group.to_s.capitalize %>:
+  <%= translated_scope scope_buttons_group, page.resource_name %>:
   <% page.scope_names(scope_buttons_group).each do |scope| %>
     <% if page.scoped_with?(scope) %>
-      <span class="active"><%= scope %></span>
+      <span class="active"><%= translated_scope scope, page.resource_name %></span>
     <% else %>
-      <%= link_to scope, {search: page.term_using_scope(scope)}, class: "button" %>
+      <%= link_to translated_scope(scope, page.resource_name), 
+                  { search: page.term_using_scope(scope) },
+                  class: "button" %>
     <% end %>
   <% end %>
 </div>
