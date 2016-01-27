@@ -98,7 +98,7 @@ module Administrate
       # http://stackoverflow.com/questions/34297956/arity-of-scopes-in-rails-4
       resource_class.send(scope.to_sym, [[]])
       1
-    rescue ArgumentError => e
+    rescue ArgumentError
       0
     end
 
