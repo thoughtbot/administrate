@@ -324,7 +324,7 @@ describe Administrate::Search do
       it "returns the [scope] and #arguments the [argument]" do
         begin
           class User
-            def self.name_starts_with(letter); end
+            def self.name_starts_with(_letter); end
           end
           search = Administrate::Search.new(resolver, query)
           expect(search.scopes).to eq([scope])
@@ -342,7 +342,7 @@ describe Administrate::Search do
         it "returns [scope], #arguments [argument] and #words [word]" do
           begin
             class User
-              def self.name_starts_with(letter); end
+              def self.name_starts_with(_letter); end
             end
             search = Administrate::Search.new(resolver, query)
             expect(search.words).to eq([word])
