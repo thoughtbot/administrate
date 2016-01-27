@@ -82,16 +82,39 @@ module Administrate
     def scope_object(term)
       if term && (/scope:(?<possible_scope>.+)/i =~ term)
         obj = build_scope_ostruct(possible_scope)
-        obj if resource_class.respond_to?(obj.name) &&
-               valid_scope?(possible_scope)
+        obj if valid_scope?(possible_scope) && model_responds_to?(obj)
+      end
+    end
+
+    # Will check the method name and its arity.
+    def model_responds_to?(scope_obj)
+      resource_class.respond_to?(scope_obj.name) &&
+        scope_arity(scope_obj.name) == scope_obj.arity 
+    end
+
+    def scope_arity(scope)
+      # Hack done thanks to the Wand Maker's answer to the "Arity of Scopes in
+      # Rails 4" question in Stack Overflow. Thanks!
+      # http://stackoverflow.com/questions/34297956/arity-of-scopes-in-rails-4
+      begin
+        resource_class.send(scope.to_sym, [[]])
+        1
+      rescue ArgumentError => e
+        0
       end
     end
 
     def build_scope_ostruct(user_input)
       if /(?<scope_name>\w+)\((?<argument>\w+)\)/ =~ user_input
-        OpenStruct.new(user_input: user_input, name: scope_name, argument: argument)
+        OpenStruct.new(user_input: user_input,
+                       name: scope_name,
+                       argument: argument,
+                       arity: 1)
       else
-        OpenStruct.new(user_input: user_input, name: user_input, argument: nil)
+        OpenStruct.new(user_input: user_input,
+                       name: user_input,
+                       argument: nil,
+                       arity: 0)
       end
     end
 
