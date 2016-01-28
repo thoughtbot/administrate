@@ -80,37 +80,46 @@ module Administrate
     # Extracts the possible scope from *term* (a single word string) and
     # returns it if the model responds to it and is a valid_scope?
     def scope_object(term)
-      if term && (/scope:(?<possible_scope>.+)/i =~ term)
-        obj = build_scope_ostruct(possible_scope)
-        obj if resource_class.respond_to?(obj.name) &&
-               valid_scope?(possible_scope)
+      if term && (/(?<left_part>\w+):(?<right_part>.+)/i =~ term)
+        obj = build_scope_ostruct(left_part, right_part)
+        obj if resource_class.respond_to?(obj.name) && valid_scope?(obj)
       end
     end
 
-    def build_scope_ostruct(user_input)
-      if /(?<scope_name>\w+)\((?<argument>\w+)\)/ =~ user_input
-        OpenStruct.new(user_input: user_input,
-                       name: scope_name,
-                       argument: argument,
-                       arity: 1)
+    def build_scope_ostruct(left_part, right_part)
+      if left_part.downcase == "scope"
+        user_input = right_part
+        if /(?<scope_name>\w+)\((?<scope_argument>\w+)\)/ =~ right_part
+          name, argument = scope_name, scope_argument
+        else
+          name, argument = user_input, nil
+        end
       else
-        OpenStruct.new(user_input: user_input,
-                       name: user_input,
-                       argument: nil,
-                       arity: 0)
+        user_input = "#{left_part}:#{right_part}"
+        name, argument = left_part, right_part
       end
+      OpenStruct.new(user_input: user_input, name: name, argument: argument)
     end
 
     # If the Dashboard has defined its COLLECTION_SCOPES returns true if the
     # possible_scope is included in it (i.e. whitelisted). Otherwise returns
     # true if it's not blacklisted nor ending with an exclamation mark.
-    def valid_scope?(possible_scope)
+    def valid_scope?(scope_obj)
       if collection_scopes.any?
-        collection_scopes.include?(possible_scope) ||
-          collection_scopes.include?(possible_scope.to_sym)
+        collection_scopes_include?(scope_obj.user_input) ||
+          wildcarded_scope?(scope_obj.name)
       else
-        !banged?(possible_scope) && !blacklisted_scope?(possible_scope)
+        !banged?(scope_obj.user_input) &&
+        !blacklisted_scope?(scope_obj.user_input)
       end
+    end
+
+    def collection_scopes_include?(s)
+      collection_scopes.include?(s) || collection_scopes.include?(s.to_sym)
+    end
+
+    def wildcarded_scope?(scope)
+      collection_scopes.include?("#{scope}:*")
     end
 
     def banged?(method)
@@ -125,12 +134,12 @@ module Administrate
     end
 
     def collection_scopes
-      if dashboard_class.const_defined?(:COLLECTION_SCOPES)
-        const = dashboard_class.const_get(:COLLECTION_SCOPES)
-        const.is_a?(Array) ? const : const.values.flatten
-      else
-        []
-      end
+      @_scopes ||= if dashboard_class.const_defined?(:COLLECTION_SCOPES)
+                     const = dashboard_class.const_get(:COLLECTION_SCOPES)
+                     const.is_a?(Array) ? const : const.values.flatten
+                   else
+                     []
+                   end
     end
 
     # Recursive function that takes a splited search string (term) as input and

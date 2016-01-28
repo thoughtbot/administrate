@@ -41,7 +41,7 @@ class DashboardWithAHashOfScopes < Administrate::BaseDashboard
   }
 
   COLLECTION_SCOPES = {
-    status: [:active, :inactive, "idle"],
+    status: [:active, :inactive, "idle", "with_argument:*"],
     other: [:last_week, :old, "with_argument(3)",],
   }
 end

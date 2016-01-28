@@ -60,10 +60,14 @@ describe Administrate::Page::Collection do
     end
 
     describe "with a Hash grouping the scopes" do
-      it "returns the stringified scopes of the group passed as param" do
+      let(:scopes_strigified_without_wildcarded) do
+        scopes_hash[:status].map(&:to_s).reject { |s| s[-2..-1] == ':*'}
+      end
+
+      it "returns the stringified scopes of the group rejecting wildcarded" do
         page = Administrate::Page::Collection.new(dashboard_w_scopes_hash)
         expect(page.scope_names(:status)).
-          to eq(scopes_hash[:status].map(&:to_s))
+          to eq(scopes_strigified_without_wildcarded)
       end
     end
   end

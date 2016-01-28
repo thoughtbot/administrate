@@ -182,4 +182,25 @@ feature "Search" do
     end
     expect(page).not_to have_content(unmatch.name)
   end
+
+  scenario "admin searches using a 'wildcarded' scope", :js do
+    query = "name_starts_with:ZZ"
+    match = create(
+      :customer,
+      name: "ZZTop")
+    unmatch = create(
+      :customer,
+      name: "John Doe")
+
+    visit admin_customers_path
+    fill_in :search, with: query
+    page.execute_script("$('.search').submit()")
+    page.within("tr.table__row", match: :first) do
+      expect(page).to have_content(match.name)
+    end
+    expect(page).not_to have_content(unmatch.name)
+
+    # ...and the wildcarded scope doesn't have its button to be clicked.
+    expect(page).not_to have_content('name_starts_with:*')
+  end
 end

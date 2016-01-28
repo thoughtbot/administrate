@@ -2,6 +2,9 @@ require "spec_helper"
 require "support/constant_helpers"
 require "administrate/search"
 
+# NOTE: Dashboard mocks (MockDashboard, DashboardWithAnArrayOfScopes and
+# DashboardWithAHashOfScopes) are defined in spec/spec_helper.rb.
+
 describe Administrate::Search do
   describe "#new(resolver, query)" do
     let(:symbol) { :amazing }
@@ -349,6 +352,45 @@ describe Administrate::Search do
             expect(search.scopes).to eq([scope])
             expect(search.arguments).to eq([argument])
             expect(search.scopes_with_arguments).to eq([scope_with_argument])
+          ensure
+            remove_constants :User
+          end
+        end
+      end
+    end
+
+    describe "the query contains a 'wildcarded' scope" do
+      let(:scope) { "name_starts_with" }
+      let(:argument) { "A" }
+      let(:query) { "#{scope}:#{argument}" }
+
+      it "returns the [scope] and #arguments the [argument] if configured" do
+        begin
+          class User
+            def self.name_starts_with(_letter); end
+          end
+          search = Administrate::Search.new(resolver, query)
+          expect(search.scopes).to eq([scope])
+          expect(search.arguments).to eq([argument])
+        ensure
+          remove_constants :User
+        end
+      end
+
+      describe "without the wildcard in the dashboard configuration" do
+        let(:resolver) do
+          double(resource_class: User,
+                 dashboard_class: DashboardWithAnArrayOfScopes)
+        end
+
+        it "returns an empty array" do
+          begin
+            class User
+              def self.name_starts_with(_letter); end
+            end
+            search = Administrate::Search.new(resolver, query)
+            expect(search.scopes).to eq([])
+            expect(search.arguments).to eq([])
           ensure
             remove_constants :User
           end
