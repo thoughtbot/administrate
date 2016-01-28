@@ -1,5 +1,95 @@
-// fixme even more :)
+// fixme please
 .buttons-group {
   margin: $small-spacing;
   padding-left: $small-spacing;
+  clear: both;
+}
+
+// copied from http://refills.bourbon.io/components/#er-toc-id-5
+.button-group {  
+  $base-border-color: gainsboro !default;
+  $base-border-radius: 3px !default;
+  $base-line-height: 1.5em !default;
+  $base-spacing: 1.5em !default;
+  $base-font-size: 1em !default;
+  $base-background-color: white !default;
+  $action-color: #477DCA !default;
+  $dark-gray: #333 !default;
+  $large-screen: em(860) !default;
+  $base-font-color: $dark-gray !default;
+  $button-group-background: $base-background-color;
+  $button-group-color: lighten($base-font-color, 30%);
+  $button-group-border: 1px solid silver;
+  $button-group-inner-border: 1px solid lighten(silver, 18%);
+  $button-group-background-checked: $action-color;
+  $button-group-color-checked: white;
+  $button-group-border-checked: darken($button-group-background-checked, 15%);
+
+  label {
+    margin-bottom: 0;
+
+    @include media($large-screen) {
+      float: left;
+    }
+
+    .button-group-item {
+      background: $button-group-background;
+      border-left: $button-group-border;
+      border-radius: 0;
+      border-right: $button-group-border;
+      color: $button-group-color;
+      cursor: pointer;
+      display: inline-block;
+      font-size: $base-font-size;
+      font-weight: normal;
+      line-height: 1;
+      padding: 0.75em 1em;
+      width: 100%;
+
+      @include media($large-screen) {
+        border-bottom: $button-group-border;
+        border-left: 0;
+        border-right: $button-group-inner-border;
+        border-top: $button-group-border;
+        width: auto;
+      }
+
+      &:focus,
+      &:hover {
+        background-color: darken($button-group-background, 3%);
+      }
+    }
+
+    &:first-child .button-group-item {
+      border-top-left-radius: $base-border-radius;
+      border-top-right-radius: $base-border-radius;
+      border-top: $button-group-border;
+
+      @include media($large-screen) {
+        border-bottom-left-radius: $base-border-radius;
+        border-left: $button-group-border;
+        border-top-left-radius: $base-border-radius;
+        border-top-right-radius: 0;
+      }
+    }
+
+    &:last-child .button-group-item {
+      border-bottom-left-radius: $base-border-radius;
+      border-bottom-right-radius: $base-border-radius;
+      border-bottom: $button-group-border;
+
+      @include media($large-screen) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: $base-border-radius;
+        border-right: $button-group-border;
+        border-top-right-radius: $base-border-radius;
+      }
+    }
+
+    .button-group-item.active {
+      border: 1px solid $button-group-border-checked;
+      box-shadow: inset 0 1px 2px darken($button-group-background-checked, 10%);
+      color: $button-group-color-checked;
+    }
+  }
 }
