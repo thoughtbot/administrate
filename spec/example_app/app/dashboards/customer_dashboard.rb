@@ -19,7 +19,7 @@ class CustomerDashboard < Administrate::BaseDashboard
     :subscribed,
     :old,
     "name_starts_with(A)",
-    "name_starts_with:*"
+    "name_starts_with:*",
   ].freeze
 
   def display_resource(customer)
