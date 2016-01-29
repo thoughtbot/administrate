@@ -201,6 +201,6 @@ feature "Search" do
     expect(page).not_to have_content(unmatch.name)
 
     # ...and the wildcarded scope doesn't have its button to be clicked.
-    expect(page).not_to have_content('name_starts_with:*')
+    expect(page).not_to have_content("name_starts_with:*")
   end
 end

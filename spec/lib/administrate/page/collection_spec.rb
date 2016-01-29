@@ -61,7 +61,7 @@ describe Administrate::Page::Collection do
 
     describe "with a Hash grouping the scopes" do
       let(:scopes_strigified_without_wildcarded) do
-        scopes_hash[:status].map(&:to_s).reject { |s| s[-2..-1] == ':*'}
+        scopes_hash[:status].map(&:to_s).reject { |s| s[-2..-1] == ":*" }
       end
 
       it "returns the stringified scopes of the group rejecting wildcarded" do

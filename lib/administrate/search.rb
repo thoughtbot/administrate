@@ -90,13 +90,16 @@ module Administrate
       if left_part.downcase == "scope"
         user_input = right_part
         if /(?<scope_name>\w+)\((?<scope_argument>\w+)\)/ =~ right_part
-          name, argument = scope_name, scope_argument
+          name = scope_name
+          argument = scope_argument
         else
-          name, argument = user_input, nil
+          name = user_input
+          argument = nil
         end
       else
         user_input = "#{left_part}:#{right_part}"
-        name, argument = left_part, right_part
+        name = left_part
+        argument = right_part
       end
       OpenStruct.new(user_input: user_input, name: name, argument: argument)
     end
