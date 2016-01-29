@@ -37,7 +37,7 @@ module Administrate
           dashboard.collection_scopes.map &:to_s
         end.reject do |scope|
           # do NOT show the wildcarded scopes
-          scope[-2..-1] == ':*'
+          scope[-2..-1] == ":*"
         end
       end
 
