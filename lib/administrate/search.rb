@@ -87,7 +87,7 @@ module Administrate
     end
 
     def build_scope_ostruct(left_part, right_part)
-      if left_part.downcase == "scope"
+      if left_part.casecmp("scope") == 0
         user_input = right_part
         if /(?<scope_name>\w+)\((?<scope_argument>\w+)\)/ =~ right_part
           name = scope_name
@@ -113,7 +113,7 @@ module Administrate
           wildcarded_scope?(scope_obj.name)
       else
         !banged?(scope_obj.user_input) &&
-        !blacklisted_scope?(scope_obj.user_input)
+          !blacklisted_scope?(scope_obj.user_input)
       end
     end
 
