@@ -98,10 +98,10 @@ module Administrate
     end
 
     def resource_params
-      params.require(resource_name).permit(*permitted_attributes)
+      params.require(resource_name).permit(*dashboard_attributes)
     end
-
-    def permitted_attributes
+ 
+    def dashboard_attributes
       dashboard.permitted_attributes
     end
 
