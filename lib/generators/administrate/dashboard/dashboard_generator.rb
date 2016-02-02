@@ -81,7 +81,7 @@ module Administrate
         if enum_column?(attr)
           :enum
         else
-          klass.column_types[attr].type
+          klass.column_types[attr][:type] if klass.column_types[attr]
         end
       end
 
@@ -92,11 +92,11 @@ module Administrate
 
       def association_type(attribute)
         relationship = klass.reflections[attribute.to_s]
-        if relationship.has_one?
+        if relationship[:type] == :has_one
           "Field::HasOne"
-        elsif relationship.collection?
+        elsif relationship[:type] == :collection
           "Field::HasMany" + relationship_options_string(relationship)
-        elsif relationship.polymorphic?
+        elsif relationship[:polymorphic]
           "Field::Polymorphic"
         else
           "Field::BelongsTo" + relationship_options_string(relationship)
@@ -104,12 +104,12 @@ module Administrate
       end
 
       def klass
-        @klass ||= Object.const_get(class_name)
+        @klass ||= Administrate.orm.find_model(class_name)
       end
 
       def relationship_options_string(relationship)
-        if relationship.class_name != relationship.name.to_s.classify
-          options_string(class_name: relationship.class_name)
+        if relationship[:class_name] != relationship[:name].to_s.classify
+          options_string(class_name: relationship[:class_name])
         else
           ""
         end

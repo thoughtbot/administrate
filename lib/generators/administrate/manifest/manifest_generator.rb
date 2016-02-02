@@ -15,17 +15,20 @@ module Administrate
 
       def warn_about_invalid_models
         namespaced_models.each do |invalid_model|
-          puts "WARNING: Unable to generate a dashboard for #{invalid_model}."
+          puts "WARNING: Unable to generate a dashboard for " \
+               "#{invalid_model.model_inspect}."
           puts "         Administrate does not yet support namespaced models."
         end
 
         models_without_tables.each do |invalid_model|
-          puts "WARNING: Unable to generate a dashboard for #{invalid_model}."
+          puts "WARNING: Unable to generate a dashboard for " \
+               "#{invalid_model.model_inspect}."
           puts "         It is not connected to a database table."
         end
 
         unnamed_constants.each do |invalid_model|
-          puts "NOTICE: Skipping dynamically generated model #{invalid_model}."
+          puts "NOTICE: Skipping dynamically generated model " \
+               "#{invalid_model.model_inspect}."
         end
       end
 
@@ -33,16 +36,16 @@ module Administrate
 
       def dashboard_resources
         valid_dashboard_models.map do |model|
-          model.to_s.pluralize.underscore
+          model.plural_name
         end
       end
 
-      def valid_dashboard_models
-        database_models - invalid_database_models
+      def orm_models
+        @orm_models ||= Administrate.orm.find_models
       end
 
-      def database_models
-        ActiveRecord::Base.descendants
+      def valid_dashboard_models
+        orm_models - invalid_database_models
       end
 
       def invalid_database_models
@@ -50,15 +53,15 @@ module Administrate
       end
 
       def models_without_tables
-        database_models.reject(&:table_exists?)
+        orm_models.reject(&:table_exists?)
       end
 
       def namespaced_models
-        database_models.select { |model| model.to_s.include?("::") }
+        orm_models.select { |model| model.name && model.name.include?("::") }
       end
 
       def unnamed_constants
-        ActiveRecord::Base.descendants.reject { |d| d.name == d.to_s }
+        orm_models.select { |d| d.name.nil? }
       end
     end
   end

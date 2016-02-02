@@ -4,7 +4,7 @@ module Administrate
       search_term = params[:search].to_s.strip
       resources = Administrate::Search.new(resource_resolver, search_term).run
       resources = order.apply(resources)
-      resources = resources.page(params[:page]).per(records_per_page)
+      resources = resources.paginate(params[:page], records_per_page)
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
       render locals: {
@@ -16,7 +16,8 @@ module Administrate
 
     def show
       render locals: {
-        page: Administrate::Page::Show.new(dashboard, requested_resource),
+        page:
+          Administrate::Page::Show.new(dashboard, wrapped_requested_resource),
       }
     end
 
@@ -28,7 +29,8 @@ module Administrate
 
     def edit
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, requested_resource),
+        page:
+          Administrate::Page::Form.new(dashboard, wrapped_requested_resource),
       }
     end
 
@@ -48,20 +50,21 @@ module Administrate
     end
 
     def update
-      if requested_resource.update(resource_params)
+      if wrapped_requested_resource.update(resource_params)
         redirect_to(
-          [namespace, requested_resource],
+          [namespace, wrapped_requested_resource],
           notice: translate_with_resource("update.success"),
         )
       else
         render :edit, locals: {
-          page: Administrate::Page::Form.new(dashboard, requested_resource),
+          page:
+            Administrate::Page::Form.new(dashboard, wrapped_requested_resource),
         }
       end
     end
 
     def destroy
-      requested_resource.destroy
+      wrapped_requested_resource.destroy
       flash[:notice] = translate_with_resource("destroy.success")
       redirect_to action: :index
     end
@@ -91,6 +94,11 @@ module Administrate
 
     def requested_resource
       @_requested_resource ||= find_resource(params[:id])
+    end
+
+    def wrapped_requested_resource
+      @_wrapped_requested_resource ||=
+        Administrate.orm.wrap_record(requested_resource)
     end
 
     def find_resource(param)

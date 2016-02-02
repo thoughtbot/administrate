@@ -49,7 +49,8 @@ module Administrate
     end
 
     def display_resource(resource)
-      "#{resource.class} ##{resource.id}"
+      resource = Administrate.orm.wrap_record(resource)
+      "#{resource.model_class.name} ##{resource.id}"
     end
 
     private

@@ -6,7 +6,7 @@ module Administrate
     end
 
     def apply(relation)
-      if relation.columns_hash.keys.include?(attribute.to_s)
+      if relation.can_order_by?(attribute)
         relation.order(attribute => direction)
       else
         relation

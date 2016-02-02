@@ -14,7 +14,7 @@ module Administrate
       end
 
       def associated_class
-        associated_class_name.constantize
+        Administrate.orm.find_model(associated_class_name)
       end
 
       def associated_class_name

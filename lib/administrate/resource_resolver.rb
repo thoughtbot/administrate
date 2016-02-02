@@ -13,7 +13,7 @@ module Administrate
     end
 
     def resource_class
-      Object.const_get(resource_class_name)
+      Administrate.orm.find_model(resource_class_name)
     end
 
     def resource_name
