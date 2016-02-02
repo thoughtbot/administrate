@@ -16,13 +16,13 @@ as well as a link to its edit page.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Show
 %>
 
-<% content_for(:title) { page.page_title } %>
+<% content_for(:title) { "#{t("activerecord.models.#{page.resource.class.to_s.downcase}", count: 1, default: page.resource.class.to_s)} ##{page.resource.id}" } %>
 
 <header class="header">
   <h1 class="header__heading"><%= content_for(:title) %></h1>
   <div class="header__actions">
     <%= link_to(
-      "Edit",
+      t('administrate.actions.edit', default: 'Edit'),
       [:edit, namespace, page.resource],
       class: "button",
     ) %>
