@@ -1,52 +1,46 @@
 .cell-label {
   @include data-label;
 
+  &:hover {
+    a {
+      color: $action-color;
+    }
+
+    svg {
+      fill: $action-color;
+      transform: rotate(180deg);
+    }
+  }
+
   a {
     @include fill-parent;
     color: inherit;
     display: inline-block;
-    transition: $base-transition;
+    transition: color $base-duration $base-timing;
   }
+}
 
-  &--asc,
-  &--desc {
-    font-weight: bold;
+.cell-label--asc,
+.cell-label--desc {
+  font-weight: $bold-font-weight;
+}
+
+.cell-label__sort-indicator {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+
+  svg {
+    height: 100%;
+    transition: transform $base-duration $base-timing;
+    fill: $hint-grey;
   }
+}
 
-  &__sort-indicator {
-    display: inline-block;
-    height: 1em;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-
-    &--desc {
-      transform: rotate(180deg);
-    }
-
-    svg {
-      height: 100%;
-      transition: $base-transition;
-    }
-
-    path {
-      fill: $hint-grey;
-    }
-  }
-
-  &:hover {
-    a {
-      color: $base-accent-color;
-    }
-
-    path {
-      fill: $base-accent-color;
-    }
-
-    svg {
-      transform: rotate(180deg);
-    }
-  }
+.cell-label__sort-indicator--desc {
+  transform: rotate(180deg);
 }
 
 .cell-data--number,

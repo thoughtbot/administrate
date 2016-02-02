@@ -2,25 +2,21 @@
   flex: 0 0 auto;
   max-width: 12em;
   overflow-y: auto;
-  padding: 0 $base-spacing;
+  padding: 0 $base-spacing $base-spacing;
+}
 
-  &__link {
-    color: $base-font-color;
-    display: block;
-    padding-top: $base-spacing;
-    transition: color 0.05s linear;
+.sidebar__link {
+  color: $base-font-color;
+  display: block;
+  padding-top: $base-spacing;
+  transition: color 0.05s linear;
 
-    &:last-child {
-      padding-bottom: $base-spacing;
-    }
-
-    &--active {
-      color: $blue;
-      font-weight: $bold-font-weight;
-    }
-
-    &:hover {
-      color: $blue;
-    }
+  &:hover {
+    color: $blue;
   }
+}
+
+.sidebar__link--active {
+  color: $blue;
+  font-weight: $bold-font-weight;
 }

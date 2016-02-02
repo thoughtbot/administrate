@@ -1,10 +1,10 @@
 .search {
+  @include padding(null $base-spacing);
   align-items: center;
   border-bottom: $base-border;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding: 0 $base-spacing;
   position: relative;
   width: 100%;
 }
@@ -12,21 +12,20 @@
 .search__icon {
   svg {
     @include size(1em);
-  }
-
-  path {
     fill: $hint-grey;
-    transition: $base-transition;
+    transition: fill $base-duration $base-timing;
   }
 
-  &--active path {
-    fill: $base-accent-color;
+  &--active {
+    svg {
+      fill: $action-color;
+    }
   }
 }
 
 .search__input {
   appearance: none;
-  border: none;
+  border: 0;
   box-shadow: none;
   flex-grow: 1;
   margin: 0;
@@ -41,7 +40,7 @@
   @include position(absolute, 1em 0 null null);
   color: $hint-grey;
   opacity: 0;
-  transition: $base-transition;
+  transition: opacity $base-duration $base-timing;
 
   svg {
     @include size(100%);
@@ -49,7 +48,7 @@
 
   path,
   rect {
-    fill: $base-accent-color;
+    fill: $action-color;
   }
 
   &--active {

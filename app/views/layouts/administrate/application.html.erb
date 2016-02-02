@@ -13,31 +13,31 @@ By default, it renders:
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
 <head>
   <meta charset="utf-8" />
   <meta name="ROBOTS" content="NOODP" />
   <meta name="viewport" content="initial-scale=1" />
   <title><%= content_for(:title) %> | <%= Rails.application.class.parent_name.titlecase %></title>
-  <%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Lato:300,400,900", media: "all" %>
   <%= stylesheet_link_tag "administrate/application", media: "all" %>
   <%= csrf_meta_tags %>
 </head>
 
-<body class="administrate">
-  <main class="main">
+<body>
+
+  <div class="app-container">
+
     <div class="sidebar">
       <%= render "sidebar" -%>
     </div>
 
-    <div class="container">
+    <main class="main-content" role="main">
       <%= content_for(:search) %>
-      <div class="content">
-        <%= render "flashes" -%>
-        <%= yield %>
-      </div>
-    </div>
-  </main>
+      <%= render "flashes" -%>
+      <%= yield %>
+    </main>
+
+  </div>
 
   <%= render "javascript" %>
 </body>

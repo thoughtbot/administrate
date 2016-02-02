@@ -1,10 +1,8 @@
 @each $flash-type, $flash-color in $flash-colors {
   .flash--#{$flash-type} {
     background-color: $flash-color;
-    border-radius: $base-border-radius;
     color: darken($flash-color, 60%);
-    margin-bottom: $base-spacing;
-    padding: $small-spacing;
+    padding: $small-spacing $base-spacing;
 
     a {
       color: darken($flash-color, 70%);

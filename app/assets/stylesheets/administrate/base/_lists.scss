@@ -1,19 +1,19 @@
 ul,
 ol {
+  list-style-type: none;
   margin: 0;
   padding: 0;
-  list-style-type: none;
 }
 
 dl {
-  margin-bottom: $base-spacing / 2;
-}
+  margin-bottom: $small-spacing;
 
-dt {
-  font-weight: bold;
-  margin-top: $base-spacing / 2;
-}
+  dt {
+    font-weight: $bold-font-weight;
+    margin-top: $small-spacing;
+  }
 
-dd {
-  margin: 0;
+  dd {
+    margin: 0;
+  }
 }

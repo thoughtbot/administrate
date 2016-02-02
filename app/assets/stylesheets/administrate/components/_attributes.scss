@@ -1,9 +1,9 @@
 .attribute-label {
   @include data-label;
   @include span-columns(2 of 12);
+  clear: left;
   margin-top: 0;
   text-align: right;
-  clear: left;
 }
 
 .preserve-whitespace {

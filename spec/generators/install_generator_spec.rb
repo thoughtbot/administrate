@@ -20,68 +20,26 @@ describe Administrate::Generators::InstallGenerator, :generator do
     end
   end
 
-  describe "dashboard_manifest" do
-    it "is copied to the dashboards folder" do
-      stub_generator_dependencies
-      manifest = file("app/dashboards/dashboard_manifest.rb")
-
-      run_generator
-
-      expect(manifest).to exist
-      expect(manifest).to have_correct_syntax
-      expect(manifest).to contain("class DashboardManifest")
-      expect(manifest).to contain("DASHBOARDS = [")
-      expect(manifest).to contain("ROOT_DASHBOARD = DASHBOARDS.first")
-    end
-
-    it "populates default dashboards based on current ActiveRecord models" do
-      stub_generator_dependencies
-      manifest = file("app/dashboards/dashboard_manifest.rb")
-
-      run_generator
-
-      [:customers, :line_items, :orders, :products].each do |model|
-        expect(manifest).to contain(":#{model}")
-      end
-      expect(manifest).not_to contain("Delayed::Backend::ActiveRecord::Job")
-    end
-
-    it "skips namespaced models with a warning" do
-      stub_generator_dependencies
-      manifest = file("app/dashboards/dashboard_manifest.rb")
-
-      run_generator
-
-      expect(manifest).not_to contain("delayed/backend/active_record/jobs")
-    end
-
-    it "skips models that aren't backed by the database" do
+  describe "manifest generator" do
+    it "invokes the Manifest generator if the manifest does not yet exist" do
       begin
-        class ModelWithoutDBTable < ActiveRecord::Base; end
+        remove_constants :DashboardManifest
         stub_generator_dependencies
-        manifest = file("app/dashboards/dashboard_manifest.rb")
 
-        run_generator
+        expect { run_generator }.to raise_error
 
-        expect(manifest).not_to contain("model_without_db_table")
+        expect(Rails::Generators).to invoke_generator("administrate:manifest")
       ensure
-        remove_constants :ModelWithoutDBTable
+        load "spec/example_app/app/dashboards/dashboard_manifest.rb"
       end
     end
 
-    it "skips models that don't have a named constant" do
+    it "does not invoke the manifest generator if a manifest already exists" do
       stub_generator_dependencies
-      ActiveRecord::Schema.define { create_table(:foos) }
-      _unnamed_model = Class.new(ActiveRecord::Base) do
-        def self.table_name
-          :foos
-        end
-      end
 
       run_generator
 
-      manifest = file("app/dashboards/dashboard_manifest.rb")
-      expect(manifest).to have_correct_syntax
+      expect(Rails::Generators).not_to invoke_generator("administrate:manifest")
     end
   end
 
@@ -131,8 +89,8 @@ describe Administrate::Generators::InstallGenerator, :generator do
       run_generator
 
       %w[customer order product line_item].each do |resource|
-        expect(Rails::Generators).to have_received(:invoke).
-          with("administrate:dashboard", [resource])
+        expect(Rails::Generators).
+          to invoke_generator("administrate:dashboard", [resource])
       end
     end
   end
@@ -140,7 +98,6 @@ describe Administrate::Generators::InstallGenerator, :generator do
   def stub_generator_dependencies
     provide_existing_routes_file
     allow(Rails::Generators).to receive(:invoke)
-    allow(Rails).to receive(:root).and_return(Pathname.new(file(".")))
   end
 
   def insert_generated_routes

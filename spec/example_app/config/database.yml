@@ -2,7 +2,6 @@ development: &default
   adapter: postgresql
   database: administrate-prototype_development
   encoding: utf8
-  host: localhost
   min_messages: warning
   pool: 2
   timeout: 5000

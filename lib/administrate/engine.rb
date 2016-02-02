@@ -1,5 +1,4 @@
 require "datetime_picker_rails"
-require "inline_svg"
 require "jquery-rails"
 require "kaminari"
 require "momentjs-rails"
@@ -19,5 +18,7 @@ require "administrate/search"
 module Administrate
   class Engine < ::Rails::Engine
     isolate_namespace Administrate
+
+    Engine.config.assets.precompile << /\.(?:svg)\z/
   end
 end
