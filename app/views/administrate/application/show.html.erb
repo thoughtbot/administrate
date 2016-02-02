@@ -31,7 +31,7 @@ as well as a link to its edit page.
 
 <dl>
   <% page.attributes.each do |attribute| %>
-    <dt class="attribute-label"><%= attribute.name.titleize %></dt>
+    <dt class="attribute-label"><%= t("activerecord.attributes.#{page.resource_name}.#{attribute.name}", default: attribute.name.to_s.titleize) %></dt>
 
     <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
         ><%= render_field attribute %></dd>
