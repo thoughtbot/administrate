@@ -1,7 +1,29 @@
 module Administrate
   module OrmAdapters
     module Sequel
+      # This is needed for Kaminari to work with Sequel
+      module RelationKaminariSupport
+        def num_pages
+          page_count
+        end
+
+        def total_pages
+          page_count
+        end
+
+        def limit_value
+          page_size
+        end
+      end
+
       class Relation < ActiveRecordPattern::Relation
+        def initialize(relation)
+          @relation = relation
+          unless relation.respond_to?(:total_pages)
+            relation.singleton_class.send :include, RelationKaminariSupport
+          end
+        end
+
         def can_order_by?(attr_name)
           return false unless attr_name
 
@@ -20,8 +42,10 @@ module Administrate
           Relation.new(relation)
         end
 
-        def paginate(page, per)
-          Relation.new(@relation.limit(nil).paginate(page, per))
+        def paginate(page_no, per)
+          page_no = page_no.to_i
+          page_no = page_no == 0 ? 1 : page_no
+          Relation.new(@relation.limit(nil).paginate(page_no, per))
         end
 
         def size
