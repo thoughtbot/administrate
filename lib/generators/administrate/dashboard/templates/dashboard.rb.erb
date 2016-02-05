@@ -53,4 +53,20 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   # def display_resource(<%= file_name %>)
   #   "<%= class_name %> ##{<%= file_name %>.id}"
   # end
+
+  # Use the ALTERNAVIVE_VIEWS hash if you want to use an alternative controller
+  # or view to show any resource manage by this dashboard. These possible views
+  # will be shown while showing the resource in the Administrate's show.
+  #
+  # The keys of the hash will be the name used by Administrate to get the I18n
+  # translation of the view name, and the values the route helper name that
+  # will generate the resource's path for that view. For example, with:
+  # 
+  #   ALTERNATIVE_VIEWS = {
+  #     offer_detail: :offer_path,
+  #   }
+  #
+  # We'll see a new button while showing any resource with a link to
+  # *offer_path(resource)* with the caption defined for the request locale
+  # in *administrate.alternative_views.offer_detail*.
 end

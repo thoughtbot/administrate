@@ -21,6 +21,14 @@ as well as a link to its edit page.
 <header class="header">
   <h1 class="header__heading"><%= content_for(:title) %></h1>
   <div class="header__actions">
+    <% page.alternative_views.each do |name,route| %>
+      <%= link_to(
+            I18n.t("administrate.alternative_views.#{name}"),
+            self.send(route, page.resource),
+            class: "button",
+          ) %>
+    <% end %>
+
     <%= link_to(
       "Edit",
       [:edit, namespace, page.resource],

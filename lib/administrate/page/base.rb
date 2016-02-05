@@ -11,6 +11,14 @@ module Administrate
           dashboard.class.to_s.scan(/(.+)Dashboard/).first.first.underscore
       end
 
+      def alternative_views
+        if dashboard.class.const_defined?(:ALTERNATIVE_VIEWS)
+          dashboard.class.const_get(:ALTERNATIVE_VIEWS)
+        else
+          {}
+        end
+      end
+
       protected
 
       def attribute_field(dashboard, resource, attribute_name, page)
