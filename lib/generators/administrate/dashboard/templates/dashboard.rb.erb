@@ -55,8 +55,9 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   # end
 
   # Use the ALTERNAVIVE_VIEWS hash if you want to use an alternative controller
-  # or view to show any resource manage by this dashboard. These possible views
-  # will be shown while showing the resource in the Administrate's show.
+  # or view to show any resource managed by this dashboard. Buttons to these
+  # views will be shown while showing the resource in the Administrate's show
+  # view.
   #
   # The keys of the hash will be the name used by Administrate to get the I18n
   # translation of the view name, and the values the route helper name that
@@ -67,6 +68,6 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   #   }
   #
   # We'll see a new button while showing any resource with a link to
-  # *offer_path(resource)* with the caption defined for the request locale
-  # in *administrate.alternative_views.offer_detail*.
+  # *offer_path(resource)* with the caption defined for the request's locale
+  # in the *administrate.alternative_views.offer_detail* key.
 end
