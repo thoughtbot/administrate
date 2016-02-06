@@ -55,11 +55,59 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   # end
 
   # COLLECTION_SCOPES
-  # an array of scope names that will be displayed on the index page in order
-  # to filter the resources displayed.
+  # an array or hash that define the valid scopes that could be used while
+  # serching as part of the query string.
+  COLLECTION_SCOPES = []  # Comment to use any scope, but read this text below.
+  # If the above COLLECTION_SCOPES definition doesn't exist then any "scope"
+  # defined could be used searching *scope:<name_of_the_scope>*. Though this
+  # could be a nice feature in applications that has the dashboard access
+  # properly secured **this approach is not recommended**. Administrate has
+  # no way to know the scopes defined in the model and will send to the model
+  # anything not included in its blacklist.
   #
-  # COLLECTION_SCOPES = [
-  #   :opened,
-  #   :closed
-  # ]
+  # When defined buttons will appear in the index header in order to filter the
+  # resources displayed. If it's an array it will be treated internally as if
+  # it were a hash with a single key called *scopes* pointing to our array. The
+  # hash's keys are used to show a localized caption for each button using the
+  # I18n's scope *administrate.scopes.<model_class>*. Administrate'll retry the
+  # translation with the scope *administrate.scopes* letting us to share the
+  # same scope name translation between different models (and be DRY!).
+  #
+  # Array example:
+  #
+  #   COLLECTION_SCOPES = [
+  #     :opened,
+  #     :closed
+  #   ]
+  #
+  # Hash example:
+  #
+  #   COLLECTION_SCOPES = {
+  #     status: [:opened, :closed],
+  #     headquarters: [:madrid, :oviedo, :mexicodf]
+  #   }
+  #
+  # Scopes with an argument can also be defined. An explicit value for the
+  # argument can be defined adding that value after scope name between
+  # parenthesis and without quotes. For example:
+  #
+  #   COLLECTION_SCOPES = {
+  #     headquarter: ["office(madrid)", "office(oviedo)", "office(mexicodf)"]
+  #   }
+  #
+  # Will use the scope *office(city)* using "madrid", "oviedo" and "mexicodf"
+  # as arguments.
+  #
+  # Finally, it's possible to let the user indicate the value of the argument
+  # as part of the search query adding ":*" after the scope name. For example:
+  #
+  #   COLLECTION_SCOPES = {
+  #     headquarter: ["office(madrid)", "office(oviedo)", "office:*"]
+  #   }
+  #
+  # Won't show any scope button for "office:*" but will let us indicate any
+  # value after "office:" to use it as argument for the *office* scope. If our
+  # search query is "office:mexicodf" we'll get the same results than clicking
+  # in the third button of the previous example (which query would be
+  # "scope:office(mexicodf)").
 end

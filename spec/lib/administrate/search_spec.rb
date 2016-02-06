@@ -75,6 +75,11 @@ describe Administrate::Search do
 
     describe "the query is one scope" do
       let(:query) { "scope:#{scope}" }
+      let(:scopes_disabled_resolver) do
+        double(resource_class: User,
+               dashboard_class: DashboardWithScopesDisabled)
+      end
+
 
       it "returns nil if the model does not respond to the possible scope" do
         begin
@@ -93,6 +98,19 @@ describe Administrate::Search do
           end
           search = Administrate::Search.new(resolver, query)
           expect(search.scope).to eq(scope)
+        ensure
+          remove_constants :User
+        end
+      end
+
+      # DashboardWithScopesDisabled define COLLECTION_SCOPES as an empty array.
+      it "returns nil if the dashboard's search into scopes is disabled" do
+        begin
+          class User
+            def self.active; end
+          end
+          search = Administrate::Search.new(scopes_disabled_resolver, query)
+          expect(search.scope).to eq(nil)
         ensure
           remove_constants :User
         end

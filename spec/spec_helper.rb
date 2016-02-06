@@ -45,3 +45,11 @@ class DashboardWithAHashOfScopes < Administrate::BaseDashboard
     other: [:last_week, :old, "with_argument(3)",],
   }
 end
+
+class DashboardWithScopesDisabled < Administrate::BaseDashboard
+  ATTRIBUTE_TYPES = {
+    name: Administrate::Field::String,
+  }
+
+  COLLECTION_SCOPES = []
+end

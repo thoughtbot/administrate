@@ -104,13 +104,16 @@ module Administrate
       OpenStruct.new(user_input: user_input, name: name, argument: argument)
     end
 
-    # If the Dashboard has defined its COLLECTION_SCOPES returns true if the
-    # possible_scope is included in it (i.e. whitelisted). Otherwise returns
-    # true if it's not blacklisted nor ending with an exclamation mark.
+    # If the COLLECTION_SCOPES is not empty returns true if the possible_scope
+    # is included in it (i.e. whitelisted), and returns false if is empty.
+    # If COLLECTION_SCOPES isn't defined returns true if it's not blacklisted
+    # nor ending with an exclamation mark.
     def valid_scope?(scope_obj)
       if collection_scopes.any?
         collection_scopes_include?(scope_obj.user_input) ||
           wildcarded_scope?(scope_obj.name)
+      elsif dashboard_class.const_defined?(:COLLECTION_SCOPES)
+        false
       else
         !banged?(scope_obj.user_input) &&
           !blacklisted_scope?(scope_obj.user_input)
