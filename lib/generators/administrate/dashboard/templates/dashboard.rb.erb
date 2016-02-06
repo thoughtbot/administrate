@@ -68,19 +68,20 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   # When defined buttons will appear in the index header in order to filter the
   # resources displayed. If it's an array it will be treated internally as if
   # it were a hash with a single key called *scopes* pointing to our array. The
-  # hash's keys are used to show a localized caption for each button using the
-  # I18n's scope *administrate.scopes.<model_class>*. Administrate'll retry the
-  # translation with the scope *administrate.scopes* letting us to share the
-  # same scope name translation between different models (and be DRY!).
+  # hash's keys and the scope definitions will be used to show a localized
+  # caption for each button using *administrate.scopes.<model_class>* as I18n's
+  # scope. If no translation the scope in that model, Administrate'll retry the
+  # translation with the scope *administrate.scopes*. That will let us share
+  # the same translation between different models (and be DRY!).
   #
-  # Array example:
+  # Definition example with an Arrray:
   #
   #   COLLECTION_SCOPES = [
   #     :opened,
   #     :closed
   #   ]
   #
-  # Hash example:
+  # Definition example with a Hash:
   #
   #   COLLECTION_SCOPES = {
   #     status: [:opened, :closed],
@@ -106,8 +107,8 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   #   }
   #
   # Won't show any scope button for "office:*" but will let us indicate any
-  # value after "office:" to use it as argument for the *office* scope. If our
-  # search query is "office:mexicodf" we'll get the same results than clicking
-  # in the third button of the previous example (which query would be
+  # value after "office:" to use it as argument for the *office(city)* scope.
+  # If our search query is "office:mexicodf" we'll get the same results than
+  # clicking in the third button of the previous example (which query would be
   # "scope:office(mexicodf)").
 end
