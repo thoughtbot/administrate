@@ -80,7 +80,6 @@ describe Administrate::Search do
                dashboard_class: DashboardWithScopesDisabled)
       end
 
-
       it "returns nil if the model does not respond to the possible scope" do
         begin
           class User; end
