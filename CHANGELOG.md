@@ -18,6 +18,9 @@
 
 ### Upcoming Release
 
+* [#458] [BUGFIX] Update the custom field generator to match the new HTML
+  structure of forms
+
 ### 0.1.4 (February 20, 2016)
 
 * [#464] [CHANGE] Replace the DashboardManifest with explicit Rails routes.
