@@ -47,7 +47,7 @@ gem "administrate", "~> 0.1.3"
 Re-bundle, then run the installer:
 
 ```bash
-$ rails generate administrate:install
+$ DISABLE_SPRING=1 rails generate administrate:install
 ```
 
 Restart your server, and visit http://localhost:3000/admin
