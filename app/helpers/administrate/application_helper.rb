@@ -32,5 +32,9 @@ module Administrate
         content_tag :use, nil, svg_attributes
       end
     end
+
+    def default_locale?
+      I18n.default_locale == I18n.locale
+    end
   end
 end
