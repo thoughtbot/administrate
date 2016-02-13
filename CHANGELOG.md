@@ -18,6 +18,9 @@
 
 ### Upcoming Release
 
+* [#464] [CHANGE] Replace the DashboardManifest with explicit Rails routes.
+  * Run `rails generate administrate:routes` to generate the default routes.
+
 ### 0.1.3 (January 22, 2016)
 
 * [#269] [FEATURE] Add a generator for copying default layout files

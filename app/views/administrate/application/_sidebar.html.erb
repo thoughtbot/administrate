@@ -4,11 +4,11 @@
 This partial is used to display the sidebar in Administrate.
 By default, the sidebar contains navigation links
 for all resources in the admin dashboard,
-as defined by the DashboardManifest.
+as defined by the routes in the `admin/` namespace
 %>
 
 <ul class="sidebar__list">
-  <% DashboardManifest::DASHBOARDS.each do |resource| %>
+  <% Administrate::Namespace.new(namespace).resources.each do |resource| %>
     <li>
       <%= link_to(
         display_resource_name(resource),
