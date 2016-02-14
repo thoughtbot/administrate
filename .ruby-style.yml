@@ -1,3 +1,0 @@
-AllCops:
-  Exclude:
-    - "spec/example_app/db/schema.rb"
