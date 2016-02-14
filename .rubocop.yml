@@ -1,0 +1,363 @@
+AllCops:
+  Exclude:
+    - spec/example_app/db/schema.rb
+
+AccessorMethodName:
+  Enabled: false
+
+ActionFilter:
+  Enabled: false
+
+Alias:
+  Enabled: false
+
+ArrayJoin:
+  Enabled: false
+
+AsciiComments:
+  Enabled: false
+
+AsciiIdentifiers:
+  Enabled: false
+
+Attr:
+  Enabled: false
+
+BlockNesting:
+  Enabled: false
+
+CaseEquality:
+  Enabled: false
+
+CharacterLiteral:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: true
+  EnforcedStyle: nested
+
+ClassLength:
+  Enabled: false
+
+ModuleLength:
+  Enabled: false
+
+ClassVars:
+  Enabled: false
+
+CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    find: detect
+    inject: reduce
+    collect: map
+    find_all: select
+
+ColonMethodCall:
+  Enabled: false
+
+CommentAnnotation:
+  Enabled: false
+
+CyclomaticComplexity:
+  Enabled: false
+
+Delegate:
+  Enabled: false
+
+DeprecatedHashMethods:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+DotPosition:
+  EnforcedStyle: trailing
+
+DoubleNegation:
+  Enabled: false
+
+EachWithObject:
+  Enabled: false
+
+EmptyLiteral:
+  Enabled: false
+
+Encoding:
+  Enabled: false
+
+EvenOdd:
+  Enabled: false
+
+ExtraSpacing:
+  Enabled: true
+
+FileName:
+  Enabled: false
+
+FlipFlop:
+  Enabled: false
+
+FormatString:
+  Enabled: false
+
+GlobalVars:
+  Enabled: false
+
+GuardClause:
+  Enabled: false
+
+IfUnlessModifier:
+  Enabled: false
+
+IfWithSemicolon:
+  Enabled: false
+
+InlineComment:
+  Enabled: false
+
+Lambda:
+  Enabled: false
+
+LambdaCall:
+  Enabled: false
+
+LineEndConcatenation:
+  Enabled: false
+
+LineLength:
+  Max: 80
+
+MethodLength:
+  Enabled: false
+
+ModuleFunction:
+  Enabled: false
+
+MultilineOperationIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+
+NegatedIf:
+  Enabled: false
+
+NegatedWhile:
+  Enabled: false
+
+Next:
+  Enabled: false
+
+NilComparison:
+  Enabled: false
+
+Not:
+  Enabled: false
+
+NumericLiterals:
+  Enabled: false
+
+OneLineConditional:
+  Enabled: false
+
+OpMethod:
+  Enabled: false
+
+ParameterLists:
+  Enabled: false
+
+PercentLiteralDelimiters:
+  Enabled: false
+
+PerlBackrefs:
+  Enabled: false
+
+PredicateName:
+  NamePrefixBlacklist:
+    - is_
+  Exclude:
+    - spec/**/*
+
+Proc:
+  Enabled: false
+
+RaiseArgs:
+  Enabled: false
+
+RegexpLiteral:
+  Enabled: false
+
+SelfAssignment:
+  Enabled: false
+
+SingleLineBlockParams:
+  Enabled: false
+
+SingleLineMethods:
+  Enabled: false
+
+SignalException:
+  Enabled: false
+
+SpecialGlobalVars:
+  Enabled: false
+
+StringLiterals:
+  EnforcedStyle: double_quotes
+
+TrailingComma:
+  EnforcedStyleForMultiline: comma
+  SupportedStyles:
+    - comma
+    - no_comma
+
+TrivialAccessors:
+  Enabled: false
+
+VariableInterpolation:
+  Enabled: false
+
+WhenThen:
+  Enabled: false
+
+WhileUntilModifier:
+  Enabled: false
+
+WordArray:
+  Enabled: false
+
+# Lint
+
+AmbiguousOperator:
+  Enabled: false
+
+AmbiguousRegexpLiteral:
+  Enabled: false
+
+AssignmentInCondition:
+  Enabled: false
+
+CircularArgumentReference:
+  Enabled: false
+
+ConditionPosition:
+  Enabled: false
+
+DeprecatedClassMethods:
+  Enabled: false
+
+DuplicatedKey:
+  Enabled: false
+
+EachWithObjectArgument:
+  Enabled: false
+
+ElseLayout:
+  Enabled: false
+
+FormatParameterMismatch:
+  Enabled: false
+
+HandleExceptions:
+  Enabled: false
+
+InvalidCharacterLiteral:
+  Enabled: false
+
+InitialIndentation:
+  Enabled: false
+
+LiteralInCondition:
+  Enabled: false
+
+LiteralInInterpolation:
+  Enabled: false
+
+Loop:
+  Enabled: false
+
+NestedMethodDefinition:
+  Enabled: false
+
+NonLocalExitFromIterator:
+  Enabled: false
+
+ParenthesesAsGroupedExpression:
+  Enabled: false
+
+RequireParentheses:
+  Enabled: false
+
+UnderscorePrefixedVariableName:
+  Enabled: false
+
+UnneededDisable:
+  Enabled: false
+
+Void:
+  Enabled: false
+
+# Performance
+
+CaseWhenSplat:
+  Enabled: false
+
+Count:
+  Enabled: false
+
+Detect:
+  Enabled: false
+
+FlatMap:
+  Enabled: false
+
+ReverseEach:
+  Enabled: false
+
+Sample:
+  Enabled: false
+
+Size:
+  Enabled: false
+
+StringReplacement:
+  Enabled: false
+
+# Rails
+
+ActionFilter:
+  Enabled: false
+
+Date:
+  Enabled: false
+
+DefaultScope:
+  Enabled: false
+
+FindBy:
+  Enabled: false
+
+FindEach:
+  Enabled: false
+
+HasAndBelongsToMany:
+  Enabled: false
+
+Output:
+  Enabled: false
+
+ReadWriteAttribute:
+  Enabled: false
+
+ScopeArgs:
+  Enabled: false
+
+TimeZone:
+  Enabled: false
+
+Validation:
+  Enabled: false
+
+Style/MultilineBlockChain:
+  Description: 'Avoid multi-line chains of blocks.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#single-line-blocks'
+  Enabled: false
