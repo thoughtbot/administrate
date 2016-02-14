@@ -47,7 +47,12 @@ module Administrate
       private
 
       def candidate_resources
-        associated_class.all
+        if options.key?(:includes)
+          includes = options.fetch(:includes)
+          associated_class.includes(*includes).all
+        else
+          associated_class.all
+        end
       end
 
       def display_candidate_resource(resource)
