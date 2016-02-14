@@ -18,6 +18,13 @@
 
 ### Upcoming Release
 
+* [#476] [CHANGE] Extract `Administrate::Field::Image` into its own gem.
+  Users who have image fields in their dashboards
+  should add to their `Gemfile`:
+  ```ruby
+  gem "administrate-field-image"
+  ```
+
 ### 0.1.5 (April 1, 2016)
 
 * [master] [BUGFIX] Protect from CSRF attacks [CVE-2016-3098]

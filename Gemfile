@@ -4,6 +4,7 @@ ruby "2.2.3"
 
 gemspec
 
+gem "administrate-field-image", path: "../administrate-field-image"
 gem "delayed_job_active_record"
 gem "high_voltage"
 gem "markdown-rails"
