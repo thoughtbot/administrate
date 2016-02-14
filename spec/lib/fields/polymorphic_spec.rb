@@ -1,4 +1,4 @@
-require "administrate/fields/polymorphic"
+require "administrate/field/polymorphic"
 require "support/constant_helpers"
 require "support/field_matchers"
 
