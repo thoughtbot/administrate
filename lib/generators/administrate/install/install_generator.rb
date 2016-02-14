@@ -39,6 +39,7 @@ module Administrate
       def manifest
         unless defined?(DashboardManifest)
           call_generator("administrate:manifest")
+          require_relative Rails.root.join("app/dashboards/dashboard_manifest.rb")
         end
 
         DashboardManifest
