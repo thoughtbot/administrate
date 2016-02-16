@@ -9,7 +9,7 @@ describe Administrate::Generators::FieldGenerator, :generator do
         run_generator ["foobar"]
 
         load file("app/fields/foobar_field.rb")
-        field = FoobarField.new(:attr_name, "value", "show")
+        field = FoobarField.new(:attr_name, nil, "value", "show")
 
         expect(field.name).to eq("attr_name")
         expect(field.data).to eq("value")

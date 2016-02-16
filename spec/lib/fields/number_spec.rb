@@ -8,7 +8,7 @@ describe Administrate::Field::Number do
     it "returns a partial based on the page being rendered" do
       page = :show
       number = double
-      field = Administrate::Field::Number.new(:price, number, page)
+      field = Administrate::Field::Number.new(:price, nil, number, page)
 
       path = field.to_partial_path
 
@@ -20,8 +20,8 @@ describe Administrate::Field::Number do
 
   describe "#to_s" do
     it "defaults to displaying no decimal points" do
-      int = Administrate::Field::Number.new(:quantity, 3, :show)
-      float = Administrate::Field::Number.new(:quantity, 3.1415926, :show)
+      int = Administrate::Field::Number.new(:quantity, nil, 3, :show)
+      float = Administrate::Field::Number.new(:quantity, nil, 3.1415926, :show)
 
       expect(int.to_s).to eq("3")
       expect(float.to_s).to eq("3")
@@ -55,14 +55,14 @@ describe Administrate::Field::Number do
 
     context "when data is nil" do
       it "returns a dash" do
-        number = Administrate::Field::Number.new(:number, nil, :page)
+        number = Administrate::Field::Number.new(:number, nil, nil, :page)
 
         expect(number.to_s).to eq("-")
       end
     end
 
     def number_with_options(num, options)
-      Administrate::Field::Number.new(:number, num, :page, options)
+      Administrate::Field::Number.new(:number, nil, num, :page, options)
     end
   end
 end

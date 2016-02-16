@@ -8,7 +8,7 @@ describe Administrate::Field::Polymorphic do
   describe "#to_partial_path" do
     it "returns a partial based on the page being rendered" do
       page = :show
-      field = Administrate::Field::Polymorphic.new(:foo, "hello", page)
+      field = Administrate::Field::Polymorphic.new(:foo, nil, "hello", page)
 
       path = field.to_partial_path
 
@@ -28,7 +28,8 @@ describe Administrate::Field::Polymorphic do
           end
         end
 
-        field = Administrate::Field::Polymorphic.new(:foo, Thing.new, :show)
+        field = Administrate::Field::Polymorphic.new(:foo, nil, Thing.new,
+                                                     :show)
         display = field.display_associated_resource
 
         expect(display).to eq :success
