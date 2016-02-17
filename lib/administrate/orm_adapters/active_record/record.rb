@@ -3,11 +3,11 @@ module Administrate
     module ActiveRecord
       class Record < ActiveRecordPattern::Record
         def id
-          @record.send(@model.primary_key)
+          @record.send(@model.unwrap.primary_key)
         end
 
         def get_attribute_value(attribute_name, field_type)
-          @record.public_send(attribute_name)
+          Administrate.orm.wrap_any(@record.public_send(attribute_name))
         rescue NameError
           nil
         end

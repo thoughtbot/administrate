@@ -1,3 +1,5 @@
+require "administrate/orm_adapters/active_record_pattern/relation"
+require "administrate/orm_adapters/active_record/relation"
 require "administrate/order"
 
 describe Administrate::Order do
@@ -6,9 +8,10 @@ describe Administrate::Order do
       it "doesn't sort the resources" do
         order = Administrate::Order.new(nil, :desc)
         relation = relation_with_column(:id)
+        allow(relation).to receive(:can_order_by?)
         allow(relation).to receive(:order).and_return(relation)
 
-        ordered = order.apply(relation)
+        ordered = order.apply(wrap_relation(relation))
 
         expect(relation).not_to have_received(:order)
         expect(ordered).to eq(relation)
@@ -21,7 +24,7 @@ describe Administrate::Order do
         relation = relation_with_column(:id)
         allow(relation).to receive(:order).and_return(relation)
 
-        ordered = order.apply(relation)
+        ordered = order.apply(wrap_relation(relation))
 
         expect(relation).not_to have_received(:order)
         expect(ordered).to eq(relation)
@@ -34,7 +37,7 @@ describe Administrate::Order do
         relation = relation_with_column(:name)
         allow(relation).to receive(:order).and_return(relation)
 
-        ordered = order.apply(relation)
+        ordered = order.apply(wrap_relation(relation))
 
         expect(relation).to have_received(:order).with(name: :asc)
         expect(ordered).to eq(relation)
@@ -45,7 +48,7 @@ describe Administrate::Order do
         relation = relation_with_column(:name)
         allow(relation).to receive(:order).and_return(relation)
 
-        ordered = order.apply(relation)
+        ordered = order.apply(wrap_relation(relation))
 
         expect(relation).to have_received(:order).with(name: :desc)
         expect(ordered).to eq(relation)
@@ -139,5 +142,9 @@ describe Administrate::Order do
 
   def relation_with_column(column)
     double(columns_hash: { column.to_s => :column_info })
+  end
+
+  def wrap_relation(relation)
+    Administrate::OrmAdapters::ActiveRecord::Relation.new(relation)
   end
 end

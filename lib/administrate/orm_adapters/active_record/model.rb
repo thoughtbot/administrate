@@ -1,11 +1,13 @@
+require "active_support/core_ext/module/delegation"
+
 module Administrate
   module OrmAdapters
     module ActiveRecord
       class Model < ActiveRecordPattern::Model
-        delegate :table_exists?, to: :@model
+        delegate :table_exists?, :defined_enums, to: :@model
 
         def find(param)
-          Record.new(@model.find(param))
+          Record.new(self, @model.find(param))
         end
 
         def all
@@ -20,12 +22,12 @@ module Administrate
                   :has_one
                 elsif v.collection?
                   :collection
-                end
+                end,
               polymorphic: v.polymorphic?,
               class_name: v.class_name,
               name: v.name
             }
-            a[k.to_s] = obj if obj[:type]
+            a[k.to_s] = obj
           end
         end
 

@@ -26,7 +26,7 @@ module Administrate
               class_name: v[:class_name],
               name: v[:name]
             }
-            a[k.to_s] = obj if obj[:type]
+            a[k.to_s] = obj
           end
         end
 
