@@ -23,6 +23,21 @@ module Administrate
         @resource_name ||= resource_model_name.underscore
       end
 
+      # page.with_other_locales { |locale, resource| [...] }
+      def with_other_locales(resource = nil)
+        unless resource
+          raise ArgumentError unless @resource
+          resource = @resource
+        end
+        request_locale = I18n.locale
+        (I18n.available_locales - [request_locale]).each do |other_locale|
+           I18n.locale = other_locale
+           other_resource = resource.class.find(resource.id)
+           yield other_locale, other_resource
+        end
+        I18n.locale = request_locale
+      end
+
       protected
 
       def locale_title
