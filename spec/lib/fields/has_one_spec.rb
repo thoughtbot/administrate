@@ -1,4 +1,4 @@
-require "administrate/fields/has_one"
+require "administrate/field/has_one"
 require "support/constant_helpers"
 
 describe Administrate::Field::HasOne do
