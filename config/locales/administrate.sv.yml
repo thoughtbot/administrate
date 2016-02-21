@@ -6,10 +6,10 @@ sv:
       destroy: Ta bort
       edit: Ändra
       show: Visa
-      back: Back
-      new_name: "New %{name}"
-      edit_name: "Edit %{name}"
-      show_name: "Show %{name}"
+      back: Tillbaka
+      new_name: "Ny %{name}"
+      edit_name: "Ändra %{name}"
+      show_name: "Visa %{name}"
     controller:
       create:
         success: "%{resource} har skapats."
@@ -27,7 +27,7 @@ sv:
         not_supported: Formulär med HasOne relationer stöds inte.
     form:
       error: error
-      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+      errors: "%{pluralized_errors} hindrade %{resource_name} från att sparas:"
     search:
-      title: Search
-      hint: Press enter to search
+      title: Sök
+      hint: Tryck på enter för att söka
