@@ -16,11 +16,8 @@ Re-bundle, then run the installer:
 $ rails generate administrate:install
 ```
 
-The installer creates a few files.
-Two of them are standard for any installation:
-
-- `app/controllers/admin/application_controller.rb`
-- `app/dashboards/dashboard_manifest.rb`
+The installer adds some new routes to your `config/application.rb`,
+and creates a controller at `app/controllers/admin/application_controller.rb`
 
 In addition, the generator creates a `Dashboard` and a `Controller` for each of
 your ActiveRecord resources:
@@ -32,7 +29,7 @@ The `Admin::ApplicationController` can be customized to add
 authentication logic, authorization, pagination,
 or other controller-level concerns.
 
-The `DashboardManifest` can be customized to show or hide
+The routes can be customized to show or hide
 different models on the dashboard.
 
 Each `FooDashboard` specifies which attributes should be displayed
@@ -40,15 +37,5 @@ on the admin dashboard for the `Foo` resource.
 
 Each `Admin::FooController` can be overwritten to specify custom behavior.
 
-The installer will also add a line to your `config/routes.rb` file:
-
-```ruby
-DashboardManifest.new.dashboards.each do |dashboard_resource|
-  resources dashboard_resource
-end
-
-root controller: DashboardManifest.new.root_dashboard, action: :index
-```
-
-Feel free to customize these routes to your heart's content,
-then visit <http://localhost:3000/admin> to see your new dashboard in action.
+Once you have Administrate installed,
+visit <http://localhost:3000/admin> to see your new dashboard in action.

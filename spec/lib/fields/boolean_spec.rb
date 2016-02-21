@@ -1,5 +1,5 @@
 require "spec_helper"
-require "administrate/fields/boolean"
+require "administrate/field/boolean"
 require "support/field_matchers"
 
 describe Administrate::Field::Boolean do

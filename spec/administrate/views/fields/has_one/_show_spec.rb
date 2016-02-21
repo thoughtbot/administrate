@@ -1,5 +1,5 @@
 require "rails_helper"
-require "administrate/fields/has_one"
+require "administrate/field/has_one"
 
 describe "fields/has_one/_show", type: :view do
   context "without an associated record" do
