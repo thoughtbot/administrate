@@ -1,4 +1,4 @@
-require "administrate/fields/has_many"
+require "administrate/field/has_many"
 require "support/constant_helpers"
 require "support/mock_relation"
 

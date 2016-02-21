@@ -1,16 +1,16 @@
 Rails.application.eager_load!
 require "rails/generators/base"
+require "administrate/namespace"
 
 module Administrate
   module Generators
-    class ManifestGenerator < Rails::Generators::Base
+    class RoutesGenerator < Rails::Generators::Base
       source_root File.expand_path("../templates", __FILE__)
 
-      def create_dashboard_manifest
-        template(
-          "dashboard_manifest.rb.erb",
-          Rails.root.join("app/dashboards/dashboard_manifest.rb"),
-        )
+      def insert_dashboard_routes
+        unless File.read(rails_routes_file_path).include?(dashboard_routes)
+          route(dashboard_routes)
+        end
       end
 
       def warn_about_invalid_models
@@ -22,6 +22,7 @@ module Administrate
         models_without_tables.each do |invalid_model|
           puts "WARNING: Unable to generate a dashboard for #{invalid_model}."
           puts "         It is not connected to a database table."
+          puts "         Make sure your database migrations are up to date."
         end
 
         unnamed_constants.each do |invalid_model|
@@ -59,6 +60,18 @@ module Administrate
 
       def unnamed_constants
         ActiveRecord::Base.descendants.reject { |d| d.name == d.to_s }
+      end
+
+      def dashboard_routes
+        ERB.new(File.read(routes_file_path)).result(binding)
+      end
+
+      def rails_routes_file_path
+        Rails.root.join("config/routes.rb")
+      end
+
+      def routes_file_path
+        File.expand_path(find_in_source_paths("routes.rb.erb"))
       end
     end
   end

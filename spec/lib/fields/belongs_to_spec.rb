@@ -1,4 +1,4 @@
-require "administrate/fields/belongs_to"
+require "administrate/field/belongs_to"
 require "support/constant_helpers"
 require "support/field_matchers"
 

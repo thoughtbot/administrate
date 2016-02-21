@@ -1,5 +1,5 @@
 require "rails_helper"
-require "administrate/fields/polymorphic"
+require "administrate/field/polymorphic"
 
 describe "fields/polymorphic/_show", type: :view do
   context "without an associated records" do

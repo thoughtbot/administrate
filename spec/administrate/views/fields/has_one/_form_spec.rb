@@ -1,5 +1,5 @@
 require "rails_helper"
-require "administrate/fields/has_one"
+require "administrate/field/has_one"
 
 describe "fields/has_one/_form", type: :view do
   it "displays the field name" do
