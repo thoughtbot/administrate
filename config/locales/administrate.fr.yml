@@ -6,6 +6,10 @@ fr:
       destroy: Supprimer
       edit: Modifier
       show: Détails
+      back: Back
+      new_name: "New %{name}"
+      edit_name: "Edit %{name}"
+      show_name: "Show %{name}"
     controller:
       create:
         success: "%{resource} a été correctement créé(e)."
@@ -21,3 +25,9 @@ fr:
         not_supported: Les relations polymorphiques dans les formulaires ne sont pas supportées.
       has_one:
         not_supported: Les relations HasOne dans les formulaires ne sont pas supportées.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    search:
+      title: Search
+      hint: Press enter to search
