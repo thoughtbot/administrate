@@ -1,4 +1,4 @@
-require "administrate/fields/email"
+require "administrate/field/email"
 
 describe Administrate::Field::Email do
   describe "#to_partial_path" do

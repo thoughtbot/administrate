@@ -1,4 +1,4 @@
-require "administrate/fields/string"
+require "administrate/field/string"
 require "support/field_matchers"
 
 describe Administrate::Field::String do
