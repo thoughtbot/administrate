@@ -1,5 +1,5 @@
-require "administrate/fields/deferred"
-require "administrate/fields/string"
+require "administrate/field/deferred"
+require "administrate/field/string"
 
 describe Administrate::Field::Deferred do
   describe "#permitted_attribute" do

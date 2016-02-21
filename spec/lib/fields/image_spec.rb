@@ -1,4 +1,4 @@
-require "administrate/fields/image"
+require "administrate/field/image"
 
 describe Administrate::Field::Image do
   describe "#to_partial_path" do

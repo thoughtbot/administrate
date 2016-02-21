@@ -1,7 +1,4 @@
 require "webmock/rspec"
-require "administrate/fields/string"
-require "administrate/fields/email"
-require "administrate/fields/number"
 require "administrate/base_dashboard"
 
 # http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
