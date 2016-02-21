@@ -18,6 +18,8 @@
 
 ### Upcoming Release
 
+### 0.1.4 (February 20, 2016)
+
 * [#464] [CHANGE] Replace the DashboardManifest with explicit Rails routes.
   * Run `rails generate administrate:routes` to generate the default routes.
 
