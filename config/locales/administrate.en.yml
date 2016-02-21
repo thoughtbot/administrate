@@ -6,6 +6,7 @@ en:
       destroy: Destroy
       edit: Edit
       show: Show
+      back: Back
     controller:
       create:
         success: "%{resource} was successfully created."
