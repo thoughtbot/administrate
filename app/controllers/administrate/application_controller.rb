@@ -109,6 +109,7 @@ module Administrate
 
     delegate :resource_class, :resource_name, :namespace, to: :resource_resolver
     helper_method :namespace
+    helper_method :resource_name
 
     def resource_resolver
       @_resource_resolver ||=

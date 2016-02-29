@@ -38,6 +38,26 @@ describe "customer index page" do
     expect(current_path).to eq(new_admin_customer_path)
   end
 
+  it "displays translated labels" do
+    custom_label = "Newsletter Subscriber"
+
+    translations = {
+      helpers: {
+        label: {
+          customer: {
+            email_subscriber: custom_label,
+          },
+        },
+      },
+    }
+
+    with_translations(:en, translations) do
+      visit admin_customers_path
+
+      expect(page).to have_table_header(custom_label)
+    end
+  end
+
   it "paginates records based on a constant" do
     customers = create_list(:customer, 2)
 

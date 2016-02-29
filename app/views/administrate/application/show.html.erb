@@ -31,7 +31,12 @@ as well as a link to its edit page.
 
 <dl>
   <% page.attributes.each do |attribute| %>
-    <dt class="attribute-label"><%= attribute.name.titleize %></dt>
+    <dt class="attribute-label">
+    <%= t(
+      "helpers.label.#{resource_name}.#{attribute.name}",
+      default: attribute.name.titleize,
+    ) %>
+    </dt>
 
     <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
         ><%= render_field attribute %></dd>
