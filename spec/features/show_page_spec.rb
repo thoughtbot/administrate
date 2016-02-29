@@ -58,4 +58,25 @@ RSpec.describe "customer show page" do
 
     expect(page).to have_header("Edit #{displayed(customer)}")
   end
+
+  it "displays translated labels" do
+    custom_label = "Newsletter Subscriber"
+    customer = create(:customer)
+
+    translations = {
+      helpers: {
+        label: {
+          customer: {
+            email_subscriber: custom_label,
+          },
+        },
+      },
+    }
+
+    with_translations(:en, translations) do
+      visit admin_customer_path(customer)
+
+      expect(page).to have_css(".attribute-label", text: custom_label)
+    end
+  end
 end

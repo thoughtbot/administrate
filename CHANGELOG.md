@@ -18,6 +18,16 @@
 
 ### Upcoming Release
 
+* [#492] [FEATURE] Translate attribute labels on show and index pages.
+  To customize an attribute label, add translations according to the structure:
+    ```
+    en:
+      helpers:
+        label:
+          customer:
+            name: Full Name
+    ```
+
 ### 0.2.0 (April 20, 2016)
 
 * [#476] [CHANGE] Extract `Administrate::Field::Image` into its own gem.
