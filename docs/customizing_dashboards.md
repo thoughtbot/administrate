@@ -76,4 +76,12 @@ if the value is stored by the number of cents:
   )
 ```
 
+Or if you want to apply a different datetime format:
+```ruby
+  date_of_birth: Field::DateTime.with_options(
+    title: "Birthday",
+    format: "%-d %B",
+  )
+```
+
 [define your own]: /adding_custom_field_types
