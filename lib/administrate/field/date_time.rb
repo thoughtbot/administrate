@@ -14,6 +14,10 @@ module Administrate
       def format_date
         options[:format] || "%FT%T%:z"
       end
+
+      def name
+        options[:title] || super
+      end
     end
   end
 end
