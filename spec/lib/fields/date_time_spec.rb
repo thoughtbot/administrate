@@ -25,7 +25,7 @@ describe Administrate::Field::DateTime do
   describe "#to_s" do
     it "formats the sting using defaults" do
       page = :show
-      field = Administrate::Field::DateTime.new(:datetime, datetime_to_test, page)
+      field = Administrate::Field::DateTime.new(:date, datetime_to_test, page)
 
       expect(field.to_s).to eq "1979-10-15T13:37:00+00:00"
     end
