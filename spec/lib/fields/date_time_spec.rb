@@ -9,16 +9,16 @@ describe Administrate::Field::DateTime do
   end
 
   describe "#name" do
-    it 'defaults to using the attribute' do
+    it "defaults to using the attribute" do
       field = Administrate::Field::DateTime.new(:datetime, datetime_to_test, :page)
 
       expect(field.name).to eq "datetime"
     end
 
-    it 'uses the `title` option if supplied' do
-        date = datetime_with_options(datetime_to_test, title: "My Birthday")
+    it "uses the `title` option if supplied" do
+      date = datetime_with_options(datetime_to_test, title: "My Birthday")
 
-        expect(date.name).to eq "My Birthday"
+      expect(date.name).to eq "My Birthday"
     end
   end
 
@@ -32,8 +32,8 @@ describe Administrate::Field::DateTime do
 
     context "with `format` option" do
       it "displays with the given format" do
-
         date = datetime_with_options(datetime_to_test, format: "%Y")
+
         expect(date.to_s).to eq("1979")
       end
     end
@@ -48,6 +48,6 @@ describe Administrate::Field::DateTime do
   end
 
   def datetime_with_options(datetime, options)
-      Administrate::Field::DateTime.new(:datetime, datetime, :page, options)
+    Administrate::Field::DateTime.new(:datetime, datetime, :page, options)
   end
 end
