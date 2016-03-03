@@ -7,7 +7,7 @@ module Administrate
         if data.nil?
           ""
         else
-          data.strftime(format_date) 
+          data.strftime(format_date)
         end
       end
 

@@ -5,12 +5,12 @@ describe Administrate::Field::DateTime do
   include FieldMatchers
 
   let :datetime_to_test do
-    DateTime.new(1979,10,15,13,37)
+    DateTime.new(1979, 10, 15, 13, 37)
   end
 
   describe "#name" do
     it "defaults to using the attribute" do
-      field = Administrate::Field::DateTime.new(:datetime, datetime_to_test, :page)
+      field = Administrate::Field::DateTime.new(:date, datetime_to_test, :page)
 
       expect(field.name).to eq "datetime"
     end
