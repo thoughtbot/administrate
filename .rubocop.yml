@@ -332,9 +332,6 @@ ActionFilter:
 Date:
   Enabled: false
 
-DefaultScope:
-  Enabled: false
-
 FindBy:
   Enabled: false
 
