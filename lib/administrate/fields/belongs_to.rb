@@ -24,7 +24,7 @@ module Administrate
       private
 
       def candidate_resources
-        associated_class.all
+        options[:candidate_resources] ||= -> { associated_class.all }
       end
 
       def display_candidate_resource(resource)
