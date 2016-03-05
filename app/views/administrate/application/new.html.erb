@@ -16,7 +16,7 @@ to do the heavy lifting.
 %>
 
 <% content_for(:title) do %>
-  <%= t("administrate.actions.new_name", name: page.resource_name.titleize) %>
+  <%= t("administrate.actions.new_name", name: display_resource_name(page.resource_name).titleize) %>
 <% end %>
 
 <header class="header">
