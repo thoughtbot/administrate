@@ -54,7 +54,9 @@ Restart your server, and visit http://localhost:3000/admin
 to see your new dashboard in action.
 
 To customize the appearance, behavior, and contents of the dashboard,
-see the guides at http://administrate-docs.herokuapp.com.
+see the guides at http://administrate-docs.herokuapp.com.  These guides are
+available as markdown files in the `docs` subdirectory of the git repository,
+too.
 
 ## Repository Structure
 
@@ -64,6 +66,8 @@ The demo app is [hosted publicly on Heroku][demo].
 
 - The gem's source code lives in the `app` and `lib` subdirectories.
 - The demo app is nested within `spec/example_app`.
+- The guides as seen at http://administrate-docs.herokuapp.com live as
+  markdown files in the `docs` subdirectory.
 
 Rails configuration files have been changed
 to recognize the app in the new location,
