@@ -59,8 +59,8 @@ Restart your server, and visit http://localhost:3000/admin
 to see your new dashboard in action.
 
 To customize the appearance, behavior, and contents of the dashboard,
-see the guides at https://administrate-prototype.herokuapp.com.  These guides are
-available as markdown files in the `docs` subdirectory of the git repository,
+see the guides at https://administrate-prototype.herokuapp.com.
+These guides are available as markdown files in the `docs` subdirectory of the git repository,
 too.
 
 ## Repository Structure
