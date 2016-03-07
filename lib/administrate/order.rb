@@ -7,7 +7,7 @@ module Administrate
 
     def apply(relation)
       if relation.can_order_by?(attribute)
-        relation.order(attribute => direction)
+        relation.order(attribute => direction.to_sym)
       else
         relation
       end
