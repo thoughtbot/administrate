@@ -21,7 +21,13 @@ module Administrate
     end
 
     def all_controller_paths
-      Rails.application.routes.routes.map do |route|
+      Rails.application.routes.routes.select do |route|
+        if route.defaults[:administrate].nil?
+          true
+        else
+          route.defaults[:administrate]
+        end
+      end.map do |route|
         route.defaults[:controller].to_s
       end
     end
