@@ -11,7 +11,7 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
 <% attributes.each do |attr| -%>
     <%= attr %>: <%= field_type(attr) %>,
 <% end -%>
-  }
+  }.freeze
 
   # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.
@@ -24,7 +24,7 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
     "    :#{attr},"
   end.join("\n")
 %>
-  ]
+  ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
@@ -34,7 +34,7 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
     "    :#{attr},"
   end.join("\n")
 %>
-  ]
+  ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
@@ -45,7 +45,7 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
     "    :#{attr},"
   end.join("\n")
 %>
-  ]
+  ].freeze
 
   # Overwrite this method to customize how <%= file_name.pluralize.humanize.downcase %> are displayed
   # across all pages of the admin dashboard.

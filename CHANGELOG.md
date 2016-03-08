@@ -29,6 +29,7 @@
   ```
 * [#458] [BUGFIX] Update the custom field generator to match the new HTML
   structure of forms
+* [#513] [OPTIM] Freeze constants in generated dashboard classes
 
 ### 0.1.4 (February 20, 2016)
 
