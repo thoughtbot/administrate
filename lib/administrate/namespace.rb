@@ -5,7 +5,7 @@ module Administrate
     end
 
     def resources
-      namespace_controller_paths.uniq.map do |controller|
+      whitelisted_controller_paths.map do |controller|
         controller.gsub(/^#{namespace}\//, "").to_sym
       end
     end
@@ -13,6 +13,16 @@ module Administrate
     private
 
     attr_reader :namespace
+
+    def whitelisted_controller_paths
+      if dashboard_manifest_missing?
+        return namespace_controller_paths.uniq
+      end
+
+      namespace_controller_paths.uniq.select do |path|
+        dashboard_paths.include? path
+      end
+    end
 
     def namespace_controller_paths
       all_controller_paths.select do |controller|
@@ -24,6 +34,16 @@ module Administrate
       Rails.application.routes.routes.map do |route|
         route.defaults[:controller].to_s
       end
+    end
+
+    def dashboard_paths
+      @dashboard_paths ||= DashboardManifest::DASHBOARDS.map do |dashboard|
+        "admin/#{dashboard}"
+      end
+    end
+
+    def dashboard_manifest_missing?
+      !Object.constants.include?(:DashboardManifest)
     end
   end
 end
