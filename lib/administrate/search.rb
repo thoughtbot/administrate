@@ -3,22 +3,31 @@ require "active_support/core_ext/object/blank"
 
 module Administrate
   class Search
+    BLACKLISTED_WORDS = %w{destroy remove delete update create}
+
+    attr_reader :resolver, :term, :scope
+
     def initialize(resolver, term)
+      term ||= ""
       @resolver = resolver
-      @term = term
+      @scope = search_scope(term.split.first)
+      @term = term[scope_length..-1].strip
     end
 
     def run
       if @term.blank?
-        resource_class.all
+        scope ? resource_class.public_send(scope) : resource_class.all
       else
-        resource_class.where(query, *search_terms)
+        resources = resource_class.where(query, *search_terms)
+        resources = resources.public_send(scope) if scope
+        resources
       end
     end
 
     private
 
     delegate :resource_class, to: :resolver
+    delegate :dashboard_class, to: :resolver
 
     def query
       search_attributes.map { |attr| "lower(#{attr}) LIKE ?" }.join(" OR ")
@@ -38,6 +47,43 @@ module Administrate
       resolver.dashboard_class::ATTRIBUTE_TYPES
     end
 
-    attr_reader :resolver, :term
+    def search_scope(term)
+      if term && (term[-1, 1] == ":")
+        possible_scope = term[0..-2]
+        possible_scope if resource_class.respond_to?(possible_scope) &&
+                          valid_scope?(possible_scope)
+      end
+    end
+    
+    def valid_scope?(method)
+      if dashboard_class.const_defined?(:COLLECTION_SCOPES)
+        dashboard_class.const_get("COLLECTION_SCOPES").include? method.to_sym
+      else
+        !banged?(method) && !blacklisted_scope?(method)
+      end
+    end
+
+    def scope_length
+      (@scope && (@scope.length + 1)) || 0
+    end
+
+    def banged?(method)
+      method[-1, 1] == "!"
+    end
+
+    def blacklisted_scope?(scope)
+      BLACKLISTED_WORDS.each do |word|
+        return true if scope =~ /.*#{word}.*/i
+      end
+      false
+    end
+
+    def collection_scopes
+      if dashboard_class.const_defined?(:COLLECTION_SCOPES)
+        dashboard_class.const_get(:COLLECTION_SCOPES)
+      else
+        []
+      end
+    end
   end
 end
