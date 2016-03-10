@@ -12,7 +12,7 @@ describe Administrate::Field::DateTime do
     it "defaults to using the attribute" do
       field = Administrate::Field::DateTime.new(:date, datetime_to_test, :page)
 
-      expect(field.name).to eq "datetime"
+      expect(field.name).to eq "date"
     end
 
     it "uses the `title` option if supplied" do
