@@ -18,10 +18,20 @@
 
 ### Upcoming Release
 
+* [#458] [BUGFIX] Update the custom field generator to match the new HTML
+  structure of forms
+
 ### 0.1.4 (February 20, 2016)
 
 * [#464] [CHANGE] Replace the DashboardManifest with explicit Rails routes.
   * Run `rails generate administrate:routes` to generate the default routes.
+* [#467] [CHANGE] Update the internal field path to fit Ruby conventions
+  ```ruby
+  # Change any instances of this...
+  require "administrate/fields/base"
+  # ...to this:
+  require "administrate/field/base"
+  ```
 
 ### 0.1.3 (January 22, 2016)
 
