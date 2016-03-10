@@ -400,21 +400,18 @@ describe Administrate::Page::Collection do
   # #term_without_scope(scope) removes the *scope* from the current search
   # term if present
   describe "#term_without_scope(scope)" do
-    let(:search_term) { "scope:old scope:undefined" }
-
-    it "returns the term without the scope if defined" do
+    it "returns the term without the scope" do
       begin
         class User
           def self.old; end
         end
         resolver = double(resource_class: User,
                           dashboard_class: DashboardWithAnArrayOfScopes)
-        search = Administrate::Search.new(resolver, search_term)
+        search = Administrate::Search.new(resolver, "scope:old")
 
         page = Administrate::Page::Collection.new(dashboard_w_scopes_array,
                                                   search: search)
-        expect(page.term_without_scope("old")).to eq("scope:undefined")
-        expect(page.term_without_scope("undefined")).to eq(search_term)
+        expect(page.term_without_scope("undefined")).to eq("scope:old")
       ensure
         remove_constants :User
       end

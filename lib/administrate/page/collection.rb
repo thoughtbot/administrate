@@ -87,14 +87,9 @@ module Administrate
         end
       end
 
-      # #term_without_scope(scope) removes the scope from the search term if
-      # the scope is defined in the Dashboard.
+      # #term_without_scope(scope) removes the scope from the search term.
       def term_without_scope(scope)
-        if search.scopes.include? scope
-          search.term.sub("scope:#{scope}", "").strip
-        else
-          search.term
-        end
+        search.term.sub("scope:#{scope}", "").strip
       end
 
       delegate :ordered_by?, :order_params_for, to: :order
