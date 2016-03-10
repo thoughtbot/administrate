@@ -4,10 +4,12 @@
     <% page.scope_names(scope_buttons_group).each do |scope| %>
     <label>
       <% if page.scoped_with?(scope) %>
-        <span class="button-group-item active"><%= translated_scope scope, page.resource_name %></span>
+        <%= link_to translated_scope(scope, page.resource_name), 
+                    { search: page.term_without_scope(scope) },
+                    class: "button-group-item active" %>
       <% else %>
         <%= link_to translated_scope(scope, page.resource_name), 
-                    { search: page.term_using_scope(scope) },
+                    { search: page.term_with_scope(scope) },
                     class: "button-group-item" %>
       <% end %>
     </label>

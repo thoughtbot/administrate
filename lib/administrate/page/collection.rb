@@ -71,10 +71,10 @@ module Administrate
         search.scopes_with_arguments.detect {|s| scope_group(s) == group}
       end
 
-      # #term_using_scope(scope) receives an scope and adds it to the current
+      # #term_with_scope(scope) receives an scope and adds it to the current
       # search avoiding duplication and collision with another scope of the
       # same group (assuming that together will give no results).
-      def term_using_scope(scope)
+      def term_with_scope(scope)
         if scoped_with?(scope)
           search.term
         else
@@ -84,6 +84,16 @@ module Administrate
           else
             "#{search.term} scope:#{scope}".strip
           end
+        end
+      end
+
+      # #term_without_scope(scope) removes the scope from the search term if
+      # the scope is defined in the Dashboard.
+      def term_without_scope(scope)
+        if search.scopes.include? scope
+          search.term.sub("scope:#{scope}", "").strip
+        else
+          search.term
         end
       end
 

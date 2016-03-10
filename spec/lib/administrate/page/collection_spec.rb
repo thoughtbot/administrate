@@ -299,10 +299,10 @@ describe Administrate::Page::Collection do
     end
   end
 
-  # #term_using_scope(scope) receives an scope and adds it to the current
+  # #term_with_scope(scope) receives an scope and adds it to the current
   # search avoiding duplication and collision with another scope of the
   # same group (assuming that together will give no results).
-  describe "#term_using_scope(scope)" do
+  describe "#term_with_scope(scope)" do
     describe "with no scopes defined" do
       it "returns the term with the scope" do
         begin
@@ -315,7 +315,7 @@ describe Administrate::Page::Collection do
 
           page = Administrate::Page::Collection.new(dashboard_wo_scopes,
                                                     search: search)
-          expect(page.term_using_scope("old")).to eq("scope:old")
+          expect(page.term_with_scope("old")).to eq("scope:old")
         ensure
           remove_constants :User
         end
@@ -332,7 +332,7 @@ describe Administrate::Page::Collection do
 
           page = Administrate::Page::Collection.new(dashboard_wo_scopes,
                                                     search: search)
-          expect(page.term_using_scope("old")).to eq("scope:old")
+          expect(page.term_with_scope("old")).to eq("scope:old")
         ensure
           remove_constants :User
         end
@@ -351,7 +351,7 @@ describe Administrate::Page::Collection do
 
           page = Administrate::Page::Collection.new(dashboard_w_scopes_array,
                                                     search: search)
-          expect(page.term_using_scope("active")).to eq("scope:active")
+          expect(page.term_with_scope("active")).to eq("scope:active")
         ensure
           remove_constants :User
         end
@@ -371,7 +371,7 @@ describe Administrate::Page::Collection do
           search = Administrate::Search.new(resolver, "scope:inactive")
           page = Administrate::Page::Collection.new(dashboard_w_scopes_hash,
                                                     search: search)
-          expect(page.term_using_scope("active")).to eq("scope:active")
+          expect(page.term_with_scope("active")).to eq("scope:active")
         ensure
           remove_constants :User
         end
@@ -389,10 +389,34 @@ describe Administrate::Page::Collection do
           search = Administrate::Search.new(resolver, "scope:old")
           page = Administrate::Page::Collection.new(dashboard_w_scopes_hash,
                                                     search: search)
-          expect(page.term_using_scope("active")).to eq("scope:old scope:active")
+          expect(page.term_with_scope("active")).to eq("scope:old scope:active")
         ensure
           remove_constants :User
         end
+      end
+    end
+  end
+
+  # #term_without_scope(scope) removes the *scope* from the current search
+  # term if present
+  describe "#term_without_scope(scope)" do
+    let(:search_term) { "scope:old scope:undefined" }
+
+    it "returns the term without the scope if defined" do
+      begin
+        class User
+          def self.old; end
+        end
+        resolver = double(resource_class: User,
+                          dashboard_class: DashboardWithAnArrayOfScopes)
+        search = Administrate::Search.new(resolver, search_term)
+
+        page = Administrate::Page::Collection.new(dashboard_w_scopes_array,
+                                                  search: search)
+        expect(page.term_without_scope("old")).to eq("scope:undefined")
+        expect(page.term_without_scope("undefined")).to eq(search_term)
+      ensure
+        remove_constants :User
       end
     end
   end
