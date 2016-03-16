@@ -20,7 +20,7 @@ from the associated resource class's dashboard.
 
 <% if field.resources.any? %>
   <%= render(
-    collection_partial(namespace),
+    field.collection_partial(namespace),
     collection_presenter: field.associated_collection,
     resources: field.resources
   ) %>
