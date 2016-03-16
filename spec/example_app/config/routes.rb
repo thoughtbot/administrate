@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :customers
     resources :line_items
     resources :orders
-    resources :products, administrate: false
+    resources :products
 
     root to: "customers#index"
   end
