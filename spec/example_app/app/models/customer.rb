@@ -7,7 +7,7 @@ class Customer < ActiveRecord::Base
   KINDS = [
     :standard,
     :vip,
-  ]
+  ].freeze
 
   def lifetime_value
     orders.map(&:total_price).reduce(0, :+)
