@@ -41,6 +41,24 @@ describe Administrate::Search do
       end
     end
 
+    it "returns I18n.locale records if the model is translated with Globalize" do
+      begin
+        class User
+          def self.with_translations(_locale); end
+          def self.translates; end
+          def self.translates?; true; end
+        end
+        resolver = double(resource_class: User, dashboard_class: MockDashboard)
+        search = Administrate::Search.new(resolver, "")
+        expect(User).to receive(:with_translations).with(I18n.locale).and_return(User)
+        expect(User).to receive(:all)
+
+        search.run
+      ensure
+        remove_constants :User
+      end
+    end
+
     it "searches using lower() + LIKE for all searchable fields" do
       begin
         class User; end

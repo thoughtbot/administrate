@@ -10,15 +10,24 @@ module Administrate
 
     def run
       if @term.blank?
-        resource_class.all
+        dashboard_model.all
       else
-        resource_class.where(query, *search_terms)
+        dashboard_model.where(query, *search_terms)
       end
     end
 
     private
 
     delegate :resource_class, to: :resolver
+
+    def dashboard_model
+      if resource_class.respond_to?(:translates?) &&
+         resource_class.translates?
+        resource_class.with_translations(I18n.locale)
+      else
+        resource_class
+      end
+    end
 
     def query
       search_attributes.map { |attr| "lower(#{attr}) LIKE ?" }.join(" OR ")
