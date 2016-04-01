@@ -1,5 +1,7 @@
 module Administrate
   class ApplicationController < ActionController::Base
+    protect_from_forgery with: :exception
+
     def index
       search_term = params[:search].to_s.strip
       resources = Administrate::Search.new(resource_resolver, search_term).run
