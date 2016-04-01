@@ -18,6 +18,9 @@
 
 ### Upcoming Release
 
+### 0.1.5 (April 1, 2016)
+
+* Protect from CSRF attacks [CVE-2016-3098]
 * [#422] [FEATURE] Add a `Select` field for displaying a drop-down menu of
   options on form pages.
   Options:
