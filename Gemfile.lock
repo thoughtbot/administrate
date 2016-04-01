@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    administrate (0.1.4)
+    administrate (0.1.5)
       autoprefixer-rails (~> 6.0)
       datetime_picker_rails (~> 0.0.7)
       jquery-rails (~> 4.0)
