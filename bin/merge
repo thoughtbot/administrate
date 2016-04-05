@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+
+CURRENT_BRANCH="$(git symbolic-ref HEAD --short)"
+BRANCH_NAME=${1-$CURRENT_BRANCH}
+echo "Merging branch: $BRANCH_NAME"
+
+git fetch &&\
+echo 'git checkout $BRANCH_NAME' &&\
+git checkout $BRANCH_NAME &&\
+echo 'git rebase -i origin/master' &&\
+git rebase -i origin/master &&\
+echo 'git push -f' &&\
+git push --force-with-lease &&\
+echo 'bundle exec rake' &&\
+bundle exec rake &&\
+appraisal rake &&\
+echo 'git checkout master' &&\
+git checkout master &&\
+echo 'git pull' &&\
+git pull &&\
+echo 'git merge --ff-only $BRANCH_NAME' &&\
+git merge --ff-only $BRANCH_NAME &&\
+echo 'git push' &&\
+git push &&\
+echo 'git branch -d $BRANCH_NAME ' &&\
+git branch -d $BRANCH_NAME && \
+echo 'git push -f origin :$BRANCH_NAME' &&\
+git push --force-with-lease origin :$BRANCH_NAME; \
