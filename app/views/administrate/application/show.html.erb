@@ -16,7 +16,7 @@ as well as a link to its edit page.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Show
 %>
 
-<% content_for(:title) { "#{t("activerecord.models.#{page.resource.class.to_s.downcase}", count: 1, default: page.resource.class.to_s)} ##{page.resource.id}" } %>
+<% content_for(:title) { "#{t("activerecord.models.#{page.resource.class.to_s.underscore}", count: 1, default: page.resource.class.to_s)} ##{page.resource.id}" } %>
 
 <header class="header">
   <h1 class="header__heading"><%= content_for(:title) %></h1>
