@@ -44,7 +44,7 @@ Open up the `app/views/fields/gravatar_field/_show.html.erb` partial.
 By default, it looks like:
 
 ```eruby
-<%= field.data %>
+<%= field.to_s %>
 ```
 
 Since we want to display an image, we can change it to:
@@ -55,5 +55,17 @@ Since we want to display an image, we can change it to:
 
 You can customize the other generated partials in the same way
 for custom behavior on the index and form pages.
+
+To use your custom field types, change the type of an attribute in one of the Dashboard-Files (e.g. `app/dashboard/user_dashboard.rb`) to your new field type:
+
+```eruby
+ATTRIBUTE_TYPES = {
+  id: Field::Number,
+  name: Field::String,
+  created_at: Field::DateTime,
+  updated_at: Field::DateTime,
+  gravatar: GravatarField
+}
+```
 
 [Customizing Attribute Partials]: /customizing_attribute_partials
