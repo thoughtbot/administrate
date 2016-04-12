@@ -32,7 +32,6 @@ group :test do
   gem "ammeter"
   gem "database_cleaner"
   gem "formulaic"
-  gem "fuubar"
   gem "launchy"
   gem "percy-capybara"
   gem "poltergeist"
