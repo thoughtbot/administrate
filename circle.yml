@@ -1,6 +1,11 @@
+machine:
+  ruby:
+    version: 2.2.4
+
 dependencies:
   post:
     - bundle exec appraisal install
+
 test:
   pre:
     - cp .sample.env .env
