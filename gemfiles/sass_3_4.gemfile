@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby "2.2.3"
+ruby "2.2.4"
 
 gem "delayed_job_active_record"
 gem "high_voltage"
