@@ -22,7 +22,7 @@ module Administrate
       def self.permitted_attribute(associated_resource)
         {
           "#{associated_resource}_attributes".to_sym =>
-          associated_attributes(associated_resource)
+          associated_attributes(associated_resource),
         }
       end
 
