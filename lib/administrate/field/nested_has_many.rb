@@ -10,8 +10,6 @@ module Administrate
         data
       end
 
-      protected
-
       def self.dashboard_for_resource(resource)
         "#{resource.to_s.classify}Dashboard".constantize
       end
@@ -20,8 +18,6 @@ module Administrate
         DEFAULT_ATTRIBUTES +
           dashboard_for_resource(associated_resource).new.permitted_attributes
       end
-
-      public
 
       def self.permitted_attribute(associated_resource)
         {
