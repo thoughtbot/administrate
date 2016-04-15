@@ -1,0 +1,12 @@
+<div class="nested-fields" style="width:100%">
+
+  <%# TODO filter out the parent relationship, without this crude array slicing %>
+  <% field.associated_form.attributes[1..-1].each do |attribute| -%>
+    <div class="field">
+      <%= render_field attribute, f: f %>
+    </div>
+  <% end -%>
+
+  <%# TODO I18n %>
+  <%= link_to_remove_association "Remove #{field.associated_class_name.titleize}", f %>
+</div>

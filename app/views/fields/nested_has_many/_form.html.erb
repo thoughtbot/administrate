@@ -1,0 +1,24 @@
+<div class="nested-fields" style="width: 40%; margin-left: 20%;">
+
+  <%= f.fields_for field.association_name do |nested_form| %>
+    <%= render(
+      partial: "fields/nested_has_many/fields",
+      locals: {
+        f: nested_form,
+        field: field,
+      },
+    ) %>
+  <% end %>
+
+  <div class="links">
+    <%= link_to_add_association(
+      # TODO I18n
+      "Add #{field.associated_class_name.titleize}",
+      f,
+      field.association_name,
+      partial: "fields/nested_has_many/fields",
+      render_options: { locals: { field: field } },
+    ) %>
+  </div>
+
+</div>

@@ -1,3 +1,4 @@
+require "cocoon"
 require "datetime_picker_rails"
 require "jquery-rails"
 require "kaminari"
