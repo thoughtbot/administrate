@@ -3,6 +3,7 @@ PATH
   specs:
     administrate (0.1.5)
       autoprefixer-rails (~> 6.0)
+      cocoon (~> 1.2)
       datetime_picker_rails (~> 0.0.7)
       jquery-rails (~> 4.0)
       kaminari (~> 0.16)
@@ -81,6 +82,7 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     cliver (0.3.2)
+    cocoon (1.2.9)
     coderay (1.1.0)
     concurrent-ruby (1.0.1)
     crack (0.4.2)
