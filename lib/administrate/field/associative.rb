@@ -10,7 +10,8 @@ module Administrate
       protected
 
       def candidate_resources
-        return associated_class.public_send(options[:scope], data) if options[:scope]
+        scope = options[:scope]
+        return associated_class.public_send(scope, data) if scope
         associated_class.all
       end
 

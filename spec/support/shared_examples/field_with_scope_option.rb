@@ -8,7 +8,7 @@ RSpec.shared_examples "field_with_scope_option" do |field_class|
 
         association = field_class.with_options(scope: :test_scope)
         field = association.new(:scope_test, [], :show)
-        candidates = field.associated_resource_options
+        field.associated_resource_options
 
         expect(ScopeTest).to have_received(:test_scope)
         expect(ScopeTest).not_to have_received(:all)
