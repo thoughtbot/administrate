@@ -1,0 +1,15 @@
+BRANCH="$(git symbolic-ref HEAD --short)"
+
+git fetch && \
+git rebase -i origin/master && \
+$EDITOR CHANGELOG.md && \
+git add -p . && \
+git commit --allow-empty -m 'changelog'&& \
+git rebase -i origin/master && \
+rake && \
+bundle exec appraisal rake && \
+git checkout master && \
+git merge $BRANCH && \
+git push &&\
+git rev-parse --short HEAD | pbcopy &&\
+git log --pretty=format:'%h' -n 1 | pbcopy
