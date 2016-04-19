@@ -112,8 +112,6 @@ GEM
       railties (>= 3.0.0)
     faker (1.5.0)
       i18n (~> 0.5)
-    faraday (0.9.2)
-      multipart-post (>= 1.2, < 3)
     formulaic (0.3.0)
       activesupport
       capybara
@@ -123,7 +121,6 @@ GEM
     hashdiff (0.2.2)
     high_voltage (2.4.0)
     highline (1.7.8)
-    httpclient (2.7.0)
     i18n (0.7.0)
     i18n-tasks (0.8.7)
       activesupport (>= 2.3.18)
@@ -158,18 +155,12 @@ GEM
     momentjs-rails (2.11.0)
       railties (>= 3.1)
     multi_json (1.11.2)
-    multipart-post (2.0.0)
     neat (1.7.4)
       bourbon (>= 4.0)
       sass (>= 3.3)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     normalize-rails (3.0.3)
-    percy-capybara (1.0.0)
-      percy-client (>= 1.0.0)
-    percy-client (1.2.0)
-      faraday (>= 0.9)
-      httpclient (>= 2.6)
     pg (0.18.3)
     poltergeist (1.7.0)
       capybara (~> 2.1)
@@ -304,7 +295,6 @@ DEPENDENCIES
   i18n-tasks
   launchy
   markdown-rails
-  percy-capybara
   pg
   poltergeist
   pry-rails
