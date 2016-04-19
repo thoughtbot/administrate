@@ -7,6 +7,8 @@ describe Administrate::Field::BelongsTo do
 
   it { should_permit_param(:foo_id, for_attribute: :foo) }
 
+  it_behaves_like "field_with_scope_option", Administrate::Field::BelongsTo
+
   describe "#to_partial_path" do
     it "returns a partial based on the page being rendered" do
       page = :show

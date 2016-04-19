@@ -3,6 +3,8 @@ require "support/constant_helpers"
 require "support/mock_relation"
 
 describe Administrate::Field::HasMany do
+  it_behaves_like "field_with_scope_option", Administrate::Field::HasMany
+
   describe "#to_partial_path" do
     it "returns a partial based on the page being rendered" do
       page = :show
