@@ -46,10 +46,6 @@ module Administrate
 
       private
 
-      def candidate_resources
-        associated_class.all
-      end
-
       def display_candidate_resource(resource)
         associated_dashboard.display_resource(resource)
       end

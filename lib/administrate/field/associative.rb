@@ -9,6 +9,11 @@ module Administrate
 
       protected
 
+      def candidate_resources
+        return associated_class.public_send(options[:scope], data) if options[:scope]
+        associated_class.all
+      end
+
       def associated_dashboard
         "#{associated_class_name}Dashboard".constantize.new
       end
