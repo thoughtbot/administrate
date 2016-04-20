@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "autoprefixer-rails", "~> 6.0"
+  s.add_dependency "cocoon", "~> 1.2"
   s.add_dependency "datetime_picker_rails", "~> 0.0.7"
   s.add_dependency "jquery-rails", "~> 4.0"
   s.add_dependency "kaminari", "~> 0.16"
@@ -24,7 +25,6 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.2"
   s.add_dependency "sass-rails", "~> 5.0"
   s.add_dependency "selectize-rails", "~> 0.6"
-  s.add_dependency "cocoon", "~> 1.2"
 
   s.description = <<-DESCRIPTION
 Administrate is heavily inspired by projects like Rails Admin and ActiveAdmin,

@@ -10,7 +10,7 @@
     ) %>
   <% end %>
 
-  <div class="links">
+  <div>
     <%= link_to_add_association(
       # TODO I18n
       "Add #{field.associated_class_name.titleize}",
@@ -20,5 +20,4 @@
       render_options: { locals: { field: field } },
     ) %>
   </div>
-
 </div>
