@@ -18,6 +18,8 @@
 
 ### Upcoming Release
 
+* [#560] [BUGFIX] Fix LoadError for apps that don't use images
+
 ### 0.2.1 (May 18, 2016)
 
 * [#573] [FEATURE] Render custom javascripts and stylesheets to the page
