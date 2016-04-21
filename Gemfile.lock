@@ -1,14 +1,7 @@
 PATH
-  remote: ../administrate-field-image
-  specs:
-    administrate-field-image (0.0.1)
-      administrate (~> 0.1.3)
-      rails (~> 4.2)
-
-PATH
   remote: .
   specs:
-    administrate (0.1.5)
+    administrate (0.2.0)
       autoprefixer-rails (~> 6.0)
       datetime_picker_rails (~> 0.0.7)
       jquery-rails (~> 4.0)
@@ -59,6 +52,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    administrate-field-image (0.0.2)
+      administrate (>= 0.2.0.rc1, < 0.3.0)
+      rails (~> 4.2)
     ammeter (1.1.3)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -159,7 +155,7 @@ GEM
     mime-types (2.99.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
-    momentjs-rails (2.11.0)
+    momentjs-rails (2.11.1)
       railties (>= 3.1)
     multi_json (1.11.2)
     neat (1.7.4)
@@ -287,7 +283,7 @@ PLATFORMS
 
 DEPENDENCIES
   administrate!
-  administrate-field-image!
+  administrate-field-image
   ammeter
   appraisal
   awesome_print

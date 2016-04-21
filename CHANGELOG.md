@@ -18,6 +18,8 @@
 
 ### Upcoming Release
 
+### 0.2.0 (April 20, 2016)
+
 * [#476] [CHANGE] Extract `Administrate::Field::Image` into its own gem.
   Users who have image fields in their dashboards
   should add to their `Gemfile`:
