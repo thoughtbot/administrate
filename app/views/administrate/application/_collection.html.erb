@@ -28,7 +28,7 @@ to display a collection of resources in an HTML table.
         <%= link_to(params.merge(
           collection_presenter.order_params_for(attr_name)
         )) do %>
-            <%= attr_name.to_s.titleize %>
+            <%= t("activerecord.attributes.#{collection_presenter.resource_name}.#{attr_name.to_s}").titleize %>
 
             <% if collection_presenter.ordered_by?(attr_name) %>
               <span class="cell-label__sort-indicator cell-label__sort-indicator--<%= collection_presenter.ordered_html_class(attr_name) %>">
