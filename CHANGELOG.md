@@ -18,8 +18,27 @@
 
 ### Upcoming Release
 
+### 0.2.0 (April 20, 2016)
+
+* [#476] [CHANGE] Extract `Administrate::Field::Image` into its own gem.
+  Users who have image fields in their dashboards
+  should add to their `Gemfile`:
+  ```ruby
+  gem "administrate-field-image"
+  ```
+
+### 0.1.5 (April 1, 2016)
+
+* [master] [BUGFIX] Protect from CSRF attacks [CVE-2016-3098]
+* [#422] [FEATURE] Add a `Select` field for displaying a drop-down menu of
+  options on form pages.
+  Options:
+  ```ruby
+  Field::Select.with_options(collection: [:foo, :bar])
+  ```
 * [#458] [BUGFIX] Update the custom field generator to match the new HTML
   structure of forms
+* [#513] [OPTIM] Freeze constants in generated dashboard classes
 
 ### 0.1.4 (February 20, 2016)
 

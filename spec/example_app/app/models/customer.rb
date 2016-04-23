@@ -10,6 +10,11 @@ class Customer < ActiveRecord::Base
     where("name LIKE ?", "#{beginning}%")
   end
 
+  KINDS = [
+    :standard,
+    :vip,
+  ].freeze
+
   def lifetime_value
     orders.map(&:total_price).reduce(0, :+)
   end

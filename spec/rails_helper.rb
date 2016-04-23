@@ -7,7 +7,6 @@ require File.expand_path("../../spec/example_app/config/environment", __FILE__)
 require "rspec/rails"
 require "shoulda/matchers"
 require "capybara/poltergeist"
-require "percy/capybara/rspec"
 
 Dir[Rails.root.join("../../spec/support/**/*.rb")].each { |file| require file }
 

@@ -14,7 +14,7 @@ RSpec.configure do |config|
   config.order = :random
 end
 
-WebMock.disable_net_connect!(allow_localhost: true, allow: "percy.io")
+WebMock.disable_net_connect!(allow_localhost: true)
 
 class MockDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {

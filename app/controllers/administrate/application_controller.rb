@@ -1,5 +1,7 @@
 module Administrate
   class ApplicationController < ActionController::Base
+    protect_from_forgery with: :exception
+
     def index
       resources = search.run
       resources = order.apply(resources)

@@ -9,11 +9,17 @@ class CustomerDashboard < Administrate::BaseDashboard
     name: Field::String,
     orders: Field::HasMany,
     updated_at: Field::DateTime,
+    kind: Field::Select.with_options(collection: Customer::KINDS),
   }
 
   COLLECTION_ATTRIBUTES = ATTRIBUTE_TYPES.keys
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys - [:name]
-  FORM_ATTRIBUTES = [:name, :email, :email_subscriber]
+  FORM_ATTRIBUTES = [
+    :name,
+    :email,
+    :email_subscriber,
+    :kind,
+  ].freeze
 
   COLLECTION_SCOPES = [
     :subscribed,

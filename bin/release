@@ -1,0 +1,23 @@
+# Exit if any subcommand fails
+set -e
+
+VERSION=$(ruby -r ./lib/administrate/version.rb -e "puts Administrate::VERSION")
+gem build administrate.gemspec
+gem install administrate-$(VERSION).gem
+
+
+GEMFILE=$(cat Gemfile | sed "s/^gemspec$/gem \"administrate\", \"$VERSION\"/")
+echo $GEMFILE > Gemfile
+bundle
+
+bundle exec rake
+bundle exec appraisal rake
+
+gem uninstall administrate -v $VERSION
+gem push administrate-$VERSION.gem
+
+bundle
+bundle exec rake
+bundle exec appraisal rake
+
+echo "Administrate version $VERSION was released successfully."
