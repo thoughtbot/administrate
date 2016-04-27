@@ -1,5 +1,5 @@
 require "spec_helper"
-require "administrate/fields/date_time"
+require "administrate/field/date_time"
 require "support/field_matchers"
 
 describe Administrate::Field::DateTime do

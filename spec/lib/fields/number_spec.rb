@@ -1,4 +1,4 @@
-require "administrate/fields/number"
+require "administrate/field/number"
 require "support/field_matchers"
 
 describe Administrate::Field::Number do

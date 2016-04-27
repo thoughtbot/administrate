@@ -1,5 +1,5 @@
 ruby:
-  config_file: .ruby-style.yml
+  config_file: .rubocop.yml
 scss:
   enabled: true
   config_file: .scss-lint.yml

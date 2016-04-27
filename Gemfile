@@ -4,6 +4,7 @@ ruby "2.2.3"
 
 gemspec
 
+gem "administrate-field-image"
 gem "delayed_job_active_record"
 gem "high_voltage"
 gem "markdown-rails"
@@ -25,16 +26,14 @@ group :development, :test do
   gem "faker"
   gem "i18n-tasks"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.1.0"
+  gem "rspec-rails", "~> 3.4.2"
 end
 
 group :test do
   gem "ammeter"
   gem "database_cleaner"
   gem "formulaic"
-  gem "fuubar"
   gem "launchy"
-  gem "percy-capybara"
   gem "poltergeist"
   gem "shoulda-matchers", "~> 2.8.0", require: false
   gem "timecop"

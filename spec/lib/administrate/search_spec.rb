@@ -1,8 +1,8 @@
 require "spec_helper"
 require "support/constant_helpers"
-require "administrate/fields/string"
-require "administrate/fields/email"
-require "administrate/fields/number"
+require "administrate/field/string"
+require "administrate/field/email"
+require "administrate/field/number"
 require "administrate/search"
 
 class MockDashboard
