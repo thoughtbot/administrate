@@ -61,6 +61,7 @@ specify, including:
 - `Field::Polymorphic`
 - `Field::Select`
 - `Field::String`
+- `Field::Text`
 
 Each of the `Field` types take a different set of options,
 which are specified through the `.with_options` class method.
