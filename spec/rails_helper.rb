@@ -29,6 +29,10 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   config.filter_gems_from_backtrace("bundler", "rack")
 
+  # filter specs
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+
   config.before(:each, type: :generator) do
     allow(Rails).to receive(:root).and_return(Pathname.new(file(".")))
   end

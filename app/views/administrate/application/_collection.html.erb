@@ -25,8 +25,8 @@ to display a collection of resources in an HTML table.
         <th class="cell-label
         cell-label--<%= attr_type.html_class %>
         cell-label--<%= collection_presenter.ordered_html_class(attr_name) %>
-        " scope="col">
-        <%= link_to(params.merge(
+      " scope="col">
+        <%= link_to(sanitized_params.merge(
           collection_presenter.order_params_for(attr_name)
         )) do %>
         <%= t(
