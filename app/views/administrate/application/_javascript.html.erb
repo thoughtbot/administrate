@@ -7,7 +7,9 @@ but each page can define additional JS sources
 by providing a `content_for(:javascript)` block.
 %>
 
-<%= javascript_include_tag "administrate/application" %>
+<% Administrate::Engine.javascripts.each do |js_path| %>
+  <%= javascript_include_tag js_path %>
+<% end %>
 
 <%= yield :javascript %>
 
