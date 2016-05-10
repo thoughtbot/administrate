@@ -14,6 +14,7 @@ gem "unicorn"
 gem "rails", "5.0.0.rc1", "< 5.1"
 gem "rspec-rails", "~> 3.5.0.beta1"
 gem "kaminari", :github => "amatsuda/kaminari", :branch => "0-17-stable"
+gem "rails-controller-testing"
 
 group :development do
   gem "web-console", ">= 2.1.3"
