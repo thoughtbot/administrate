@@ -12,6 +12,8 @@ gem "pg"
 gem "redcarpet"
 gem "unicorn"
 gem "bourbon", "5.0.0.alpha.0"
+gem "rails", "~> 4.2"
+gem "rspec-rails", "~> 3.4.2"
 
 group :development do
   gem "web-console", ">= 2.1.3"
