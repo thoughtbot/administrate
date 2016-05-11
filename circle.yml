@@ -4,7 +4,6 @@ dependencies:
 test:
   pre:
     - cp .sample.env .env
-    - bundle exec rake db:schema:load
+    - bundle exec appraisal rails-4 rake db:schema:load
   override:
-    - bundle exec rake
     - bundle exec appraisal rake
