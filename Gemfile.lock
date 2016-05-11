@@ -119,6 +119,9 @@ GEM
       activesupport
       capybara
       i18n
+    fuubar (2.1.0.beta2)
+      rspec (~> 3.0, <= 3.5.0.beta9)
+      ruby-progressbar (~> 1.4)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashdiff (0.2.2)
@@ -209,6 +212,10 @@ GEM
     rake (11.1.2)
     rdiscount (1.6.8)
     redcarpet (3.3.3)
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -226,6 +233,7 @@ GEM
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    ruby-progressbar (1.8.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.4)
@@ -295,6 +303,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   formulaic
+  fuubar (~> 2.1.0.beta2)
   high_voltage
   i18n-tasks
   launchy

@@ -27,6 +27,7 @@ group :development, :test do
   gem "faker"
   gem "i18n-tasks"
   gem "pry-rails"
+  gem "fuubar", "~> 2.1.0.beta2"
 end
 
 group :test do
