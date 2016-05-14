@@ -1,0 +1,11 @@
+# Dashboard generators
+
+## Description:
+Generates a Dashboard object for a model,
+pulling the attributes from database columns.
+
+## Example:
+`rails generate administrate:dashboard FooBar`
+
+This will create:
+`app/dashboards/foo_bar_dashboard.rb`
