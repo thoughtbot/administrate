@@ -24,7 +24,7 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
       "Show #{page.page_title}",
       [namespace, page.resource],
       class: "button",
-    ) %>
+    ) if valid_action? :show %>
   </div>
 </header>
 
