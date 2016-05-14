@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "order index page" do
+feature "order show page" do
   scenario "displays line item information" do
     line_item = create(:line_item)
 

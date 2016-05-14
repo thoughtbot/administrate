@@ -47,16 +47,17 @@ to display a collection of resources in an HTML table.
           <% end %>
         </th>
       <% end %>
-      <th colspan="2" scope="col"></th>
+      <% [valid_action?(:edit), valid_action?(:destroy)].count(true).times do %>
+        <th scope="col"></th>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
     <% resources.each do |resource| %>
       <tr class="table__row"
-          role="link"
           tabindex="0"
-          data-url="<%= polymorphic_path([namespace, resource]) -%>"
+          <%= %(role=link data-url=#{polymorphic_path([namespace, resource])}) if valid_action? :show -%>
           >
         <% collection_presenter.attributes_for(resource).each do |attribute| %>
           <td class="cell-data cell-data--<%= attribute.html_class %>">
@@ -64,19 +65,23 @@ to display a collection of resources in an HTML table.
           </td>
         <% end %>
 
-        <td><%= link_to(
-          t("administrate.actions.edit"),
-          [:edit, namespace, resource],
-          class: "action-edit",
-        ) %></td>
+        <% if valid_action? :edit %>
+          <td><%= link_to(
+            t("administrate.actions.edit"),
+            [:edit, namespace, resource],
+            class: "action-edit",
+          ) %></td>
+        <% end %>
 
-        <td><%= link_to(
-          t("administrate.actions.destroy"),
-          [namespace, resource],
-          class: "table__action--destroy",
-          method: :delete,
-          data: { confirm: t("administrate.actions.confirm") }
-        ) %></td>
+        <% if valid_action? :destroy %>
+          <td><%= link_to(
+            t("administrate.actions.destroy"),
+            [namespace, resource],
+            class: "table__action--destroy",
+            method: :delete,
+            data: { confirm: t("administrate.actions.confirm") }
+          ) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

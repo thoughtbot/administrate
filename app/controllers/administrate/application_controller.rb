@@ -79,6 +79,17 @@ module Administrate
       end
     end
 
+    helper_method :valid_action?
+    def valid_action?(name, resource = resource_name)
+      !!routes.detect do |controller, action|
+        controller == resource.to_s.pluralize && action == name.to_s
+      end
+    end
+
+    def routes
+      @routes ||= Namespace.new(namespace).routes
+    end
+
     def records_per_page
       params[:per_page] || 20
     end
