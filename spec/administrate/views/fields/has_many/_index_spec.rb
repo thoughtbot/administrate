@@ -5,8 +5,8 @@ describe "fields/has_many/_index", type: :view do
     it "renders a plural description" do
       has_many = instance_double(
         "Administrate::Field::HasMany",
-        attribute: 'products',
-        data: []
+        attribute: "products",
+        data: [],
       )
 
       render(
@@ -24,7 +24,7 @@ describe "fields/has_many/_index", type: :view do
       has_many = instance_double(
         "Administrate::Field::HasMany",
         attribute: :products,
-        data: [product]
+        data: [product],
       )
 
       render(
@@ -42,7 +42,7 @@ describe "fields/has_many/_index", type: :view do
       has_many = instance_double(
         "Administrate::Field::HasMany",
         attribute: :products,
-        data: products
+        data: products,
       )
 
       render(
