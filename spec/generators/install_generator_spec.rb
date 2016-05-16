@@ -62,7 +62,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
       end
     end
 
-    it 'is not invoked if there are no admin resources' do
+    it "is not invoked if there are no admin resources" do
       begin
         stub_generator_dependencies
 
