@@ -43,7 +43,7 @@ module Administrate
       end
 
       def database_models
-        ActiveRecord::Base.descendants
+        ActiveRecord::Base.descendants.reject(&:abstract_class?)
       end
 
       def invalid_database_models

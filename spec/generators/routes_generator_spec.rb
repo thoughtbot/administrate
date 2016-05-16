@@ -42,14 +42,16 @@ describe Administrate::Generators::RoutesGenerator, :generator do
       MSG
     end
 
-    it "skips models that aren't backed by the database" do
+    it "skips models that aren't backed by the database with a warning" do
       begin
         class ModelWithoutDBTable < ActiveRecord::Base; end
         routes = file("config/routes.rb")
 
-        run_generator
+        output = run_generator
 
         expect(routes).not_to contain("model_without_db_table")
+        expect(output).to include("WARNING: Unable to generate a dashboard " \
+          "for ModelWithoutDBTable.")
       ensure
         remove_constants :ModelWithoutDBTable
       end
@@ -67,6 +69,23 @@ describe Administrate::Generators::RoutesGenerator, :generator do
 
       routes = file("config/routes.rb")
       expect(routes).to have_correct_syntax
+    end
+
+    it "skips abstract models without a warning" do
+      stub_generator_dependencies
+      routes = file("config/routes.rb")
+
+      begin
+        class AbstractModel < ActiveRecord::Base
+          self.abstract_class = true
+        end
+
+        output = run_generator
+
+        expect(routes).not_to contain("abstract_model")
+        expect(output).not_to include("WARNING: Unable to generate a "\
+          "dashboard for AbstractModel")
+      end
     end
   end
 
