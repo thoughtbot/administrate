@@ -50,8 +50,8 @@ describe Administrate::Generators::InstallGenerator, :generator do
     end
   end
 
-  describe "resource dashboards" do
-    it "is generated" do
+  describe "dashboards generator" do
+    it "is invoked for each resource in the admin namespace" do
       stub_generator_dependencies
 
       run_generator
@@ -59,6 +59,23 @@ describe Administrate::Generators::InstallGenerator, :generator do
       %w[customer order product line_item].each do |resource|
         expect(Rails::Generators).
           to invoke_generator("administrate:dashboard", [resource])
+      end
+    end
+
+    it 'is not invoked if there are no admin resources' do
+      begin
+        stub_generator_dependencies
+
+        Rails.application.routes.draw do
+          namespace(:admin) { root to: "#index" }
+        end
+
+        run_generator
+
+        expect(Rails::Generators).
+          not_to invoke_generator("administrate:dashboard", anything)
+      ensure
+        reset_routes
       end
     end
   end
