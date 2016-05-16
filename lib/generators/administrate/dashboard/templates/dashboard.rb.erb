@@ -53,4 +53,11 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   # def display_resource(<%= file_name %>)
   #   "<%= class_name %> ##{<%= file_name %>.id}"
   # end
+
+  # Overwrite this method to customize whether the index page for <%= file_name.pluralize.humanize.downcase %> 
+  # is included in the sidebar.
+  #
+  # def show_in_sidebar?
+  #   true
+  # end
 end

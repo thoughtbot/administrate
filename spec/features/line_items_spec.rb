@@ -1,6 +1,12 @@
 require "rails_helper"
 
 RSpec.describe "line item index page" do
+  it "is hidden from sidebar" do
+    visit admin_root_path
+
+    expect(page).not_to have_link("Line Items")
+  end
+
   it "displays line items' information" do
     line_item = create(:line_item)
 

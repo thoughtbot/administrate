@@ -8,7 +8,9 @@ as defined by the routes in the `admin/` namespace
 %>
 
 <ul class="sidebar__list">
-  <% Administrate::Namespace.new(namespace).resources.each do |resource| %>
+  <% Administrate::Namespace.new(namespace).resources.select {|resource|
+  	  include_resource_in_sidebar?(resource)
+  	}.each do |resource| %>
     <li>
       <%= link_to(
         display_resource_name(resource),

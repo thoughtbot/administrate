@@ -53,6 +53,10 @@ module Administrate
       "#{resource.class} ##{resource.id}"
     end
 
+    def show_in_sidebar?
+      true
+    end
+
     private
 
     def attribute_not_found_message(attr)

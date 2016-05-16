@@ -5,6 +5,10 @@ module Administrate
       render locals: locals, partial: field.to_partial_path
     end
 
+    def include_resource_in_sidebar?(resource_name)
+      "#{resource_name.to_s.classify}Dashboard".constantize.new.show_in_sidebar?
+    end
+
     def display_resource_name(resource_name)
       resource_name.
         to_s.

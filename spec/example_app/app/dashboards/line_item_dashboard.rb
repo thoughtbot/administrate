@@ -25,4 +25,8 @@ class LineItemDashboard < Administrate::BaseDashboard
   def display_resource(line_item)
     "Line Item #%04d" % line_item.id
   end
+
+  def show_in_sidebar?
+    false
+  end
 end
