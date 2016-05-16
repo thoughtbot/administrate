@@ -56,11 +56,11 @@ describe Administrate::Generators::RoutesGenerator, :generator do
       routes = file("config/routes.rb")
       expect(routes).to have_correct_syntax
     end
-    
-    it 'skips abstract models without a warning' do
+
+    it "skips abstract models without a warning" do
       stub_generator_dependencies
       routes = file("config/routes.rb")
-      
+
       begin
         class AbstractModel < ActiveRecord::Base
           self.abstract_class = true
