@@ -18,6 +18,16 @@
 
 ### Upcoming Release
 
+### 0.2.1 (May 18, 2016)
+
+* [#573] [FEATURE] Render custom javascripts and stylesheets to the page
+  by registering them with Administrate in an initializer.
+  For example, you can create `config/initializers/administrate.rb`
+  with the contents:
+    ```
+    Administrate::Engine.add_javascript "my_plugin/script"
+    Administrate::Engine.add_stylesheet "my_plugin/styles"
+    ```
 * [#567] [FEATURE] Add a partial for rendering HTML links to stylesheets.
   This is useful for plugin developers,
   as well as people who want to add custom stylesheets on a page-by-page basis
