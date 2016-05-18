@@ -22,13 +22,17 @@ to display a collection of resources in an HTML table.
   <thead>
     <tr>
       <% collection_presenter.attribute_types.each do |attr_name, attr_type| %>
-        <th class="cell-label cell-label--<%= attr_type.html_class %>
-          cell-label--<%= collection_presenter.ordered_html_class(attr_name) %>
+        <th class="cell-label
+        cell-label--<%= attr_type.html_class %>
+        cell-label--<%= collection_presenter.ordered_html_class(attr_name) %>
         " scope="col">
         <%= link_to(params.merge(
           collection_presenter.order_params_for(attr_name)
         )) do %>
-            <%= attr_name.to_s.titleize %>
+        <%= t(
+          "helpers.label.#{resource_name}.#{attr_name}",
+          default: attr_name.to_s,
+        ).titleize %>
 
             <% if collection_presenter.ordered_by?(attr_name) %>
               <span class="cell-label__sort-indicator cell-label__sort-indicator--<%= collection_presenter.ordered_html_class(attr_name) %>">
