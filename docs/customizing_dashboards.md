@@ -76,4 +76,15 @@ if the value is stored by the number of cents:
   )
 ```
 
+To change the user-facing label for an attribute,
+define a custom I18n translation:
+
+```yaml
+en:
+  helpers:
+    label:
+      customer:
+        name: Full Name
+```
+
 [define your own]: /adding_custom_field_types
