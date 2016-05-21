@@ -24,6 +24,15 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = false
 
+  # Filter lines from Rails gems in backtraces.
+  config.filter_rails_from_backtrace!
+  # arbitrary gems may also be filtered via:
+  config.filter_gems_from_backtrace("bundler", "rack")
+
+  # filter specs
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+
   config.before(:each, type: :generator) do
     allow(Rails).to receive(:root).and_return(Pathname.new(file(".")))
   end

@@ -107,6 +107,11 @@ module Administrate
       dashboard.permitted_attributes
     end
 
+    def sanitized_params
+      params.permit([:search, :id, :order, :per_page, :direction])
+    end
+    helper_method :sanitized_params
+
     delegate :resource_class, :resource_name, :namespace, to: :resource_resolver
     helper_method :namespace
     helper_method :resource_name

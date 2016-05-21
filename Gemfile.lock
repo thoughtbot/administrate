@@ -5,11 +5,11 @@ PATH
       autoprefixer-rails (~> 6.0)
       datetime_picker_rails (~> 0.0.7)
       jquery-rails (~> 4.0)
-      kaminari (~> 0.16)
+      kaminari (> 0.16)
       momentjs-rails (~> 2.8)
       neat (~> 1.1)
       normalize-rails (~> 3.0)
-      rails (~> 4.2)
+      rails (>= 4.0, < 5.1)
       sass-rails (~> 5.0)
       selectize-rails (~> 0.6)
 
@@ -69,7 +69,7 @@ GEM
     awesome_print (1.6.1)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bourbon (4.2.6)
+    bourbon (4.2.7)
       sass (~> 3.4)
       thor (~> 0.19)
     builder (3.2.2)
@@ -119,6 +119,9 @@ GEM
       activesupport
       capybara
       i18n
+    fuubar (2.1.0.beta2)
+      rspec (~> 3.0, <= 3.5.0.beta9)
+      ruby-progressbar (~> 1.4)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashdiff (0.2.2)
@@ -209,6 +212,10 @@ GEM
     rake (11.1.2)
     rdiscount (1.6.8)
     redcarpet (3.3.3)
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -226,6 +233,7 @@ GEM
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    ruby-progressbar (1.8.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.4)
@@ -295,6 +303,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   formulaic
+  fuubar (~> 2.1.0.beta2)
   high_voltage
   i18n-tasks
   launchy
@@ -305,7 +314,6 @@ DEPENDENCIES
   rack-timeout
   rails_stdout_logging
   redcarpet
-  rspec-rails (~> 3.4.2)
   shoulda-matchers (~> 2.8.0)
   timecop
   uglifier
@@ -313,5 +321,8 @@ DEPENDENCIES
   web-console (>= 2.1.3)
   webmock
 
+RUBY VERSION
+   ruby 2.3.1p112
+
 BUNDLED WITH
-   1.11.2
+   1.12.2
