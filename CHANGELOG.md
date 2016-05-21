@@ -18,6 +18,8 @@
 
 ### Upcoming Release
 
+### 0.2.2 (May 21, 2016)
+
 * [#560] [BUGFIX] Fix LoadError for apps that don't use images
 
 ### 0.2.1 (May 18, 2016)
