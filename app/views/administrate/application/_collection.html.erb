@@ -32,7 +32,7 @@ to display a collection of resources in an HTML table.
           collection_presenter.order_params_for(attr_name)
         )) do %>
         <%= t(
-          "helpers.label.#{resource_name}.#{attr_name}",
+          "helpers.label.#{collection_presenter.resource_name}.#{attr_name}",
           default: attr_name.to_s,
         ).titleize %>
 

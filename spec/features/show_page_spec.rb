@@ -123,6 +123,35 @@ RSpec.describe "customer show page" do
     end
   end
 
+  it "displays translated labels in has_many collection partials" do
+    custom_label = "Time Shipped"
+    customer = create(:customer)
+    create(:order, customer: customer)
+
+    translations = {
+      administrate: {
+        actions: {
+          edit: "Edit",
+          destroy: "Destroy",
+          confirm: "Are you sure?",
+        },
+      },
+      helpers: {
+        label: {
+          order: {
+            shipped_at: custom_label,
+          },
+        },
+      },
+    }
+
+    with_translations(:en, translations) do
+      visit admin_customer_path(customer)
+
+      expect(page).to have_css(".cell-label", text: custom_label)
+    end
+  end
+
   def have_order_row(id)
     have_css('tr td:first-child', text: id)
   end
