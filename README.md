@@ -45,6 +45,12 @@ $ rails generate administrate:install
 Restart your server, and visit http://localhost:3000/admin
 to see your new dashboard in action.
 
+Update dashboard for new models or updated fields
+
+```bash
+$ rails generate administrate:dashboard MODEL
+```
+
 To customize the appearance, behavior, and contents of the dashboard,
 see the guides at http://administrate-docs.herokuapp.com.
 
