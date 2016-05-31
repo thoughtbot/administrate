@@ -5,7 +5,7 @@ PATH
       autoprefixer-rails (~> 6.0)
       datetime_picker_rails (~> 0.0.7)
       jquery-rails (~> 4.0)
-      kaminari (> 0.16)
+      kaminari (~> 0.17)
       momentjs-rails (~> 2.8)
       neat (~> 1.1)
       normalize-rails (~> 3.0)
@@ -64,7 +64,7 @@ GEM
       rake
       thor (>= 0.14.0)
     arel (6.0.3)
-    autoprefixer-rails (6.3.6)
+    autoprefixer-rails (6.3.6.1)
       execjs
     awesome_print (1.6.1)
     binding_of_caller (0.7.2)
@@ -141,7 +141,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
-    kaminari (0.16.3)
+    kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.10.0)
@@ -259,7 +259,7 @@ GEM
     thor (0.19.1)
     thread (0.2.2)
     thread_safe (0.3.5)
-    tilt (2.0.2)
+    tilt (2.0.4)
     timecop (0.8.0)
     tins (1.6.0)
     tzinfo (1.2.2)
@@ -325,4 +325,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.2
+   1.12.3
