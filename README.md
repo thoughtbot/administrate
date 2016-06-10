@@ -46,7 +46,7 @@ Add Administrate to your Gemfile:
 
 ```ruby
 # Gemfile
-gem "administrate", "~> 0.2.1"
+gem "administrate", "~> 0.2.2"
 ```
 
 Re-bundle, then run the installer:
