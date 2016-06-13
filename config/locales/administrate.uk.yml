@@ -21,3 +21,5 @@ uk:
         not_supported: Поліморфні відношення у формах не підтримуються.
       has_one:
         not_supported: HasOne відношення у формах не підтримуються.
+    scopes:
+      scopes: Filters

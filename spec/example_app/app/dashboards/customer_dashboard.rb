@@ -21,6 +21,13 @@ class CustomerDashboard < Administrate::BaseDashboard
     :kind,
   ].freeze
 
+  COLLECTION_SCOPES = [
+    :subscribed,
+    :old,
+    "name_starts_with(A)",
+    "name_starts_with:*",
+  ].freeze
+
   def display_resource(customer)
     customer.name
   end

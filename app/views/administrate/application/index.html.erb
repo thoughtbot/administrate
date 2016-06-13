@@ -55,6 +55,10 @@ It renders the `_table` partial to display details about the resources.
   </div>
 </header>
 
+<%= render partial: "scope_buttons_group",
+           collection: page.scope_groups,
+           locals: { page: page } %>
+
 <%= render "collection", collection_presenter: page, resources: resources %>
 
 <%= paginate resources %>

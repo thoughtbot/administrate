@@ -1,4 +1,5 @@
 require "webmock/rspec"
+require "administrate/base_dashboard"
 
 # http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
@@ -14,3 +15,38 @@ RSpec.configure do |config|
 end
 
 WebMock.disable_net_connect!(allow_localhost: true)
+
+class MockDashboard < Administrate::BaseDashboard
+  ATTRIBUTE_TYPES = {
+    name: Administrate::Field::String,
+    email: Administrate::Field::Email,
+    phone: Administrate::Field::Number,
+  }
+end
+
+class DashboardWithAnArrayOfScopes < Administrate::BaseDashboard
+  ATTRIBUTE_TYPES = {
+    name: Administrate::Field::String,
+  }
+
+  COLLECTION_SCOPES = [:active, :old, "with_argument(3)", "idle"]
+end
+
+class DashboardWithAHashOfScopes < Administrate::BaseDashboard
+  ATTRIBUTE_TYPES = {
+    name: Administrate::Field::String,
+  }
+
+  COLLECTION_SCOPES = {
+    status: [:active, :inactive, "idle", "with_argument:*"],
+    other: [:last_week, :old, "with_argument(3)",],
+  }
+end
+
+class DashboardWithScopesDisabled < Administrate::BaseDashboard
+  ATTRIBUTE_TYPES = {
+    name: Administrate::Field::String,
+  }
+
+  COLLECTION_SCOPES = []
+end

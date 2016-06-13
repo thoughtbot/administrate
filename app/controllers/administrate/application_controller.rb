@@ -3,15 +3,17 @@ module Administrate
     protect_from_forgery with: :exception
 
     def index
-      search_term = params[:search].to_s.strip
-      resources = Administrate::Search.new(resource_resolver, search_term).run
+      resources = search.run
       resources = order.apply(resources)
       resources = resources.page(params[:page]).per(records_per_page)
-      page = Administrate::Page::Collection.new(dashboard, order: order)
+      page = Administrate::Page::Collection.new(
+        dashboard,
+        search: search,
+        order: order)
 
       render locals: {
         resources: resources,
-        search_term: search_term,
+        search_term: search.term,
         page: page,
       }
     end
@@ -81,6 +83,10 @@ module Administrate
 
     def records_per_page
       params[:per_page] || 20
+    end
+
+    def search
+      @_search ||= Administrate::Search.new(resource_resolver, params[:search])
     end
 
     def order

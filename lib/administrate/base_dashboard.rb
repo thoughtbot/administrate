@@ -48,6 +48,14 @@ module Administrate
       self.class::COLLECTION_ATTRIBUTES
     end
 
+    def collection_scopes
+      if self.class.const_defined?(:COLLECTION_SCOPES)
+        self.class::COLLECTION_SCOPES
+      else
+        []
+      end
+    end
+
     def display_resource(resource)
       "#{resource.class} ##{resource.id}"
     end

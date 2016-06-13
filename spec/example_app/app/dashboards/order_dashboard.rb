@@ -32,6 +32,11 @@ class OrderDashboard < Administrate::BaseDashboard
     :shipped_at,
   ]
 
+  COLLECTION_SCOPES = {
+    status: [:shipped, :unshipped],
+    content: ["zip_prefix(00000)"],
+  }
+
   FORM_ATTRIBUTES = ATTRIBUTE_TYPES.keys - READ_ONLY_ATTRIBUTES
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys
 end
