@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem "administrate-field-image"
+gem "bourbon", "~> 4.2"
 gem "delayed_job_active_record"
 gem "high_voltage"
 gem "markdown-rails"
