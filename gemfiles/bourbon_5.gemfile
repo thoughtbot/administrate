@@ -2,8 +2,6 @@
 
 source "https://rubygems.org"
 
-ruby "2.2.3"
-
 gem "administrate-field-image"
 gem "delayed_job_active_record"
 gem "high_voltage"
