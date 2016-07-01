@@ -3,5 +3,5 @@ appraise "sass-3-4" do
 end
 
 appraise "bourbon-5" do
-  gem "bourbon", "5.0.0-beta.6"
+  gem "bourbon", "5.0.0.beta.6"
 end
