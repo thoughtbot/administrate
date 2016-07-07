@@ -2,6 +2,8 @@ $(function() {
   var keycodes = { space: 32, enter: 13 };
 
   var visitDataUrl = function(event) {
+    if ($(event.target).is('input')) { return }
+
     if (event.type=="click" ||
         event.keyCode == keycodes.space ||
         event.keyCode == keycodes.enter) {
