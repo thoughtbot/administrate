@@ -49,7 +49,7 @@ It renders the `_table` partial to display details about the resources.
   <div class="header__actions">
     <%= link_to(
       "New #{page.resource_name.titleize.downcase}",
-      [:new, namespace, page.resource_name],
+      [:new, namespace, page.resource_path],
       class: "button",
     ) %>
   </div>

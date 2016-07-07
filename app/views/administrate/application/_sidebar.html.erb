@@ -11,9 +11,9 @@ as defined by the routes in the `admin/` namespace
   <% Administrate::Namespace.new(namespace).resources.each do |resource| %>
     <li>
       <%= link_to(
-        display_resource_name(resource),
-        [namespace, resource],
-        class: "sidebar__link sidebar__link--#{nav_link_state(resource)}"
+        display_resource_name(resource.name),
+        resource.path,
+        class: "sidebar__link sidebar__link--#{nav_link_state(resource.name)}"
       ) %>
     </li>
   <% end %>
