@@ -11,7 +11,7 @@ describe Admin::CustomersController, type: :controller do
 
     it "passes the search term to the view" do
       locals = capture_view_locals do
-        get :index, search: "foo"
+        get :index, kwarg_params(search: "foo")
       end
 
       expect(locals[:search_term]).to eq("foo")
@@ -29,7 +29,7 @@ describe Admin::CustomersController, type: :controller do
       customer = create(:customer)
 
       locals = capture_view_locals do
-        get :show, id: customer.to_param
+        get :show, kwarg_params(id: customer.to_param)
       end
 
       page = locals[:page]
@@ -51,7 +51,7 @@ describe Admin::CustomersController, type: :controller do
       customer = create(:customer)
 
       locals = capture_view_locals do
-        get :edit, id: customer.to_param
+        get :edit, kwarg_params(id: customer.to_param)
       end
 
       page = locals[:page]
@@ -64,12 +64,12 @@ describe Admin::CustomersController, type: :controller do
     describe "with valid params" do
       it "creates a new Customer" do
         expect {
-          post :create, customer: attributes_for(:customer)
+          post :create, kwarg_params(customer: attributes_for(:customer))
         }.to change(Customer, :count).by(1)
       end
 
       it "redirects to the created customer" do
-        post :create, customer: attributes_for(:customer)
+        post :create, kwarg_params(customer: attributes_for(:customer))
 
         expect(response).to redirect_to([:admin, Customer.last])
       end
@@ -80,7 +80,7 @@ describe Admin::CustomersController, type: :controller do
         invalid_attributes = { name: "" }
 
         locals = capture_view_locals do
-          post :create, customer: invalid_attributes
+          post :create, kwarg_params(customer: invalid_attributes)
         end
 
         page = locals[:page]
@@ -91,7 +91,7 @@ describe Admin::CustomersController, type: :controller do
       it "re-renders the 'new' template" do
         invalid_attributes = { name: "" }
 
-        post :create, customer: invalid_attributes
+        post :create, kwarg_params(customer: invalid_attributes)
 
         expect(response).to render_template("new")
       end
@@ -105,7 +105,10 @@ describe Admin::CustomersController, type: :controller do
         new_name = "new name"
         new_attributes = { name: new_name }
 
-        put :update, id: customer.to_param, customer: new_attributes
+        put :update, kwarg_params(
+          id: customer.to_param,
+          customer: new_attributes,
+        )
 
         customer.reload
         expect(customer.name).to eq new_name
@@ -115,7 +118,10 @@ describe Admin::CustomersController, type: :controller do
         customer = create(:customer)
         valid_attributes = attributes_for(:customer)
 
-        put :update, id: customer.to_param, customer: valid_attributes
+        put :update, kwarg_params(
+          id: customer.to_param,
+          customer: valid_attributes,
+        )
 
         expect(response).to redirect_to([:admin, customer])
       end
@@ -126,7 +132,10 @@ describe Admin::CustomersController, type: :controller do
         customer = create(:customer)
         invalid_attributes = { name: "" }
 
-        put :update, id: customer.to_param, customer: invalid_attributes
+        put :update, kwarg_params(
+          id: customer.to_param,
+          customer: invalid_attributes,
+        )
 
         expect(response).to render_template("edit")
       end
@@ -136,7 +145,10 @@ describe Admin::CustomersController, type: :controller do
         invalid_attributes = { name: "" }
 
         locals = capture_view_locals do
-          put :update, id: customer.to_param, customer: invalid_attributes
+          put :update, kwarg_params(
+            id: customer.to_param,
+            customer: invalid_attributes,
+          )
         end
 
         page = locals[:page]
@@ -151,14 +163,14 @@ describe Admin::CustomersController, type: :controller do
       customer = create(:customer)
 
       expect do
-        delete :destroy, {id: customer.to_param}
+        delete :destroy, kwarg_params(id: customer.to_param)
       end.to change(Customer, :count).by(-1)
     end
 
     it "redirects to the customers list" do
       customer = create(:customer)
 
-      delete :destroy, id: customer.to_param
+      delete :destroy, kwarg_params(id: customer.to_param)
 
       expect(response).to redirect_to(admin_customers_url)
     end
@@ -175,5 +187,13 @@ describe Admin::CustomersController, type: :controller do
       end
     end
     locals
+  end
+
+  def kwarg_params(args)
+    if Rails::VERSION::MAJOR >= 5
+      { params: args }
+    else
+      args
+    end
   end
 end
