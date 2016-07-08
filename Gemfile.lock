@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/thoughtbot/administrate-field-image.git
+  revision: f07523253a5629048c7b395571207b619b32c862
+  branch: rails-5
+  specs:
+    administrate-field-image (0.0.2)
+      administrate (>= 0.2.0.rc1, < 0.3.0)
+      rails (>= 4.2, < 5.1)
+
 PATH
   remote: .
   specs:
@@ -53,9 +62,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
-    administrate-field-image (0.0.2)
-      administrate (>= 0.2.0.rc1, < 0.3.0)
-      rails (~> 4.2)
     ammeter (1.1.3)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -288,7 +294,7 @@ PLATFORMS
 
 DEPENDENCIES
   administrate!
-  administrate-field-image
+  administrate-field-image!
   ammeter
   appraisal
   awesome_print
