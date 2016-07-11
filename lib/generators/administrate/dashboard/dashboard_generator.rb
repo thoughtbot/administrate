@@ -81,7 +81,7 @@ module Administrate
         if enum_column?(attr)
           :enum
         else
-          klass.columns_hash[attr].type
+          klass.attribute_types[attr].type
         end
       end
 
