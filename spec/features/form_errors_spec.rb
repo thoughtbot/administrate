@@ -4,7 +4,7 @@ feature "form errors" do
   scenario "error messages for new resource" do
     visit new_admin_customer_path
     fill_in("Name", with: "")
-    click_on "Create Customer"
+    find(".form-actions input").click
 
     expect(page).to have_content "Name can't be blank"
   end
@@ -14,7 +14,7 @@ feature "form errors" do
 
     visit edit_admin_customer_path(customer)
     fill_in("Name", with: "")
-    click_on "Update Customer"
+    find(".form-actions input").click
 
     expect(page).to have_content "Name can't be blank"
   end
