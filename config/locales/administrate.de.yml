@@ -6,6 +6,10 @@ de:
       destroy: Löschen
       edit: Editieren
       show: Anzeigen
+      back: Back
+      new_name: "New %{name}"
+      edit_name: "Edit %{name}"
+      show_name: "Show %{name}"
     controller:
       create:
         success: "%{resource} wurde erfolgreich erstellt."
@@ -21,3 +25,9 @@ de:
         not_supported: Polymorphe Beziehungen werden nicht unterstützt.
       has_one:
         not_supported: HasOne Beziehungen werden nicht unterstützt.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    search:
+      title: Search
+      hint: Press enter to search

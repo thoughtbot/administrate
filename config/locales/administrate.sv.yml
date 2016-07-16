@@ -6,6 +6,10 @@ sv:
       destroy: Ta bort
       edit: Ändra
       show: Visa
+      back: Tillbaka
+      new_name: "Ny %{name}"
+      edit_name: "Ändra %{name}"
+      show_name: "Visa %{name}"
     controller:
       create:
         success: "%{resource} har skapats."
@@ -21,3 +25,9 @@ sv:
         not_supported: Formulär med polymorfiska relationer stöds inte.
       has_one:
         not_supported: Formulär med HasOne relationer stöds inte.
+    form:
+      error: error
+      errors: "%{pluralized_errors} hindrade %{resource_name} från att sparas:"
+    search:
+      title: Sök
+      hint: Tryck på enter för att söka

@@ -6,6 +6,10 @@ nl:
       destroy: Verwijder
       edit: Bewerk
       show: Toon
+      back: Back
+      new_name: "New %{name}"
+      edit_name: "Edit %{name}"
+      show_name: "Show %{name}"
     controller:
       create:
         success: "%{resource} was succesvol aangemaakt."
@@ -21,3 +25,9 @@ nl:
         not_supported: Polymorphische relaties formulieren worden niet ondersteund.
       has_one:
         not_supported: HasOne relaties formulieren worden niet ondersteund.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    search:
+      title: Search
+      hint: Press enter to search

@@ -19,6 +19,15 @@ describe "sidebar" do
           },
         },
       },
+      administrate: {
+        actions: {
+          new_name: "New",
+        },
+        search: {
+          title: "Search",
+          hint: "Press enter to search",
+        },
+      },
     }
 
     with_translations(:en, translations) do

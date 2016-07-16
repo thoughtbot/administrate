@@ -22,7 +22,7 @@ as well as a link to its edit page.
   <h1 class="header__heading"><%= content_for(:title) %></h1>
   <div class="header__actions">
     <%= link_to(
-      "Edit",
+      t("administrate.actions.edit"),
       [:edit, namespace, page.resource],
       class: "button",
     ) %>
