@@ -37,4 +37,26 @@ describe Administrate::Field::BelongsTo do
       end
     end
   end
+
+  describe "scope option" do
+    it "determines which method is called to find candidate resources" do
+      begin
+        Foo = Class.new
+        allow(Foo).to receive(:all).and_return([])
+        allow(Foo).to receive(:widgets).and_return([])
+
+        association = Administrate::Field::BelongsTo.
+          with_options(class_name: "Foo", scope: :widgets)
+        field = association.new(:customers, [], :show)
+        candidates = field.associated_resource_options
+
+        expect(Foo).not_to have_received(:all)
+        expect(Foo).to have_received(:widgets)
+        expect(candidates).to eq([nil])
+      ensure
+        remove_constants :Foo
+      end
+    end
+
+  end
 end
