@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "fields/has_many/_form", type: :view do
+  include_context "fake_field_label"
+
   describe "the field label" do
     it "displays the association name" do
       has_many = double(
@@ -10,7 +12,9 @@ describe "fields/has_many/_form", type: :view do
 
       render(
         partial: "fields/has_many/form.html.erb",
-        locals: { f: fake_form_builder, field: has_many },
+        locals: { f: fake_form_builder,
+                  field: has_many,
+        }
       )
 
       expect(rendered).to include("Associated Objects")
@@ -24,4 +28,5 @@ describe "fields/has_many/_form", type: :view do
       end
     end
   end
+
 end

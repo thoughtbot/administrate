@@ -2,6 +2,8 @@ require "rails_helper"
 require "administrate/field/has_one"
 
 describe "fields/has_one/_form", type: :view do
+  include_context "fake_field_label"
+
   it "displays the field name" do
     has_one = instance_double(
       "Administrate::Field::HasOne",
