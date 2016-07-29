@@ -1,5 +1,7 @@
 module Administrate
   module ApplicationHelper
+    PLURAL_MANY_COUNT = 2.1
+
     def render_field(field, locals = {})
       locals.merge!(field: field)
       render locals: locals, partial: field.to_partial_path
@@ -12,7 +14,7 @@ module Administrate
         constantize.
         model_name.
         human(
-          count: 0,
+          count: PLURAL_MANY_COUNT,
           default: resource_name.to_s.pluralize.titleize,
         )
     end
