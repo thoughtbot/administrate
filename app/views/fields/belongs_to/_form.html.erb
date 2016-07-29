@@ -17,7 +17,7 @@ that displays all possible records to associate with.
 %>
 
 <div class="field-unit__label">
-  <%= f.label field.permitted_attribute %>
+  <%= f.label field.permitted_attribute, field_label_text(resource_name, field.permitted_attribute) %>
 </div>
 <div class="field-unit__field">
   <%= f.select(field.permitted_attribute) do %>

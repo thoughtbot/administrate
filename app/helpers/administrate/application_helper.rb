@@ -5,6 +5,18 @@ module Administrate
       render locals: locals, partial: field.to_partial_path
     end
 
+    def field_label_text(resource_name, field_name, alternate = nil)
+      resource_class = resource_name.to_s.classify.constantize
+
+      I18n.t(
+        "helpers.label.#{resource_name}.#{field_name}",
+        default: [
+          (:"helpers.label.#{resource_name}.#{alternate}" if alternate),
+          resource_class.human_attribute_name(field_name)
+        ].compact
+      )
+    end
+
     def display_resource_name(resource_name)
       resource_name.
         to_s.

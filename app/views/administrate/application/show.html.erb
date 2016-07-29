@@ -32,10 +32,7 @@ as well as a link to its edit page.
 <dl>
   <% page.attributes.each do |attribute| %>
     <dt class="attribute-label">
-    <%= t(
-      "helpers.label.#{resource_name}.#{attribute.name}",
-      default: attribute.name.titleize,
-    ) %>
+      <%= field_label_text resource_name, attribute.name %>
     </dt>
 
     <dd class="attribute-data attribute-data--<%=attribute.html_class%>"

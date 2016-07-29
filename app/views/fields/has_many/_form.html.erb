@@ -20,7 +20,7 @@ and is augmented with [Selectize].
 %>
 
 <div class="field-unit__label">
-  <%= f.label field.attribute_key, field.attribute %>
+  <%= f.label field.attribute_key, field_label_text(resource_name, field.attribute, field.attribute_key) %>
 </div>
 <div class="field-unit__field">
   <%= f.select(field.attribute_key, nil, {}, multiple: true) do %>

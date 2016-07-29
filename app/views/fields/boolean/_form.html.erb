@@ -16,7 +16,7 @@ By default, the input is a checkbox.
 %>
 
 <div class="field-unit__label">
-  <%= f.label field.attribute %>
+  <%= f.label field.attribute, field_label_text(resource_name, field.attribute) %>
 </div>
 <div class="field-unit__field">
   <%= f.check_box field.attribute %>

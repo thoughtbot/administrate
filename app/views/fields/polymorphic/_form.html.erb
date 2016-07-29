@@ -19,7 +19,7 @@ so this partial renders a message to that effect.
 %>
 
 <div class="field-unit__label">
-  <%= f.label field.name %>
+  <%= f.label field.name, field_label_text(resource_name, field.attribute) %>
 </div>
 
 <%= t("administrate.fields.polymorphic.not_supported") %>
