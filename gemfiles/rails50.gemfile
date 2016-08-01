@@ -11,6 +11,7 @@ gem "pg"
 gem "redcarpet"
 gem "unicorn"
 gem "rails", "~> 5.0.0"
+gem "rails-controller-testing"
 
 group :development do
   gem "web-console", ">= 2.1.3"
