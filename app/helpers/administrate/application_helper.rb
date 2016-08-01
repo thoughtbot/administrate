@@ -32,5 +32,9 @@ module Administrate
         content_tag :use, nil, svg_attributes
       end
     end
+
+    def sanitized_order_params
+      params.permit(:search, :id, :order, :page, :per_page, :direction)
+    end
   end
 end
