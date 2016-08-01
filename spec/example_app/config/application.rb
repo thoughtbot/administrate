@@ -50,5 +50,9 @@ module AdministratePrototype
       # Do not swallow errors in after_commit/after_rollback callbacks.
       config.active_record.raise_in_transactional_callbacks = true
     end
+
+    if Rails::VERSION::MAJOR >= 5
+      config.active_record.time_zone_aware_types = [:datetime, :time]
+    end
   end
 end
