@@ -23,6 +23,12 @@ module Administrate
         @options = options
       end
 
+      def self.normalize(value, options = {})
+        return options.fetch(:empty_value, value) if value.empty?
+
+        value
+      end
+
       def self.permitted_attribute(attr)
         attr
       end
