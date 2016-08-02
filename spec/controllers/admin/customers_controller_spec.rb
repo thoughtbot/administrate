@@ -116,12 +116,13 @@ describe Admin::CustomersController, type: :controller do
       it "updates the requested customer" do
         customer = create(:customer)
         new_name = "new name"
-        new_attributes = { name: new_name }
+        new_attributes = { name: new_name, email_subscriber: "" }
 
         put :update, id: customer.to_param, customer: new_attributes
 
         customer.reload
         expect(customer.name).to eq new_name
+        expect(customer.email_subscriber).to be(false)
       end
 
       it "redirects to the customer" do
