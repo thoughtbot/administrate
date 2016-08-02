@@ -53,7 +53,11 @@ module Administrate
     end
 
     def normalize(attr, value)
-      attribute_types[attr.to_sym] ? attribute_types[attr.to_sym].normalize(value) : value
+      if attribute_types[attr.to_sym]
+        attribute_types[attr.to_sym].normalize(value)
+      else
+        value
+      end
     end
 
     private

@@ -24,9 +24,11 @@ module Administrate
       end
 
       def self.normalize(value, options = {})
-        return options.fetch(:empty_value, value) if value.empty?
-
-        value
+        if value.empty?
+          options.fetch(:empty_value, value)
+        else
+          value
+        end
       end
 
       def self.permitted_attribute(attr)
