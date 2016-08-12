@@ -7,7 +7,7 @@ module Administrate
         if data.nil?
           "-"
         else
-          format_string % data
+          format_string % value
         end
       end
 
@@ -23,6 +23,10 @@ module Administrate
 
       def decimals
         options.fetch(:decimals, 0)
+      end
+
+      def value
+        data * options.fetch(:multiplier, 1)
       end
     end
   end

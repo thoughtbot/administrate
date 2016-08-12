@@ -53,6 +53,16 @@ describe Administrate::Field::Number do
       end
     end
 
+    context "with `multiplier` option" do
+      it "multiples the number by the given multiplier" do
+        hundredth = number_with_options(100, multiplier: 0.01)
+        ten = number_with_options(100, multiplier: 10)
+
+        expect(hundredth.to_s).to eq("1")
+        expect(ten.to_s).to eq("1000")
+      end
+    end
+
     context "when data is nil" do
       it "returns a dash" do
         number = Administrate::Field::Number.new(:number, nil, :page)
