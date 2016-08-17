@@ -24,7 +24,11 @@ module Administrate
       private
 
       def candidate_resources
-        associated_class.all
+        if options[:limit]
+          associated_class.where(options[:limit])
+        else
+          associated_class.all
+        end
       end
 
       def display_candidate_resource(resource)
