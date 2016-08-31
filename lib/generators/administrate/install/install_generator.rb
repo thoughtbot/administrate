@@ -9,7 +9,7 @@ module Administrate
       source_root File.expand_path("../templates", __FILE__)
 
       def run_routes_generator
-        if dashboard_resources.none?
+        if not dashboard_resources.none?
           call_generator("administrate:routes")
           load Rails.root.join("config/routes.rb")
         end
