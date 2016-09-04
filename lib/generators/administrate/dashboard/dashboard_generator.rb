@@ -92,7 +92,7 @@ module Administrate
 
       def association_type(attribute)
         relationship = klass.reflections[attribute.to_s]
-        if relationship.has_one?
+        if relationship?
           "Field::HasOne"
         elsif relationship.collection?
           "Field::HasMany" + relationship_options_string(relationship)
