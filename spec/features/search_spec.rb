@@ -40,7 +40,6 @@ feature "Search" do
     clear_search
     expect(page_params).to eq("order=name")
     expect(page).to have_content(mismatch.email)
-
   end
 
   def clear_search
