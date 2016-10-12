@@ -34,7 +34,7 @@ as well as a link to its edit page.
     <dt class="attribute-label">
     <%= t(
       "helpers.label.#{resource_name}.#{attribute.name}",
-      default: attribute.name.titleize,
+      default: page.resource.class.human_attribute_name(attribute.name),
     ) %>
     </dt>
 
