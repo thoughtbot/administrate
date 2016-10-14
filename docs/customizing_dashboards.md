@@ -62,19 +62,57 @@ specify, including:
 - `Field::Select`
 - `Field::String`
 
+## Customizing Fields
+
+### Setting Options
+
 Each of the `Field` types take a different set of options,
-which are specified through the `.with_options` class method.
-For example, you might use the following to display currency,
-if the value is stored by the number of cents:
+which are specified through the `.with_options` class method:
+
+**Field::HasMany**
+
+`:limit` - Set the number of resources to display in the show view. Default is
+`5`.
+
+**Field::Number**
+
+`:decimals` - Set the number of decimals to display. Defaults to `0`.
+
+`:prefix` - Prefixes the number with a string. Defaults to `""`.
+
+For example, you might use the following to display U.S. currency:
 
 ```ruby
-  unit_price_in_cents: Field::Number.with_options(
-    title: "Unit Price",
+  unit_price: Field::Number.with_options(
     prefix: "$",
-    multiplier: 0.01,
     decimals: 2,
   )
 ```
+
+**Field::Select**
+
+`:collection` - Specify the array or range to select from.  Defaults to `[]`.
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `true`.
+
+**Field::String**
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `true`.
+
+`:truncate` - Set the number of characters to display in the index view.
+Defaults to `50`.
+
+**Field::Text**
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `false`.
+
+`:truncate` - Set the number of characters to display in the index view.
+Defaults to `50`.
+
+### Defining Labels
 
 To change the user-facing label for an attribute,
 define a custom I18n translation:
