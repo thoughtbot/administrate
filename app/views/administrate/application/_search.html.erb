@@ -14,7 +14,7 @@
     Press enter to search
   </span>
   <span class="search__clear">
-    <%= link_to params.except(:search) do %>
+    <%= link_to sanitized_order_params.except(:search) do %>
       <%= svg_tag "administrate/cancel.svg", "cancel-search", width: 16, height: 16 %>
     <% end %>
   </span>
