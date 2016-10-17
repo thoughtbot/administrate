@@ -9,9 +9,15 @@
   width: 100%;
 }
 
+.search__clear,
 .search__icon {
   svg {
     @include size(1em);
+  }
+}
+
+.search__icon {
+  path {
     fill: $hint-grey;
     transition: fill $base-duration $base-timing;
   }
@@ -20,6 +26,18 @@
     svg {
       fill: $action-color;
     }
+  }
+}
+
+.search__clear {
+  z-index: 2;
+
+  path {
+    fill: $hint-grey;
+  }
+
+  &:hover path {
+    fill: $action-color;
   }
 }
 
@@ -41,6 +59,7 @@
   color: $hint-grey;
   opacity: 0;
   transition: opacity $base-duration $base-timing;
+  z-index: 1;
 
   svg {
     @include size(100%);
