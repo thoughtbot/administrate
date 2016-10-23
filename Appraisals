@@ -1,5 +1,9 @@
 appraise "sass-3-4" do
   gem "sass", "3.4.0"
+
+  group :test do
+    gem "rails-controller-testing"
+  end
 end
 
 appraise "rails42" do
@@ -8,5 +12,8 @@ end
 
 appraise "rails50" do
   gem "rails", "~> 5.0.0"
-  gem "rails-controller-testing"
+
+  group :test do
+    gem "rails-controller-testing"
+  end
 end
