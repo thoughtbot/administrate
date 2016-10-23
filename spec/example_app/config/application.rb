@@ -28,11 +28,7 @@ module AdministratePrototype
       generate.view_specs false
     end
 
-    if Rails::VERSION::MAJOR < 5
-      config.action_controller.action_on_unpermitted_parameters = :raise
-    else
-      config.action_controller.action_on_unpermitted_parameters = :log
-    end
+    config.action_controller.action_on_unpermitted_parameters = :raise
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
