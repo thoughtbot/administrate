@@ -76,6 +76,14 @@ if the value is stored by the number of cents:
   )
 ```
 
+For example, if you wanted to pass a set of options from a model enum to a select field:
+
+```ruby
+  favorite_color: Field::Select.with_options(
+    collection: User.colors.keys
+  )
+```
+
 To change the user-facing label for an attribute,
 define a custom I18n translation:
 
