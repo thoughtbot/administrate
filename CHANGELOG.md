@@ -16,7 +16,7 @@
 
 ## Changes
 
-### Upcoming Release
+### 0.3.0 (Oct 28, 2016)
 
 * [#127] [UI] Add button to clear the search
 * [#656] [COMPAT] Add Rails 5 support

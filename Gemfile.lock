@@ -10,7 +10,7 @@ GIT
 PATH
   remote: .
   specs:
-    administrate (0.2.2)
+    administrate (0.3.0)
       autoprefixer-rails (~> 6.0)
       bourbon (~> 4.2)
       datetime_picker_rails (~> 0.0.7)
@@ -71,7 +71,7 @@ GEM
       rake
       thor (>= 0.14.0)
     arel (6.0.3)
-    autoprefixer-rails (6.4.1.1)
+    autoprefixer-rails (6.5.1.1)
       execjs
     awesome_print (1.6.1)
     binding_of_caller (0.7.2)
