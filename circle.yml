@@ -1,4 +1,6 @@
 dependencies:
+  pre:
+    - gem install bundler --version "1.13.5"
   post:
     - bundle exec appraisal install
 
