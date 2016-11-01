@@ -39,3 +39,22 @@ Each `Admin::FooController` can be overwritten to specify custom behavior.
 
 Once you have Administrate installed,
 visit <http://localhost:3000/admin> to see your new dashboard in action.
+
+## Create Additional Dashboards
+
+In order to create additional dashboards, pass in the resource name to 
+the dashboard generator. A dashboard and controller will be created.
+
+```bash
+$ rails generate administrate:dashboard Foo
+```
+
+Add a route for the new dashboard.
+
+```ruby
+# config/routes.rb
+
+namespace :admin do
+  resources :foos
+end
+```
