@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Product do
+RSpec.describe Catalog::Product do
   describe "validations" do
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:image_url) }

@@ -100,7 +100,9 @@ module Administrate
     end
 
     def resource_params
-      params.require(resource_name).permit(*permitted_attributes)
+      params
+        .require(resource_class.model_name.param_key)
+        .permit(*permitted_attributes)
     end
 
     def permitted_attributes

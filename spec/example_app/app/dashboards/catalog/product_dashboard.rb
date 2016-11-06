@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class ProductDashboard < Administrate::BaseDashboard
+class Catalog::ProductDashboard < Administrate::BaseDashboard
   ATTRIBUTES = [
     :name,
     :price,
