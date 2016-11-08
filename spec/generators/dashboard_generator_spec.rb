@@ -27,9 +27,9 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/foo_dashboard.rb")
           attrs = FooDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:id]).to eq(Administrate::Field::Number)
-          expect(attrs[:created_at]).to eq(Administrate::Field::DateTime)
-          expect(attrs[:updated_at]).to eq(Administrate::Field::DateTime)
+          expect(attrs["id"]).to eq(Administrate::Field::Number)
+          expect(attrs["created_at"]).to eq(Administrate::Field::DateTime)
+          expect(attrs["updated_at"]).to eq(Administrate::Field::DateTime)
         ensure
           remove_constants :Foo, :FooDashboard
         end
@@ -49,7 +49,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/foo_dashboard.rb")
           attrs = FooDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:name]).to eq(Administrate::Field::String)
+          expect(attrs["name"]).to eq(Administrate::Field::String)
         ensure
           remove_constants :Foo, :FooDashboard
         end
@@ -69,7 +69,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/foo_dashboard.rb")
           attrs = FooDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:ip_address]).
+          expect(attrs["ip_address"]).
             to eq(Administrate::Field::String.with_options(searchable: false))
         ensure
           remove_constants :Foo, :FooDashboard
@@ -81,7 +81,36 @@ describe Administrate::Generators::DashboardGenerator, :generator do
 
         run_generator ["customer"]
 
-        expect(dashboard).to contain("orders: Field::HasMany")
+        expect(dashboard).to contain('"orders" => Field::HasMany')
+      end
+
+      it "includes has_many relationships with namespaced model" do
+        begin
+          ActiveRecord::Schema.define do
+            create_table(:blog_posts)
+          end
+
+          module Blog
+            def self.table_name_prefix
+              'blog_'
+            end
+          end
+
+          class Blog::Post < ActiveRecord::Base
+            reset_column_information
+            has_many :comments
+          end
+
+          class Blog::Comment; end
+
+          run_generator ["blog/post"]
+          load file("app/dashboards/blog/post_dashboard.rb")
+          attrs = Blog::PostDashboard::ATTRIBUTE_TYPES
+
+          expect(attrs["blog/comments"]).to eq(Administrate::Field::HasMany)
+        ensure
+          remove_constants "Blog::Comment", "Blog::PostDashboard", "Blog::Post", "Blog"
+        end
       end
 
       it "looks for class_name options on has_many fields" do
@@ -94,7 +123,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         run_generator ["customer"]
 
         expect(dashboard).to contain(
-          'purchases: Field::HasMany.with_options(class_name: "Order")',
+          '"purchases" => Field::HasMany.with_options(class_name: "Order")',
         )
       end
 
@@ -115,9 +144,9 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/inventory_item_dashboard.rb")
           attrs = InventoryItemDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:price]).
+          expect(attrs["price"]).
             to eq(Administrate::Field::Number.with_options(decimals: 2))
-          expect(attrs[:quantity]).
+          expect(attrs["quantity"]).
             to eq(Administrate::Field::Number)
         ensure
           remove_constants :InventoryItem, :InventoryItemDashboard
@@ -127,9 +156,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       it "detects enum field as `String`" do
         begin
           ActiveRecord::Schema.define do
-            create_table :shipments do |t|
-              t.integer :status
-            end
+            create_table(:shipments) { |t| t.integer :status }
           end
 
           class Shipment < ActiveRecord::Base
@@ -141,7 +168,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/shipment_dashboard.rb")
           attrs = ShipmentDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:status]).
+          expect(attrs["status"]).
             to eq(Administrate::Field::String.with_options(searchable: false))
         ensure
           remove_constants :Shipment, :ShipmentDashboard
@@ -159,7 +186,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/user_dashboard.rb")
           attrs = UserDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:active]).to eq(Administrate::Field::Boolean)
+          expect(attrs["active"]).to eq(Administrate::Field::Boolean)
         ensure
           remove_constants :User, :UserDashboard
         end
@@ -183,9 +210,9 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/event_dashboard.rb")
           attrs = EventDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:start_date]).to eq(Administrate::Field::DateTime)
-          expect(attrs[:start_time]).to eq(Administrate::Field::DateTime)
-          expect(attrs[:ends_at]).to eq(Administrate::Field::DateTime)
+          expect(attrs["start_date"]).to eq(Administrate::Field::DateTime)
+          expect(attrs["start_time"]).to eq(Administrate::Field::DateTime)
+          expect(attrs["ends_at"]).to eq(Administrate::Field::DateTime)
         ensure
           remove_constants :Event, :EventDashboard
         end
@@ -220,22 +247,24 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             has_many :numbers
           end
 
-          class Number; end
           class Person < ActiveRecord::Base
             reset_column_information
           end
+
+          class Venue; end
+          class Number; end
 
           dashboard = file("app/dashboards/concert_dashboard.rb")
 
           run_generator ["concert"]
 
           expect(dashboard).to contain(
-            'attendees: Field::HasMany.with_options(class_name: "Person"),',
+            '"attendees" => Field::HasMany.with_options(class_name: "Person"),',
           )
-          expect(dashboard).to contain("venues: Field::HasMany,")
-          expect(dashboard).to contain("numbers: Field::HasMany,")
+          expect(dashboard).to contain('"venues" => Field::HasMany,')
+          expect(dashboard).to contain('"numbers" => Field::HasMany,')
         ensure
-          remove_constants :Concert, :Ticket, :Number, :Person
+          remove_constants :Concert, :Ticket, :Person, :Venue, :Number
         end
       end
 
@@ -244,18 +273,51 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           ActiveRecord::Schema.define do
             create_table(:comments) { |t| t.references :post }
           end
+
           class Comment < ActiveRecord::Base
             belongs_to :post
           end
+
+          class Post; end
 
           run_generator ["comment"]
           load file("app/dashboards/comment_dashboard.rb")
           attrs = CommentDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:post]).to eq(Administrate::Field::BelongsTo)
-          expect(attrs.keys).not_to include(:post_id)
+          expect(attrs["post"]).to eq(Administrate::Field::BelongsTo)
+          expect(attrs.keys).not_to include("post_id")
         ensure
-          remove_constants :Comment, :CommentDashboard
+          remove_constants :Post, :Comment, :CommentDashboard
+        end
+      end
+
+      it "detects belongs_to relationships with namespace" do
+        begin
+          ActiveRecord::Schema.define do
+            create_table(:blog_comments) { |t| t.references :post }
+          end
+
+          module Blog
+            def self.table_name_prefix
+              "blog_"
+            end
+          end
+
+          class Blog::Post; end
+
+          class Blog::Comment < ActiveRecord::Base
+            belongs_to :post
+          end
+
+          run_generator ["blog/comment"]
+          load file("app/dashboards/blog/comment_dashboard.rb")
+          attrs = Blog::CommentDashboard::ATTRIBUTE_TYPES
+
+          expect(attrs["blog/post"]).to eq(Administrate::Field::BelongsTo)
+          expect(attrs.keys).not_to include("post_id")
+          expect(attrs.keys).not_to include("blog_post_id")
+        ensure
+          remove_constants "Blog::Comment", "Blog::CommentDashboard", "Blog::Post", :Blog
         end
       end
 
@@ -280,8 +342,8 @@ describe Administrate::Generators::DashboardGenerator, :generator do
 
           expected_field = Administrate::Field::BelongsTo.
             with_options(class_name: "User")
-          expect(attrs[:sender]).to eq(expected_field)
-          expect(attrs[:recipient]).to eq(expected_field)
+          expect(attrs["sender"]).to eq(expected_field)
+          expect(attrs["recipient"]).to eq(expected_field)
         ensure
           remove_constants :User, :Invitation, :InvitationDashboard
         end
@@ -302,9 +364,9 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/comment_dashboard.rb")
           attrs = CommentDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:commentable]).to eq(Administrate::Field::Polymorphic)
-          expect(attrs.keys).not_to include(:commentable_id)
-          expect(attrs.keys).not_to include(:commentable_type)
+          expect(attrs["commentable"]).to eq(Administrate::Field::Polymorphic)
+          expect(attrs.keys).not_to include("commentable_id")
+          expect(attrs.keys).not_to include("commentable_type")
         ensure
           remove_constants :Comment, :CommentDashboard
         end
@@ -318,6 +380,10 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             create_table :profiles do |t|
               t.references :account
             end
+          end
+
+          class Profile < ActiveRecord::Base
+            reset_column_information
           end
 
           class Account < ActiveRecord::Base
@@ -334,9 +400,9 @@ describe Administrate::Generators::DashboardGenerator, :generator do
 
           run_generator ["account"]
 
-          expect(dashboard).to contain("profile: Field::HasOne")
+          expect(dashboard).to contain('"profile" => Field::HasOne')
         ensure
-          remove_constants :Account, :Ticket
+          remove_constants :Account, :Ticket, :Profile
         end
       end
     end
@@ -389,7 +455,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/foo_dashboard.rb")
           attrs = FooDashboard::FORM_ATTRIBUTES
 
-          expect(attrs).to match_array([:name])
+          expect(attrs).to match_array(["name"])
         ensure
           remove_constants :Foo, :FooDashboard
         end
@@ -415,7 +481,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         load file("app/dashboards/foo_dashboard.rb")
 
         attrs = FooDashboard::SHOW_PAGE_ATTRIBUTES
-        expect(attrs).to match_array([:name, :id, :created_at, :updated_at])
+        expect(attrs).to match_array(["name", "id", "created_at", "updated_at"])
       ensure
         remove_constants :Foo, :FooDashboard
       end

@@ -9,7 +9,7 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
 <% attributes.each do |attr| -%>
-    <%= attr %>: <%= field_type(attr) %>,
+    "<%= field_name(attr) %>" => <%= field_type(attr) %>,
 <% end -%>
   }.freeze
 
@@ -21,7 +21,7 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
 <%=
   attributes.first(COLLECTION_ATTRIBUTE_LIMIT).map do |attr|
-    "    :#{attr},"
+    "    \"#{field_name(attr)}\","
   end.join("\n")
 %>
   ].freeze
@@ -31,7 +31,7 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
 <%=
   attributes.map do |attr|
-    "    :#{attr},"
+    "    \"#{field_name(attr)}\","
   end.join("\n")
 %>
   ].freeze
@@ -42,7 +42,7 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
 <%=
   form_attributes.map do |attr|
-    "    :#{attr},"
+    "    \"#{field_name(attr)}\","
   end.join("\n")
 %>
   ].freeze

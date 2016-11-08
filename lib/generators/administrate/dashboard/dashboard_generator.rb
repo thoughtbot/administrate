@@ -29,16 +29,15 @@ module Administrate
       def create_dashboard_definition
         template(
           "dashboard.rb.erb",
-          Rails.root.join("app/dashboards/#{file_name}_dashboard.rb"),
+          File.join("app/dashboards", class_path, "#{file_name}_dashboard.rb")
         )
       end
 
       def create_resource_controller
-        destination = Rails.root.join(
-          "app/controllers/admin/#{file_name.pluralize}_controller.rb",
+        template(
+          "controller.rb.erb",
+          File.join("app/controllers/admin", class_path, "#{file_name.pluralize}_controller.rb")
         )
-
-        template("controller.rb.erb", destination)
       end
 
       private
@@ -63,6 +62,26 @@ module Administrate
           [relationship + "_id", relationship + "_type"]
         when "Field::BelongsTo"
           relationship + "_id"
+        end
+      end
+
+      def field_name(attribute)
+        if klass.reflections.keys.include?(attribute.to_s)
+          association_field_name(attribute)
+        else
+          attribute
+        end
+      end
+
+      def association_field_name(attribute)
+        relationship = klass.reflections[attribute.to_s]
+
+        if relationship.polymorphic?
+          attribute
+        else
+          [relationship.klass.name.deconstantize.underscore, attribute]
+            .reject(&:blank?)
+            .join('/')
         end
       end
 
