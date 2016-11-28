@@ -6,7 +6,7 @@ it:
       destroy: Elimina
       edit: Modifica
       show: Visualizza
-      new: "New %{resource_name}"
+      new: "Aggiungi %{resource_name}"
     controller:
       create:
         success: "%{resource} è stato creato con successo."
