@@ -5,15 +5,16 @@ module Administrate
       render locals: locals, partial: field.to_partial_path
     end
 
-    def display_resource_name(resource_name)
+    def display_resource_name(resource_name, count = 0)
+      default = count == 0 ? resource_name.to_s.pluralize.titleize : nil
       resource_name.
         to_s.
         classify.
         constantize.
         model_name.
         human(
-          count: 0,
-          default: resource_name.to_s.pluralize.titleize,
+          count: count,
+          default: default,
         )
     end
 
