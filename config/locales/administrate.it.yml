@@ -6,6 +6,7 @@ it:
       destroy: Elimina
       edit: Modifica
       show: Visualizza
+      show_resource: "Visualizza %{resource_name}"
       new: "Aggiungi %{resource_name}"
     controller:
       create:

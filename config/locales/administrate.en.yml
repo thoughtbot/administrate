@@ -6,6 +6,7 @@ en:
       destroy: Destroy
       edit: Edit
       show: Show
+      show_resource: "Show %{resource_name}"
       new: "New %{resource_name}"
     controller:
       create:

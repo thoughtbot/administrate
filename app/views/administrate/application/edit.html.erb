@@ -21,7 +21,9 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
   <h1 class="header__heading"><%= content_for(:title) %></h1>
   <div class="header__actions">
     <%= link_to(
-      "Show #{page.page_title}",
+      t('administrate.actions.show_resource',
+        resource_name: display_resource_name(resource_name, count=1),
+        default: "Show #{page.page_title}"),
       [namespace, page.resource],
       class: "button",
     ) %>

@@ -14,3 +14,8 @@
 /tags
 /tmp/*
 /spec/example_app/tmp/*
+
+administrate.iml
+.idea
+.ruby-gemset
+.ruby-version
