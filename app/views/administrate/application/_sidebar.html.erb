@@ -12,7 +12,7 @@ as defined by the routes in the `admin/` namespace
     <li>
       <%= link_to(
         display_resource_name(resource),
-        [namespace, resource],
+        [namespace, resource.path],
         class: "sidebar__link sidebar__link--#{nav_link_state(resource)}"
       ) %>
     </li>
