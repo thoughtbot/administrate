@@ -16,6 +16,10 @@
 
 ## Changes
 
+### Upcoming Release
+
+* [#704] [I18n] Fix word on pt-BR translation
+
 ### 0.3.0 (Oct 28, 2016)
 
 * [#127] [UI] Add button to clear the search
