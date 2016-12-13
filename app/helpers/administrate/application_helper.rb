@@ -41,5 +41,9 @@ module Administrate
     def clear_search_params
       params.except(:search, :page).permit(:order, :direction, :per_page)
     end
+
+    def sidebar_resources(namespace)
+      Administrate::Namespace.new(namespace).resources
+    end
   end
 end
