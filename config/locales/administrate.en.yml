@@ -8,6 +8,12 @@ en:
       show: Show
       show_resource: "Show %{resource_name}"
       new: "New %{resource_name}"
+      form:
+        error:
+          zero: errors
+          one: error
+          other: errors
+        error_explanation: "%{error_count} %{pluralized_errors} prohibited this %{resource_name} from being saved:"
     controller:
       create:
         success: "%{resource} was successfully created."

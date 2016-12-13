@@ -18,8 +18,15 @@ and renders all form fields for a resource's editable attributes.
   <% if page.resource.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(page.resource.errors.count, "error") %>
-        prohibited this <%= page.resource_name %> from being saved:
+        <%=
+          t('administrate.actions.form.error_explanation',
+          resource_name: display_resource_name(resource_name, count=1),
+          error_count: page.resource.errors.count,
+          pluralized_errors: t('administrate.actions.form.error',
+                               count: page.resource.errors.count,
+                               default: (page.resource.errors.count == 1 ? 'error' : 'errors' ) ),
+          default: "#{pluralize(page.resource.errors.count, "error")} prohibited this #{page.resource_name} from being saved:")
+        %>
       </h2>
 
       <ul>

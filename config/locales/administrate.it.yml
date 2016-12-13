@@ -8,6 +8,12 @@ it:
       show: Visualizza
       show_resource: "Visualizza %{resource_name}"
       new: "Aggiungi %{resource_name}"
+      form:
+        error:
+          zero: errori
+          one: errore
+          other: errori
+        error_explanation: "%{error_count} %{pluralized_errors} hanno impedito che %{resource_name} fosse salvato:"
     controller:
       create:
         success: "%{resource} è stato creato con successo."
