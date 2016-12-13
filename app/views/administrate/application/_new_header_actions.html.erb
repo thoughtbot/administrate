@@ -1,0 +1,16 @@
+<%#
+# Header actions of new page
+
+This partial is used to display the header actions of the new page.
+
+## Local variables:
+
+- `page`:
+  An instance of [Administrate::Page::Form][1].
+  Contains helper methods to help display a form,
+  and knows which attributes should be displayed in the resource's form.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Form
+%>
+
+<%= link_to t('back', default: 'Back'), :back, class: "button" %>

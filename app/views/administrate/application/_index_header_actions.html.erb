@@ -1,0 +1,22 @@
+<%#
+# Header actions of index page
+
+This partial is used to display the header actions of the index page.
+
+## Local variables:
+
+- `page`:
+  An instance of [Administrate::Page::Collection][1].
+  Contains helper methods to help display a table,
+  and knows which attributes should be displayed in the resource's table.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Collection
+%>
+
+<%= link_to(
+      t('administrate.actions.new',
+        resource_name: display_resource_name(resource_name, count=1),
+        default: "New #{page.resource_name.titleize.downcase}"),
+      [:new, namespace, page.resource_name],
+      class: "button",
+    ) %>

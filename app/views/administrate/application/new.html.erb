@@ -20,7 +20,7 @@ to do the heavy lifting.
 <header class="header">
   <h1 class="header__heading"><%= content_for(:title) %></h1>
   <div class="header__actions">
-    <%= link_to 'Back', :back, class: "button" %>
+    <%= render 'new_header_actions', page: page %>
   </div>
 </header>
 

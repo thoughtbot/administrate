@@ -1,0 +1,21 @@
+<%#
+# Header actions of show page
+
+This partial is used to display the header actions of the show page.
+
+## Local variables:
+
+- `page`:
+  An instance of [Administrate::Page::Show][1].
+  Contains methods for accessing the resource to be displayed on the page,
+  as well as helpers for describing how each attribute of the resource
+  should be displayed.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Show
+%>
+
+<%= link_to(
+      t('administrate.actions.edit', default: "Edit"),
+      [:edit, namespace, page.resource],
+      class: "button",
+    ) %>
