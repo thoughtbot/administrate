@@ -8,6 +8,8 @@ it:
       show: Visualizza
       show_resource: "Visualizza %{resource_name}"
       new: "Aggiungi %{resource_name}"
+      back: Indietro
+      search: Cerca
       form:
         error:
           zero: errori

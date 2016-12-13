@@ -8,6 +8,8 @@ en:
       show: Show
       show_resource: "Show %{resource_name}"
       new: "New %{resource_name}"
+      back: Back
+      search: Search
       form:
         error:
           zero: errors
