@@ -11,7 +11,7 @@ describe Administrate::Field::BelongsTo do
     it "returns a partial based on the page being rendered" do
       page = :show
       owner = double
-      field = Administrate::Field::BelongsTo.new(:owner, owner, page)
+      field = Administrate::Field::BelongsTo.new(Class.new.new,:owner, owner, page)
 
       path = field.to_partial_path
 
@@ -27,7 +27,7 @@ describe Administrate::Field::BelongsTo do
 
         association = Administrate::Field::BelongsTo.
           with_options(class_name: "Foo")
-        field = association.new(:customers, [], :show)
+        field = association.new(Foo,:customers, [], :show)
         candidates = field.associated_resource_options
 
         expect(Foo).to have_received(:all)
