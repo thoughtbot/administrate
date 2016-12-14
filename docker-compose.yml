@@ -1,0 +1,16 @@
+version: '2'
+services:
+  gem:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/gem'
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
+  postgres:
+    image: postgres:9.5
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword

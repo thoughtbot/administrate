@@ -1,5 +1,8 @@
 development: &default
   adapter: postgresql
+  host: postgres
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
   database: administrate-prototype_development
   encoding: utf8
   min_messages: warning
