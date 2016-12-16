@@ -16,7 +16,7 @@ RUN \
   apt-get autoremove -y && \
   apt-get clean all
 
-RUN gem install bundler
+RUN gem install bundler unicorn
 
 RUN mkdir /gem
 WORKDIR /gem
