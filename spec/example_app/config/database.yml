@@ -1,8 +1,10 @@
 development: &default
   adapter: postgresql
+  <% if ENV['POSTGRES_USER'].presence %>
   host: postgres
   username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
+  <% end %>
   database: administrate-prototype_development
   encoding: utf8
   min_messages: warning
