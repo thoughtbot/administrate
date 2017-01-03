@@ -41,7 +41,7 @@ module Administrate
       end
 
       def more_than_limit?
-        data.count > limit
+        data.count(:all) > limit
       end
 
       private
