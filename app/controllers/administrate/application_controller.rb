@@ -13,6 +13,7 @@ module Administrate
         resources: resources,
         search_term: search_term,
         page: page,
+        show_search_bar: show_search_bar?(page)
       }
     end
 
@@ -121,6 +122,18 @@ module Administrate
         "administrate.controller.#{key}",
         resource: resource_resolver.resource_title,
       )
+    end
+
+    def show_search_bar?(page)
+      show_search_bar = false
+      page.attribute_types.each do |name, attribute|
+        if attribute.searchable?
+          show_search_bar = true
+          break
+        end
+      end
+
+      show_search_bar
     end
   end
 end
