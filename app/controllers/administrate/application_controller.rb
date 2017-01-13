@@ -13,7 +13,7 @@ module Administrate
         resources: resources,
         search_term: search_term,
         page: page,
-        show_search_bar: show_search_bar?(page)
+        show_search_bar: show_search_bar?
       }
     end
 
@@ -124,9 +124,11 @@ module Administrate
       )
     end
 
-    def show_search_bar?(page)
+    def show_search_bar?
       show_search_bar = false
-      page.attribute_types.each do |name, attribute|
+      dashboard.attribute_types_for(
+        dashboard.collection_attributes
+      ).each do |name, attribute|
         if attribute.searchable?
           show_search_bar = true
           break
