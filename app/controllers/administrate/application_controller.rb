@@ -125,17 +125,9 @@ module Administrate
     end
 
     def show_search_bar?
-      show_search_bar = false
       dashboard.attribute_types_for(
         dashboard.collection_attributes
-      ).each do |name, attribute|
-        if attribute.searchable?
-          show_search_bar = true
-          break
-        end
-      end
-
-      show_search_bar
+      ).any? { |_name, attribute| attribute.searchable? }
     end
   end
 end
