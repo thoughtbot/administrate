@@ -2,7 +2,7 @@
 ja:
   administrate:
     actions:
-      confirm: 本当によろしいですね？
+      confirm: 本当によろしいですか？
       destroy: 削除
       edit: 編集
       show: 参照
@@ -16,7 +16,7 @@ ja:
     fields:
       has_many:
         more: "%{total_count} 件中 %{count} 件表示"
-        none: データはありません
+        none: データがありません
       polymorphic:
         not_supported: フォームでは「多：多」の関連をサポートしていません。
       has_one:
