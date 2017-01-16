@@ -48,19 +48,15 @@ else
   # Set up the staging and production apps.
   if heroku join --app administrate-prototype-staging > /dev/null 2>&1; then
     git remote add staging git@heroku.com:administrate-prototype-staging.git || true
-    printf 'You are a collaborator on the "administrate-prototype-staging" Heroku app
-  '
+    printf 'You are a collaborator on the "administrate-prototype-staging" Heroku app\n'
   else
-    printf 'Ask for access to the "administrate-prototype-staging" Heroku app
-  '
+    printf 'Ask for access to the "administrate-prototype-staging" Heroku app\n'
   fi
 
   if heroku join --app administrate-prototype-production > /dev/null 2>&1; then
     git remote add production git@heroku.com:administrate-prototype-production.git || true
-    printf 'You are a collaborator on the "administrate-prototype-production" Heroku app
-  '
+    printf 'You are a collaborator on the "administrate-prototype-production" Heroku app\n'
   else
-    printf 'Ask for access to the "administrate-prototype-production" Heroku app
-  '
+    printf 'Ask for access to the "administrate-prototype-production" Heroku app\n'
   fi
 fi
