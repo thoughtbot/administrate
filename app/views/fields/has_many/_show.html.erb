@@ -22,17 +22,11 @@ from the associated resource class's dashboard.
   <%= render(
     "collection",
     collection_presenter: field.associated_collection,
-    resources: field.resources
+    resources: field.resources(params[field.name])
   ) %>
 
   <% if field.more_than_limit? %>
-    <span>
-      <%= t(
-        'administrate.fields.has_many.more',
-        count: field.limit,
-        total_count: field.data.count(:all),
-      ) %>
-    </span>
+    <%= paginate field.resources(params[field.name]), param_name: "#{field.name}" %>
   <% end %>
 
 <% else %>

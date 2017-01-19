@@ -36,8 +36,8 @@ module Administrate
         self.class.permitted_attribute(attribute)
       end
 
-      def resources
-        data.limit(limit)
+      def resources(page = 1)
+        data.page(page).per(limit)
       end
 
       def more_than_limit?
