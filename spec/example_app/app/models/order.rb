@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   belongs_to :customer
 
   validates :customer, presence: true
-  has_many :line_items
+  has_many :line_items, dependent: :destroy
 
   validates :address_line_one, presence: true
   validates :address_line_two, presence: true
