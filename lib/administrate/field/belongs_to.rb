@@ -13,12 +13,12 @@ module Administrate
 
       def associated_resource_options
         [nil] + candidate_resources.map do |resource|
-          [display_candidate_resource(resource), resource.id]
+          [display_candidate_resource(resource), resource.send(primary_key)]
         end
       end
 
       def selected_option
-        data && data.id
+        data && data.send(primary_key)
       end
 
       private
