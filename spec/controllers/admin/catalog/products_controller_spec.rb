@@ -61,7 +61,7 @@ describe Admin::Catalog::ProductsController, type: :controller do
   end
 
   describe "POST create" do
-    describe "with valid params" do
+    context "with valid params" do
       it "creates a new Product" do
         expect {
           post :create, catalog_product: attributes_for(:product)
@@ -75,7 +75,7 @@ describe Admin::Catalog::ProductsController, type: :controller do
       end
     end
 
-    describe "with invalid params" do
+    context "with invalid params" do
       it "passes a form page object to the view" do
         invalid_attributes = { name: "" }
 
@@ -99,7 +99,7 @@ describe Admin::Catalog::ProductsController, type: :controller do
   end
 
   describe "PUT update" do
-    describe "with valid params" do
+    context "with valid params" do
       it "updates the requested product" do
         product = create(:product)
         new_name = "new name"
@@ -122,7 +122,7 @@ describe Admin::Catalog::ProductsController, type: :controller do
       end
     end
 
-    describe "with invalid params" do
+    context "with invalid params" do
       it "re-renders the 'edit' template" do
         product = create(:product)
         invalid_attributes = { name: "" }
@@ -163,18 +163,5 @@ describe Admin::Catalog::ProductsController, type: :controller do
 
       expect(response).to redirect_to(admin_catalog_products_path)
     end
-  end
-
-  def capture_view_locals
-    allow(@controller).to receive(:render)
-    yield
-
-    locals = nil
-    expect(@controller).to have_received(:render).at_least(1).times do |*args|
-      args.each do |arg|
-        locals ||= arg.try(:fetch, :locals, nil)
-      end
-    end
-    locals
   end
 end
