@@ -6,6 +6,7 @@ describe Administrate::Field::BelongsTo do
   include FieldMatchers
 
   it { should_permit_param("foo_id", for_attribute: :foo) }
+  it { should_permit_param("bar_id", for_attribute: "bar") }
 
   describe "#to_partial_path" do
     it "returns a partial based on the page being rendered" do

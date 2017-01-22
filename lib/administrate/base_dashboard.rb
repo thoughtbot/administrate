@@ -15,23 +15,23 @@ module Administrate
     include Administrate
 
     def attribute_types
-      self.class::ATTRIBUTE_TYPES
+      self.class::ATTRIBUTE_TYPES.stringify_keys
     end
 
     def attribute_type_for(attribute_name)
-      attribute_types.fetch(attribute_name) do
-        fail attribute_not_found_message(attribute_name)
+      attribute_types.fetch(attribute_name.to_s) do
+        fail attribute_not_found_message(attribute_name.to_s)
       end
     end
 
     def attribute_types_for(attribute_names)
       attribute_names.each_with_object({}) do |name, attributes|
-        attributes[name] = attribute_type_for(name)
+        attributes[name.to_s] = attribute_type_for(name)
       end
     end
 
     def form_attributes
-      self.class::FORM_ATTRIBUTES
+      self.class::FORM_ATTRIBUTES.map(&:to_s)
     end
 
     def permitted_attributes
@@ -41,11 +41,11 @@ module Administrate
     end
 
     def show_page_attributes
-      self.class::SHOW_PAGE_ATTRIBUTES
+      self.class::SHOW_PAGE_ATTRIBUTES.map(&:to_s)
     end
 
     def collection_attributes
-      self.class::COLLECTION_ATTRIBUTES
+      self.class::COLLECTION_ATTRIBUTES.map(&:to_s)
     end
 
     def display_resource(resource)
