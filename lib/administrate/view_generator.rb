@@ -24,7 +24,11 @@ module Administrate
     end
 
     def resource_path
-      args.first.try(:underscore).try(:pluralize) || "application"
+      if args.none? || args.first == "application"
+        "application"
+      else
+        args.first.underscore.pluralize
+      end
     end
   end
 end
