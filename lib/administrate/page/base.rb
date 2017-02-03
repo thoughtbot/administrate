@@ -12,7 +12,7 @@ module Administrate
       end
 
       def resource_path
-        @resource_path ||= resource_name.gsub('/', '_')
+        @resource_path ||= resource_name.gsub("/", "_")
       end
 
       protected

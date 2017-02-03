@@ -10,7 +10,7 @@ describe Administrate::Page::Base do
       expect(dashboard_page.resource_name).to eq "order"
     end
 
-    it "returns a string for a namedpaced resource path" do
+    it "returns a string for a namespaced resource path" do
       dashboard = OrderDashboard.new
       dashboard_page = Administrate::Page::Base.new(dashboard)
 
