@@ -24,7 +24,13 @@ module Administrate
     end
 
     def resource_path
-      args.first.try(:underscore).try(:pluralize) || "application"
+      args.first.try(:underscore).try(:pluralize) || BaseResourcePath.new
+    end
+
+    class BaseResourcePath
+      def to_s
+        "application"
+      end
     end
   end
 end
