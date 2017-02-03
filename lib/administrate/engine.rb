@@ -16,6 +16,7 @@ require "administrate/order"
 require "administrate/resource_resolver"
 require "administrate/search"
 require "administrate/namespace"
+require "administrate/namespace/resource"
 
 module Administrate
   class Engine < ::Rails::Engine
