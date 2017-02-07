@@ -1,4 +1,5 @@
 require "administrate/order"
+require "rails_helper"
 
 describe Administrate::Order do
   describe "#apply" do
@@ -48,6 +49,33 @@ describe Administrate::Order do
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:order).with(name: :desc)
+        expect(ordered).to eq(relation)
+      end
+    end
+
+    context 'when `order` uses an association with no default_sort method' do
+      it 'orders by `name` on the associated record by default' do
+        order = Administrate::Order.new(:customer, :desc)
+        relation = Order.all
+        allow(relation).to receive(:order).and_return(relation)
+
+        ordered = order.apply(relation)
+
+        expect(relation).to have_received(:order).with('customers.name DESC')
+        expect(ordered).to eq(relation)
+      end
+    end
+
+    context 'when `order` uses an association with a default_sort method' do
+      it 'orders by the attribute given in the default_sort method' do
+        order = Administrate::Order.new(:customer, :asc)
+        relation = Order.all
+        allow(relation).to receive(:order).and_return(relation)
+        allow(Customer).to receive(:default_sort).and_return(:updated_at)
+
+        ordered = order.apply(relation)
+
+        expect(relation).to have_received(:order).with('customers.updated_at ASC')
         expect(ordered).to eq(relation)
       end
     end
