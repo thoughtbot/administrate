@@ -4,18 +4,19 @@ RSpec.describe "customer show page" do
 
   it "displays the customers orders paginated" do
     customer = create(:customer)
-    orders = []
-    10.times do
-      orders << create(:order, customer: customer)
-    end
+    first_order, _a, _b, last_order = Array.new(4) { create(:order, customer: customer) }
 
     visit admin_customer_path(customer)
+    within('.attribute-data--has-many') do
+      expect(page).to have_content(first_order.id)
+      expect(page).to have_no_content(last_order.id)
+    end
 
-    expect(page).to have_content(orders[3].id)
-    expect(page).to have_no_content(orders[8].id)
     click_on("Next ›")
-    expect(page).to have_content(orders[8].id)
-    expect(page).to have_no_content(orders[3].id)
+    within('.attribute-data--has-many') do
+      expect(page).to have_content(last_order.id)
+      expect(page).to have_no_content(first_order.id)
+    end
   end
 
   it "displays the customer's title attribute as the header" do
