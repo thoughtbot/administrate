@@ -13,6 +13,17 @@ RSpec.describe Order do
     it { should validate_presence_of(:address_zip) }
   end
 
+  it "deletes associated line_items when deleted itself" do
+    product = create(:product)
+    customer = create(:customer)
+    order = create(:order, customer: customer)
+    create(:line_item, product: product, order: order)
+
+    order.destroy
+
+    expect(LineItem.all).to be_empty
+  end
+
   describe "#total_price" do
     it "returns 0 when there are no line items" do
       order = build(:order)

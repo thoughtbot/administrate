@@ -31,26 +31,24 @@ if ! command -v foreman > /dev/null; then
   printf 'See https://github.com/ddollar/foreman for install instructions.\n'
 fi
 
+if ! command -v phantomjs > /dev/null; then
+  printf 'Phantomjs is not installed.\n'
+  printf 'See http://phantomjs.org/download.html for install instructions.\n'
+fi
+
 # Only if this isn't CI
 # if [ -z "$CI" ]; then
 # fi
 
-# Set up the staging and production apps.
-if heroku join --app administrate-prototype-staging &> /dev/null; then
-  git remote add staging git@heroku.com:administrate-prototype-staging.git || true
-  printf 'You are a collaborator on the "administrate-prototype-staging" Heroku app
-'
+if ! command -v heroku > /dev/null; then
+  printf 'Heroku is not installed.\n'
+  printf "You'l need it to contribute to the demo app\n"
+  printf 'https://devcenter.heroku.com/articles/heroku-cli for install instructions\n'
 else
-  printf 'Ask for access to the "administrate-prototype-staging" Heroku app
-'
+  if heroku join --app administrate-prototype > /dev/null 2>&1; then
+    git remote add staging git@heroku.com:administrate-prototype.git || true
+    printf 'You are a collaborator on the "administrate-prototype" Heroku app\n'
+  else
+    printf 'Ask for access to the "administrate-prototype" Heroku app\n'
+  fi
 fi
-
-if heroku join --app administrate-prototype-production &> /dev/null; then
-  git remote add production git@heroku.com:administrate-prototype-production.git || true
-  printf 'You are a collaborator on the "administrate-prototype-production" Heroku app
-'
-else
-  printf 'Ask for access to the "administrate-prototype-production" Heroku app
-'
-fi
-

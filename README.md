@@ -59,7 +59,7 @@ Restart your server, and visit http://localhost:3000/admin
 to see your new dashboard in action.
 
 To customize the appearance, behavior, and contents of the dashboard,
-see the guides at http://administrate-docs.herokuapp.com.
+see the guides at https://administrate-prototype.herokuapp.com.
 
 ## Repository Structure
 
