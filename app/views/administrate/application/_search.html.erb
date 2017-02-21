@@ -1,6 +1,6 @@
 <form class="search">
   <span class="search__icon">
-    <%= svg_tag "administrate/search.svg", "search", width: 16, height: 16 %>
+    <%= inline_svg "administrate/search.svg", "search", width: 16, height: 16 %>
   </span>
   <input
     type="text"
@@ -15,7 +15,7 @@
   </span>
   <span class="search__clear">
     <%= link_to clear_search_params do %>
-      <%= svg_tag "administrate/cancel.svg", "cancel-search", width: 16, height: 16 %>
+      <%= inline_svg "administrate/cancel.svg", "cancel-search", width: 16, height: 16 %>
     <% end %>
   </span>
 </form>
