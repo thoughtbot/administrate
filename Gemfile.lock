@@ -305,6 +305,7 @@ DEPENDENCIES
   formulaic
   high_voltage
   i18n-tasks
+  inline_svg
   launchy
   markdown-rails
   pg
