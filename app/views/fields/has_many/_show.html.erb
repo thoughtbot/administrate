@@ -30,7 +30,7 @@ from the associated resource class's dashboard.
       <%= t(
         'administrate.fields.has_many.more',
         count: field.limit,
-        total_count: field.data.count,
+        total_count: field.data.count(:all),
       ) %>
     </span>
   <% end %>

@@ -28,5 +28,23 @@ describe Administrate::Generators::ViewsGenerator, :generator do
         behavior: :revoke,
       )
     end
+
+    context "when run without any arguments" do
+      it "calls the sub-generators without any arguments" do
+        application_resource_path = instance_double("BaseResourcePath")
+        allow(Administrate::ViewGenerator::BaseResourcePath).to receive(:new).
+          and_return(application_resource_path)
+        allow(Rails::Generators).to receive(:invoke)
+
+        run_generator
+
+        %w[index show new edit].each do |generator|
+          expect(Rails::Generators). to invoke_generator(
+            "administrate:views:#{generator}",
+            [application_resource_path],
+          )
+        end
+      end
+    end
   end
 end

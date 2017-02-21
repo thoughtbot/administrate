@@ -46,7 +46,7 @@ Add Administrate to your Gemfile:
 
 ```ruby
 # Gemfile
-gem "administrate", "~> 0.2.2"
+gem "administrate", "~> 0.3.0"
 ```
 
 Re-bundle, then run the installer:
@@ -59,7 +59,7 @@ Restart your server, and visit http://localhost:3000/admin
 to see your new dashboard in action.
 
 To customize the appearance, behavior, and contents of the dashboard,
-see the guides at http://administrate-docs.herokuapp.com.
+see the guides at https://administrate-prototype.herokuapp.com.
 
 ## Repository Structure
 

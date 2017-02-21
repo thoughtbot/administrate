@@ -22,4 +22,16 @@ RSpec.describe Product do
       it { should validate_uniqueness_of(:slug) }
     end
   end
+
+  it "deletes associated line_items when deleted itself" do
+    product = create(:product)
+    customer = create(:customer)
+    order = create(:order, customer: customer)
+    create(:line_item, product: product, order: order)
+
+    product.destroy
+
+    expect(Product.all).to be_empty
+  end
+
 end
