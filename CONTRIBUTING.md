@@ -30,6 +30,19 @@ This is a time for discussion and improvements,
 and making the necessary changes will be required before we can
 merge the contribution.
 
+## Docker Development environment:
+
+You need docker and docker-compose installed.
+
+Start the postgres server: `docker-compose up -d postgres`
+
+Wait a few seconds for it to set itself up (make sure you see "database system
+is ready to accept connections" in `docker-compose logs -f postgres`).
+
+Set everything up: `docker-compose run --rm gem ./bin/setup`
+
+Run tests: `docker-compose run --rm gem rake`
+
 ## Performance Improvements
 
 Improving our users' experience should be the primary goal of any optimization.

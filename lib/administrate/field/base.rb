@@ -28,6 +28,10 @@ module Administrate
         attr
       end
 
+      def label
+        options[:label] || attribute.to_s.humanize.capitalize
+      end
+
       def html_class
         self.class.html_class
       end
