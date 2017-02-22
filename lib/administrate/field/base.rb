@@ -16,7 +16,8 @@ module Administrate
         false
       end
 
-      def initialize(attribute, data, page, options = {})
+      def initialize(resource, attribute, data, page, options = {})
+        @resource = resource
         @attribute = attribute
         @data = data
         @page = page
@@ -33,6 +34,10 @@ module Administrate
 
       def html_class
         self.class.html_class
+      end
+
+      def resource
+        @resource
       end
 
       def name
