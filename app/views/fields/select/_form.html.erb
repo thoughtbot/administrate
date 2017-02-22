@@ -16,7 +16,7 @@ to be displayed on a resource's edit form page.
 %>
 
 <div class="field-unit__label">
-  <%= f.label field.attribute %>
+  <%= f.label field.attribute, field.label  %>
 </div>
 <div class="field-unit__field">
   <%= f.select(
