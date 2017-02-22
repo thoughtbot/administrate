@@ -17,6 +17,16 @@ describe Administrate::Generators::RoutesGenerator, :generator do
       expect(routes).not_to contain("Delayed::Backend::ActiveRecord::Job")
     end
 
+    it "does not populate routes when no models exist" do
+      stub_generator_dependencies
+      routes = file("config/routes.rb")
+      allow(ActiveRecord::Base).to receive(:descendants).and_return([])
+
+      run_generator
+
+      expect(routes).not_to contain("namespace :admin")
+    end
+
     it "skips namespaced models with a warning" do
       stub_generator_dependencies
       routes = file("config/routes.rb")

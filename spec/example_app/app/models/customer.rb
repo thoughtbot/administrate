@@ -1,5 +1,5 @@
 class Customer < ActiveRecord::Base
-  has_many :orders
+  has_many :orders, dependent: :destroy
 
   validates :name, presence: true
   validates :email, presence: true

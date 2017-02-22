@@ -16,7 +16,7 @@ Re-bundle, then run the installer:
 $ rails generate administrate:install
 ```
 
-The installer adds some new routes to your `config/application.rb`,
+The installer adds some new routes to your `config/routes.rb`,
 and creates a controller at `app/controllers/admin/application_controller.rb`
 
 In addition, the generator creates a `Dashboard` and a `Controller` for each of
