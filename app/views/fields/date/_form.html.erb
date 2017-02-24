@@ -1,0 +1,24 @@
+<%#
+# Date Form Partial
+
+This partial renders an input element for a date attribute.
+By default, the input is a text field that is augmented with [DatePicker].
+
+## Local variables:
+
+- `f`:
+  A Rails form generator, used to help create the appropriate input fields.
+- `field`:
+  An instance of [Administrate::Field::Date][1].
+  A wrapper around the Date value pulled from the database.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Date
+[DatePicker]: https://github.com/Eonasdan/bootstrap-datetimepicker
+%>
+
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.text_field field.attribute, class: "datepicker" %>
+</div>
