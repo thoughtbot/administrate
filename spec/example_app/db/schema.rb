@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20170507115814) do
     t.datetime "updated_at", null: false
     t.boolean "email_subscriber"
     t.string "kind", default: "standard", null: false
+    t.date     "birthdate"
+    t.time     "example_time"
   end
 
   create_table "line_items", id: :serial, force: :cascade do |t|
