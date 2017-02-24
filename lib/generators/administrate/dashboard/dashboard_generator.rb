@@ -10,7 +10,7 @@ module Administrate
         enum: "Field::String",
         float: "Field::Number",
         integer: "Field::Number",
-        time: "Field::DateTime",
+        time: "Field::Time",
         text: "Field::Text",
         string: "Field::String",
       }

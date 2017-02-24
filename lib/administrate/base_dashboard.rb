@@ -1,7 +1,7 @@
 require "administrate/field/belongs_to"
 require "administrate/field/boolean"
-require "administrate/field/date_time"
 require "administrate/field/date"
+require "administrate/field/date_time"
 require "administrate/field/email"
 require "administrate/field/has_many"
 require "administrate/field/has_one"
@@ -10,6 +10,7 @@ require "administrate/field/polymorphic"
 require "administrate/field/select"
 require "administrate/field/string"
 require "administrate/field/text"
+require "administrate/field/time"
 
 module Administrate
   class BaseDashboard
