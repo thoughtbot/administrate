@@ -1,6 +1,24 @@
 require "rails_helper"
 
 RSpec.describe "customer show page" do
+
+  it "displays the customers orders paginated" do
+    customer = create(:customer)
+    first_order, _a, _b, last_order = Array.new(4) { create(:order, customer: customer) }
+
+    visit admin_customer_path(customer)
+    within('.attribute-data--has-many') do
+      expect(page).to have_content(first_order.id)
+      expect(page).to have_no_content(last_order.id)
+    end
+
+    click_on("Next ›")
+    within('.attribute-data--has-many') do
+      expect(page).to have_content(last_order.id)
+      expect(page).to have_no_content(first_order.id)
+    end
+  end
+
   it "displays the customer's title attribute as the header" do
     customer = create(:customer)
 
