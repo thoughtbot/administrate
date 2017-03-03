@@ -16,8 +16,26 @@
 
 ## Changes
 
-### Upcoming Release
+### 0.4.0 (Mar 03, 2017)
 
+* [DOC] Use Kaminari syntax in controller's comment hint.
+* [#747] [CHANGE] Fix a bug where `administrate:views` was creating the wrong
+  paths.
+* [#739] [#743] [BUGFIX] Dependent destroy demo app models.
+* [CHANGE] Remove boilerplate references to staging/production.
+* [CHANGE] Improve the `bin/` commands.
+* [#733] [CHANGE] Switch `administrate-field-image` to use the new release.
+* [#704] [I18n] Fix a typo on pt-BR translation for polymorphic.
+* [#730] [FEATURE] Hide the Search Bar when no attributes are searchable.
+* [#732] [I18n] Improve Japanese locales.
+* [#729] [FEATURE] Allow `primary_key` option on relationships instead of
+  hardcoding `id`.
+* [#728] [DOCS] Improve the docs around authentication.
+* [#727] [FEATURE] Add a link to show resource from the collection table.
+* [#726] [BUGFIX] Check for PhantomJS in the setup script.
+* [#721] [CHANGE] Use `count(:all)` for associations in HasMany fields.
+* [#683] [CHANGE] Add Bourbon as an explicit dependency.
+* [#713] [CHANGE] Avoid writing to `routes.rb` when no models exist.
 * [#704] [I18n] Fix word on pt-BR translation
 
 ### 0.3.0 (Oct 28, 2016)
