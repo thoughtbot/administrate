@@ -10,7 +10,7 @@ RSpec.describe Customer, :type => :model do
     customer = create(:customer)
     create(:order, customer: customer)
 
-    puts customer.destroy
+    customer.destroy
 
     expect(Order.all).to be_empty
   end
