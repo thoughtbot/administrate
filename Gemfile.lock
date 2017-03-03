@@ -3,7 +3,7 @@ PATH
   specs:
     administrate (0.4.0)
       autoprefixer-rails (~> 6.0)
-      bourbon (~> 4.2)
+      bourbon (~> 5.0.0.beta.7)
       datetime_picker_rails (~> 0.0.7)
       jquery-rails (~> 4.0)
       kaminari (~> 0.16)
@@ -65,14 +65,14 @@ GEM
       rake
       thor (>= 0.14.0)
     arel (6.0.3)
-    autoprefixer-rails (6.6.1)
+    autoprefixer-rails (6.7.6)
       execjs
     awesome_print (1.6.1)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bourbon (4.2.7)
-      sass (~> 3.4)
-      thor (~> 0.19)
+    bourbon (5.0.0.beta.7)
+      sass (~> 3.4.22)
+      thor (~> 0.19.1)
     builder (3.2.2)
     bundler-audit (0.4.0)
       bundler (~> 1.2)
@@ -229,7 +229,7 @@ GEM
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
     safe_yaml (1.0.4)
-    sass (3.4.22)
+    sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
       sass (~> 3.1)
@@ -253,7 +253,7 @@ GEM
     thor (0.19.1)
     thread (0.2.2)
     thread_safe (0.3.5)
-    tilt (2.0.5)
+    tilt (2.0.6)
     timecop (0.8.0)
     tins (1.6.0)
     tzinfo (1.2.2)
@@ -289,7 +289,7 @@ DEPENDENCIES
   ammeter
   appraisal
   awesome_print
-  bourbon (~> 4.2)
+  bourbon (~> 5.0.0.beta.7)
   bundler-audit
   byebug
   database_cleaner
