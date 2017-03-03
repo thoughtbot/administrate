@@ -22,8 +22,8 @@ describe "customer edit page" do
 
     visit edit_admin_customer_path(customer)
 
-    expect(page).to have_content("Name")
-    expect(page).to have_content("Email")
+    expect(page).to have_text("Name")
+    expect(page).to have_text("Email")
   end
 
   it "displays boolean values as check boxes" do
@@ -33,7 +33,7 @@ describe "customer edit page" do
     check "Email subscriber"
     click_on "Update Customer"
 
-    expect(page).to have_content("true")
+    expect(page).to have_text("true")
   end
 
   it "displays selectable strings as dropdowns", :js do
@@ -43,7 +43,35 @@ describe "customer edit page" do
     select "vip", from: "Kind"
     click_on "Update Customer"
 
-    expect(page).to have_content("KIND")
-    expect(page).to have_content("vip")
+    expect(page).to have_text("KIND")
+    expect(page).to have_text("vip")
+  end
+
+  it "displays an error when the submitted form is invalid" do
+    customer = create(:customer)
+
+    visit edit_admin_customer_path(customer)
+    fill_in "Name", with: ""
+    click_on "Update Customer"
+
+    expect(page).to have_css(
+      "#error_explanation ul li.flash-error",
+      text: "Name can't be blank",
+    )
+  end
+
+  it "displays a success message for successful updates" do
+    new_name = "Hyper"
+    new_email = "example@example.com"
+    customer = create(:customer)
+
+    visit edit_admin_customer_path(customer)
+    fill_in "Name", with: new_name
+    fill_in "Email", with: new_email
+    click_on "Update Customer"
+
+    expect(page).to have_text(new_name)
+    expect(page).to have_text(new_email)
+    expect(page).to have_flash("Customer was successfully updated.")
   end
 end
