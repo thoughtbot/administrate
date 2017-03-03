@@ -5,6 +5,14 @@ class MockRelation
 
   delegate :==, to: :@data
 
+  def page(n)
+    self
+  end
+
+  def per(n)
+    @data.first(n)
+  end
+
   def limit(n)
     @data.first(n)
   end
