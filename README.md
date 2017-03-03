@@ -1,4 +1,4 @@
-# Administrate
+# Administrate (The Human Effort's Fork)
 
 [![CircleCI](https://img.shields.io/circleci/project/github/thoughtbot/administrate.svg)](https://circleci.com/gh/thoughtbot/administrate/tree/master)
 [![Gem Version](https://badge.fury.io/rb/administrate.svg)](https://badge.fury.io/rb/administrate)
@@ -7,15 +7,16 @@
 A framework for creating flexible, powerful admin dashboards in Rails.
 [Try the demo][demo].
 
-### Warning:
+Differences from Upstream (thoughtbot/administrate):
 
-Administrate is still pre-1.0,
-and there may be occasional breaking changes to the API.
-Check the [release notes] for important updates.
+- Docker-based development environment.
+- Supports changing the labels of fields.
 
-[release notes]: https://github.com/thoughtbot/administrate/releases
-
-![administrate](https://images.thoughtbot.com/announcing-administrate/DdP2CQfnSE23PI8AAnDc_Administrate.png)
+We've submitted PRs for all features we've added, but so far none of
+them have been taken in.  We're committed to making each change
+available to our upstream source, but we're OK if they don't fit into
+their mission.  Big thanks to Thoughtbot for putting together such a
+useful gem!
 
 ## What Is Administrate?
 
@@ -46,7 +47,7 @@ Add Administrate to your Gemfile:
 
 ```ruby
 # Gemfile
-gem "administrate", "~> 0.3.0"
+gem "administrate", github: "thehumaneffort/administrate"
 ```
 
 Re-bundle, then run the installer:

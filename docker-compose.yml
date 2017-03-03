@@ -1,0 +1,21 @@
+version: '2'
+services:
+  gem:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/gem'
+    command: bundle exec unicorn -p 3000 -c ./config/unicorn.rb
+    ports:
+      - '3000:3000'
+    environment:
+      - SECRET_KEY_BASE=asdfasdf
+      - VIRTUAL_PORT=3000
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
+  postgres:
+    image: postgres:9.5
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
