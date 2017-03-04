@@ -52,6 +52,14 @@ module Administrate
       "#{resource.class} ##{resource.id}"
     end
 
+    def normalize(attr, value)
+      if attribute_types.include? attr.to_sym
+        attribute_types[attr.to_sym].normalize(value)
+      else
+        value
+      end
+    end
+
     private
 
     def attribute_not_found_message(attr)

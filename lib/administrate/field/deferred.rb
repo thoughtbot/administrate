@@ -20,6 +20,10 @@ module Administrate
           options == other.options
       end
 
+      def normalize(value)
+        deferred_class.normalize(value, options)
+      end
+
       def searchable?
         options.fetch(:searchable, deferred_class.searchable?)
       end
