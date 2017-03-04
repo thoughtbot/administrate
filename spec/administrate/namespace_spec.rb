@@ -15,5 +15,18 @@ describe Administrate::Namespace do
         reset_routes
       end
     end
+
+    it "matches a trailing slash" do
+      begin
+        namespace = Administrate::Namespace.new(:admin)
+        Rails.application.routes.draw do
+          namespace(:admin) { resources :customers }
+        end
+
+        expect(namespace.resources).to eq [:customers]
+      ensure
+        reset_routes
+      end
+    end
   end
 end

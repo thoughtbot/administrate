@@ -12,7 +12,7 @@ module Administrate
       @routes ||= all_routes.select do |controller, _action|
         controller.starts_with?(namespace.to_s)
       end.map do |controller, action|
-        [controller.gsub(/^#{namespace}\//, ""), action]
+        [controller.gsub(namespace_regex, ""), action]
       end
     end
 
@@ -24,6 +24,10 @@ module Administrate
       Rails.application.routes.routes.map do |route|
         route.defaults.values_at(:controller, :action).map(&:to_s)
       end
+    end
+
+    def namespace_regex
+      %r{^#{namespace}/}
     end
   end
 end
