@@ -15,7 +15,7 @@ en:
         success: "%{resource} 가 성공적으로 갱신되었습니다."
     fields:
       has_many:
-        more: %{total_count} 개 중에서 %{count} 개
+        more: "%{total_count} 개 중에서 %{count} 개"
         none: 없음
       polymorphic:
         not_supported: 상속 관계에 대한 양식은 제공되지 않습니다.
