@@ -66,7 +66,9 @@ and will leave the show pages for other resources unchanged.
 
 ## Customizing layouts
 
-Many developers need to customize the layouts of their admin dashboard. It's so easy that pass in the "layout" key word to the view generators.
+Many developers need to customize the layouts of their admin dashboard.
+It's so easy that pass in the "layout" key word to the view generators.
+
 ```bash
 rails generate administrate:views:layout
  # -> app/views/layouts/admin/application.html.erb
