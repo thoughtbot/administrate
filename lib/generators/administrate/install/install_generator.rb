@@ -35,7 +35,7 @@ module Administrate
       end
 
       def dashboard_resources
-        Administrate::Namespace.new(:admin).resources
+        Administrate::Namespace.new(:admin).resources.map(&:name)
       end
     end
   end
