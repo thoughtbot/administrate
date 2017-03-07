@@ -8,9 +8,11 @@ describe Administrate::Namespace do
         namespace = Administrate::Namespace.new(:admin)
         Rails.application.routes.draw do
           namespace(:admin) { resources :customers }
+          namespace(:admin) { root to: "#index" }
         end
 
         expect(namespace.resources).to eq [:customers]
+        expect(namespace.resources).not_to include :""
       ensure
         reset_routes
       end
