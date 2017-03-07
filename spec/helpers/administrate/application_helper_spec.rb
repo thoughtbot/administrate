@@ -50,18 +50,34 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(use_tag[0].attributes["xlink:href"].value).to eq("/logo.svg#logo")
     end
 
+    it "returns use tag with 100% height" do
+      svg_tag = build_svg_tag
+      use_tag = svg_tag.xpath("//svg//use['height']")
+      attribute = use_tag[0].attributes["height"]
+
+      expect(attribute.value).to eq("100%")
+    end
+
+    it "returns use tag with 100% width" do
+      svg_tag = build_svg_tag
+      use_tag = svg_tag.xpath("//svg//use['width']")
+      attribute = use_tag[0].attributes["width"]
+
+      expect(attribute.value).to eq("100%")
+    end
+
     context "with size attributes" do
-      it "returns use tag with height" do
+      it "returns svg tag with height" do
         svg_tag = build_svg_tag(height: 15)
-        use_tag = svg_tag.xpath("//svg//use['height']")
+        use_tag = svg_tag.xpath("//svg")
         attribute = use_tag[0].attributes["height"]
 
         expect(attribute.value).to eq("15")
       end
 
-      it "returns use tag with width" do
+      it "returns svg tag with width" do
         svg_tag = build_svg_tag(width: 20)
-        use_tag = svg_tag.xpath("//svg//use['width']")
+        use_tag = svg_tag.xpath("//svg")
         attribute = use_tag[0].attributes["width"]
 
         expect(attribute.value).to eq("20")
