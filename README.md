@@ -59,7 +59,10 @@ Restart your server, and visit http://localhost:3000/admin
 to see your new dashboard in action.
 
 To customize the appearance, behavior, and contents of the dashboard,
-see the guides at https://administrate-prototype.herokuapp.com.
+see the guides at
+[https://administrate-prototype.herokuapp.com][prototype_heroku].
+These guides are available as markdown files in the `docs` subdirectory of the
+git repository, too.
 
 ## Repository Structure
 
@@ -69,6 +72,9 @@ The demo app is [hosted publicly on Heroku][demo].
 
 - The gem's source code lives in the `app` and `lib` subdirectories.
 - The demo app is nested within `spec/example_app`.
+- The guides as seen at
+  [https://administrate-prototype.herokuapp.com][prototype_heroku] live as
+  markdown files in the `docs` subdirectory.
 
 Rails configuration files have been changed
 to recognize the app in the new location,
@@ -90,3 +96,4 @@ programming in style.
 * [Style](http://github.com/thoughtbot/guides/blob/master/style)
 
 [demo]: https://administrate-prototype.herokuapp.com/admin
+[prototype_heroku]: https://administrate-prototype.herokuapp.com
