@@ -20,7 +20,7 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
 <header class="header">
   <h1 class="header__heading"><%= content_for(:title) %></h1>
   <div class="header__actions">
-    <%= render 'edit_header_actions', page: page %>
+    <%= render('edit_header_actions', page: page) if valid_action? :show %>
   </div>
 </header>
 
