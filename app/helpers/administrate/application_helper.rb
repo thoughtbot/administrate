@@ -21,13 +21,15 @@ module Administrate
     def svg_tag(asset, svg_id, options = {})
       svg_attributes = {
         "xlink:href".freeze => "#{asset_url(asset)}##{svg_id}",
-        height: options[:height],
-        width: options[:width],
-      }.delete_if { |_key, value| value.nil? }
+        height: "100%",
+        width: "100%",
+      }
       xml_attributes = {
         "xmlns".freeze => "http://www.w3.org/2000/svg".freeze,
         "xmlns:xlink".freeze => "http://www.w3.org/1999/xlink".freeze,
-      }
+        height: options[:height],
+        width: options[:width],
+      }.delete_if { |_key, value| value.nil? }
 
       content_tag :svg, xml_attributes do
         content_tag :use, nil, svg_attributes
@@ -35,7 +37,7 @@ module Administrate
     end
 
     def sanitized_order_params
-      params.permit(:search, :id, :order, :page, :per_page, :direction)
+      params.permit(:search, :id, :order, :page, :per_page, :direction, :orders)
     end
 
     def clear_search_params

@@ -125,4 +125,19 @@ en:
         name: Full Name
 ```
 
+
+To change the labels used for resources in dashboard collections.
+Assume you have a users dashboard and you want to change "User #1" to "Testy
+McTesterson", the user's name.
+
+Add this method to the dashboard for Users.
+Use whatever attribute or method you like.
+Example for *user*:
+
+````ruby
+def display_resource(user)
+  user.name
+end
+````
+
 [define your own]: /adding_custom_field_types

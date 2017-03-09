@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem "administrate-field-image"
-gem "bourbon", "~> 4.2"
+gem "bourbon", "~> 5.0.0.beta.7"
 gem "delayed_job_active_record"
 gem "faker"
 gem "high_voltage"
@@ -13,6 +13,7 @@ gem "redcarpet"
 gem "unicorn"
 
 group :development do
+  gem "refills"
   gem "web-console", ">= 2.1.3"
 end
 

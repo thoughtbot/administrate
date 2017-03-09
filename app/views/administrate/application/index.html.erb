@@ -36,7 +36,7 @@ It renders the `_table` partial to display details about the resources.
 <header class="header">
   <h1 class="header__heading" id="page-title"><%= content_for(:title) %></h1>
   <div class="header__actions">
-    <%= render 'index_header_actions', page: page %>
+    <%= render('index_header_actions', page: page) if valid_action? :new %>
   </div>
 </header>
 

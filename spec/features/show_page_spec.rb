@@ -1,6 +1,49 @@
 require "rails_helper"
 
 RSpec.describe "customer show page" do
+  describe "displays the customers orders paginated" do
+    context "when a page is not specified" do
+      it "displays the first page of results" do
+        customer = create(:customer)
+        orders = create_list(:order, 4, customer: customer)
+        first_page = orders.first(2)
+        second_page = orders.last(2)
+
+        visit admin_customer_path(customer)
+
+        within('.attribute-data--has-many') do
+          first_page.each do |order|
+            expect(page).to have_order_row(order.id)
+          end
+          second_page.each do |order|
+            expect(page).not_to have_order_row(order.id)
+          end
+        end
+      end
+    end
+
+    context "when the second page is specified" do
+      it "displays the second page of results" do
+        customer = create(:customer)
+        orders = create_list(:order, 4, customer: customer)
+        first_page = orders.first(2)
+        second_page = orders.last(2)
+
+        visit admin_customer_path(customer)
+        click_on("Next ›")
+
+        within('.attribute-data--has-many') do
+          first_page.each do |order|
+            expect(page).not_to have_order_row(order.id)
+          end
+          second_page.each do |order|
+            expect(page).to have_order_row(order.id)
+          end
+        end
+      end
+    end
+  end
+
   it "displays the customer's title attribute as the header" do
     customer = create(:customer)
 
@@ -78,5 +121,9 @@ RSpec.describe "customer show page" do
 
       expect(page).to have_css(".attribute-label", text: custom_label)
     end
+  end
+
+  def have_order_row(id)
+    have_css('tr td:first-child', text: id)
   end
 end

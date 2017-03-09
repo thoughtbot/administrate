@@ -1,5 +1,5 @@
 appraise "sass-3-4" do
-  gem "sass", "3.4.0"
+  gem "sass", "~> 3.4"
   gem "rails-controller-testing"
 end
 
