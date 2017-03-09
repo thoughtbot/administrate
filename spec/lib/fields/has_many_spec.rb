@@ -101,6 +101,17 @@ describe Administrate::Field::HasMany do
 
       expect(field.more_than_limit?).to eq(false)
     end
+
+    context "when there are no records" do
+      it "returns false" do
+        resources = nil
+
+        association = Administrate::Field::HasMany
+        field = association.new(:customers, resources, :show)
+
+        expect(field.more_than_limit?).to eq(false)
+      end
+    end
   end
 
   describe "#resources" do
@@ -114,6 +125,17 @@ describe Administrate::Field::HasMany do
       expect(field.resources).to eq([:a] * limit)
     end
 
+    context "when there are no records" do
+      it "returns an empty collection" do
+        resources = nil
+
+        association = Administrate::Field::HasMany
+        field = association.new(:customers, resources, :show)
+
+        expect(field.resources).to eq([])
+      end
+    end
+
     context "with `limit` option" do
       it "limits the number of items returned" do
         resources = MockRelation.new([:a, :b, :c])
@@ -122,6 +144,29 @@ describe Administrate::Field::HasMany do
         field = association.new(:customers, resources, :show)
 
         expect(field.resources).to eq([:a])
+      end
+    end
+  end
+
+  describe "#selected_options" do
+    it "returns a collection of primary keys" do
+      model = double("model", id: 123)
+      resources = MockRelation.new([model])
+
+      association = Administrate::Field::HasMany
+      field = association.new(:customers, resources, :show)
+
+      expect(field.selected_options).to eq([123])
+    end
+
+    context "when there are no records" do
+      it "returns an empty collection" do
+        resources = nil
+
+        association = Administrate::Field::HasMany
+        field = association.new(:customers, resources, :show)
+
+        expect(field.selected_options).to be_nil
       end
     end
   end
