@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary = "A Rails engine for creating super-flexible admin dashboards"
   s.license = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile"]
+  s.files = Dir["{app,config,db,lib,docs}/**/*", "LICENSE", "Rakefile"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "autoprefixer-rails", "~> 6.0"
