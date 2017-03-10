@@ -74,4 +74,14 @@ describe Administrate::Generators::RoutesGenerator, :generator do
 
     expect(routes).to contain('root to: "customers#index')
   end
+
+  it "does not create a invalid root route when there's no model" do
+    allow(ActiveRecord::Base).to receive(:descendants).and_return([])
+    stub_generator_dependencies
+    routes = file("config/routes.rb")
+
+    run_generator
+
+    expect(routes).not_to contain('root to: "#index"')
+  end
 end

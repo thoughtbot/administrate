@@ -63,7 +63,8 @@ module Administrate
       end
 
       def dashboard_routes
-        ERB.new(File.read(routes_file_path)).result(binding)
+        erb = ERB.new(File.read(routes_file_path), nil, "-")
+        erb.result(binding)
       end
 
       def routes_includes_resources?
