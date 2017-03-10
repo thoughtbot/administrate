@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem "administrate-field-image"
+gem "autoprefixer-rails"
 gem "bourbon", "~> 5.0.0.beta.7"
 gem "delayed_job_active_record"
 gem "faker"

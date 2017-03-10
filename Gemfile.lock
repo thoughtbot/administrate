@@ -289,6 +289,7 @@ DEPENDENCIES
   administrate-field-image
   ammeter
   appraisal
+  autoprefixer-rails
   awesome_print
   bourbon (~> 5.0.0.beta.7)
   bundler-audit
