@@ -26,3 +26,6 @@ ja:
     search:
       clear: 検索をクリアする
       label: サーチ %{resource}
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"

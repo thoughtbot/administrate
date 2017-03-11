@@ -26,3 +26,6 @@ zh-CN:
     search:
       clear: 清除搜索
       label: 搜索 %{resource}
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"

@@ -26,3 +26,6 @@ es:
     search:
       clear: Borrar búsqueda
       label: Buscar %{resource}
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"

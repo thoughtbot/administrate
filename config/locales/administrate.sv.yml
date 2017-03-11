@@ -26,3 +26,6 @@ sv:
     search:
       clear: Rensa sökningen
       label: Sök %{resource}
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"

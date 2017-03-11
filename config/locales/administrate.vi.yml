@@ -26,3 +26,6 @@ vi:
     search:
       clear: Tìm kiếm rõ ràng
       label: Tìm kiếm %{resource}
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"
