@@ -21,3 +21,6 @@ ja:
         not_supported: フォームでは「多：多」の関連をサポートしていません。
       has_one:
         not_supported: フォームでは「１：１」の関連をサポートしていません。
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"

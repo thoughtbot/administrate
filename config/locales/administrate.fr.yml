@@ -21,3 +21,6 @@ fr:
         not_supported: Les relations polymorphiques dans les formulaires ne sont pas supportées.
       has_one:
         not_supported: Les relations HasOne dans les formulaires ne sont pas supportées.
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"

@@ -21,3 +21,6 @@ ru:
         not_supported: Полиморфные отношения в формах не поддерживаются.
       has_one:
         not_supported: HasOne отношения в формах не поддерживаются.
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"

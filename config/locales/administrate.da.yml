@@ -21,3 +21,6 @@ da:
         not_supported: "Formularer med polymorphic relationships er ikke understøttede."
       has_one:
         not_supported: "Formularer med has_one associationer er ikke understøttede."
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"

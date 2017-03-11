@@ -21,3 +21,6 @@ pl:
         not_supported: Relacje polimorficzne nie są obsługiwane.
       has_one:
         not_supported: Relacje jeden-do-jednego nie są obsługiwane.
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"

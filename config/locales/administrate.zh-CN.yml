@@ -21,3 +21,6 @@ zh-CN:
         not_supported: Polymorphic 关系暂不支持
       has_one:
         not_supported: HasOne 关系暂不支持.
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"

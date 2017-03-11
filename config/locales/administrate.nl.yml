@@ -21,3 +21,6 @@ nl:
         not_supported: Polymorphische relaties formulieren worden niet ondersteund.
       has_one:
         not_supported: HasOne relaties formulieren worden niet ondersteund.
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"
