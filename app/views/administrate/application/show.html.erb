@@ -16,7 +16,7 @@ as well as a link to its edit page.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Show
 %>
 
-<% content_for(:title) { page.page_title } %>
+<% content_for(:title) { "#{t("administrate.actions.show")} #{page.page_title}" } %>
 
 <header class="header">
   <h1 class="header__heading"><%= content_for(:title) %></h1>
