@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency "bourbon", "~> 5.0.0.beta.7"
   s.add_dependency "datetime_picker_rails", "~> 0.0.7"
   s.add_dependency "jquery-rails", "~> 4.0"
-  s.add_dependency "kaminari", "~> 0.16"
+  s.add_dependency "kaminari", ">= 1.0"
   s.add_dependency "momentjs-rails", "~> 2.8"
   s.add_dependency "neat", "~> 1.1"
   s.add_dependency "normalize-rails", "~> 3.0"
