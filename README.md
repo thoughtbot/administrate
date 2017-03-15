@@ -42,6 +42,8 @@ To accomplish these goals, Administrate follows a few guiding principles:
 
 ## Getting Started
 
+NOTE: Administrate depends on Rails `~> 4.2`.
+
 Add Administrate to your Gemfile:
 
 ```ruby
