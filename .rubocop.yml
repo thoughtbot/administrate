@@ -204,11 +204,13 @@ SpecialGlobalVars:
 StringLiterals:
   EnforcedStyle: double_quotes
 
-TrailingComma:
+Style/TrailingCommaInArguments:
+  Enabled: true
   EnforcedStyleForMultiline: comma
-  SupportedStyles:
-    - comma
-    - no_comma
+
+Style/TrailingCommaInLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
 
 TrivialAccessors:
   Enabled: false
@@ -328,9 +330,6 @@ ActionFilter:
   Enabled: false
 
 Date:
-  Enabled: false
-
-DefaultScope:
   Enabled: false
 
 FindBy:
