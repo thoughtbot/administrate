@@ -6,8 +6,8 @@ zh-CN:
       destroy: 删除
       edit: 编辑
       show: 查看
-      new: 新
-      back: 背部
+      new: 新建
+      back: 返回
     controller:
       create:
         success: "%{resource} 创建成功."
