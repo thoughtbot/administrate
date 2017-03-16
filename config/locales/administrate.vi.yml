@@ -6,6 +6,8 @@ vi:
       destroy: Xóa
       edit: Sửa
       show: Xem
+      new: Mới
+      back: Trở lại
     controller:
       create:
         success: "%{resource} đã được tạo thành công."

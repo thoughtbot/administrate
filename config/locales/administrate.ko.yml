@@ -6,6 +6,8 @@ ko:
       destroy: 삭제
       edit: 편집
       show: 보여주기
+      new: 새로운
+      back: 뒤로
     controller:
       create:
         success: "%{resource} 가 성공적으로 생성되었습니다."

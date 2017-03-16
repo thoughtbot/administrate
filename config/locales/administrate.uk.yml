@@ -6,6 +6,8 @@ uk:
       destroy: Видалити
       edit: Редагувати
       show: Показати
+      new: новий
+      back: назад
     controller:
       create:
         success: "%{resource} було успішно створено."

@@ -6,6 +6,8 @@ ar:
       destroy: "حذف"
       edit: "تعديل"
       show: "إظهار"
+      new: "جديد"
+      back: "الى الخلف"
     controller:
       create:
         success: ".بنجاح %{resource} لقد تم إنشاء"
