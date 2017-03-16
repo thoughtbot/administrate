@@ -15,7 +15,7 @@ Check the [release notes] for important updates.
 
 [release notes]: https://github.com/thoughtbot/administrate/releases
 
-![administrate](https://images.thoughtbot.com/announcing-administrate/DdP2CQfnSE23PI8AAnDc_Administrate.png)
+![administrate](https://cloud.githubusercontent.com/assets/903327/23998153/94899eee-0a2a-11e7-94ed-348515728aaf.png)
 
 ## What Is Administrate?
 
