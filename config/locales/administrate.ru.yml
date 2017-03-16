@@ -6,6 +6,8 @@ ru:
       destroy: Удалить
       edit: Редактировать
       show: Показать
+      new: Новый
+      back: Вернуться назад
     controller:
       create:
         success: "%{resource} был успешно создан."
