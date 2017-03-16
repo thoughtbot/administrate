@@ -6,8 +6,8 @@ de:
       destroy: Löschen
       edit: Editieren
       show: Anzeigen
-      new: Nieuwe
-      back: Terug
+      new: Neu
+      back: Zurück
     controller:
       create:
         success: "%{resource} wurde erfolgreich erstellt."

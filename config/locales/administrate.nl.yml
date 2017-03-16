@@ -6,8 +6,8 @@ nl:
       destroy: Verwijder
       edit: Bewerk
       show: Toon
-      new: Ny
-      back: Tilbake
+      new: Nieuw
+      back: Terug
     controller:
       create:
         success: "%{resource} was succesvol aangemaakt."
