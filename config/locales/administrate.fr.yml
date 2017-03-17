@@ -6,8 +6,8 @@ fr:
       destroy: Supprimer
       edit: Modifier
       show: Détails
-      new: Nouveau
-      back: Arrière
+      new: Création
+      back: Précédent
     controller:
       create:
         success: "%{resource} a été correctement créé(e)."
