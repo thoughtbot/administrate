@@ -15,7 +15,6 @@ gem "sentry-raven"
 gem "unicorn"
 
 group :development do
-  gem "refills"
   gem "web-console", ">= 2.1.3"
 end
 

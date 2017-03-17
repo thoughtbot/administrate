@@ -16,7 +16,6 @@ gem "unicorn"
 gem "rails", "~> 4.2.0"
 
 group :development do
-  gem "refills"
   gem "web-console", ">= 2.1.3"
 end
 
