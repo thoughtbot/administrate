@@ -117,6 +117,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.5.0)
       i18n (~> 0.5)
+    faraday (0.11.0)
+      multipart-post (>= 1.2, < 3)
     formulaic (0.3.0)
       activesupport
       capybara
@@ -170,6 +172,7 @@ GEM
     minitest (5.9.0)
     momentjs-rails (2.17.1)
       railties (>= 3.1)
+    multipart-post (2.0.0)
     neat (1.8.0)
       sass (>= 3.3)
       thor (~> 0.19)
@@ -247,6 +250,8 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
     selectize-rails (0.12.4)
+    sentry-raven (2.4.0)
+      faraday (>= 0.7.6, < 1.0)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     slop (3.6.0)
@@ -321,6 +326,7 @@ DEPENDENCIES
   redcarpet
   refills
   rspec-rails (~> 3.5.0)
+  sentry-raven
   shoulda-matchers (~> 2.8.0)
   timecop
   uglifier
