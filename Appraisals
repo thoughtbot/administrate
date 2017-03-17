@@ -15,4 +15,6 @@ end
 appraise 'rails51' do
   gem 'rails', '5.1.0.rc1'
   gem 'rails-controller-testing'
+
+  gem 'sass-rails', github: 'rails/sass-rails'
 end

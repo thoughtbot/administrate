@@ -15,6 +15,7 @@ gem "sentry-raven"
 gem "unicorn"
 gem "rails", "5.1.0.rc1"
 gem "rails-controller-testing"
+gem "sass-rails", :github => "rails/sass-rails"
 
 group :development do
   gem "web-console", ">= 2.1.3"
