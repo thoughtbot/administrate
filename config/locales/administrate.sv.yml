@@ -10,6 +10,7 @@ sv:
       new_name: "Ny %{name}"
       edit_name: "Ändra %{name}"
       show_name: "Visa %{name}"
+      new: Ny
     controller:
       create:
         success: "%{resource} har skapats."

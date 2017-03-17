@@ -10,6 +10,7 @@ de:
       new_name: "New %{name}"
       edit_name: "Edit %{name}"
       show_name: "Show %{name}"
+      new: New
     controller:
       create:
         success: "%{resource} wurde erfolgreich erstellt."

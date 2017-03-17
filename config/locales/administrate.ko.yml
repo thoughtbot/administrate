@@ -6,6 +6,11 @@ ko:
       destroy: 삭제
       edit: 편집
       show: 보여주기
+      back: Back
+      new_name: "New %{name}"
+      edit_name: "Edit %{name}"
+      show_name: "Show %{name}"
+      new: New
     controller:
       create:
         success: "%{resource} 가 성공적으로 생성되었습니다."
@@ -21,3 +26,9 @@ ko:
         not_supported: 상속 관계에 대한 양식은 제공되지 않습니다.
       has_one:
         not_supported: 일대일 관계에 대한 양식은 제공되지 않습니다.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    search:
+      title: Search
+      hint: Press enter to search
