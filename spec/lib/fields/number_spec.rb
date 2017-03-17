@@ -35,6 +35,14 @@ describe Administrate::Field::Number do
       end
     end
 
+    context "with `suffix` option" do
+      it "displays the given suffix" do
+        number = number_with_options(13, suffix: "h")
+
+        expect(number.to_s).to eq("13h")
+      end
+    end
+
     context "with `decimals` option" do
       it "truncates the number to the given number of decimal places" do
         zero = number_with_options(12.34553, decimals: 0)

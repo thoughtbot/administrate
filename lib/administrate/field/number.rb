@@ -14,11 +14,15 @@ module Administrate
       private
 
       def format_string
-        prefix + "%.#{decimals}f"
+        prefix + "%.#{decimals}f" + suffix
       end
 
       def prefix
         options[:prefix].to_s
+      end
+
+      def suffix
+        options[:suffix].to_s
       end
 
       def decimals
