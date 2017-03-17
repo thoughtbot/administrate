@@ -11,6 +11,7 @@ gem "high_voltage"
 gem "markdown-rails"
 gem "pg"
 gem "redcarpet"
+gem "sentry-raven"
 gem "unicorn"
 
 group :development do
