@@ -1,6 +1,13 @@
 dependencies:
+  pre:
+    - gem install bundler --version "1.13.7"
   post:
     - bundle exec appraisal install
+
+machine:
+  ruby:
+    version: 2.3.1
+
 test:
   pre:
     - cp .sample.env .env

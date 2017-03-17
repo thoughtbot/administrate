@@ -29,6 +29,7 @@ module AdministratePrototype
     end
 
     config.action_controller.action_on_unpermitted_parameters = :raise
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -41,7 +42,13 @@ module AdministratePrototype
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
+    if Rails::VERSION::MAJOR < 5
+      # Do not swallow errors in after_commit/after_rollback callbacks.
+      config.active_record.raise_in_transactional_callbacks = true
+    end
+
+    if Rails::VERSION::MAJOR >= 5
+      config.active_record.time_zone_aware_types = [:datetime, :time]
+    end
   end
 end

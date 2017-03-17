@@ -16,12 +16,94 @@
 
 ## Changes
 
-### Upcoming Release
+### 0.4.0 (Mar 03, 2017)
+
+* [DOC] Use Kaminari syntax in controller's comment hint.
+* [#747] [CHANGE] Fix a bug where `administrate:views` was creating the wrong
+  paths.
+* [#739] [#743] [BUGFIX] Dependent destroy demo app models.
+* [CHANGE] Remove boilerplate references to staging/production.
+* [CHANGE] Improve the `bin/` commands.
+* [#733] [CHANGE] Switch `administrate-field-image` to use the new release.
+* [#704] [I18n] Fix a typo on pt-BR translation for polymorphic.
+* [#730] [FEATURE] Hide the Search Bar when no attributes are searchable.
+* [#732] [I18n] Improve Japanese locales.
+* [#729] [FEATURE] Allow `primary_key` option on relationships instead of
+  hardcoding `id`.
+* [#728] [DOCS] Improve the docs around authentication.
+* [#727] [FEATURE] Add a link to show resource from the collection table.
+* [#726] [BUGFIX] Check for PhantomJS in the setup script.
+* [#721] [CHANGE] Use `count(:all)` for associations in HasMany fields.
+* [#683] [CHANGE] Add Bourbon as an explicit dependency.
+* [#713] [CHANGE] Avoid writing to `routes.rb` when no models exist.
+* [#704] [I18n] Fix word on pt-BR translation
+
+### 0.3.0 (Oct 28, 2016)
+
+* [#127] [UI] Add button to clear the search
+* [#656] [COMPAT] Add Rails 5 support
+
+### 0.2.2 (May 21, 2016)
+
+* [#560] [BUGFIX] Fix LoadError for apps that don't use images
+
+### 0.2.1 (May 18, 2016)
+
+* [#573] [FEATURE] Render custom javascripts and stylesheets to the page
+  by registering them with Administrate in an initializer.
+  For example, you can create `config/initializers/administrate.rb`
+  with the contents:
+    ```
+    Administrate::Engine.add_javascript "my_plugin/script"
+    Administrate::Engine.add_stylesheet "my_plugin/styles"
+    ```
+* [#567] [FEATURE] Add a partial for rendering HTML links to stylesheets.
+  This is useful for plugin developers,
+  as well as people who want to add custom stylesheets on a page-by-page basis
+  using `content_for(:stylesheet)`.
+* [#492] [FEATURE] Translate attribute labels on show and index pages.
+  To customize an attribute label, add translations according to the structure:
+    ```
+    en:
+      helpers:
+        label:
+          customer:
+            name: Full Name
+    ```
+
+### 0.2.0 (April 20, 2016)
+
+* [#476] [CHANGE] Extract `Administrate::Field::Image` into its own gem.
+  Users who have image fields in their dashboards
+  should add to their `Gemfile`:
+  ```ruby
+  gem "administrate-field-image"
+  ```
+
+### 0.1.5 (April 1, 2016)
+
+* [master] [BUGFIX] Protect from CSRF attacks [CVE-2016-3098]
+* [#422] [FEATURE] Add a `Select` field for displaying a drop-down menu of
+  options on form pages.
+  Options:
+  ```ruby
+  Field::Select.with_options(collection: [:foo, :bar])
+  ```
+* [#458] [BUGFIX] Update the custom field generator to match the new HTML
+  structure of forms
+* [#513] [OPTIM] Freeze constants in generated dashboard classes
 
 ### 0.1.4 (February 20, 2016)
 
 * [#464] [CHANGE] Replace the DashboardManifest with explicit Rails routes.
   * Run `rails generate administrate:routes` to generate the default routes.
+* [#467] [CHANGE] Update the internal field path to fit Ruby conventions
+  ```ruby
+  # Change any instances of this...
+  require "administrate/fields/base"
+  # ...to this:
+  require "administrate/field/base"
+  ```
 
 ### 0.1.3 (January 22, 2016)
 

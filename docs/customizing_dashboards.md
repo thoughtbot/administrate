@@ -57,23 +57,87 @@ specify, including:
 - `Field::Email`
 - `Field::HasMany`
 - `Field::HasOne`
-- `Field::Image`
 - `Field::Number`
 - `Field::Polymorphic`
+- `Field::Select`
 - `Field::String`
 
+## Customizing Fields
+
+### Setting Options
+
 Each of the `Field` types take a different set of options,
-which are specified through the `.with_options` class method.
-For example, you might use the following to display currency,
-if the value is stored by the number of cents:
+which are specified through the `.with_options` class method:
+
+**Field::HasMany**
+
+`:limit` - Set the number of resources to display in the show view. Default is
+`5`.
+
+**Field::Number**
+
+`:decimals` - Set the number of decimals to display. Defaults to `0`.
+
+`:prefix` - Prefixes the number with a string. Defaults to `""`.
+
+For example, you might use the following to display U.S. currency:
 
 ```ruby
-  unit_price_in_cents: Field::Number.with_options(
-    title: "Unit Price",
+  unit_price: Field::Number.with_options(
     prefix: "$",
-    multiplier: 0.01,
     decimals: 2,
   )
 ```
+
+**Field::Select**
+
+`:collection` - Specify the array or range to select from.  Defaults to `[]`.
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `true`.
+
+**Field::String**
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `true`.
+
+`:truncate` - Set the number of characters to display in the index view.
+Defaults to `50`.
+
+**Field::Text**
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `false`.
+
+`:truncate` - Set the number of characters to display in the index view.
+Defaults to `50`.
+
+### Defining Labels
+
+To change the user-facing label for an attribute,
+define a custom I18n translation:
+
+```yaml
+en:
+  helpers:
+    label:
+      customer:
+        name: Full Name
+```
+
+
+To change the labels used for resources in dashboard collections.
+Assume you have a users dashboard and you want to change "User #1" to "Testy
+McTesterson", the user's name.
+
+Add this method to the dashboard for Users.
+Use whatever attribute or method you like.
+Example for *user*:
+
+````ruby
+def display_resource(user)
+  user.name
+end
+````
 
 [define your own]: /adding_custom_field_types

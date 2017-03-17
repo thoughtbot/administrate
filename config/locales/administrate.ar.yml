@@ -1,0 +1,23 @@
+---
+ar:
+  administrate:
+    actions:
+      confirm: "هل أنت متأكد ؟"
+      destroy: "حذف"
+      edit: "تعديل"
+      show: "إظهار"
+    controller:
+      create:
+        success: ".بنجاح %{resource} لقد تم إنشاء"
+      destroy:
+        success: ".بنجاح %{resource} لقد تم حذف"
+      update:
+        success: ".بنجاح %{resource} لقد تم تحديث"
+    fields:
+      has_many:
+        more: إظهار %{count} من %{total_count}
+        none: "لا يوجد"
+      polymorphic:
+        not_supported: "غير مدعمه \"Polymorphic\" هذه العلاقه"
+      has_one:
+        not_supported: "غير مدعمه \"HasOne\" هذه العلاقه"

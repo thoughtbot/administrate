@@ -22,6 +22,15 @@ describe "customer index page" do
     expect(page).to have_content(customer.email)
   end
 
+  it "links to the customer show page without javascript", js: false do
+    customer = create(:customer)
+
+    visit admin_customers_path
+    click_show_link_for(customer)
+
+    expect(page).to have_header(displayed(customer))
+  end
+
   it "links to the edit page" do
     customer = create(:customer)
 
@@ -36,6 +45,26 @@ describe "customer index page" do
     click_on("New customer")
 
     expect(current_path).to eq(new_admin_customer_path)
+  end
+
+  it "displays translated labels" do
+    custom_label = "Newsletter Subscriber"
+
+    translations = {
+      helpers: {
+        label: {
+          customer: {
+            email_subscriber: custom_label,
+          },
+        },
+      },
+    }
+
+    with_translations(:en, translations) do
+      visit admin_customers_path
+
+      expect(page).to have_table_header(custom_label)
+    end
   end
 
   it "paginates records based on a constant" do

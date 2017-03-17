@@ -16,22 +16,27 @@ as well as a link to its edit page.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Show
 %>
 
-<% content_for(:title) { page.page_title } %>
+<% content_for(:title) { t("administrate.actions.show_name:", name: page.page_title) } %>
 
 <header class="header">
   <h1 class="header__heading"><%= content_for(:title) %></h1>
   <div class="header__actions">
     <%= link_to(
-      t("administrate.actions.edit"),
+      t("administrate.actions.edit_name", name: page.page_title),
       [:edit, namespace, page.resource],
       class: "button",
-    ) %>
+    ) if valid_action? :edit %>
   </div>
 </header>
 
 <dl>
   <% page.attributes.each do |attribute| %>
-    <dt class="attribute-label"><%= attribute.name.titleize %></dt>
+    <dt class="attribute-label">
+    <%= t(
+      "helpers.label.#{resource_name}.#{attribute.name}",
+      default: attribute.name.titleize,
+    ) %>
+    </dt>
 
     <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
         ><%= render_field attribute %></dd>

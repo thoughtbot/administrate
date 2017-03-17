@@ -1,5 +1,7 @@
 module Administrate
   class ApplicationController < ActionController::Base
+    protect_from_forgery with: :exception
+
     def index
       search_term = params[:search].to_s.strip
       resources = Administrate::Search.new(resource_resolver, search_term).run
@@ -11,6 +13,7 @@ module Administrate
         resources: resources,
         search_term: search_term,
         page: page,
+        show_search_bar: show_search_bar?
       }
     end
 
@@ -77,6 +80,17 @@ module Administrate
       end
     end
 
+    helper_method :valid_action?
+    def valid_action?(name, resource = resource_name)
+      !!routes.detect do |controller, action|
+        controller == resource.to_s.pluralize && action == name.to_s
+      end
+    end
+
+    def routes
+      @routes ||= Namespace.new(namespace).routes
+    end
+
     def records_per_page
       params[:per_page] || 20
     end
@@ -98,15 +112,12 @@ module Administrate
     end
 
     def resource_params
-      params.require(resource_name).permit(*permitted_attributes)
-    end
-
-    def permitted_attributes
-      dashboard.permitted_attributes
+      params.require(resource_name).permit(dashboard.permitted_attributes)
     end
 
     delegate :resource_class, :resource_name, :namespace, to: :resource_resolver
     helper_method :namespace
+    helper_method :resource_name
 
     def resource_resolver
       @_resource_resolver ||=
@@ -118,6 +129,12 @@ module Administrate
         "administrate.controller.#{key}",
         resource: resource_resolver.resource_title,
       )
+    end
+
+    def show_search_bar?
+      dashboard.attribute_types_for(
+        dashboard.collection_attributes
+      ).any? { |_name, attribute| attribute.searchable? }
     end
   end
 end

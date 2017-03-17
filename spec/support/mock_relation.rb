@@ -3,9 +3,22 @@ class MockRelation
     @data = data
   end
 
-  delegate :==, :count, to: :@data
+  delegate :==, to: :@data
+
+  def page(n)
+    self
+  end
+
+  def per(n)
+    @data.first(n)
+  end
 
   def limit(n)
     @data.first(n)
+  end
+
+  def count(column = nil)
+    return @data.count if column == :all
+    @data.count(column)
   end
 end

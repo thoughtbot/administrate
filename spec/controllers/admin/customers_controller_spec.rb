@@ -22,18 +22,12 @@ describe Admin::CustomersController, type: :controller do
 
       expect(locals[:page]).to be_instance_of(Administrate::Page::Collection)
     end
-  end
 
-  def expect_locals
-    first_call = true
+    it "shows the search bar" do
+      customer = create(:customer)
 
-    expect(@controller).to have_received(:render).twice do |options|
-      if first_call
-        expect(options).not_to be_nil
-        yield options[:locals]
-      end
-
-      first_call = false
+      locals = capture_view_locals { get :index }
+      expect(locals[:show_search_bar]).to be_truthy
     end
   end
 
@@ -164,7 +158,7 @@ describe Admin::CustomersController, type: :controller do
       customer = create(:customer)
 
       expect do
-        delete :destroy, {id: customer.to_param}
+        delete :destroy, id: customer.to_param
       end.to change(Customer, :count).by(-1)
     end
 
@@ -175,18 +169,5 @@ describe Admin::CustomersController, type: :controller do
 
       expect(response).to redirect_to(admin_customers_url)
     end
-  end
-
-  def capture_view_locals
-    allow(@controller).to receive(:render)
-    yield
-
-    locals = nil
-    expect(@controller).to have_received(:render).at_least(1).times do |*args|
-      args.each do |arg|
-        locals ||= arg.try(:fetch, :locals, nil)
-      end
-    end
-    locals
   end
 end

@@ -1,3 +1,4 @@
 .form-actions {
   @include shift(2);
+  margin-bottom: $base-spacing * 4;
 }

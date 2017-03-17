@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916011117) do
+ActiveRecord::Schema.define(version: 20160815100728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
-    t.string   "name",             null: false
-    t.string   "email",            null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "name",                                  null: false
+    t.string   "email",                                 null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.boolean  "email_subscriber"
+    t.string   "kind",             default: "standard", null: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -66,6 +67,12 @@ ActiveRecord::Schema.define(version: 20150916011117) do
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
 
+  create_table "payments", force: :cascade do |t|
+    t.integer "order_id"
+  end
+
+  add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.float    "price"
@@ -81,4 +88,5 @@ ActiveRecord::Schema.define(version: 20150916011117) do
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
   add_foreign_key "orders", "customers"
+  add_foreign_key "payments", "orders"
 end

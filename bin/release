@@ -1,0 +1,33 @@
+# Exit if any subcommand fails
+set -e
+
+VERSION=$(ruby -r ./lib/administrate/version.rb -e "puts Administrate::VERSION")
+echo "Version $VERSION"
+gem build administrate.gemspec
+gem install administrate-${VERSION}.gem
+
+sed -i.bak "s/^gemspec$/gem \"administrate\", \"`echo $VERSION`\"/g" Gemfile
+rm Gemfile.bak
+bundle
+
+bundle exec rake
+bundle exec appraisal rake
+
+gem uninstall administrate -v $VERSION
+echo "Gem is verified and ready to go."
+gem push administrate-$VERSION.gem
+
+bundle
+bundle exec rake
+bundle exec appraisal rake
+
+echo "Administrate version $VERSION was released successfully."
+
+git checkout -- Gemfile*
+
+echo
+echo "Finish up by merging the branch and tagging the commit:"
+echo "bin/merge"
+echo "git tag v$VERSION"
+echo "git push --tags"
+echo "https://github.com/thoughtbot/administrate/releases/new"

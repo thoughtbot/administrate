@@ -20,12 +20,12 @@ module Administrate
 
       def associated_resource_options
         candidate_resources.map do |resource|
-          [display_candidate_resource(resource), resource.id]
+          [display_candidate_resource(resource), resource.send(primary_key)]
         end
       end
 
       def selected_options
-        data && data.map(&:id)
+        data && data.map { |object| object.send(primary_key) }
       end
 
       def limit
@@ -36,18 +36,23 @@ module Administrate
         self.class.permitted_attribute(attribute)
       end
 
-      def resources
-        data.limit(limit)
+      def resources(page = 1)
+        data.page(page).per(limit)
       end
 
       def more_than_limit?
-        data.count > limit
+        data.count(:all) > limit
       end
 
       private
 
       def candidate_resources
-        associated_class.all
+        if options.key?(:includes)
+          includes = options.fetch(:includes)
+          associated_class.includes(*includes).all
+        else
+          associated_class.all
+        end
       end
 
       def display_candidate_resource(resource)
