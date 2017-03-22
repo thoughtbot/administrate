@@ -1,11 +1,11 @@
 @charset "utf-8";
 
 @import "normalize-rails";
-@import "bourbon";
 
 @import "selectize";
 @import "datetime_picker";
 
+@import "library/clearfix";
 @import "library/data-label";
 @import "library/variables";
 
