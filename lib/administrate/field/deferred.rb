@@ -11,7 +11,7 @@ module Administrate
       attr_reader :deferred_class, :options
 
       def new(*args)
-        new_options = if args.last.is_a? Hash then args.last else {} end
+        new_options = if args.last.is_a? Hash then args.pop else {} end
         deferred_class.new(*args, options.merge(new_options))
       end
 
