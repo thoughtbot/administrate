@@ -5,12 +5,13 @@
 /.bundle
 /.env
 /.foreman
+/.ruby-version
 /coverage/*
 /db/*.sqlite3
 /log/*
 /spec/example_app/log/*
-/spec/example_app/public/system
 /spec/example_app/public/assets
+/spec/example_app/public/system
+/spec/example_app/tmp/*
 /tags
 /tmp/*
-/spec/example_app/tmp/*
