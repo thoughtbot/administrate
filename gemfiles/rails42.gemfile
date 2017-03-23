@@ -11,7 +11,9 @@ gem "pg"
 gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
-gem "rails", "~> 4.2.0"
+gem "actionpack", "~> 4.2.0"
+gem "actionview", "~> 4.2.0"
+gem "activerecord", "~> 4.2.0"
 
 group :development, :test do
   gem "appraisal"
