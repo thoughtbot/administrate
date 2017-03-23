@@ -94,14 +94,6 @@ describe Admin::CustomersController, type: :controller do
         expect(page).to be_instance_of(Administrate::Page::Form)
         expect(page.resource).to be_a_new(Customer)
       end
-
-      it "re-renders the 'new' template" do
-        invalid_attributes = { name: "" }
-
-        post :create, customer: invalid_attributes
-
-        expect(response).to render_template("new")
-      end
     end
   end
 
@@ -129,15 +121,6 @@ describe Admin::CustomersController, type: :controller do
     end
 
     describe "with invalid params" do
-      it "re-renders the 'edit' template" do
-        customer = create(:customer)
-        invalid_attributes = { name: "" }
-
-        put :update, id: customer.to_param, customer: invalid_attributes
-
-        expect(response).to render_template("edit")
-      end
-
       it "passes a form page object to the view" do
         customer = create(:customer)
         invalid_attributes = { name: "" }
