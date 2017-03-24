@@ -9,7 +9,7 @@ PATH
       kaminari (>= 1.0)
       momentjs-rails (~> 2.8)
       neat (~> 1.1)
-      normalize-rails (~> 3.0)
+      normalize-rails (>= 3.0)
       rails (>= 4.2, < 5.1)
       sass-rails (~> 5.0)
       selectize-rails (~> 0.6)
@@ -178,7 +178,7 @@ GEM
       thor (~> 0.19)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-    normalize-rails (3.0.3)
+    normalize-rails (4.1.1)
     pg (0.18.3)
     poltergeist (1.12.0)
       capybara (~> 2.1)
@@ -333,4 +333,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.14.4
+   1.14.5
