@@ -6,10 +6,13 @@ $(function() {
         event.keyCode == keycodes.space ||
         event.keyCode == keycodes.enter) {
 
-      if (!event.target.href) {
-        var url = $(event.target).closest("tr").data("url");
+      if (event.target.href) {
+        return;
+      }
 
-        if (url) { window.location = url; }
+      var dataUrl = $(event.target).closest("tr").data("url");
+      if (dataUrl) {
+        window.location = dataUrl;
       }
     }
   };
