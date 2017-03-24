@@ -6,12 +6,12 @@
     type="text"
     name="search"
     class="search__input"
-    placeholder="Search"
+    placeholder="<%= t("administrate.search.title") %>"
     value="<%= search_term %>"
-    aria-label="Search"
+    aria-label="<%= t("administrate.search.title") %>"
   />
   <span class="search__hint">
-    Press enter to search
+    <%= t("administrate.search.hint") %>
   </span>
   <span class="search__clear">
     <%= link_to clear_search_params do %>

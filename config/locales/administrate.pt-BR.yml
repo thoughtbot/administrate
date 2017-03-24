@@ -7,8 +7,11 @@ pt-BR:
       destroy: Deletar
       edit: Editar
       show: Visualizar
-      new: Criar
-      back: Voltar
+      back: Back
+      new_name: "New %{name}"
+      edit_name: "Edit %{name}"
+      show_name: "Show %{name}"
+      new: New
     controller:
       create:
         success: "%{resource} foi criado com sucesso."
@@ -24,3 +27,9 @@ pt-BR:
         not_supported: Relações polimórficas nos formulários não são suportadas.
       has_one:
         not_supported: Relações um para muitos nos formulários não são suportadas.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    search:
+      title: Search
+      hint: Press enter to search

@@ -6,6 +6,11 @@ ar:
       destroy: "حذف"
       edit: "تعديل"
       show: "إظهار"
+      back: Back
+      new_name: "New %{name}"
+      edit_name: "Edit %{name}"
+      show_name: "Show %{name}"
+      new: New
     controller:
       create:
         success: ".بنجاح %{resource} لقد تم إنشاء"
@@ -21,3 +26,9 @@ ar:
         not_supported: "غير مدعمه \"Polymorphic\" هذه العلاقه"
       has_one:
         not_supported: "غير مدعمه \"HasOne\" هذه العلاقه"
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    search:
+      title: Search
+      hint: Press enter to search

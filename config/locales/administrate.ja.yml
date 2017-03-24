@@ -6,6 +6,11 @@ ja:
       destroy: 削除
       edit: 編集
       show: 参照
+      back: Back
+      new_name: "New %{name}"
+      edit_name: "Edit %{name}"
+      show_name: "Show %{name}"
+      new: New
     controller:
       create:
         success: "%{resource}を作成しました。"
@@ -21,3 +26,9 @@ ja:
         not_supported: フォームでは「多：多」の関連をサポートしていません。
       has_one:
         not_supported: フォームでは「１：１」の関連をサポートしていません。
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    search:
+      title: Search
+      hint: Press enter to search

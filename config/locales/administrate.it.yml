@@ -6,6 +6,11 @@ it:
       destroy: Elimina
       edit: Modifica
       show: Visualizza
+      back: Back
+      new_name: "New %{name}"
+      edit_name: "Edit %{name}"
+      show_name: "Show %{name}"
+      new: New
     controller:
       create:
         success: "%{resource} è stato creato con successo."
@@ -21,3 +26,9 @@ it:
         not_supported: Associazioni polimorfiche non ancora supportate. Spiacenti!
       has_one:
         not_supported: Associazioni HasOne non ancora supportate. Spiacenti!
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    search:
+      title: Search
+      hint: Press enter to search
