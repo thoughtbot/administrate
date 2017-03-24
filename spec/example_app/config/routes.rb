@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :line_items
     resources :orders
     resources :products
-    resources :payments, only: [:index, :show]
+    resources :payments, only: [:index, :show, :edit]
 
     root to: "customers#index"
   end

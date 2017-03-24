@@ -20,15 +20,15 @@ module Administrate
           options == other.options
       end
 
+      def permitted_attribute(attr)
+        deferred_class.permitted_attribute(attr, options)
+      end
+
       def searchable?
         options.fetch(:searchable, deferred_class.searchable?)
       end
 
-      delegate(
-        :html_class,
-        :permitted_attribute,
-        to: :deferred_class,
-      )
+      delegate :html_class, to: :deferred_class
     end
   end
 end

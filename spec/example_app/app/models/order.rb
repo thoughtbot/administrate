@@ -3,6 +3,7 @@ class Order < ActiveRecord::Base
 
   validates :customer, presence: true
   has_many :line_items, dependent: :destroy
+  has_one :payment, foreign_key: :order_code, primary_key: :code
 
   validates :address_line_one, presence: true
   validates :address_line_two, presence: true

@@ -2,7 +2,7 @@ require "administrate/base_dashboard"
 
 class OrderDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
-    id: Field::Number,
+    code: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     address_line_one: Field::String,
@@ -17,14 +17,14 @@ class OrderDashboard < Administrate::BaseDashboard
   }
 
   READ_ONLY_ATTRIBUTES = [
-    :id,
+    :code,
     :total_price,
     :created_at,
     :updated_at,
   ]
 
   COLLECTION_ATTRIBUTES = [
-    :id,
+    :code,
     :customer,
     :address_state,
     :total_price,
