@@ -11,7 +11,8 @@ module Administrate
       attr_reader :deferred_class, :options
 
       def new(*args)
-        new_options = if args.last.is_a? Hash then args.pop else {} end
+        # If the args already end with a "keyword hash", merge it with options
+        new_options = args.last.respond_to?(:merge) ? args.pop : {}
         deferred_class.new(*args, options.merge(new_options))
       end
 
