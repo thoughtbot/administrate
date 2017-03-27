@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 20170507115814) do
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
+  create_table "product_meta_tags", force: :cascade do |t|
+    t.integer  "product_id"
+    t.string   "meta_title"
+    t.string   "meta_description"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "products", id: :serial, force: :cascade do |t|
     t.string "name"
     t.float "price"

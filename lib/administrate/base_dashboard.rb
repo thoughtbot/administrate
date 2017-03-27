@@ -36,7 +36,12 @@ module Administrate
 
     def permitted_attributes
       form_attributes.map do |attr|
-        attribute_types[attr].permitted_attribute(attr)
+        attribute_type = attribute_types[attr]
+        if attribute_type == Administrate::Field::HasOne
+          { "#{attr}_attributes": has_one_attributes(attr) }
+        else
+          attribute_types[attr].permitted_attribute(attr)
+        end
       end.uniq
     end
 
@@ -64,6 +69,12 @@ module Administrate
     end
 
     private
+
+    def has_one_attributes(has_one_attr)
+      Administrate::ResourceResolver.new(
+        "admin/#{has_one_attr}"
+      ).dashboard_class.new.permitted_attributes
+    end
 
     def attribute_not_found_message(attr)
       "Attribute #{attr} could not be found in #{self.class}::ATTRIBUTE_TYPES"

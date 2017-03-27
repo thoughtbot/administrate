@@ -17,10 +17,14 @@ so this partial renders a message to that effect.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/HasOne
 %>
 
-<div class="field-unit__label">
-  <%= f.label field.attribute %>
-</div>
-
-<div class="field-unit__field">
-  <%= t("administrate.fields.has_one.not_supported") %>
-</div>
+<%= f.fields_for field.attribute, field.data || page.resource.class.new do |has_one_f| %>
+  <div class="padding-column"></div>
+  <fieldset>
+    <legend><%= page.resource_name.titleize %></legend>
+    <% page.attributes.each do |attribute| -%>
+      <div class="field-unit field-unit--<%= attribute.html_class %>">
+        <%= render_field attribute, f: has_one_f %>
+      </div>
+    <% end -%>
+  </fieldset>
+<% end %>

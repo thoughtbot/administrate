@@ -19,3 +19,23 @@
   margin-left: 2rem;
   width: 45%;
 }
+
+.field-unit--has-one {
+  .padding-column {
+    @include span-columns(1 of 12);
+  }
+
+  > fieldset {
+    @include span-columns(6 of 12);
+    border: 1px solid $grey-2;
+    padding: 0.35em 0.625em 0.75em;
+  }
+
+  .field-unit__field {
+    @include span-columns(9 of 12);
+  }
+
+  .field-unit__label {
+    @include span-columns(3 of 12);
+  }
+}
