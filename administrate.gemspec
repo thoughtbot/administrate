@@ -5,8 +5,8 @@ require "administrate/version"
 Gem::Specification.new do |s|
   s.name = "administrate"
   s.version = Administrate::VERSION
-  s.authors = ["Grayson Wright"]
-  s.email = ["grayson@thoughtbot.com"]
+  s.authors = ["Nick Charlton", "Grayson Wright"]
+  s.email = ["nick@nickcharlton.net", "grayson@thoughtbot.com"]
   s.homepage = "https://administrate-prototype.herokuapp.com/"
   s.summary = "A Rails engine for creating super-flexible admin dashboards"
   s.license = "MIT"
