@@ -11,3 +11,11 @@ appraise "rails50" do
   gem "rails", "~> 5.0.0"
   gem "rails-controller-testing"
 end
+
+appraise "sprockets-4" do
+  gem "sprockets", ">=4.0.0.beta4"
+end
+
+appraise "sprockets-2" do
+  gem "sprockets", "<3.0.0"
+end
