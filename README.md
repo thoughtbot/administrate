@@ -47,8 +47,7 @@ Administrate supports Rails from 4.2, up to 5.0 and beyond.
 Add Administrate to your Gemfile:
 
 ```ruby
-# Gemfile
-gem "administrate", "~> 0.4.0"
+gem "administrate"
 ```
 
 Re-bundle, then run the installer:
@@ -88,14 +87,33 @@ With this structure, developing a typical feature looks like:
 - Implement a feature in `administrate/`
 - Exercise the feature using the demo rails app (`spec/example_app/app/`)
 
-## Contributing Guidelines
+## Contributing
 
-Use the following guides for getting things done, programming well, and
-programming in style.
+Please see [CONTRIBUTING.md](/CONTRIBUTING.md).
 
-* [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
-* [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
-* [Style](http://github.com/thoughtbot/guides/blob/master/style)
+administrate was originally written by Grayson Wright and is now maintained by
+Nick Charlton. Many improvements and bugfixes were contributed by the [open
+source
+community](https://github.com/thoughtbot/administrate/graphs/contributors).
+
+## License
+
+administrate is Copyright © 2015-2017 thoughtbot.
+It is free software, and may be redistributed under the terms specified in the
+[LICENSE](/LICENSE) file.
+
+## About thoughtbot
+
+![thoughtbot](http://presskit.thoughtbot.com/images/thoughtbot-logo-for-readmes.svg)
+
+administrate is maintained and funded by thoughtbot, inc.
+The names and logos for thoughtbot are trademarks of thoughtbot, inc.
+
+We love open source software!
+See [our other projects][community] or
+[hire us][hire] to design, develop, and grow your product.
 
 [demo]: https://administrate-prototype.herokuapp.com/admin
 [prototype_heroku]: https://administrate-prototype.herokuapp.com
+[community]: https://thoughtbot.com/community?utm_source=github
+[hire]: https://thoughtbot.com?utm_source=github
