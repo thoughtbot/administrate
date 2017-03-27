@@ -6,6 +6,8 @@ zh-TW:
       destroy: 刪除
       edit: 編輯
       show: 檢視
+      new: 删除
+      back: 背部
     controller:
       create:
         success: "已成功新增 %{resource}。"
