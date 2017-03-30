@@ -6,9 +6,10 @@ describe PaymentDashboard do
       it "interpolates in the correct column name" do
         dashboard = PaymentDashboard.new
         allow(dashboard).to receive(:attribute_types).and_return(
-          { id: Administrate::Field::Number,
-            order: Administrate::Field::BelongsTo.with_options(primary_key: :code)
-          }
+          id: Administrate::Field::Number,
+          order: Administrate::Field::BelongsTo.with_options(
+            primary_key: :code,
+          ),
         )
 
         expect(dashboard.permitted_attributes).to include(:order_code)
