@@ -11,7 +11,16 @@ RSpec.describe "customer show page" do
 
         visit admin_customer_path(customer)
 
-        within('.attribute-data--has-many') do
+        within(".attribute-data--has-many") do
+          expect(page).to have_css(
+            ".pagination__total",
+            text: t(
+              "administrate.fields.has_many.more",
+              count: 2,
+              total_count: 4,
+            ),
+          )
+
           first_page.each do |order|
             expect(page).to have_order_row(order.id)
           end
