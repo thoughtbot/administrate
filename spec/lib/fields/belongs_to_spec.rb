@@ -67,6 +67,17 @@ describe Administrate::Field::BelongsTo do
     end
   end
 
+  describe "foreign_key option" do
+    it "determines what foreign key is used on the relationship for the form" do
+      association =
+        Administrate::Field::BelongsTo.with_options(
+          foreign_key: "customers_uuid",
+        )
+      field = association.new(:customers, [], :show)
+      expect(field.permitted_attribute).to eq("customers_uuid")
+    end
+  end
+
   describe "#resources" do
     context "with `order` option" do
       it "returns the resources in correct order" do

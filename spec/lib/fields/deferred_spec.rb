@@ -3,14 +3,25 @@ require "administrate/field/string"
 
 describe Administrate::Field::Deferred do
   describe "#permitted_attribute" do
-    it "delegates to the backing class" do
-      deferred = Administrate::Field::Deferred.new(Administrate::Field::String)
-      allow(Administrate::Field::String).to receive(:permitted_attribute)
+    context "when given a `foreign_key` option" do
+      it "returns the value given" do
+        deferred = Administrate::Field::Deferred.
+          new(Administrate::Field::BelongsTo.with_options(foreign_key: :bar))
+        expect(deferred.permitted_attribute(:foo)).to eq(:bar)
+      end
+    end
 
-      deferred.permitted_attribute(:foo)
+    context "when not given a `foreign_key` option" do
+      it "delegates to the backing class" do
+        deferred = Administrate::Field::Deferred.
+          new(Administrate::Field::String)
+        allow(Administrate::Field::String).to receive(:permitted_attribute)
 
-      expect(Administrate::Field::String).
-        to have_received(:permitted_attribute).with(:foo)
+        deferred.permitted_attribute(:foo)
+
+        expect(Administrate::Field::String).
+          to have_received(:permitted_attribute).with(:foo)
+      end
     end
   end
 

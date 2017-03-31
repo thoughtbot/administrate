@@ -12,12 +12,20 @@ Customer.destroy_all
 Product.destroy_all
 ProductMetaTag.destroy_all
 Series.destroy_all
+Country.destroy_all
+
+Country.create(code: "US", name: "USA")
+Country.create(code: "CA", name: "Canada")
+Country.create(code: "CN", name: "China")
+Country.create(code: "RU", name: "Russia")
+Country.create(code: "AU", name: "Australia")
 
 100.times do
   name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
   Customer.create(
     name: name,
     email: Faker::Internet.safe_email(name),
+    country: Country.first,
   )
 end
 
