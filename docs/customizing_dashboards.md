@@ -74,6 +74,10 @@ which are specified through the `.with_options` class method:
 `:limit` - Set the number of resources to display in the show view. Default is
 `5`.
 
+`:sort_by` - What to sort the association by in the show view.
+
+`:direction` - What direction the sort should be in, `:asc` (default) or `:desc`.
+
 **Field::Number**
 
 `:decimals` - Set the number of decimals to display. Defaults to `0`.
