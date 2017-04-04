@@ -80,11 +80,22 @@ which are specified through the `.with_options` class method:
 
 `:prefix` - Prefixes the number with a string. Defaults to `""`.
 
+`:suffix` - Suffixes the number with a string. Defaults to `""`.
+
 For example, you might use the following to display U.S. currency:
 
 ```ruby
   unit_price: Field::Number.with_options(
     prefix: "$",
+    decimals: 2,
+  )
+```
+
+Or, to display a distance in kilometers:
+
+```ruby
+  unit_price: Field::Number.with_options(
+    suffix: " km",
     decimals: 2,
   )
 ```
