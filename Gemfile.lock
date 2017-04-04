@@ -125,7 +125,6 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashdiff (0.3.2)
-    high_voltage (2.4.0)
     highline (1.7.8)
     i18n (0.8.1)
     i18n-tasks (0.8.7)
@@ -309,7 +308,6 @@ DEPENDENCIES
   factory_girl_rails
   faker
   formulaic
-  high_voltage
   i18n-tasks
   launchy
   pg
