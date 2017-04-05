@@ -1,4 +1,3 @@
 class Country < ActiveRecord::Base
-  validates :code, presence: true
-  validates :name, presence: true
+  validates :code, :name, presence: true
 end
