@@ -10,7 +10,7 @@ module Administrate
         )
         page = Administrate::Page::Form.new(
           resolver.dashboard_class.new,
-          resolver.resource_class.new,
+          field.data || resolver.resource_class.new,
         )
         locals[:page] = page
       end
