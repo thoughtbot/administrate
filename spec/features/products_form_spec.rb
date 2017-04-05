@@ -18,4 +18,17 @@ describe "product form has_one relationship" do
       t("administrate.controller.create.success", resource: "Product")
     )
   end
+
+  it "edits product and meta tag data correctly" do
+    product = create(:product)
+
+    visit edit_admin_product_path(product)
+
+    click_on "Update Product"
+
+    expect(page).to have_link(product.product_meta_tag.id)
+    expect(page).to have_flash(
+      t("administrate.controller.update.success", resource: "Product")
+    )
+  end
 end

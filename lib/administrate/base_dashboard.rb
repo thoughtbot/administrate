@@ -71,9 +71,8 @@ module Administrate
     private
 
     def has_one_attributes(has_one_attr)
-      Administrate::ResourceResolver.new(
-        "admin/#{has_one_attr}"
-      ).dashboard_class.new.permitted_attributes
+      Administrate::ResourceResolver.new("admin/#{has_one_attr}").
+        dashboard_class.new.permitted_attributes + [:id]
     end
 
     def attribute_not_found_message(attr)
