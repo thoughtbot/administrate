@@ -1,3 +1,7 @@
+require 'administrate/field/has_many'
+require 'administrate/field/has_one'
+require 'administrate/field/belongs_to'
+
 module Administrate
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
@@ -114,9 +118,10 @@ module Administrate
         Administrate::Field::BelongsTo
       ]
 
-      dashboard.class::ATTRIBUTE_TYPES.map do |key, value|
-        key if association_classes.include?(value) ||
-               association_classes.include?(value.try :deferred_class)
+      dashboard.collection_attributes.map do |key|
+        field = dashboard.class::ATTRIBUTE_TYPES[key]
+        key if association_classes.include?(field) ||
+               association_classes.include?(field.try :deferred_class)
       end.compact
     end
 
