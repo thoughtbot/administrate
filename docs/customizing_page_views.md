@@ -63,3 +63,16 @@ rails generate administrate:views User
 Any changes to these template files
 will *only* affect pages that display customers,
 and will leave the show pages for other resources unchanged.
+
+## Customizing layouts
+
+Many developers need to customize the layouts of their admin dashboard.
+It's so easy that pass in the "layout" key word to the view generators.
+
+```bash
+rails generate administrate:views:layout
+ # -> app/views/layouts/admin/application.html.erb
+ # -> app/views/admin/application/_sidebar.html.erb
+ # -> app/views/admin/application/_javascript.html.erb
+ # -> app/views/admin/application/_flashes.html.erb
+```

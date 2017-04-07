@@ -1,0 +1,25 @@
+---
+ko:
+  administrate:
+    actions:
+      confirm: 괜찮습니까?
+      destroy: 삭제
+      edit: 편집
+      show: 보여주기
+      new: 새로운
+      back: 뒤로
+    controller:
+      create:
+        success: "%{resource} 가 성공적으로 생성되었습니다."
+      destroy:
+        success: "%{resource} 가 성공적으로 삭제되었습니다."
+      update:
+        success: "%{resource} 가 성공적으로 갱신되었습니다."
+    fields:
+      has_many:
+        more: "%{total_count} 개 중에서 %{count} 개"
+        none: 없음
+      polymorphic:
+        not_supported: 상속 관계에 대한 양식은 제공되지 않습니다.
+      has_one:
+        not_supported: 일대일 관계에 대한 양식은 제공되지 않습니다.

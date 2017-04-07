@@ -16,6 +16,73 @@
 
 ## Changes
 
+### 0.5.0 (Mar 27, 2017)
+
+* [i18n] [#786] Backfill the missing translations (some from Google Translate).
+* [CHANGE] [#795] Loosen and update jquery-rails.
+* [CHANGE] [#792] Content with .preserve-whitespace should wrap.
+* [BUGFIX] [#611] Javascript: Fix row-click handler.
+* [CHANGE] [#569] Loosen normalize-rails required version.
+* [DOC] [#532] Add a short section about how to report vulnerabilities.
+* [CHANGE] [#784] Drop refills as a dependency.
+* [CHANGE] [#784] Change bourbon to be at least beta.6.
+* [FEATURE] [#505] let routes generator indent all routes.
+* [FEATURE] [#746] Add suffix/postfix option to number field.
+* [DOC] [#508] Add example of how to use a custom field.
+* [i18n] [#602] Adding Portuguese locale.
+* [i18n] [#603] Update administrate.pt-BR.yml.
+* [CHANGE] [#634] Add and set PLURAL_MANY_COUNT to 2.1.
+* [DOC] [#684] Add instructions on how to add dashboards.
+* [FEATURE] [#780] Add Sentry for the prototype app.
+* [i18n] [#772] Merge the existing translations before testing.
+* [DOC] [#783] Change README to use `0.4.0`.
+* [DOC] [#778] Clarify the version requirements.
+* [DOC] [#779] Update .rubocop.yml to follow thoughtbot/guides.
+* [DOC] [#781] Update readme screenshot.
+* [BUGFIX] [#559] Fix #558 : Wrong constant name guess.
+* [DOC] [#769] Mention guides in doc/ subdirectory.
+* [DOC] [#469] Path to custom attribute type updated in docs.
+* [CHANGE] [#774] Update Kaminari `~> 0.16` -> `>= 1.0`.
+* [DOC] [#776] Include docs in gem (via gemspec file listing).
+* [DOC] [#540] example on how to use custom file types.
+* [CHANGE] [#767] Add auto-prefixer.
+* [i18n] [#344] Add missing translations on edit/new/show actions.
+* [i18n] [#344] Add some action translations to administrate.en.
+* [i18n] [#344] Add some action translations to administrate.pt-BR.
+* [DOC] [#457] Document how to change resource labels in collections.
+* [FEATURE] [#466] Allow preloading has_many records.
+* [i18n] [#764] Add Korean i18n.
+* [FEATURE] [#597] Allow to limit route actions.
+* [BUGFIX] [#687] Fix broken sort arrow svg in the resource table.
+* [DOC] [#627] add doc for customizing admin dashboard layouts.
+* [BUGFIX] [#642] Add missing multiplier option for number fields.
+* [BUGFIX] [#465] Inline controller's `permitted_attributes` method.
+* [FEATURE] [#760] Add refills and refill-styled flashes.
+* [FEATURE] [#736] Paginate has_many show view.
+* [CHANGE] [#759] Update instances of bourbon to 5.0.0.beta.7; sass to ~>3.4.
+
+### 0.4.0 (Mar 03, 2017)
+
+* [DOC] Use Kaminari syntax in controller's comment hint.
+* [#747] [CHANGE] Fix a bug where `administrate:views` was creating the wrong
+  paths.
+* [#739] [#743] [BUGFIX] Dependent destroy demo app models.
+* [CHANGE] Remove boilerplate references to staging/production.
+* [CHANGE] Improve the `bin/` commands.
+* [#733] [CHANGE] Switch `administrate-field-image` to use the new release.
+* [#704] [I18n] Fix a typo on pt-BR translation for polymorphic.
+* [#730] [FEATURE] Hide the Search Bar when no attributes are searchable.
+* [#732] [I18n] Improve Japanese locales.
+* [#729] [FEATURE] Allow `primary_key` option on relationships instead of
+  hardcoding `id`.
+* [#728] [DOCS] Improve the docs around authentication.
+* [#727] [FEATURE] Add a link to show resource from the collection table.
+* [#726] [BUGFIX] Check for PhantomJS in the setup script.
+* [#721] [CHANGE] Use `count(:all)` for associations in HasMany fields.
+* [#683] [CHANGE] Add Bourbon as an explicit dependency.
+* [#713] [CHANGE] Avoid writing to `routes.rb` when no models exist.
+* [#704] [I18n] Fix word on pt-BR translation
+
 ### 0.3.0 (Oct 28, 2016)
 
 * [#127] [UI] Add button to clear the search

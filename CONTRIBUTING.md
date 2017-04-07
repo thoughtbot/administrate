@@ -13,7 +13,8 @@ issue trackers, chatrooms, and mailing lists.
 2. Run `./bin/setup`.
 
 3. Run the tests. We only take pull requests with passing tests, and it's great
-   to know that you have a clean slate: `rake && bundle exec appraisal rake`
+   to know that you have a clean slate:
+   `bundle exec rake && bundle exec appraisal rake`
 
 4. Add a test for your change. Only refactoring and documentation changes
    require no new tests. If you are adding functionality or fixing a bug,
@@ -50,6 +51,14 @@ of an optimization's overall impact.
 Tools like [Rack MiniProfiler] are helpful
 for generating request-level performance profiles.
 
+## Security
+
+For security inquiries or vulnerability reports, please email
+<security@thoughtbot.com>.
+If you'd like, you can use our [PGP key] when reporting vulnerabilities.
+
 [code of conduct]: https://thoughtbot.com/open-source-code-of-conduct
 [commit]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 [Rack MiniProfiler]: https://github.com/MiniProfiler/rack-mini-profiler
+[PGP key]: https://thoughtbot.com/thoughtbot.asc
+

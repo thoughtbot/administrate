@@ -22,6 +22,15 @@ describe "customer index page" do
     expect(page).to have_content(customer.email)
   end
 
+  it "links to the customer show page without javascript", js: false do
+    customer = create(:customer)
+
+    visit admin_customers_path
+    click_show_link_for(customer)
+
+    expect(page).to have_header(displayed(customer))
+  end
+
   it "links to the edit page" do
     customer = create(:customer)
 

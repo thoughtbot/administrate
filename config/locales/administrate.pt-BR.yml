@@ -7,6 +7,8 @@ pt-BR:
       destroy: Deletar
       edit: Editar
       show: Visualizar
+      new: Criar
+      back: Voltar
     controller:
       create:
         success: "%{resource} foi criado com sucesso."
@@ -19,6 +21,6 @@ pt-BR:
         more: "Exibindo %{count} de %{total_count}"
         none: Nenhum
       polymorphic:
-        not_supported: Relações polimórmficas nos formulários não são suportadas.
+        not_supported: Relações polimórficas nos formulários não são suportadas.
       has_one:
         not_supported: Relações um para muitos nos formulários não são suportadas.

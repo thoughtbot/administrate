@@ -7,6 +7,25 @@
 @import "selectize";
 @import "datetime_picker";
 
-@import "library/**/*";
-@import "base/**/*";
-@import "components/**/*";
+@import "library/data-label";
+@import "library/variables";
+
+@import "base/forms";
+@import "base/layout";
+@import "base/lists";
+@import "base/tables";
+@import "base/typography";
+
+@import "components/app-container";
+@import "components/attributes";
+@import "components/buttons";
+@import "components/cells";
+@import "components/field-unit";
+@import "components/flashes";
+@import "components/form-actions";
+@import "components/header";
+@import "components/main-content";
+@import "components/pagination";
+@import "components/search";
+@import "components/sidebar";
+@import "components/table";

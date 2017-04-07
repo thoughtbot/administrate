@@ -35,6 +35,14 @@ describe Administrate::Field::Number do
       end
     end
 
+    context "with `suffix` option" do
+      it "displays the given suffix" do
+        number = number_with_options(13, suffix: "h")
+
+        expect(number.to_s).to eq("13h")
+      end
+    end
+
     context "with `decimals` option" do
       it "truncates the number to the given number of decimal places" do
         zero = number_with_options(12.34553, decimals: 0)
@@ -50,6 +58,16 @@ describe Administrate::Field::Number do
         number = number_with_options(12, decimals: 2)
 
         expect(number.to_s).to eq("12.00")
+      end
+    end
+
+    context "with `multiplier` option" do
+      it "multiples the number by the given multiplier" do
+        hundredth = number_with_options(100, multiplier: 0.01)
+        ten = number_with_options(100, multiplier: 10)
+
+        expect(hundredth.to_s).to eq("1")
+        expect(ten.to_s).to eq("1000")
       end
     end
 

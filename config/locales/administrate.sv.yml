@@ -6,6 +6,8 @@ sv:
       destroy: Ta bort
       edit: Ändra
       show: Visa
+      new: Ny
+      back: Tillbaka
     controller:
       create:
         success: "%{resource} har skapats."
