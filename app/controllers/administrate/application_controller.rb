@@ -80,6 +80,17 @@ module Administrate
       end
     end
 
+    helper_method :valid_action?
+    def valid_action?(name, resource = resource_class)
+      !!routes.detect do |controller, action|
+        controller == resource.to_s.underscore.pluralize && action == name.to_s
+      end
+    end
+
+    def routes
+      @routes ||= Namespace.new(namespace).routes
+    end
+
     def records_per_page
       params[:per_page] || 20
     end
@@ -103,11 +114,7 @@ module Administrate
     def resource_params
       params
         .require(resource_class.model_name.param_key)
-        .permit(*permitted_attributes)
-    end
-
-    def permitted_attributes
-      dashboard.permitted_attributes
+        .permit(dashboard.permitted_attributes)
     end
 
     delegate :resource_class, :resource_name, :namespace, to: :resource_resolver

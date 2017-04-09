@@ -36,8 +36,8 @@ module Administrate
         self.class.permitted_attribute(attribute)
       end
 
-      def resources
-        data.limit(limit)
+      def resources(page = 1)
+        data.page(page).per(limit)
       end
 
       def more_than_limit?
@@ -47,7 +47,12 @@ module Administrate
       private
 
       def candidate_resources
-        associated_class.all
+        if options.key?(:includes)
+          includes = options.fetch(:includes)
+          associated_class.includes(*includes).all
+        else
+          associated_class.all
+        end
       end
 
       def display_candidate_resource(resource)

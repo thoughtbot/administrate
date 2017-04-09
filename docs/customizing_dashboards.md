@@ -80,11 +80,22 @@ which are specified through the `.with_options` class method:
 
 `:prefix` - Prefixes the number with a string. Defaults to `""`.
 
+`:suffix` - Suffixes the number with a string. Defaults to `""`.
+
 For example, you might use the following to display U.S. currency:
 
 ```ruby
   unit_price: Field::Number.with_options(
     prefix: "$",
+    decimals: 2,
+  )
+```
+
+Or, to display a distance in kilometers:
+
+```ruby
+  unit_price: Field::Number.with_options(
+    suffix: " km",
     decimals: 2,
   )
 ```
@@ -124,5 +135,20 @@ en:
       customer:
         name: Full Name
 ```
+
+
+To change the labels used for resources in dashboard collections.
+Assume you have a users dashboard and you want to change "User #1" to "Testy
+McTesterson", the user's name.
+
+Add this method to the dashboard for Users.
+Use whatever attribute or method you like.
+Example for *user*:
+
+````ruby
+def display_resource(user)
+  user.name
+end
+````
 
 [define your own]: /adding_custom_field_types

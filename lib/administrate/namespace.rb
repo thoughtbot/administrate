@@ -5,8 +5,14 @@ module Administrate
     end
 
     def resources
-      namespace_controller_paths.uniq.map do |controller|
-        controller.gsub(/^#{namespace}\//, "").to_sym
+      @resources ||= routes.map(&:first).uniq.map(&:to_sym)
+    end
+
+    def routes
+      @routes ||= all_routes.select do |controller, _action|
+        controller.starts_with?(namespace.to_s)
+      end.map do |controller, action|
+        [controller.gsub(/^#{namespace}\//, ""), action]
       end
     end
 
@@ -14,15 +20,9 @@ module Administrate
 
     attr_reader :namespace
 
-    def namespace_controller_paths
-      all_controller_paths.select do |controller|
-        controller.starts_with?(namespace.to_s)
-      end
-    end
-
-    def all_controller_paths
+    def all_routes
       Rails.application.routes.routes.map do |route|
-        route.defaults[:controller].to_s
+        route.defaults.values_at(:controller, :action).map(&:to_s)
       end
     end
   end

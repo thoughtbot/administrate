@@ -6,6 +6,8 @@ it:
       destroy: Elimina
       edit: Modifica
       show: Visualizza
+      new: Nuovo
+      back: Indietro
     controller:
       create:
         success: "%{resource} è stato creato con successo."

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     namespace :catalog do
       resources :products
     end
+    resources :payments, only: [:index, :show]
 
     root to: "customers#index"
   end

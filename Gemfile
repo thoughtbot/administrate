@@ -3,13 +3,15 @@ source 'https://rubygems.org'
 gemspec
 
 gem "administrate-field-image"
-gem "bourbon", "~> 4.2"
+gem "autoprefixer-rails"
+gem "bourbon", "~> 5.0.0.beta.7"
 gem "delayed_job_active_record"
 gem "faker"
 gem "high_voltage"
 gem "markdown-rails"
 gem "pg"
 gem "redcarpet"
+gem "sentry-raven"
 gem "unicorn"
 
 group :development do

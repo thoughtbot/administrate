@@ -6,6 +6,8 @@ da:
       destroy: Slet
       edit: Rediger
       show: Vis
+      new: Ny
+      back: Tilbage
     controller:
       create:
         success: "%{resource} blev oprettet."
