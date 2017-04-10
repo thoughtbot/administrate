@@ -14,10 +14,6 @@ gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
 
-group :development do
-  gem "web-console", ">= 2.1.3"
-end
-
 group :development, :test do
   gem "appraisal"
   gem "awesome_print"
