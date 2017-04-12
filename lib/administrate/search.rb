@@ -19,9 +19,10 @@ module Administrate
     private
 
     delegate :resource_class, to: :resolver
+    delegate :table_name, to: :resource_class
 
     def query
-      search_attributes.map { |attr| "lower(#{attr}) LIKE ?" }.join(" OR ")
+      search_attributes.map { |attr| "lower(#{table_name}.#{attr}) LIKE ?" }.join(" OR ")
     end
 
     def search_terms
