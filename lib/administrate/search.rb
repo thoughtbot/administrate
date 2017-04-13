@@ -21,9 +21,9 @@ module Administrate
     delegate :resource_class, to: :resolver
 
     def query
-  search_attributes.map do |attr|
-    "lower(#{ ActiveRecord::Base.connection.quote_column_name(attr) }) LIKE ?"
-  end.join(" OR ")
+      search_attributes.map do |attr|
+        "lower(#{ ActiveRecord::Base.connection.quote_column_name(attr) }) LIKE ?"
+     end.join(" OR ")
     end
 
     def search_terms
