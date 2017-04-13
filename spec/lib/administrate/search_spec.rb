@@ -47,7 +47,8 @@ describe Administrate::Search do
         resolver = double(resource_class: User, dashboard_class: MockDashboard)
         search = Administrate::Search.new(resolver, "test")
         expected_query = [
-          "lower(users.name) LIKE ? OR lower(users.email) LIKE ?",
+          "lower(\"users\".\"name\") LIKE ?"\
+          " OR lower(\"users\".\"email\") LIKE ?",
           "%test%",
           "%test%",
         ]
