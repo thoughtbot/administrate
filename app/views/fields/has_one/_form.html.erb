@@ -18,8 +18,7 @@ so this partial renders a message to that effect.
 %>
 
 <%= f.fields_for field.attribute, field.data || page.resource.class.new do |has_one_f| %>
-  <div class="padding-column"></div>
-  <fieldset>
+  <fieldset class="field-unit--nested">
     <legend><%= page.resource_name.titleize %></legend>
     <% page.attributes.each do |attribute| -%>
       <div class="field-unit field-unit--<%= attribute.html_class %>">

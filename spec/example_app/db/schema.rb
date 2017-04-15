@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20170507115814) do
 
   create_table "product_meta_tags", force: :cascade do |t|
     t.integer  "product_id"
-    t.string   "meta_title"
-    t.string   "meta_description"
+    t.string   "meta_title",       null: false
+    t.string   "meta_description", null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
