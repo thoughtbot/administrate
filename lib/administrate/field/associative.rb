@@ -26,7 +26,7 @@ module Administrate
       end
 
       def foreign_key
-        options.fetch(:foreign_key, nil)
+        options.fetch(:foreign_key, :"#{attribute}_id")
       end
     end
   end
