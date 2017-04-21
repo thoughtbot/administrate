@@ -17,10 +17,10 @@ so this partial renders a message to that effect.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/HasOne
 %>
 
-<%= f.fields_for field.attribute, field.data || page.resource.class.new do |has_one_f| %>
+<%= f.fields_for field.attribute, field.data || field.nested_form.resource.class.new do |has_one_f| %>
   <fieldset class="field-unit--nested">
-    <legend><%= page.resource_name.titleize %></legend>
-    <% page.attributes.each do |attribute| -%>
+    <legend><%= field.nested_form.resource_name.titleize %></legend>
+    <% field.nested_form.attributes.each do |attribute| -%>
       <div class="field-unit field-unit--<%= attribute.html_class %>">
         <%= render_field attribute, f: has_one_f %>
       </div>
