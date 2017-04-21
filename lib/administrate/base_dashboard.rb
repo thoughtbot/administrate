@@ -36,7 +36,6 @@ module Administrate
 
     def permitted_attributes
       form_attributes.map do |attr|
-        attribute_type = attribute_types[attr]
         attribute_types[attr].permitted_attribute(attr)
       end.uniq
     end

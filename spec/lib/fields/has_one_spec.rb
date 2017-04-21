@@ -5,8 +5,8 @@ describe Administrate::Field::HasOne do
   describe "#to_partial_path" do
     it "returns a partial based on the page being rendered" do
       page = :show
-      owner = double
-      field = Administrate::Field::HasOne.new(:owner, owner, page)
+      product_meta_tag = double
+      field = Administrate::Field::HasOne.new(:product_meta_tag, product_meta_tag, page)
 
       path = field.to_partial_path
 
