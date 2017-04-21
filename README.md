@@ -59,6 +59,8 @@ $ rails generate administrate:install
 Restart your server, and visit http://localhost:3000/admin
 to see your new dashboard in action.
 
+## Documentation
+
 To customize the appearance, behavior, and contents of the dashboard,
 see the guides at
 [https://administrate-prototype.herokuapp.com][prototype_heroku].
