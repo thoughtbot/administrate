@@ -59,6 +59,15 @@ $ rails generate administrate:install
 Restart your server, and visit http://localhost:3000/admin
 to see your new dashboard in action.
 
+## Create Additional Dashboards
+
+In order to create additional dashboards, pass in the resource name to 
+the dashboard generator. A dashboard and controller will be created.
+
+```bash
+$ rails generate administrate:dashboard Foo
+```
+
 ## Documentation
 
 To customize the appearance, behavior, and contents of the dashboard,
