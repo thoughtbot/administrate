@@ -7,7 +7,7 @@ pl:
       edit: Edytuj
       show: Wyświetl
       new: Nowy
-      back: Plecy
+      back: Wstecz
     controller:
       create:
         success: "Zasób %{resource} został pomyślnie utworzony."

@@ -6,15 +6,15 @@ uk:
       destroy: Видалити
       edit: Редагувати
       show: Показати
-      new: новий
-      back: назад
+      new: Новий
+      back: Назад
     controller:
       create:
-        success: "%{resource} було успішно створено."
+        success: "Успішно створено %{resource}."
       destroy:
-        success: "%{resource} було успішно видалено."
+        success: "Успішно видалено %{resource}."
       update:
-        success: "%{resource} було успішно оновлено."
+        success: "Успішно оновлено %{resource}."
     fields:
       has_many:
         more: "%{count} із %{total_count}"
