@@ -21,10 +21,7 @@ describe Administrate::Field::Number do
   describe "#to_s" do
     it "defaults to displaying no decimal points" do
       int = Administrate::Field::Number.new(:quantity, 3, :show)
-      float = Administrate::Field::Number.new(:quantity, 3.1415926, :show)
-
       expect(int.to_s).to eq("3")
-      expect(float.to_s).to eq("3")
     end
 
     context "with `prefix` option" do
@@ -58,6 +55,11 @@ describe Administrate::Field::Number do
         number = number_with_options(12, decimals: 2)
 
         expect(number.to_s).to eq("12.00")
+      end
+
+      it "defaults to the precision of the decimal" do
+        number = Administrate::Field::Number.new(:number, 12.123456, :page)
+        expect(number.to_s).to eq("12.123456")
       end
     end
 
