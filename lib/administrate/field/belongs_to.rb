@@ -4,7 +4,7 @@ module Administrate
   module Field
     class BelongsTo < Associative
       def self.permitted_attribute(attr)
-        :"#{attr}_id"
+        "#{attr.to_s.split('/').last}_id"
       end
 
       def permitted_attribute

@@ -20,7 +20,7 @@ FactoryGirl.define do
     address_zip "94110"
   end
 
-  factory :product do
+  factory :product, class: 'Catalog::Product' do
     sequence(:name) { |n| "Monopoly #{n}" }
     price 10.50
     description "A cutthroat game of financial conquest"

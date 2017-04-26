@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     resources :customers
     resources :line_items
     resources :orders
-    resources :products
+    namespace :catalog do
+      resources :products
+    end
     resources :payments, only: [:index, :show]
 
     root to: "customers#index"

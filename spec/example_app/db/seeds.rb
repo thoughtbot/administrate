@@ -9,7 +9,7 @@
 LineItem.destroy_all
 Order.destroy_all
 Customer.destroy_all
-Product.destroy_all
+Catalog::Product.destroy_all
 
 100.times do
   name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
@@ -22,7 +22,7 @@ end
 product_attributes = YAML.load_file(Rails.root.join('db/seeds/products.yml'))
 
 product_attributes.each do |attributes|
-  Product.create attributes.merge(price: 20 + rand(50))
+  Catalog::Product.create attributes.merge(price: 20 + rand(50))
 end
 
 Customer.all.each do |customer|
@@ -37,7 +37,7 @@ Customer.all.each do |customer|
     )
 
     item_count = (1..3).to_a.sample
-    Product.all.sample(item_count).each do |product|
+    Catalog::Product.all.sample(item_count).each do |product|
       LineItem.create(
         order: order,
         product: product,

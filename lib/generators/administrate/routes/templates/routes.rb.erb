@@ -1,4 +1,16 @@
 namespace :admin do
+  <%- dashboard_resources.each do |resource| -%>
+    resources :<%= resource %>
+  <%- end -%>
+
+  <%- namespaced_dashboard_resources.each do |namespace, namespace_resources| -%>
+    namespace :<%= namespace %> do
+    <%- namespace_resources.each do |resource| -%>
+      resources :<%= resource %>
+    <%- end -%>
+    end
+  <%- end -%>
+
 <% dashboard_resources.each do |resource| %>    resources :<%= resource %>
 <%end%>
     root to: "<%= dashboard_resources.first %>#index"

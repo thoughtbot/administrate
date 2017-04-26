@@ -11,10 +11,12 @@ describe Administrate::Generators::RoutesGenerator, :generator do
 
       run_generator
 
-      [:customers, :line_items, :orders, :products].each do |model|
+      %w[customers line_items orders].each do |model|
         expect(routes).to contain("resources :#{model}")
       end
-      expect(routes).not_to contain("Delayed::Backend::ActiveRecord::Job")
+      expect(routes).to contain("namespace :catalog do\n      resources :products\n    end")
+      expect(routes).to_not contain("namespace :active_record do\n      resources :schema_migrations\n    end")
+      expect(routes).not_to contain("resources :delayed/backend/active_record/jobs")
     end
 
     it "does not populate routes when no models exist" do

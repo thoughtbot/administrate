@@ -56,7 +56,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
 
       run_generator
 
-      %w[customer order product line_item].each do |resource|
+      %w[customer order catalog/product line_item].each do |resource|
         expect(Rails::Generators).
           to invoke_generator("administrate:dashboard", [resource])
       end

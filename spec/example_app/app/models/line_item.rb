@@ -1,6 +1,6 @@
 class LineItem < ActiveRecord::Base
   belongs_to :order
-  belongs_to :product
+  belongs_to :product, class_name: "Catalog::Product"
 
   validates :product, presence: true
   validates :order, presence: true

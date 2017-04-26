@@ -15,5 +15,20 @@ describe Administrate::Namespace do
         reset_routes
       end
     end
+
+    it "handles namespaced resources in the admin namespace" do
+      begin
+        namespace = Administrate::Namespace.new(:admin)
+        Rails.application.routes.draw do
+          namespace(:admin) do
+            namespace(:catalog) { resources :products }
+          end
+        end
+
+        expect(namespace.resources).to eq [:'catalog/products']
+      ensure
+        reset_routes
+      end
+    end
   end
 end

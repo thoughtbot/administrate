@@ -7,7 +7,7 @@ module Administrate
       DEFAULT_LIMIT = 5
 
       def self.permitted_attribute(attribute)
-        { "#{attribute.to_s.singularize}_ids".to_sym => [] }
+        { "#{attribute.to_s.split('/').last.singularize}_ids" => [] }
       end
 
       def associated_collection

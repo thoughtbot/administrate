@@ -14,9 +14,9 @@ module Administrate
       end
 
       def warn_about_invalid_models
-        namespaced_models.each do |invalid_model|
+        deeply_namespaced_models.each do |invalid_model|
           puts "WARNING: Unable to generate a dashboard for #{invalid_model}."
-          puts "         Administrate does not yet support namespaced models."
+          puts "         Administrate does not yet support more than one level of namespace for models."
         end
 
         models_without_tables.each do |invalid_model|
@@ -38,32 +38,55 @@ module Administrate
         end
       end
 
+      def namespaced_dashboard_resources
+        result_hash = Hash.new { |hash, key| hash[key] = [] }
+
+        valid_namespaced_dashboard_models.reduce(result_hash) do |result, model|
+          namespace, model_name = model.to_s.split('::')[0..1]
+          result[namespace.underscore] << model_name.pluralize.underscore
+
+          result
+        end
+      end
+
       def valid_dashboard_models
-        database_models - invalid_database_models
+        database_models - invalid_database_models - namespaced_models
+      end
+
+      def valid_namespaced_dashboard_models
+        namespaced_models - invalid_database_models
       end
 
       def database_models
         ActiveRecord::Base.descendants
       end
 
+      def namespaced_models
+        database_models.select { |model| model.to_s.split("::").size == 2 }
+      end
+
+      def deeply_namespaced_models
+        database_models.select { |model| model.to_s.split("::").size > 2 }
+      end
+
       def invalid_database_models
-        models_without_tables + namespaced_models + unnamed_constants
+        models_without_tables + unnamed_constants + rails_internal_models + deeply_namespaced_models
       end
 
       def models_without_tables
         database_models.reject(&:table_exists?)
       end
 
-      def namespaced_models
-        database_models.select { |model| model.to_s.include?("::") }
-      end
-
       def unnamed_constants
         ActiveRecord::Base.descendants.reject { |d| d.name == d.to_s }
       end
 
+      def rails_internal_models
+        [ActiveRecord::SchemaMigration]
+      end
+
       def dashboard_routes
-        ERB.new(File.read(routes_file_path)).result(binding)
+        ERB.new(File.read(routes_file_path), nil, '-').result(binding)
       end
 
       def routes_includes_resources?
