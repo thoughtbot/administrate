@@ -11,7 +11,8 @@ $(function() {
       }
 
       var dataUrl = $(event.target).closest("tr").data("url");
-      if (dataUrl) {
+      var selection = window.getSelection().toString();
+      if (selection.length === 0 && dataUrl) {
         window.location = dataUrl;
       }
     }
