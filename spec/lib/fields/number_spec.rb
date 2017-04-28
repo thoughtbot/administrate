@@ -58,8 +58,11 @@ describe Administrate::Field::Number do
       end
 
       it "defaults to the precision of the decimal" do
-        number = Administrate::Field::Number.new(:number, 12.123456, :page)
-        expect(number.to_s).to eq("12.123456")
+        float = Administrate::Field::Number.new(:number, 12.123456, :page)
+        big_decimal = Administrate::Field::Number.new(:number, 0.26186536e2, :page)
+
+        expect(float.to_s).to eq("12.123456")
+        expect(big_decimal.to_s).to eql("26.186536")
       end
     end
 
