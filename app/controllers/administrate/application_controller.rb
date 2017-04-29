@@ -109,15 +109,7 @@ module Administrate
     end
 
     def resource_includes
-      association_classes = [
-        Administrate::Field::HasMany, Administrate::Field::HasOne,
-        Administrate::Field::BelongsTo
-      ]
-
-      dashboard.class::ATTRIBUTE_TYPES.map do |key, value|
-        key if association_classes.include?(value) ||
-               association_classes.include?(value.try :deferred_class)
-      end.compact
+      dashboard.association_includes
     end
 
     def resource_params
