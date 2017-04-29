@@ -27,7 +27,7 @@ from the associated resource class's dashboard.
   ) %>
 
   <% if field.more_than_limit? %>
-    <%= paginate field.resources(params[field.name]), param_name: "#{field.name}" %>
+    <%= paginate field.pagination_options(params[field.name]), param_name: "#{field.name}" %>
   <% end %>
 
 <% else %>

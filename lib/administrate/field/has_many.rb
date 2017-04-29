@@ -40,8 +40,13 @@ module Administrate
       end
 
       def resources(page = 1)
-        resources = order.apply(data).page(page).per(limit)
-        includes.any? ? resources.includes(*includes) : resources
+        paginated_resources = pagination_options(page)
+        resources_with_included_associations = includes.any? ? paginated_resources.includes(*includes) : paginated_resources
+        associated_dashboard.prepare_collection_for_display(resources_with_included_associations)
+      end
+
+      def pagination_options(page = 1)
+        order.apply(data).page(page).per(limit)
       end
 
       def more_than_limit?

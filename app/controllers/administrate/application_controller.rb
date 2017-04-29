@@ -9,11 +9,13 @@ module Administrate
                                            search_term).run
       resources = apply_resource_includes(resources)
       resources = order.apply(resources)
-      resources = resources.page(params[:page]).per(records_per_page)
+      paginated_resources = resources.page(params[:page]).per(records_per_page)
+      displayed_resources = dashboard.prepare_collection_for_display(paginated_resources)
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
       render locals: {
-        resources: resources,
+        resources: displayed_resources,
+        pagination_options: paginated_resources,
         search_term: search_term,
         page: page,
         show_search_bar: show_search_bar?,
@@ -21,8 +23,9 @@ module Administrate
     end
 
     def show
+      displayed_resource = dashboard.prepare_resource_for_display(requested_resource)
       render locals: {
-        page: Administrate::Page::Show.new(dashboard, requested_resource),
+        page: Administrate::Page::Show.new(dashboard, displayed_resource),
       }
     end
 
