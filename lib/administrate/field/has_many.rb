@@ -37,7 +37,9 @@ module Administrate
       end
 
       def resources(page = 1)
-        data.page(page).per(limit)
+        resources = data
+        resources = resources.includes(*resource_includes) if resource_includes.any?
+        resources.page(page).per(limit)
       end
 
       def more_than_limit?
@@ -45,6 +47,10 @@ module Administrate
       end
 
       private
+
+      def resource_includes
+        associated_dashboard.association_includes
+      end
 
       def candidate_resources
         if options.key?(:includes)
