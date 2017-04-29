@@ -1,5 +1,6 @@
 require_relative "associative"
 require "administrate/page/collection"
+require "administrate/order"
 
 module Administrate
   module Field
@@ -37,7 +38,7 @@ module Administrate
       end
 
       def resources(page = 1)
-        data.page(page).per(limit)
+        order.apply(data).page(page).per(limit)
       end
 
       def more_than_limit?
@@ -57,6 +58,18 @@ module Administrate
 
       def display_candidate_resource(resource)
         associated_dashboard.display_resource(resource)
+      end
+
+      def order
+        @_order ||= Administrate::Order.new(sort_by, direction)
+      end
+
+      def sort_by
+        options[:sort_by]
+      end
+
+      def direction
+        options[:direction]
       end
     end
   end
