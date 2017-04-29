@@ -10,6 +10,7 @@ class OrderDashboard < Administrate::BaseDashboard
     address_city: Field::String,
     address_state: Field::String,
     address_zip: Field::String,
+    address: Field::String,
     customer: Field::BelongsTo,
     line_items: Field::HasMany,
     total_price: Field::Number.with_options(prefix: "$", decimals: 2),
@@ -27,12 +28,16 @@ class OrderDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :id,
     :customer,
-    :address_state,
+    :address,
     :total_price,
     :line_items,
     :shipped_at,
   ]
 
-  FORM_ATTRIBUTES = ATTRIBUTE_TYPES.keys - READ_ONLY_ATTRIBUTES
-  SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys
+  FORM_ATTRIBUTES = ATTRIBUTE_TYPES.keys - READ_ONLY_ATTRIBUTES - [:address]
+  SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys - [:address]
+
+  def decorate_resource(resource)
+    OrderDecorator.new(resource)
+  end
 end

@@ -3,12 +3,15 @@ require "rails_helper"
 feature "order show page" do
   scenario "displays line item information" do
     line_item = create(:line_item)
+    state_name = OrderDecorator.state_by_abbr(line_item.order.address_state)
 
     visit admin_order_path(line_item.order)
 
     expect(page).to have_content(line_item.unit_price)
     expect(page).to have_content(line_item.quantity)
     expect(page).to have_content(line_item.total_price)
+    expect(state_name).to be_present
+    expect(page).to have_content(state_name)
   end
 
   scenario "links to line items", :js do

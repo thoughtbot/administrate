@@ -3,11 +3,14 @@ require "rails_helper"
 feature "order index page" do
   scenario "user views order attributes" do
     order = create(:order)
+    state_name = OrderDecorator.state_by_abbr(order.address_state)
 
     visit admin_orders_path
 
     expect(page).to have_header("Orders")
     expect(page).to have_content(order.id)
+    expect(state_name).to be_present
+    expect(page).to have_content(state_name)
   end
 
   scenario "user clicks through to customer show page" do
