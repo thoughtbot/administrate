@@ -22,7 +22,8 @@ module Administrate
       end
 
       def decimals
-        default = data.is_a?(Float) ? data.to_s.split(".").last.size : 0
+        _left, right = data.to_s.split(".")
+        default = right.nil? ? 0 : right.size
         options.fetch(:decimals, default)
       end
 
