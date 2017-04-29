@@ -1,7 +1,3 @@
-require 'administrate/field/has_many'
-require 'administrate/field/has_one'
-require 'administrate/field/belongs_to'
-
 module Administrate
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
@@ -113,16 +109,7 @@ module Administrate
     end
 
     def resource_includes
-      association_classes = [
-        Administrate::Field::HasMany, Administrate::Field::HasOne,
-        Administrate::Field::BelongsTo
-      ]
-
-      dashboard.collection_attributes.map do |key|
-        field = dashboard.class::ATTRIBUTE_TYPES[key]
-        key if association_classes.include?(field) ||
-               association_classes.include?(field.try :deferred_class)
-      end.compact
+      dashboard.association_includes
     end
 
     def resource_params
