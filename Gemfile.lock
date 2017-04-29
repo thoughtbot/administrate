@@ -10,8 +10,8 @@ PATH
       momentjs-rails (~> 2.8)
       neat (~> 1.1)
       normalize-rails (>= 3.0)
-      rails (>= 4.2, < 5.1)
-      sass-rails (~> 5.0)
+      rails (>= 4.2)
+      sass-rails (>= 5.0)
       selectize-rails (~> 0.6)
 
 GEM

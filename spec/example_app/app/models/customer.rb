@@ -1,4 +1,4 @@
-class Customer < ActiveRecord::Base
+class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
 
   validates :name, presence: true

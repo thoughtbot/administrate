@@ -1,3 +1,7 @@
+require 'administrate/field/has_many'
+require 'administrate/field/has_one'
+require 'administrate/field/belongs_to'
+
 module Administrate
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
@@ -5,6 +9,7 @@ module Administrate
     def index
       search_term = params[:search].to_s.strip
       resources = Administrate::Search.new(resource_resolver, search_term).run
+      resources = resources.includes(*resource_includes) if resource_includes.any?
       resources = order.apply(resources)
       resources = resources.page(params[:page]).per(records_per_page)
       page = Administrate::Page::Collection.new(dashboard, order: order)
@@ -73,11 +78,7 @@ module Administrate
 
     helper_method :nav_link_state
     def nav_link_state(resource)
-      if resource_name.to_s.pluralize == resource.to_s
-        :active
-      else
-        :inactive
-      end
+      resource_name.to_s.pluralize == resource.to_s ? :active : :inactive
     end
 
     helper_method :valid_action?
@@ -109,6 +110,19 @@ module Administrate
 
     def find_resource(param)
       resource_class.find(param)
+    end
+
+    def resource_includes
+      association_classes = [
+        Administrate::Field::HasMany, Administrate::Field::HasOne,
+        Administrate::Field::BelongsTo
+      ]
+
+      dashboard.collection_attributes.map do |key|
+        field = dashboard.class::ATTRIBUTE_TYPES[key]
+        key if association_classes.include?(field) ||
+               association_classes.include?(field.try :deferred_class)
+      end.compact
     end
 
     def resource_params
