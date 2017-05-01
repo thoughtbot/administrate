@@ -45,6 +45,10 @@ module Administrate
         data.count(:all) > limit
       end
 
+      def render_page
+        render_index if page == :index
+      end
+
       private
 
       def candidate_resources
@@ -70,6 +74,10 @@ module Administrate
 
       def direction
         options[:direction]
+      end
+
+      def render_index
+        attribute.to_s.humanize.downcase.pluralize data.size
       end
     end
   end
