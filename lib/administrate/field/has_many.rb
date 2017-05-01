@@ -46,6 +46,10 @@ module Administrate
         data.size > limit
       end
 
+      def render_page
+        render_index if page == :index
+      end
+
       private
 
       def resource_includes
@@ -63,6 +67,10 @@ module Administrate
 
       def display_candidate_resource(resource)
         associated_dashboard.display_resource(resource)
+      end
+
+      def render_index
+        attribute.to_s.humanize.downcase.pluralize data.size
       end
     end
   end

@@ -11,6 +11,13 @@ module Administrate
         data.to_s[0...truncation_length]
       end
 
+      def render_page
+        case page
+        when :index then truncate
+        when :show then data
+        end
+      end
+
       private
 
       def truncation_length

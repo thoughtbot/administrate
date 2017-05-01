@@ -7,6 +7,10 @@ module Administrate
         data.nil? ? "-" : format_string % value
       end
 
+      def render_page
+        to_s if %i[index show].include?(page)
+      end
+
       private
 
       def format_string
