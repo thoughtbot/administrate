@@ -3,8 +3,7 @@ module Administrate
     PLURAL_MANY_COUNT = 2.1
 
     def render_field(field, locals = {})
-      locals.merge!(field: field)
-      render locals: locals, partial: field.to_partial_path
+      field.render_page || render_partial(field, locals)
     end
 
     def display_resource_name(resource_name)
@@ -43,6 +42,13 @@ module Administrate
 
     def clear_search_params
       params.except(:search, :page).permit(:order, :direction, :per_page)
+    end
+
+    private
+
+    def render_partial(field, locals = {})
+      locals.merge!(field: field)
+      render locals: locals, partial: field.to_partial_path
     end
   end
 end
