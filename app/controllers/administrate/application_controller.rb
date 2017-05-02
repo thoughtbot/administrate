@@ -7,15 +7,26 @@ module Administrate
       resources = Administrate::Search.new(resource_resolver, search_term).run
       resources = resources.includes(*resource_includes) if resource_includes.any?
       resources = order.apply(resources)
-      resources = resources.page(params[:page]).per(records_per_page)
+      paginated_resources = resources.page(params[:page]).per(records_per_page)
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
-      render locals: {
-        resources: resources,
-        search_term: search_term,
-        page: page,
-        show_search_bar: show_search_bar?
-      }
+      respond_to do |format|
+        format.html do
+          render locals: {
+            resources: paginated_resources,
+            search_term: search_term,
+            page: page,
+            show_search_bar: show_search_bar?
+          }
+        end
+
+        format.csv do
+          name = params[:controller].sub(/^admin\//, '')
+          resources = params[:page] ? paginated_resources : resources
+          csv = Administrate::CSV.new(resources, page).generate
+          send_data csv, filename: "#{name}-#{Date.today}.csv"
+        end
+      end
     end
 
     def show

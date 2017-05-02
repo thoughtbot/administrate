@@ -70,7 +70,8 @@ module Administrate
       end
 
       def render_index
-        attribute.to_s.humanize.downcase.pluralize data.size
+        attr = attribute.to_s.gsub("_", " ").singularize.pluralize data.size
+        "#{data.size} #{attr}"
       end
     end
   end

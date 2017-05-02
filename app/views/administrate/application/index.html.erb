@@ -28,14 +28,13 @@ It renders the `_table` partial to display details about the resources.
 <% end %>
 
 <% content_for(:search) do %>
-  <% if show_search_bar %>
-    <%= render "search", search_term: search_term %>
-  <% end %>
+  <%= render "search", search_term: search_term if show_search_bar %>
 <% end %>
 
 <header class="header">
   <h1 class="header__heading" id="page-title"><%= content_for(:title) %></h1>
   <div class="header__actions">
+    <%= link_to("Export", request.path + ".csv", class: "button") %>
     <%= link_to(
       "#{t("administrate.actions.new")} #{page.resource_name.titleize.downcase}",
       [:new, namespace, page.resource_path],

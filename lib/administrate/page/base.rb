@@ -1,6 +1,8 @@
 module Administrate
   module Page
     class Base
+      attr_reader :dashboard
+
       def initialize(dashboard, options = {})
         @dashboard = dashboard
         @options = options
@@ -29,7 +31,7 @@ module Administrate
         nil
       end
 
-      attr_reader :dashboard, :options
+      attr_reader :options
     end
   end
 end
