@@ -16,6 +16,39 @@
 
 ## Changes
 
+### 0.6.0 (May 02, 2017)
+
+* [CHANGE] [#845] Remove delayed_job_active_record dependency.
+* [CHANGE] [#817] Improve performance for n+1s.
+* [DOC] [#844] Remove the word "simply".
+* [CHANGE] [#791] Remove unneeded Rails dependencies.
+* [CHANGE] [#810] Add `sort_by` and `direction` option for HasMany field.
+* [CHANGE] [#842] Add support for big decimals in formating numbers.
+* [CHANGE] [#793] Update Ruby to 2.4.1 and use .ruby-version on CircleCI.
+* [CHANGE] [#820] Remove markdown-rails and high_voltage.
+* [CHANGE] [#824] Install the latest bundler version on CI.
+* [CHANGE] [#824] Remove the web-console gem.
+* [CHANGE] [#823] Do not redirect to show page when selecting text.
+* [CHANGE] [#830] Add table name to search query.
+* [CHANGE] [#841] When the number data is a float, default to the decimal amount.
+* [CHANGE] [#698] Place Resource in the right namespace.
+* [CHANGE] [#698] Change sidebar partial to work w/namespaced models.
+* [BUGFIX] [#698] Fix inferred path issue w/name-spaced resources.
+* [CHANGE] [#822] Upgrade webmock to make compatible with Ruby 2.4.
+* [i18n] [#838] Improve translations for pl/uk.
+* [DOC] [#839] Add instructions on how to add dashboards
+* [DOC] [#837] Make path to documentation more noticeable
+* [i18n] [#826] Fixes some broken ja translations.
+* [DOC] [#821] Document how to use with Rails API.
+* [CHANGE] [#818] Update administrate-field-image to 1.1.0.
+* [DOC] [#815] Remove the last .keep.
+* [BUGFIX] [#814] Use an array of includes instead of a regex for Sass.
+* [BUGFIX] [#813] Wrap class_name arguments in strings.
+* [DOC] [#812] Remove some .keeps.
+* [UI] [#797] Stop using Sass glob importing.
+* [Docs] [#809] Add missing `suffix` docs for number field.
+* [i18n] [#803] Fix some broken zh-TW translations.
+
 ### 0.5.0 (Mar 27, 2017)
 
 * [i18n] [#786] Backfill the missing translations (some from Google Translate).
