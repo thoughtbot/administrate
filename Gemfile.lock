@@ -83,11 +83,6 @@ GEM
     database_cleaner (1.5.1)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
-    delayed_job (4.1.1)
-      activesupport (>= 3.0, < 5.0)
-    delayed_job_active_record (4.1.0)
-      activerecord (>= 3.0, < 5)
-      delayed_job (>= 3.0, < 5)
     diff-lcs (1.2.5)
     dotenv (2.0.2)
     dotenv-rails (2.0.2)
@@ -273,7 +268,6 @@ DEPENDENCIES
   bundler-audit
   byebug
   database_cleaner
-  delayed_job_active_record
   dotenv-rails
   factory_girl_rails
   faker
