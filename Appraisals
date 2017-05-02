@@ -16,3 +16,11 @@ appraise "rails50" do
 
   gem "rails-controller-testing"
 end
+
+appraise "rails51" do
+  gem "actionpack", "~> 5.1.0"
+  gem "actionview", "~> 5.1.0"
+  gem "activerecord", "~> 5.1.0"
+
+  gem "rails-controller-testing"
+end
