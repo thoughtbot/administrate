@@ -9,7 +9,7 @@ feature "order index page" do
 
     expect(page).to have_header("Orders")
     expect(page).to have_content(order.id)
-    expect(state_name).to be_present
+    expect(state_name.length > order.address_state.length).to be_truthy
     expect(page).to have_content(state_name)
   end
 

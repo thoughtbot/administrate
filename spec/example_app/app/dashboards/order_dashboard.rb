@@ -38,6 +38,6 @@ class OrderDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys - [:address]
 
   def decorate_resource(resource)
-    OrderDecorator.new(resource)
+    resource.extend(OrderDecorator)
   end
 end

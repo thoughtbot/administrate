@@ -10,7 +10,7 @@ feature "order show page" do
     expect(page).to have_content(line_item.unit_price)
     expect(page).to have_content(line_item.quantity)
     expect(page).to have_content(line_item.total_price)
-    expect(state_name).to be_present
+    expect(state_name.length > line_item.order.address_state.length).to be_truthy
     expect(page).to have_content(state_name)
   end
 

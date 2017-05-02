@@ -74,7 +74,7 @@ module Administrate
     end
 
     def prepare_collection_for_display(resources)
-      if respond_to?(:decorate_resource) then
+      if respond_to?(:decorate_resource)
         resources.map { |resource| decorate_resource(resource) }
       else
         resources
