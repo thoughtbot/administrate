@@ -39,6 +39,10 @@ module Administrate
         "/fields/#{self.class.field_type}/#{page}"
       end
 
+      def render_page
+        nil
+      end
+
       attr_reader :attribute, :data, :page
 
       protected

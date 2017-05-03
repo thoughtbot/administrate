@@ -7,6 +7,10 @@ module Administrate
         true
       end
 
+      def render_page
+        data if %i[index show].include? page
+      end
+
       def selectable_options
         collection
       end

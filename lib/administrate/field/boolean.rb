@@ -4,11 +4,11 @@ module Administrate
   module Field
     class Boolean < Base
       def to_s
-        if data.nil?
-          "-"
-        else
-          data.to_s
-        end
+        data.nil? ? "-" : data.to_s
+      end
+
+      def render_page
+        to_s if %i[index show].include? page
       end
     end
   end

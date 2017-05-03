@@ -11,6 +11,10 @@ module Administrate
         data.to_s[0...truncation_length]
       end
 
+      def render_page
+        truncate if page == :index
+      end
+
       private
 
       def truncation_length
