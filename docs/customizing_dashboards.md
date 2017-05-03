@@ -61,6 +61,7 @@ specify, including:
 - `Field::Polymorphic`
 - `Field::Select`
 - `Field::String`
+- `Field::Text`
 
 ## Customizing Fields
 
