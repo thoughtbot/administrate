@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170510122301) do
   end
 
   create_table "countries", force: :cascade do |t|
-    t.string   "code"
+    t.string   "code",       null: false
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
