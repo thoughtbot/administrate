@@ -7,7 +7,7 @@ RSpec.configure do |config|
     new_backend = I18n::Backend::KeyValue.new({}, true)
     new_backend.store_translations(locale, translations)
 
-    I18n.backend = I18n::Backend::Chain.new(original_backend, new_backend)
+    I18n.backend = I18n::Backend::Chain.new(new_backend, original_backend)
 
     yield
   ensure
