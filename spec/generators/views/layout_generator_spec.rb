@@ -27,13 +27,13 @@ describe Administrate::Generators::Views::LayoutGenerator, :generator do
       expect(contents).to eq(expected_contents)
     end
 
-    it "copies the sidebar partial into the `admin/application` namespace" do
+    it "copies the navigation partial into the `admin/application` namespace" do
       allow(Rails::Generators).to receive(:invoke)
 
       run_generator []
 
       expect(Rails::Generators).
-        to invoke_generator("administrate:views:sidebar")
+        to invoke_generator("administrate:views:navigation")
     end
 
     it "copies the javascript partial into the `admin/application` namespace" do
