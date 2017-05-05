@@ -6,14 +6,14 @@ $heading-font-family: $base-font-family;
 
 $base-font-size: 1em;
 
-$bold-font-weight: 600;
+$bold-font-weight: 700;
 
 $base-line-height: 1.5;
 $heading-line-height: 1.2;
 
 // Other Sizes
 $modular-scale-ratio: $minor-third;
-$base-border-radius: 3px;
+$base-border-radius: 4px;
 $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
 
@@ -54,4 +54,4 @@ $base-border: 1px solid $base-border-color;
 
 // Transitions
 $base-duration: 250ms;
-$base-timing: $ease-out-cubic;
+$base-timing: ease-in-out;

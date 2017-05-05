@@ -5,11 +5,11 @@ This view template is used as the layout
 for every page that Administrate generates.
 
 By default, it renders:
-- Sidebar for navigation
+- Navigation
 - Content for a search bar
   (if provided by a `content_for` block in a nested page)
 - Flashes
-- Links to stylesheets and Javascripts
+- Links to stylesheets and JavaScripts
 %>
 
 <!DOCTYPE html>
@@ -27,9 +27,7 @@ By default, it renders:
 
   <div class="app-container">
 
-    <div class="sidebar">
-      <%= render "sidebar" -%>
-    </div>
+    <%= render "navigation" -%>
 
     <main class="main-content" role="main">
       <%= content_for(:search) %>

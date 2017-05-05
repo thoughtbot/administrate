@@ -1,0 +1,28 @@
+.navigation {
+  flex: 1 0 10rem;
+  overflow-y: auto;
+  padding: $base-spacing $small-spacing;
+}
+
+.navigation__link {
+  background-color: transparent;
+  color: $base-font-color;
+  display: block;
+  padding: 0.2em 0.6em;
+  transition: background-color $base-duration $base-timing,
+              color $base-duration $base-timing;
+
+  &:not(:last-of-type) {
+    margin-bottom: $small-spacing;
+  }
+
+  &:hover {
+    background-color: shade($base-background-color, 5%);
+    border-radius: $base-border-radius;
+    color: $base-font-color;
+  }
+}
+
+.navigation__link--active {
+  font-weight: $bold-font-weight;
+}
