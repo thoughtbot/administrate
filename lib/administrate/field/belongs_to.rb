@@ -3,12 +3,13 @@ require_relative "associative"
 module Administrate
   module Field
     class BelongsTo < Associative
-      def self.permitted_attribute(attr)
-        :"#{attr}_id"
+      def self.permitted_attribute(attr, options = {})
+        key = options.fetch(:primary_key, :id)
+        :"#{attr}_#{key}"
       end
 
       def permitted_attribute
-        self.class.permitted_attribute(attribute)
+        self.class.permitted_attribute(attribute, options)
       end
 
       def associated_resource_options

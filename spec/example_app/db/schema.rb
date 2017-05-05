@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815100728) do
+ActiveRecord::Schema.define(version: 20170324162949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20160815100728) do
   add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", primary_key: "code", force: :cascade do |t|
     t.integer  "customer_id"
     t.string   "address_line_one"
     t.string   "address_line_two"
@@ -68,10 +68,10 @@ ActiveRecord::Schema.define(version: 20160815100728) do
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
-    t.integer "order_id"
+    t.integer "order_code"
   end
 
-  add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
+  add_index "payments", ["order_code"], name: "index_payments_on_order_code", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(version: 20160815100728) do
 
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
 
-  add_foreign_key "line_items", "orders"
+  add_foreign_key "line_items", "orders", primary_key: "code"
   add_foreign_key "line_items", "products"
   add_foreign_key "orders", "customers"
-  add_foreign_key "payments", "orders"
+  add_foreign_key "payments", "orders", column: "order_code", primary_key: "code"
 end
