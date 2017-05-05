@@ -19,10 +19,14 @@
   vertical-align: middle;
   white-space: nowrap;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: shade($action-color, 20%);
     color: $white;
+  }
+
+  &:focus {
+    outline: $focus-outline;
+    outline-offset: $focus-outline-offset;
   }
 
   &:disabled {
