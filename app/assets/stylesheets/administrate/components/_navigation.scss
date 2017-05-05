@@ -1,14 +1,19 @@
+$_navigation-link-padding: 0.6em;
+
 .navigation {
   flex: 1 0 10rem;
-  overflow-y: auto;
-  padding: $base-spacing $small-spacing;
+  padding-bottom: $base-spacing;
+  padding-right: calc(#{$base-spacing} - #{$_navigation-link-padding});
+  padding-top: $base-spacing;
 }
 
 .navigation__link {
   background-color: transparent;
   color: $base-font-color;
   display: block;
-  padding: 0.2em 0.6em;
+  line-height: 1;
+  margin-left: -($_navigation-link-padding);
+  padding: $_navigation-link-padding;
   transition: background-color $base-duration $base-timing,
               color $base-duration $base-timing;
 
