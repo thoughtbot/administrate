@@ -18,6 +18,6 @@ $(function() {
     }
   };
 
-  $("table").on("click", ".table__row", visitDataUrl);
-  $("table").on("keydown", ".table__row", visitDataUrl);
+  $("table").on("click", ".js-table-row", visitDataUrl);
+  $("table").on("keydown", ".js-table-row", visitDataUrl);
 });

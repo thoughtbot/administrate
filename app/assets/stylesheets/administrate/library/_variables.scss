@@ -42,7 +42,8 @@ $base-background-color: $grey-0;
 
 // Focus
 $focus-outline-color: transparentize($action-color, 0.4);
-$focus-outline: 3px solid $focus-outline-color;
+$focus-outline-width: 3px;
+$focus-outline: $focus-outline-width solid $focus-outline-color;
 $focus-outline-offset: 1px;
 
 // Flash Colors
