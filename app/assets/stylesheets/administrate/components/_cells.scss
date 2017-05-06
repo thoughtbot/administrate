@@ -1,5 +1,5 @@
 .cell-label {
-  @include data-label;
+  position: relative;
 
   &:hover {
     a {

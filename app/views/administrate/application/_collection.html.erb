@@ -55,14 +55,14 @@ to display a collection of resources in an HTML table.
 
   <tbody>
     <% resources.each do |resource| %>
-      <tr class="table__row"
+      <tr class="js-table-row"
           tabindex="0"
           <%= %(role=link data-url=#{polymorphic_path([namespace, resource])}) if valid_action? :show -%>
           >
         <% collection_presenter.attributes_for(resource).each do |attribute| %>
           <td class="cell-data cell-data--<%= attribute.html_class %>">
             <a href="<%= polymorphic_path([namespace, resource]) -%>"
-               class="action-show table__link-plain"
+               class="action-show"
                >
               <%= render_field attribute %>
             </a>
@@ -81,7 +81,7 @@ to display a collection of resources in an HTML table.
           <td><%= link_to(
             t("administrate.actions.destroy"),
             [namespace, resource],
-            class: "table__action--destroy",
+            class: "text-color-red",
             method: :delete,
             data: { confirm: t("administrate.actions.confirm") }
           ) %></td>

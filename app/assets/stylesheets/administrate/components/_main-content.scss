@@ -12,6 +12,11 @@
   padding: 1rem 2rem;
 }
 
+.main-content__body--flush {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .main-content__header {
   align-items: center;
   border-bottom: $base-border;
