@@ -21,8 +21,8 @@ $small-spacing: $base-spacing / 2;
 $white: #fff;
 $black: #000;
 
-$blue: #2a94d6;
-$light-red: #c77067;
+$blue: #1976d2;
+$red: #d32f2f;
 $light-yellow: #f0cd66;
 $light-green: #4ab471;
 
@@ -49,7 +49,7 @@ $focus-outline-offset: 1px;
 // Flash Colors
 $flash-colors: (
   alert: $light-yellow,
-  error: $light-red,
+  error: $red,
   notice: tint($blue, 50%),
   success: $light-green
 );
