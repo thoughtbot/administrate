@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
   s.add_dependency "activerecord", ">= 4.2", "< 5.1"
 
   s.add_dependency "autoprefixer-rails", "~> 6.0"
-  s.add_dependency "bourbon", ">= 5.0.0.beta.6"
   s.add_dependency "datetime_picker_rails", "~> 0.0.7"
   s.add_dependency "jquery-rails", ">= 4.0"
   s.add_dependency "kaminari", ">= 1.0"

@@ -1,8 +1,9 @@
 .app-container {
-  @include margin(null auto);
   align-items: stretch;
   display: flex;
   max-width: 100rem;
+  margin-left: auto;
+  margin-right: auto;
   min-height: 100vh;
   padding: $base-spacing;
 }

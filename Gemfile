@@ -4,7 +4,6 @@ gemspec
 
 gem "administrate-field-image"
 gem "autoprefixer-rails"
-gem "bourbon", "~> 5.0.0.beta.7"
 gem "faker"
 gem "pg"
 gem "redcarpet"
