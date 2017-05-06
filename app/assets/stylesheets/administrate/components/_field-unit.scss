@@ -1,10 +1,15 @@
 .field-unit {
   @include fill-parent;
-  @include administrate-clearfix;
   align-items: center;
   display: flex;
   margin-bottom: $base-spacing;
   position: relative;
+
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
 }
 
 .field-unit__label {
