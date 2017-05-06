@@ -1,6 +1,6 @@
 .field-unit {
-  @include clearfix;
   @include fill-parent;
+  @include administrate-clearfix;
   align-items: center;
   display: flex;
   margin-bottom: $base-spacing;

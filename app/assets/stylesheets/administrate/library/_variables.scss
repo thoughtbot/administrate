@@ -12,7 +12,6 @@ $base-line-height: 1.5;
 $heading-line-height: 1.2;
 
 // Other Sizes
-$modular-scale-ratio: $minor-third;
 $base-border-radius: 4px;
 $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
@@ -49,7 +48,7 @@ $focus-outline-offset: 1px;
 $flash-colors: (
   alert: $light-yellow,
   error: $light-red,
-  notice: tint($blue, 50%),
+  notice: mix($white, $blue, 50%),
   success: $light-green
 );
 
