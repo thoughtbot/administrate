@@ -23,7 +23,7 @@ p {
 
 a {
   color: $action-color;
-  text-decoration: none;
+  text-decoration-skip: ink;
   transition: color $base-duration $base-timing;
 
   &:hover {
