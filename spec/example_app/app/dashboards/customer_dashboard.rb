@@ -10,6 +10,8 @@ class CustomerDashboard < Administrate::BaseDashboard
     orders: Field::HasMany.with_options(limit: 2),
     updated_at: Field::DateTime,
     kind: Field::Select.with_options(collection: Customer::KINDS),
+    birthdate: Field::Date,
+    example_time: Field::Time,
   }
 
   COLLECTION_ATTRIBUTES = ATTRIBUTE_TYPES.keys
@@ -19,6 +21,8 @@ class CustomerDashboard < Administrate::BaseDashboard
     :email,
     :email_subscriber,
     :kind,
+    :birthdate,
+    :example_time,
   ].freeze
 
   def display_resource(customer)

@@ -23,3 +23,6 @@ ar:
         not_supported: "غير مدعمه \"Polymorphic\" هذه العلاقه"
       has_one:
         not_supported: "غير مدعمه \"HasOne\" هذه العلاقه"
+  time:
+    formats:
+      time_without_date: "%H:%M:%S"

@@ -1,0 +1,21 @@
+<%#
+# Time Index Partial
+
+This partial renders a time attribute,
+to be displayed on a resource's index page.
+
+By default, the attribute is rendered
+as a localized time string.
+
+## Local variables:
+
+- `field`:
+  An instance of [Administrate::Field::Time][1].
+  A wrapper around the Time value pulled from the database.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Time
+%>
+
+<% if field.data %>
+  <%= l(field.data, format: :time_without_date) %>
+<% end %>
