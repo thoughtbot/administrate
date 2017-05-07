@@ -41,4 +41,9 @@ FactoryGirl.define do
   factory :payment do
     order
   end
+
+  factory :blog_post, class: "Blog::Post" do
+    sequence(:title) { |n| "Post #{n}" }
+    body "Empty"
+  end
 end
