@@ -33,9 +33,9 @@
   right: 0;
 
   svg {
+    fill: $hint-grey;
     height: 100%;
     transition: transform $base-duration $base-timing;
-    fill: $hint-grey;
   }
 }
 
