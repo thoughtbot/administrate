@@ -16,6 +16,31 @@
 
 ## Changes
 
+### 0.7.0 (May 08, 2017)
+
+* [CHANGE] [#789] Remove Bourbon.
+* [CHANGE] [#789] Remove Neat.
+* [UI] [#874] Clean up base form styles.
+* [BUGFIX] [#872] Fix flaky failure by resetting column information.
+* [BUGFIX] [#872] Properly reset routes after each test.
+* [BUGFIX] [#872] Fix delayed_job failures.
+* [BUGFIX] [#872] Migrate DB in CI.
+* [UI] [#868] Add ARIA landmark roles.
+* [UI] [#868] Use a hyphen separator in page titles.
+* [UI] [#868] Add link underlines.
+* [UI] [#389] Applies a margin-bottom to attribute labels.
+* [UI] [#867] Refine look-and-feel.
+* [DOC] [#870] Document front-end architecture.
+* [DOC] [#869] Update SCSS-Lint configuration.
+* [UI] [#861] Tweak primary navigation.
+* [UI] [#863] Redesign focus outline styles.
+* [i18n] [#570] Localise Dates.
+* [UI] [#515] Wrap unsupported form field notes in proper divs.
+* [DOC] [#568] Update customizing_dashboards.md.
+* [UI] [#482] Wrap table cell contents instead of CSS truncation.
+* [CHANGE] [#854] Remove worker from Procfile.
+* [CHANGE] [#851] Remove dependency from ActionMailer.
+
 ### 0.6.0 (May 02, 2017)
 
 * [CHANGE] [#845] Remove delayed_job_active_record dependency.
