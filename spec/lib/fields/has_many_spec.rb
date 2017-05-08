@@ -106,22 +106,58 @@ describe Administrate::Field::HasMany do
   describe "#resources" do
     it "limits the number of records shown" do
       limit = Administrate::Field::HasMany::DEFAULT_LIMIT
-      resources = MockRelation.new([:a] * (limit + 1))
+      customer = FactoryGirl.create(:customer, :with_orders, order_count: 10)
+      resources = customer.orders
 
       association = Administrate::Field::HasMany
-      field = association.new(:customers, resources, :show)
+      field = association.new(:orders, resources, :show)
 
-      expect(field.resources).to eq([:a] * limit)
+      expect(field.resources.size).to eq(limit)
     end
 
     context "with `limit` option" do
       it "limits the number of items returned" do
-        resources = MockRelation.new([:a, :b, :c])
+        customer = FactoryGirl.create(:customer, :with_orders)
+        resources = customer.orders
 
         association = Administrate::Field::HasMany.with_options(limit: 1)
-        field = association.new(:customers, resources, :show)
+        field = association.new(:orders, resources, :show)
 
-        expect(field.resources).to eq([:a])
+        expect(field.resources).to be_one
+      end
+    end
+
+    context "with `sort_by` option" do
+      it "returns the resources in correct order" do
+        customer = FactoryGirl.create(:customer, :with_orders)
+        options = { sort_by: :address_line_two }
+        association = Administrate::Field::HasMany.with_options(options)
+        field = association.new(:orders, customer.orders, :show)
+
+        correct_order = customer.orders.sort_by(&:address_line_two).map(&:id)
+        reversed_order = customer.orders.sort do |a, b|
+          b.address_line_two <=> a.address_line_two
+        end
+
+        expect(field.resources.map(&:id)).to eq correct_order
+        expect(field.resources.map(&:id)).to_not eq reversed_order.map(&:id)
+      end
+    end
+
+    context "with `direction` option" do
+      it "returns the resources in correct order" do
+        customer = FactoryGirl.create(:customer, :with_orders)
+        options = { sort_by: :address_line_two, direction: :desc }
+        association = Administrate::Field::HasMany.with_options(options)
+        field = association.new(:orders, customer.orders, :show)
+
+        reversed_order = customer.orders.sort_by(&:address_line_two).map(&:id)
+        correct_order = customer.orders.sort do |a, b|
+          b.address_line_two <=> a.address_line_two
+        end
+
+        expect(field.resources.map(&:id)).to eq correct_order.map(&:id)
+        expect(field.resources.map(&:id)).to_not eq reversed_order
       end
     end
   end

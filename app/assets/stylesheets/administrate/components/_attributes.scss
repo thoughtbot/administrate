@@ -4,10 +4,11 @@
   clear: left;
   margin-top: 0;
   text-align: right;
+  margin-bottom: $base-spacing;
 }
 
 .preserve-whitespace {
-  white-space: pre;
+  white-space: pre-wrap;
   word-wrap: break-word;
 }
 

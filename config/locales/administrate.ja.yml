@@ -6,6 +6,8 @@ ja:
       destroy: 削除
       edit: 編集
       show: 参照
+      new: 新規
+      back: 戻る
     controller:
       create:
         success: "%{resource}を作成しました。"

@@ -23,13 +23,16 @@ p {
 
 a {
   color: $action-color;
-  text-decoration: none;
+  text-decoration-skip: ink;
   transition: color $base-duration $base-timing;
 
-  &:active,
-  &:focus,
   &:hover {
     color: shade($action-color, 25%);
+  }
+
+  &:focus {
+    outline: $focus-outline;
+    outline-offset: $focus-outline-offset;
   }
 }
 

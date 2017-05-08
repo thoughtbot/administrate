@@ -16,6 +16,7 @@ require "administrate/order"
 require "administrate/resource_resolver"
 require "administrate/search"
 require "administrate/namespace"
+require "administrate/namespace/resource"
 
 module Administrate
   class Engine < ::Rails::Engine
@@ -24,7 +25,12 @@ module Administrate
     @@javascripts = []
     @@stylesheets = []
 
-    Engine.config.assets.precompile << /\.(?:svg)\z/
+    Engine.config.assets.precompile << %w(
+      administrate/cancel.svg
+      administrate/dropdown.svg
+      administrate/search.svg
+      administrate/sort_arrow.svg
+    )
 
     def self.add_javascript(script)
       @@javascripts << script

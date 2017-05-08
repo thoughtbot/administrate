@@ -17,11 +17,11 @@ to do the heavy lifting.
 
 <% content_for(:title) { "#{t("administrate.actions.new")} #{page.resource_name.titleize}" } %>
 
-<header class="header">
-  <h1 class="header__heading"><%= content_for(:title) %></h1>
-  <div class="header__actions">
-    <%= render 'new_header_actions', page: page %>
-  </div>
+<header class="main-content__header" role="banner">
+  <h1 class="main-content__page-title"><%= content_for(:title) %></h1>
+  <%= render 'new_header_actions', page: page %>
 </header>
 
-<%= render 'form', page: page %>
+<section class="main-content__body">
+  <%= render "form", page: page %>
+</section>

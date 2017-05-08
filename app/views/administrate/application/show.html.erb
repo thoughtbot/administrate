@@ -18,23 +18,23 @@ as well as a link to its edit page.
 
 <% content_for(:title) { "#{t("administrate.actions.show")} #{page.page_title}" } %>
 
-<header class="header">
-  <h1 class="header__heading"><%= content_for(:title) %></h1>
-  <div class="header__actions">
-    <%= render('show_header_actions', page: page) if valid_action? :edit %>
-  </div>
+<header class="main-content__header" role="banner">
+  <h1 class="main-content__page-title"><%= content_for(:title) %></h1>
+  <%= render('show_header_actions', page: page) if valid_action? :edit %>
 </header>
 
-<dl>
-  <% page.attributes.each do |attribute| %>
-    <dt class="attribute-label">
-    <%= t(
-      "helpers.label.#{resource_name}.#{attribute.name}",
-      default: attribute.name.titleize,
-    ) %>
-    </dt>
+<section class="main-content__body">
+  <dl>
+    <% page.attributes.each do |attribute| %>
+      <dt class="attribute-label">
+      <%= t(
+        "helpers.label.#{resource_name}.#{attribute.name}",
+        default: attribute.name.titleize,
+      ) %>
+      </dt>
 
-    <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
-        ><%= render_field attribute %></dd>
-  <% end %>
-</dl>
+      <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
+          ><%= render_field attribute %></dd>
+    <% end %>
+  </dl>
+</section>

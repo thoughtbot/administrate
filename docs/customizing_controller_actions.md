@@ -3,7 +3,7 @@
 When you install Administrate into your app,
 we generate empty controllers for each of your resources.
 If you want to create more complex application behavior for a dashboard,
-simply overwrite controller actions.
+you can overwrite controller actions.
 
 The generated controller will look something like:
 

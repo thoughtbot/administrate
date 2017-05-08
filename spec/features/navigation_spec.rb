@@ -1,10 +1,10 @@
 require "rails_helper"
 
-describe "sidebar" do
+describe "navigation" do
   it "highlights the link to the current page's resource type" do
     visit admin_customers_path
 
-    active_link = find(".sidebar__link--active")
+    active_link = find(".navigation__link--active")
 
     expect(active_link.text).to eq "Customers"
   end
@@ -24,8 +24,8 @@ describe "sidebar" do
     with_translations(:en, translations) do
       visit admin_customers_path
 
-      sidebar = find(".sidebar__list")
-      expect(sidebar).to have_link("Users")
+      navigation = find(".navigation")
+      expect(navigation).to have_link("Users")
       expect(page).to have_header("Users")
     end
   end

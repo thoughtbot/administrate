@@ -16,6 +16,84 @@
 
 ## Changes
 
+### 0.6.0 (May 02, 2017)
+
+* [CHANGE] [#845] Remove delayed_job_active_record dependency.
+* [CHANGE] [#817] Improve performance for n+1s.
+* [DOC] [#844] Remove the word "simply".
+* [CHANGE] [#791] Remove unneeded Rails dependencies.
+* [CHANGE] [#810] Add `sort_by` and `direction` option for HasMany field.
+* [CHANGE] [#842] Add support for big decimals in formating numbers.
+* [CHANGE] [#793] Update Ruby to 2.4.1 and use .ruby-version on CircleCI.
+* [CHANGE] [#820] Remove markdown-rails and high_voltage.
+* [CHANGE] [#824] Install the latest bundler version on CI.
+* [CHANGE] [#824] Remove the web-console gem.
+* [CHANGE] [#823] Do not redirect to show page when selecting text.
+* [CHANGE] [#830] Add table name to search query.
+* [CHANGE] [#841] When the number data is a float, default to the decimal amount.
+* [CHANGE] [#698] Place Resource in the right namespace.
+* [CHANGE] [#698] Change sidebar partial to work w/namespaced models.
+* [BUGFIX] [#698] Fix inferred path issue w/name-spaced resources.
+* [CHANGE] [#822] Upgrade webmock to make compatible with Ruby 2.4.
+* [i18n] [#838] Improve translations for pl/uk.
+* [DOC] [#839] Add instructions on how to add dashboards
+* [DOC] [#837] Make path to documentation more noticeable
+* [i18n] [#826] Fixes some broken ja translations.
+* [DOC] [#821] Document how to use with Rails API.
+* [CHANGE] [#818] Update administrate-field-image to 1.1.0.
+* [DOC] [#815] Remove the last .keep.
+* [BUGFIX] [#814] Use an array of includes instead of a regex for Sass.
+* [BUGFIX] [#813] Wrap class_name arguments in strings.
+* [DOC] [#812] Remove some .keeps.
+* [UI] [#797] Stop using Sass glob importing.
+* [Docs] [#809] Add missing `suffix` docs for number field.
+* [i18n] [#803] Fix some broken zh-TW translations.
+
+### 0.5.0 (Mar 27, 2017)
+
+* [i18n] [#786] Backfill the missing translations (some from Google Translate).
+* [CHANGE] [#795] Loosen and update jquery-rails.
+* [CHANGE] [#792] Content with .preserve-whitespace should wrap.
+* [BUGFIX] [#611] Javascript: Fix row-click handler.
+* [CHANGE] [#569] Loosen normalize-rails required version.
+* [DOC] [#532] Add a short section about how to report vulnerabilities.
+* [CHANGE] [#784] Drop refills as a dependency.
+* [CHANGE] [#784] Change bourbon to be at least beta.6.
+* [FEATURE] [#505] let routes generator indent all routes.
+* [FEATURE] [#746] Add suffix/postfix option to number field.
+* [DOC] [#508] Add example of how to use a custom field.
+* [i18n] [#602] Adding Portuguese locale.
+* [i18n] [#603] Update administrate.pt-BR.yml.
+* [CHANGE] [#634] Add and set PLURAL_MANY_COUNT to 2.1.
+* [DOC] [#684] Add instructions on how to add dashboards.
+* [FEATURE] [#780] Add Sentry for the prototype app.
+* [i18n] [#772] Merge the existing translations before testing.
+* [DOC] [#783] Change README to use `0.4.0`.
+* [DOC] [#778] Clarify the version requirements.
+* [DOC] [#779] Update .rubocop.yml to follow thoughtbot/guides.
+* [DOC] [#781] Update readme screenshot.
+* [BUGFIX] [#559] Fix #558 : Wrong constant name guess.
+* [DOC] [#769] Mention guides in doc/ subdirectory.
+* [DOC] [#469] Path to custom attribute type updated in docs.
+* [CHANGE] [#774] Update Kaminari `~> 0.16` -> `>= 1.0`.
+* [DOC] [#776] Include docs in gem (via gemspec file listing).
+* [DOC] [#540] example on how to use custom file types.
+* [CHANGE] [#767] Add auto-prefixer.
+* [i18n] [#344] Add missing translations on edit/new/show actions.
+* [i18n] [#344] Add some action translations to administrate.en.
+* [i18n] [#344] Add some action translations to administrate.pt-BR.
+* [DOC] [#457] Document how to change resource labels in collections.
+* [FEATURE] [#466] Allow preloading has_many records.
+* [i18n] [#764] Add Korean i18n.
+* [FEATURE] [#597] Allow to limit route actions.
+* [BUGFIX] [#687] Fix broken sort arrow svg in the resource table.
+* [DOC] [#627] add doc for customizing admin dashboard layouts.
+* [BUGFIX] [#642] Add missing multiplier option for number fields.
+* [BUGFIX] [#465] Inline controller's `permitted_attributes` method.
+* [FEATURE] [#760] Add refills and refill-styled flashes.
+* [FEATURE] [#736] Paginate has_many show view.
+* [CHANGE] [#759] Update instances of bourbon to 5.0.0.beta.7; sass to ~>3.4.
+
 ### 0.4.0 (Mar 03, 2017)
 
 * [DOC] Use Kaminari syntax in controller's comment hint.

@@ -1,3 +1,3 @@
 module Administrate
-  VERSION = "0.4.0".freeze
+  VERSION = "0.6.0".freeze
 end

@@ -43,11 +43,12 @@ describe Administrate::Search do
 
     it "searches using lower() + LIKE for all searchable fields" do
       begin
-        class User; end
+        class User < ActiveRecord::Base; end
         resolver = double(resource_class: User, dashboard_class: MockDashboard)
         search = Administrate::Search.new(resolver, "test")
         expected_query = [
-          "lower(name) LIKE ? OR lower(email) LIKE ?",
+          "lower(\"users\".\"name\") LIKE ?"\
+          " OR lower(\"users\".\"email\") LIKE ?",
           "%test%",
           "%test%",
         ]

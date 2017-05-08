@@ -61,6 +61,7 @@ specify, including:
 - `Field::Polymorphic`
 - `Field::Select`
 - `Field::String`
+- `Field::Text`
 
 ## Customizing Fields
 
@@ -74,17 +75,32 @@ which are specified through the `.with_options` class method:
 `:limit` - Set the number of resources to display in the show view. Default is
 `5`.
 
+`:sort_by` - What to sort the association by in the show view.
+
+`:direction` - What direction the sort should be in, `:asc` (default) or `:desc`.
+
 **Field::Number**
 
 `:decimals` - Set the number of decimals to display. Defaults to `0`.
 
 `:prefix` - Prefixes the number with a string. Defaults to `""`.
 
+`:suffix` - Suffixes the number with a string. Defaults to `""`.
+
 For example, you might use the following to display U.S. currency:
 
 ```ruby
   unit_price: Field::Number.with_options(
     prefix: "$",
+    decimals: 2,
+  )
+```
+
+Or, to display a distance in kilometers:
+
+```ruby
+  unit_price: Field::Number.with_options(
+    suffix: " km",
     decimals: 2,
   )
 ```

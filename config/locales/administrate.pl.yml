@@ -6,6 +6,8 @@ pl:
       destroy: Usuń
       edit: Edytuj
       show: Wyświetl
+      new: Nowy
+      back: Wstecz
     controller:
       create:
         success: "Zasób %{resource} został pomyślnie utworzony."

@@ -2,6 +2,7 @@
   @include margin(null auto);
   align-items: stretch;
   display: flex;
-  max-width: 100em;
+  max-width: 100rem;
   min-height: 100vh;
+  padding: $base-spacing;
 }

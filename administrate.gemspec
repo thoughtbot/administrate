@@ -5,8 +5,8 @@ require "administrate/version"
 Gem::Specification.new do |s|
   s.name = "administrate"
   s.version = Administrate::VERSION
-  s.authors = ["Grayson Wright"]
-  s.email = ["grayson@thoughtbot.com"]
+  s.authors = ["Nick Charlton", "Grayson Wright"]
+  s.email = ["nick@nickcharlton.net", "grayson@thoughtbot.com"]
   s.homepage = "https://administrate-prototype.herokuapp.com/"
   s.summary = "A Rails engine for creating super-flexible admin dashboards"
   s.license = "MIT"
@@ -14,15 +14,18 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib,docs}/**/*", "LICENSE", "Rakefile"]
   s.test_files = Dir["test/**/*"]
 
+  s.add_dependency "actionpack", ">= 4.2", "< 5.1"
+  s.add_dependency "actionview", ">= 4.2", "< 5.1"
+  s.add_dependency "activerecord", ">= 4.2", "< 5.1"
+
   s.add_dependency "autoprefixer-rails", "~> 6.0"
-  s.add_dependency "bourbon", "~> 5.0.0.beta.7"
+  s.add_dependency "bourbon", ">= 5.0.0.beta.6"
   s.add_dependency "datetime_picker_rails", "~> 0.0.7"
-  s.add_dependency "jquery-rails", "~> 4.0"
-  s.add_dependency "kaminari", "~> 0.16"
+  s.add_dependency "jquery-rails", ">= 4.0"
+  s.add_dependency "kaminari", ">= 1.0"
   s.add_dependency "momentjs-rails", "~> 2.8"
   s.add_dependency "neat", "~> 1.1"
-  s.add_dependency "normalize-rails", "~> 3.0"
-  s.add_dependency "rails", ">= 4.2", "< 5.1"
+  s.add_dependency "normalize-rails", ">= 3.0"
   s.add_dependency "sass-rails", "~> 5.0"
   s.add_dependency "selectize-rails", "~> 0.6"
 

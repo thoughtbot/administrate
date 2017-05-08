@@ -12,9 +12,9 @@ rails generate administrate:views:field number
 
 This will generate three files:
 
-- `app/view/fields/form/_number.html.erb`
-- `app/view/fields/index/_number.html.erb`
-- `app/view/fields/show/_number.html.erb`
+- `app/view/fields/number/_form.html.erb`
+- `app/view/fields/number/_index.html.erb`
+- `app/view/fields/number/_show.html.erb`
 
 The generated templates will have documentation
 describing which variables are in scope.

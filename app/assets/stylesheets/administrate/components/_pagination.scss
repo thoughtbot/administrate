@@ -1,6 +1,6 @@
 .pagination {
-  @include margin($base-spacing null ($base-spacing * 4));
   @include padding(null $base-spacing);
+  margin-top: $base-spacing;
   text-align: center;
 
   .first,

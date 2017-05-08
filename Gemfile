@@ -5,18 +5,11 @@ gemspec
 gem "administrate-field-image"
 gem "autoprefixer-rails"
 gem "bourbon", "~> 5.0.0.beta.7"
-gem "delayed_job_active_record"
 gem "faker"
-gem "high_voltage"
-gem "markdown-rails"
 gem "pg"
 gem "redcarpet"
+gem "sentry-raven"
 gem "unicorn"
-
-group :development do
-  gem "refills"
-  gem "web-console", ">= 2.1.3"
-end
 
 group :development, :test do
   gem "appraisal"

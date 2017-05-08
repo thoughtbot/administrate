@@ -6,14 +6,14 @@ $heading-font-family: $base-font-family;
 
 $base-font-size: 1em;
 
-$bold-font-weight: 600;
+$bold-font-weight: 700;
 
 $base-line-height: 1.5;
 $heading-line-height: 1.2;
 
 // Other Sizes
 $modular-scale-ratio: $minor-third;
-$base-border-radius: 3px;
+$base-border-radius: 4px;
 $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
 
@@ -21,8 +21,8 @@ $small-spacing: $base-spacing / 2;
 $white: #fff;
 $black: #000;
 
-$blue: #2a94d6;
-$light-red: #c77067;
+$blue: #1976d2;
+$red: #d32f2f;
 $light-yellow: #f0cd66;
 $light-green: #4ab471;
 
@@ -40,10 +40,16 @@ $action-color: $blue;
 // Background Colors
 $base-background-color: $grey-0;
 
+// Focus
+$focus-outline-color: transparentize($action-color, 0.4);
+$focus-outline-width: 3px;
+$focus-outline: $focus-outline-width solid $focus-outline-color;
+$focus-outline-offset: 1px;
+
 // Flash Colors
 $flash-colors: (
   alert: $light-yellow,
-  error: $light-red,
+  error: $red,
   notice: tint($blue, 50%),
   success: $light-green
 );
@@ -54,4 +60,4 @@ $base-border: 1px solid $base-border-color;
 
 // Transitions
 $base-duration: 250ms;
-$base-timing: $ease-out-cubic;
+$base-timing: ease-in-out;

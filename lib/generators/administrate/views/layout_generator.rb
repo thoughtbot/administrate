@@ -12,7 +12,7 @@ module Administrate
             "app/views/layouts/admin/application.html.erb",
           )
 
-          call_generator("administrate:views:sidebar")
+          call_generator("administrate:views:navigation")
           copy_resource_template("_javascript")
           copy_resource_template("_flashes")
         end

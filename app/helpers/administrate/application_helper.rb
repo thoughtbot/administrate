@@ -5,7 +5,7 @@ module Administrate
       render locals: locals, partial: field.to_partial_path
     end
 
-    def display_resource_name(resource_name, count = 0)
+    def display_resource_name(resource_name, count = 2.1)
       default = count == 0 ? resource_name.to_s.pluralize.titleize : nil
       resource_name.
         to_s.
@@ -42,10 +42,6 @@ module Administrate
 
     def clear_search_params
       params.except(:search, :page).permit(:order, :direction, :per_page)
-    end
-
-    def sidebar_resources(namespace)
-      Administrate::Namespace.new(namespace).resources
     end
   end
 end
