@@ -13,10 +13,10 @@
   }
 
   a {
-    @include fill-parent;
     color: inherit;
     display: inline-block;
     transition: color $base-duration $base-timing;
+    width: 100%;
   }
 }
 
