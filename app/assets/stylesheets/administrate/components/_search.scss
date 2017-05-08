@@ -1,10 +1,11 @@
 .search {
-  @include padding(null $base-spacing);
   align-items: center;
   border-bottom: $base-border;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  padding-left: $base-spacing;
+  padding-right: $base-spacing;
   position: relative;
   width: 100%;
 }
@@ -12,7 +13,8 @@
 .search__clear,
 .search__icon {
   svg {
-    @include size(1em);
+    height: 1em;
+    width: 1em;
   }
 }
 
@@ -55,14 +57,17 @@
 }
 
 .search__hint {
-  @include position(absolute, 1em 0 null null);
   color: $hint-grey;
+  left: 0;
   opacity: 0;
+  position: absolute;
+  top: 1em;
   transition: opacity $base-duration $base-timing;
   z-index: 1;
 
   svg {
-    @include size(100%);
+    height: 100%;
+    width: 100%;
   }
 
   path,

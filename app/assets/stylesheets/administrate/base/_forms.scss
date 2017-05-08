@@ -52,7 +52,7 @@ select[multiple] {
   width: 100%;
 
   &:hover {
-    border-color: shade($base-border-color, 20%);
+    border-color: mix($black, $base-border-color, 20%);
   }
 
   &:focus {
@@ -62,7 +62,7 @@ select[multiple] {
   }
 
   &:disabled {
-    background-color: shade($base-background-color, 5%);
+    background-color: mix($black, $base-background-color, 5%);
     cursor: not-allowed;
 
     &:hover {
