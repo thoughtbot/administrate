@@ -6,6 +6,8 @@ require "support/constant_helpers"
 describe Administrate::Generators::RoutesGenerator, :generator do
   before { stub_generator_dependencies }
 
+  after { reset_routes }
+
   describe "routes" do
     it "populates default dashboards based on current ActiveRecord models" do
       routes = file("config/routes.rb")
