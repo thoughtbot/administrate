@@ -19,9 +19,7 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
 
 <header class="main-content__header" role="banner">
   <h1 class="main-content__page-title"><%= content_for(:title) %></h1>
-  <div class="header__actions">
-    <%= render('edit_header_actions', page: page) if valid_action? :show %>
-  </div>
+  <%= render('edit_header_actions', page: page) if valid_action? :show %>
 </header>
 
 <section class="main-content__body">
