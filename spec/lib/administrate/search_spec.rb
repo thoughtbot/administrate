@@ -59,5 +59,24 @@ describe Administrate::Search do
         remove_constants :User
       end
     end
+
+    it "converts search term lower case for latin and cyrillic strings" do
+      begin
+        class User < ActiveRecord::Base; end
+        resolver = double(resource_class: User, dashboard_class: MockDashboard)
+        search = Administrate::Search.new(resolver, "Тест Test")
+        expected_query = [
+          "lower(\"users\".\"name\") LIKE ?"\
+          " OR lower(\"users\".\"email\") LIKE ?",
+          "%тест test%",
+          "%тест test%",
+        ]
+        expect(User).to receive(:where).with(*expected_query)
+
+        search.run
+      ensure
+        remove_constants :User
+      end
+    end
   end
 end
