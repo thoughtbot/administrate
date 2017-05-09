@@ -1,17 +1,15 @@
 PATH
   remote: .
   specs:
-    administrate (0.6.0)
+    administrate (0.7.0)
       actionpack (>= 4.2, < 5.1)
       actionview (>= 4.2, < 5.1)
       activerecord (>= 4.2, < 5.1)
       autoprefixer-rails (~> 6.0)
-      bourbon (>= 5.0.0.beta.6)
       datetime_picker_rails (~> 0.0.7)
       jquery-rails (>= 4.0)
       kaminari (>= 1.0)
       momentjs-rails (~> 2.8)
-      neat (~> 1.1)
       normalize-rails (>= 3.0)
       sass-rails (~> 5.0)
       selectize-rails (~> 0.6)
@@ -60,9 +58,6 @@ GEM
     autoprefixer-rails (6.7.7.1)
       execjs
     awesome_print (1.6.1)
-    bourbon (5.0.0.beta.7)
-      sass (~> 3.4.22)
-      thor (~> 0.19.1)
     builder (3.2.3)
     bundler-audit (0.4.0)
       bundler (~> 1.2)
@@ -149,9 +144,6 @@ GEM
     momentjs-rails (2.17.1)
       railties (>= 3.1)
     multipart-post (2.0.0)
-    neat (1.8.0)
-      sass (>= 3.3)
-      thor (~> 0.19)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     normalize-rails (4.1.1)
@@ -264,7 +256,6 @@ DEPENDENCIES
   appraisal
   autoprefixer-rails
   awesome_print
-  bourbon (~> 5.0.0.beta.7)
   bundler-audit
   byebug
   database_cleaner

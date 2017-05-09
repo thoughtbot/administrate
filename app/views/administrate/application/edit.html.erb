@@ -17,9 +17,12 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
 
 <% content_for(:title) { "#{t("administrate.actions.edit")} #{page.page_title}" } %>
 
-<header class="header">
-  <h1 class="header__heading"><%= content_for(:title) %></h1>
-  <div class="header__actions">
+<header class="main-content__header" role="banner">
+  <h1 class="main-content__page-title">
+    <%= content_for(:title) %>
+  </h1>
+
+  <div>
     <%= link_to(
       "#{t("administrate.actions.show")} #{page.page_title}",
       [namespace, page.resource],
@@ -28,4 +31,6 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
   </div>
 </header>
 
-<%= render "form", page: page %>
+<section class="main-content__body">
+  <%= render "form", page: page %>
+</section>

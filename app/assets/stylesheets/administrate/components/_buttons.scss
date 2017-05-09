@@ -1,4 +1,7 @@
-#{$all-buttons},
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
 .button {
   appearance: none;
   background-color: $action-color;
@@ -20,7 +23,7 @@
   white-space: nowrap;
 
   &:hover {
-    background-color: shade($action-color, 20%);
+    background-color: mix($black, $action-color, 20%);
     color: $white;
   }
 

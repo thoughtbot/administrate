@@ -7,7 +7,7 @@ for all resources in the admin dashboard,
 as defined by the routes in the `admin/` namespace
 %>
 
-<nav class="navigation">
+<nav class="navigation" role="navigation">
   <% Administrate::Namespace.new(namespace).resources.each do |resource| %>
     <%= link_to(
       display_resource_name(resource),

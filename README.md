@@ -15,7 +15,7 @@ Check the [release notes] for important updates.
 
 [release notes]: https://github.com/thoughtbot/administrate/releases
 
-![administrate](https://cloud.githubusercontent.com/assets/903327/23998153/94899eee-0a2a-11e7-94ed-348515728aaf.png)
+![administrate](https://cloud.githubusercontent.com/assets/903327/25823003/a5cc6aee-3408-11e7-8bcb-c62bb7addf40.png)
 
 ## What Is Administrate?
 
@@ -97,6 +97,24 @@ With this structure, developing a typical feature looks like:
 - Add tests in `spec/`
 - Implement a feature in `administrate/`
 - Exercise the feature using the demo rails app (`spec/example_app/app/`)
+
+## Front-end Architecture
+
+This project uses:
+
+- Sass
+- [BEM]-style CSS selectors, with [namespaces]
+- Autoprefixer
+- SCSS-Lint, with [Hound] ([configuration](.scss-lint.yml))
+- A variety of CSS units:
+  - `em` for typographical-related elements
+  - `rem` for lengths related to components
+  - `px` for borders, text shadows, etc.
+  - `vw`/`vh` for lengths that should be relational to the viewport
+
+[BEM]: http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/
+[namespaces]: http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/
+[Hound]: https://houndci.com/
 
 ## Contributing
 

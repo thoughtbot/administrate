@@ -1,5 +1,5 @@
 .cell-label {
-  @include data-label;
+  position: relative;
 
   &:hover {
     a {
@@ -13,10 +13,10 @@
   }
 
   a {
-    @include fill-parent;
     color: inherit;
     display: inline-block;
     transition: color $base-duration $base-timing;
+    width: 100%;
   }
 }
 
@@ -33,9 +33,9 @@
   right: 0;
 
   svg {
+    fill: $hint-grey;
     height: 100%;
     transition: transform $base-duration $base-timing;
-    fill: $hint-grey;
   }
 }
 

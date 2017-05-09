@@ -1,12 +1,11 @@
 @charset "utf-8";
 
 @import "normalize-rails";
-@import "bourbon";
-@import "neat";
 
 @import "selectize";
 @import "datetime_picker";
 
+@import "library/clearfix";
 @import "library/data-label";
 @import "library/variables";
 
@@ -23,9 +22,9 @@
 @import "components/field-unit";
 @import "components/flashes";
 @import "components/form-actions";
-@import "components/header";
 @import "components/main-content";
 @import "components/navigation";
 @import "components/pagination";
 @import "components/search";
-@import "components/table";
+
+@import "utilities/text-color";

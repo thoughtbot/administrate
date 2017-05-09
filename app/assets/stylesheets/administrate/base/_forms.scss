@@ -7,13 +7,14 @@ fieldset {
 
 legend {
   font-weight: $bold-font-weight;
-  margin-bottom: $small-spacing / 2;
+  margin: 0;
   padding: 0;
 }
 
 label {
   display: block;
   font-weight: $bold-font-weight;
+  margin: 0;
 }
 
 input,
@@ -23,9 +24,16 @@ select {
   font-size: $base-font-size;
 }
 
+input,
+select,
+textarea {
+  display: block;
+  font-family: $base-font-family;
+  font-size: 16px;
+}
+
 [type="color"],
 [type="date"],
-[type="datetime"],
 [type="datetime-local"],
 [type="email"],
 [type="month"],
@@ -38,31 +46,26 @@ select {
 [type="url"],
 [type="week"],
 input:not([type]),
-textarea,
-select[multiple] {
+textarea {
+  appearance: none;
   background-color: $white;
   border: $base-border;
   border-radius: $base-border-radius;
-  box-shadow: none;
-  box-sizing: border-box;
-  font-family: $base-font-family;
-  font-size: $base-font-size;
   padding: $base-spacing / 3;
   transition: border-color $base-duration $base-timing;
   width: 100%;
 
   &:hover {
-    border-color: shade($base-border-color, 20%);
+    border-color: mix($black, $base-border-color, 20%);
   }
 
   &:focus {
     border-color: $action-color;
-    box-shadow: none;
     outline: none;
   }
 
   &:disabled {
-    background-color: shade($base-background-color, 5%);
+    background-color: mix($black, $white, 5%);
     cursor: not-allowed;
 
     &:hover {
@@ -73,10 +76,6 @@ select[multiple] {
 
 textarea {
   resize: vertical;
-}
-
-[type="search"] {
-  appearance: none;
 }
 
 [type="checkbox"],

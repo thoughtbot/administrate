@@ -1,6 +1,6 @@
-# Up-to-date with SCSS-Lint v0.43.2
+scss_files: "app/assets/stylesheets/administrate/**/*.scss"
 
-scss_files: "**/*.scss"
+severity: warning
 
 linters:
   BangFormat:
@@ -18,14 +18,12 @@ linters:
 
   ChainedClasses:
     enabled: true
-    severity: warning
 
   ColorKeyword:
     enabled: true
 
   ColorVariable:
     enabled: true
-    severity: warning
 
   Comment:
     enabled: true
@@ -55,7 +53,7 @@ linters:
     enabled: true
 
   ExtendDirective:
-    enabled: false
+    enabled: true
 
   FinalNewline:
     enabled: true
@@ -106,16 +104,16 @@ linters:
     enabled: true
     max_depth: 3
     ignore_parent_selectors: false
-    severity: warning
 
   PlaceholderInExtend:
     enabled: true
 
+  PrivateNamingConvention:
+    enabled: true
+    prefix: _
+
   PropertyCount:
     enabled: false
-    include_nested: false
-    max_properties: 10
-    severity: warning
 
   PropertySortOrder:
     enabled: true
@@ -127,7 +125,7 @@ linters:
     enabled: true
     extra_properties:
       - font-variant-numeric
-    disabled_properties: []
+      - text-decoration-skip
 
   PropertyUnits:
     enabled: true
@@ -140,7 +138,8 @@ linters:
       'Hz', 'kHz',
       'dpi', 'dpcm', 'dppx',
       '%']
-    properties: {}
+    properties:
+      line-height: []
 
   PseudoElement:
     enabled: true
@@ -161,7 +160,6 @@ linters:
 
   Shorthand:
     enabled: true
-    allowed_shorthands: [1, 2, 3]
 
   SingleLinePerProperty:
     enabled: true
@@ -172,14 +170,23 @@ linters:
 
   SpaceAfterComma:
     enabled: true
-    style: one_space
+    style: at_least_one_space
+
+  SpaceAfterComment:
+    enabled: true
+    style: at_least_one_space
+    allow_empty_comments: true
 
   SpaceAfterPropertyColon:
     enabled: true
-    style: one_space
+    style: at_least_one_space
 
   SpaceAfterPropertyName:
     enabled: true
+
+  SpaceAfterVariableColon:
+    enabled: true
+    style: at_least_one_space
 
   SpaceAfterVariableName:
     enabled: true
@@ -208,10 +215,10 @@ linters:
     enabled: true
 
   TrailingZero:
-    enabled: false
+    enabled: true
 
   TransitionAll:
-    enabled: false
+    enabled: true
 
   UnnecessaryMantissa:
     enabled: true
@@ -227,13 +234,10 @@ linters:
 
   VariableForProperty:
     enabled: false
-    properties: []
 
   VendorPrefix:
     enabled: true
     identifier_list: base
-    additional_identifiers: []
-    excluded_identifiers: []
 
   ZeroUnit:
     enabled: true
