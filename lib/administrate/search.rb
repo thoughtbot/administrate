@@ -30,7 +30,7 @@ module Administrate
     end
 
     def search_terms
-      ["%#{term.downcase}%"] * search_attributes.count
+      ["%#{term.mb_chars.downcase}%"] * search_attributes.count
     end
 
     def search_attributes
