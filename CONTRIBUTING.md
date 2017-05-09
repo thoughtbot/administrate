@@ -10,22 +10,22 @@ issue trackers, chatrooms, and mailing lists.
 
 1. Fork the repo.
 
-2. Run `./bin/setup`.
+1. Run `./bin/setup`.
 
-3. Run `appraisal install`
+1. Run `appraisal install`
 
-4. Run the tests. We only take pull requests with passing tests, and it's great
+1. Run the tests. We only take pull requests with passing tests, and it's great
    to know that you have a clean slate: `bundle exec rake && bundle exec appraisal rake`
 
-5. Add a test for your change. Only refactoring and documentation changes
+1. Add a test for your change. Only refactoring and documentation changes
    require no new tests. If you are adding functionality or fixing a bug,
    we need a test!
 
-6. Make the test pass.
+1. Make the test pass.
 
-7. Write a [good commit message][commit].
+1. Write a [good commit message][commit].
 
-8. Push to your fork and submit a pull request.
+1. Push to your fork and submit a pull request.
 
 Others will give constructive feedback.
 This is a time for discussion and improvements,
