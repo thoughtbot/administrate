@@ -14,6 +14,7 @@ class OrderDashboard < Administrate::BaseDashboard
     line_items: Field::HasMany,
     total_price: Field::Number.with_options(prefix: "$", decimals: 2),
     shipped_at: Field::DateTime,
+    payments: Field::HasMany,
   }
 
   READ_ONLY_ATTRIBUTES = [

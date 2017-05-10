@@ -47,7 +47,8 @@ to display a collection of resources in an HTML table.
           <% end %>
         </th>
       <% end %>
-      <% [valid_action?(:edit), valid_action?(:destroy)].count(true).times do %>
+      <% [valid_action?(:edit, collection_presenter.resource_name),
+          valid_action?(:destroy, collection_presenter.resource_name)].count(true).times do %>
         <th scope="col"></th>
       <% end %>
     </tr>
@@ -57,7 +58,9 @@ to display a collection of resources in an HTML table.
     <% resources.each do |resource| %>
       <tr class="js-table-row"
           tabindex="0"
-          <%= %(role=link data-url=#{polymorphic_path([namespace, resource])}) if valid_action? :show -%>
+          <% if valid_action? :show, collection_presenter.resource_name %>
+            <%= %(role=link data-url=#{polymorphic_path([namespace, resource])}) %>
+          <% end %>
           >
         <% collection_presenter.attributes_for(resource).each do |attribute| %>
           <td class="cell-data cell-data--<%= attribute.html_class %>">
@@ -69,7 +72,7 @@ to display a collection of resources in an HTML table.
           </td>
         <% end %>
 
-        <% if valid_action? :edit %>
+        <% if valid_action? :edit, collection_presenter.resource_name %>
           <td><%= link_to(
             t("administrate.actions.edit"),
             [:edit, namespace, resource],
@@ -77,7 +80,7 @@ to display a collection of resources in an HTML table.
           ) %></td>
         <% end %>
 
-        <% if valid_action? :destroy %>
+        <% if valid_action? :destroy, collection_presenter.resource_name %>
           <td><%= link_to(
             t("administrate.actions.destroy"),
             [namespace, resource],

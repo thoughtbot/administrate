@@ -19,4 +19,24 @@ feature "order show page" do
 
     expect(page).to have_header(displayed(line_item))
   end
+
+  scenario "user cannot click through to payment edit page" do
+    payment = create(:payment)
+
+    visit admin_order_path(payment.order)
+
+    within("table") do
+      expect(page).not_to have_link t("administrate.actions.edit")
+    end
+  end
+
+  scenario "user cannot click through to payment delete record" do
+    payment = create(:payment)
+
+    visit admin_order_path(payment.order)
+
+    within("table") do
+      expect(page).not_to have_link t("administrate.actions.destroy")
+    end
+  end
 end
