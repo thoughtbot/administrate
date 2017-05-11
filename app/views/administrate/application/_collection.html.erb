@@ -24,8 +24,10 @@ to display a collection of resources in an HTML table.
       <% collection_presenter.attribute_types.each do |attr_name, attr_type| %>
         <th class="cell-label
         cell-label--<%= attr_type.html_class %>
-        cell-label--<%= collection_presenter.ordered_html_class(attr_name) %>
-        " scope="col">
+        cell-label--<%= collection_presenter.ordered_html_class(attr_name) %>"
+        scope="col"
+        role="columnheader"
+        aria-sort="<%= sort_order(collection_presenter.ordered_html_class(attr_name)) %>">
         <%= link_to(sanitized_order_params.merge(
           collection_presenter.order_params_for(attr_name)
         )) do %>

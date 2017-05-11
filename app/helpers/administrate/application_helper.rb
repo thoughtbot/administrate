@@ -19,6 +19,16 @@ module Administrate
         )
     end
 
+    def sort_order(order)
+      if order == "asc"
+        "ascending"
+      elsif order == "desc"
+        "descending"
+      else
+        "none"
+      end
+    end
+
     def sanitized_order_params
       params.permit(:search, :id, :order, :page, :per_page, :direction, :orders)
     end
