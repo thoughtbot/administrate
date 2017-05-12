@@ -20,12 +20,10 @@ module Administrate
     end
 
     def sort_order(order)
-      if order == "asc"
-        "ascending"
-      elsif order == "desc"
-        "descending"
-      else
-        "none"
+      case order
+      when "asc" then "ascending"
+      when "desc" then "descending"
+      else "none"
       end
     end
 
