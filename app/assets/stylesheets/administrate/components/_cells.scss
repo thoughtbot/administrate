@@ -27,15 +27,15 @@
 
 .cell-label__sort-indicator {
   display: inline-block;
-  height: 1em;
   overflow: hidden;
   position: absolute;
   right: 0;
 
   svg {
     fill: $hint-grey;
-    height: 100%;
+    height: 13px;
     transition: transform $base-duration $base-timing;
+    width: 13px;
   }
 }
 
