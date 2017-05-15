@@ -23,12 +23,6 @@ module Administrate
     @@javascripts = []
     @@stylesheets = []
 
-    Engine.config.assets.precompile << %w(
-      administrate/cancel.svg
-      administrate/search.svg
-      administrate/sort_arrow.svg
-    )
-
     def self.add_javascript(script)
       @@javascripts << script
     end

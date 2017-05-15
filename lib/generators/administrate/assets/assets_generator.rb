@@ -4,7 +4,6 @@ module Administrate
   module Generators
     class AssetsGenerator < Administrate::ViewGenerator
       def copy_assets
-        call_generator("administrate:assets:images")
         call_generator("administrate:assets:javascripts")
         call_generator("administrate:assets:stylesheets")
       end
