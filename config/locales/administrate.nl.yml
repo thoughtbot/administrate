@@ -23,3 +23,6 @@ nl:
         not_supported: Polymorphische relaties formulieren worden niet ondersteund.
       has_one:
         not_supported: HasOne relaties formulieren worden niet ondersteund.
+    search: 
+      placeholder: Søg
+      hint: Tryk på enter for at søge
