@@ -50,6 +50,7 @@
   flex-grow: 1;
   margin: 0;
   padding: ($small-spacing * 1.5) $small-spacing;
+  z-index: 1;
 
   &:focus {
     box-shadow: none;
@@ -63,7 +64,6 @@
   position: absolute;
   top: 1em;
   transition: opacity $base-duration $base-timing;
-  z-index: 1;
 
   svg {
     height: 100%;
@@ -77,5 +77,6 @@
 
   &--active {
     opacity: 1;
+    z-index: 1;
   }
 }
