@@ -10,7 +10,6 @@ PATH
       jquery-rails (>= 4.0)
       kaminari (>= 1.0)
       momentjs-rails (~> 2.8)
-      normalize-rails (>= 3.0)
       sass-rails (~> 5.0)
       selectize-rails (~> 0.6)
 
@@ -149,7 +148,6 @@ GEM
     multipart-post (2.0.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
-    normalize-rails (4.1.1)
     parser (2.4.0.0)
       ast (~> 2.2)
     pg (0.20.0)
