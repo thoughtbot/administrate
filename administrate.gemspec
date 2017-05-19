@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency "actionview", ">= 4.2", "< 5.2"
   s.add_dependency "activerecord", ">= 4.2", "< 5.2"
 
-  s.add_dependency "autoprefixer-rails", "~> 6.0"
+  s.add_dependency "autoprefixer-rails", ">= 6.0"
   s.add_dependency "datetime_picker_rails", "~> 0.0.7"
   s.add_dependency "jquery-rails", ">= 4.0"
   s.add_dependency "kaminari", ">= 1.0"

@@ -5,7 +5,7 @@ PATH
       actionpack (>= 4.2, < 5.2)
       actionview (>= 4.2, < 5.2)
       activerecord (>= 4.2, < 5.2)
-      autoprefixer-rails (~> 6.0)
+      autoprefixer-rails (>= 6.0)
       datetime_picker_rails (~> 0.0.7)
       jquery-rails (>= 4.0)
       kaminari (>= 1.0)
@@ -54,7 +54,7 @@ GEM
       thor (>= 0.14.0)
     arel (8.0.0)
     ast (2.3.0)
-    autoprefixer-rails (6.7.7.2)
+    autoprefixer-rails (7.1.1)
       execjs
     awesome_print (1.7.0)
     builder (3.2.3)
