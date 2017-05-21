@@ -63,9 +63,9 @@ describe Admin::Blog::PostsController, type: :controller do
   describe "POST create" do
     context "with valid params" do
       it "creates a new blog post" do
-        expect {
+        expect do
           post :create, blog_post: attributes_for(:blog_post)
-        }.to change(Blog::Post, :count).by(1)
+        end.to change(Blog::Post, :count).by(1)
       end
 
       it "redirects to the created blog post" do
