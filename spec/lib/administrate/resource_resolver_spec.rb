@@ -7,12 +7,12 @@ describe Administrate::ResourceResolver do
   describe "#dashboard_class" do
     it "handles global-namepsace models" do
       begin
-        class AccountDashboard; end
-        resolver = Administrate::ResourceResolver.new("admin/accounts")
+        class UserDashboard; end
+        resolver = Administrate::ResourceResolver.new("admin/users")
 
-        expect(resolver.dashboard_class).to eq(AccountDashboard)
+        expect(resolver.dashboard_class).to eq(UserDashboard)
       ensure
-        remove_constants :AccountDashboard
+        remove_constants :UserDashboard
       end
     end
 
@@ -39,12 +39,12 @@ describe Administrate::ResourceResolver do
   describe "#resource_class" do
     it "handles global-namepsace models" do
       begin
-        class Account; end
-        resolver = Administrate::ResourceResolver.new("admin/accounts")
+        class User; end
+        resolver = Administrate::ResourceResolver.new("admin/users")
 
-        expect(resolver.resource_class).to eq(Account)
+        expect(resolver.resource_class).to eq(User)
       ensure
-        remove_constants :Account
+        remove_constants :User
       end
     end
 
@@ -62,9 +62,9 @@ describe Administrate::ResourceResolver do
 
   describe "#resource_title" do
     it "handles global-namepsace models" do
-      resolver = Administrate::ResourceResolver.new("admin/accounts")
+      resolver = Administrate::ResourceResolver.new("admin/users")
 
-      expect(resolver.resource_title).to eq("Account")
+      expect(resolver.resource_title).to eq("User")
     end
 
     it "handles namespaced models" do
