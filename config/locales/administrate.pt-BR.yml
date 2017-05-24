@@ -24,6 +24,6 @@ pt-BR:
         not_supported: Relações polimórficas nos formulários não são suportadas.
       has_one:
         not_supported: Relações um para muitos nos formulários não são suportadas.
-    search: 
-      placeholder: Pesquisa
-      hint: Pressione Enter para pesquisar
+    search:
+      clear: Limpar pesquisa
+      label: Pesquisa %{resource}

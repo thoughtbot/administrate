@@ -23,6 +23,6 @@ zh-TW:
         not_supported: 表單尚未支援 Polymorphic 關聯。
       has_one:
         not_supported: 表單尚未支援 HasOne 關聯。
-    search: 
-      placeholder: 搜索
-      hint: 按回车搜索
+    search:
+      clear: 清除搜索
+      label: 搜索 %{resource}

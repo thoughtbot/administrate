@@ -23,6 +23,6 @@ fr:
         not_supported: Les relations polymorphiques dans les formulaires ne sont pas supportées.
       has_one:
         not_supported: Les relations HasOne dans les formulaires ne sont pas supportées.
-    search: 
-      placeholder: Chercher
-      hint: Appuyez sur enter pour rechercher
+    search:
+      clear: Effacer la recherche
+      label: Chercher %{resource}

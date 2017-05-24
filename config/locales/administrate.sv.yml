@@ -23,6 +23,6 @@ sv:
         not_supported: Formulär med polymorfiska relationer stöds inte.
       has_one:
         not_supported: Formulär med HasOne relationer stöds inte.
-    search: 
-      placeholder: Sök
-      hint: Tryck på enter för att söka
+    search:
+      clear: Rensa sökningen
+      label: Sök %{resource}

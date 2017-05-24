@@ -23,6 +23,6 @@ pl:
         not_supported: Relacje polimorficzne nie są obsługiwane.
       has_one:
         not_supported: Relacje jeden-do-jednego nie są obsługiwane.
-    search: 
-      placeholder: Szukaj
-      hint: Wciśnij enter, żeby wyszukać
+    search:
+      clear: Wyczyść wyszukiwanie
+      label: Szukanie %{resource}

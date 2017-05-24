@@ -23,6 +23,6 @@ ja:
         not_supported: フォームでは「多：多」の関連をサポートしていません。
       has_one:
         not_supported: フォームでは「１：１」の関連をサポートしていません。
-    search: 
-      placeholder: サーチ
-      hint: 検索するにはEnterキーを押します
+    search:
+      clear: 検索をクリアする
+      label: サーチ %{resource}

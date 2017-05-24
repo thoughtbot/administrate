@@ -24,5 +24,5 @@ en:
       has_one:
         not_supported: HasOne relationship forms are not supported.
     search:
-      placeholder: Search
-      hint: Press enter to search
+      clear: Clear search
+      label: Search %{resource}

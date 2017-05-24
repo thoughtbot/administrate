@@ -23,6 +23,6 @@ da:
         not_supported: "Formularer med polymorphic relationships er ikke understøttede."
       has_one:
         not_supported: "Formularer med has_one associationer er ikke understøttede."
-    search: 
-      placeholder: Søg
-      hint: Tryk på enter for at søge
+    search:
+      clear: Ryd søgning
+      label: Søg %{resource}

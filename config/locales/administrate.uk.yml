@@ -23,6 +23,6 @@ uk:
         not_supported: Поліморфні відношення у формах не підтримуються.
       has_one:
         not_supported: HasOne відношення у формах не підтримуються.
-    search: 
-      placeholder: пошук
-      hint: Натисніть введення для пошуку
+    search:
+      clear: Очистити пошук
+      label: пошук %{resource}

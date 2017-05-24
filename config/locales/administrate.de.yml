@@ -23,6 +23,6 @@ de:
         not_supported: Polymorphe Beziehungen werden nicht unterstützt.
       has_one:
         not_supported: HasOne Beziehungen werden nicht unterstützt.
-    search: 
-      placeholder: Suche
-      hint: Drücken Sie die Eingabetaste, um zu suchen
+    search:
+      clear: Saubere Suche
+      label: Suche %{resource}

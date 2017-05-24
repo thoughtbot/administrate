@@ -23,6 +23,6 @@ vi:
         not_supported: Quan hệ Polymorphic chưa được hỗ trợ.
       has_one:
         not_supported: Quan hệ HasOne chưa được hỗ trợ.
-    search: 
-      placeholder: Tìm kiếm
-      hint: Nhấn Enter để tìm kiếm
+    search:
+      clear: Tìm kiếm rõ ràng
+      label: Tìm kiếm %{resource}

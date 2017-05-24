@@ -23,6 +23,6 @@ ar:
         not_supported: "غير مدعمه \"Polymorphic\" هذه العلاقه"
       has_one:
         not_supported: "غير مدعمه \"HasOne\" هذه العلاقه"
-    search: 
-      placeholder: بحث
-      hint: اضغط على إنتر للبحث
+    search:
+      clear: مسح البحث
+      label: بحث %{resource}
