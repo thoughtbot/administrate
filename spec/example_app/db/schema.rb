@@ -32,6 +32,21 @@ ActiveRecord::Schema.define(version: 20170508183744) do
     t.string "kind", default: "standard", null: false
   end
 
+  create_table "delayed_jobs", id: :serial, force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
   create_table "line_items", id: :serial, force: :cascade do |t|
     t.integer "order_id"
     t.integer "product_id"
@@ -61,12 +76,12 @@ ActiveRecord::Schema.define(version: 20170508183744) do
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
-  create_table "product_meta_tags", force: :cascade do |t|
-    t.integer  "product_id"
-    t.string   "meta_title",       null: false
-    t.string   "meta_description", null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+  create_table "product_meta_tags", id: :serial, force: :cascade do |t|
+    t.integer "product_id"
+    t.string "meta_title", null: false
+    t.string "meta_description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", id: :serial, force: :cascade do |t|

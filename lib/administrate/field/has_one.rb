@@ -10,7 +10,7 @@ module Administrate
           data || resolver.resource_class.new,
         )
 
-        super(attribute, data, page, options)
+        super
       end
 
       def self.permitted_attribute(attr)
