@@ -20,5 +20,5 @@ By default, the input is a text field that is augmented with [DateTimePicker].
   <%= f.label field.attribute %>
 </div>
 <div class="field-unit__field">
-  <%= f.text_field field.attribute, class: "datetimepicker" %>
+  <%= f.text_field field.attribute, data: { type: 'datetime' }  %>
 </div>

@@ -103,7 +103,7 @@ describe "order form" do
 
       page.execute_script(<<-JS)
         var date = moment("#{time_string}", "YYYY-MM-DD hh:mm:ss");
-        $(".datetimepicker").data("DateTimePicker").date(date);
+        $('[data-type="datetime"]').data("DateTimePicker").date(date);
       JS
     end
   end
