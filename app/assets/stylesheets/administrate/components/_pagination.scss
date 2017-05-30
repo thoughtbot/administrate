@@ -4,11 +4,8 @@
   padding-right: $base-spacing;
   text-align: center;
 
-  .first,
-  .prev,
-  .page,
-  .next,
-  .last {
+  li {
+    display: inline-block;
     margin: $small-spacing;
   }
 
