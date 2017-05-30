@@ -20,7 +20,7 @@ describe "fields/has_many/_form", type: :view do
   def fake_form_builder
     double("Form Builder").as_null_object.tap do |form_builder|
       allow(form_builder).to receive(:label) do |*args|
-        args.second.to_s.titleize
+        args.second.to_s
       end
     end
   end
