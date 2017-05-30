@@ -1,0 +1,23 @@
+---
+lv:
+  administrate:
+    actions:
+      confirm: Vai esat pārliecināts?
+      destroy: Dzēst
+      edit: Rediģēt
+      show: Rādīt
+    controller:
+      create:
+        success: "%{resource} veiksmīgi izveidots."
+      destroy:
+        success: "%{resource} veiksmīgi dzēsts."
+      update:
+        success: "%{resource} veiksmīgi atjaunots."
+    fields:
+      has_many:
+        more: "%{count} no %{total_count}"
+        none: Nav
+      polymorphic:
+        not_supported: Polimorfiskas attiecības nav atbalstītas formās.
+      has_one:
+        not_supported: HasOne attiecības nav atbalstītas formās.
