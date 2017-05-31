@@ -23,6 +23,7 @@ By default, it renders:
   </title>
   <%= render "stylesheet" %>
   <%= csrf_meta_tags %>
+  <%= content_for(:page_head) %>
 </head>
 <body>
   <%= render "icons" %>
