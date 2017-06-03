@@ -1,6 +1,6 @@
 $(function () {
   $(".datetimepicker").datetimepicker({
     debug: false,
-    format: "YYYY-MM-DD HH:mm:ss",
+    format: "Y-M-D H:m:s",
   });
 });
