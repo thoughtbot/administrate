@@ -10,15 +10,15 @@ module Administrate
 
     def run
       if @term.blank?
-        resource_class.all
+        resource_scope.all
       else
-        resource_class.where(query, *search_terms)
+        resource_scope.where(query, *search_terms)
       end
     end
 
     private
 
-    delegate :resource_class, to: :resolver
+    delegate :resource_class, :resource_scope, to: :resolver
 
     def query
       search_attributes.map do |attr|
