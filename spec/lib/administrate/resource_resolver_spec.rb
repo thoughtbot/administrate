@@ -60,32 +60,32 @@ describe Administrate::ResourceResolver do
     end
   end
 
-  describe '#resource_scope' do
-    it 'defaults to model default scope when no override defined' do
+  describe "#resource_scope" do
+    it "defaults to model default scope when no override defined" do
       begin
         class Post
           def self.default_scoped
-            'default scope'
+            "default scope"
           end
         end
         class PostDashboard; end
         resolver = Administrate::ResourceResolver.new("admin/posts")
-        expect(resolver.resource_scope).to eq('default scope')
+        expect(resolver.resource_scope).to eq("default scope")
       ensure
         remove_constants :PostDashboard, :Post
       end
     end
 
-    it 'uses defined scope when present' do
+    it "uses defined scope when present" do
       begin
         class Post; end
         class PostDashboard
           def resource_scope
-            'a resource scope'
+            "a resource scope"
           end
         end
         resolver = Administrate::ResourceResolver.new("admin/posts")
-        expect(resolver.resource_scope).to eq('a resource scope')
+        expect(resolver.resource_scope).to eq("a resource scope")
       ensure
         remove_constants :PostDashboard, :Post
       end

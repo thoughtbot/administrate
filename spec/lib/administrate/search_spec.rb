@@ -96,7 +96,7 @@ describe Administrate::Search do
         end
         class UserDashboard < Administrate::BaseDashboard
           def resource_scope
-            User.my_scope 
+            User.my_scope
           end
         end
         resolver = Administrate::ResourceResolver.new("admin/users")
@@ -108,5 +108,4 @@ describe Administrate::Search do
       end
     end
   end
-
 end
