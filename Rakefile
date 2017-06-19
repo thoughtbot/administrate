@@ -24,8 +24,12 @@ task default: [:spec]
 
 if defined? RSpec
   task(:spec).clear
-  RSpec::Core::RakeTask.new(:spec) do |t|
+  RSpec::Core::RakeTask.new(:spec, :tag) do |t, task_args|
     t.verbose = false
+    t.rspec_opts ||= ""
+    if task_args[:tag]
+      t.rspec_opts += "--tag #{task_args[:tag]}"
+    end
   end
 end
 
