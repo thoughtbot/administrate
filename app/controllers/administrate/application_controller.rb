@@ -1,11 +1,20 @@
+require 'csv'
+
 module Administrate
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
 
     def index
       search_term = params[:search].to_s.strip
-      resources = Administrate::Search.new(resource_resolver, search_term).run
-      resources = resources.includes(*resource_includes) if resource_includes.any?
+      resources = Administrate::Search.new(resource_resolver, parse_search_term(search_term)).run
+
+      puts "*~" * 31
+      puts "resources: #{resources.to_sql}"
+      puts "*~" * 31
+
+      if resource_includes.any?
+        resources = resources.includes(*resource_includes)
+      end
       resources = order.apply(resources)
       resources = resources.page(params[:page]).per(records_per_page)
       page = Administrate::Page::Collection.new(dashboard, order: order)
@@ -137,6 +146,20 @@ module Administrate
       dashboard.attribute_types_for(
         dashboard.collection_attributes
       ).any? { |_name, attribute| attribute.searchable? }
+    end
+
+    def parse_search_term(term)
+      all_terms = CSV.parse(term).first
+      return if all_terms.blank?
+
+      all_terms.map.with_object({}) do |tuple, hash|
+        label, term = tuple.split(/:\s+/)
+        if term.blank?
+          hash[:all] = label.strip
+        else
+          hash[label.strip.to_sym] = term.strip
+        end
+      end
     end
   end
 end

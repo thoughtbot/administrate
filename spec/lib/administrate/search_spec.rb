@@ -153,7 +153,7 @@ describe Administrate::Search do
         end
       end
 
-      it "converts search terms in default and custom searches" do
+      it "converts multibyte search terms in default and custom searches" do
         begin
           class User < ActiveRecord::Base; end
           resolver = double(resource_class: User, dashboard_class: MockDashboardWithCustomSearches)
@@ -174,6 +174,70 @@ describe Administrate::Search do
           search.run
         ensure
           remove_constants :User
+        end
+      end
+
+      context 'labeled searches' do
+        it "searches for terms by their label" do
+          begin
+            class User < ActiveRecord::Base; end
+            resolver = double(resource_class: User, dashboard_class: MockDashboardWithCustomSearches)
+            search = Administrate::Search.new(resolver, age: '4', email: "Бэта Test")
+            expected_query = [
+              "upper(\"users\".\"email\") LIKE ?"\
+              " OR \"users\".\"age\" >= ?",
+              "%БЭТА TEST%",
+              4,
+            ]
+            expect(User).to receive(:where).with(*expected_query)
+
+            search.run
+          ensure
+            remove_constants :User
+          end
+        end
+
+        it "overrides the default OR clause for labeled searches" do
+          begin
+            class User < ActiveRecord::Base; end
+            resolver = double(resource_class: User, dashboard_class: MockDashboardWithCustomSearches)
+            search = Administrate::Search.new(resolver, op: 'and', age: '4', email: "Бэта Test")
+            expected_query = [
+              "upper(\"users\".\"email\") LIKE ?"\
+              " AND \"users\".\"age\" >= ?",
+              "%БЭТА TEST%",
+              4,
+            ]
+            expect(User).to receive(:where).with(*expected_query)
+
+            search.run
+          ensure
+            remove_constants :User
+          end
+        end
+
+        it "supports the special 'all' label" do
+          begin
+            class User < ActiveRecord::Base; end
+            resolver = double(resource_class: User, dashboard_class: MockDashboardWithCustomSearches)
+            search = Administrate::Search.new(resolver, all: "Бэта Test")
+            expected_query = [
+              "lower(\"users\".\"name\") LIKE ?"\
+              " OR upper(\"users\".\"email\") LIKE ?"\
+              " OR \"users\".\"age\" >= ?"\
+              " OR (\"users\".\"a_date\"::DATE BETWEEN #{date_search_lower} AND #{date_search_upper})",
+              "%бэта test%",
+              "%БЭТА TEST%",
+              0,
+              0,
+              0,
+            ]
+            expect(User).to receive(:where).with(*expected_query)
+
+            search.run
+          ensure
+            remove_constants :User
+          end
         end
       end
     end
