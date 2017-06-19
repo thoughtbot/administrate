@@ -1,13 +1,14 @@
 require "administrate/base_dashboard"
+require "administrate/default_search"
 
 class OrderDashboard < Administrate::BaseDashboard
-  class TotalAtLeast
-    def self.query(table_name, attr_name)
+  class TotalAtLeast < Administrate::DefaultSearch
+    def build_query(table_name, attr_name)
       subquery = LineItem.select(:order_id).distinct.where('unit_price * quantity > ?').to_sql
       %Q{#{table_name}."id" IN (#{subquery})}
     end
 
-    def self.search_term(term)
+    def build_search_value(term)
       term.scan(/\d+/).first.to_i
     end
   end
