@@ -8,7 +8,7 @@ module Administrate
       search_term = params[:search].to_s.strip
       resources = Administrate::Search.new(
         resource_resolver,
-        Administrate::SearchTermParser.parse(search_term)
+        Administrate::SearchTermParser.parse(search_term),
       ).run
 
       if resource_includes.any?

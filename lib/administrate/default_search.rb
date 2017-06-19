@@ -1,7 +1,7 @@
 module Administrate
   class DefaultSearch
     def self.with_context(term)
-      self.new(term: term)
+      new(term: term)
     end
 
     def initialize(term:)
@@ -22,6 +22,7 @@ module Administrate
     end
 
     protected
+
     def build_query(table_name, attr_name)
       "LOWER(#{table_name}.#{attr_name}) LIKE ?"
     end
