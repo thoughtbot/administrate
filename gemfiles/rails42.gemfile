@@ -16,7 +16,7 @@ gem "activerecord", "~> 4.2.0"
 group :development, :test do
   gem "appraisal"
   gem "awesome_print"
-  gem "bundler-audit", :require => false
+  gem "bundler-audit", require: false
   gem "byebug"
   gem "dotenv-rails"
   gem "factory_girl_rails"
@@ -31,7 +31,7 @@ group :test do
   gem "formulaic"
   gem "launchy"
   gem "poltergeist"
-  gem "shoulda-matchers", "~> 2.8.0", :require => false
+  gem "shoulda-matchers", "~> 2.8.0", require: false
   gem "timecop"
   gem "webmock"
 end
@@ -42,4 +42,4 @@ group :staging, :production do
   gem "uglifier"
 end
 
-gemspec :path => "../"
+gemspec path: "../"
