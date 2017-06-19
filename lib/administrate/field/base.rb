@@ -1,11 +1,11 @@
-require_relative "default_search"
+require_relative "../default_search"
 require_relative "deferred"
 require "active_support/core_ext/string/inflections"
 
 module Administrate
   module Field
     class Base
-      DEFAUT_SEARCH_IMPL = DefaultSearch.new
+      DEFAUT_SEARCH_IMPL = DefaultSearch
 
       def self.with_options(options = {})
         Deferred.new(self, options)

@@ -4,9 +4,15 @@ require "active_support/core_ext/object/blank"
 module Administrate
   class Search
     class SearchStrategy
-      def initialize(resource_class, search_attributes, term)
+      def initialize(search_attributes, term, resource_class: nil, table_name: nil)
+        if table_name
+          @table_name = table_name
+        elsif resource_class
+          @table_name = ActiveRecord::Base.connection.quote_table_name(resource_class.table_name)
+        else
+          raise ArgumentError, 'resource_class or table_name is required'
+        end
         @search_attributes, @term = search_attributes, term
-        @table_name = ActiveRecord::Base.connection.quote_table_name(resource_class.table_name)
       end
 
       def attr_name(name)
@@ -27,13 +33,13 @@ module Administrate
 
       def query
         @search_attributes.map do |name, attr|
-          attr.searchable.query(@table_name, attr_name(name))
+          attr.searchable.with_context(@term).query(@table_name, attr_name(name))
         end.join(" OR ")
       end
 
       def search_terms
         @search_attributes.map do |_name, attr|
-          attr.searchable.search_term(@term.mb_chars)
+          attr.searchable.with_context(@term).search_term
         end.flatten
       end
     end
@@ -44,18 +50,19 @@ module Administrate
       end
 
       def query
-        @search_attributes.map do |name, attr|
-          next unless @term.has_key?(name) || @term.has_key?(:all)
-          attr.searchable.query(@table_name, attr_name(name))
+        @search_attributes.flat_map do |name, attr|
+          term = @term[name] || @term[:all]
+          next if term.blank?
+          attr.searchable.with_context(term).query(@table_name, attr_name(name))
         end.compact.join(" #{@term.fetch(:op, 'OR').upcase} ")
       end
 
       def search_terms
-        @search_attributes.map do |name, attr|
+        @search_attributes.flat_map do |name, attr|
           term = @term[name] || @term[:all]
           next if term.blank?
-          attr.searchable.search_term(term.is_a?(String) ? term.mb_chars : term)
-        end.flatten.compact
+          attr.searchable.with_context(term).search_term
+        end.compact
       end
     end
 
@@ -71,7 +78,7 @@ module Administrate
       else
         raise ArgumentError, "cannot determine search strategy for a #{term.class}"
       end
-      @search_strategy = search_strategy_cls.new(resource_class, search_attributes, @term)
+      @search_strategy = search_strategy_cls.new(search_attributes, @term, resource_class: resource_class)
     end
 
     def run
