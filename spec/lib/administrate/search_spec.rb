@@ -7,7 +7,7 @@ require "administrate/field/date_time"
 require "administrate/search"
 require "administrate/default_search"
 
-class MockUppercaseSearch < DefaultSearch
+class MockUppercaseSearch < Administrate::DefaultSearch
   def build_query(table_name, attr_name)
     "upper(#{table_name}.#{attr_name}) LIKE ?"
   end
@@ -17,7 +17,7 @@ class MockUppercaseSearch < DefaultSearch
   end
 end
 
-class MockNumberSearch < DefaultSearch
+class MockNumberSearch < Administrate::DefaultSearch
   def build_query(table_name, attr_name)
     "#{table_name}.#{attr_name} >= ?"
   end
@@ -27,7 +27,7 @@ class MockNumberSearch < DefaultSearch
   end
 end
 
-class MockDateTimeSearch < DefaultSearch
+class MockDateTimeSearch < Administrate::DefaultSearch
   def query(table_name, attr_name)
     "(#{table_name}.#{attr_name}::DATE BETWEEN days_ago(?) AND days_from(?))"
   end
@@ -132,7 +132,10 @@ describe Administrate::Search, searching: true do
       it "searches default and custom search implementations" do
         begin
           class User < ActiveRecord::Base; end
-          resolver = double(resource_class: User, dashboard_class: MockDashboardWithCustomSearches)
+          resolver = double(
+            resource_class: User,
+            dashboard_class: MockDashboardWithCustomSearches,
+          )
           search = Administrate::Search.new(resolver, "Test")
           expected_query = [
             "LOWER(\"users\".\"name\") LIKE ?"\
@@ -156,7 +159,10 @@ describe Administrate::Search, searching: true do
       it "converts multibyte search terms in default and custom searches" do
         begin
           class User < ActiveRecord::Base; end
-          resolver = double(resource_class: User, dashboard_class: MockDashboardWithCustomSearches)
+          resolver = double(
+            resource_class: User,
+            dashboard_class: MockDashboardWithCustomSearches,
+          )
           search = Administrate::Search.new(resolver, "4 Бэта Test")
           expected_query = [
             "LOWER(\"users\".\"name\") LIKE ?"\
@@ -181,7 +187,10 @@ describe Administrate::Search, searching: true do
         it "searches for terms by their label" do
           begin
             class User < ActiveRecord::Base; end
-            resolver = double(resource_class: User, dashboard_class: MockDashboardWithCustomSearches)
+            resolver = double(
+              resource_class: User,
+              dashboard_class: MockDashboardWithCustomSearches,
+            )
             search = Administrate::Search.new(resolver, age: '4', email: "Бэта Test")
             expected_query = [
               "upper(\"users\".\"email\") LIKE ?"\
@@ -200,7 +209,10 @@ describe Administrate::Search, searching: true do
         it "overrides the default OR clause for labeled searches" do
           begin
             class User < ActiveRecord::Base; end
-            resolver = double(resource_class: User, dashboard_class: MockDashboardWithCustomSearches)
+            resolver = double(
+              resource_class: User,
+              dashboard_class: MockDashboardWithCustomSearches,
+            )
             search = Administrate::Search.new(resolver, op: 'and', age: '4', email: "Бэта Test")
             expected_query = [
               "upper(\"users\".\"email\") LIKE ?"\
@@ -219,7 +231,10 @@ describe Administrate::Search, searching: true do
         it "supports the special 'all' label" do
           begin
             class User < ActiveRecord::Base; end
-            resolver = double(resource_class: User, dashboard_class: MockDashboardWithCustomSearches)
+            resolver = double(
+              resource_class: User,
+              dashboard_class: MockDashboardWithCustomSearches,
+            )
             search = Administrate::Search.new(resolver, all: "Бэта Test")
             expected_query = [
               "LOWER(\"users\".\"name\") LIKE ?"\
@@ -243,7 +258,10 @@ describe Administrate::Search, searching: true do
         it "uses a specific label value instead of using the special 'all' label" do
           begin
             class User < ActiveRecord::Base; end
-            resolver = double(resource_class: User, dashboard_class: MockDashboardWithCustomSearches)
+            resolver = double(
+              resource_class: User,
+              dashboard_class: MockDashboardWithCustomSearches,
+            )
             search = Administrate::Search.new(resolver, all: "Бэта Test", age: '19')
             expected_query = [
               "LOWER(\"users\".\"name\") LIKE ?"\
@@ -267,7 +285,10 @@ describe Administrate::Search, searching: true do
         it "supports multiple values per label" do
           begin
             class User < ActiveRecord::Base; end
-            resolver = double(resource_class: User, dashboard_class: MockDashboardWithCustomSearches)
+            resolver = double(
+              resource_class: User,
+              dashboard_class: MockDashboardWithCustomSearches,
+            )
             search = Administrate::Search.new(resolver, age: %w{3 7 11 13})
             expected_query = [
               "\"users\".\"age\" >= ?"\
@@ -290,7 +311,10 @@ describe Administrate::Search, searching: true do
         it "handles complex cases" do
           begin
             class User < ActiveRecord::Base; end
-            resolver = double(resource_class: User, dashboard_class: MockDashboardWithCustomSearches)
+            resolver = double(
+              resource_class: User,
+              dashboard_class: MockDashboardWithCustomSearches,
+            )
             search = Administrate::Search.new(resolver, a_date: %w{10 20}, all: "Бэта Test", age: %w{23 19})
             expected_query = [
               "LOWER(\"users\".\"name\") LIKE ?"\
