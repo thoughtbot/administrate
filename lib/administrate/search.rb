@@ -21,22 +21,22 @@ module Administrate
     delegate :resource_class, to: :resolver
 
     def query
-      search_attributes.map do |attr|
+      search_attributes.map do |name, attr|
         table_name = ActiveRecord::Base.connection.
           quote_table_name(resource_class.table_name)
-        attr_name = ActiveRecord::Base.connection.quote_column_name(attr)
-        "lower(#{table_name}.#{attr_name}) LIKE ?"
+        attr_name = ActiveRecord::Base.connection.quote_column_name(name)
+        attr.searchable.query(table_name, attr_name)
       end.join(" OR ")
     end
 
     def search_terms
-      ["%#{term.mb_chars.downcase}%"] * search_attributes.count
+      search_attributes.map do |_name, attr|
+        attr.searchable.search_term(term.mb_chars)
+      end.flatten
     end
 
     def search_attributes
-      attribute_types.keys.select do |attribute|
-        attribute_types[attribute].searchable?
-      end
+      attribute_types.select { |_name, type| type.searchable? }
     end
 
     def attribute_types

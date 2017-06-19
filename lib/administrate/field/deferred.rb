@@ -21,7 +21,11 @@ module Administrate
       end
 
       def searchable?
-        options.fetch(:searchable, deferred_class.searchable?)
+        !!options.fetch(:searchable, deferred_class.searchable?)
+      end
+
+      def searchable
+        options.fetch(:searchable, deferred_class.searchable)
       end
 
       delegate(

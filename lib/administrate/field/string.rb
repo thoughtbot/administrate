@@ -7,6 +7,10 @@ module Administrate
         true
       end
 
+      def self.searchable
+        DEFAUT_SEARCH_IMPL
+      end
+
       def truncate
         data.to_s[0...truncation_length]
       end
