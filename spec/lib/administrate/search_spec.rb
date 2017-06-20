@@ -33,10 +33,10 @@ class MockDateTimeSearch < Administrate::DefaultSearch
   end
 
   def search_term
-    if !@term.is_a?(Array) || @term.size < 2
-      term = [@term, @term].flatten
+    term = if !@term.is_a?(Array) || @term.size < 2
+      [@term, @term].flatten
     else
-      term = @term
+      @term
     end
     term.map { |e| e.scan(/\d+/).first.to_i }
   end
@@ -47,20 +47,20 @@ class MockDashboard
     name: Administrate::Field::String,
     email: Administrate::Field::Email,
     phone: Administrate::Field::Number,
-  }
+  }.freeze
 end
 
 class MockDashboardWithCustomSearches
   ATTRIBUTE_TYPES = {
     name: Administrate::Field::String,
     email: Administrate::Field::Email.with_options(
-      searchable: MockUppercaseSearch
+      searchable: MockUppercaseSearch,
     ),
     age: Administrate::Field::Number.with_options(searchable: MockNumberSearch),
     a_date: Administrate::Field::DateTime.with_options(
-      searchable: MockDateTimeSearch
+      searchable: MockDateTimeSearch,
     ),
-  }
+  }.freeze
 end
 
 describe Administrate::Search, searching: true do
@@ -199,7 +199,7 @@ describe Administrate::Search, searching: true do
             )
             search = Administrate::Search.new(
               resolver,
-              age: '4',
+              age: "4",
               email: "Бэта Test",
             )
             expected_query = [
@@ -225,8 +225,8 @@ describe Administrate::Search, searching: true do
             )
             search = Administrate::Search.new(
               resolver,
-              op: 'and',
-              age: '4',
+              op: "and",
+              age: "4",
               email: "Бэта Test",
             )
             expected_query = [
@@ -281,7 +281,7 @@ describe Administrate::Search, searching: true do
             search = Administrate::Search.new(
               resolver,
               all: "Бэта Test",
-              age: '19',
+              age: "19",
             )
             expected_query = [
               "LOWER(\"users\".\"name\") LIKE ?"\

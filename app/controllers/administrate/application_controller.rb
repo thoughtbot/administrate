@@ -1,4 +1,4 @@
-require 'administrate/search_term_parser'
+require "administrate/search_term_parser"
 
 module Administrate
   class ApplicationController < ActionController::Base

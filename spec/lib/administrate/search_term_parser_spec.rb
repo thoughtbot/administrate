@@ -2,7 +2,7 @@ require "spec_helper"
 require "administrate/search_term_parser"
 
 describe Administrate::SearchTermParser, searching: true do
-  describe '.parse' do
+  describe ".parse" do
     it "returns the string as a search term for all search terms" do
       expect(described_class.parse("foobar")).to eq all: "foobar"
     end

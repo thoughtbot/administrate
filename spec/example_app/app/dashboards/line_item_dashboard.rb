@@ -5,7 +5,7 @@ class LineItemDashboard < Administrate::BaseDashboard
   class ProductByName < Administrate::DefaultSearch
     def build_query(table_name, _attr_name)
       subquery = Product.select(:id).where('LOWER("products"."name") LIKE ?').to_sql
-      %Q{#{table_name}."product_id" IN (#{subquery})}
+      %{#{table_name}."product_id" IN (#{subquery})}
     end
 
     def build_search_value(term)
@@ -14,9 +14,9 @@ class LineItemDashboard < Administrate::BaseDashboard
   end
 
   class TotalAtLeast < Administrate::DefaultSearch
-    def build_query(table_name, attr_name)
+    def build_query(table_name, _attr_name)
       subquery = LineItem.select(:order_id).distinct.where('unit_price * quantity > ?').to_sql
-      %Q{#{table_name}."order_id" IN (#{subquery})}
+      %{#{table_name}."order_id" IN (#{subquery})}
     end
 
     def build_search_value(term)
@@ -47,8 +47,16 @@ class LineItemDashboard < Administrate::BaseDashboard
     order: Field::BelongsTo,
     product: Field::BelongsTo.with_options(searchable: ProductByName),
     quantity: Field::Number,
-    total_price: Field::Number.with_options(searchable: TotalAtLeast, prefix: "$", decimals: 2),
-    unit_price: Field::Number.with_options(searchable: UnitPriceAtLeast, prefix: "$", decimals: 2),
+    total_price: Field::Number.with_options(
+      searchable: TotalAtLeast,
+      prefix: "$",
+      decimals: 2,
+    ),
+    unit_price: Field::Number.with_options(
+      searchable: UnitPriceAtLeast,
+      prefix: "$",
+      decimals: 2,
+    ),
   }
 
   COLLECTION_ATTRIBUTES = ATTRIBUTES + [:total_price]
