@@ -4,7 +4,11 @@ require "administrate/default_search"
 class OrderDashboard < Administrate::BaseDashboard
   class TotalAtLeast < Administrate::DefaultSearch
     def build_query(table_name, _attr_name)
-      subquery = LineItem.select(:order_id).distinct.where('unit_price * quantity > ?').to_sql
+      subquery = LineItem.
+        select(:order_id).
+        distinct.
+        where('unit_price * quantity > ?').
+        to_sql
       %{#{table_name}."id" IN (#{subquery})}
     end
 
@@ -27,7 +31,7 @@ class OrderDashboard < Administrate::BaseDashboard
     total_price: Field::Number.with_options(
       searchable: TotalAtLeast,
       prefix: "$",
-      decimals: 2
+      decimals: 2,
     ),
     shipped_at: Field::DateTime,
     payments: Field::HasMany,

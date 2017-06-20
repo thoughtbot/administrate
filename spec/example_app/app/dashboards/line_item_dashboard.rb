@@ -4,7 +4,10 @@ require "administrate/default_search"
 class LineItemDashboard < Administrate::BaseDashboard
   class ProductByName < Administrate::DefaultSearch
     def build_query(table_name, _attr_name)
-      subquery = Product.select(:id).where('LOWER("products"."name") LIKE ?').to_sql
+      subquery = Product.
+        select(:id).
+        where('LOWER("products"."name") LIKE ?').
+        to_sql
       %{#{table_name}."product_id" IN (#{subquery})}
     end
 
@@ -15,7 +18,11 @@ class LineItemDashboard < Administrate::BaseDashboard
 
   class TotalAtLeast < Administrate::DefaultSearch
     def build_query(table_name, _attr_name)
-      subquery = LineItem.select(:order_id).distinct.where('unit_price * quantity > ?').to_sql
+      subquery = LineItem.
+        select(:order_id).
+        distinct.
+        where('unit_price * quantity > ?').
+        to_sql
       %{#{table_name}."order_id" IN (#{subquery})}
     end
 

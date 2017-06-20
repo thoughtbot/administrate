@@ -34,10 +34,10 @@ class MockDateTimeSearch < Administrate::DefaultSearch
 
   def search_term
     term = if !@term.is_a?(Array) || @term.size < 2
-      [@term, @term].flatten
-    else
-      @term
-    end
+             [@term, @term].flatten
+           else
+             @term
+           end
     term.map { |e| e.scan(/\d+/).first.to_i }
   end
 end

@@ -19,7 +19,8 @@ module Administrate
         else
           raise ArgumentError, "resource_class or table_name is required"
         end
-        @search_attributes, @term = search_attributes, term
+        @search_attributes = search_attributes
+        @term = term
       end
 
       def attr_name(name)
