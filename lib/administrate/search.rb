@@ -30,6 +30,9 @@ module Administrate
     end
 
     class NilSearchStrategy < SearchStrategy
+      def initialize(*args)
+      end
+
       def blank?
         true
       end
@@ -81,21 +84,25 @@ module Administrate
     def initialize(resolver, term)
       @resolver = resolver
       @term = term
-      if term.is_a?(String)
-        search_strategy_cls = StringBasedSearchStrategy
-      elsif term.is_a?(Hash)
-        search_strategy_cls = HashBasedSearchStrategy
-      elsif term.nil?
-        search_strategy_cls = NilSearchStrategy
-      else
-        raise ArgumentError,
-          "cannot determine search strategy for a #{term.class}"
-      end
-      @search_strategy = search_strategy_cls.new(
-        search_attributes,
-        @term,
-        resource_class: resource_class,
-      )
+      @search_strategy = case term
+                         when String
+                           search_strategy_cls = StringBasedSearchStrategy.new(
+                             search_attributes,
+                             @term,
+                             resource_class: resource_class,
+                           )
+                         when Hash
+                           search_strategy_cls = HashBasedSearchStrategy.new(
+                           search_attributes,
+                           @term,
+                           resource_class: resource_class,
+                           )
+                         when NilClass
+                           search_strategy_cls = NilSearchStrategy.new
+                         else
+                           raise ArgumentError, "cannot determine search"\
+                             " strategy for a #{term.class}"
+                         end
     end
 
     def run

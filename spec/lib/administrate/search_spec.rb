@@ -197,7 +197,7 @@ describe Administrate::Search, searching: true do
             0,
             0,
           ]
-          expect(User).to receive(:where).with(*expected_query)
+          expect(scope).to receive(:where).with(*expected_query)
 
           search.run
         ensure
@@ -227,7 +227,7 @@ describe Administrate::Search, searching: true do
             4,
             4,
           ]
-          expect(User).to receive(:where).with(*expected_query)
+          expect(scope).to receive(:where).with(*expected_query)
 
           search.run
         ensure
@@ -256,7 +256,7 @@ describe Administrate::Search, searching: true do
               "%БЭТА TEST%",
               4,
             ]
-            expect(User).to receive(:where).with(*expected_query)
+            expect(scope).to receive(:where).with(*expected_query)
 
             search.run
           ensure
@@ -285,7 +285,7 @@ describe Administrate::Search, searching: true do
               "%БЭТА TEST%",
               4,
             ]
-            expect(User).to receive(:where).with(*expected_query)
+            expect(scope).to receive(:where).with(*expected_query)
 
             search.run
           ensure
@@ -315,7 +315,7 @@ describe Administrate::Search, searching: true do
               0,
               0,
             ]
-            expect(User).to receive(:where).with(*expected_query)
+            expect(scope).to receive(:where).with(*expected_query)
 
             search.run
           ensure
@@ -349,7 +349,7 @@ describe Administrate::Search, searching: true do
               0,
               0,
             ]
-            expect(User).to receive(:where).with(*expected_query)
+            expect(scope).to receive(:where).with(*expected_query)
 
             search.run
           ensure
@@ -377,7 +377,7 @@ describe Administrate::Search, searching: true do
               11,
               13,
             ]
-            expect(User).to receive(:where).with(*expected_query)
+            expect(scope).to receive(:where).with(*expected_query)
 
             search.run
           ensure
@@ -385,7 +385,7 @@ describe Administrate::Search, searching: true do
           end
         end
 
-        it "handles complex cases" do
+        it "handles complex cases", searchingx: true do
           begin
             class User < ActiveRecord::Base; end
             scope = double(all: nil)
@@ -414,7 +414,7 @@ describe Administrate::Search, searching: true do
               10,
               20,
             ]
-            expect(User).to receive(:where).with(*expected_query)
+            expect(scope).to receive(:where).with(*expected_query)
 
             search.run
           ensure
