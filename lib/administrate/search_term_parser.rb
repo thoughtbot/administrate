@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 module Administrate
   class SearchTermParser
