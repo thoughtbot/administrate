@@ -18,11 +18,9 @@ describe Administrate::Search do
     it "returns all records when no search term" do
       begin
         class User; end
-        scope = double(all: nil)
-        resolver = double(resource_class: User, dashboard_class: MockDashboard,
-                          resource_scope: scope)
+        resolver = double(resource_class: User, dashboard_class: MockDashboard)
         search = Administrate::Search.new(resolver, nil)
-        expect(scope).to receive(:all)
+        expect(User).to receive(:all)
 
         search.run
       ensure
@@ -33,11 +31,9 @@ describe Administrate::Search do
     it "returns all records when search is empty" do
       begin
         class User; end
-        scope = double(all: nil)
-        resolver = double(resource_class: User, dashboard_class: MockDashboard,
-                          resource_scope: scope)
+        resolver = double(resource_class: User, dashboard_class: MockDashboard)
         search = Administrate::Search.new(resolver, "   ")
-        expect(scope).to receive(:all)
+        expect(User).to receive(:all)
 
         search.run
       ensure
@@ -48,9 +44,7 @@ describe Administrate::Search do
     it "searches using lower() + LIKE for all searchable fields" do
       begin
         class User < ActiveRecord::Base; end
-        scope = double(where: nil)
-        resolver = double(resource_class: User, dashboard_class: MockDashboard,
-                          resource_scope: scope)
+        resolver = double(resource_class: User, dashboard_class: MockDashboard)
         search = Administrate::Search.new(resolver, "test")
         expected_query = [
           "lower(\"users\".\"name\") LIKE ?"\
@@ -58,7 +52,7 @@ describe Administrate::Search do
           "%test%",
           "%test%",
         ]
-        expect(scope).to receive(:where).with(*expected_query)
+        expect(User).to receive(:where).with(*expected_query)
 
         search.run
       ensure
@@ -69,9 +63,7 @@ describe Administrate::Search do
     it "converts search term lower case for latin and cyrillic strings" do
       begin
         class User < ActiveRecord::Base; end
-        scope = double(where: nil)
-        resolver = double(resource_class: User, dashboard_class: MockDashboard,
-                          resource_scope: scope)
+        resolver = double(resource_class: User, dashboard_class: MockDashboard)
         search = Administrate::Search.new(resolver, "Тест Test")
         expected_query = [
           "lower(\"users\".\"name\") LIKE ?"\
@@ -79,32 +71,11 @@ describe Administrate::Search do
           "%тест test%",
           "%тест test%",
         ]
-        expect(scope).to receive(:where).with(*expected_query)
+        expect(User).to receive(:where).with(*expected_query)
 
         search.run
       ensure
         remove_constants :User
-      end
-    end
-
-    it "respects Dashboard#resource_scope when defined" do
-      begin
-        class MockScope
-        end
-        class User < ActiveRecord::Base
-          scope :my_scope, -> { MockScope }
-        end
-        class UserDashboard < Administrate::BaseDashboard
-          def resource_scope
-            User.my_scope
-          end
-        end
-        resolver = Administrate::ResourceResolver.new("admin/users")
-        search = Administrate::Search.new(resolver, nil)
-        expect(MockScope).to receive(:all)
-        search.run
-      ensure
-        remove_constants :User, :UserDashboard, :MockScope
       end
     end
   end
