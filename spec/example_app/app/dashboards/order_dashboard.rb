@@ -7,7 +7,7 @@ class OrderDashboard < Administrate::BaseDashboard
       subquery = LineItem.
         select(:order_id).
         distinct.
-        where('unit_price * quantity > ?').
+        where("unit_price * quantity > ?").
         to_sql
       %{#{table_name}."id" IN (#{subquery})}
     end
