@@ -5,7 +5,7 @@ require "active_support/core_ext/string/inflections"
 module Administrate
   module Field
     class Base
-      DEFAUT_SEARCH_IMPL = DefaultSearch
+      DEFAULT_SEARCH_IMPL = DefaultSearch
 
       def self.with_options(options = {})
         Deferred.new(self, options)

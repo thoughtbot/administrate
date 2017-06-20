@@ -25,7 +25,12 @@ module Administrate
       end
 
       def searchable
-        options.fetch(:searchable, deferred_class.searchable)
+        case options[:searchable]
+        when true, nil
+          deferred_class.searchable || Base::DEFAULT_SEARCH_IMPL
+        else
+          options[:searchable]
+        end
       end
 
       delegate(

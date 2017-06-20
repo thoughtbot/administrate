@@ -8,7 +8,7 @@ module Administrate
       end
 
       def self.searchable
-        DEFAUT_SEARCH_IMPL
+        DEFAULT_SEARCH_IMPL
       end
 
       def truncate

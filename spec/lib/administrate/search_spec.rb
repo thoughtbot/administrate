@@ -4,6 +4,7 @@ require "administrate/field/string"
 require "administrate/field/email"
 require "administrate/field/number"
 require "administrate/field/date_time"
+require "administrate/field/text"
 require "administrate/search"
 require "administrate/default_search"
 
@@ -52,7 +53,7 @@ end
 
 class MockDashboardWithCustomSearches
   ATTRIBUTE_TYPES = {
-    name: Administrate::Field::String,
+    name: Administrate::Field::Text.with_options(searchable: true),
     email: Administrate::Field::Email.with_options(
       searchable: MockUppercaseSearch,
     ),

@@ -1,5 +1,6 @@
 require "active_support/core_ext/module/delegation"
 require "active_support/core_ext/object/blank"
+require "administrate/default_search"
 
 module Administrate
   class Search
