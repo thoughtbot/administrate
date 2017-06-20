@@ -4,7 +4,7 @@ require "administrate/search_term_parser"
 describe Administrate::SearchTermParser, searching: true do
   describe '.parse' do
     it "returns the string as a search term for all search terms" do
-      expect(described_class.parse "foobar").to eq all: "foobar"
+      expect(described_class.parse("foobar")).to eq all: "foobar"
     end
 
     it "does not interpret search terms" do
@@ -24,8 +24,8 @@ describe Administrate::SearchTermParser, searching: true do
 
     it "returns the labeled search terms" do
       expect(described_class.parse("foo: bar, baz: blat")).to eq(
-       foo: "bar",
-       baz: "blat",
+        foo: "bar",
+        baz: "blat",
       )
     end
 

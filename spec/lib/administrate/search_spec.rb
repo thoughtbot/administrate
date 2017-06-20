@@ -53,9 +53,13 @@ end
 class MockDashboardWithCustomSearches
   ATTRIBUTE_TYPES = {
     name: Administrate::Field::String,
-    email: Administrate::Field::Email.with_options(searchable: MockUppercaseSearch),
+    email: Administrate::Field::Email.with_options(
+      searchable: MockUppercaseSearch
+    ),
     age: Administrate::Field::Number.with_options(searchable: MockNumberSearch),
-    a_date: Administrate::Field::DateTime.with_options(searchable: MockDateTimeSearch),
+    a_date: Administrate::Field::DateTime.with_options(
+      searchable: MockDateTimeSearch
+    ),
   }
 end
 
@@ -125,7 +129,7 @@ describe Administrate::Search, searching: true do
       end
     end
 
-    context 'with custom searchable definitions', custom_search: true do
+    context "with custom searchable definitions", custom_search: true do
       let(:date_search_lower) { "days_ago(?)" }
       let(:date_search_upper) { "days_from(?)" }
 
@@ -141,7 +145,8 @@ describe Administrate::Search, searching: true do
             "LOWER(\"users\".\"name\") LIKE ?"\
             " OR upper(\"users\".\"email\") LIKE ?"\
             " OR \"users\".\"age\" >= ?"\
-            " OR (\"users\".\"a_date\"::DATE BETWEEN #{date_search_lower} AND #{date_search_upper})",
+            " OR (\"users\".\"a_date\"::DATE BETWEEN #{date_search_lower}"\
+            " AND #{date_search_upper})",
             "%test%",
             "%TEST%",
             0,
@@ -168,7 +173,8 @@ describe Administrate::Search, searching: true do
             "LOWER(\"users\".\"name\") LIKE ?"\
             " OR upper(\"users\".\"email\") LIKE ?"\
             " OR \"users\".\"age\" >= ?"\
-            " OR (\"users\".\"a_date\"::DATE BETWEEN #{date_search_lower} AND #{date_search_upper})",
+            " OR (\"users\".\"a_date\"::DATE BETWEEN #{date_search_lower}"\
+            " AND #{date_search_upper})",
             "%4 бэта test%",
             "%4 БЭТА TEST%",
             4,
@@ -183,7 +189,7 @@ describe Administrate::Search, searching: true do
         end
       end
 
-      context 'labeled searches' do
+      context "labeled searches" do
         it "searches for terms by their label" do
           begin
             class User < ActiveRecord::Base; end
@@ -240,7 +246,8 @@ describe Administrate::Search, searching: true do
               "LOWER(\"users\".\"name\") LIKE ?"\
               " OR upper(\"users\".\"email\") LIKE ?"\
               " OR \"users\".\"age\" >= ?"\
-              " OR (\"users\".\"a_date\"::DATE BETWEEN #{date_search_lower} AND #{date_search_upper})",
+              " OR (\"users\".\"a_date\"::DATE BETWEEN #{date_search_lower}"\
+              " AND #{date_search_upper})",
               "%бэта test%",
               "%БЭТА TEST%",
               0,
@@ -255,7 +262,7 @@ describe Administrate::Search, searching: true do
           end
         end
 
-        it "uses a specific label value instead of using the special 'all' label" do
+        it "uses a specific label instead of using the special 'all' label" do
           begin
             class User < ActiveRecord::Base; end
             resolver = double(
@@ -267,7 +274,8 @@ describe Administrate::Search, searching: true do
               "LOWER(\"users\".\"name\") LIKE ?"\
               " OR upper(\"users\".\"email\") LIKE ?"\
               " OR \"users\".\"age\" >= ?"\
-              " OR (\"users\".\"a_date\"::DATE BETWEEN #{date_search_lower} AND #{date_search_upper})",
+              " OR (\"users\".\"a_date\"::DATE BETWEEN #{date_search_lower}"\
+              " AND #{date_search_upper})",
               "%бэта test%",
               "%БЭТА TEST%",
               19,
@@ -321,7 +329,8 @@ describe Administrate::Search, searching: true do
               " OR upper(\"users\".\"email\") LIKE ?"\
               " OR \"users\".\"age\" >= ?"\
               " OR \"users\".\"age\" >= ?"\
-              " OR (\"users\".\"a_date\"::DATE BETWEEN #{date_search_lower} AND #{date_search_upper})",
+              " OR (\"users\".\"a_date\"::DATE BETWEEN #{date_search_lower}"\
+              " AND #{date_search_upper})",
               "%бэта test%",
               "%БЭТА TEST%",
               23,
