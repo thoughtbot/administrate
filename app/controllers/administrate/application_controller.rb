@@ -113,7 +113,7 @@ module Administrate
     end
 
     def find_resource(param)
-      resource_class.find(param)
+      resource_scope.find(param)
     end
 
     def resource_includes
@@ -125,7 +125,8 @@ module Administrate
         permit(dashboard.permitted_attributes)
     end
 
-    delegate :resource_class, :resource_name, :namespace, to: :resource_resolver
+    delegate :resource_class, :resource_name, :namespace, :resource_scope,
+             to: :resource_resolver
     helper_method :namespace
     helper_method :resource_name
 

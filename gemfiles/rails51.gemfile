@@ -12,7 +12,6 @@ gem "unicorn"
 gem "actionpack", "~> 5.1.0"
 gem "actionview", "~> 5.1.0"
 gem "activerecord", "~> 5.1.0"
-gem "rails-controller-testing"
 
 group :development, :test do
   gem "appraisal"
@@ -32,6 +31,7 @@ group :test do
   gem "formulaic"
   gem "launchy"
   gem "poltergeist"
+  gem "rails-controller-testing"
   gem "shoulda-matchers", "~> 2.8.0", require: false
   gem "timecop"
   gem "webmock"

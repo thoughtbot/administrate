@@ -69,9 +69,11 @@ describe Administrate::Search, searching: true do
     it "returns all records when no search term" do
       begin
         class User < ActiveRecord::Base; end
-        resolver = double(resource_class: User, dashboard_class: MockDashboard)
+        scope = double(all: nil)
+        resolver = double(resource_class: User, dashboard_class: MockDashboard,
+                          resource_scope: scope)
         search = Administrate::Search.new(resolver, nil)
-        expect(User).to receive(:all)
+        expect(scope).to receive(:all)
 
         search.run
       ensure
@@ -82,9 +84,11 @@ describe Administrate::Search, searching: true do
     it "returns all records when search is empty" do
       begin
         class User < ActiveRecord::Base; end
-        resolver = double(resource_class: User, dashboard_class: MockDashboard)
+        scope = double(all: nil)
+        resolver = double(resource_class: User, dashboard_class: MockDashboard,
+                          resource_scope: scope)
         search = Administrate::Search.new(resolver, "   ")
-        expect(User).to receive(:all)
+        expect(scope).to receive(:all)
 
         search.run
       ensure
@@ -95,7 +99,9 @@ describe Administrate::Search, searching: true do
     it "searches using LOWER() + LIKE for all searchable fields" do
       begin
         class User < ActiveRecord::Base; end
-        resolver = double(resource_class: User, dashboard_class: MockDashboard)
+        scope = double(where: nil)
+        resolver = double(resource_class: User, dashboard_class: MockDashboard,
+                          resource_scope: scope)
         search = Administrate::Search.new(resolver, "test")
         expected_query = [
           "LOWER(\"users\".\"name\") LIKE ?"\
@@ -103,7 +109,7 @@ describe Administrate::Search, searching: true do
           "%test%",
           "%test%",
         ]
-        expect(User).to receive(:where).with(*expected_query)
+        expect(scope).to receive(:where).with(*expected_query)
 
         search.run
       ensure
@@ -114,7 +120,9 @@ describe Administrate::Search, searching: true do
     it "converts search term LOWER case for latin and cyrillic strings" do
       begin
         class User < ActiveRecord::Base; end
-        resolver = double(resource_class: User, dashboard_class: MockDashboard)
+        scope = double(where: nil)
+        resolver = double(resource_class: User, dashboard_class: MockDashboard,
+                          resource_scope: scope)
         search = Administrate::Search.new(resolver, "Тест Test")
         expected_query = [
           "LOWER(\"users\".\"name\") LIKE ?"\
@@ -122,11 +130,32 @@ describe Administrate::Search, searching: true do
           "%тест test%",
           "%тест test%",
         ]
-        expect(User).to receive(:where).with(*expected_query)
+        expect(scope).to receive(:where).with(*expected_query)
 
         search.run
       ensure
         remove_constants :User
+      end
+    end
+    
+    it "respects Dashboard#resource_scope when defined" do
+      begin
+        class MockScope
+        end
+        class User < ActiveRecord::Base
+          scope :my_scope, -> { MockScope }
+        end
+        class UserDashboard < Administrate::BaseDashboard
+          def resource_scope
+            User.my_scope
+          end
+        end
+        resolver = Administrate::ResourceResolver.new("admin/users")
+        search = Administrate::Search.new(resolver, nil)
+        expect(MockScope).to receive(:all)
+        search.run
+      ensure
+        remove_constants :User, :UserDashboard, :MockScope
       end
     end
 
@@ -137,9 +166,11 @@ describe Administrate::Search, searching: true do
       it "searches default and custom search implementations" do
         begin
           class User < ActiveRecord::Base; end
+          scope = double(all: nil)
           resolver = double(
             resource_class: User,
             dashboard_class: MockDashboardWithCustomSearches,
+            resource_scope: scope
           )
           search = Administrate::Search.new(resolver, "Test")
           expected_query = [
@@ -165,9 +196,11 @@ describe Administrate::Search, searching: true do
       it "converts multibyte search terms in default and custom searches" do
         begin
           class User < ActiveRecord::Base; end
+          scope = double(all: nil)
           resolver = double(
             resource_class: User,
             dashboard_class: MockDashboardWithCustomSearches,
+            resource_scope: scope
           )
           search = Administrate::Search.new(resolver, "4 Бэта Test")
           expected_query = [
@@ -194,9 +227,11 @@ describe Administrate::Search, searching: true do
         it "searches for terms by their label" do
           begin
             class User < ActiveRecord::Base; end
+            scope = double(all: nil)
             resolver = double(
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
+              resource_scope: scope
             )
             search = Administrate::Search.new(
               resolver,
@@ -220,9 +255,11 @@ describe Administrate::Search, searching: true do
         it "overrides the default OR clause for labeled searches" do
           begin
             class User < ActiveRecord::Base; end
+            scope = double(all: nil)
             resolver = double(
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
+              resource_scope: scope
             )
             search = Administrate::Search.new(
               resolver,
@@ -247,9 +284,11 @@ describe Administrate::Search, searching: true do
         it "supports the special 'all' label" do
           begin
             class User < ActiveRecord::Base; end
+            scope = double(all: nil)
             resolver = double(
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
+              resource_scope: scope
             )
             search = Administrate::Search.new(resolver, all: "Бэта Test")
             expected_query = [
@@ -275,9 +314,11 @@ describe Administrate::Search, searching: true do
         it "uses a specific label instead of using the special 'all' label" do
           begin
             class User < ActiveRecord::Base; end
+            scope = double(all: nil)
             resolver = double(
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
+              resource_scope: scope
             )
             search = Administrate::Search.new(
               resolver,
@@ -307,9 +348,11 @@ describe Administrate::Search, searching: true do
         it "supports multiple values per label" do
           begin
             class User < ActiveRecord::Base; end
+            scope = double(all: nil)
             resolver = double(
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
+              resource_scope: scope
             )
             search = Administrate::Search.new(resolver, age: %w{3 7 11 13})
             expected_query = [
@@ -333,9 +376,11 @@ describe Administrate::Search, searching: true do
         it "handles complex cases" do
           begin
             class User < ActiveRecord::Base; end
+            scope = double(all: nil)
             resolver = double(
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
+              resource_scope: scope
             )
             search = Administrate::Search.new(
               resolver,

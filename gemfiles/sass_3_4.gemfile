@@ -10,7 +10,6 @@ gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
 gem "sass", "~> 3.4"
-gem "rails-controller-testing"
 
 group :development, :test do
   gem "appraisal"
@@ -30,6 +29,7 @@ group :test do
   gem "formulaic"
   gem "launchy"
   gem "poltergeist"
+  gem "rails-controller-testing"
   gem "shoulda-matchers", "~> 2.8.0", require: false
   gem "timecop"
   gem "webmock"

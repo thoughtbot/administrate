@@ -100,15 +100,15 @@ module Administrate
 
     def run
       if @term.blank? || @search_strategy.blank?
-        resource_class.all
+        resource_scope.all
       else
-        resource_class.where(query, *search_terms)
+        resource_scope.where(query, *search_terms)
       end
     end
 
     private
 
-    delegate :resource_class, to: :resolver
+    delegate :resource_class, :resource_scope, to: :resolver
     delegate :query, :search_terms, to: :@search_strategy
 
     def search_attributes
