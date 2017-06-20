@@ -62,19 +62,19 @@ module Administrate
       end
 
       def query
-        @search_attributes.flat_map do |name, attr|
+        @search_attributes.map do |name, attr|
           term = @term[name] || @term[:all]
           next if term.blank?
           attr.searchable.with_context(term).query(@table_name, attr_name(name))
-        end.compact.join(" #{@term.fetch(:op, 'OR').upcase} ")
+        end.compact.flatten.join(" #{@term.fetch(:op, 'OR').upcase} ")
       end
 
       def search_terms
-        @search_attributes.flat_map do |name, attr|
+        @search_attributes.map do |name, attr|
           term = @term[name] || @term[:all]
           next if term.blank?
           attr.searchable.with_context(term).search_term
-        end.compact
+        end.compact.flatten
       end
     end
 
