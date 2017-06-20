@@ -29,17 +29,19 @@ describe Administrate::SearchTermParser, searching: true do
       )
     end
 
-    it "converts multiple occurrences of a labeled search term into an array of terms" do
-      expect(described_class.parse("foo: bar, foo: blat")).to eq(
-        foo: %w[bar blat],
-      )
-    end
+    context "multiple occurrences of a labeled search term" do
+      it "converts them into an array of terms" do
+        expect(described_class.parse("foo: bar, foo: blat")).to eq(
+          foo: %w[bar blat],
+        )
+      end
 
-    it "can create an arrayed search term from the :all label" do
-      expect(described_class.parse("all: foo, all: bar, year: 2014")).to eq(
-        all: %w[foo bar],
-        year: "2014",
-      )
+      it "can create an arrayed search term from the :all label" do
+        expect(described_class.parse("all: foo, all: bar, year: 2014")).to eq(
+          all: %w[foo bar],
+          year: "2014",
+        )
+      end
     end
   end
 end

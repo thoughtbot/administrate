@@ -197,7 +197,11 @@ describe Administrate::Search, searching: true do
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
             )
-            search = Administrate::Search.new(resolver, age: '4', email: "Бэта Test")
+            search = Administrate::Search.new(
+              resolver,
+              age: '4',
+              email: "Бэта Test",
+            )
             expected_query = [
               "upper(\"users\".\"email\") LIKE ?"\
               " OR \"users\".\"age\" >= ?",
@@ -219,7 +223,12 @@ describe Administrate::Search, searching: true do
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
             )
-            search = Administrate::Search.new(resolver, op: 'and', age: '4', email: "Бэта Test")
+            search = Administrate::Search.new(
+              resolver,
+              op: 'and',
+              age: '4',
+              email: "Бэта Test",
+            )
             expected_query = [
               "upper(\"users\".\"email\") LIKE ?"\
               " AND \"users\".\"age\" >= ?",
@@ -269,7 +278,11 @@ describe Administrate::Search, searching: true do
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
             )
-            search = Administrate::Search.new(resolver, all: "Бэта Test", age: '19')
+            search = Administrate::Search.new(
+              resolver,
+              all: "Бэта Test",
+              age: '19',
+            )
             expected_query = [
               "LOWER(\"users\".\"name\") LIKE ?"\
               " OR upper(\"users\".\"email\") LIKE ?"\
@@ -323,7 +336,12 @@ describe Administrate::Search, searching: true do
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
             )
-            search = Administrate::Search.new(resolver, a_date: %w{10 20}, all: "Бэта Test", age: %w{23 19})
+            search = Administrate::Search.new(
+              resolver,
+              a_date: %w{10 20},
+              all: "Бэта Test",
+              age: %w{23 19},
+            )
             expected_query = [
               "LOWER(\"users\".\"name\") LIKE ?"\
               " OR upper(\"users\".\"email\") LIKE ?"\
