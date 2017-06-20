@@ -70,8 +70,11 @@ describe Administrate::Search, searching: true do
       begin
         class User < ActiveRecord::Base; end
         scope = double(all: nil)
-        resolver = double(resource_class: User, dashboard_class: MockDashboard,
-                          resource_scope: scope)
+        resolver = double(
+          resource_class: User,
+          dashboard_class: MockDashboard,
+          resource_scope: scope,
+        )
         search = Administrate::Search.new(resolver, nil)
         expect(scope).to receive(:all)
 
@@ -85,8 +88,11 @@ describe Administrate::Search, searching: true do
       begin
         class User < ActiveRecord::Base; end
         scope = double(all: nil)
-        resolver = double(resource_class: User, dashboard_class: MockDashboard,
-                          resource_scope: scope)
+        resolver = double(
+          resource_class: User,
+          dashboard_class: MockDashboard,
+          resource_scope: scope,
+        )
         search = Administrate::Search.new(resolver, "   ")
         expect(scope).to receive(:all)
 
@@ -100,8 +106,11 @@ describe Administrate::Search, searching: true do
       begin
         class User < ActiveRecord::Base; end
         scope = double(where: nil)
-        resolver = double(resource_class: User, dashboard_class: MockDashboard,
-                          resource_scope: scope)
+        resolver = double(
+          resource_class: User,
+          dashboard_class: MockDashboard,
+          resource_scope: scope,
+        )
         search = Administrate::Search.new(resolver, "test")
         expected_query = [
           "LOWER(\"users\".\"name\") LIKE ?"\
@@ -121,8 +130,11 @@ describe Administrate::Search, searching: true do
       begin
         class User < ActiveRecord::Base; end
         scope = double(where: nil)
-        resolver = double(resource_class: User, dashboard_class: MockDashboard,
-                          resource_scope: scope)
+        resolver = double(
+          resource_class: User,
+          dashboard_class: MockDashboard,
+          resource_scope: scope,
+        )
         search = Administrate::Search.new(resolver, "Тест Test")
         expected_query = [
           "LOWER(\"users\".\"name\") LIKE ?"\
@@ -137,7 +149,7 @@ describe Administrate::Search, searching: true do
         remove_constants :User
       end
     end
-    
+
     it "respects Dashboard#resource_scope when defined" do
       begin
         class MockScope
@@ -170,7 +182,7 @@ describe Administrate::Search, searching: true do
           resolver = double(
             resource_class: User,
             dashboard_class: MockDashboardWithCustomSearches,
-            resource_scope: scope
+            resource_scope: scope,
           )
           search = Administrate::Search.new(resolver, "Test")
           expected_query = [
@@ -200,7 +212,7 @@ describe Administrate::Search, searching: true do
           resolver = double(
             resource_class: User,
             dashboard_class: MockDashboardWithCustomSearches,
-            resource_scope: scope
+            resource_scope: scope,
           )
           search = Administrate::Search.new(resolver, "4 Бэта Test")
           expected_query = [
@@ -231,7 +243,7 @@ describe Administrate::Search, searching: true do
             resolver = double(
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
-              resource_scope: scope
+              resource_scope: scope,
             )
             search = Administrate::Search.new(
               resolver,
@@ -259,7 +271,7 @@ describe Administrate::Search, searching: true do
             resolver = double(
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
-              resource_scope: scope
+              resource_scope: scope,
             )
             search = Administrate::Search.new(
               resolver,
@@ -288,7 +300,7 @@ describe Administrate::Search, searching: true do
             resolver = double(
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
-              resource_scope: scope
+              resource_scope: scope,
             )
             search = Administrate::Search.new(resolver, all: "Бэта Test")
             expected_query = [
@@ -318,7 +330,7 @@ describe Administrate::Search, searching: true do
             resolver = double(
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
-              resource_scope: scope
+              resource_scope: scope,
             )
             search = Administrate::Search.new(
               resolver,
@@ -352,7 +364,7 @@ describe Administrate::Search, searching: true do
             resolver = double(
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
-              resource_scope: scope
+              resource_scope: scope,
             )
             search = Administrate::Search.new(resolver, age: %w{3 7 11 13})
             expected_query = [
@@ -380,7 +392,7 @@ describe Administrate::Search, searching: true do
             resolver = double(
               resource_class: User,
               dashboard_class: MockDashboardWithCustomSearches,
-              resource_scope: scope
+              resource_scope: scope,
             )
             search = Administrate::Search.new(
               resolver,
