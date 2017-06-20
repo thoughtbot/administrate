@@ -17,10 +17,12 @@ describe Administrate::Search do
   describe "#run" do
     it "returns all records when no search term" do
       begin
-        class User; end
-        resolver = double(resource_class: User, dashboard_class: MockDashboard)
-        search = Administrate::Search.new(resolver, nil)
-        expect(User).to receive(:all)
+        class User < ActiveRecord::Base; end
+        scoped_object = User.default_scoped
+        search = Administrate::Search.new(scoped_object,
+                                          MockDashboard,
+                                          nil)
+        expect(scoped_object).to receive(:all)
 
         search.run
       ensure
@@ -30,10 +32,12 @@ describe Administrate::Search do
 
     it "returns all records when search is empty" do
       begin
-        class User; end
-        resolver = double(resource_class: User, dashboard_class: MockDashboard)
-        search = Administrate::Search.new(resolver, "   ")
-        expect(User).to receive(:all)
+        class User < ActiveRecord::Base; end
+        scoped_object = User.default_scoped
+        search = Administrate::Search.new(scoped_object,
+                                          MockDashboard,
+                                          "   ")
+        expect(scoped_object).to receive(:all)
 
         search.run
       ensure
@@ -44,15 +48,17 @@ describe Administrate::Search do
     it "searches using lower() + LIKE for all searchable fields" do
       begin
         class User < ActiveRecord::Base; end
-        resolver = double(resource_class: User, dashboard_class: MockDashboard)
-        search = Administrate::Search.new(resolver, "test")
+        scoped_object = User.default_scoped
+        search = Administrate::Search.new(scoped_object,
+                                          MockDashboard,
+                                          "test")
         expected_query = [
           "lower(\"users\".\"name\") LIKE ?"\
           " OR lower(\"users\".\"email\") LIKE ?",
           "%test%",
           "%test%",
         ]
-        expect(User).to receive(:where).with(*expected_query)
+        expect(scoped_object).to receive(:where).with(*expected_query)
 
         search.run
       ensure
@@ -63,15 +69,17 @@ describe Administrate::Search do
     it "converts search term lower case for latin and cyrillic strings" do
       begin
         class User < ActiveRecord::Base; end
-        resolver = double(resource_class: User, dashboard_class: MockDashboard)
-        search = Administrate::Search.new(resolver, "Тест Test")
+        scoped_object = User.default_scoped
+        search = Administrate::Search.new(scoped_object,
+                                          MockDashboard,
+                                          "Тест Test")
         expected_query = [
           "lower(\"users\".\"name\") LIKE ?"\
           " OR lower(\"users\".\"email\") LIKE ?",
           "%тест test%",
           "%тест test%",
         ]
-        expect(User).to receive(:where).with(*expected_query)
+        expect(scoped_object).to receive(:where).with(*expected_query)
 
         search.run
       ensure
