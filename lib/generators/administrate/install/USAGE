@@ -1,0 +1,13 @@
+Description:
+    Generates the application controller for the admin,
+
+Example:
+    1. rails generate administrate:install
+
+    This will create:
+        app/controllers/admin/application_controller.rb
+
+    2. rails generate administrate:install -m Backend
+
+    This will create:
+        app/controllers/backend/application_controller.rb

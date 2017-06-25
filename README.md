@@ -55,17 +55,25 @@ Re-bundle, then run the installer:
 ```bash
 $ rails generate administrate:install
 ```
+Or to use a custom module name (default is `Admin`). eg. `Backend`
+```bash
+$ rails generate administrate:install -m Backend
+```
 
 Restart your server, and visit http://localhost:3000/admin
 to see your new dashboard in action.
 
 ## Create Additional Dashboards
 
-In order to create additional dashboards, pass in the resource name to 
+In order to create additional dashboards, pass in the resource name to
 the dashboard generator. A dashboard and controller will be created.
 
 ```bash
 $ rails generate administrate:dashboard Foo
+```
+Or to use a custom module name (default is `Admin`). eg. `Backend`
+```bash
+$ rails generate administrate:dashboard Foo -m Backend
 ```
 
 ## Documentation

@@ -3,7 +3,8 @@ Description:
     pulling the attributes from database columns.
 
 Example:
-    rails generate administrate:dashboard FooBar
+    1. rails generate administrate:dashboard FooBar
+    2. rails generate administrate:dashboard FooBar -m Backend
 
     This will create:
         app/dashboards/foo_bar_dashboard.rb

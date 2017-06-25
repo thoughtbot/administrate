@@ -7,6 +7,11 @@ module Administrate
     class RoutesGenerator < Rails::Generators::Base
       source_root File.expand_path("../templates", __FILE__)
 
+      class_option :module, type: :string,
+                            default: 'Admin',
+                            desc: 'Indicates the module name',
+                            aliases: '-m'
+
       def insert_dashboard_routes
         if should_route_dashboard?
           route(dashboard_routes)
@@ -28,6 +33,10 @@ module Administrate
         unnamed_constants.each do |invalid_model|
           puts "NOTICE: Skipping dynamically generated model #{invalid_model}."
         end
+      end
+
+      def module_name
+        options['module']
       end
 
       private

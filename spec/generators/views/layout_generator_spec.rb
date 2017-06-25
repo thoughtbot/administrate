@@ -16,12 +16,35 @@ describe Administrate::Generators::Views::LayoutGenerator, :generator do
       expect(contents).to eq(expected_contents)
     end
 
+    it "copies the layout template into the `module/application` namespace when module option is specified" do
+      allow(Rails::Generators).to receive(:invoke)
+      expected_contents = File.read(
+        "app/views/layouts/administrate/application.html.erb",
+      )
+
+      run_generator ["--module", "Backend"]
+      contents = File.read(file("app/views/layouts/backend/application.html.erb"))
+
+      expect(contents).to eq(expected_contents)
+    end
+
     it "copies the flashes partial into the `admin/application` namespace" do
       allow(Rails::Generators).to receive(:invoke)
       expected_contents = contents_for_application_template("_flashes")
       generated_file = file("app/views/admin/application/_flashes.html.erb")
 
       run_generator []
+      contents = File.read(generated_file)
+
+      expect(contents).to eq(expected_contents)
+    end
+
+    it "copies the flashes partial into the `module/application` namespace when module option is specified" do
+      allow(Rails::Generators).to receive(:invoke)
+      expected_contents = contents_for_application_template("_flashes")
+      generated_file = file("app/views/backend/application/_flashes.html.erb")
+
+      run_generator ["--module", "Backend"]
       contents = File.read(generated_file)
 
       expect(contents).to eq(expected_contents)
@@ -42,6 +65,17 @@ describe Administrate::Generators::Views::LayoutGenerator, :generator do
       generated_file = file("app/views/admin/application/_javascript.html.erb")
 
       run_generator []
+      contents = File.read(generated_file)
+
+      expect(contents).to eq(expected_contents)
+    end
+
+    it "copies the javascript partial into the `module/application` namespace when module is specified" do
+      allow(Rails::Generators).to receive(:invoke)
+      expected_contents = contents_for_application_template("_javascript")
+      generated_file = file("app/views/backend/application/_javascript.html.erb")
+
+      run_generator ["--module", "Backend"]
       contents = File.read(generated_file)
 
       expect(contents).to eq(expected_contents)

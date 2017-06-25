@@ -5,6 +5,15 @@ module Administrate
   class ViewGenerator < Rails::Generators::Base
     include Administrate::GeneratorHelpers
 
+    class_option :module, type: :string,
+                          default: 'Admin',
+                          desc: 'Indicates the module name',
+                          aliases: '-m'
+
+    def module_name
+      options['module']
+    end
+
     private
 
     def self.template_source_path
@@ -19,7 +28,7 @@ module Administrate
 
       copy_file(
         template_file,
-        "app/views/admin/#{resource_path}/#{template_file}",
+        "app/views/#{module_name}/#{resource_path}/#{template_file}",
       )
     end
 

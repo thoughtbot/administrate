@@ -18,6 +18,20 @@ describe Administrate::Generators::InstallGenerator, :generator do
           class ApplicationController < Administrate::ApplicationController
       RB
     end
+
+    it "accepts module name as options" do
+      stub_generator_dependencies
+      controller = file("app/controllers/backend/application_controller.rb")
+
+      run_generator ["--module", "backend"]
+
+      expect(controller).to exist
+      expect(controller).to have_correct_syntax
+      expect(controller).to contain <<-RB.strip_heredoc
+        module Backend
+          class ApplicationController < Administrate::ApplicationController
+      RB
+    end
   end
 
   describe "routes generator" do
