@@ -33,7 +33,7 @@ RSpec.describe "product index page" do
 
   it "links to the new page" do
     visit admin_products_path
-    click_on("New product")
+    click_on("New Product")
 
     expect(current_path).to eq(new_admin_product_path)
   end

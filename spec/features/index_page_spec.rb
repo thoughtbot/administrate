@@ -42,7 +42,7 @@ describe "customer index page" do
 
   it "links to the new page" do
     visit admin_customers_path
-    click_on("New customer")
+    click_on("New Customer")
 
     expect(current_path).to eq(new_admin_customer_path)
   end

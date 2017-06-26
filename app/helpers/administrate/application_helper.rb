@@ -7,16 +7,16 @@ module Administrate
       render locals: locals, partial: field.to_partial_path
     end
 
-    def display_resource_name(resource_name)
+    def display_resource_name(resource_name, plural = true)
+      opts = { default: resource_name.to_s.pluralize.titleize }
+      opts[:count] = PLURAL_MANY_COUNT if plural
+
       resource_name.
         to_s.
         classify.
         constantize.
         model_name.
-        human(
-          count: PLURAL_MANY_COUNT,
-          default: resource_name.to_s.pluralize.titleize,
-        )
+        human(opts)
     end
 
     def sort_order(order)
