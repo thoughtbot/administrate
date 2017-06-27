@@ -21,7 +21,7 @@ RSpec.describe Administrate::ApplicationHelper do
     end
 
     context "when translations are defined" do
-      it "uses the plural of the defined translation" do
+      it "uses the plural of the defined translation by default" do
         translations = {
           activerecord: {
             models: {
@@ -37,6 +37,25 @@ RSpec.describe Administrate::ApplicationHelper do
           displayed = display_resource_name(:customer)
 
           expect(displayed).to eq("Users")
+        end
+      end
+
+      it "uses the singular of the defined translation if specified" do
+        translations = {
+          activerecord: {
+            models: {
+              customer: {
+                one: "User",
+                other: "Users",
+              },
+            },
+          },
+        }
+
+        with_translations(:en, translations) do
+          displayed = display_resource_name(:customer, false)
+
+          expect(displayed).to eq("User")
         end
       end
     end

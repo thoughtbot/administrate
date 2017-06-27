@@ -17,3 +17,17 @@ en:
 
   titles:
     application: Administrate-prototype
+  activerecord:
+    models:
+      product:
+        one: "Product"
+        other: "Products"
+      line_item:
+        one: "Line Item"
+        other: "Line Items"
+      customer:
+        one: "Customer"
+        other: "Customers"
+      order:
+        one: "Order"
+        other: "Orders"

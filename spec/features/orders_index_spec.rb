@@ -40,7 +40,7 @@ feature "order index page" do
 
   scenario "user clicks through to the new page" do
     visit admin_orders_path
-    click_on("New order")
+    click_on("New Order")
 
     expect(current_path).to eq(new_admin_order_path)
   end
