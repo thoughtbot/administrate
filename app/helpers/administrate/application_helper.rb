@@ -7,14 +7,14 @@ module Administrate
       render locals: locals, partial: field.to_partial_path
     end
 
-    def display_resource_name(resource_name)
+    def display_resource_name(resource_name, count = PLURAL_MANY_COUNT)
       resource_name.
         to_s.
         classify.
         constantize.
         model_name.
         human(
-          count: PLURAL_MANY_COUNT,
+          count: count,
           default: resource_name.to_s.pluralize.titleize,
         )
     end
@@ -34,5 +34,6 @@ module Administrate
     def clear_search_params
       params.except(:search, :page).permit(:order, :direction, :per_page)
     end
+
   end
 end
