@@ -1,4 +1,4 @@
-class CreatePayments < ActiveRecord::Migration
+class CreatePayments < ActiveRecord::Migration[4.2]
   def change
     create_table :payments do |t|
       t.references :order, index: true

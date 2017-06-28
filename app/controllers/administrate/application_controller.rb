@@ -78,9 +78,9 @@ module Administrate
     end
 
     helper_method :valid_action?
-    def valid_action?(name, resource = resource_name)
+    def valid_action?(name, resource = resource_class)
       !!routes.detect do |controller, action|
-        controller == resource.to_s.pluralize && action == name.to_s
+        controller == resource.to_s.underscore.pluralize && action == name.to_s
       end
     end
 
@@ -105,7 +105,7 @@ module Administrate
     end
 
     def find_resource(param)
-      resource_class.find(param)
+      resource_scope.find(param)
     end
 
     def resource_includes
@@ -113,10 +113,12 @@ module Administrate
     end
 
     def resource_params
-      params.require(resource_name).permit(dashboard.permitted_attributes)
+      params.require(resource_class.model_name.param_key).
+        permit(dashboard.permitted_attributes)
     end
 
-    delegate :resource_class, :resource_name, :namespace, to: :resource_resolver
+    delegate :resource_class, :resource_name, :namespace, :resource_scope,
+             to: :resource_resolver
     helper_method :namespace
     helper_method :resource_name
 

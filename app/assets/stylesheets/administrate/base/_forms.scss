@@ -51,7 +51,7 @@ textarea {
   background-color: $white;
   border: $base-border;
   border-radius: $base-border-radius;
-  padding: $base-spacing / 3;
+  padding: 0.5em;
   transition: border-color $base-duration $base-timing;
   width: 100%;
 
@@ -71,6 +71,10 @@ textarea {
     &:hover {
       border: $base-border;
     }
+  }
+
+  &::placeholder {
+    font-style: italic;
   }
 }
 

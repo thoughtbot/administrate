@@ -9,9 +9,9 @@ gem "pg"
 gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
-gem "actionpack", "~> 5.0.0"
-gem "actionview", "~> 5.0.0"
-gem "activerecord", "~> 5.0.0"
+gem "actionpack", "~> 5.1.0"
+gem "actionview", "~> 5.1.0"
+gem "activerecord", "~> 5.1.0"
 
 group :development, :test do
   gem "appraisal"

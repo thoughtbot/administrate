@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resources :products
     resources :payments, only: [:index, :show]
 
+    namespace :blog do
+      resources :posts
+    end
+
     root to: "customers#index"
   end
 

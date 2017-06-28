@@ -1,5 +1,7 @@
 scss_files: "app/assets/stylesheets/administrate/**/*.scss"
 
+exclude: "app/assets/stylesheets/administrate/reset/**"
+
 severity: warning
 
 linters:

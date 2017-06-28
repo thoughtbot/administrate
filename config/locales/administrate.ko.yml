@@ -23,3 +23,6 @@ ko:
         not_supported: 상속 관계에 대한 양식은 제공되지 않습니다.
       has_one:
         not_supported: 일대일 관계에 대한 양식은 제공되지 않습니다.
+    search:
+      clear: 검색 초기화
+      label: "%{resource} 검색"
