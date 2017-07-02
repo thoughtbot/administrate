@@ -33,8 +33,6 @@ module Administrate
 
       def get_attribute_value(resource, attribute_name)
         resource.public_send(attribute_name)
-      rescue NameError
-        nil
       end
 
       attr_reader :dashboard, :options
