@@ -13,6 +13,7 @@ module Administrate
           )
 
           call_generator("administrate:views:navigation")
+          copy_resource_template("_stylesheet")
           copy_resource_template("_javascript")
           copy_resource_template("_flashes")
         end
