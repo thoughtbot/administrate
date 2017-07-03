@@ -1,6 +1,22 @@
 require "administrate/base_dashboard"
+require "administrate/default_search"
 
 class OrderDashboard < Administrate::BaseDashboard
+  class TotalAtLeast < Administrate::DefaultSearch
+    def build_query(table_name, _attr_name)
+      subquery = LineItem.
+        select(:order_id).
+        distinct.
+        where("unit_price * quantity > ?").
+        to_sql
+      %{#{table_name}."id" IN (#{subquery})}
+    end
+
+    def build_search_value(term)
+      term.scan(/\d+/).first.to_i
+    end
+  end
+
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     created_at: Field::DateTime,
@@ -12,7 +28,11 @@ class OrderDashboard < Administrate::BaseDashboard
     address_zip: Field::String,
     customer: Field::BelongsTo,
     line_items: Field::HasMany,
-    total_price: Field::Number.with_options(prefix: "$", decimals: 2),
+    total_price: Field::Number.with_options(
+      searchable: TotalAtLeast,
+      prefix: "$",
+      decimals: 2,
+    ),
     shipped_at: Field::DateTime,
     payments: Field::HasMany,
   }

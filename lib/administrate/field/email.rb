@@ -6,6 +6,10 @@ module Administrate
       def self.searchable?
         true
       end
+
+      def self.searchable
+        DEFAULT_SEARCH_IMPL
+      end
     end
   end
 end
