@@ -7,7 +7,7 @@ module Administrate
 
     def apply(relation)
       if attribute.to_s.match?(/\./)
-        join_table, join_attribute = attribute.split('.')
+        join_table, join_attribute = attribute.split(".")
 
         relation.
           joins(join_table.to_sym).
