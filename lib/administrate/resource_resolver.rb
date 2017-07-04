@@ -16,10 +16,6 @@ module Administrate
       Object.const_get(resource_class_name)
     end
 
-    def resource_scope
-      dashboard_class.new.try(:resource_scope) || resource_class.default_scoped
-    end
-
     def resource_name
       model_path_parts.map(&:underscore).join("__").to_sym
     end

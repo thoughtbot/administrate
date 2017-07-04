@@ -4,7 +4,9 @@ module Administrate
 
     def index
       search_term = params[:search].to_s.strip
-      resources = Administrate::Search.new(resource_resolver, search_term).run
+      resources = Administrate::Search.new(scoped_resource,
+                                           dashboard_class,
+                                           search_term).run
       resources = resources.includes(*resource_includes) if resource_includes.any?
       resources = order.apply(resources)
       resources = resources.page(params[:page]).per(records_per_page)
@@ -97,7 +99,7 @@ module Administrate
     end
 
     def dashboard
-      @_dashboard ||= resource_resolver.dashboard_class.new
+      @_dashboard ||= dashboard_class.new
     end
 
     def requested_resource
@@ -105,7 +107,11 @@ module Administrate
     end
 
     def find_resource(param)
-      resource_scope.find(param)
+      scoped_resource.find(param)
+    end
+
+    def scoped_resource
+      resource_class.default_scoped
     end
 
     def resource_includes
@@ -117,10 +123,13 @@ module Administrate
         permit(dashboard.permitted_attributes)
     end
 
-    delegate :resource_class, :resource_name, :namespace, :resource_scope,
-             to: :resource_resolver
+    delegate :resource_class, :resource_name, :namespace, to: :resource_resolver
     helper_method :namespace
     helper_method :resource_name
+
+    def dashboard_class
+      resource_resolver.dashboard_class
+    end
 
     def resource_resolver
       @_resource_resolver ||=
