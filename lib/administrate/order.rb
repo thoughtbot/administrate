@@ -6,7 +6,21 @@ module Administrate
     end
 
     def apply(relation)
-      if relation.columns_hash.keys.include?(attribute.to_s)
+      if attribute.match?(/\./)
+        join_table, join_attribute = attribute.split('.')
+
+        relation.
+          joins(join_table.to_sym).
+          merge(
+            join_table.
+              camelize.
+              singularize.
+              constantize.
+              order(
+                join_attribute.to_sym => direction.to_sym,
+              ),
+          )
+      elsif relation.columns_hash.keys.include?(attribute.to_s)
         relation.order(attribute => direction)
       else
         relation
