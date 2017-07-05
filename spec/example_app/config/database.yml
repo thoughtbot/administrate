@@ -5,6 +5,9 @@ development: &default
   min_messages: warning
   pool: 2
   timeout: 5000
+  host: 127.0.0.1
+  port: 5432
+  user: postgres
 
 test:
   <<: *default

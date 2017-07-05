@@ -93,9 +93,9 @@ describe Administrate::Generators::RoutesGenerator, :generator do
     it "accepts module name as options" do
       routes = file("config/routes.rb")
 
-      run_generator ["--module", "Backend"]
+      run_generator ["--module", "Manage"]
 
-      expect(routes).to contain("namespace :backend")
+      expect(routes).to contain("namespace :manage")
     end
   end
 

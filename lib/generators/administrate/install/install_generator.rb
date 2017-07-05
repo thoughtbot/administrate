@@ -9,9 +9,9 @@ module Administrate
       source_root File.expand_path("../templates", __FILE__)
 
       class_option :module, type: :string,
-                            default: 'Admin',
-                            desc: 'Indicates the module name',
-                            aliases: '-m'
+                            default: "Admin",
+                            desc: "Indicates the module name",
+                            aliases: "-m"
 
       def run_routes_generator
         if dashboard_resources.none?
@@ -23,7 +23,7 @@ module Administrate
       def create_dashboard_controller
         template(
           "application_controller.rb.erb",
-          "app/controllers/#{module_name.underscore}/application_controller.rb"
+          "app/controllers/#{module_name.underscore}/application_controller.rb",
         )
       end
 
@@ -34,7 +34,7 @@ module Administrate
       end
 
       def module_name
-        options['module']
+        options["module"]
       end
 
       private

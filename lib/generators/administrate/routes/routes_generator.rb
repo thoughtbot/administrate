@@ -8,9 +8,9 @@ module Administrate
       source_root File.expand_path("../templates", __FILE__)
 
       class_option :module, type: :string,
-                            default: 'Admin',
-                            desc: 'Indicates the module name',
-                            aliases: '-m'
+                            default: "Admin",
+                            desc: "Indicates the module name",
+                            aliases: "-m"
 
       def insert_dashboard_routes
         if should_route_dashboard?
@@ -36,7 +36,7 @@ module Administrate
       end
 
       def module_name
-        options['module']
+        options["module"]
       end
 
       private
