@@ -24,7 +24,9 @@ describe Administrate::Generators::Views::LayoutGenerator, :generator do
       )
 
       run_generator ["--module", "Manage"]
-      contents = File.read(file("app/views/layouts/manage/application.html.erb"))
+      contents = File.read(
+        file("app/views/layouts/manage/application.html.erb"),
+      )
 
       expect(contents).to eq(expected_contents)
     end

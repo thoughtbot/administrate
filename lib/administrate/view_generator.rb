@@ -6,12 +6,12 @@ module Administrate
     include Administrate::GeneratorHelpers
 
     class_option :module, type: :string,
-                          default: 'Admin',
-                          desc: 'Indicates the module name',
-                          aliases: '-m'
+                          default: "Admin",
+                          desc: "Indicates the module name",
+                          aliases: "-m"
 
     def module_name
-      options['module']
+      options["module"]
     end
 
     private
