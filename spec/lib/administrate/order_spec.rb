@@ -36,7 +36,7 @@ describe Administrate::Order do
 
         ordered = order.apply(relation)
 
-        expect(relation).to have_received(:order).with(name: :asc)
+        expect(relation).to have_received(:order).with("name asc")
         expect(ordered).to eq(relation)
       end
 
@@ -47,7 +47,7 @@ describe Administrate::Order do
 
         ordered = order.apply(relation)
 
-        expect(relation).to have_received(:order).with(name: :desc)
+        expect(relation).to have_received(:order).with("name desc")
         expect(ordered).to eq(relation)
       end
     end
