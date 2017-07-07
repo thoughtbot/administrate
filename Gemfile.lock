@@ -166,10 +166,6 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-timeout (0.4.2)
-    rails-controller-testing (1.0.1)
-      actionpack (~> 5.x)
-      actionview (~> 5.x)
-      activesupport (~> 5.x)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -273,7 +269,6 @@ DEPENDENCIES
   poltergeist
   pry-rails
   rack-timeout
-  rails-controller-testing
   rails_stdout_logging
   redcarpet
   rspec-rails (~> 3.5.0)
