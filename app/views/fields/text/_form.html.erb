@@ -15,7 +15,7 @@ This partial renders a textarea element for a text attribute.
 %>
 
 <div class="field-unit__label">
-  <%= f.label field.attribute %>
+  <%= f.label field.attribute, field.label  %>
 </div>
 <div class="field-unit__field">
   <%= f.text_area field.attribute %>
