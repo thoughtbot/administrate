@@ -1,4 +1,4 @@
-class CreateProductMetaTags < ActiveRecord::Migration
+class CreateProductMetaTags < ActiveRecord::Migration[4.2]
   def change
     create_table :product_meta_tags do |t|
       t.belongs_to :product
