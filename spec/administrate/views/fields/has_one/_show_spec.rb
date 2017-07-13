@@ -32,7 +32,11 @@ describe "fields/has_one/_show", type: :view do
 
       render(
         partial: "fields/has_one/show.html.erb",
-        locals: { field: has_one, namespace: "admin", resource_name: "wtf", },
+        locals: {
+          field: has_one,
+          namespace: "admin",
+          resource_name: "product_meta_tag",
+        },
       )
 
       link = "<a href=\"/admin/products/monopoly-1\">Monopoly 1</a>"
