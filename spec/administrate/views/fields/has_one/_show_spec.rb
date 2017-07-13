@@ -39,7 +39,7 @@ describe "fields/has_one/_show", type: :view do
         },
       )
 
-      link = "<a href=\"/admin/products/monopoly-1\">Monopoly 1</a>"
+      link = "<a href=\"#{product_path}\">#{product.name}</a>"
       field_name = "Meta Title"
       field_value = "Very Nice Title"
       expect(rendered.strip).to include(link)
