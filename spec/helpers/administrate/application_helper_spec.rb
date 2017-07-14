@@ -41,4 +41,16 @@ RSpec.describe Administrate::ApplicationHelper do
       end
     end
   end
+
+  describe "#resource_index_route_key" do
+    it "handles index routes when resource is uncountable" do
+      route_key = resource_index_route_key(:series)
+      expect(route_key).to eq("series_index")
+    end
+
+    it "handles normal inflection" do
+      route_key = resource_index_route_key(:customer)
+      expect(route_key).to eq("customers")
+    end
+  end
 end

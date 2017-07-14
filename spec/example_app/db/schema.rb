@@ -95,6 +95,10 @@ ActiveRecord::Schema.define(version: 20170508183744) do
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
+  create_table "series", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
   add_foreign_key "orders", "customers"

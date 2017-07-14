@@ -52,4 +52,8 @@ FactoryGirl.define do
     sequence(:title) { |n| "Post #{n}" }
     body "Empty"
   end
+
+  factory :series do
+    sequence(:name) { |n| "Series #{n}" }
+  end
 end
