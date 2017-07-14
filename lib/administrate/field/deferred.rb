@@ -11,7 +11,8 @@ module Administrate
       attr_reader :deferred_class, :options
 
       def new(*args)
-        deferred_class.new(*args, options)
+        new_options = args.last.respond_to?(:merge) ? args.pop : {}
+        deferred_class.new(*args, options.merge(new_options))
       end
 
       def ==(other)
