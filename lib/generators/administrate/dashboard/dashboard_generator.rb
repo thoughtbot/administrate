@@ -34,14 +34,15 @@ module Administrate
       def create_dashboard_definition
         template(
           "dashboard.rb.erb",
-          Rails.root.join("app/dashboards/#{file_name}_dashboard.rb"),
+          Rails.root.join("app/dashboards/"\
+            "#{file_name}_dashboard.rb"),
         )
       end
 
       def create_resource_controller
         destination = Rails.root.join(
-          "app/controllers/#{module_name.underscore}/\
-           #{file_name.pluralize}_controller.rb",
+          "app/controllers/#{module_name.underscore}/"\
+            "#{file_name.pluralize}_controller.rb",
         )
 
         template("controller.rb.erb", destination)
