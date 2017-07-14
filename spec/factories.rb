@@ -36,6 +36,12 @@ FactoryGirl.define do
     description "A cutthroat game of financial conquest"
     image_url \
       "https://cdn.recombu.com/mobile/images/news/M11370/1264769196_w670.jpg"
+    product_meta_tag
+  end
+
+  factory :product_meta_tag do
+    meta_title "meta_title"
+    meta_description "meta_description"
   end
 
   factory :payment do
