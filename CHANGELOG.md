@@ -16,6 +16,10 @@
 
 ## Changes
 
+### 0.8.1 (July 14, 2017)
+
+* [BUGFIX] [#935] Move normalize.css out of vendor.
+
 ### 0.8.0 (July 14, 2017)
 
 * [FEATURE] [#788] Allow resource to be accessed from field.
