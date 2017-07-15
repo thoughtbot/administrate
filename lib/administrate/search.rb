@@ -3,6 +3,26 @@ require "active_support/core_ext/object/blank"
 
 module Administrate
   class Search
+    class Query
+      delegate :blank?, to: :terms
+
+      def initialize(original_query)
+        @original_query = original_query
+      end
+
+      def original
+        @original_query
+      end
+
+      def terms
+        original.to_s
+      end
+
+      def to_s
+        original
+      end
+    end
+
     def initialize(scoped_resource, dashboard_class, term)
       @dashboard_class = dashboard_class
       @scoped_resource = scoped_resource
