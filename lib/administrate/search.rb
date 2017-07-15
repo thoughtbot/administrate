@@ -33,13 +33,13 @@ module Administrate
       if @term.blank?
         @scoped_resource.all
       else
-        @scoped_resource.where(query, *search_terms)
+        @scoped_resource.where(query_template, *query_values)
       end
     end
 
     private
 
-    def query
+    def query_template
       search_attributes.map do |attr|
         table_name = ActiveRecord::Base.connection.
           quote_table_name(@scoped_resource.table_name)
@@ -48,7 +48,7 @@ module Administrate
       end.join(" OR ")
     end
 
-    def search_terms
+    def query_values
       ["%#{term.mb_chars.downcase}%"] * search_attributes.count
     end
 
