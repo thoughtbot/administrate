@@ -3,23 +3,82 @@ require "active_support/core_ext/object/blank"
 
 module Administrate
   class Search
+    class Query
+      attr_reader :filters
+
+      def blank?
+        terms.blank? && filters.empty?
+      end
+
+      def initialize(original_query)
+        @original_query = original_query
+        @filters, @terms = parse_query(original_query)
+      end
+
+      def original
+        @original_query
+      end
+
+      def terms
+        @terms.join(" ")
+      end
+
+      def to_s
+        original
+      end
+
+      private
+
+      def filter?(word)
+        word.match?(/^\w+:$/)
+      end
+
+      def parse_query(query)
+        filters = []
+        terms = []
+        query.to_s.split.each do |word|
+          if filter?(word)
+            filters << word.split(":").first
+          else
+            terms << word
+          end
+        end
+        [filters, terms]
+      end
+    end
+
     def initialize(scoped_resource, dashboard_class, term)
       @dashboard_class = dashboard_class
       @scoped_resource = scoped_resource
-      @term = term
+      @query = Query.new(term)
     end
 
     def run
-      if @term.blank?
+      if query.blank?
         @scoped_resource.all
       else
-        @scoped_resource.joins(tables_to_join).where(query, *search_terms)
+        results = search_results(@scoped_resource)
+        results = filter_results(results)
+        results
       end
     end
 
     private
 
-    def query
+    def apply_filter(filter, resources)
+      return resources unless filter
+      filter.call(resources)
+    end
+
+    def filter_results(resources)
+      query.filters.each do |filter_name|
+        filter = valid_filters[filter_name]
+        resources = apply_filter(filter, resources)
+      end
+      resources
+    end
+
+    def query_template
       search_attributes.map do |attr|
         table_name = query_table_name(attr)
         attr_name = column_to_query(attr)
@@ -28,13 +87,27 @@ module Administrate
       end.join(" OR ")
     end
 
-    def search_terms
+    def query_values
       ["%#{term.mb_chars.downcase}%"] * search_attributes.count
     end
 
     def search_attributes
       attribute_types.keys.select do |attribute|
         attribute_types[attribute].searchable?
+      end
+    end
+
+    def search_results(resources)
+      resources.
+        joins(tables_to_join).
+        where(query_template, *query_values)
+    end
+
+    def valid_filters
+      if @dashboard_class.const_defined?(:COLLECTION_FILTERS)
+        @dashboard_class.const_get(:COLLECTION_FILTERS).stringify_keys
+      else
+        {}
       end
     end
 
@@ -76,6 +149,10 @@ module Administrate
       ].include?(attribute_types[attribute].deferred_class)
     end
 
-    attr_reader :resolver, :term
+    def term
+      query.terms
+    end
+
+    attr_reader :resolver, :query
   end
 end

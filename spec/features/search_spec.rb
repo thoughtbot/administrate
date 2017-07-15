@@ -46,6 +46,34 @@ feature "Search" do
     expect(page).not_to have_content(mismatch.email)
   end
 
+  scenario "admin searches with a filter", :js do
+    query = "vip:"
+    kind_match = create(:customer, kind: "vip", email: "vip@kind.com")
+    mismatch = create(:customer, kind: "standard", email: "standard@kind.com")
+    name_match_only = create(:customer, name: "VIP", email: "vip@name.com")
+
+    visit admin_customers_path
+    fill_in :search, with: query
+    submit_search
+
+    expect(page).to have_content(kind_match.email)
+    expect(page).not_to have_content(mismatch.email)
+    expect(page).not_to have_content(name_match_only.email)
+  end
+
+  scenario "admin searches with an unknown filter", :js do
+    query = "whatevs:"
+    some_customer = create(:customer)
+    another_customer = create(:customer)
+
+    visit admin_customers_path
+    fill_in :search, with: query
+    submit_search
+
+    expect(page).to have_content(some_customer.email)
+    expect(page).to have_content(another_customer.email)
+  end
+
   scenario "admin clears search" do
     query = "foo"
     mismatch = create(:customer, name: "someone")
