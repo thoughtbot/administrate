@@ -1,4 +1,5 @@
 require "spec_helper"
+require "rails_helper"
 require "support/constant_helpers"
 require "administrate/field/string"
 require "administrate/field/email"
