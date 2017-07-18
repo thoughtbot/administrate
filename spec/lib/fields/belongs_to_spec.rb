@@ -70,14 +70,14 @@ describe Administrate::Field::BelongsTo do
   describe "#resources" do
     context "with `order` option" do
       it "returns the resources in correct order" do
-        5.times{ FactoryGirl.create(:customer) }
+        5.times { FactoryGirl.create(:customer) }
         options = { order: "name" }
         association = Administrate::Field::BelongsTo.with_options(options)
         field = association.new(:customers, [], :view)
 
         correct_order = Customer.all.order("name").map(&:id)
-
-        expect(field.associated_resource_options.drop(1).map {|row| row[1]}).to eq correct_order
+        resources = field.associated_resource_options.drop(1).map { |r| r[1] }
+        expect(resources).to eq correct_order
       end
     end
   end
