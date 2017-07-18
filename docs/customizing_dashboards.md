@@ -70,6 +70,10 @@ specify, including:
 Each of the `Field` types take a different set of options,
 which are specified through the `.with_options` class method:
 
+**Field::BelongsTo**
+
+`:order` - order of the dropdown menu, can be ordered by more than one column `"name, email DESC"`
+
 **Field::HasMany**
 
 `:limit` - Set the number of resources to display in the show view. Default is

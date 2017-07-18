@@ -66,4 +66,19 @@ describe Administrate::Field::BelongsTo do
       end
     end
   end
+
+  describe "#resources" do
+    context "with `order` option" do
+      it "returns the resources in correct order" do
+        5.times{ FactoryGirl.create(:customer) }
+        options = { order: "name" }
+        association = Administrate::Field::BelongsTo.with_options(options)
+        field = association.new(:customers, [], :view)
+
+        correct_order = Customer.all.order("name").map(&:id)
+
+        expect(field.associated_resource_options.drop(1).map {|row| row[1]}).to eq correct_order
+      end
+    end
+  end
 end
