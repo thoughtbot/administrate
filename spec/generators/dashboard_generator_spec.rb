@@ -174,7 +174,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
       end
 
-      it "assigns dates, times, and datetimes a type of `Date`, `Time` and `DateTime`" do
+      it "assigns dates, times, and datetimes respective type" do
         begin
           ActiveRecord::Schema.define do
             create_table :events do |t|
