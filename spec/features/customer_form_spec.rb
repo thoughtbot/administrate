@@ -14,12 +14,12 @@ describe "customer form" do
 
     it "populates and persists the existing value", :js do
       date = Date.new(1989, 10, 31)
-      customer = create(:customer, birthdate: date)
+      customer = create(:customer, birth_date: date)
 
       visit edit_admin_customer_path(customer)
       click_on "Update Customer"
 
-      expect(customer.reload.birthdate).to eq(date)
+      expect(customer.reload.birth_date).to eq(date)
     end
 
     def select_from_datepicker(date)
@@ -43,16 +43,16 @@ describe "customer form" do
 
     it "populates and persists the existing value", :js do
       time = Time.zone.local(2000, 1, 1, 15, 45, 33)
-      customer = create(:customer, example_time: time)
+      customer = create(:customer, birth_time: time)
 
       visit edit_admin_customer_path(customer)
       click_on "Update Customer"
 
-      expect(customer.reload.example_time).to eq(time)
+      expect(customer.reload.birth_time).to eq(time)
     end
 
     def select_from_timepicker(time_string)
-      page.execute_script(<<-JS) 
+      page.execute_script(<<-JS)
         var date = moment("#{time_string}", "hh:mm:ss");
         $(".timepicker").data("DateTimePicker").date(date);
       JS
