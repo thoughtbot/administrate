@@ -14,7 +14,7 @@ describe Administrate::Field::Time do
         formats: {
           default: "%r",
           short: "%H:%M",
-          time_without_date: "%H:%M:%S"
+          time_without_date: "%H:%M:%S",
         },
       },
     }
