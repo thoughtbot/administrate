@@ -1,10 +1,10 @@
 require "administrate/base_dashboard"
 
 class CountryDashboard < Administrate::BaseDashboard
-  ATTRIBUTES = [
-    :code,
-    :name,
-  ].freeze
+  ATTRIBUTES = %i(
+    code
+    name
+  ).freeze
 
   ATTRIBUTE_TYPES = {
     created_at: Field::DateTime,
