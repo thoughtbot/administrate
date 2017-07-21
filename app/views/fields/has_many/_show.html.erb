@@ -25,7 +25,7 @@ from the associated resource class's dashboard.
     "collection",
     collection_presenter: field.associated_collection(order),
     collection_field_name: field.name,
-    resources: field.resources(page, order)
+    resources: field.resources(page, order),
     table_title: field.name
   ) %>
   <% if field.more_than_limit? %>
