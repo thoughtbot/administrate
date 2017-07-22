@@ -75,7 +75,7 @@ describe Administrate::Field::BelongsTo do
         association = Administrate::Field::BelongsTo.with_options(options)
         field = association.new(:customers, [], :view)
 
-        correct_order = Customer.all.order("name").pluck(:id)
+        correct_order = Customer.order("name").pluck(:id)
 
         resources = field.associated_resource_options.compact.to_h.values
         expect(resources).to eq correct_order
