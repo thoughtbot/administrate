@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/bronislav/datetime_picker_rails.git
+  revision: f1cb277bad33a121bc6595dae8c1d09279d07fca
+  branch: update-bootstrap-datetimepicker
+  specs:
+    datetime_picker_rails (0.0.7)
+      momentjs-rails (>= 2.8.1)
+
 PATH
   remote: .
   specs:
@@ -76,8 +84,6 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     database_cleaner (1.6.1)
-    datetime_picker_rails (0.0.7)
-      momentjs-rails (>= 2.8.1)
     diff-lcs (1.3)
     dotenv (2.2.1)
     dotenv-rails (2.2.1)
@@ -261,6 +267,7 @@ DEPENDENCIES
   bundler-audit
   byebug
   database_cleaner
+  datetime_picker_rails!
   dotenv-rails
   factory_girl_rails
   faker

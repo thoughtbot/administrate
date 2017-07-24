@@ -10,7 +10,7 @@ $(function () {
   });
 
   $(".timepicker").datetimepicker({
-    debug: false,
-    format: "HH:mm:ss",
+    debug: true,
+    format: "HH:mm:ss ZZ",
   });
 });

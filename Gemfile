@@ -4,6 +4,7 @@ gemspec
 
 gem "administrate-field-image"
 gem "autoprefixer-rails"
+gem "datetime_picker_rails", github: "bronislav/datetime_picker_rails", branch: "update-bootstrap-datetimepicker"
 gem "faker"
 gem "pg"
 gem "redcarpet"
