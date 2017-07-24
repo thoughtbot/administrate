@@ -53,7 +53,9 @@ specify, including:
 
 - `Field::BelongsTo`
 - `Field::Boolean`
+- `Field::Date`
 - `Field::DateTime`
+- `Field::Time`
 - `Field::Email`
 - `Field::HasMany`
 - `Field::HasOne`
