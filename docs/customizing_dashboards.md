@@ -158,6 +158,17 @@ end
 
 [define your own]: /adding_custom_field_types
 
+To change the dashboard name in sidebar menu, sub-header and search string use default ActiveRecord i18n translations for models:
+
+```yaml
+en:
+  activerecord:
+    models:
+      customer:
+        one: Happy Customer
+        others: Happy Customers
+```
+
 ## Customizing Actions
 
 To enable or disable certain actions you could override `valid_action?` method in your dashboard controller like this:
