@@ -24,7 +24,8 @@ module Administrate
       private
 
       def candidate_resources
-        associated_class.all
+        order = options.delete(:order)
+        order ? associated_class.order(order) : associated_class.all
       end
 
       def display_candidate_resource(resource)
