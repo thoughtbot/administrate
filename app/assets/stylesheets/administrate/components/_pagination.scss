@@ -16,3 +16,15 @@
     font-weight: $bold-font-weight;
   }
 }
+
+.pagination--with-total {
+  margin-bottom: $base-spacing * 4;
+
+  .pagination {
+    margin-bottom: $small-spacing;
+  }
+}
+
+.pagination__total {
+  text-align: center;
+}

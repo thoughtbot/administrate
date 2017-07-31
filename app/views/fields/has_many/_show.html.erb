@@ -27,7 +27,16 @@ from the associated resource class's dashboard.
   ) %>
 
   <% if field.more_than_limit? %>
-    <%= paginate field.resources(params[field.name]), param_name: "#{field.name}" %>
+    <div class="pagination--with-total">
+      <%= paginate field.resources(params[field.name]), param_name: "#{field.name}" %>
+      <div class="pagination__total">
+        <%= t(
+          "administrate.fields.has_many.more",
+          count: field.limit,
+          total_count: field.data.count(:all),
+        ) %>
+      </div>
+    </div>
   <% end %>
 
 <% else %>
