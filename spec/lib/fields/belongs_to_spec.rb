@@ -25,8 +25,9 @@ describe Administrate::Field::BelongsTo do
         Foo = Class.new
         allow(Foo).to receive(:all).and_return([])
 
-        association = Administrate::Field::BelongsTo.
-          with_options(class_name: "Foo")
+        association = Administrate::Field::BelongsTo.with_options(
+          class_name: "Foo",
+        )
         field = association.new(:customers, [], :show)
         candidates = field.associated_resource_options
 
@@ -64,6 +65,17 @@ describe Administrate::Field::BelongsTo do
       ensure
         remove_constants :Foo, :FooDashboard
       end
+    end
+  end
+
+  describe "foreign_key option" do
+    it "determines what foreign key is used on the relationship for the form" do
+      association = Administrate::Field::BelongsTo.with_options(
+        foreign_key: "foo_uuid", class_name: "Foo",
+      )
+      field = association.new(:customers, [], :show)
+      permitted_attribute = field.permitted_attribute
+      expect(permitted_attribute).to eq("foo_uuid")
     end
   end
 

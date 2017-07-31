@@ -8,7 +8,7 @@ module Administrate
       end
 
       def permitted_attribute
-        self.class.permitted_attribute(attribute)
+        foreign_key
       end
 
       def associated_resource_options

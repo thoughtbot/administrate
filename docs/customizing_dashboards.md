@@ -83,6 +83,16 @@ which are specified through the `.with_options` class method:
 
 `:direction` - What direction the sort should be in, `:asc` (default) or `:desc`.
 
+`:primary_key` - Specifies object's primary_key. Defaults to `:id`.
+
+`:foreign_key` - Specifies the name of the foreign key directly. Defaults to `:#{attribute}_id`
+
+**Field::BelongsTo**
+
+`:primary_key` - Specifies object's primary_key. Defaults to `:id`.
+
+`:foreign_key` - Specifies the name of the foreign key directly. Defaults to `:#{attribute}_id`
+
 **Field::Number**
 
 `:decimals` - Set the number of decimals to display. Defaults to `0`.

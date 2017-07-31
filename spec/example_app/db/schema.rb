@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508183744) do
+ActiveRecord::Schema.define(version: 20170510122301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,13 +23,23 @@ ActiveRecord::Schema.define(version: 20170508183744) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "customers", id: :serial, force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
+  create_table "countries", force: :cascade do |t|
+    t.string   "code",       null: false
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "email_subscriber"
-    t.string "kind", default: "standard", null: false
+  end
+
+  add_index "countries", ["code"], name: "index_countries_on_code", unique: true, using: :btree
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "name",                                  null: false
+    t.string   "email",                                 null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "email_subscriber"
+    t.string   "kind",             default: "standard", null: false
+    t.string   "country_code"
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|

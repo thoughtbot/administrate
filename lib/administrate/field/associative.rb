@@ -24,6 +24,10 @@ module Administrate
       def primary_key
         options.fetch(:primary_key, :id)
       end
+
+      def foreign_key
+        options.fetch(:foreign_key, :"#{attribute}_id")
+      end
     end
   end
 end
