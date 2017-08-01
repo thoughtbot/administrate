@@ -19,6 +19,14 @@ describe Administrate::Generators::RoutesGenerator, :generator do
       end
     end
 
+    it "populates default dashboards under the given namespace" do
+      routes = file("config/routes.rb")
+
+      run_generator ["--namespace", "manager"]
+
+      expect(routes).to contain("namespace :manager")
+    end
+
     it "does not populate routes when no models exist" do
       routes = file("config/routes.rb")
       allow(ActiveRecord::Base).to receive(:descendants).and_return([])

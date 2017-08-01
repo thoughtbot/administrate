@@ -1,5 +1,5 @@
-module Admin
-  class <%= class_name.pluralize %>Controller < Admin::ApplicationController
+module <%= namespace.classify %>
+  class <%= class_name.pluralize %>Controller < <%= namespace.classify %>::ApplicationController
     # To customize the behavior of this controller,
     # you can overwrite any of the RESTful actions. For example:
     #
