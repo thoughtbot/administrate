@@ -3,27 +3,26 @@ require "active_support/core_ext/object/blank"
 
 module Administrate
   class Search
-    def initialize(resolver, term)
-      @resolver = resolver
+    def initialize(scoped_resource, dashboard_class, term)
+      @dashboard_class = dashboard_class
+      @scoped_resource = scoped_resource
       @term = term
     end
 
     def run
       if @term.blank?
-        resource_class.all
+        @scoped_resource.all
       else
-        resource_class.where(query, *search_terms)
+        @scoped_resource.where(query, *search_terms)
       end
     end
 
     private
 
-    delegate :resource_class, to: :resolver
-
     def query
       search_attributes.map do |attr|
         table_name = ActiveRecord::Base.connection.
-          quote_table_name(resource_class.table_name)
+          quote_table_name(@scoped_resource.table_name)
         attr_name = ActiveRecord::Base.connection.quote_column_name(attr)
         "lower(#{table_name}.#{attr_name}) LIKE ?"
       end.join(" OR ")
@@ -40,7 +39,7 @@ module Administrate
     end
 
     def attribute_types
-      resolver.dashboard_class::ATTRIBUTE_TYPES
+      @dashboard_class::ATTRIBUTE_TYPES
     end
 
     attr_reader :resolver, :term

@@ -43,7 +43,7 @@ feature "Search" do
   end
 
   def clear_search
-    find(".search__clear a").click
+    find(".search__clear-link").click
   end
 
   def page_params

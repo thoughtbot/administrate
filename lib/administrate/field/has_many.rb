@@ -26,7 +26,9 @@ module Administrate
       end
 
       def selected_options
-        data && data.map { |object| object.send(primary_key) }
+        return if data.empty?
+
+        data.map { |object| object.send(primary_key) }
       end
 
       def limit
@@ -44,6 +46,10 @@ module Administrate
 
       def more_than_limit?
         data.count(:all) > limit
+      end
+
+      def data
+        @data ||= associated_class.none 
       end
 
       private

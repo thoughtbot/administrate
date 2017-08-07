@@ -58,7 +58,9 @@ describe Administrate::Generators::RoutesGenerator, :generator do
     end
 
     it "skips models that don't have a named constant" do
-      ActiveRecord::Schema.define { create_table(:foos) }
+      ActiveRecord::Migration.suppress_messages do
+        ActiveRecord::Schema.define { create_table(:foos) }
+      end
       _unnamed_model = Class.new(ActiveRecord::Base) do
         def self.table_name
           :foos

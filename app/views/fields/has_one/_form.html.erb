@@ -3,8 +3,7 @@
 
 This partial renders an input element for has_one relationships.
 
-At the moment, has_one form fields are not supported,
-so this partial renders a message to that effect.
+The form will be rendered as nested_from to parent relationship.
 
 ## Local variables:
 
@@ -17,10 +16,13 @@ so this partial renders a message to that effect.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/HasOne
 %>
 
-<div class="field-unit__label">
-  <%= f.label field.attribute %>
-</div>
-
-<div class="field-unit__field">
-  <%= t("administrate.fields.has_one.not_supported") %>
-</div>
+<%= f.fields_for field.attribute, field.data || field.nested_form.resource.class.new do |has_one_f| %>
+  <fieldset class="field-unit--nested">
+    <legend><%= field.nested_form.resource_name.titleize %></legend>
+    <% field.nested_form.attributes.each do |attribute| -%>
+      <div class="field-unit field-unit--<%= attribute.html_class %>">
+        <%= render_field attribute, f: has_one_f %>
+      </div>
+    <% end -%>
+  </fieldset>
+<% end %>

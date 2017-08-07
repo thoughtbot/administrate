@@ -18,12 +18,12 @@ describe Administrate::ResourceResolver do
 
     it "handles namespaced models" do
       begin
-        module Blog; class PostDashboard; end; end
-        resolver = Administrate::ResourceResolver.new("admin/blog/posts")
+        module Library; class BookDashboard; end; end
+        resolver = Administrate::ResourceResolver.new("admin/library/books")
 
-        expect(resolver.dashboard_class).to eq(Blog::PostDashboard)
+        expect(resolver.dashboard_class).to eq(Library::BookDashboard)
       ensure
-        remove_constants :Blog
+        remove_constants :Library
       end
     end
   end
@@ -50,12 +50,12 @@ describe Administrate::ResourceResolver do
 
     it "handles namespaced models" do
       begin
-        module Blog; class Post; end; end
-        resolver = Administrate::ResourceResolver.new("admin/blog/posts")
+        module Library; class Book; end; end
+        resolver = Administrate::ResourceResolver.new("admin/library/books")
 
-        expect(resolver.resource_class).to eq(Blog::Post)
+        expect(resolver.resource_class).to eq(Library::Book)
       ensure
-        remove_constants :Blog
+        remove_constants :Library
       end
     end
   end
@@ -68,9 +68,9 @@ describe Administrate::ResourceResolver do
     end
 
     it "handles namespaced models" do
-      resolver = Administrate::ResourceResolver.new("admin/blog/posts")
+      resolver = Administrate::ResourceResolver.new("admin/library/books")
 
-      expect(resolver.resource_title).to eq("Blog Post")
+      expect(resolver.resource_title).to eq("Library Book")
     end
   end
 
@@ -82,9 +82,9 @@ describe Administrate::ResourceResolver do
     end
 
     it "handles namespaced models" do
-      resolver = Administrate::ResourceResolver.new("admin/blog/posts")
+      resolver = Administrate::ResourceResolver.new("admin/library/books")
 
-      expect(resolver.resource_name).to eq(:blog__post)
+      expect(resolver.resource_name).to eq(:library__book)
     end
   end
 end

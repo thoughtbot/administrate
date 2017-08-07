@@ -23,3 +23,6 @@ en:
         not_supported: Polymorphic relationship forms are not supported.
       has_one:
         not_supported: HasOne relationship forms are not supported.
+    search:
+      clear: Clear search
+      label: Search %{resource}

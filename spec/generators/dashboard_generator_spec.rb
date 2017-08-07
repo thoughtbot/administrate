@@ -2,6 +2,12 @@ require "rails_helper"
 require "generators/administrate/dashboard/dashboard_generator"
 
 describe Administrate::Generators::DashboardGenerator, :generator do
+  around do |example|
+    ActiveRecord::Migration.suppress_messages do
+      example.run
+    end
+  end
+
   describe "dashboard definition file" do
     it "has valid syntax" do
       dashboard = file("app/dashboards/customer_dashboard.rb")

@@ -16,6 +16,47 @@
 
 ## Changes
 
+### 0.8.1 (July 14, 2017)
+
+* [BUGFIX] [#935] Move normalize.css out of vendor.
+
+### 0.8.0 (July 14, 2017)
+
+* [FEATURE] [#788] Allow resource to be accessed from field.
+* [OPTIM] [#859] Remove dependency on remote images in tests.
+* [BUGFIX] [#771] Handle case where `Field::HasMany` data is nil.
+* [FEATURE] [#801] Add HasOne support as nested form.
+* [FEATURE] [#926] Accepts string instead of symbol on order.
+* [DOC] [#928] Fix partial name in view customization docs.
+* [BUGFIX] [#927] Remove rails-controller-testing gem to fix specs with Rails
+  4.2.
+* [BUGFIX] [#925] Silence ActiveRecord migration output during specs.
+* [CHANGE} [#924] Replace dashboard_class method with a delegate.
+* [BUGFIX] [#594] Fix Label Translation Lookup for has_many Collections.
+* [CHANGE] [#914] Allow custom scope for dashboards.
+* [CHANGE] [#916] Adds `_stylesheet` to the resources to be generated.
+* [UI] [#554] Make it easier to override Sass variables.
+* [FEATURE] [#910] Allow custom scope for dashboard resource.
+* [FEATURE] [#871] Add support for namespaced models.
+* [I18n] [#904] Improve Korean translation for search input.
+* [UI] [#881] Redesign search.
+* [I18n] [#902] Fixes to Dutch translation.
+* [COMPAT] [#887] Update autoprefixer-rails >= 6.0.
+* [UI] [#896] Make entire search bar clickable.
+* [I18n] [#891] Add translation for search input.
+* [UI] [#886] Fix `aria-labelledby` on tables.
+* [UI] [#884] Add `aria-sort` attribute to table headers.
+* [UI] [#882] Update normalize.css and change how we include it.
+* [OPTIM] [#898] Retroactively set migration versions.
+* [FEATURE] [#856] Allow Rails 5.1 usage.
+* [DOC] [#885] Update and test documentation navigation.
+* [UI] [#880] Use SVG `symbol` for icon system.
+* [CHANGE] [#883] Nested collection links should honour routes.
+* [UI] [#879] Remove unused SVG asset.
+* [DOCS] [#877] Add appraisal and foreman commands to docs.
+* [I18n] [#873] Add support for cyrillic search.
+* [CHANGE] [#857] Abstract model classes should be skipped without warning.
+
 ### 0.7.0 (May 08, 2017)
 
 * [CHANGE] [#789] Remove Bourbon.

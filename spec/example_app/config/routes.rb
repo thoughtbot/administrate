@@ -4,7 +4,13 @@ Rails.application.routes.draw do
     resources :line_items
     resources :orders
     resources :products
+    resources :product_meta_tags
     resources :payments, only: [:index, :show]
+    resources :series
+
+    namespace :blog do
+      resources :posts
+    end
 
     root to: "customers#index"
   end

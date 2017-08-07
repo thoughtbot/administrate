@@ -129,7 +129,7 @@ community](https://github.com/thoughtbot/administrate/graphs/contributors).
 
 administrate is Copyright © 2015-2017 thoughtbot.
 It is free software, and may be redistributed under the terms specified in the
-[LICENSE](/LICENSE) file.
+[LICENSE](/LICENSE.md) file.
 
 ## About thoughtbot
 

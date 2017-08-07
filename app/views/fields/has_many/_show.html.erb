@@ -22,7 +22,8 @@ from the associated resource class's dashboard.
   <%= render(
     "collection",
     collection_presenter: field.associated_collection,
-    resources: field.resources(params[field.name])
+    resources: field.resources(params[field.name]),
+    table_title: field.name
   ) %>
 
   <% if field.more_than_limit? %>
