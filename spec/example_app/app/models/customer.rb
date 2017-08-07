@@ -1,5 +1,6 @@
 class Customer < ActiveRecord::Base
   has_many :orders, dependent: :destroy
+  belongs_to :country, foreign_key: :country_code, primary_key: :code
 
   validates :name, presence: true
   validates :email, presence: true

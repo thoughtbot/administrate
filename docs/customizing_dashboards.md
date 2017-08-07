@@ -70,6 +70,10 @@ specify, including:
 Each of the `Field` types take a different set of options,
 which are specified through the `.with_options` class method:
 
+**Field::BelongsTo**
+
+`:order` - order of the dropdown menu, can be ordered by more than one column `"name, email DESC"`
+
 **Field::HasMany**
 
 `:limit` - Set the number of resources to display in the show view. Default is
@@ -78,6 +82,16 @@ which are specified through the `.with_options` class method:
 `:sort_by` - What to sort the association by in the show view.
 
 `:direction` - What direction the sort should be in, `:asc` (default) or `:desc`.
+
+`:primary_key` - Specifies object's primary_key. Defaults to `:id`.
+
+`:foreign_key` - Specifies the name of the foreign key directly. Defaults to `:#{attribute}_id`
+
+**Field::BelongsTo**
+
+`:primary_key` - Specifies object's primary_key. Defaults to `:id`.
+
+`:foreign_key` - Specifies the name of the foreign key directly. Defaults to `:#{attribute}_id`
 
 **Field::Number**
 
@@ -157,3 +171,27 @@ end
 ````
 
 [define your own]: /adding_custom_field_types
+
+To change the dashboard name in sidebar menu, sub-header and search string use default ActiveRecord i18n translations for models:
+
+```yaml
+en:
+  activerecord:
+    models:
+      customer:
+        one: Happy Customer
+        others: Happy Customers
+```
+
+## Customizing Actions
+
+To enable or disable certain actions you could override `valid_action?` method in your dashboard controller like this:
+
+```ruby
+# disable 'edit' and 'destroy' links
+def valid_action?(name, resource = resource_class)
+  %w[edit destroy].exclude?(name.to_s) && super
+end
+```
+
+Action is one of `new`, `edit`, `show`, `destroy`.

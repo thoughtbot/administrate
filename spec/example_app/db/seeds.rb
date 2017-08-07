@@ -12,14 +12,26 @@ Customer.destroy_all
 Product.destroy_all
 ProductMetaTag.destroy_all
 Series.destroy_all
+Country.destroy_all
 
-100.times do
+countries = Country.create! [
+  { code: "US", name: "USA" },
+  { code: "CA", name: "Canada" },
+  { code: "CN", name: "China" },
+  { code: "RU", name: "Russia" },
+  { code: "AU", name: "Australia" },
+]
+
+customer_attributes = Array.new(100) do
   name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
-  Customer.create(
+  {
     name: name,
     email: Faker::Internet.safe_email(name),
-  )
+    country: countries.sample,
+  }
 end
+
+customers = Customer.create!(customer_attributes)
 
 product_attributes = YAML.load_file(Rails.root.join('db/seeds/products.yml'))
 
@@ -28,12 +40,12 @@ product_attributes.each do |attributes|
     meta_title: Faker::LordOfTheRings.character,
     meta_description: Faker::LordOfTheRings.location,
   }
-  Product.create attributes.merge(price: 20 + rand(50))
+  Product.create! attributes.merge(price: 20 + rand(50))
 end
 
-Customer.all.each do |customer|
+customers.each do |customer|
   (1..3).to_a.sample.times do
-    order = Order.create(
+    order = Order.create!(
       customer: customer,
       address_line_one: Faker::Address.street_address,
       address_line_two: Faker::Address.secondary_address,
@@ -44,7 +56,7 @@ Customer.all.each do |customer|
 
     item_count = (1..3).to_a.sample
     Product.all.sample(item_count).each do |product|
-      LineItem.create(
+      LineItem.create!(
         order: order,
         product: product,
         unit_price: product.price,
@@ -54,4 +66,4 @@ Customer.all.each do |customer|
   end
 end
 
-Series.create(name: "An example")
+Series.create!(name: "An example")
