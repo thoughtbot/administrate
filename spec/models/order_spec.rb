@@ -24,6 +24,17 @@ RSpec.describe Order do
     expect(LineItem.all).to be_empty
   end
 
+  it "raise error when try delete associated payment" do
+    order = create(:order)
+    create(:payment, order: order)
+
+    order.destroy
+
+    expect(order.errors[:base]).to eq(
+      ["Cannot delete record because dependent payments exist"],
+    )
+  end
+
   describe "#total_price" do
     it "returns 0 when there are no line items" do
       order = build(:order)
