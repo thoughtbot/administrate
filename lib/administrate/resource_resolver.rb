@@ -5,7 +5,7 @@ module Administrate
     end
 
     def dashboard_class
-      Object.const_get(resource_class_name + "Dashboard")
+      ActiveSupport::Inflector.constantize("#{resource_class_name}Dashboard")
     end
 
     def namespace
@@ -13,7 +13,7 @@ module Administrate
     end
 
     def resource_class
-      Object.const_get(resource_class_name)
+      ActiveSupport::Inflector.constantize(resource_class_name)
     end
 
     def resource_name
