@@ -27,8 +27,10 @@ module Administrate
     end
 
     def new
+      resource = resource_class.new
+      authorize_resource(resource)
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, resource_class.new),
+        page: Administrate::Page::Form.new(dashboard, resource),
       }
     end
 
@@ -40,6 +42,7 @@ module Administrate
 
     def create
       resource = resource_class.new(resource_params)
+      authorize_resource(resource)
 
       if resource.save
         redirect_to(
@@ -71,7 +74,7 @@ module Administrate
       flash[:notice] = translate_with_resource("destroy.success")
       redirect_to action: :index
     end
-
+ 
     private
 
     helper_method :nav_link_state
@@ -104,6 +107,8 @@ module Administrate
 
     def requested_resource
       @_requested_resource ||= find_resource(params[:id])
+      authorize_resource(@_requested_resource)
+      @_requested_resource
     end
 
     def find_resource(param)
@@ -145,5 +150,22 @@ module Administrate
         dashboard.collection_attributes
       ).any? { |_name, attribute| attribute.searchable? }
     end
+    
+    # Override to conditionally remove action links
+    def show_action?(action, resource)
+      true
+    end
+    helper_method :show_action?
+    
+    # How to instantiate a blank instance of this controller's resource
+    def new_resource
+      resource_class.new
+    end
+    helper_method :new_resource
+    
+    # Raise an exception if the resource isn't authorized
+    def authorize_resource(resource)
+    end
+    
   end
 end

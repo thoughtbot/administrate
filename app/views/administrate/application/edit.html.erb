@@ -27,7 +27,7 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
       "#{t("administrate.actions.show")} #{page.page_title}",
       [namespace, page.resource],
       class: "button",
-    ) if valid_action? :show %>
+    ) if valid_action?(:show) && show_action?(:show, page.resource) %>
   </div>
 </header>
 
