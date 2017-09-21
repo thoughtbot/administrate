@@ -44,13 +44,15 @@ To accomplish these goals, Administrate follows a few guiding principles:
 
 Administrate supports Rails from 4.2, up to 5.0 and beyond.
 
-Add Administrate to your Gemfile:
+Add Administrate to your Gemfile and re-bundle:
 
 ```ruby
 gem "administrate"
 ```
 
-Re-bundle, then run the installer:
+The included installer will create dashboards for each model in your
+app, complete with routes. You can run it again every time you add
+a new model:
 
 ```bash
 $ rails generate administrate:install
@@ -61,7 +63,7 @@ to see your new dashboard in action.
 
 ## Create Additional Dashboards
 
-In order to create additional dashboards, pass in the resource name to 
+In order to create additional dashboards, pass in the resource name to
 the dashboard generator. A dashboard and controller will be created.
 
 ```bash
