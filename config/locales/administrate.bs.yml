@@ -1,0 +1,27 @@
+bs:
+  administrate:
+    actions:
+      confirm: Jeste li sigurni?
+      destroy: Izbrisati
+      edit: Izmjena
+      show: Pregled
+      new: Novi
+      back: Nazad
+    controller:
+      create:
+        success: "%{resource} je uspješno kreiran."
+      destroy:
+        success: "%{resource} je uspješno izbrisan."
+      update:
+        success: "%{resource} je uspješno izmijenjen."
+    fields:
+      has_many:
+        more: Prikazuje %{count} od %{total_count}
+        none: Niko
+      polymorphic:
+        not_supported: Polimorfne asocijacije još nisu podržane. Žao nam je!
+      has_one:
+        not_supported: Asocijacije HasOne još nije podržana. Žao nam je!
+    search:
+      clear: Izbriši pretraživanje
+      label: Pretraga %{resource}
