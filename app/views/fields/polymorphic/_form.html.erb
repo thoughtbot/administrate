@@ -23,5 +23,7 @@ so this partial renders a message to that effect.
 </div>
 
 <div class="field-unit__field">
-  <%= t("administrate.fields.polymorphic.not_supported") %>
+  <%= f.select(field.permitted_attribute) do %>
+    <%= grouped_options_for_select(field.associated_resource_grouped_options, field.selected_global_id, prompt: true) %>
+  <% end %>
 </div>

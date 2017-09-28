@@ -19,8 +19,6 @@ it:
       has_many:
         more: Visualizzo %{count} di %{total_count}
         none: Nessuno
-      polymorphic:
-        not_supported: Associazioni polimorfiche non ancora supportate. Spiacenti!
       has_one:
         not_supported: Associazioni HasOne non ancora supportate. Spiacenti!
     search:

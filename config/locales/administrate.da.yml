@@ -19,8 +19,6 @@ da:
       has_many:
         more: "Viser %{count} af %{total_count}"
         none: Ingen
-      polymorphic:
-        not_supported: "Formularer med polymorphic relationships er ikke understøttede."
       has_one:
         not_supported: "Formularer med has_one associationer er ikke understøttede."
     search:

@@ -19,8 +19,6 @@ uk:
       has_many:
         more: "%{count} із %{total_count}"
         none: Немає
-      polymorphic:
-        not_supported: Поліморфні відношення у формах не підтримуються.
       has_one:
         not_supported: HasOne відношення у формах не підтримуються.
     search:
