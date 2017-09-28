@@ -38,10 +38,10 @@ describe Administrate::Field::Polymorphic do
       end
     end
   end
-  
-  describe '#selected_global_id' do
+
+  describe "#selected_global_id" do
     it "returns the global ID of the data" do
-      item = double('SomeModel', to_global_id: "gid://myapp/SomeModel/1")
+      item = double("SomeModel", to_global_id: "gid://myapp/SomeModel/1")
       field = Administrate::Field::Polymorphic.new(:foo, item, :show)
       expect(field.selected_global_id).to eq(item.to_global_id)
     end
