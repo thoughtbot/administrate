@@ -2,24 +2,23 @@ module Administrate
   module Punditize
     extend ActiveSupport::Concern
     include Pundit
-    
+
     included do
       def scoped_resource
         policy_scope_admin super
       end
-      
+
       def authorize_resource(resource)
         authorize resource
       end
-      
+
       def show_action?(action, resource)
         Pundit.policy!(pundit_user, resource).send("#{action}?".to_sym)
       end
-      
     end
-    
+
     private
-    
+
     # Like the policy_scope method in stock Pundit, but allows the 'resolve'
     # to be overridden by 'resolve_admin' for a different index scope in Admin
     # controllers.
@@ -31,6 +30,5 @@ module Administrate
         ps.resolve
       end
     end
-    
   end
 end

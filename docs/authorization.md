@@ -57,9 +57,11 @@ def scoped_resource
   super.where(user: current_user)
 end
 
-# Raise an exception if the user is not permitted to access this resource
+# Raise an exception if the user is not permitted to access this resource,
+# otherwise return the resource
 def authorize_resource(resource)
   raise "Erg!" unless show_action?(params[:action], resource)
+  resource
 end
 
 # Hide links to actions if the user is not allowed to do them      
