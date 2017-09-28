@@ -1,4 +1,5 @@
 require "rails_helper"
+require "administrate/field/belongs_to"
 require "administrate/field/polymorphic"
 
 describe "fields/polymorphic/_show", type: :view do

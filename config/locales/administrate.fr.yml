@@ -19,8 +19,6 @@ fr:
       has_many:
         more: "%{count} sur %{total_count}"
         none: Aucun
-      polymorphic:
-        not_supported: Les relations polymorphiques dans les formulaires ne sont pas supportées.
       has_one:
         not_supported: Les relations HasOne dans les formulaires ne sont pas supportées.
     search:

@@ -19,8 +19,6 @@ zh-TW:
       has_many:
         more: 顯示 %{total_count} 筆中的 %{count} 筆資料
         none: 無
-      polymorphic:
-        not_supported: 表單尚未支援 Polymorphic 關聯。
       has_one:
         not_supported: 表單尚未支援 HasOne 關聯。
     search:

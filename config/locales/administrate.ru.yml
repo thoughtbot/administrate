@@ -19,8 +19,6 @@ ru:
       has_many:
         more: "%{count} из %{total_count}"
         none: Нет
-      polymorphic:
-        not_supported: Полиморфные отношения в формах не поддерживаются.
       has_one:
         not_supported: HasOne отношения в формах не поддерживаются.
     search:

@@ -120,7 +120,7 @@ module Administrate
 
     def resource_params
       params.require(resource_class.model_name.param_key).
-        permit(dashboard.permitted_attributes)
+        permit(dashboard.permitted_attributes).transform_values {|v|  v.respond_to?(:starts_with?) && v.starts_with?("gid://") ? GlobalID::Locator.locate(v) : v }
     end
 
     delegate :dashboard_class, :resource_class, :resource_name, :namespace,

@@ -19,8 +19,6 @@ ko:
       has_many:
         more: "%{total_count} 개 중에서 %{count} 개"
         none: 없음
-      polymorphic:
-        not_supported: 상속 관계에 대한 양식은 제공되지 않습니다.
       has_one:
         not_supported: 일대일 관계에 대한 양식은 제공되지 않습니다.
     search:
