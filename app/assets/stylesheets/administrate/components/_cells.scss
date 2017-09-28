@@ -26,10 +26,9 @@
 }
 
 .cell-label__sort-indicator {
-  display: inline-block;
   overflow: hidden;
-  position: absolute;
-  right: 0;
+  float: right;
+  margin-left: 5px;
 
   svg {
     fill: $hint-grey;
