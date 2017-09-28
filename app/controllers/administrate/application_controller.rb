@@ -106,7 +106,9 @@ module Administrate
     end
 
     def requested_resource
-      @_requested_resource ||= authorize_resource(find_resource(params[:id]))
+      @_requested_resource ||= find_resource(params[:id]).tap do |resource|
+        authorize_resource(resource)
+      end
     end
 
     def find_resource(param)
