@@ -1,7 +1,20 @@
 # Customizing attribute partials
 
 Occasionally you might want to change how specific types of attributes appear
-across all dashboards.
+across all dashboards. You can customize the following built in field types:
+
+- `belongs_to`
+- `boolean`
+- `date_time`
+- `email`
+- `has_many`
+- `has_one`
+- `number`
+- `polymporphic`
+- `select`
+- `string`
+- `text`
+
 For example, you might want all `Number` values to round to three decimal points.
 
 To get started, run the appropriate rails generator:
