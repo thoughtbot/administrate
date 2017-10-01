@@ -29,6 +29,12 @@ This will generate three files:
 - `app/view/fields/number/_index.html.erb`
 - `app/view/fields/number/_show.html.erb`
 
+You can generate the partials for all field types by passing `all` to the generator.
+
+```bash
+rails generate administrate:views:field all
+```
+
 The generated templates will have documentation
 describing which variables are in scope.
 The rendering part of the partial will look like:
