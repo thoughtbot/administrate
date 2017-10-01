@@ -16,8 +16,9 @@ module Administrate
         def copy_partials
           resource_path = args.first.try(:underscore)
 
-          if resource_path == 'all'
-            field_types = Dir.entries(self.class.template_source_path).reject{ |name| name[0] == "."}
+          if resource_path == "all"
+            entries = Dir.entries(self.class.template_source_path)
+            field_types = entries.reject { |name| name[0] == "." }
 
             field_types.each do |field_type|
               copy_field_partials(field_type)
@@ -43,7 +44,6 @@ module Administrate
             "app/views/fields/#{template_file}",
           )
         end
-
       end
     end
   end
