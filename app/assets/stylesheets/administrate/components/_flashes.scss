@@ -1,4 +1,5 @@
 $base-spacing: 1.5em !default;
+$error_color: #fbe3e4;
 $flashes: (
   "alert": #fff6bf,
   "notice": #e5edf8,
@@ -26,14 +27,14 @@ $flashes: (
   }
 }
 
-#error_explanation ul {
-  background-color: #fbe3e4;
-  color: mix($black, #fbe3e4, 60%);
+div#error_explanation ul {
+  background-color: $error_color;
+  color: mix($black, $error_color, 60%);
   margin-bottom: $base-spacing / 2;
-  text-align: center;
   padding: 5px 0;
+  text-align: center;
 }
 
-#error_explanation ul li {
+div#error_explanation ul li {
   padding: 3px 0;
 }
