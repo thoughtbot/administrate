@@ -1,6 +1,4 @@
 .cell-label {
-  position: relative;
-
   &:hover {
     a {
       color: $action-color;
@@ -26,7 +24,6 @@
 }
 
 .cell-label__sort-indicator {
-  overflow: hidden;
   float: right;
   margin-left: 5px;
 
