@@ -29,7 +29,8 @@
   display: inline-block;
   overflow: hidden;
   position: absolute;
-  right: 0;
+  left: 90%;
+  top: 14px
 
   svg {
     fill: $hint-grey;
