@@ -1,7 +1,6 @@
 $base-spacing: 1.5em !default;
 $flashes: (
   "alert": #fff6bf,
-  "error": #fbe3e4,
   "notice": #e5edf8,
   "success": #e6efc2,
 ) !default;
@@ -25,4 +24,16 @@ $flashes: (
       }
     }
   }
+}
+
+#error_explanation ul {
+  background-color: #fbe3e4;
+  color: mix($black, #fbe3e4, 60%);
+  margin-bottom: $base-spacing / 2;
+  text-align: center;
+  padding: 5px 0;
+}
+
+#error_explanation ul li {
+  padding: 3px 0;
 }
