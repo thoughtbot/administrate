@@ -5,7 +5,7 @@ module Administrate
     class Polymorphic < BelongsTo
       def associated_resource_grouped_options
         classes.map do |klass|
-          [klass.to_s, candidate_resources(klass).map do |resource|
+          [klass.to_s, candidate_resources_for(klass).map do |resource|
             [display_candidate_resource(resource), resource.to_global_id]
           end]
         end
@@ -39,7 +39,7 @@ module Administrate
         @_order ||= options.delete(:order)
       end
 
-      def candidate_resources(klass)
+      def candidate_resources_for(klass)
         order ? klass.order(order) : klass.all
       end
 
