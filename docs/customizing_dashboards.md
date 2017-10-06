@@ -62,6 +62,7 @@ specify, including:
 - `Field::Select`
 - `Field::String`
 - `Field::Text`
+- `Field::Password`
 
 ## Customizing Fields
 
@@ -157,6 +158,17 @@ Default is `false`.
 
 `:truncate` - Set the number of characters to display in the index view.
 Defaults to `50`.
+
+**Field::Password**
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `false`.
+
+`:truncate` - Set the number of characters to display in the views.
+Defaults to `50`.
+
+`:character` - Set the replace character.
+Defaults to `•`.
 
 ### Defining Labels
 

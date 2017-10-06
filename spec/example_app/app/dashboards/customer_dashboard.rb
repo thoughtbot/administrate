@@ -12,9 +12,10 @@ class CustomerDashboard < Administrate::BaseDashboard
     kind: Field::Select.with_options(collection: Customer::KINDS),
     country: Field::BelongsTo.
       with_options(primary_key: :code, foreign_key: :country_code),
+    password: Field::Password,
   }
 
-  COLLECTION_ATTRIBUTES = ATTRIBUTE_TYPES.keys
+  COLLECTION_ATTRIBUTES = ATTRIBUTE_TYPES.keys - %i[created_at updated_at]
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys - [:name]
   FORM_ATTRIBUTES = [
     :name,
@@ -22,6 +23,7 @@ class CustomerDashboard < Administrate::BaseDashboard
     :email_subscriber,
     :kind,
     :country,
+    :password,
   ].freeze
 
   def display_resource(customer)
