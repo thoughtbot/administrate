@@ -6,7 +6,7 @@ de:
       destroy: Löschen
       edit: Editieren
       show: Anzeigen
-      new: Neu
+      new: "%{resource} erstellen"
       back: Zurück
     controller:
       create:
@@ -24,5 +24,5 @@ de:
       has_one:
         not_supported: HasOne Beziehungen werden nicht unterstützt.
     search:
-      clear: Saubere Suche
-      label: Suche %{resource}
+      clear: Suche zurücksetzen
+      label: "%{resource} durchsuchen"

@@ -6,7 +6,7 @@ es:
       destroy: Destruir
       edit: Editar
       show: Mostrar
-      new: Nuevo
+      new: Nuevo %{resource}
       back: Volver
     controller:
       create:

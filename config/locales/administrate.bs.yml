@@ -5,7 +5,7 @@ bs:
       destroy: Izbrisati
       edit: Izmjena
       show: Pregled
-      new: Novi
+      new: Novi %{resource}
       back: Nazad
     controller:
       create:

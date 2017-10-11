@@ -6,7 +6,7 @@ ru:
       destroy: Удалить
       edit: Редактировать
       show: Показать
-      new: Новый
+      new: Новый %{resource}
       back: Вернуться назад
     controller:
       create:

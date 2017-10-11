@@ -6,7 +6,7 @@ vi:
       destroy: Xóa
       edit: Sửa
       show: Xem
-      new: Mới
+      new: Mới %{resource}
       back: Trở lại
     controller:
       create:

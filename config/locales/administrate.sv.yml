@@ -6,7 +6,7 @@ sv:
       destroy: Ta bort
       edit: Ändra
       show: Visa
-      new: Ny
+      new: Ny %{resource}
       back: Tillbaka
     controller:
       create:

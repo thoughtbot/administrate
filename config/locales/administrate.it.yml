@@ -6,7 +6,7 @@ it:
       destroy: Elimina
       edit: Modifica
       show: Visualizza
-      new: Nuovo
+      new: Nuovo %{resource}
       back: Indietro
     controller:
       create:

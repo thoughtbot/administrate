@@ -6,7 +6,7 @@ pl:
       destroy: Usuń
       edit: Edytuj
       show: Wyświetl
-      new: Nowy
+      new: Nowy %{resource}
       back: Wstecz
     controller:
       create:

@@ -6,7 +6,7 @@ ja:
       destroy: 削除
       edit: 編集
       show: 参照
-      new: 新規
+      new: 新規 %{resource}
       back: 戻る
     controller:
       create:

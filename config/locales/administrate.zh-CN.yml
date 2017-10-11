@@ -6,7 +6,7 @@ zh-CN:
       destroy: 删除
       edit: 编辑
       show: 查看
-      new: 新建
+      new: 新建 %{resource}
       back: 返回
     controller:
       create:

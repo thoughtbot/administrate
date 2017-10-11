@@ -7,7 +7,7 @@ pt-BR:
       destroy: Deletar
       edit: Editar
       show: Visualizar
-      new: Criar
+      new: Criar %{resource}
       back: Voltar
     controller:
       create:

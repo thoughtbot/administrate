@@ -6,7 +6,7 @@ nl:
       destroy: Verwijder
       edit: Bewerk
       show: Toon
-      new: Nieuw
+      new: Nieuw %{resource}
       back: Terug
     controller:
       create:

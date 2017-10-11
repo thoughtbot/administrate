@@ -6,7 +6,7 @@ da:
       destroy: Slet
       edit: Rediger
       show: Vis
-      new: Ny
+      new: Ny %{resource}
       back: Tilbage
     controller:
       create:

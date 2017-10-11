@@ -6,7 +6,7 @@ uk:
       destroy: Видалити
       edit: Редагувати
       show: Показати
-      new: Новий
+      new: Новий %{resource}
       back: Назад
     controller:
       create:

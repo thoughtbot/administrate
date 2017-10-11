@@ -6,7 +6,7 @@ ar:
       destroy: "حذف"
       edit: "تعديل"
       show: "إظهار"
-      new: "جديد"
+      new: "جديد  %{resource}"
       back: "الى الخلف"
     controller:
       create:
