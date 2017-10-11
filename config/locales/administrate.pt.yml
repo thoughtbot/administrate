@@ -6,7 +6,8 @@ pt:
       confirm: Tem certeza?
       destroy: Remover
       edit: Editar
-      show: Visualizar
+      edit_item: Editar %{item}
+      show: Visualizar %{item}
       new: Novo %{resource}
       back: Voltar atrás
     controller:

@@ -5,7 +5,8 @@ uk:
       confirm: Ви впевнені?
       destroy: Видалити
       edit: Редагувати
-      show: Показати
+      edit_item: Редагувати %{item}
+      show: Показати %{item}
       new: Новий %{resource}
       back: Назад
     controller:

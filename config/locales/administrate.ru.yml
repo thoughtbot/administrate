@@ -5,7 +5,8 @@ ru:
       confirm: Вы уверены?
       destroy: Удалить
       edit: Редактировать
-      show: Показать
+      edit_item: Редактировать %{item}
+      show: Показать %{item}
       new: Новый %{resource}
       back: Вернуться назад
     controller:

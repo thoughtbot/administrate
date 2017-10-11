@@ -5,7 +5,8 @@ da:
       confirm: Er du sikker?
       destroy: Slet
       edit: Rediger
-      show: Vis
+      edit_item: Rediger %{item}
+      show: Vis %{item}
       new: Ny %{resource}
       back: Tilbage
     controller:

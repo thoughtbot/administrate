@@ -5,7 +5,8 @@ es:
       confirm: ¿Estás seguro?
       destroy: Destruir
       edit: Editar
-      show: Mostrar
+      edit_item: Editar %{item}
+      show: Mostrar %{item}
       new: Nuevo %{resource}
       back: Volver
     controller:

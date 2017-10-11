@@ -5,7 +5,8 @@ zh-TW:
       confirm: 確定？
       destroy: 刪除
       edit: 編輯
-      show: 檢視
+      edit_item: 編輯 %{item}
+      show: 檢視 %{item}
       new: 新增 %{resource}
       back: 返回
     controller:
