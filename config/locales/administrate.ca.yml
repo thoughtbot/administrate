@@ -1,0 +1,28 @@
+---
+ca:
+  administrate:
+    actions:
+      confirm: Estàs segur?
+      destroy: Destruir
+      edit: Editar
+      show: Mostrar
+      new: Nou
+      back: Tornar
+    controller:
+      create:
+        success: "%{resource} s'ha creat amb èxit."
+      destroy:
+        success: "%{resource} s'ha destruït amb èxit."
+      update:
+        success: "%{resource} s'ha actualitzat amb èxit."
+    fields:
+      has_many:
+        more: Mostrant %{count} de %{total_count}
+        none: Cap
+      polymorphic:
+        not_supported: Els formularis amb relacions polimòrfiques no estàn suportats.
+      has_one:
+        not_supported: Els formularis amb relacions "HasOne" no estàn suportats.
+    search:
+      clear: Esborrar la cerca
+      label: Cerca %{resource}
