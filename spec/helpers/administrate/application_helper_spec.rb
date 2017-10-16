@@ -53,4 +53,12 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(route_key).to eq("customers")
     end
   end
+
+  describe "#sort_order" do
+    it "sanitizes to ascending/descending/none" do
+      expect(sort_order("asc")).to eq("ascending")
+      expect(sort_order("desc")).to eq("descending")
+      expect(sort_order("for anything else")).to eq("none")
+    end
+  end
 end
