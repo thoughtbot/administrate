@@ -5,8 +5,9 @@ en:
       confirm: Are you sure?
       destroy: Destroy
       edit: Edit
-      show: Show
-      new: New
+      edit_resource: Edit %{name}
+      show_resource: Show %{name}
+      new_resource: New %{name}
       back: Back
     controller:
       create:
@@ -21,6 +22,9 @@ en:
         none: None
       has_one:
         not_supported: HasOne relationship forms are not supported.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: Clear search
       label: Search %{resource}
