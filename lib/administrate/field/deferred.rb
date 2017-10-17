@@ -25,6 +25,14 @@ module Administrate
         options.fetch(:searchable, deferred_class.searchable?)
       end
 
+      def search_query(table_field, search_term)
+        if options.fetch(:searchable, true)
+          deferred_class.search_query(table_field, search_term)
+        else
+          nil
+        end
+      end
+
       def permitted_attribute(attr, _options = nil)
         options.fetch(:foreign_key,
           deferred_class.permitted_attribute(attr, options))

@@ -3,6 +3,10 @@ require_relative "base"
 module Administrate
   module Field
     class Number < Field::Base
+      def self.search_query(table_field, value)
+        ["#{table_field} = ?", value.to_i]
+      end
+
       def to_s
         data.nil? ? "-" : format_string % value
       end

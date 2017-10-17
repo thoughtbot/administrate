@@ -6,42 +6,38 @@ module Administrate
     def initialize(scoped_resource, dashboard_class, term)
       @dashboard_class = dashboard_class
       @scoped_resource = scoped_resource
-      @term = term
+      @term = term || ""
     end
 
     def run
       if @term.blank?
         @scoped_resource.all
       else
-        @scoped_resource.where(query, *search_terms)
+        queries, search_terms = query.transpose
+        @scoped_resource.where(queries.join(" OR "), *search_terms)
       end
+    end
+
+    def available?
+      !query.empty?
     end
 
     private
 
     def query
-      search_attributes.map do |attr|
+      @query ||= attribute_types.keys.map do |attr|
         table_name = ActiveRecord::Base.connection.
           quote_table_name(@scoped_resource.table_name)
         attr_name = ActiveRecord::Base.connection.quote_column_name(attr)
-        "lower(#{table_name}.#{attr_name}) LIKE ?"
-      end.join(" OR ")
-    end
 
-    def search_terms
-      ["%#{term.mb_chars.downcase}%"] * search_attributes.count
-    end
-
-    def search_attributes
-      attribute_types.keys.select do |attribute|
-        attribute_types[attribute].searchable?
-      end
+        attribute_types[attr].search_query("#{table_name}.#{attr_name}", term)
+      end.compact
     end
 
     def attribute_types
       @dashboard_class::ATTRIBUTE_TYPES
     end
 
-    attr_reader :resolver, :term
+    attr_reader :term
   end
 end

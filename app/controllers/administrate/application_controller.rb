@@ -4,9 +4,11 @@ module Administrate
 
     def index
       search_term = params[:search].to_s.strip
-      resources = Administrate::Search.new(scoped_resource,
+      search = Administrate::Search.new(scoped_resource,
                                            dashboard_class,
-                                           search_term).run
+                                           search_term)
+
+      resources = search.run
       resources = resources.includes(*resource_includes) if resource_includes.any?
       resources = order.apply(resources)
       resources = resources.page(params[:page]).per(records_per_page)
@@ -16,7 +18,7 @@ module Administrate
         resources: resources,
         search_term: search_term,
         page: page,
-        show_search_bar: show_search_bar?
+        show_search_bar: search.available?
       }
     end
 
@@ -156,12 +158,6 @@ module Administrate
         "administrate.controller.#{key}",
         resource: resource_resolver.resource_title,
       )
-    end
-
-    def show_search_bar?
-      dashboard.attribute_types_for(
-        dashboard.collection_attributes
-      ).any? { |_name, attribute| attribute.searchable? }
     end
 
     def show_action?(action, resource)

@@ -3,10 +3,6 @@ require_relative "base"
 module Administrate
   module Field
     class Text < Administrate::Field::Base
-      def self.searchable?
-        false
-      end
-
       def truncate
         data.to_s[0...truncation_length]
       end

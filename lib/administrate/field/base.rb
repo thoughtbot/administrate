@@ -12,8 +12,8 @@ module Administrate
         field_type.dasherize
       end
 
-      def self.searchable?
-        false
+      def self.search_query(table_field, search_term)
+        nil
       end
 
       def initialize(attribute, data, page, options = {})
