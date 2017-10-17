@@ -24,6 +24,7 @@ end
 
 group :test do
   gem "ammeter"
+  gem "rails-controller-testing"
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"

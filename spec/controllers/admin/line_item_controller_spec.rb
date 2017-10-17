@@ -5,8 +5,9 @@ describe Admin::LineItemsController, type: :controller do
     it "hides the search bar" do
       line_item = create(:line_item)
 
-      locals = capture_view_locals { get :index }
-      expect(locals[:show_search_bar]).to be_falsey
+      get :index
+
+      expect(assigns[:show_search_bar]).to be_falsey
     end
   end
 end
