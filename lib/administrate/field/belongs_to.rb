@@ -7,6 +7,10 @@ module Administrate
         :"#{attr}_id"
       end
 
+      def self.search_query(table_field, search_term)
+        ["LOWER(CAST(#{table_field} AS CHAR(256))) LIKE ?", "%#{search_term.mb_chars.downcase}%"]
+      end
+
       def permitted_attribute
         foreign_key
       end

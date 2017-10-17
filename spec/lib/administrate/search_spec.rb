@@ -1,7 +1,11 @@
 require "rails_helper"
-require "administrate/field/string"
+require "administrate/field/belongs_to"
+require "administrate/field/date_time"
 require "administrate/field/email"
+require "administrate/field/has_many"
+require "administrate/field/has_one"
 require "administrate/field/number"
+require "administrate/field/string"
 require "administrate/search"
 
 class MockDashboard
@@ -23,6 +27,12 @@ class MockDashboardWithAssociation
       searchable_field: "street",
     ),
   }.freeze
+end
+
+class MockNoSearchDashboard
+  ATTRIBUTE_TYPES = {
+    date: Administrate::Field::DateTime,
+  }
 end
 
 describe Administrate::Search do
@@ -66,9 +76,11 @@ describe Administrate::Search do
                                           "test")
         expected_query = [
           'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?'\
-          ' OR LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+          ' OR LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?'\
+          " OR \"users\".\"phone\" = ?",
           "%test%",
           "%test%",
+          0
         ]
         expect(scoped_object).to receive(:where).with(*expected_query)
 
@@ -87,9 +99,11 @@ describe Administrate::Search do
                                           "Тест Test")
         expected_query = [
           'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?'\
-          ' OR LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+          ' OR LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?'\
+          " OR \"users\".\"phone\" = ?",
           "%тест test%",
           "%тест test%",
+          0
         ]
         expect(scoped_object).to receive(:where).with(*expected_query)
 
@@ -135,6 +149,36 @@ describe Administrate::Search do
         expect(scoped_object).to receive(:where).with(*expected_query)
 
         search.run
+      end
+    end
+  end
+
+  describe "#available?" do
+    it "returns true when there are searchable fields" do
+      begin
+        class User < ActiveRecord::Base; end
+        scoped_object = User.default_scoped
+        search = Administrate::Search.new(scoped_object,
+                                          MockDashboard,
+                                          nil)
+
+        expect(search).to be_available
+      ensure
+        remove_constants :User
+      end
+    end
+
+    it "returns false when there are no searchable fields" do
+      begin
+        class User < ActiveRecord::Base; end
+        scoped_object = User.default_scoped
+        search = Administrate::Search.new(scoped_object,
+                                          MockNoSearchDashboard,
+                                          nil)
+
+        expect(search).to_not be_available
+      ensure
+        remove_constants :User
       end
     end
   end

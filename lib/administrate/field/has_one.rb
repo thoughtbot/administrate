@@ -24,6 +24,10 @@ module Administrate
         { "#{attr}_attributes": related_dashboard_attributes }
       end
 
+      def self.search_query(table_field, search_term)
+        ["LOWER(CAST(#{table_field} AS CHAR(256))) LIKE ?", "%#{search_term.mb_chars.downcase}%"]
+      end
+
       private
 
       def resolver
