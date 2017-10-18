@@ -61,6 +61,9 @@ $ rails generate administrate:install
 Restart your server, and visit http://localhost:3000/admin
 to see your new dashboard in action.
 
+For more detailed instructions or to make it work with Rails API-only applications, please go through the ['Getting Started` guide](https://administrate-prototype.herokuapp.com/getting_started).
+
+
 ## Create Additional Dashboards
 
 In order to create additional dashboards, pass in the resource name to
