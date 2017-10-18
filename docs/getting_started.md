@@ -29,6 +29,20 @@ The `Admin::ApplicationController` can be customized to add
 authentication logic, authorization, pagination,
 or other controller-level concerns.
 
+You will also want to add a `root` route to show a dashboard when you go to `/admin`.
+
+```ruby
+Rails.application.routes.draw do
+  namespace :admin do
+    # Add dashboard for your models here
+    resources :customers,
+    resources :orders
+  
+    root to: "customers#index" # <--- Root route
+  end
+ end
+ ```
+
 The routes can be customized to show or hide
 different models on the dashboard.
 
