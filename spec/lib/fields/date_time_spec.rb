@@ -46,6 +46,19 @@ describe Administrate::Field::DateTime do
         end
       end
     end
+
+    context "with `timezone` option set to New York & early DateTime" do
+      it "displays previous day because of the time difference" do
+        start_date = DateTime.parse("2015-12-25 02:15:45")
+        options_field = Administrate::Field::DateTime.
+          with_options(format: :short, timezone: "America/New_York")
+        field = options_field.new(:start_date, start_date, :show)
+
+        with_translations(:en, formats) do
+          expect(field.date).to eq("Dec 24")
+        end
+      end
+    end
   end
 
   describe "#datetime" do
@@ -75,6 +88,18 @@ describe Administrate::Field::DateTime do
 
         with_translations(:en, formats) do
           expect(field.datetime).to eq("10:15")
+        end
+      end
+    end
+
+    context "with `timezone` option" do
+      it "displays the datetime for the specified timezone" do
+        options_field = Administrate::Field::DateTime.
+          with_options(format: "%H:%M", timezone: "America/New_York")
+        field = options_field.new(:start_date, start_date, :show)
+
+        with_translations(:en, formats) do
+          expect(field.datetime).to eq("05:15")
         end
       end
     end
