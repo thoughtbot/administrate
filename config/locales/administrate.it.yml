@@ -22,6 +22,9 @@ it:
         none: Nessuno
       has_one:
         not_supported: Associazioni HasOne non ancora supportate. Spiacenti!
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: Cancella ricerca
       label: Ricerca %{resource}

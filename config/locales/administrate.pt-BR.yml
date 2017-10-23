@@ -23,6 +23,9 @@ pt-BR:
         none: Nenhum
       has_one:
         not_supported: Relações um para muitos nos formulários não são suportadas.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: Limpar pesquisa
       label: Pesquisa %{resource}

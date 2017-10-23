@@ -22,6 +22,9 @@ zh-TW:
         none: 無
       has_one:
         not_supported: 表單尚未支援 HasOne 關聯。
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: 清除搜索
       label: 搜索 %{resource}
