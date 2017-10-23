@@ -5,8 +5,9 @@ zh-CN:
       confirm: 确定?
       destroy: 删除
       edit: 编辑
-      show: 查看
-      new: 新建
+      edit_resource: 编辑 %{name}
+      show_resource: 查看 %{name}
+      new_resource: 新建 %{resource}
       back: 返回
     controller:
       create:

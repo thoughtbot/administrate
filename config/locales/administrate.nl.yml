@@ -5,8 +5,9 @@ nl:
       confirm: Weet u het zeker?
       destroy: Verwijder
       edit: Bewerk
-      show: Toon
-      new: Nieuw
+      edit_resource: Bewerk %{name}
+      show_resource: Toon %{name}
+      new_resource: Nieuw %{resource}
       back: Terug
     controller:
       create:

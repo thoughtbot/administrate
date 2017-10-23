@@ -5,8 +5,9 @@ sv:
       confirm: Är du säker?
       destroy: Ta bort
       edit: Ändra
-      show: Visa
-      new: Ny
+      edit_resource: Ändra %{name}
+      show_resource: Visa %{name}
+      new_resource: Ny %{resource}
       back: Tillbaka
     controller:
       create:
