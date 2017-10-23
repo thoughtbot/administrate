@@ -6,8 +6,9 @@ pt:
       confirm: Tem certeza?
       destroy: Remover
       edit: Editar
-      show: Visualizar
-      new: Novo
+      edit_resource: Editar %{name}
+      show_resource: Visualizar %{name}
+      new_resource: Novo %{resource}
       back: Voltar atrás
     controller:
       create:

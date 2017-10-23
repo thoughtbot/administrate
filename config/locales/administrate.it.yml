@@ -5,8 +5,9 @@ it:
       confirm: Sei sicuro?
       destroy: Elimina
       edit: Modifica
-      show: Visualizza
-      new: Nuovo
+      edit_resource: Modifica %{name}
+      show_resource: Visualizza %{name}
+      new_resource: Nuovo %{resource}
       back: Indietro
     controller:
       create:

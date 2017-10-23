@@ -5,8 +5,9 @@ fr:
       confirm: Êtes-vous sûr ?
       destroy: Supprimer
       edit: Modifier
-      show: Détails
-      new: Création
+      edit_resource: Modifier %{name}
+      show_resource: Détails %{name}
+      new_resource: Création %{resource}
       back: Précédent
     controller:
       create:
