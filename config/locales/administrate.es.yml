@@ -24,6 +24,9 @@ es:
         not_supported: Los formularios con relaciones polimórficas no están soportados.
       has_one:
         not_supported: Los formularios con relaciones HasOne no están soportados.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: Borrar búsqueda
       label: Buscar %{resource}

@@ -24,6 +24,9 @@ ru:
         not_supported: Полиморфные отношения в формах не поддерживаются.
       has_one:
         not_supported: HasOne отношения в формах не поддерживаются.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: Очистить поиск
       label: Поиск %{resource}

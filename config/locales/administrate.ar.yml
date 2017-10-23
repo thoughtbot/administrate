@@ -24,6 +24,9 @@ ar:
         not_supported: "غير مدعمه \"Polymorphic\" هذه العلاقه"
       has_one:
         not_supported: "غير مدعمه \"HasOne\" هذه العلاقه"
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: مسح البحث
       label: بحث %{resource}

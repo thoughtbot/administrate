@@ -23,6 +23,9 @@ bs:
         not_supported: Polimorfne asocijacije još nisu podržane. Žao nam je!
       has_one:
         not_supported: Asocijacije HasOne još nije podržana. Žao nam je!
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: Izbriši pretraživanje
       label: Pretraga %{resource}
