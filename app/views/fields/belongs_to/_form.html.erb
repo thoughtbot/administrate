@@ -20,7 +20,11 @@ that displays all possible records to associate with.
   <%= f.label field.permitted_attribute %>
 </div>
 <div class="field-unit__field">
-  <%= f.select(field.permitted_attribute) do %>
-    <%= options_for_select(field.associated_resource_options, field.selected_option) %>
+  <% if field.associated_class.count > 20 && valid_action?(:index, field.associated_class) %>
+    <%= f.select(field.permitted_attribute, [], {}, { data: { "remote-url": url_for([namespace, field.associated_class, format: :json]) } }) %>
+  <% else %>
+    <%= f.select(field.permitted_attribute) do %>
+      <%= options_for_select(field.associated_resource_options, field.selected_option) %>
+    <% end %>
   <% end %>
 </div>

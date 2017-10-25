@@ -19,6 +19,15 @@ describe "order form" do
     )
   end
 
+  context "with more than 20 customers" do
+    it "it loads the customers options remotely" do
+      create_list(:customer, 21)
+
+      visit new_admin_order_path
+      expect(find_field("Customer")["data-remote-url"]).not_to be_empty
+    end
+  end
+
   describe "belongs_to relationships" do
     it "has stored value selected" do
       create(:customer)

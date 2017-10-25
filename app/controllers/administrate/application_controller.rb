@@ -12,12 +12,20 @@ module Administrate
       resources = resources.page(params[:page]).per(records_per_page)
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
-      render locals: {
-        resources: resources,
-        search_term: search_term,
-        page: page,
-        show_search_bar: show_search_bar?
-      }
+      respond_to do |format|
+        format.html do
+          render locals: {
+            resources: resources,
+            search_term: search_term,
+            page: page,
+            show_search_bar: show_search_bar?
+          }
+        end
+
+        format.json {
+          render json: resources.map { |resource| { name: dashboard.display_resource(resource), id: resource.send(resource_class.primary_key) } }
+        }
+      end
     end
 
     def show
