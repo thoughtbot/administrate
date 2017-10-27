@@ -23,7 +23,7 @@ module Administrate
         end
 
         format.json {
-          render json: resources.map { |resource| { name: dashboard.display_resource(resource), id: resource.send(resource_class.primary_key) } }
+          render json: resources_json(resources, dashboard, resource_class)
         }
       end
     end
@@ -152,6 +152,10 @@ module Administrate
       dashboard.attribute_types_for(
         dashboard.collection_attributes
       ).any? { |_name, attribute| attribute.searchable? }
+    end
+
+    def resources_json(resources, dashboard, resource_class)
+      resources.map { |resource| { name: dashboard.display_resource(resource), id: resource.send(resource_class.primary_key) } }
     end
   end
 end
