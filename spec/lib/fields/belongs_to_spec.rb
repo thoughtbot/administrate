@@ -82,7 +82,7 @@ describe Administrate::Field::BelongsTo do
   describe "#resources" do
     context "with `order` option" do
       it "returns the resources in correct order" do
-        FactoryGirl.create_list(:customer, 5)
+        FactoryBot.create_list(:customer, 5)
         options = { order: "name" }
         association = Administrate::Field::BelongsTo.with_options(options)
         field = association.new(:customers, [], :view)
