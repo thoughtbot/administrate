@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :customer do
     sequence(:name) { |n| "Customer #{n}" }
     email { name.downcase.gsub(" ", "_") + "@example.com" }

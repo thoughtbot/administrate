@@ -117,7 +117,7 @@ describe Administrate::Field::HasMany do
   describe "#resources" do
     it "limits the number of records shown" do
       limit = Administrate::Field::HasMany::DEFAULT_LIMIT
-      customer = FactoryGirl.create(:customer, :with_orders, order_count: 10)
+      customer = FactoryBot.create(:customer, :with_orders, order_count: 10)
       resources = customer.orders
 
       association = Administrate::Field::HasMany
@@ -139,7 +139,7 @@ describe Administrate::Field::HasMany do
 
     context "with `limit` option" do
       it "limits the number of items returned" do
-        customer = FactoryGirl.create(:customer, :with_orders)
+        customer = FactoryBot.create(:customer, :with_orders)
         resources = customer.orders
 
         association = Administrate::Field::HasMany.with_options(limit: 1)
@@ -151,7 +151,7 @@ describe Administrate::Field::HasMany do
 
     context "with `sort_by` option" do
       it "returns the resources in correct order" do
-        customer = FactoryGirl.create(:customer, :with_orders)
+        customer = FactoryBot.create(:customer, :with_orders)
         options = { sort_by: :address_line_two }
         association = Administrate::Field::HasMany.with_options(options)
         field = association.new(:orders, customer.orders, :show)
@@ -168,7 +168,7 @@ describe Administrate::Field::HasMany do
 
     context "with `direction` option" do
       it "returns the resources in correct order" do
-        customer = FactoryGirl.create(:customer, :with_orders)
+        customer = FactoryBot.create(:customer, :with_orders)
         options = { sort_by: :address_line_two, direction: :desc }
         association = Administrate::Field::HasMany.with_options(options)
         field = association.new(:orders, customer.orders, :show)
