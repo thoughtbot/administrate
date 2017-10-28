@@ -8,7 +8,9 @@ module Administrate
         @resource = resource
       end
 
-      attr_reader :resource
+      def resource
+        dashboard.prepare_resource_for_display(@resource)
+      end
 
       def page_title
         dashboard.display_resource(resource)

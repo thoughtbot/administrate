@@ -21,6 +21,10 @@ module Administrate
         ordered_by?(attr) && order.direction
       end
 
+      def resources
+        dashboard.prepare_collection_for_display(options[:resources])
+      end
+
       delegate :ordered_by?, :order_params_for, to: :order
 
       private

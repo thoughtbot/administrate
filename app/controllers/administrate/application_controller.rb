@@ -10,22 +10,20 @@ module Administrate
       resources = apply_resource_includes(resources)
       resources = order.apply(resources)
       paginated_resources = resources.page(params[:page]).per(records_per_page)
-      displayed_resources = dashboard.prepare_collection_for_display(paginated_resources)
-      page = Administrate::Page::Collection.new(dashboard, order: order)
-
+      page = Administrate::Page::Collection.new(dashboard,
+                                                order: order,
+                                                resources: paginated_resources)
       render locals: {
-        resources: displayed_resources,
+        page: page,
         pagination_options: paginated_resources,
         search_term: search_term,
-        page: page,
-        show_search_bar: show_search_bar?,
+        show_search_bar: show_search_bar?
       }
     end
 
     def show
-      displayed_resource = dashboard.prepare_resource_for_display(requested_resource)
       render locals: {
-        page: Administrate::Page::Show.new(dashboard, displayed_resource),
+        page: Administrate::Page::Show.new(dashboard, requested_resource),
       }
     end
 

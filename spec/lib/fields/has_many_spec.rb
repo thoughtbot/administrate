@@ -18,8 +18,16 @@ describe Administrate::Field::HasMany do
   describe "#associated_collection" do
     it "returns an index page for the dashboard of the associated attribute" do
       begin
-        WidgetDashboard = Class.new
-        widgets = []
+        class WidgetDashboard
+          def prepare_collection_for_display(resources)
+            resources
+          end
+
+          def association_includes
+            []
+          end
+        end
+        widgets = MockRelation.new([])
         field = Administrate::Field::HasMany.new(:widgets, widgets, :show)
 
         page = field.associated_collection
@@ -35,12 +43,14 @@ describe Administrate::Field::HasMany do
     it "determines what dashboard is used to present the association" do
       begin
         FooDashboard = Class.new
-        dashboard_double = double(collection_attributes: [])
+        dashboard_double = double(collection_attributes: [],
+                                  association_includes: [],
+                                  prepare_collection_for_display: [])
         allow(FooDashboard).to receive(:new).and_return(dashboard_double)
 
         association = Administrate::Field::HasMany.
           with_options(class_name: "Foo")
-        field = association.new(:customers, [], :show)
+        field = association.new(:customers, MockRelation.new([]), :show)
         collection = field.associated_collection
         attributes = collection.attribute_names
 

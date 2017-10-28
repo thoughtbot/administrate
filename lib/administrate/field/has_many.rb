@@ -11,8 +11,8 @@ module Administrate
         { "#{attr.to_s.singularize}_ids".to_sym => [] }
       end
 
-      def associated_collection
-        Administrate::Page::Collection.new(associated_dashboard)
+      def associated_collection(page = 1)
+        Administrate::Page::Collection.new(associated_dashboard, resources: resources(page))
       end
 
       def attribute_key
@@ -40,9 +40,9 @@ module Administrate
       end
 
       def resources(page = 1)
-        paginated_resources = pagination_options(page)
-        resources_with_included_associations = includes.any? ? paginated_resources.includes(*includes) : paginated_resources
-        associated_dashboard.prepare_collection_for_display(resources_with_included_associations)
+        collection = pagination_options(page)
+        collection = collection.includes(*includes) if includes.any?
+        associated_dashboard.prepare_collection_for_display(collection)
       end
 
       def pagination_options(page = 1)

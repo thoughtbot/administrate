@@ -6,7 +6,7 @@ describe Admin::CustomersController, type: :controller do
       customer = create(:customer)
 
       locals = capture_view_locals { get :index }
-      expect(locals[:resources]).to eq([customer])
+      expect(locals[:page].resources).to eq([customer])
     end
 
     it "passes the search term to the view" do

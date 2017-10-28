@@ -21,8 +21,7 @@ from the associated resource class's dashboard.
 <% if field.resources.any? %>
   <%= render(
     "collection",
-    collection_presenter: field.associated_collection,
-    resources: field.resources(params[field.name]),
+    collection_presenter: field.associated_collection(params[field.name]),
     table_title: field.name
   ) %>
 
