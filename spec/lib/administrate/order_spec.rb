@@ -169,14 +169,14 @@ describe Administrate::Order do
 
   def relation_with_column(column)
     double(
-      klass => double(:reflect_on_association => nil),
+      klass: double(reflect_on_association: nil),
       columns_hash: { column.to_s => :column_info },
     )
   end
 
   def relation_with_association(association)
     double(
-      klass => double(:reflect_on_association => double(:macro => association)),
+      klass: double(reflect_on_association: double(macro: association)),
     )
   end
 end

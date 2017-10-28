@@ -6,8 +6,8 @@ module Administrate
     end
 
     def apply(relation)
-      return order_by_association(relation) if
-        !reflect_association(relation).nil?
+      return order_by_association(relation) unless
+        reflect_association(relation).nil?
 
       return relation.reorder("#{attribute} #{direction}") if
         relation.columns_hash.keys.include?(attribute.to_s)
