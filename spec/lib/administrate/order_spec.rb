@@ -17,16 +17,16 @@ describe Administrate::Order do
 
     context "when `order` argument isn't a valid column" do
       it "ignores the order" do
-       order = Administrate::Order.new(:foo)
-       relation = relation_with_column(:id)
-       allow(relation).to receive(:reorder).and_return(relation)
+        order = Administrate::Order.new(:foo)
+        relation = relation_with_column(:id)
+        allow(relation).to receive(:reorder).and_return(relation)
 
-       ordered = order.apply(relation)
+        ordered = order.apply(relation)
 
-       expect(relation).not_to have_received(:reorder)
-       expect(ordered).to eq(relation)
+        expect(relation).not_to have_received(:reorder)
+        expect(ordered).to eq(relation)
+      end
     end
-  end
 
     context "when `order` argument is valid" do
       it "orders by the column" do
@@ -69,7 +69,7 @@ describe Administrate::Order do
       end
     end
 
-    context" when relation has belongs_to association" do
+    context "when relation has belongs_to association" do
       it "orders by id" do
         order = Administrate::Order.new(:name)
         relation = relation_with_association(:belongs_to)
@@ -169,14 +169,14 @@ describe Administrate::Order do
 
   def relation_with_column(column)
     double(
-      klass: double(:reflect_on_association => nil),
-      columns_hash: { column.to_s => :column_info }
+      klass => double(:reflect_on_association => nil),
+      columns_hash: { column.to_s => :column_info },
     )
   end
 
   def relation_with_association(association)
     double(
-      klass: double(:reflect_on_association => double( :macro => association))
+      klass => double(:reflect_on_association => double(:macro => association)),
     )
   end
 end
