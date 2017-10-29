@@ -51,8 +51,7 @@ gem "administrate"
 ```
 
 The included installer will create dashboards for each model in your
-app, complete with routes. You can run it again every time you add
-a new model:
+app, complete with routes:
 
 ```bash
 $ rails generate administrate:install
