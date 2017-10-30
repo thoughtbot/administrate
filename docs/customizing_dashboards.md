@@ -119,6 +119,11 @@ Or, to display a distance in kilometers:
   )
 ```
 
+**Field::Polymorphic**
+
+`:classes` - Specify a list of classes whose objects will be used to populate select boxes for editing this polymorphic field.
+Default is `[]`.
+
 **Field::Select**
 
 `:collection` - Specify the array or range to select from.  Defaults to `[]`.

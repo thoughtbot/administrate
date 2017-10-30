@@ -19,8 +19,6 @@ pl:
       has_many:
         more: Wyświetlanie %{count} z %{total_count}
         none: Brak
-      polymorphic:
-        not_supported: Relacje polimorficzne nie są obsługiwane.
       has_one:
         not_supported: Relacje jeden-do-jednego nie są obsługiwane.
     search:

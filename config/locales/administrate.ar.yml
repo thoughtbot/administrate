@@ -19,8 +19,6 @@ ar:
       has_many:
         more: إظهار %{count} من %{total_count}
         none: "لا يوجد"
-      polymorphic:
-        not_supported: "غير مدعمه \"Polymorphic\" هذه العلاقه"
       has_one:
         not_supported: "غير مدعمه \"HasOne\" هذه العلاقه"
     search:
