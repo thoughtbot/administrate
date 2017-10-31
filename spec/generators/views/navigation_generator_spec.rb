@@ -13,5 +13,16 @@ describe Administrate::Generators::Views::NavigationGenerator, :generator do
       contents = File.read(generated_file)
       expect(contents).to eq(expected_contents)
     end
+
+    it "copies the navigation partial into the `module/application` namespace
+      when module options is specified" do
+      expected_contents = contents_for_application_template("_navigation")
+      generated_file = file("app/views/manage/application/_navigation.html.erb")
+
+      run_generator ["--module", "Manage"]
+
+      contents = File.read(generated_file)
+      expect(contents).to eq(expected_contents)
+    end
   end
 end

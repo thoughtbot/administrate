@@ -8,6 +8,11 @@ module Administrate
       include Administrate::GeneratorHelpers
       source_root File.expand_path("../templates", __FILE__)
 
+      class_option :module, type: :string,
+                            default: "Admin",
+                            desc: "Indicates the module name",
+                            aliases: "-m"
+
       def run_routes_generator
         if dashboard_resources.none?
           call_generator("administrate:routes")
@@ -16,9 +21,9 @@ module Administrate
       end
 
       def create_dashboard_controller
-        copy_file(
-          "application_controller.rb",
-          "app/controllers/admin/application_controller.rb"
+        template(
+          "application_controller.rb.erb",
+          "app/controllers/#{module_name.underscore}/application_controller.rb",
         )
       end
 
@@ -26,6 +31,10 @@ module Administrate
         singular_dashboard_resources.each do |resource|
           call_generator("administrate:dashboard", resource)
         end
+      end
+
+      def module_name
+        options["module"]
       end
 
       private

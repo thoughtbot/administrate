@@ -26,19 +26,30 @@ module Administrate
 
       source_root File.expand_path("../templates", __FILE__)
 
+      class_option :module, type: :string,
+                            default: "Admin",
+                            desc: "Indicates the module name",
+                            aliases: "-m"
+
       def create_dashboard_definition
         template(
           "dashboard.rb.erb",
-          Rails.root.join("app/dashboards/#{file_name}_dashboard.rb"),
+          Rails.root.join("app/dashboards/"\
+            "#{file_name}_dashboard.rb"),
         )
       end
 
       def create_resource_controller
         destination = Rails.root.join(
-          "app/controllers/admin/#{file_name.pluralize}_controller.rb",
+          "app/controllers/#{module_name.underscore}/"\
+            "#{file_name.pluralize}_controller.rb",
         )
 
         template("controller.rb.erb", destination)
+      end
+
+      def module_name
+        options["module"]
       end
 
       private

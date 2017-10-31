@@ -89,6 +89,14 @@ describe Administrate::Generators::RoutesGenerator, :generator do
           "dashboard for AbstractModel")
       end
     end
+
+    it "accepts module name as options" do
+      routes = file("config/routes.rb")
+
+      run_generator ["--module", "Manage"]
+
+      expect(routes).to contain("namespace :manage")
+    end
   end
 
   it "creates a root route for the admin namespace" do

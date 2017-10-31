@@ -456,5 +456,13 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         Admin.send(:remove_const, :FoosController)
       end
     end
+
+    it "accepts module name as options" do
+      controller = file("app/controllers/manage/customers_controller.rb")
+
+      run_generator ["customer", "--module", "Manage"]
+
+      expect(controller).to exist
+    end
   end
 end
