@@ -14,9 +14,15 @@ describe "fields/polymorphic/_form", type: :view do
   end
 
   def fake_form_builder
+    fields_builder = double("Fields Builder").as_null_object.tap do |fb|
+      allow(fb).to receive(:label) do |*args|
+        args.last
+      end
+    end
+
     double("Form Builder").as_null_object.tap do |form_builder|
-      allow(form_builder).to receive(:label) do |*args|
-        args.first.to_s.titleize
+      allow(form_builder).to receive(:fields_for) do |*args, &block|
+        block.call(fields_builder)
       end
     end
   end
