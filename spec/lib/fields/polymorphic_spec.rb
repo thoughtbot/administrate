@@ -17,7 +17,7 @@ describe Administrate::Field::Polymorphic do
     end
   end
 
-  it { should_permit_param(:foo, for_attribute: :foo) }
+  it { should_permit_param({ foo: [:type, :value] }, for_attribute: :foo) }
 
   describe "#display_associated_resource" do
     it "displays through the dashboard based on the polymorphic class name" do
@@ -45,6 +45,7 @@ describe Administrate::Field::Polymorphic do
       field = Administrate::Field::Polymorphic.new(:foo, item, :show)
       expect(field.selected_global_id).to eq(item.to_global_id)
     end
+
     it "returns nil for nil" do
       field = Administrate::Field::Polymorphic.new(:foo, nil, :show)
       expect(field.selected_global_id).to eq(nil)

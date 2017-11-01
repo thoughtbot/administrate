@@ -12,15 +12,15 @@ module Administrate
       end
 
       def self.permitted_attribute(attr)
-        attr
+        { attr => [:type, :value] }
       end
 
       def permitted_attribute
-        attribute
+        { attribute => [:type, :value] }
       end
 
       def selected_global_id
-        data.respond_to?(:to_global_id) ? data.to_global_id : nil
+        data ? data.to_global_id : nil
       end
 
       protected

@@ -5,6 +5,7 @@ gemspec
 gem "administrate-field-image"
 gem "autoprefixer-rails"
 gem "faker"
+gem "globalid"
 gem "pg"
 gem "redcarpet"
 gem "sentry-raven"
