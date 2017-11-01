@@ -18,8 +18,6 @@ bs:
       has_many:
         more: Prikazuje %{count} od %{total_count}
         none: Niko
-      polymorphic:
-        not_supported: Polimorfne asocijacije još nisu podržane. Žao nam je!
       has_one:
         not_supported: Asocijacije HasOne još nije podržana. Žao nam je!
     search:
