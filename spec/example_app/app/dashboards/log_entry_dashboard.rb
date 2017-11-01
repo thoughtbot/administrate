@@ -13,12 +13,15 @@ class LogEntryDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTES
 
   def display_resource(resource)
-    "#{resource.action}/#{display_logeable(resource.logeable)}"
+    "#{resource.action}[#{display_logeable(resource.logeable)}]"
   end
 
   private
 
   def display_logeable(logeable)
-    "#{logeable.class.name}##{logeable.id}"
+    (logeable.class.to_s + "Dashboard").
+      constantize.
+      new.
+      display_resource(logeable)
   end
 end
