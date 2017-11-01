@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   validates :customer, presence: true
   has_many :line_items, dependent: :destroy
   has_many :payments, dependent: :destroy
+  has_many :log_entries, as: :logeable
 
   validates :address_line_one, presence: true
   validates :address_line_two, presence: true

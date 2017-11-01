@@ -13,6 +13,7 @@ Product.destroy_all
 ProductMetaTag.destroy_all
 Series.destroy_all
 Country.destroy_all
+LogEntry.destroy_all
 
 countries = Country.create! [
   { code: "US", name: "USA" },
@@ -32,6 +33,15 @@ customer_attributes = Array.new(100) do
 end
 
 customers = Customer.create!(customer_attributes)
+
+log_entry_attributes = customers.map do |c|
+  {
+    action: 'create',
+    logeable: c,
+  }
+end
+
+LogEntry.create!(log_entry_attributes)
 
 product_attributes = YAML.load_file(Rails.root.join('db/seeds/products.yml'))
 
@@ -53,6 +63,10 @@ customers.each do |customer|
       address_state: Faker::Address.state_abbr,
       address_zip: Faker::Address.zip,
     )
+    LogEntry.create!({
+      action: 'create',
+      logeable: order,
+    })
 
     item_count = (1..3).to_a.sample
     Product.all.sample(item_count).each do |product|
