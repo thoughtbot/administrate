@@ -21,6 +21,11 @@ FactoryBot.define do
     quantity 1
   end
 
+  factory :log_entry do
+    action "create"
+    association :logeable, factory: :customer
+  end
+
   factory :order do
     customer
     address_line_one "85 2nd St"

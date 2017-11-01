@@ -23,7 +23,7 @@ so this partial renders a message to that effect.
 </div>
 
 <div class="field-unit__field">
-  <%= f.fields_for field.permitted_attribute do |pf| %>
+  <%= f.fields_for field.attribute do |pf| %>
     <%= pf.hidden_field(:type, value: field.class.name) %>
     <%= pf.select(:value) do %>
       <%= grouped_options_for_select(field.associated_resource_grouped_options, field.selected_global_id, prompt: true) %>
