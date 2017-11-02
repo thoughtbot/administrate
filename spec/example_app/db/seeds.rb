@@ -36,7 +36,7 @@ customers = Customer.create!(customer_attributes)
 
 log_entry_attributes = customers.map do |c|
   {
-    action: 'create',
+    action: "create",
     logeable: c,
   }
 end
@@ -63,10 +63,10 @@ customers.each do |customer|
       address_state: Faker::Address.state_abbr,
       address_zip: Faker::Address.zip,
     )
-    LogEntry.create!({
-      action: 'create',
+    LogEntry.create!(
+      action: "create",
       logeable: order,
-    })
+    )
 
     item_count = (1..3).to_a.sample
     Product.all.sample(item_count).each do |product|

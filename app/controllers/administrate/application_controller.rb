@@ -121,7 +121,7 @@ module Administrate
     def resource_params
       params.require(resource_class.model_name.param_key).
         permit(dashboard.permitted_attributes).
-        transform_values {|v| read_param_value(v) }
+        transform_values { |v| read_param_value(v) }
     end
 
     def read_param_value(data)

@@ -28,7 +28,7 @@ describe "fields/polymorphic/_show", type: :view do
         "Administrate::Field::Polymorphic",
         display_associated_resource: product.name,
         data: product,
-        attribute: 'product',
+        attribute: "product",
       )
 
       allow(view).to receive(:valid_action?).and_return(true)

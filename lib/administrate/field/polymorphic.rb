@@ -12,11 +12,11 @@ module Administrate
       end
 
       def self.permitted_attribute(attr)
-        { attr => [:type, :value] }
+        { attr => %i{type value} }
       end
 
       def permitted_attribute
-        { attribute => [:type, :value] }
+        { attribute => %i{type value} }
       end
 
       def selected_global_id

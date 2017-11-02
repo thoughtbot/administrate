@@ -55,7 +55,7 @@ feature "log entries index page" do
     click_on t("administrate.actions.destroy")
 
     expect(page).to have_flash(
-      t("administrate.controller.destroy.success", resource: "LogEntry")
+      t("administrate.controller.destroy.success", resource: "LogEntry"),
     )
   end
 end

@@ -19,7 +19,7 @@ class LogEntryDashboard < Administrate::BaseDashboard
   private
 
   def safe_display_logeable(logeable)
-    logeable ? display_logeable(logeable) : ''
+    logeable ? display_logeable(logeable) : ""
   end
 
   def display_logeable(logeable)

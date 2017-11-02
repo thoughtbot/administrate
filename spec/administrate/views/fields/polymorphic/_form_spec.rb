@@ -21,7 +21,7 @@ describe "fields/polymorphic/_form", type: :view do
     end
 
     double("Form Builder").as_null_object.tap do |form_builder|
-      allow(form_builder).to receive(:fields_for) do |*args, &block|
+      allow(form_builder).to receive(:fields_for) do |*_, &block|
         block.call(fields_builder)
       end
     end

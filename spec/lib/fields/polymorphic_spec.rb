@@ -17,7 +17,7 @@ describe Administrate::Field::Polymorphic do
     end
   end
 
-  it { should_permit_param({ foo: [:type, :value] }, for_attribute: :foo) }
+  it { should_permit_param({ foo: %i{type value} }, for_attribute: :foo) }
 
   describe "#display_associated_resource" do
     it "displays through the dashboard based on the polymorphic class name" do
