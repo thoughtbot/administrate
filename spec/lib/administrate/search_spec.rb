@@ -8,11 +8,17 @@ require "administrate/field/number"
 require "administrate/field/string"
 require "administrate/search"
 
+class SearchableNumberField < Administrate::Field::Number
+  def self.search_query(table_field, value)
+    ["#{table_field} = ?", value.to_i]
+  end
+end
+
 class MockDashboard
   ATTRIBUTE_TYPES = {
     name: Administrate::Field::String,
     email: Administrate::Field::Email,
-    phone: Administrate::Field::Number,
+    phone: SearchableNumberField,
   }.freeze
 end
 
@@ -31,7 +37,7 @@ end
 
 class MockNoSearchDashboard
   ATTRIBUTE_TYPES = {
-    date: Administrate::Field::DateTime,
+    phone: Administrate::Field::Number,
   }.freeze
 end
 
