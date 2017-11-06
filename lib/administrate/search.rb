@@ -19,7 +19,7 @@ module Administrate
     end
 
     def available?
-      !query.empty?
+      query.present?
     end
 
     private
