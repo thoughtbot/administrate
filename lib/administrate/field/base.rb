@@ -12,7 +12,7 @@ module Administrate
         field_type.dasherize
       end
 
-      def self.search_query(table_field, search_term)
+      def self.search_query(_table_field, _search_term)
         nil
       end
 
