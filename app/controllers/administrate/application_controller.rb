@@ -18,7 +18,7 @@ module Administrate
         resources: resources,
         search_term: search_term,
         page: page,
-        show_search_bar: search.available?
+        show_search_bar: search.available?,
       }
     end
 

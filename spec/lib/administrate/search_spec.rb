@@ -32,7 +32,7 @@ end
 class MockNoSearchDashboard
   ATTRIBUTE_TYPES = {
     date: Administrate::Field::DateTime,
-  }
+  }.freeze
 end
 
 describe Administrate::Search do
@@ -80,7 +80,7 @@ describe Administrate::Search do
           " OR \"users\".\"phone\" = ?",
           "%test%",
           "%test%",
-          0
+          0,
         ]
         expect(scoped_object).to receive(:where).with(*expected_query)
 
@@ -103,7 +103,7 @@ describe Administrate::Search do
           " OR \"users\".\"phone\" = ?",
           "%тест test%",
           "%тест test%",
-          0
+          0,
         ]
         expect(scoped_object).to receive(:where).with(*expected_query)
 
