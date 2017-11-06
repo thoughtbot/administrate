@@ -49,6 +49,10 @@ module Administrate
       def self.field_type
         to_s.split("::").last.underscore
       end
+
+      def self.default_text_search(table_field, search_term)
+        ["lower(#{table_field}) LIKE ?", "%#{search_term.mb_chars.downcase}%"]
+      end
     end
   end
 end

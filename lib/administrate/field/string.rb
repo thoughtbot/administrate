@@ -4,7 +4,7 @@ module Administrate
   module Field
     class String < Field::Base
       def self.search_query(table_field, search_term)
-        ["lower(#{table_field}) LIKE ?", "%#{search_term.mb_chars.downcase}%"]
+        default_text_search(table_field, search_term)
       end
 
       def truncate
