@@ -11,7 +11,7 @@ describe "fields/has_one/_show", type: :view do
       )
 
       render(
-        partial: "fields/has_one/show.html.erb",
+        partial: "administrate/fields/has_one/show.html.erb",
         locals: { field: has_one },
       )
 
@@ -31,7 +31,7 @@ describe "fields/has_one/_show", type: :view do
       )
 
       render(
-        partial: "fields/has_one/show.html.erb",
+        partial: "administrate/fields/has_one/show.html.erb",
         locals: {
           field: has_one,
           namespace: "admin",

@@ -5,7 +5,7 @@ describe "fields/polymorphic/_form", type: :view do
     polymorphic = double(name: "Commentable")
 
     render(
-      partial: "fields/polymorphic/form.html.erb",
+      partial: "administrate/fields/polymorphic/form.html.erb",
       locals: { field: polymorphic, f: form_builder },
     )
 
@@ -16,7 +16,7 @@ describe "fields/polymorphic/_form", type: :view do
     polymorphic = double(name: "Commentable")
 
     render(
-      partial: "fields/polymorphic/form.html.erb",
+      partial: "administrate/fields/polymorphic/form.html.erb",
       locals: { field: polymorphic, f: form_builder },
     )
 

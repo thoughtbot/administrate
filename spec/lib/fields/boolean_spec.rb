@@ -13,7 +13,7 @@ describe Administrate::Field::Boolean do
 
       path = field.to_partial_path
 
-      expect(path).to eq("/fields/boolean/#{page}")
+      expect(path).to eq("/administrate/fields/boolean/#{page}")
     end
   end
 

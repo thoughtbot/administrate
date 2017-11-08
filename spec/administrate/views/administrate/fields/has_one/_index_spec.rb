@@ -6,7 +6,7 @@ describe "fields/has_one/_index", type: :view do
       has_one = double(data: nil)
 
       render(
-        partial: "fields/has_one/index.html.erb",
+        partial: "administrate/fields/has_one/index.html.erb",
         locals: { field: has_one },
       )
 
@@ -25,7 +25,7 @@ describe "fields/has_one/_index", type: :view do
       )
 
       render(
-        partial: "fields/has_one/index.html.erb",
+        partial: "administrate/fields/has_one/index.html.erb",
         locals: { field: has_one, namespace: "admin" },
       )
 

@@ -6,7 +6,7 @@ describe "fields/polymorphic/_index", type: :view do
       polymorphic = double(data: nil)
 
       render(
-        partial: "fields/polymorphic/index.html.erb",
+        partial: "administrate/fields/polymorphic/index.html.erb",
         locals: { field: polymorphic },
       )
 
@@ -25,7 +25,7 @@ describe "fields/polymorphic/_index", type: :view do
       )
 
       render(
-        partial: "fields/polymorphic/index.html.erb",
+        partial: "administrate/fields/polymorphic/index.html.erb",
         locals: { field: polymorphic, namespace: "admin" },
       )
 

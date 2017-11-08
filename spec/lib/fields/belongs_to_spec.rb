@@ -15,7 +15,7 @@ describe Administrate::Field::BelongsTo do
 
       path = field.to_partial_path
 
-      expect(path).to eq("/fields/belongs_to/#{page}")
+      expect(path).to eq("/administrate/fields/belongs_to/#{page}")
     end
   end
 

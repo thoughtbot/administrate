@@ -9,7 +9,7 @@ describe "fields/has_many/_form", type: :view do
       )
 
       render(
-        partial: "fields/has_many/form.html.erb",
+        partial: "administrate/fields/has_many/form.html.erb",
         locals: { f: fake_form_builder, field: has_many },
       )
 

@@ -37,7 +37,7 @@ module Administrate
       end
 
       def to_partial_path
-        "/fields/#{self.class.field_type}/#{page}"
+        "/administrate/fields/#{self.class.field_type}/#{page}"
       end
 
       attr_reader :attribute, :data, :page, :resource

@@ -11,7 +11,7 @@ describe Administrate::Field::HasOne do
 
       path = field.to_partial_path
 
-      expect(path).to eq("/fields/has_one/#{page}")
+      expect(path).to eq("/administrate/fields/has_one/#{page}")
     end
   end
 end

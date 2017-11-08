@@ -20,9 +20,9 @@ rails generate administrate:field gravatar
 This creates a few files:
 
 - `app/fields/gravatar_field.rb`
-- `app/views/fields/gravatar_field/_show.html.erb`
-- `app/views/fields/gravatar_field/_index.html.erb`
-- `app/views/fields/gravatar_field/_form.html.erb`
+- `app/views/administrate/fields/gravatar_field/_show.html.erb`
+- `app/views/administrate/fields/gravatar_field/_index.html.erb`
+- `app/views/administrate/fields/gravatar_field/_form.html.erb`
 
 We can edit the `app/fields/gravatar_field.rb` to add some custom logic:
 
@@ -40,7 +40,7 @@ end
 ```
 
 Next, we can customize the partials to display data how we'd like.
-Open up the `app/views/fields/gravatar_field/_show.html.erb` partial.
+Open up the `app/views/administrate/fields/gravatar_field/_show.html.erb` partial.
 By default, it looks like:
 
 ```eruby

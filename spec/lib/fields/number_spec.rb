@@ -12,7 +12,7 @@ describe Administrate::Field::Number do
 
       path = field.to_partial_path
 
-      expect(path).to eq("/fields/number/#{page}")
+      expect(path).to eq("/administrate/fields/number/#{page}")
     end
   end
 

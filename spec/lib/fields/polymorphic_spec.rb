@@ -12,7 +12,7 @@ describe Administrate::Field::Polymorphic do
 
       path = field.to_partial_path
 
-      expect(path).to eq("/fields/polymorphic/#{page}")
+      expect(path).to eq("/administrate/fields/polymorphic/#{page}")
     end
   end
 

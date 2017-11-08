@@ -25,9 +25,9 @@ rails generate administrate:views:field number
 
 This will generate three files:
 
-- `app/view/fields/number/_form.html.erb`
-- `app/view/fields/number/_index.html.erb`
-- `app/view/fields/number/_show.html.erb`
+- `app/view/administrate/fields/number/_form.html.erb`
+- `app/view/administrate/fields/number/_index.html.erb`
+- `app/view/administrate/fields/number/_show.html.erb`
 
 You can generate the partials for all field types by passing `all` to the generator.
 

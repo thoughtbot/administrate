@@ -23,7 +23,7 @@ module Administrate
 
         copy_file(
           partial,
-          "app/views/fields/#{file_name}_field/#{partial}",
+          "app/views/administrate/fields/#{file_name}_field/#{partial}",
         )
       end
     end

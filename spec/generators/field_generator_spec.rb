@@ -23,7 +23,7 @@ describe Administrate::Generators::FieldGenerator, :generator do
       field = double(to_s: "data")
 
       run_generator ["foobar"]
-      erb = File.read(file("app/views/fields/foobar_field/_index.html.erb"))
+      erb = File.read(file("app/views/administrate/fields/foobar_field/_index.html.erb"))
       rendered = ERB.new(erb).result(binding).strip
 
       expect(rendered).to eq(field.to_s)
@@ -33,7 +33,7 @@ describe Administrate::Generators::FieldGenerator, :generator do
       field = double(to_s: "data")
 
       run_generator ["foobar"]
-      erb = File.read(file("app/views/fields/foobar_field/_show.html.erb"))
+      erb = File.read(file("app/views/administrate/fields/foobar_field/_show.html.erb"))
       rendered = ERB.new(erb).result(binding).strip
 
       expect(rendered).to eq(field.to_s)
@@ -44,7 +44,7 @@ describe Administrate::Generators::FieldGenerator, :generator do
       field = double(attribute: :attr_name)
 
       run_generator ["foobar"]
-      erb = File.read(file("app/views/fields/foobar_field/_form.html.erb"))
+      erb = File.read(file("app/views/administrate/fields/foobar_field/_form.html.erb"))
       ERB.new(erb).result(binding).strip
 
       expect(f).to have_received(:label).with(:attr_name)

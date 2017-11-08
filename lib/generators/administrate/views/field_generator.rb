@@ -6,7 +6,7 @@ module Administrate
       class FieldGenerator < Administrate::ViewGenerator
         def self.template_source_path
           File.expand_path(
-            "../../../../../app/views/fields/",
+            "../../../../../app/views/administrate/fields/",
             __FILE__,
           )
         end
@@ -41,7 +41,7 @@ module Administrate
 
           copy_file(
             template_file,
-            "app/views/fields/#{template_file}",
+            "app/views/administrate/fields/#{template_file}",
           )
         end
       end
