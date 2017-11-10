@@ -24,6 +24,8 @@ module Administrate
       COLLECTION_ATTRIBUTE_LIMIT = 4
       READ_ONLY_ATTRIBUTES = %w[id created_at updated_at]
 
+      class_option :namespace, type: :string, default: "admin"
+
       source_root File.expand_path("../templates", __FILE__)
 
       def create_dashboard_definition
@@ -35,13 +37,17 @@ module Administrate
 
       def create_resource_controller
         destination = Rails.root.join(
-          "app/controllers/admin/#{file_name.pluralize}_controller.rb",
+          "app/controllers/#{namespace}/#{file_name.pluralize}_controller.rb",
         )
 
         template("controller.rb.erb", destination)
       end
 
       private
+
+      def namespace
+        options[:namespace]
+      end
 
       def attributes
         klass.reflections.keys + klass.attribute_names - redundant_attributes
