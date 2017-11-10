@@ -16,6 +16,10 @@ module Administrate
         nil
       end
 
+      def self.field_type
+        to_s.split("::").last.underscore
+      end
+
       def initialize(attribute, data, page, options = {})
         @attribute = attribute
         @data = data
@@ -46,12 +50,12 @@ module Administrate
 
       attr_reader :options
 
-      def self.field_type
-        to_s.split("::").last.underscore
-      end
+      class << self
+        private
 
-      def self.default_text_search(table_field, search_term)
-        ["lower(#{table_field}) LIKE ?", "%#{search_term.mb_chars.downcase}%"]
+        def default_text_search(table_field, search_term)
+          ["lower(#{table_field}) LIKE ?", "%#{search_term.mb_chars.downcase}%"]
+        end
       end
     end
   end
