@@ -20,8 +20,6 @@ pt-BR:
       has_many:
         more: "Exibindo %{count} de %{total_count}"
         none: Nenhum
-      polymorphic:
-        not_supported: Relações polimórficas nos formulários não são suportadas.
       has_one:
         not_supported: Relações um para muitos nos formulários não são suportadas.
     search:

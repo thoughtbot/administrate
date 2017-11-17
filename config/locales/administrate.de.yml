@@ -19,8 +19,6 @@ de:
       has_many:
         more: "%{count} von %{total_count}"
         none: Keine
-      polymorphic:
-        not_supported: Polymorphe Beziehungen werden nicht unterstützt.
       has_one:
         not_supported: HasOne Beziehungen werden nicht unterstützt.
     search:

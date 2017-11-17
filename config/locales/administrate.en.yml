@@ -19,8 +19,6 @@ en:
       has_many:
         more: Showing %{count} of %{total_count}
         none: None
-      polymorphic:
-        not_supported: Polymorphic relationship forms are not supported.
       has_one:
         not_supported: HasOne relationship forms are not supported.
     search:

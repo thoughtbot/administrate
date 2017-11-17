@@ -19,8 +19,6 @@ ja:
       has_many:
         more: "%{total_count} 件中 %{count} 件表示"
         none: データがありません
-      polymorphic:
-        not_supported: フォームでは「多：多」の関連をサポートしていません。
       has_one:
         not_supported: フォームでは「１：１」の関連をサポートしていません。
     search:

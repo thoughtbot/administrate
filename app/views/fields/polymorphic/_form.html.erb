@@ -18,10 +18,15 @@ so this partial renders a message to that effect.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Polymorphic
 %>
 
-<div class="field-unit__label">
-  <%= f.label field.name %>
-</div>
+<%= f.fields_for field.attribute do |pf| %>
+  <div class="field-unit__label">
+    <%= pf.label :value, field.name.humanize %>
+  </div>
 
-<div class="field-unit__field">
-  <%= t("administrate.fields.polymorphic.not_supported") %>
-</div>
+  <div class="field-unit__field">
+    <%= pf.hidden_field(:type, value: field.class.name) %>
+    <%= pf.select(:value) do %>
+      <%= grouped_options_for_select(field.associated_resource_grouped_options, field.selected_global_id, prompt: true) %>
+    <% end %>
+  </div>
+<% end %>

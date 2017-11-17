@@ -19,8 +19,6 @@ ca:
       has_many:
         more: Mostrant %{count} de %{total_count}
         none: Cap
-      polymorphic:
-        not_supported: Els formularis amb relacions polimòrfiques no estàn suportats.
       has_one:
         not_supported: Els formularis amb relacions "HasOne" no estàn suportats.
     search:
