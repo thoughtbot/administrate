@@ -20,8 +20,6 @@ es:
       has_many:
         more: Mostrando %{count} de %{total_count}
         none: Ninguno
-      has_one:
-        not_supported: Los formularios con relaciones HasOne no están soportados.
     form:
       error: error
       errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
