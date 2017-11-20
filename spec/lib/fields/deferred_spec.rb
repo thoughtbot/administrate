@@ -20,7 +20,7 @@ describe Administrate::Field::Deferred do
         deferred.permitted_attribute(:foo)
 
         expect(Administrate::Field::String).
-          to have_received(:permitted_attribute).with(:foo)
+          to have_received(:permitted_attribute).with(:foo, {})
       end
     end
   end
