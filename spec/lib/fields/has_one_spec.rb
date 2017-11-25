@@ -19,15 +19,15 @@ describe Administrate::Field::HasOne do
   end
 
   describe ".permitted_attribute" do
-    context 'with custom class_name' do
+    context "with custom class_name" do
       it "returns attributes from correct dashboard" do
-        field = Administrate::Field::Deferred.
-          new(Administrate::Field::HasOne.with_options(class_name: :product_meta_tag))
+        field = Administrate::Field::Deferred.new(Administrate::Field::HasOne.
+            with_options(class_name: :product_meta_tag))
 
-        field_name = 'seo_meta_tag'
+        field_name = "seo_meta_tag"
         attributes = field.permitted_attribute(field_name)
         expect(attributes[:"#{field_name}_attributes"]).
-          to eq([:meta_title, :meta_description, :id])
+          to eq(%i(meta_title meta_description id))
       end
     end
   end
