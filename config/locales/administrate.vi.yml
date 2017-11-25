@@ -5,8 +5,9 @@ vi:
       confirm: Bạn có chắc không?
       destroy: Xóa
       edit: Sửa
-      show: Xem
-      new: Mới
+      edit_item: Sửa %{item}
+      show: Xem %{item}
+      new: Mới %{resource}
       back: Trở lại
     controller:
       create:

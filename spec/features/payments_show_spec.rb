@@ -5,7 +5,8 @@ feature "payment show page" do
     payment = create(:payment)
 
     visit admin_payment_path(payment)
-    expect(page).not_to have_button t("administrate.actions.edit")
+    expect(page).not_to have_button t("administrate.actions.edit_item",
+                                      item: payment.id)
   end
 
   scenario "user cannot delete record" do

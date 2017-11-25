@@ -5,8 +5,9 @@ ja:
       confirm: 本当によろしいですか？
       destroy: 削除
       edit: 編集
-      show: 参照
-      new: 新規
+      edit_item: 編集 %{item}
+      show: 参照 %{item}
+      new: 新規 %{resource}
       back: 戻る
     controller:
       create:

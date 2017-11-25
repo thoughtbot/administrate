@@ -5,8 +5,9 @@ ar:
       confirm: "هل أنت متأكد ؟"
       destroy: "حذف"
       edit: "تعديل"
-      show: "إظهار"
-      new: "جديد"
+      edit_item: "تعديل %{item}"
+      show: "إظهار %{item}"
+      new: "جديد  %{resource}"
       back: "الى الخلف"
     controller:
       create:

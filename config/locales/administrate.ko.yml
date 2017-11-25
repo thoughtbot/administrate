@@ -5,8 +5,9 @@ ko:
       confirm: 괜찮습니까?
       destroy: 삭제
       edit: 편집
-      show: 보여주기
-      new: 새로운
+      edit_item: 편집 %{item}
+      show: 보여주기 %{item}
+      new: 새로운 %{resource}
       back: 뒤로
     controller:
       create:
