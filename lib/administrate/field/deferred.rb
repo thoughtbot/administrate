@@ -25,8 +25,9 @@ module Administrate
         options.fetch(:searchable, deferred_class.searchable?)
       end
 
-      def permitted_attribute(attr, options=nil)
-        self.options.fetch(:foreign_key, deferred_class.permitted_attribute(attr, self.options))
+      def permitted_attribute(attr, _options = nil)
+        self.options.fetch(:foreign_key,
+          deferred_class.permitted_attribute(attr, self.options))
       end
 
       delegate :html_class, to: :deferred_class

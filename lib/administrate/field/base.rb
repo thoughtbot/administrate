@@ -24,7 +24,7 @@ module Administrate
         @options = options
       end
 
-      def self.permitted_attribute(attr, options=nil)
+      def self.permitted_attribute(attr, _options = nil)
         attr
       end
 
