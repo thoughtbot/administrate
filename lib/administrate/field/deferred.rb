@@ -26,8 +26,8 @@ module Administrate
       end
 
       def permitted_attribute(attr, _options = nil)
-        self.options.fetch(:foreign_key,
-          deferred_class.permitted_attribute(attr, self.options))
+        options.fetch(:foreign_key,
+          deferred_class.permitted_attribute(attr, options))
       end
 
       delegate :html_class, to: :deferred_class
