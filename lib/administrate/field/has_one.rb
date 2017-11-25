@@ -12,7 +12,7 @@ module Administrate
 
       def self.permitted_attribute(attr, options = nil)
         associated_class_name =
-          if options.present?
+          if options
             options.fetch(:class_name, attr.to_s.singularize.camelcase)
           else
             attr
