@@ -3,53 +3,42 @@ module Administrate
     protect_from_forgery with: :exception
 
     def index
-      search_term = params[:search].to_s.strip
-      resources = Administrate::Search.new(scoped_resource,
+      @search_term = params[:search].to_s.strip
+      @resources = Administrate::Search.new(scoped_resource,
                                            dashboard_class,
-                                           search_term).run
-      resources = resources.includes(*resource_includes) if resource_includes.any?
-      resources = order.apply(resources)
-      resources = resources.page(params[:page]).per(records_per_page)
-      page = Administrate::Page::Collection.new(dashboard, order: order)
-
-      render locals: {
-        resources: resources,
-        search_term: search_term,
-        page: page,
-        show_search_bar: show_search_bar?
-      }
+                                           @search_term).run
+      if resource_includes.any?
+        @resources = @resources.includes(*resource_includes)
+      end
+      @resources = order.apply(@resources)
+      @resources = @resources.page(params[:page]).per(records_per_page)
+      @page = Administrate::Page::Collection.new(dashboard, order: order)
+      @show_search_bar = show_search_bar?
     end
 
     def show
-      render locals: {
-        page: Administrate::Page::Show.new(dashboard, requested_resource),
-      }
+      @page = Administrate::Page::Show.new(dashboard, requested_resource)
     end
 
     def new
-      render locals: {
-        page: Administrate::Page::Form.new(dashboard, resource_class.new),
-      }
+      @page = Administrate::Page::Form.new(dashboard, resource_class.new)
     end
 
     def edit
-      render locals: {
-        page: Administrate::Page::Form.new(dashboard, requested_resource),
-      }
+      @page = Administrate::Page::Form.new(dashboard, requested_resource)
     end
 
     def create
-      resource = resource_class.new(resource_params)
+      @resource = resource_class.new(resource_params)
 
-      if resource.save
+      if @resource.save
         redirect_to(
-          [namespace, resource],
+          [namespace, @resource],
           notice: translate_with_resource("create.success"),
         )
       else
-        render :new, locals: {
-          page: Administrate::Page::Form.new(dashboard, resource),
-        }
+        @page = Administrate::Page::Form.new(dashboard, @resource)
+        render :new
       end
     end
 
@@ -60,9 +49,8 @@ module Administrate
           notice: translate_with_resource("update.success"),
         )
       else
-        render :edit, locals: {
-          page: Administrate::Page::Form.new(dashboard, requested_resource),
-        }
+        @page = Administrate::Page::Form.new(dashboard, requested_resource)
+        render :edit
       end
     end
 

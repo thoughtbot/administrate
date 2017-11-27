@@ -2,59 +2,54 @@ require "rails_helper"
 
 describe Admin::Blog::PostsController, type: :controller do
   describe "GET index" do
-    it "passes all posts to the view" do
+    it "assigns all posts as @resources" do
       blog_post = create(:blog_post)
 
-      locals = capture_view_locals { get :index }
-      expect(locals[:resources]).to eq([blog_post])
+      get :index
+
+      expect(assigns(:resources)).to eq([blog_post])
     end
 
-    it "passes the search term to the view" do
-      locals = capture_view_locals do
-        get :index, search: "foo"
-      end
+    it "assigns the search term as @search_term" do
+      get :index, search: "foo"
 
-      expect(locals[:search_term]).to eq("foo")
+      expect(assigns(:search_term)).to eq("foo")
     end
 
-    it "passes the page object to the view" do
-      locals = capture_view_locals { get :index }
+    it "assigns the page object as @page" do
+      get :index
 
-      expect(locals[:page]).to be_instance_of(Administrate::Page::Collection)
+      expect(assigns(:page)).to be_instance_of(Administrate::Page::Collection)
     end
   end
 
   describe "GET show" do
-    it "passes a page object to the view" do
+    it "assigns a page object as @page" do
       blog_post = create(:blog_post)
 
-      locals = capture_view_locals do
-        get :show, id: blog_post.to_param
-      end
+      get :show, id: blog_post.to_param
 
-      page = locals[:page]
+      page = assigns(:page)
       expect(page).to be_instance_of(Administrate::Page::Show)
       expect(page.resource).to eq(blog_post)
     end
   end
 
   describe "GET new" do
-    it "passes a new form page object to the view" do
-      locals = capture_view_locals { get :new }
+    it "assigns a new form page object as @page" do
+      get :new
 
-      expect(locals[:page]).to be_instance_of(Administrate::Page::Form)
+      expect(assigns(:page)).to be_instance_of(Administrate::Page::Form)
     end
   end
 
   describe "GET edit" do
-    it "passes the page object to the view" do
+    it "assigns the page object as @page" do
       blog_post = create(:blog_post)
 
-      locals = capture_view_locals do
-        get :edit, id: blog_post.to_param
-      end
+      get :edit, id: blog_post.to_param
 
-      page = locals[:page]
+      page = assigns(:page)
       expect(page).to be_instance_of(Administrate::Page::Form)
       expect(page.resource).to eq(blog_post)
     end
@@ -78,16 +73,13 @@ describe Admin::Blog::PostsController, type: :controller do
     context "with invalid params" do
       render_views
 
-      it "passes a form page object to the view" do
+      it "assigns a form page object as @page" do
         invalid_attributes = { title: "" }
 
-        locals = capture_view_locals do
-          post :create, blog_post: invalid_attributes
-        end
+        post :create, blog_post: invalid_attributes
 
-        page = locals[:page]
-        expect(page).to be_instance_of(Administrate::Page::Form)
-        expect(page.resource).to be_a_new(Blog::Post)
+        expect(assigns(:page)).to be_instance_of(Administrate::Page::Form)
+        expect(assigns(:page).resource).to be_a_new(Blog::Post)
       end
 
       it "re-renders the 'new' template" do
@@ -135,15 +127,13 @@ describe Admin::Blog::PostsController, type: :controller do
         expect(page.find("h1")).to have_content "Edit"
       end
 
-      it "passes a form page object to the view" do
+      it "assigns a form page object as @page" do
         blog_post = create(:blog_post)
         invalid_attributes = { title: "" }
 
-        locals = capture_view_locals do
-          put :update, id: blog_post.to_param, blog_post: invalid_attributes
-        end
+        put :update, id: blog_post.to_param, blog_post: invalid_attributes
 
-        page = locals[:page]
+        page = assigns(:page)
         expect(page).to be_instance_of(Administrate::Page::Form)
         expect(page.resource).to eq(blog_post)
       end
