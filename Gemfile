@@ -32,6 +32,7 @@ group :test do
   gem "shoulda-matchers", "~> 2.8.0", require: false
   gem "timecop"
   gem "webmock"
+  gem "pundit"
 end
 
 group :staging, :production do

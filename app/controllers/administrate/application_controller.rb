@@ -27,8 +27,10 @@ module Administrate
     end
 
     def new
+      resource = resource_class.new
+      authorize_resource(resource)
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, resource_class.new),
+        page: Administrate::Page::Form.new(dashboard, resource),
       }
     end
 
@@ -40,6 +42,7 @@ module Administrate
 
     def create
       resource = resource_class.new(resource_params)
+      authorize_resource(resource)
 
       if resource.save
         redirect_to(
@@ -103,7 +106,9 @@ module Administrate
     end
 
     def requested_resource
-      @_requested_resource ||= find_resource(params[:id])
+      @_requested_resource ||= find_resource(params[:id]).tap do |resource|
+        authorize_resource(resource)
+      end
     end
 
     def find_resource(param)
@@ -157,6 +162,20 @@ module Administrate
       dashboard.attribute_types_for(
         dashboard.collection_attributes
       ).any? { |_name, attribute| attribute.searchable? }
+    end
+
+    def show_action?(action, resource)
+      true
+    end
+    helper_method :show_action?
+
+    def new_resource
+      resource_class.new
+    end
+    helper_method :new_resource
+
+    def authorize_resource(resource)
+      resource
     end
   end
 end

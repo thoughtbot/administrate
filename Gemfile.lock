@@ -161,6 +161,8 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (3.0.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.3)
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
@@ -274,6 +276,7 @@ DEPENDENCIES
   pg
   poltergeist
   pry-rails
+  pundit
   rack-timeout
   rails_stdout_logging
   redcarpet
