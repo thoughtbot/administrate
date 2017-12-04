@@ -26,5 +26,5 @@ de:
       error: error
       errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
-      clear: Saubere Suche
-      label: Suche %{resource}
+      clear: Suche zurücksetzen
+      label: "%{resource} durchsuchen"
