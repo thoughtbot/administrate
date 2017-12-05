@@ -17,8 +17,8 @@ module Administrate
         "activerecord.models.#{resource_string.singularize}.#{count}",
         default: [
           "administrate.resources.#{resource_string.pluralize}.#{count}".to_sym,
-          resource_string.send(count_method[count.to_sym]).titleize
-        ]
+          resource_string.send(count_method[count.to_sym]).titleize,
+        ],
       )
     end
 
