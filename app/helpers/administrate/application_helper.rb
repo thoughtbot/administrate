@@ -5,6 +5,10 @@ module Administrate
       render locals: locals, partial: field.to_partial_path
     end
 
+    def class_from_resource(resource_name)
+      resource_name.to_s.classify.constantize
+    end
+
     def display_resource_name(resource_name, count: :other)
       resource_string = resource_name.to_s
       count_method = { many: :pluralize, other: :pluralize, one: :singularize }
