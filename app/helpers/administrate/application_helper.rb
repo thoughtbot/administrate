@@ -5,18 +5,15 @@ module Administrate
       render locals: locals, partial: field.to_partial_path
     end
 
-    def class_from_resource(resource_name)
-      resource_name.to_s.classify.constantize
-    end
-
     def display_resource_name(resource_name, count: :other)
       resource_string = resource_name.to_s
       count_method = { many: :pluralize, other: :pluralize, one: :singularize }
+      resource_singular = resource_string.singularize
 
       I18n.t(
-        "activerecord.models.#{resource_string.singularize}.#{count}",
+        "activerecord.models.#{resource_singular}.#{count}",
         default: [
-          "administrate.resources.#{resource_string.pluralize}.#{count}".to_sym,
+          "administrate.resources.#{resource_singular}.#{count}".to_sym,
           resource_string.send(count_method[count.to_sym]).titleize,
         ],
       )

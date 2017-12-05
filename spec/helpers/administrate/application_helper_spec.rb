@@ -58,7 +58,7 @@ RSpec.describe Administrate::ApplicationHelper do
         translations = {
           administrate: {
             resources: {
-              customers: {
+              customer: {
                 one: "User",
                 other: "Users",
               },
