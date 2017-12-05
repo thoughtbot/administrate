@@ -1,7 +1,5 @@
 module Administrate
   module ApplicationHelper
-    PLURAL_MANY_COUNT = 2.1
-
     def render_field(field, locals = {})
       locals.merge!(field: field)
       render locals: locals, partial: field.to_partial_path
@@ -11,13 +9,17 @@ module Administrate
       resource_name.to_s.classify.constantize
     end
 
-    def display_resource_name(resource_name)
-      class_from_resource(resource_name).
-        model_name.
-        human(
-          count: PLURAL_MANY_COUNT,
-          default: resource_name.to_s.pluralize.titleize,
-        )
+    def display_resource_name(resource_name, count: :other)
+      resource_string = resource_name.to_s
+      count_method = { many: :pluralize, other: :pluralize, one: :singularize }
+
+      I18n.t(
+        "activerecord.models.#{resource_string.singularize}.#{count}",
+        default: [
+          "administrate.resources.#{resource_string.pluralize}.#{count}".to_sym,
+          resource_string.send(count_method[count.to_sym]).titleize
+        ]
+      )
     end
 
     def sort_order(order)

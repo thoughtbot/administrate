@@ -8,6 +8,18 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(displayed).to eq("Customers")
     end
 
+    it "handles one count" do
+      displayed = display_resource_name(:customer, count: :one)
+
+      expect(displayed).to eq("Customer")
+    end
+
+    it "handles many count" do
+      displayed = display_resource_name(:customer, count: :many)
+
+      expect(displayed).to eq("Customers")
+    end
+
     it "handles string arguments" do
       displayed = display_resource_name("customer")
 
@@ -20,12 +32,33 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(displayed).to eq("Customers")
     end
 
-    context "when translations are defined" do
+    context "when translations for activerecord model are defined" do
       it "uses the plural of the defined translation" do
         translations = {
           activerecord: {
             models: {
               customer: {
+                one: "User",
+                other: "Users",
+              },
+            },
+          },
+        }
+
+        with_translations(:en, translations) do
+          displayed = display_resource_name(:customer)
+
+          expect(displayed).to eq("Users")
+        end
+      end
+    end
+
+    context "when translation are defined for administrate resource" do
+      it "uses the resource translation" do
+        translations = {
+          administrate: {
+            resources: {
+              customers: {
                 one: "User",
                 other: "Users",
               },
