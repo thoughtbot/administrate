@@ -72,7 +72,13 @@ which are specified through the `.with_options` class method:
 
 **Field::BelongsTo**
 
-`:order` - order of the dropdown menu, can be ordered by more than one column `"name, email DESC"`
+`:order` - Specifies the order of the dropdown menu, can be ordered by more
+than one column. e.g.: `"name, email DESC"`.
+
+`:primary_key` - Specifies object's primary_key. Defaults to `:id`.
+
+`:foreign_key` - Specifies the name of the foreign key directly.
+Defaults to `:#{attribute}_id`.
 
 **Field::HasMany**
 
@@ -82,12 +88,6 @@ which are specified through the `.with_options` class method:
 `:sort_by` - What to sort the association by in the show view.
 
 `:direction` - What direction the sort should be in, `:asc` (default) or `:desc`.
-
-`:primary_key` - Specifies object's primary_key. Defaults to `:id`.
-
-`:foreign_key` - Specifies the name of the foreign key directly. Defaults to `:#{attribute}_id`
-
-**Field::BelongsTo**
 
 `:primary_key` - Specifies object's primary_key. Defaults to `:id`.
 
