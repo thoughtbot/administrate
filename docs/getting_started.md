@@ -109,8 +109,8 @@ Example:
   ].freeze
 ```
 
-It is recommended you make this change in the PR that also adds the attribute to 
-your model.
+It's recommended that you make this change at the same time as you add the 
+attribute to the model
 
 The alternative way to handle this is to re-run `rails g administrate:install` and 
 carefully pick through the diffs. This latter method is probably more cumbersome.
