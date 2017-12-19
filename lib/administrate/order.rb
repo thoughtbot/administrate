@@ -6,11 +6,13 @@ module Administrate
     end
 
     def apply(relation)
-      if relation.columns_hash.keys.include?(attribute.to_s)
-        relation.order("#{attribute} #{direction}")
-      else
-        relation
-      end
+      return order_by_association(relation) unless
+        reflect_association(relation).nil?
+
+      return relation.reorder("#{attribute} #{direction}") if
+        relation.columns_hash.keys.include?(attribute.to_s)
+
+      relation
     end
 
     def ordered_by?(attr)
@@ -40,6 +42,37 @@ module Administrate
 
     def opposite_direction
       direction.to_sym == :asc ? :desc : :asc
+    end
+
+    def order_by_association(relation)
+      return order_by_count(relation) if has_many_attribute?(relation)
+
+      return order_by_id(relation) if belongs_to_attribute?(relation)
+
+      relation
+    end
+
+    def order_by_count(relation)
+      relation.
+      left_joins(attribute.to_sym).
+      group(:id).
+      reorder("COUNT(#{attribute}.id) #{direction}")
+    end
+
+    def order_by_id(relation)
+      relation.reorder("#{attribute}_id #{direction}")
+    end
+
+    def has_many_attribute?(relation)
+      reflect_association(relation).macro == :has_many
+    end
+
+    def belongs_to_attribute?(relation)
+      reflect_association(relation).macro == :belongs_to
+    end
+
+    def reflect_association(relation)
+      relation.klass.reflect_on_association(attribute.to_s)
     end
   end
 end
