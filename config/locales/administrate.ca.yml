@@ -5,8 +5,9 @@ ca:
       confirm: Estàs segur?
       destroy: Destruir
       edit: Editar
-      show: Mostrar
-      new: Nou
+      edit_resource: Editar %{name}
+      show_resource: Mostrar %{name}
+      new_resource: Nou %{name}
       back: Tornar
     controller:
       create:
@@ -21,6 +22,9 @@ ca:
         none: Cap
       has_one:
         not_supported: Els formularis amb relacions "HasOne" no estàn suportats.
+    form:
+      error: error
+      errors: "No s'ha pogut desar aquest/a %{resource_name} perquè hi ha hagut %{pluralized_errors} errors"
     search:
       clear: Esborrar la cerca
       label: Cerca %{resource}
