@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/administrate
     docker:
-      - image: circleci/ruby:2.4.1-node-browsers
+      - image: circleci/ruby:2.4.3-node-browsers
         environment:
           PGHOST: localhost
           PGUSER: administrate
