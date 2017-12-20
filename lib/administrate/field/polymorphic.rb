@@ -11,7 +11,7 @@ module Administrate
         end
       end
 
-      def self.permitted_attribute(attr)
+      def self.permitted_attribute(attr, _options = nil)
         { attr => %i{type value} }
       end
 

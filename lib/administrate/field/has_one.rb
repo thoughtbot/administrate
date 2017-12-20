@@ -3,25 +3,33 @@ require_relative "associative"
 module Administrate
   module Field
     class HasOne < Associative
-      def initialize(attribute, data, page, options = {})
-        resolver = Administrate::ResourceResolver.new("admin/#{attribute}")
-        @nested_form = Administrate::Page::Form.new(
+      def nested_form
+        @nested_form ||= Administrate::Page::Form.new(
           resolver.dashboard_class.new,
           data || resolver.resource_class.new,
         )
-
-        super
       end
 
-      def self.permitted_attribute(attr)
+      def self.permitted_attribute(attr, options = nil)
+        associated_class_name =
+          if options
+            options.fetch(:class_name, attr.to_s.singularize.camelcase)
+          else
+            attr
+          end
         related_dashboard_attributes =
-          Administrate::ResourceResolver.new("admin/#{attr}").
+          Administrate::ResourceResolver.new("admin/#{associated_class_name}").
             dashboard_class.new.permitted_attributes + [:id]
 
         { "#{attr}_attributes": related_dashboard_attributes }
       end
 
-      attr_reader :nested_form
+      private
+
+      def resolver
+        @resolver ||=
+          Administrate::ResourceResolver.new("admin/#{associated_class_name}")
+      end
     end
   end
 end

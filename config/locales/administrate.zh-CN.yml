@@ -20,8 +20,6 @@ zh-CN:
       has_many:
         more: 显示所有 %{total_count} 中 %{count} 条
         none: 无
-      has_one:
-        not_supported: HasOne 关系暂不支持.
     form:
       error: error
       errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"

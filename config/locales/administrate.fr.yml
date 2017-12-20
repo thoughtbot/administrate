@@ -20,8 +20,6 @@ fr:
       has_many:
         more: "%{count} sur %{total_count}"
         none: Aucun
-      has_one:
-        not_supported: Les relations HasOne dans les formulaires ne sont pas supportées.
     form:
       error: error
       errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"

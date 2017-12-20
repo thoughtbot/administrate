@@ -20,8 +20,6 @@ da:
       has_many:
         more: "Viser %{count} af %{total_count}"
         none: Ingen
-      has_one:
-        not_supported: "Formularer med has_one associationer er ikke understøttede."
     form:
       error: error
       errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"

@@ -20,8 +20,6 @@ en:
       has_many:
         more: Showing %{count} of %{total_count}
         none: None
-      has_one:
-        not_supported: HasOne relationship forms are not supported.
     form:
       error: error
       errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
