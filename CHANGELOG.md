@@ -89,7 +89,7 @@
 * [DOC] [#844] Remove the word "simply".
 * [CHANGE] [#791] Remove unneeded Rails dependencies.
 * [CHANGE] [#810] Add `sort_by` and `direction` option for HasMany field.
-* [CHANGE] [#842] Add support for big decimals in formating numbers.
+* [CHANGE] [#842] Add support for big decimals in formatting numbers.
 * [CHANGE] [#793] Update Ruby to 2.4.1 and use .ruby-version on CircleCI.
 * [CHANGE] [#820] Remove markdown-rails and high_voltage.
 * [CHANGE] [#824] Install the latest bundler version on CI.
