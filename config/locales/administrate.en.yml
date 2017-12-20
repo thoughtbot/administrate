@@ -5,8 +5,9 @@ en:
       confirm: Are you sure?
       destroy: Destroy
       edit: Edit
-      show: Show
-      new: New
+      edit_resource: Edit %{name}
+      show_resource: Show %{name}
+      new_resource: New %{name}
       back: Back
     controller:
       create:

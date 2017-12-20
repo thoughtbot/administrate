@@ -4,8 +4,9 @@ bs:
       confirm: Jeste li sigurni?
       destroy: Izbrisati
       edit: Izmjena
-      show: Pregled
-      new: Novi
+      edit_resource: Izmjena %{name}
+      show_resource: Pregled %{name}
+      new_resource: Novi %{resource}
       back: Nazad
     controller:
       create:
