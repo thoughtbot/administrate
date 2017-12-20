@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :customer do
+    country
     sequence(:name) { |n| "Customer #{n}" }
     email { name.downcase.gsub(" ", "_") + "@example.com" }
 
@@ -60,5 +61,10 @@ FactoryBot.define do
 
   factory :series do
     sequence(:name) { |n| "Series #{n}" }
+  end
+
+  factory :country do
+    sequence(:name) { |n| "Country #{n}" }
+    sequence(:code) { |n| "C#{n}" }
   end
 end

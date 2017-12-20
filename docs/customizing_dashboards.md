@@ -87,6 +87,24 @@ Example: `.with_options(scope: -> { MyModel.includes(:rel).limit(5) })`
 `:class_name` - Specifies the name of the associated class.
 Defaults to `:#{attribute}.to_s.singularize.camelcase`.
 
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `false`.
+
+`searchable_field` - Specify which column to use on the search, only applies
+if `searchable` is `true`
+
+For example:
+
+```ruby
+  country: Field::BelongsTo(
+    searchable: true,
+    seachable_field: 'name',
+  )
+```
+
+with this, you will be able to search through the column `name` from the
+association `belongs_to :country`, from your model.
+
 **Field::HasMany**
 
 `:limit` - Set the number of resources to display in the show view. Default is
@@ -107,6 +125,24 @@ Defaults to `:#{attribute}.to_s.singularize.camelcase`.
 
 `:class_name` - Specifies the name of the associated class.
 Defaults to `:#{attribute}.to_s.singularize.camelcase`.
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `false`.
+
+`searchable_field` - Specify which column to use on the search, only applies if
+`searchable` is `true`
+
+For example:
+
+```ruby
+  cities: Field::HasMany(
+    searchable: true,
+    seachable_field: 'name',
+  )
+```
+
+with this, you will be able to search through the column `name` from the
+association `has_many :cities`, from your model.
 
 **Field::Number**
 

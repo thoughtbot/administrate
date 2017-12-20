@@ -9,7 +9,20 @@ class MockDashboard
     name: Administrate::Field::String,
     email: Administrate::Field::Email,
     phone: Administrate::Field::Number,
-  }
+  }.freeze
+end
+
+class MockDashboardWithAssociation
+  ATTRIBUTE_TYPES = {
+    role: Administrate::Field::BelongsTo.with_options(
+      searchable: true,
+      searchable_field: "name",
+    ),
+    address: Administrate::Field::HasOne.with_options(
+      searchable: true,
+      searchable_field: "street",
+    ),
+  }.freeze
 end
 
 describe Administrate::Search do
@@ -83,6 +96,45 @@ describe Administrate::Search do
         search.run
       ensure
         remove_constants :User
+      end
+    end
+
+    context "when searching through associations" do
+      let(:scoped_object) { double(:scoped_object) }
+
+      let(:search) do
+        Administrate::Search.new(
+          scoped_object,
+          MockDashboardWithAssociation,
+          "Тест Test",
+        )
+      end
+
+      let(:expected_query) do
+        [
+          'LOWER(CAST("roles"."name" AS CHAR(256))) LIKE ?'\
+          ' OR LOWER(CAST("addresses"."street" AS CHAR(256))) LIKE ?',
+          "%тест test%",
+          "%тест test%",
+        ]
+      end
+
+      it "joins with the correct association table to query" do
+        allow(scoped_object).to receive(:where)
+
+        expect(scoped_object).to receive(:joins).with(%i(role address)).
+          and_return(scoped_object)
+
+        search.run
+      end
+
+      it "builds the 'where' clause using the joined tables" do
+        allow(scoped_object).to receive(:joins).with(%i(role address)).
+          and_return(scoped_object)
+
+        expect(scoped_object).to receive(:where).with(*expected_query)
+
+        search.run
       end
     end
   end
