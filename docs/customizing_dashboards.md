@@ -84,6 +84,9 @@ Defaults to `:#{attribute}_id`.
 `:scope` - Specifies a custom scope inside a callable. Useful for preloading.
 Example: `.with_options(scope: -> { MyModel.includes(:rel).limit(5) })`
 
+`:class_name` - Specifies the name of the associated class.
+Defaults to `:#{attribute}.to_s.singularize.camelcase`.
+
 **Field::HasMany**
 
 `:limit` - Set the number of resources to display in the show view. Default is
@@ -96,6 +99,14 @@ Example: `.with_options(scope: -> { MyModel.includes(:rel).limit(5) })`
 `:primary_key` - Specifies object's primary_key. Defaults to `:id`.
 
 `:foreign_key` - Specifies the name of the foreign key directly. Defaults to `:#{attribute}_id`
+
+`:class_name` - Specifies the name of the associated class.
+Defaults to `:#{attribute}.to_s.singularize.camelcase`.
+
+**Field::HasOne**
+
+`:class_name` - Specifies the name of the associated class.
+Defaults to `:#{attribute}.to_s.singularize.camelcase`.
 
 **Field::Number**
 
