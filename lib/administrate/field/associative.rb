@@ -10,11 +10,15 @@ module Administrate
       protected
 
       def associated_dashboard
-        "#{associated_class_name}Dashboard".constantize.new
+        dashboard_class_name.constantize.new
       end
 
       def associated_class
         associated_class_name.constantize
+      end
+
+      def dashboard_class_name
+        options.fetch(:dashboard_class_name, "#{associated_class_name}Dashboard")
       end
 
       def associated_class_name
