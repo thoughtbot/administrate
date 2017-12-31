@@ -26,7 +26,7 @@ module Administrate
       protected
 
       def associated_dashboard(klass = data.class)
-        "#{klass.name}Dashboard".constantize.new
+        options.fetch(:dashboard_class_name, "#{klass.name}Dashboard").constantize.new
       end
 
       def classes
