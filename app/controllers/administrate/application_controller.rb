@@ -172,6 +172,7 @@ module Administrate
       to: :resource_resolver
     helper_method :namespace
     helper_method :resource_name
+    helper_method :resource_class
 
     def resource_resolver
       @resource_resolver ||=

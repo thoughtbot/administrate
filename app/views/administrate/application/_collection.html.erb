@@ -33,7 +33,7 @@ to display a collection of resources in an HTML table.
         )) do %>
         <%= t(
           "helpers.label.#{collection_presenter.resource_name}.#{attr_name}",
-          default: attr_name.to_s,
+          default: resource_class.human_attribute_name(attr_name),
         ).titleize %>
             <% if collection_presenter.ordered_by?(attr_name) %>
               <span class="cell-label__sort-indicator cell-label__sort-indicator--<%= collection_presenter.ordered_html_class(attr_name) %>">
