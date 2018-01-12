@@ -7,7 +7,7 @@ ko:
       edit: 편집
       edit_resource: 편집 %{name}
       show_resource: 보여주기 %{name}
-      new_resource: 새로운 %{resource}
+      new_resource: 새로운 %{name}
       back: 뒤로
     controller:
       create:

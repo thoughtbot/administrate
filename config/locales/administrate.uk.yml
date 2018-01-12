@@ -7,7 +7,7 @@ uk:
       edit: Редагувати
       edit_resource: Редагувати %{name}
       show_resource: Показати %{name}
-      new_resource: Новий %{resource}
+      new_resource: Новий %{name}
       back: Назад
     controller:
       create:

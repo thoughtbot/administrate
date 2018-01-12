@@ -7,7 +7,7 @@ sv:
       edit: Ändra
       edit_resource: Ändra %{name}
       show_resource: Visa %{name}
-      new_resource: Ny %{resource}
+      new_resource: Ny %{name}
       back: Tillbaka
     controller:
       create:

@@ -7,7 +7,7 @@ nl:
       edit: Bewerk
       edit_resource: Bewerk %{name}
       show_resource: Toon %{name}
-      new_resource: Nieuw %{resource}
+      new_resource: Nieuw %{name}
       back: Terug
     controller:
       create:

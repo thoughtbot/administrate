@@ -7,7 +7,7 @@ ja:
       edit: 編集
       edit_resource: 編集 %{name}
       show_resource: 参照 %{name}
-      new_resource: 新規 %{resource}
+      new_resource: 新規 %{name}
       back: 戻る
     controller:
       create:

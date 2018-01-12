@@ -7,7 +7,7 @@ it:
       edit: Modifica
       edit_resource: Modifica %{name}
       show_resource: Visualizza %{name}
-      new_resource: Nuovo %{resource}
+      new_resource: Nuovo %{name}
       back: Indietro
     controller:
       create:
