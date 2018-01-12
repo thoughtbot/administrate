@@ -8,7 +8,7 @@ pt-BR:
       edit: Editar
       edit_resource: Editar %{name}
       show_resource: Visualizar %{name}
-      new_resource: Criar %{resource}
+      new_resource: Criar %{name}
       back: Voltar
     controller:
       create:
