@@ -7,7 +7,7 @@ ar:
       edit: "تعديل"
       edit_resource: "تعديل %{name}"
       show_resource: "إظهار %{name}"
-      new_resource: "جديد  %{resource}"
+      new_resource: "جديد  %{name}"
       back: "الى الخلف"
     controller:
       create:

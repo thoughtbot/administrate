@@ -6,7 +6,7 @@ bs:
       edit: Izmjena
       edit_resource: Izmjena %{name}
       show_resource: Pregled %{name}
-      new_resource: Novi %{resource}
+      new_resource: Novi %{name}
       back: Nazad
     controller:
       create:

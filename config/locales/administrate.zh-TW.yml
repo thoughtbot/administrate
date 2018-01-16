@@ -7,7 +7,7 @@ zh-TW:
       edit: 編輯
       edit_resource: 編輯 %{name}
       show_resource: 檢視 %{name}
-      new_resource: 新增 %{resource}
+      new_resource: 新增 %{name}
       back: 返回
     controller:
       create:

@@ -7,7 +7,7 @@ fr:
       edit: Modifier
       edit_resource: Modifier %{name}
       show_resource: Détails %{name}
-      new_resource: Création %{resource}
+      new_resource: Création %{name}
       back: Précédent
     controller:
       create:

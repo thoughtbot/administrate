@@ -7,7 +7,7 @@ vi:
       edit: Sửa
       edit_resource: Sửa %{name}
       show_resource: Xem %{name}
-      new_resource: Mới %{resource}
+      new_resource: Mới %{name}
       back: Trở lại
     controller:
       create:
