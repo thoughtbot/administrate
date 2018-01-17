@@ -25,7 +25,7 @@ module Administrate
       end
 
       def timezone
-        options.fetch(:timezone, "UTC")
+        options.fetch(:timezone, ::Time.zone.name || "UTC")
       end
     end
   end
