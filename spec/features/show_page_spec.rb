@@ -6,25 +6,25 @@ RSpec.describe "customer show page" do
       customer = create(:customer)
       orders = create_list(:order, 4, customer: customer)
       order_ids = orders.map(&:id)
-      ids_in_page_1 = ids_in_page_2 = nil
+      ids_in_page1 = ids_in_page2 = nil
 
       visit admin_customer_path(customer)
 
-      within('.attribute-data--has-many') do
-        ids_in_page_1 = ids_in_table
-        expect(ids_in_page_1.count).to eq 2
-        expect(order_ids).to include(*ids_in_page_1)
+      within(".attribute-data--has-many") do
+        ids_in_page1 = ids_in_table
+        expect(ids_in_page1.count).to eq 2
+        expect(order_ids).to include(*ids_in_page1)
       end
 
       click_on("Next ›")
 
-      within('.attribute-data--has-many') do
-        ids_in_page_2 = ids_in_table
-        expect(ids_in_page_2.count).to eq 2
-        expect(order_ids).to include(*ids_in_page_2)
+      within(".attribute-data--has-many") do
+        ids_in_page2 = ids_in_table
+        expect(ids_in_page2.count).to eq 2
+        expect(order_ids).to include(*ids_in_page2)
       end
 
-      ids_in_table = (ids_in_page_1 + ids_in_page_2).uniq
+      ids_in_table = (ids_in_page1 + ids_in_page2).uniq
       expect(ids_in_table).to match_array(order_ids)
     end
   end
