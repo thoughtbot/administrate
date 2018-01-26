@@ -44,7 +44,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
-      - image: postgres:9.5-alpine
+      - image: postgres:10.1-alpine
         environment:
           POSTGRES_USER: administrate
           POSTGRES_DB: ruby23
@@ -58,7 +58,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
-      - image: postgres:9.5-alpine
+      - image: postgres:10.1-alpine
         environment:
           POSTGRES_USER: administrate
           POSTGRES_DB: ruby24
@@ -72,7 +72,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
-      - image: postgres:9.5-alpine
+      - image: postgres:10.1-alpine
         environment:
           POSTGRES_USER: administrate
           POSTGRES_DB: ruby25
