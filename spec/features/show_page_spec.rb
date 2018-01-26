@@ -138,6 +138,6 @@ RSpec.describe "customer show page" do
   end
 
   def ids_in_table
-    all('tr td:first-child').map(&:text).map(&:to_i)
+    all("tr td:first-child").map(&:text).map(&:to_i)
   end
 end
