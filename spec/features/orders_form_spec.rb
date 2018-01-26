@@ -68,7 +68,7 @@ describe "order form" do
       visit edit_admin_order_path(order)
 
       expected = order.line_items.pluck(:id).map(&:to_s)
-      expect(find("#order_line_item_ids").value).to eq expected
+      expect(find("#order_line_item_ids").value).to match_array(expected)
     end
 
     def find_option(associated_model, field_id)
