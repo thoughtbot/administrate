@@ -44,7 +44,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
       expect(routes).not_to contain("blog")
       expect(routes).not_to contain("post")
 
-      expect(output).to include <<~MSG
+      expect(output).to include <<-MSG.strip_heredoc
         WARNING: Unable to generate a dashboard for Blog::Post.
                  Administrate does not yet support namespaced models.
       MSG
