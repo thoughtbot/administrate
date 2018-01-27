@@ -1,5 +1,4 @@
-require "spec_helper"
-require "support/constant_helpers"
+require "rails_helper"
 require "administrate/field/string"
 require "administrate/field/email"
 require "administrate/field/number"
@@ -45,7 +44,7 @@ describe Administrate::Search do
       end
     end
 
-    it "searches using lower() + LIKE for all searchable fields" do
+    it "searches using LOWER + LIKE for all searchable fields" do
       begin
         class User < ActiveRecord::Base; end
         scoped_object = User.default_scoped
@@ -53,8 +52,8 @@ describe Administrate::Search do
                                           MockDashboard,
                                           "test")
         expected_query = [
-          "lower(\"users\".\"name\") LIKE ?"\
-          " OR lower(\"users\".\"email\") LIKE ?",
+          "LOWER(TEXT(\"users\".\"name\")) LIKE ?"\
+          " OR LOWER(TEXT(\"users\".\"email\")) LIKE ?",
           "%test%",
           "%test%",
         ]
@@ -66,7 +65,7 @@ describe Administrate::Search do
       end
     end
 
-    it "converts search term lower case for latin and cyrillic strings" do
+    it "converts search term LOWER case for latin and cyrillic strings" do
       begin
         class User < ActiveRecord::Base; end
         scoped_object = User.default_scoped
@@ -74,8 +73,8 @@ describe Administrate::Search do
                                           MockDashboard,
                                           "Тест Test")
         expected_query = [
-          "lower(\"users\".\"name\") LIKE ?"\
-          " OR lower(\"users\".\"email\") LIKE ?",
+          "LOWER(TEXT(\"users\".\"name\")) LIKE ?"\
+          " OR LOWER(TEXT(\"users\".\"email\")) LIKE ?",
           "%тест test%",
           "%тест test%",
         ]
