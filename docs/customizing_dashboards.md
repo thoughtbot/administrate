@@ -124,6 +124,9 @@ Or, to display a distance in kilometers:
 `:classes` - Specify a list of classes whose objects will be used to populate select boxes for editing this polymorphic field.
 Default is `[]`.
 
+`:order` - What to sort the association by in the form select.
+Default is `nil`.
+
 **Field::DateTime**
 
 `:format` - Specify what format, using `strftime` you would like `DateTime`
