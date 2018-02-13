@@ -149,7 +149,7 @@ GEM
     momentjs-rails (2.17.1)
       railties (>= 3.1)
     multipart-post (2.0.0)
-    nokogiri (1.8.1)
+    nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     parser (2.4.0.2)
       ast (~> 2.3)
@@ -292,4 +292,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
