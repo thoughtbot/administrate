@@ -5,29 +5,16 @@ describe Admin::CustomersController, type: :controller do
     it "passes all customers to the view" do
       customer = create(:customer)
 
-      locals = capture_view_locals { get :index }
-      expect(locals[:resources]).to eq([customer])
-    end
+      get :index
 
-    it "passes the search term to the view" do
-      locals = capture_view_locals do
-        get :index, search: "foo"
-      end
-
-      expect(locals[:search_term]).to eq("foo")
+      expect(value_assigned_to(:@resources)).to eq([customer])
     end
 
     it "passes the page object to the view" do
-      locals = capture_view_locals { get :index }
+      get :index
 
-      expect(locals[:page]).to be_instance_of(Administrate::Page::Collection)
-    end
-
-    it "shows the search bar" do
-      customer = create(:customer)
-
-      locals = capture_view_locals { get :index }
-      expect(locals[:show_search_bar]).to be_truthy
+      expect(value_assigned_to(:@page)).
+        to be_instance_of(Administrate::Page::Collection)
     end
   end
 
@@ -35,11 +22,9 @@ describe Admin::CustomersController, type: :controller do
     it "passes a page object to the view" do
       customer = create(:customer)
 
-      locals = capture_view_locals do
-        get :show, id: customer.to_param
-      end
+      get :show, id: customer.to_param
 
-      page = locals[:page]
+      page = value_assigned_to(:@page)
       expect(page).to be_instance_of(Administrate::Page::Show)
       expect(page.resource).to eq(customer)
     end
@@ -47,9 +32,10 @@ describe Admin::CustomersController, type: :controller do
 
   describe "GET new" do
     it "passes a new form page object to the view" do
-      locals = capture_view_locals { get :new }
+      get :new
 
-      expect(locals[:page]).to be_instance_of(Administrate::Page::Form)
+      expect(value_assigned_to(:@page)).
+        to be_instance_of(Administrate::Page::Form)
     end
   end
 
@@ -57,11 +43,9 @@ describe Admin::CustomersController, type: :controller do
     it "passes the page object to the view" do
       customer = create(:customer)
 
-      locals = capture_view_locals do
-        get :edit, id: customer.to_param
-      end
+      get :edit, id: customer.to_param
 
-      page = locals[:page]
+      page = value_assigned_to(:@page)
       expect(page).to be_instance_of(Administrate::Page::Form)
       expect(page.resource).to eq(customer)
     end
@@ -86,11 +70,9 @@ describe Admin::CustomersController, type: :controller do
       it "passes a form page object to the view" do
         invalid_attributes = { name: "" }
 
-        locals = capture_view_locals do
-          post :create, customer: invalid_attributes
-        end
+        post :create, customer: invalid_attributes
 
-        page = locals[:page]
+        page = value_assigned_to(:@page)
         expect(page).to be_instance_of(Administrate::Page::Form)
         expect(page.resource).to be_a_new(Customer)
       end
@@ -125,11 +107,9 @@ describe Admin::CustomersController, type: :controller do
         customer = create(:customer)
         invalid_attributes = { name: "" }
 
-        locals = capture_view_locals do
-          put :update, id: customer.to_param, customer: invalid_attributes
-        end
+        put :update, id: customer.to_param, customer: invalid_attributes
 
-        page = locals[:page]
+        page = value_assigned_to(:@page)
         expect(page).to be_instance_of(Administrate::Page::Form)
         expect(page.resource).to eq(customer)
       end

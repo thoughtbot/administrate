@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 gemspec
 
@@ -29,10 +29,10 @@ group :test do
   gem "formulaic"
   gem "launchy"
   gem "poltergeist"
+  gem "pundit"
   gem "shoulda-matchers"
   gem "timecop"
   gem "webmock"
-  gem "pundit"
 end
 
 group :staging, :production do

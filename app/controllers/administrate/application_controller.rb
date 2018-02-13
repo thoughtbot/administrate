@@ -3,56 +3,49 @@ module Administrate
     protect_from_forgery with: :exception
 
     def index
-      search_term = params[:search].to_s.strip
-      resources = Administrate::Search.new(scoped_resource,
-                                           dashboard_class,
-                                           search_term).run
-      resources = resources.includes(*resource_includes) if resource_includes.any?
-      resources = order.apply(resources)
-      resources = resources.page(params[:page]).per(records_per_page)
-      page = Administrate::Page::Collection.new(dashboard, order: order)
-
-      render locals: {
-        resources: resources,
+      @resources = Administrate::Search.new(
+        scoped_resource,
+        dashboard_class,
+        search_term,
+      ).run
+      if resource_includes.any?
+        @resources = @resources.includes(*resource_includes)
+      end
+      @resources = order.apply(@resources)
+      @resources = @resources.page(params[:page]).per(records_per_page)
+      @page = Administrate::Page::Collection.new(
+        dashboard,
+        order: order,
         search_term: search_term,
-        page: page,
-        show_search_bar: show_search_bar?
-      }
+      )
     end
 
     def show
-      render locals: {
-        page: Administrate::Page::Show.new(dashboard, requested_resource),
-      }
+      @page = Administrate::Page::Show.new(dashboard, requested_resource)
     end
 
     def new
-      resource = resource_class.new
-      authorize_resource(resource)
-      render locals: {
-        page: Administrate::Page::Form.new(dashboard, resource),
-      }
+      @resource = resource_class.new
+      authorize_resource(@resource)
+      @page = Administrate::Page::Form.new(dashboard, @resource)
     end
 
     def edit
-      render locals: {
-        page: Administrate::Page::Form.new(dashboard, requested_resource),
-      }
+      @page = Administrate::Page::Form.new(dashboard, requested_resource)
     end
 
     def create
-      resource = resource_class.new(resource_params)
-      authorize_resource(resource)
+      @resource = resource_class.new(resource_params)
+      authorize_resource(@resource)
 
-      if resource.save
+      if @resource.save
         redirect_to(
-          [namespace, resource],
+          [namespace, @resource],
           notice: translate_with_resource("create.success"),
         )
       else
-        render :new, locals: {
-          page: Administrate::Page::Form.new(dashboard, resource),
-        }
+        @page = Administrate::Page::Form.new(dashboard, @resource)
+        render :new
       end
     end
 
@@ -63,9 +56,8 @@ module Administrate
           notice: translate_with_resource("update.success"),
         )
       else
-        render :edit, locals: {
-          page: Administrate::Page::Form.new(dashboard, requested_resource),
-        }
+        @page = Administrate::Page::Form.new(dashboard, requested_resource)
+        render :edit
       end
     end
 
@@ -99,6 +91,10 @@ module Administrate
 
     def order
       @_order ||= Administrate::Order.new(params[:order], params[:direction])
+    end
+
+    def search_term
+      params[:search].to_s.strip
     end
 
     def dashboard
@@ -156,12 +152,6 @@ module Administrate
         "administrate.controller.#{key}",
         resource: resource_resolver.resource_title,
       )
-    end
-
-    def show_search_bar?
-      dashboard.attribute_types_for(
-        dashboard.collection_attributes
-      ).any? { |_name, attribute| attribute.searchable? }
     end
 
     def show_action?(action, resource)

@@ -5,9 +5,9 @@ This view is the template for the "new resource" page.
 It displays a header, and then renders the `_form` partial
 to do the heavy lifting.
 
-## Local variables:
+## Instance variables:
 
-- `page`:
+- `@page`:
   An instance of [Administrate::Page::Form][1].
   Contains helper methods to help display a form,
   and knows which attributes should be displayed in the resource's form.
@@ -18,7 +18,7 @@ to do the heavy lifting.
 <% content_for(:title) do %>
   <%= t(
     "administrate.actions.new_resource",
-    name: display_resource_name(page.resource_name).titleize
+    name: display_resource_name(@page.resource_name).titleize
   ) %>
 <% end %>
 
@@ -33,5 +33,5 @@ to do the heavy lifting.
 </header>
 
 <section class="main-content__body">
-  <%= render "form", page: page %>
+  <%= render "form", page: @page %>
 </section>

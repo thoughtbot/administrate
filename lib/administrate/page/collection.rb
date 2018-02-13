@@ -21,6 +21,16 @@ module Administrate
         ordered_by?(attr) && order.direction
       end
 
+      def search_term
+        options[:search_term]
+      end
+
+      def show_search_bar?
+        dashboard.
+          attribute_types_for(dashboard.collection_attributes).
+          any? { |_name, attribute| attribute.searchable? }
+      end
+
       delegate :ordered_by?, :order_params_for, to: :order
 
       private

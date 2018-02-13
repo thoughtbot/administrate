@@ -25,8 +25,9 @@ describe Admin::OrdersController, type: :controller do
     # Policies are defined in order_policy.rb
     describe "GET index" do
       it "shows only the records in the admin scope" do
-        locals = capture_view_locals { get :index }
-        expect(locals[:resources].count).to eq(9) # only my orders
+        get :index
+
+        expect(value_assigned_to(:@resources).count).to eq(9) # only my orders
       end
     end
 
@@ -39,11 +40,13 @@ describe Admin::OrdersController, type: :controller do
     describe "GET edit" do
       it "allows me to edit records in Arizona" do
         az = create :order, customer: user, address_state: "AZ"
+
         expect { get :edit, id: az.id }.not_to raise_error
       end
 
       it "does not allow me to edit other records" do
         ga = create :order, customer: user, address_state: "GA"
+
         expect { get :edit, id: ga.id }.
           to raise_error(Pundit::NotAuthorizedError)
       end
@@ -52,6 +55,7 @@ describe Admin::OrdersController, type: :controller do
     describe "DELETE destroy" do
       it "never allows me to delete a record" do
         o = create :order, customer: user, address_state: "AZ"
+
         expect { delete :destroy, id: o.id }.
           to raise_error(Pundit::NotAuthorizedError)
       end
@@ -60,16 +64,19 @@ describe Admin::OrdersController, type: :controller do
     describe "#show_action?" do
       it "shows edit actions for records in AZ" do
         o = create :order, customer: user, address_state: "AZ"
+
         expect(controller.show_action?(:edit, o)).to be true
       end
 
       it "does not show edit actions for records elsewhere" do
         o = create :order, customer: user, address_state: "GA"
+
         expect(controller.show_action?(:edit, o)).to be false
       end
 
       it "never shows destroy actions" do
         o = create :order, customer: user, address_state: "AZ"
+
         expect(controller.show_action?(:destroy, o)).to be false
       end
     end

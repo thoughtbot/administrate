@@ -32,11 +32,9 @@ describe Admin::LogEntriesController, type: :controller do
       it "passes a form page object to the view" do
         customer = create(:customer)
 
-        locals = capture_view_locals do
-          post_create(action: "cancel", logeable: customer)
-        end
+        post_create(action: "cancel", logeable: customer)
 
-        page = locals[:page]
+        page = value_assigned_to(:@page)
         expect(page).to be_instance_of(Administrate::Page::Form)
         expect(page.resource).to be_a_new(LogEntry)
       end
@@ -81,11 +79,9 @@ describe Admin::LogEntriesController, type: :controller do
         log_entry = create(:log_entry, logeable: customer)
         new_action = "cancel"
 
-        locals = capture_view_locals do
-          put_update(log_entry, action: new_action, logeable: customer)
-        end
+        put_update(log_entry, action: new_action, logeable: customer)
 
-        page = locals[:page]
+        page = value_assigned_to(:@page)
         expect(page).to be_instance_of(Administrate::Page::Form)
         expect(page.resource).to eq(log_entry)
         expect(page.resource.action).to eq(new_action)
