@@ -27,7 +27,7 @@ module Administrate
     end
 
     def new
-      resource = resource_class.new
+      resource = new_resource
       authorize_resource(resource)
       render locals: {
         page: Administrate::Page::Form.new(dashboard, resource),
