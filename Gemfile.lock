@@ -54,7 +54,7 @@ GEM
       thor (>= 0.14.0)
     arel (8.0.0)
     ast (2.3.0)
-    autoprefixer-rails (7.2.5)
+    autoprefixer-rails (8.0.0)
       execjs
     awesome_print (1.8.0)
     builder (3.2.3)
