@@ -30,7 +30,7 @@ group :test do
   gem "formulaic"
   gem "launchy"
   gem "poltergeist"
-  gem "shoulda-matchers", "~> 2.8.0", require: false
+  gem "shoulda-matchers"
   gem "timecop"
   gem "webmock"
   gem "pundit"
