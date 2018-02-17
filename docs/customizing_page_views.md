@@ -12,7 +12,7 @@ call the generators with no arguments.
 ```bash
 rails generate administrate:views:index
  # -> app/views/admin/application/index.html.erb
- # -> app/views/admin/application/_table.html.erb
+ # -> app/views/admin/application/_collection.html.erb
 
 rails generate administrate:views:show
  # -> app/views/admin/application/show.html.erb
@@ -43,7 +43,7 @@ pass in the resource name to the view generators.
 ```bash
 rails generate administrate:views:index User
  # -> app/views/admin/users/index.html.erb
- # -> app/views/admin/users/_table.html.erb
+ # -> app/views/admin/users/_collection.html.erb
 
 rails generate administrate:views:show User
  # -> app/views/admin/users/show.html.erb

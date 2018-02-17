@@ -5,8 +5,9 @@ es:
       confirm: ¿Estás seguro?
       destroy: Destruir
       edit: Editar
-      show: Mostrar
-      new: Nuevo
+      edit_resource: Editar %{name}
+      show_resource: Mostrar %{name}
+      new_resource: Nuevo %{name}
       back: Volver
     controller:
       create:
@@ -19,10 +20,9 @@ es:
       has_many:
         more: Mostrando %{count} de %{total_count}
         none: Ninguno
-      polymorphic:
-        not_supported: Los formularios con relaciones polimórficas no están soportados.
-      has_one:
-        not_supported: Los formularios con relaciones HasOne no están soportados.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: Borrar búsqueda
       label: Buscar %{resource}

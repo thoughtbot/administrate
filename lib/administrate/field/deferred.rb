@@ -11,7 +11,8 @@ module Administrate
       attr_reader :deferred_class, :options
 
       def new(*args)
-        deferred_class.new(*args, options)
+        new_options = args.last.respond_to?(:merge) ? args.pop : {}
+        deferred_class.new(*args, options.merge(new_options))
       end
 
       def ==(other)
@@ -24,11 +25,12 @@ module Administrate
         options.fetch(:searchable, deferred_class.searchable?)
       end
 
-      delegate(
-        :html_class,
-        :permitted_attribute,
-        to: :deferred_class,
-      )
+      def permitted_attribute(attr, _options = nil)
+        options.fetch(:foreign_key,
+          deferred_class.permitted_attribute(attr, options))
+      end
+
+      delegate :html_class, to: :deferred_class
     end
   end
 end

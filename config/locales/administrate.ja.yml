@@ -5,8 +5,9 @@ ja:
       confirm: 本当によろしいですか？
       destroy: 削除
       edit: 編集
-      show: 参照
-      new: 新規
+      edit_resource: 編集 %{name}
+      show_resource: 参照 %{name}
+      new_resource: 新規 %{name}
       back: 戻る
     controller:
       create:
@@ -19,10 +20,9 @@ ja:
       has_many:
         more: "%{total_count} 件中 %{count} 件表示"
         none: データがありません
-      polymorphic:
-        not_supported: フォームでは「多：多」の関連をサポートしていません。
-      has_one:
-        not_supported: フォームでは「１：１」の関連をサポートしていません。
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: 検索をクリアする
       label: サーチ %{resource}

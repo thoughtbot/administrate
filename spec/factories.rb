@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :customer do
     sequence(:name) { |n| "Customer #{n}" }
     email { name.downcase.gsub(" ", "_") + "@example.com" }
@@ -21,6 +21,11 @@ FactoryGirl.define do
     quantity 1
   end
 
+  factory :log_entry do
+    action "create"
+    association :logeable, factory: :customer
+  end
+
   factory :order do
     customer
     address_line_one "85 2nd St"
@@ -36,6 +41,12 @@ FactoryGirl.define do
     description "A cutthroat game of financial conquest"
     image_url \
       "https://cdn.recombu.com/mobile/images/news/M11370/1264769196_w670.jpg"
+    product_meta_tag
+  end
+
+  factory :product_meta_tag do
+    meta_title "meta_title"
+    meta_description "meta_description"
   end
 
   factory :payment do
@@ -45,5 +56,9 @@ FactoryGirl.define do
   factory :blog_post, class: "Blog::Post" do
     sequence(:title) { |n| "Post #{n}" }
     body "Empty"
+  end
+
+  factory :series do
+    sequence(:name) { |n| "Series #{n}" }
   end
 end

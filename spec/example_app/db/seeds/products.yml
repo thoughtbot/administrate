@@ -1,40 +1,40 @@
 -
   name: Blokus
   description: A game of short-lived alliances and geometric backstabbing.
-  image_url: http://0.tqn.com/d/childparenting/1/S/S/B/-/-/untitled.JPG
+  image_url: https://s3.amazonaws.com/thoughtbot-images/administrate/blokus.jpg
 -
   name: The Logo Board Game
   description: A game of logo recognition. That's really all there is to it.
-  image_url: http://i.imgur.com/l78aNdz.jpg
+  image_url: https://s3.amazonaws.com/thoughtbot-images/administrate/logo_board_game.jpg
 -
   name: Ker-Plunk
   description: Jenga, but more unpredictable.
-  image_url: http://www.comparestoreprices.co.uk/images/ha/hasbro-kerplunk.jpg
+  image_url: https://s3.amazonaws.com/thoughtbot-images/administrate/kerplunk.jpg
 -
   name: Frustration!
   description: I really don't know what this game is about.
-  image_url: http://ecx.images-amazon.com/images/I/61vCfLfxExL._SS500_.jpg
+  image_url: https://s3.amazonaws.com/thoughtbot-images/administrate/frustration.jpg
 -
   name: Cranium
   description: Are you smart enough?
-  image_url: http://thefuntimesguide.com/images/blogs/cranium-board-game.JPG
+  image_url: https://s3.amazonaws.com/thoughtbot-images/administrate/cranium.jpg
 -
   name: Sorry!
   description: No, really. I'm truly sorry. If I had known how things would turn out, I never would have put you in that situation.
-  image_url: http://3.bp.blogspot.com/-FF0oA70KNlc/T5zhaDL4jwI/AAAAAAAAAfo/qoPMAjbLnUs/s1600/Board_Game_Sorry.jpg
+  image_url: https://s3.amazonaws.com/thoughtbot-images/administrate/sorry.jpg
 -
   name: Candy Land
   description: Tasty!
-  image_url: http://images.wikia.com/thehungergames/images/3/39/Candyland_Game_Board.jpg
+  image_url: https://s3.amazonaws.com/thoughtbot-images/administrate/candyland.jpg
 -
   name: The Game of Life
   description: YOPO - You only play once.
-  image_url: http://www.toptenz.net/wp-content/uploads/2008/06/game-of-life.gif
+  image_url: https://s3.amazonaws.com/thoughtbot-images/administrate/gameoflife.gif
 -
   name: Mystery Mansion
   description: If I told you what it was about, it wouldn't be much of a mystery - would it?
-  image_url: http://allaboutfunandgames.com/wp-content/uploads/2011/10/Mystery-Mansion-Board-Game.jpg
+  image_url: https://s3.amazonaws.com/thoughtbot-images/administrate/mysterymansion.jpg
 -
   name: Monopoly
   description: A cutthroat game of financial conquest.
-  image_url: https://cdn.recombu.com/mobile/images/news/M11370/1264769196_w670.jpg
+  image_url: https://s3.amazonaws.com/thoughtbot-images/administrate/monopoly.jpg

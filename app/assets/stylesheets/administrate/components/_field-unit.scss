@@ -19,3 +19,18 @@
   margin-left: 2rem;
   width: 45%;
 }
+
+.field-unit--nested {
+  border: $base-border;
+  margin-left: 7.5%;
+  padding: $small-spacing;
+  width: 50%;
+
+  .field-unit__field {
+    width: calc(75% - 1rem);
+  }
+
+  .field-unit__label {
+    width: calc(25% - 1rem);
+  }
+}

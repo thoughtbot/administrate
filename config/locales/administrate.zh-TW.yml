@@ -5,8 +5,9 @@ zh-TW:
       confirm: 確定？
       destroy: 刪除
       edit: 編輯
-      show: 檢視
-      new: 新增
+      edit_resource: 編輯 %{name}
+      show_resource: 檢視 %{name}
+      new_resource: 新增 %{name}
       back: 返回
     controller:
       create:
@@ -19,10 +20,9 @@ zh-TW:
       has_many:
         more: 顯示 %{total_count} 筆中的 %{count} 筆資料
         none: 無
-      polymorphic:
-        not_supported: 表單尚未支援 Polymorphic 關聯。
-      has_one:
-        not_supported: 表單尚未支援 HasOne 關聯。
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: 清除搜索
       label: 搜索 %{resource}

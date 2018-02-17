@@ -6,8 +6,9 @@ pt-BR:
       confirm: Você tem certeza?
       destroy: Deletar
       edit: Editar
-      show: Visualizar
-      new: Criar
+      edit_resource: Editar %{name}
+      show_resource: Visualizar %{name}
+      new_resource: Criar %{name}
       back: Voltar
     controller:
       create:
@@ -20,10 +21,9 @@ pt-BR:
       has_many:
         more: "Exibindo %{count} de %{total_count}"
         none: Nenhum
-      polymorphic:
-        not_supported: Relações polimórficas nos formulários não são suportadas.
-      has_one:
-        not_supported: Relações um para muitos nos formulários não são suportadas.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: Limpar pesquisa
       label: Pesquisa %{resource}

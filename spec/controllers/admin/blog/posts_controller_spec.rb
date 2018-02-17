@@ -76,6 +76,8 @@ describe Admin::Blog::PostsController, type: :controller do
     end
 
     context "with invalid params" do
+      render_views
+
       it "passes a form page object to the view" do
         invalid_attributes = { title: "" }
 
@@ -93,7 +95,7 @@ describe Admin::Blog::PostsController, type: :controller do
 
         post :create, blog_post: invalid_attributes
 
-        expect(response).to render_template("new")
+        expect(page.find("h1")).to have_content "New Blog/Post"
       end
     end
   end
@@ -122,13 +124,15 @@ describe Admin::Blog::PostsController, type: :controller do
     end
 
     context "with invalid params" do
+      render_views
+
       it "re-renders the 'edit' template" do
         blog_post = create(:blog_post)
         invalid_attributes = { title: "" }
 
         put :update, id: blog_post.to_param, blog_post: invalid_attributes
 
-        expect(response).to render_template("edit")
+        expect(page.find("h1")).to have_content "Edit"
       end
 
       it "passes a form page object to the view" do
@@ -162,5 +166,11 @@ describe Admin::Blog::PostsController, type: :controller do
 
       expect(response).to redirect_to(admin_blog_posts_path)
     end
+  end
+
+  private
+
+  def page
+    Capybara::Node::Simple.new(response.body)
   end
 end

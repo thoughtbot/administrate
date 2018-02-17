@@ -19,3 +19,8 @@
   margin-left: 2rem;
   width: calc(85% - 1rem);
 }
+
+.attribute--nested {
+  border: $base-border;
+  padding: $small-spacing;
+}

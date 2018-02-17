@@ -5,8 +5,9 @@ ko:
       confirm: 괜찮습니까?
       destroy: 삭제
       edit: 편집
-      show: 보여주기
-      new: 새로운
+      edit_resource: 편집 %{name}
+      show_resource: 보여주기 %{name}
+      new_resource: 새로운 %{name}
       back: 뒤로
     controller:
       create:
@@ -19,10 +20,9 @@ ko:
       has_many:
         more: "%{total_count} 개 중에서 %{count} 개"
         none: 없음
-      polymorphic:
-        not_supported: 상속 관계에 대한 양식은 제공되지 않습니다.
-      has_one:
-        not_supported: 일대일 관계에 대한 양식은 제공되지 않습니다.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: 검색 초기화
       label: "%{resource} 검색"

@@ -5,8 +5,9 @@ zh-CN:
       confirm: 确定?
       destroy: 删除
       edit: 编辑
-      show: 查看
-      new: 新建
+      edit_resource: 编辑 %{name}
+      show_resource: 查看 %{name}
+      new_resource: 新建 %{name}
       back: 返回
     controller:
       create:
@@ -19,10 +20,9 @@ zh-CN:
       has_many:
         more: 显示所有 %{total_count} 中 %{count} 条
         none: 无
-      polymorphic:
-        not_supported: Polymorphic 关系暂不支持
-      has_one:
-        not_supported: HasOne 关系暂不支持.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: 清除搜索
       label: 搜索 %{resource}

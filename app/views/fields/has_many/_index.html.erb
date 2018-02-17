@@ -16,4 +16,4 @@ as a count of how many objects are associated through the relationship.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/HasMany
 %>
 
-<%= pluralize(field.data.size, field.attribute.to_s.humanize.downcase) %>
+<%= pluralize(field.data.size, field.attribute.to_s.humanize.downcase.singularize) %>

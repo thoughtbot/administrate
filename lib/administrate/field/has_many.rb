@@ -7,8 +7,8 @@ module Administrate
     class HasMany < Associative
       DEFAULT_LIMIT = 5
 
-      def self.permitted_attribute(attribute)
-        { "#{attribute.to_s.singularize}_ids".to_sym => [] }
+      def self.permitted_attribute(attr, _options = nil)
+        { "#{attr.to_s.singularize}_ids".to_sym => [] }
       end
 
       def associated_collection
@@ -26,7 +26,9 @@ module Administrate
       end
 
       def selected_options
-        data && data.map { |object| object.send(primary_key) }
+        return if data.empty?
+
+        data.map { |object| object.send(primary_key) }
       end
 
       def limit
@@ -44,6 +46,10 @@ module Administrate
 
       def more_than_limit?
         data.count(:all) > limit
+      end
+
+      def data
+        @data ||= associated_class.none 
       end
 
       private

@@ -5,7 +5,8 @@ gemspec
 gem "administrate-field-image"
 gem "autoprefixer-rails"
 gem "faker"
-gem "pg"
+gem "globalid"
+gem "pg", "0.21.0"
 gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
@@ -16,10 +17,10 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem "byebug"
   gem "dotenv-rails"
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "i18n-tasks"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.5.0"
+  gem "rspec-rails"
 end
 
 group :test do
@@ -28,10 +29,10 @@ group :test do
   gem "formulaic"
   gem "launchy"
   gem "poltergeist"
-  gem "rails-controller-testing"
-  gem "shoulda-matchers", "~> 2.8.0", require: false
+  gem "shoulda-matchers"
   gem "timecop"
   gem "webmock"
+  gem "pundit"
 end
 
 group :staging, :production do

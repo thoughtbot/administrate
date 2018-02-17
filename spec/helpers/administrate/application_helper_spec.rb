@@ -41,4 +41,24 @@ RSpec.describe Administrate::ApplicationHelper do
       end
     end
   end
+
+  describe "#resource_index_route_key" do
+    it "handles index routes when resource is uncountable" do
+      route_key = resource_index_route_key(:series)
+      expect(route_key).to eq("series_index")
+    end
+
+    it "handles normal inflection" do
+      route_key = resource_index_route_key(:customer)
+      expect(route_key).to eq("customers")
+    end
+  end
+
+  describe "#sort_order" do
+    it "sanitizes to ascending/descending/none" do
+      expect(sort_order("asc")).to eq("ascending")
+      expect(sort_order("desc")).to eq("descending")
+      expect(sort_order("for anything else")).to eq("none")
+    end
+  end
 end

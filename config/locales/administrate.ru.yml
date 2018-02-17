@@ -5,8 +5,9 @@ ru:
       confirm: Вы уверены?
       destroy: Удалить
       edit: Редактировать
-      show: Показать
-      new: Новый
+      edit_resource: Редактировать %{name}
+      show_resource: Показать %{name}
+      new_resource: Новый %{name}
       back: Вернуться назад
     controller:
       create:
@@ -19,10 +20,9 @@ ru:
       has_many:
         more: "%{count} из %{total_count}"
         none: Нет
-      polymorphic:
-        not_supported: Полиморфные отношения в формах не поддерживаются.
-      has_one:
-        not_supported: HasOne отношения в формах не поддерживаются.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: Очистить поиск
       label: Поиск %{resource}

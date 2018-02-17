@@ -4,7 +4,7 @@
 This partial renders a has_one relationship,
 to be displayed on a resource's show page.
 
-By default, the relationship is rendered as a link to the associated object.
+All fields of has_one relationship would be rendered
 
 ## Local variables:
 
@@ -16,8 +16,25 @@ By default, the relationship is rendered as a link to the associated object.
 %>
 
 <% if field.data %>
-  <%= link_to(
-    field.display_associated_resource,
-    [namespace, field.data],
-  ) %>
+  <fieldset class="attribute--nested">
+    <legend>
+      <%= link_to(
+        field.display_associated_resource,
+        [namespace, field.data],
+      ) %>
+    </legend>
+    <% field.nested_form.attributes.each do |attribute| -%>
+      <div>
+      <dt class="attribute-label">
+        <%= t(
+          "helpers.label.#{resource_name}.#{attribute.name}",
+          default: attribute.name.titleize,
+        ) %>
+      </dt>
+      <dd class="attribute-data attribute-data--<%= attribute.html_class %>">
+        <%= attribute.data %>
+      </dd>
+      </div>
+    <% end -%>
+  </fieldset>
 <% end %>

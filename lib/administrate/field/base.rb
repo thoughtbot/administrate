@@ -20,10 +20,11 @@ module Administrate
         @attribute = attribute
         @data = data
         @page = page
+        @resource = options.delete(:resource)
         @options = options
       end
 
-      def self.permitted_attribute(attr)
+      def self.permitted_attribute(attr, _options = nil)
         attr
       end
 
@@ -39,7 +40,7 @@ module Administrate
         "/fields/#{self.class.field_type}/#{page}"
       end
 
-      attr_reader :attribute, :data, :page
+      attr_reader :attribute, :data, :page, :resource
 
       protected
 

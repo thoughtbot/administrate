@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507115814) do
+ActiveRecord::Schema.define(version: 20171031155447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,13 +23,37 @@ ActiveRecord::Schema.define(version: 20170507115814) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "customers", id: :serial, force: :cascade do |t|
+  create_table "countries", force: :cascade do |t|
+    t.string "code", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_countries_on_code", unique: true
+  end
+
+  create_table "customers", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "email_subscriber"
     t.string "kind", default: "standard", null: false
+    t.string "country_code"
+  end
+
+  create_table "delayed_jobs", id: :serial, force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "line_items", id: :serial, force: :cascade do |t|
@@ -41,6 +65,15 @@ ActiveRecord::Schema.define(version: 20170507115814) do
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_line_items_on_order_id"
     t.index ["product_id"], name: "index_line_items_on_product_id"
+  end
+
+  create_table "log_entries", force: :cascade do |t|
+    t.string "action"
+    t.string "logeable_type"
+    t.bigint "logeable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["logeable_type", "logeable_id"], name: "index_log_entries_on_logeable_type_and_logeable_id"
   end
 
   create_table "orders", id: :serial, force: :cascade do |t|
@@ -61,6 +94,14 @@ ActiveRecord::Schema.define(version: 20170507115814) do
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
+  create_table "product_meta_tags", id: :serial, force: :cascade do |t|
+    t.integer "product_id"
+    t.string "meta_title", null: false
+    t.string "meta_description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", id: :serial, force: :cascade do |t|
     t.string "name"
     t.float "price"
@@ -70,6 +111,10 @@ ActiveRecord::Schema.define(version: 20170507115814) do
     t.datetime "updated_at", null: false
     t.string "slug", null: false
     t.index ["slug"], name: "index_products_on_slug", unique: true
+  end
+
+  create_table "series", force: :cascade do |t|
+    t.string "name", null: false
   end
 
   add_foreign_key "line_items", "orders"

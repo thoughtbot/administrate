@@ -1,0 +1,102 @@
+---
+default_job: &default_job
+  working_directory: ~/administrate
+  steps:
+    - checkout
+
+    # Restore Cached Dependencies
+    - type: cache-restore
+      name: Restore bundle cache
+      key: administrate-{{ checksum "Gemfile.lock" }}
+
+    # Bundle install dependencies
+    - run: bundle install --path vendor/bundle
+
+    # Install Appraisal gemfiles
+    - run: bundle exec appraisal install
+
+    # Cache Dependencies
+    - type: cache-save
+      name: Store bundle cache
+      key: administrate-{{ checksum "Gemfile.lock" }}
+      paths:
+        - vendor/bundle
+
+    # Wait for DB
+    - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+    # Setup the environment
+    - run: cp .sample.env .env
+
+    # Setup the database
+    - run: bundle exec rake db:setup
+
+    # Run the tests
+    - run: bundle exec rake
+    - run: bundle exec appraisal rake
+
+jobs:
+  ruby-2.2:
+    <<: *default_job
+    docker:
+      - image: circleci/ruby:2.2.9-node-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:9.5-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby22
+          POSTGRES_PASSWORD: ""
+
+  ruby-2.3:
+    <<: *default_job
+    docker:
+      - image: circleci/ruby:2.3-node-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby23
+          POSTGRES_PASSWORD: ""
+
+  ruby-2.4:
+    <<: *default_job
+    docker:
+      - image: circleci/ruby:2.4.3-node-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby24
+          POSTGRES_PASSWORD: ""
+
+  ruby-2.5:
+    <<: *default_job
+    docker:
+      - image: circleci/ruby:2.5.0-node-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby25
+          POSTGRES_PASSWORD: ""
+
+workflows:
+  version: 2
+  multiple-rubies:
+    jobs:
+      - ruby-2.5
+      - ruby-2.4
+      - ruby-2.3
+      - ruby-2.2

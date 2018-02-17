@@ -5,8 +5,9 @@ nl:
       confirm: Weet u het zeker?
       destroy: Verwijder
       edit: Bewerk
-      show: Toon
-      new: Nieuw
+      edit_resource: Bewerk %{name}
+      show_resource: Toon %{name}
+      new_resource: Nieuw %{name}
       back: Terug
     controller:
       create:
@@ -19,10 +20,9 @@ nl:
       has_many:
         more: Resultaat %{count} van %{total_count}
         none: Geen
-      polymorphic:
-        not_supported: Polymorphische relaties formulieren worden niet ondersteund.
-      has_one:
-        not_supported: HasOne relaties formulieren worden niet ondersteund.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: CDuidelijke zoek
       label: Zoeken %{resource}

@@ -5,8 +5,9 @@ vi:
       confirm: Bạn có chắc không?
       destroy: Xóa
       edit: Sửa
-      show: Xem
-      new: Mới
+      edit_resource: Sửa %{name}
+      show_resource: Xem %{name}
+      new_resource: Mới %{name}
       back: Trở lại
     controller:
       create:
@@ -19,10 +20,9 @@ vi:
       has_many:
         more: "%{count} trên %{total_count}"
         none: Không
-      polymorphic:
-        not_supported: Quan hệ Polymorphic chưa được hỗ trợ.
-      has_one:
-        not_supported: Quan hệ HasOne chưa được hỗ trợ.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: Tìm kiếm rõ ràng
       label: Tìm kiếm %{resource}
