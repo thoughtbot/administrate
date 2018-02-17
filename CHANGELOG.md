@@ -16,6 +16,64 @@
 
 ## Changes
 
+### 0.9.0 (February 17, 2018)
+
+* [COMPAT] [#1098] Update all the dependent gems.
+* [COMPAT] [#1099] Update shoulda-matchers from 2.8.0 to 3.1.2.
+* [DOC] [#1081] Update Field::Polymorphic doc to include order option.
+* [COMPAT] [#1095] Upgrade nokogiri to 1.8.2.
+* [i18n] [#1094] Translate form error keys in French.
+* [COMPAT] [#1079] Cast all search queries to text.
+* [COMPAT] [#1077] Switch out squiggly-heredoc for Ruby 2.2 support.
+* [COMPAT] [#1077] Add Ruby 2.2.9 to Circle and clarify support.
+* [BUGFIX] [#1076] [#1078] Fix issues with flaky tests due to ordering
+* [COMPAT] [#1075] Upgrade Circle CI Postgres to 10.1.
+* [COMPAT] [#1032] Add additional Rubies to CI using Workflows.
+* [COMPAT] [#1074] Upgrade to Ruby 2.5.0.
+* [BUGFIX] [#1046] Fix wrong variable name in new_resource key.
+* [i18n] [#1055] Singularize field name in HasMany index partial.
+* [BUGFIX] [#1068] Only define Punditize if Pundit has been loaded.
+* [COMPAT] [#1067] Include pundit in the Gemfiles.
+* [i18n] [#1056] Don't pluralise "New [resource]" buttons.
+* [i18n] [#1057] Translate form error keys in Catalan.
+* [i18n] [#1054] Add missing keys to Catalan.
+* [DOC] [#1040] Add a note about adding to Dashboards.
+* [BUGFIX] [#1028] Fix of class_name option on has_one fields.
+* [DOC] [#1052] Fix Typo in Changelog.
+* [FEATURE] [#999] Order attributes by association if it exists.
+* [DOC] [#1039] Merge both Field::BelongsTo options_with sections.
+* [i18n] [#1041] Improve German translation of form.errors.
+* [i18n] [#1004] Add form I18n keys to non-default locales.
+* [i18n] [#1004] Add show-/new-/edit- _resource I18n keys non-default locales.
+* [i18n] [#1004] Add and improve I18n for application templates.
+* [FEATURE] [#971] Add authorization features and a Pundit mixin.
+* [DOC] [#1031] Switch to Circle 2.0.
+* [FEATURE] [#1009] Option for Date(Time) objects be **in a timezone**.
+* [COMPAT] [#1027] Add hardcoded development secret_key_base.
+* [FEATURE] [#1020] Add support for editing polymorphic fields.
+* [FEATURE] [#956] Add namespace option to generators.
+* [DOC] [#1018] Remove suggestion than rerunning install works.
+* [COMPAT] [#1016] FactoryGirl is now FactoryBot.
+* [FEATURE] [#992] Improve field generators.
+* [DOC] [#1008] Adding instructions for getting started with API-only apps.
+* [i18n] [#988] Adds Catalan locales.
+* [FEATURE] [#1000] Add test coverage to ApplicationHelper#sort_order.
+* [UI] [#987] Fix cell sort indicator positioning.
+* [i18n] [#981] Add localization for Bosnian language.
+* [BUGFIX] [#982] Update name of specification example.
+* [DOC] [#980] Update copyright range.
+* [DOC] [#976] Explain that installer requires models.
+* [COMPAT] [#977] Update gems for CVE-2017-9050.
+* [BUGFIX] [#967] Change const_get to constantize to fix undefined method.
+* [DOC] [#972] Fix interpolation highlighting at documentation examples.
+* [FEATURE] [#807] Add foreign key option to Fields.
+* [FEATURE] [#939] Add order option for belongs_to field.
+* [DOC] [#946] Document renaming dashboards.
+* [DOC] [#942] Add IntelliJ-generated files to .gitignore.
+* [DOC] [#940] Add instructions of how to disable some actions.
+* [UI] [#933] Switch to thoughtbot hosted seed images.
+* [FEATURE] [#934] Support for models with uncountable inflections.
+
 ### 0.8.1 (July 14, 2017)
 
 * [BUGFIX] [#935] Move normalize.css out of vendor.
