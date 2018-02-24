@@ -24,7 +24,7 @@ module Administrate
         table_name = ActiveRecord::Base.connection.
           quote_table_name(@scoped_resource.table_name)
         attr_name = ActiveRecord::Base.connection.quote_column_name(attr)
-        "LOWER(TEXT(#{table_name}.#{attr_name})) LIKE ?"
+        "LOWER(CAST(#{table_name}.#{attr_name} AS CHAR(256))) LIKE ?"
       end.join(" OR ")
     end
 

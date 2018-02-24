@@ -52,8 +52,8 @@ describe Administrate::Search do
                                           MockDashboard,
                                           "test")
         expected_query = [
-          "LOWER(TEXT(\"users\".\"name\")) LIKE ?"\
-          " OR LOWER(TEXT(\"users\".\"email\")) LIKE ?",
+          'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?'\
+          ' OR LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
           "%test%",
           "%test%",
         ]
@@ -73,8 +73,8 @@ describe Administrate::Search do
                                           MockDashboard,
                                           "Тест Test")
         expected_query = [
-          "LOWER(TEXT(\"users\".\"name\")) LIKE ?"\
-          " OR LOWER(TEXT(\"users\".\"email\")) LIKE ?",
+          'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?'\
+          ' OR LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
           "%тест test%",
           "%тест test%",
         ]
