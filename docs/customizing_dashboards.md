@@ -80,6 +80,9 @@ than one column. e.g.: `"name, email DESC"`.
 `:foreign_key` - Specifies the name of the foreign key directly.
 Defaults to `:#{attribute}_id`.
 
+`:scope` - Specifies a custom scope inside a callable. Useful for preloading.
+Example: `.with_options(scope: -> { MyModel.includes(:rel).limit(5) })`
+
 **Field::HasMany**
 
 `:limit` - Set the number of resources to display in the show view. Default is

@@ -1,3 +1,4 @@
+require "rails_helper"
 require "administrate/field/belongs_to"
 require "support/constant_helpers"
 require "support/field_matchers"
@@ -91,6 +92,34 @@ describe Administrate::Field::BelongsTo do
 
         resources = field.associated_resource_options.compact.to_h.values
         expect(resources).to eq correct_order
+      end
+
+      it "rejects order passed in `scope`" do
+        FactoryBot.create_list(:customer, 3)
+        options = {
+          order: "name",
+          scope: -> { Customer.order(name: :desc) },
+        }
+        association = Administrate::Field::BelongsTo.with_options(options)
+        field = association.new(:customers, [], :view)
+
+        correct_order = Customer.order("name").pluck(:id)
+
+        resources = field.associated_resource_options.compact.to_h.values
+        expect(resources).to eq correct_order
+      end
+    end
+
+    context "with `scope` option" do
+      it "returns the resources within the passed scope" do
+        1.upto(3) { |i| FactoryBot.create :customer, name: "customer-#{i}" }
+        scope = -> { Customer.order(name: :desc).limit(2) }
+
+        association = Administrate::Field::BelongsTo.with_options(scope: scope)
+        field = association.new(:customers, [], :view)
+        resources = field.associated_resource_options.compact.to_h.keys
+
+        expect(resources).to eq ["customer-3", "customer-2"]
       end
     end
   end
