@@ -36,7 +36,7 @@ describe Administrate::Order do
 
         ordered = order.apply(relation)
 
-        expect(relation).to have_received(:reorder).with("name asc")
+        expect(relation).to have_received(:reorder).with("table_name.name asc")
         expect(ordered).to eq(relation)
       end
 
@@ -47,7 +47,7 @@ describe Administrate::Order do
 
         ordered = order.apply(relation)
 
-        expect(relation).to have_received(:reorder).with("name desc")
+        expect(relation).to have_received(:reorder).with("table_name.name desc")
         expect(ordered).to eq(relation)
       end
     end
@@ -171,6 +171,7 @@ describe Administrate::Order do
     double(
       klass: double(reflect_on_association: nil),
       columns_hash: { column.to_s => :column_info },
+      table_name: "table_name",
     )
   end
 

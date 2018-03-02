@@ -42,6 +42,21 @@ feature "Search" do
     expect(page).to have_content(mismatch.email)
   end
 
+  scenario "admin searches across associations fields", :js do
+    country = create(:country, name: "Brazil", code: "BR")
+    country_match = create(:customer, country: country)
+    mismatch = create(:customer)
+
+    visit admin_customers_path
+
+    fill_in :search, with: "Brazil"
+    submit_search
+
+    expect(page).to have_content(country_match.email)
+    expect(page).to have_content(country.name)
+    expect(page).not_to have_content(mismatch.email)
+  end
+
   def clear_search
     find(".search__clear-link").click
   end

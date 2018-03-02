@@ -9,7 +9,9 @@ module Administrate
       return order_by_association(relation) unless
         reflect_association(relation).nil?
 
-      return relation.reorder("#{attribute} #{direction}") if
+      order = "#{relation.table_name}.#{attribute} #{direction}"
+
+      return relation.reorder(order) if
         relation.columns_hash.keys.include?(attribute.to_s)
 
       relation
