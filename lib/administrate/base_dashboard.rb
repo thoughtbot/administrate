@@ -10,6 +10,7 @@ require "administrate/field/select"
 require "administrate/field/string"
 require "administrate/field/text"
 require "administrate/field/time"
+require "administrate/field/password"
 
 module Administrate
   class BaseDashboard

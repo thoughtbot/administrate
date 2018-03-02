@@ -29,6 +29,7 @@ customer_attributes = Array.new(100) do
     name: name,
     email: Faker::Internet.safe_email(name),
     country: countries.sample,
+    password: Faker::Internet.password,
   }
 end
 

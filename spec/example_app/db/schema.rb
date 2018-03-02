@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20171031155447) do
     t.boolean "email_subscriber"
     t.string "kind", default: "standard", null: false
     t.string "country_code"
+    t.string "password"
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
