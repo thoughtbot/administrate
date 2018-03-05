@@ -9,6 +9,7 @@ describe Administrate::Namespace do
 
         Rails.application.routes.draw do
           namespace(:admin) { resources :customers }
+          resources :administrators
         end
 
         expect(namespace.resources.map(&:to_sym)).to eq [:customers]
