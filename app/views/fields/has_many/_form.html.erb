@@ -20,7 +20,10 @@ and is augmented with [Selectize].
 %>
 
 <div class="field-unit__label">
-  <%= f.label field.attribute_key, field.attribute.to_s.humanize %>
+  <%= f.label field.attribute_key, 
+      t("helpers.label.#{resource_name}.#{field.attribute_key}", 
+          default: field.attribute.to_s.humanize) %>
+
 </div>
 <div class="field-unit__field">
   <%= f.select(field.attribute_key, nil, {}, multiple: true) do %>
