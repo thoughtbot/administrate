@@ -26,7 +26,7 @@ describe Admin::OrdersController, type: :controller do
     describe "GET index" do
       it "shows only the records in the admin scope" do
         locals = capture_view_locals { get :index }
-        expect(locals[:resources].count).to eq(9) # only my orders
+        expect(locals[:page].resources.count).to eq(user.orders.count) # only my orders
       end
     end
 

@@ -1,3 +1,4 @@
+require "rails_helper"
 require "administrate/field/has_many"
 require "support/constant_helpers"
 require "support/mock_relation"
@@ -16,30 +17,22 @@ describe Administrate::Field::HasMany do
   end
 
   describe "#associated_collection" do
+    let(:customers) { create_list(:customer, 2) }
+
     it "returns an index page for the dashboard of the associated attribute" do
       begin
-        class WidgetDashboard
-          def prepare_collection_for_display(resources)
-            resources
-          end
-
-          def association_includes
-            []
-          end
-        end
-        widgets = MockRelation.new([])
-        field = Administrate::Field::HasMany.new(:widgets, widgets, :show)
+        field = Administrate::Field::HasMany.new(:customers, Customer.all, :show)
 
         page = field.associated_collection
 
         expect(page).to be_instance_of(Administrate::Page::Collection)
-      ensure
-        remove_constants :WidgetDashboard
       end
     end
   end
 
   describe "class_name option" do
+    let(:customers) { create_list(:customer, 2) }
+
     it "determines what dashboard is used to present the association" do
       begin
         FooDashboard = Class.new
@@ -50,7 +43,7 @@ describe Administrate::Field::HasMany do
 
         association = Administrate::Field::HasMany.
           with_options(class_name: "Foo")
-        field = association.new(:customers, MockRelation.new([]), :show)
+        field = association.new(:customers, Customer.all, :show)
         collection = field.associated_collection
         attributes = collection.attribute_names
 
