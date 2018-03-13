@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20171031155447) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "countries", force: :cascade do |t|
+  create_table "countries", id: :serial, force: :cascade do |t|
     t.string "code", null: false
     t.string "name"
     t.datetime "created_at", null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20171031155447) do
     t.index ["code"], name: "index_countries_on_code", unique: true
   end
 
-  create_table "customers", force: :cascade do |t|
+  create_table "customers", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.datetime "created_at", null: false
@@ -39,22 +39,8 @@ ActiveRecord::Schema.define(version: 20171031155447) do
     t.boolean "email_subscriber"
     t.string "kind", default: "standard", null: false
     t.string "country_code"
+    t.time "example_time"
     t.string "password"
-  end
-
-  create_table "delayed_jobs", id: :serial, force: :cascade do |t|
-    t.integer "priority", default: 0, null: false
-    t.integer "attempts", default: 0, null: false
-    t.text "handler", null: false
-    t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string "locked_by"
-    t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "line_items", id: :serial, force: :cascade do |t|
