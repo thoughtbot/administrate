@@ -67,7 +67,7 @@ and will leave the show pages for other resources unchanged.
 ## Customizing layouts
 
 Many developers need to customize the layouts of their admin dashboard.
-It's so easy that pass in the "layout" key word to the view generators.
+It's as easy as passing in the "layout" keyword to the view generators.
 
 ```bash
 rails generate administrate:views:layout
@@ -75,4 +75,8 @@ rails generate administrate:views:layout
  # -> app/views/admin/application/_navigation.html.erb
  # -> app/views/admin/application/_javascript.html.erb
  # -> app/views/admin/application/_flashes.html.erb
+
+ rails generate administrate:views:navigation
+ # It only generates the sidebar partial
+ # -> app/views/admin/application/_navigation.html.erb
 ```
