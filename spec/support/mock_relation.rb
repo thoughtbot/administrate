@@ -21,8 +21,4 @@ class MockRelation
     return @data.count if column == :all
     @data.count(column)
   end
-
-  def columns_hash
-    {}
-  end
 end
