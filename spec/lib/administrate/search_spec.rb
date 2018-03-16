@@ -47,9 +47,11 @@ describe Administrate::Search do
       begin
         class User < ActiveRecord::Base; end
         scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          nil)
+        search = Administrate::Search.new(
+          scoped_object,
+          MockDashboard,
+          nil,
+        )
         expect(scoped_object).to receive(:all)
 
         search.run
@@ -62,9 +64,11 @@ describe Administrate::Search do
       begin
         class User < ActiveRecord::Base; end
         scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "   ")
+        search = Administrate::Search.new(
+          scoped_object,
+          MockDashboard,
+          "   ",
+        )
         expect(scoped_object).to receive(:all)
 
         search.run
@@ -77,9 +81,11 @@ describe Administrate::Search do
       begin
         class User < ActiveRecord::Base; end
         scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "test")
+        search = Administrate::Search.new(
+          scoped_object,
+          MockDashboard,
+          "test",
+        )
         expected_query = [
           'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?'\
           ' OR LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?'\
@@ -100,9 +106,11 @@ describe Administrate::Search do
       begin
         class User < ActiveRecord::Base; end
         scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "Тест Test")
+        search = Administrate::Search.new(
+          scoped_object,
+          MockDashboard,
+          "Тест Test",
+        )
         expected_query = [
           'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?'\
           ' OR LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?'\
@@ -164,9 +172,11 @@ describe Administrate::Search do
       begin
         class User < ActiveRecord::Base; end
         scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          nil)
+        search = Administrate::Search.new(
+          scoped_object,
+          MockDashboard,
+          nil,
+        )
 
         expect(search).to be_available
       ensure
@@ -178,9 +188,11 @@ describe Administrate::Search do
       begin
         class User < ActiveRecord::Base; end
         scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockNoSearchDashboard,
-                                          nil)
+        search = Administrate::Search.new(
+          scoped_object,
+          MockNoSearchDashboard,
+          nil,
+        )
 
         expect(search).to_not be_available
       ensure
