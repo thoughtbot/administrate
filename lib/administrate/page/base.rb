@@ -15,6 +15,10 @@ module Administrate
         @resource_path ||= resource_name.gsub("/", "_")
       end
 
+      def association_includes
+        dashboard.try(:association_includes) || []
+      end
+
       protected
 
       def attribute_field(dashboard, resource, attribute_name, page)

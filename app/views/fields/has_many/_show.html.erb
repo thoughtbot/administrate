@@ -26,7 +26,8 @@ from the associated resource class's dashboard.
     collection_presenter: field.associated_collection(order),
     collection_field_name: field.name,
     resources: field.resources(page, order),
-    table_title: field.name
+    table_title: field.name,
+	association_includes: association_includes,
   ) %>
   <% if field.more_than_limit? %>
     <%= paginate field.resources(page), param_name: "#{field.name}[page]" %>

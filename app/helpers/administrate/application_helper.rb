@@ -32,9 +32,12 @@ module Administrate
       ActiveModel::Naming.route_key(class_from_resource(resource_name))
     end
 
-    def sanitized_order_params(attr_name)
-      params.permit(:search, :id, :page, :per_page,
-                    attr_name => %i[order direction page per_page])
+    def sanitized_order_params(association_includes)
+      association_params = association_includes.map do |assoc_name|
+        { assoc_name => %i[order direction page per_page] }
+      end
+
+      params.permit(:search, :id, :page, :per_page, association_params)
     end
 
     def clear_search_params
