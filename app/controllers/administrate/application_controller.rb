@@ -4,9 +4,11 @@ module Administrate
 
     def index
       search_term = params[:search].to_s.strip
-      search = Administrate::Search.new(scoped_resource,
-                                           dashboard_class,
-                                           search_term)
+      search = Administrate::Search.new(
+        scoped_resource,
+        dashboard_class,
+        search_term,
+      )
 
       resources = search.run
       resources = resources.includes(*resource_includes) if resource_includes.any?
