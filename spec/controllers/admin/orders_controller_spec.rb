@@ -24,9 +24,11 @@ describe Admin::OrdersController, type: :controller do
 
     # Policies are defined in order_policy.rb
     describe "GET index" do
+      let(:resources_count) { locals[:page].resources.count }
+
       it "shows only the records in the admin scope" do
         locals = capture_view_locals { get :index }
-        expect(locals[:page].resources.count).to eq(user.orders.count) # only my orders
+        expect(resources_count).to eq(user.orders.count) # only my orders
       end
     end
 

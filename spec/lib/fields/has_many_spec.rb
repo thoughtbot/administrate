@@ -21,7 +21,11 @@ describe Administrate::Field::HasMany do
 
     it "returns an index page for the dashboard of the associated attribute" do
       begin
-        field = Administrate::Field::HasMany.new(:customers, Customer.all, :show)
+        field = Administrate::Field::HasMany.new(
+          :customers,
+          Customer.all,
+          :show
+        )
 
         page = field.associated_collection
 

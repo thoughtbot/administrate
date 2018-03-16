@@ -7,7 +7,10 @@ describe Administrate::Page::Collection do
       include_context "OrderDashboard uses decoration"
 
       it "returns decorated resources" do
-        page = described_class.new(OrderDashboard.new, resources: create_list(:order, 2))
+        page = described_class.new(
+          OrderDashboard.new,
+          resources: create_list(:order, 2)
+        )
 
         expect(page.resources.first.class).to eq(order_decorator_class)
       end
