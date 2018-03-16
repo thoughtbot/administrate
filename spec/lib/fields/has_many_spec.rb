@@ -185,6 +185,20 @@ describe Administrate::Field::HasMany do
         expect(field.resources.map(&:id)).to_not eq reversed_order
       end
     end
+
+    context "when dashoboard of associated resource has decorator method" do
+      include_context "OrderDashboard uses decoration"
+
+      it "returns decorated resources" do
+        customer = FactoryBot.create(:customer, :with_orders)
+        resources = customer.orders
+
+        association = Administrate::Field::HasMany
+        field = association.new(:orders, resources, :show)
+
+        expect(field.resources.first.class).to eq(order_decorator_class)
+      end
+    end
   end
 
   describe "#selected_options" do
