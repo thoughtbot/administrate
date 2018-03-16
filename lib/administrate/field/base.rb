@@ -13,7 +13,7 @@ module Administrate
       end
 
       def self.searchable?
-        !!search_query('foo', 'bar')
+        !!search_query("foo", "bar")
       end
 
       def self.search_query(_table_field, _search_term)

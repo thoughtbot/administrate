@@ -35,11 +35,11 @@ module Administrate
       end
     end
 
-     def search_attributes
-       attribute_types.keys.select do |attribute|
-         attribute_types[attribute].searchable?
-       end
+   def search_attributes
+     attribute_types.keys.select do |attribute|
+       attribute_types[attribute].searchable?
      end
+   end
 
     def attribute_types
       @dashboard_class::ATTRIBUTE_TYPES

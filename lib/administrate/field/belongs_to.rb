@@ -8,7 +8,7 @@ module Administrate
       end
 
       def self.search_query(table_field, search_term)
-        ["LOWER(CAST(#{table_field} AS CHAR(256))) LIKE ?", "%#{search_term.mb_chars.downcase}%"]
+        default_text_search(table_field, search_term)
       end
 
       def permitted_attribute
