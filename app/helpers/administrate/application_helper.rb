@@ -20,6 +20,13 @@ module Administrate
         )
     end
 
+    def attribute_title(resource_name, attribute_name)
+      t(
+        "helpers.label.#{resource_name}.#{attribute_name}",
+        default: attribute_name.to_s,
+        ).titleize
+    end
+
     def sort_order(order)
       case order
       when "asc" then "ascending"

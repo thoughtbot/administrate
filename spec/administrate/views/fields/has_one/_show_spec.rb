@@ -20,6 +20,8 @@ describe "fields/has_one/_show", type: :view do
   end
 
   context "with an associated record" do
+    helper(Administrate::ApplicationHelper)
+
     it "renders a link to the record" do
       product = create(:product)
       product_path = polymorphic_path([:admin, product])

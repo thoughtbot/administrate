@@ -4,9 +4,10 @@ module Administrate
   class CSV
     attr_reader :page, :resources
 
-    def initialize(resources, page)
+    def initialize(resources, page, view_context)
       @resources = resources
       @page = page
+      @view_context = view_context
     end
 
     def generate
@@ -23,7 +24,7 @@ module Administrate
 
     def headers
       page.attribute_names.map do |attribute|
-        page.attribute_title(attribute)
+        view_context.attribute_title(attribute)
       end
     end
   end

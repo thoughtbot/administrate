@@ -3,8 +3,6 @@ require_relative "base"
 module Administrate
   module Page
     class Collection < Page::Base
-      include ActionView::Helpers::TranslationHelper
-
       def attribute_names
         dashboard.collection_attributes
       end

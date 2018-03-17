@@ -24,7 +24,7 @@ module Administrate
 
         format.csv do
           name = params[:controller].sub(/^admin\//, '')
-          csv = Administrate::CSV.new(resources, page).generate
+          csv = Administrate::CSV.new(resources, page, view_context).generate
           send_data csv, filename: "#{name}-#{Date.today}.csv"
         end
       end
