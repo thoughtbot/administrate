@@ -6,6 +6,7 @@ ru:
       destroy: Удалить
       edit: Редактировать
       edit_resource: Редактировать %{name}
+      export_csv: Скачать как CSV
       show_resource: Показать %{name}
       new_resource: Новый %{name}
       back: Вернуться назад

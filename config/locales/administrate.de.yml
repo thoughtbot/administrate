@@ -6,6 +6,7 @@ de:
       destroy: Löschen
       edit: Editieren
       edit_resource: "%{name} editieren"
+      export_csv: CSV herunterladen
       show_resource: "%{name} anzeigen"
       new_resource: "%{name} erstellen"
       back: Zurück

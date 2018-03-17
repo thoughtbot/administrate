@@ -40,6 +40,10 @@ module Administrate
         "/fields/#{self.class.field_type}/#{page}"
       end
 
+      def short_plain_text
+        to_s
+      end
+
       attr_reader :attribute, :data, :page, :resource
 
       protected

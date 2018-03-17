@@ -3,11 +3,13 @@ require_relative "base"
 module Administrate
   module Page
     class Collection < Page::Base
+      include ActionView::Helpers::TranslationHelper
+
       def attribute_names
         dashboard.collection_attributes
       end
 
-      def attributes_for(resource)
+      def fields_for(resource)
         attribute_names.map do |attr_name|
           attribute_field(dashboard, resource, attr_name, :index)
         end

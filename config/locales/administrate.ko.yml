@@ -6,6 +6,7 @@ ko:
       destroy: 삭제
       edit: 편집
       edit_resource: 편집 %{name}
+      export_csv: CSV 다운로드
       show_resource: 보여주기 %{name}
       new_resource: 새로운 %{name}
       back: 뒤로

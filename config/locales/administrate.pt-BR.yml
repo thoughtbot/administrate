@@ -7,6 +7,7 @@ pt-BR:
       destroy: Deletar
       edit: Editar
       edit_resource: Editar %{name}
+      export_csv: Baixar CSV
       show_resource: Visualizar %{name}
       new_resource: Criar %{name}
       back: Voltar

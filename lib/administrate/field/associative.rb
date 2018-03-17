@@ -11,6 +11,10 @@ module Administrate
         associated_class_name.constantize
       end
 
+      def short_plain_text
+        display_associated_resource
+      end
+
       protected
 
       def associated_dashboard

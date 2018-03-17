@@ -6,6 +6,7 @@ nl:
       destroy: Verwijder
       edit: Bewerk
       edit_resource: Bewerk %{name}
+      export_csv: CSV downloaden
       show_resource: Toon %{name}
       new_resource: Nieuw %{name}
       back: Terug

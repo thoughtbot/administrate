@@ -6,6 +6,10 @@ module Administrate
       def self.searchable?
         true
       end
+
+      def short_plain_text
+        data
+      end
     end
   end
 end

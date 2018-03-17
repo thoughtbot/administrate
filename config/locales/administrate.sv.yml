@@ -6,6 +6,7 @@ sv:
       destroy: Ta bort
       edit: Ändra
       edit_resource: Ändra %{name}
+      export_csv: Ladda ned CSV
       show_resource: Visa %{name}
       new_resource: Ny %{name}
       back: Tillbaka

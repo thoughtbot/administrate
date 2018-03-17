@@ -6,6 +6,7 @@ ar:
       destroy: "حذف"
       edit: "تعديل"
       edit_resource: "تعديل %{name}"
+      export_csv: "تحميل بصيغة CSV"
       show_resource: "إظهار %{name}"
       new_resource: "جديد  %{name}"
       back: "الى الخلف"

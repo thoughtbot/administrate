@@ -6,6 +6,7 @@ zh-TW:
       destroy: 刪除
       edit: 編輯
       edit_resource: 編輯 %{name}
+      export_csv: 下載 CSV
       show_resource: 檢視 %{name}
       new_resource: 新增 %{name}
       back: 返回

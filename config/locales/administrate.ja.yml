@@ -6,6 +6,7 @@ ja:
       destroy: 削除
       edit: 編集
       edit_resource: 編集 %{name}
+      export_csv: CSVファイルでダウンロード
       show_resource: 参照 %{name}
       new_resource: 新規 %{name}
       back: 戻る

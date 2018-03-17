@@ -6,6 +6,7 @@ zh-CN:
       destroy: 删除
       edit: 编辑
       edit_resource: 编辑 %{name}
+      export_csv: 下载CSV
       show_resource: 查看 %{name}
       new_resource: 新建 %{name}
       back: 返回

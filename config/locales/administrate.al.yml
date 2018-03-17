@@ -6,6 +6,7 @@ al:
       destroy: Fshij
       edit: Ndrysho
       edit_resource: Ndrysho %{name}
+      export_csv: Download as CSV
       show_resource: Trego %{name}
       new_resource: Të re %{name}
       back: Prapa

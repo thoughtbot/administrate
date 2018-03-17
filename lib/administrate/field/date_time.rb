@@ -18,6 +18,10 @@ module Administrate
         )
       end
 
+      def short_plain_text
+        datetime.to_s if data
+      end
+
       private
 
       def format

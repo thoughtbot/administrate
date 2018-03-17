@@ -11,6 +11,10 @@ module Administrate
         data.to_s.gsub(/./, character)[0...truncation_length]
       end
 
+      def short_plain_text
+        truncate
+      end
+
       private
 
       def truncation_length

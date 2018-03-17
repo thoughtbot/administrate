@@ -6,6 +6,7 @@ ca:
       destroy: Destruir
       edit: Editar
       edit_resource: Edita %{name}
+      export_csv: Descarrega CSV
       show_resource: Mostra %{name}
       new_resource: Nou %{name}
       back: Tornar

@@ -63,6 +63,10 @@ module Administrate
         @order ||= Administrate::Order.new(sort_by, direction)
       end
 
+      def short_plain_text
+        data.size.to_s
+      end
+
       private
 
       def includes

@@ -11,6 +11,10 @@ module Administrate
         collection
       end
 
+      def short_plain_text
+        data
+      end
+
       private
 
       def collection
