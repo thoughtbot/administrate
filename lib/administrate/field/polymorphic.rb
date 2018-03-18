@@ -30,7 +30,7 @@ module Administrate
       end
 
       def classes
-        options.fetch(:classes) || []
+        options.fetch(:classes, [])
       end
 
       private
