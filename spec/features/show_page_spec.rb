@@ -67,7 +67,9 @@ RSpec.describe "customer show page" do
       create(:line_item, order: order, unit_price: 10, quantity: index)
     end
 
-    visit admin_customer_path(customer, orders: { order: :id, direction: :desc })
+    visit admin_customer_path(customer, orders: {
+                                order: :id, direction: :desc
+                              })
 
     order_ids = orders.sort_by(&:id).map(&:id).reverse
 
@@ -75,7 +77,9 @@ RSpec.describe "customer show page" do
       expect(order_ids.first(2)).to eq(ids_in_table)
     end
 
-    visit admin_customer_path(customer, orders: { order: :id, direction: :desc, page: 2 })
+    visit admin_customer_path(customer, orders: {
+                                order: :id, direction: :desc, page: 2
+                              })
 
     within(".attribute-data--has-many table[aria-labelledby=orders]") do
       expect(order_ids.last(2)).to eq(ids_in_table)
@@ -91,10 +95,9 @@ RSpec.describe "customer show page" do
       create(:line_item, order: order, unit_price: 10, quantity: index)
     end
 
-    visit admin_customer_path(
-            customer,
-            orders: { order: :id, direction: :desc },
-          )
+    visit admin_customer_path(customer,
+                              orders: { order: :id, direction: :desc },
+                              log_entries: { order: :id, direction: :asc })
 
     order_ids = orders.sort_by(&:id).map(&:id).reverse
     log_entry_ids = log_entries.sort_by(&:id).map(&:id)
@@ -107,7 +110,9 @@ RSpec.describe "customer show page" do
       expect(log_entry_ids.first(2)).to eq(ids_in_table)
     end
 
-    visit admin_customer_path(customer, orders: { order: :id, direction: :desc, page: 2 })
+    visit admin_customer_path(customer, orders: {
+                                order: :id, direction: :desc, page: 2
+                              })
 
     within(".attribute-data--has-many table[aria-labelledby=orders]") do
       expect(order_ids.last(2)).to eq(ids_in_table)
