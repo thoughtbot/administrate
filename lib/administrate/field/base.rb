@@ -13,11 +13,7 @@ module Administrate
       end
 
       def self.searchable?
-        !!search_query("foo", "bar")
-      end
-
-      def self.search_query(_table_field, _search_term)
-        nil
+        respond_to?(:search_query)
       end
 
       def self.field_type
