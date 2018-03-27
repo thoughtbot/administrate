@@ -12,7 +12,7 @@ module Administrate
 
     def routes
       @routes ||= all_routes.select do |controller, _action|
-        controller.starts_with?(namespace.to_s)
+        controller.starts_with?("#{namespace}/")
       end.map do |controller, action|
         [controller.gsub(/^#{namespace}\//, ""), action]
       end
