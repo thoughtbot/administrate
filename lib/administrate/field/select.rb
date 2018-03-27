@@ -3,8 +3,8 @@ require_relative "base"
 module Administrate
   module Field
     class Select < Field::Base
-      def self.searchable?
-        true
+      def self.search_query(table_field, search_term)
+        default_text_search(table_field, search_term)
       end
 
       def selectable_options

@@ -25,32 +25,6 @@ describe Administrate::Field::Deferred do
     end
   end
 
-  describe "#searchable?" do
-    context "when given a `searchable` option" do
-      it "returns the value given" do
-        searchable_deferred = Administrate::Field::Deferred.
-          new(double(searchable?: false), searchable: true)
-        unsearchable_deferred = Administrate::Field::Deferred.
-          new(double(searchable?: true), searchable: false)
-
-        expect(searchable_deferred.searchable?).to eq(true)
-        expect(unsearchable_deferred.searchable?).to eq(false)
-      end
-    end
-
-    context "when not given a `searchable` option" do
-      it "falls back to the default of the deferred class" do
-        searchable_deferred = Administrate::Field::Deferred.
-          new(double(searchable?: true))
-        unsearchable_deferred = Administrate::Field::Deferred.
-          new(double(searchable?: false))
-
-        expect(searchable_deferred.searchable?).to eq(true)
-        expect(unsearchable_deferred.searchable?).to eq(false)
-      end
-    end
-  end
-
   describe "#==" do
     it "returns false for different deferred classes" do
       one = Administrate::Field::Deferred.new(String)

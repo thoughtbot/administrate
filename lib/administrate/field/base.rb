@@ -13,7 +13,11 @@ module Administrate
       end
 
       def self.searchable?
-        false
+        respond_to?(:search_query)
+      end
+
+      def self.field_type
+        to_s.split("::").last.underscore
       end
 
       def initialize(attribute, data, page, options = {})
@@ -46,8 +50,15 @@ module Administrate
 
       attr_reader :options
 
-      def self.field_type
-        to_s.split("::").last.underscore
+      class << self
+        private
+
+        def default_text_search(table_field, search_term)
+          [
+            "LOWER(CAST(#{table_field} AS CHAR(256))) LIKE ?",
+            "%#{search_term.mb_chars.downcase}%",
+          ]
+        end
       end
     end
   end

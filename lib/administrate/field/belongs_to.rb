@@ -7,6 +7,10 @@ module Administrate
         :"#{attr}_id"
       end
 
+      def self.search_query(table_field, search_term)
+        default_text_search(table_field, search_term)
+      end
+
       def permitted_attribute
         foreign_key
       end

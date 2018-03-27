@@ -21,6 +21,12 @@ module Administrate
           options == other.options
       end
 
+      def search_query(table_field, search_term)
+        if options.fetch(:searchable, true)
+          deferred_class.search_query(table_field, search_term)
+        end
+      end
+
       def searchable?
         options.fetch(:searchable, deferred_class.searchable?)
       end

@@ -24,6 +24,10 @@ module Administrate
         { "#{attr}_attributes": related_dashboard_attributes }
       end
 
+      def self.search_query(table_field, search_term)
+        default_text_search(table_field, search_term)
+      end
+
       private
 
       def resolver
