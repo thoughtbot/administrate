@@ -22,9 +22,11 @@ module Administrate
 
     private
 
+    attr_reader :view_context
+
     def headers
       page.attribute_names.map do |attribute|
-        view_context.attribute_title(attribute)
+        view_context.attribute_title(page.resource_name, attribute)
       end
     end
   end

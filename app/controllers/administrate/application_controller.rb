@@ -22,10 +22,12 @@ module Administrate
           }
         end
 
-        format.csv do
-          name = params[:controller].sub(/^admin\//, '')
-          csv = Administrate::CSV.new(resources, page, view_context).generate
-          send_data csv, filename: "#{name}-#{Date.today}.csv"
+        if show_action?(:export_csv, resources)
+          format.csv do
+            name = params[:controller].sub(/^admin\//, "")
+            csv = Administrate::CSV.new(resources, page, view_context).generate
+            send_data csv, filename: "#{name}-#{Date.today}.csv"
+          end
         end
       end
     end
@@ -178,7 +180,7 @@ module Administrate
 
     def show_search_bar?
       dashboard.attribute_types_for(
-        dashboard.all_attributes,
+        dashboard.all_attributes
       ).any? { |_name, attribute| attribute.searchable? }
     end
 

@@ -24,7 +24,7 @@ module Administrate
       t(
         "helpers.label.#{resource_name}.#{attribute_name}",
         default: attribute_name.to_s,
-        ).titleize
+      ).titleize
     end
 
     def sort_order(order)

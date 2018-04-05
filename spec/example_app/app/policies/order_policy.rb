@@ -20,4 +20,8 @@ class OrderPolicy < ApplicationPolicy
   def destroy?
     false
   end
+
+  def export_csv?
+    false
+  end
 end

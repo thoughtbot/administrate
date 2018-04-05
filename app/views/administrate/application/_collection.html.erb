@@ -57,13 +57,13 @@ to display a collection of resources in an HTML table.
             <%= %(role=link data-url=#{polymorphic_path([namespace, resource])}) %>
           <% end %>
           >
-        <% collection_presenter.fields_for(resource).each do |attribute| %>
-          <td class="cell-data cell-data--<%= attribute.html_class %>">
+        <% collection_presenter.fields_for(resource).each do |field| %>
+          <td class="cell-data cell-data--<%= field.html_class %>">
             <% if show_action? :show, resource -%>
               <a href="<%= polymorphic_path([namespace, resource]) -%>"
                  class="action-show"
                  >
-                <%= render_field attribute %>
+                <%= render_field field %>
               </a>
             <% end -%>
           </td>
