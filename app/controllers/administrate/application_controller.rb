@@ -9,11 +9,11 @@ module Administrate
                                            search_term).run
       resources = apply_resource_includes(resources)
       resources = order.apply(resources)
-      resources = resources.page(params[:page]).per(records_per_page)
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
       respond_to do |format|
         format.html do
+          resources = resources.page(params[:page]).per(records_per_page)
           render locals: {
             resources: resources,
             search_term: search_term,
@@ -23,6 +23,9 @@ module Administrate
         end
 
         if show_action?(:export_csv, resources)
+          if params[:page].present?
+            resources = resources.page(params[:page]).per(records_per_page)
+          end
           format.csv do
             name = params[:controller].sub(/^admin\//, "")
             csv = Administrate::CSV.new(resources, page, view_context).generate

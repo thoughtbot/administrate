@@ -21,13 +21,22 @@ describe "CSV export" do
     end
 
     it "downloads CSV" do
-      order = create(:order)
-      visit admin_orders_path(format: :csv)
+      order1 = create(:order, address_state: SecureRandom.hex)
+      order2 = create(:order, address_state: SecureRandom.hex)
+      visit admin_orders_path(format: :csv, per_page: 1, page: 2)
 
       expect(page.response_headers["Content-Disposition"]).
         to include("attachment")
-      expect(page.source).to include(order.address_state.to_s)
-      expect(page.source).to include(order.total_price.to_s)
+      expect(page.source).to_not include(order1.address_state)
+      expect(page.source).to include(order2.address_state)
+
+      visit admin_orders_path(format: :csv)
+      expect(page.source).to include(order1.address_state)
+      expect(page.source).to include(order2.address_state)
+
+      visit admin_orders_path(format: :csv, per_page: 1)
+      expect(page.source).to include(order1.address_state)
+      expect(page.source).to include(order2.address_state)
     end
   end
 
