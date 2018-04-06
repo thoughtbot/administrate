@@ -10,7 +10,7 @@ require "administrate/dashboard/base"
 
 class CustomerDashboard < Administrate::Dashboard::Base
   ATTRIBUTE_TYPES = {
-    id: Field::Integer,
+    id: Field::Number,
     name: Field::String,
     email: Field::String,
     created_at: Field::DateTime,
