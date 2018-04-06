@@ -146,6 +146,10 @@ association `has_many :cities`, from your model.
 
 **Field::Number**
 
+`:searchable` - Specify if the attribute should be considered when searching.
+Note that currently number fields are searched like text, which may yield
+more results than expected. Default is `false`.
+
 `:decimals` - Set the number of decimals to display. Defaults to `0`.
 
 `:prefix` - Prefixes the number with a string. Defaults to `""`.
