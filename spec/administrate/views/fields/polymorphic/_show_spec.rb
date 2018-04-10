@@ -20,6 +20,27 @@ describe "fields/polymorphic/_show", type: :view do
     end
   end
 
+  context "without valid show action" do
+    it "renders record without a link" do
+      product = create(:product)
+      polymorphic = instance_double(
+        "Administrate::Field::Polymorphic",
+        display_associated_resource: product.name,
+        associated_class: "Product",
+        data: product,
+        attribute: "product",
+      )
+      allow(view).to receive(:valid_action?).and_return(false)
+
+      render(
+        partial: "fields/polymorphic/show.html.erb",
+        locals: { field: polymorphic, namespace: "admin" },
+      )
+
+      expect(rendered.strip).to eq(product.name)
+    end
+  end
+
   context "with an associated record" do
     it "renders a link to the record" do
       product = create(:product)
@@ -27,10 +48,10 @@ describe "fields/polymorphic/_show", type: :view do
       polymorphic = instance_double(
         "Administrate::Field::Polymorphic",
         display_associated_resource: product.name,
+        associated_class: "Product",
         data: product,
         attribute: "product",
       )
-
       allow(view).to receive(:valid_action?).and_return(true)
 
       render(

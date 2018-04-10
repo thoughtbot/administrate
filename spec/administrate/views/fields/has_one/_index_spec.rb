@@ -14,6 +14,26 @@ describe "fields/has_one/_index", type: :view do
     end
   end
 
+  context "without valid show action" do
+    it "renders record without a link" do
+      product = create(:product)
+      has_one = instance_double(
+        "Administrate::Field::HasOne",
+        data: product,
+        display_associated_resource: product.name,
+        associated_class: "Product",
+      )
+      allow(view).to receive(:valid_action?).and_return(false)
+
+      render(
+        partial: "fields/has_one/index.html.erb",
+        locals: { field: has_one, namespace: "admin" },
+      )
+
+      expect(rendered.strip).to eq(product.name)
+    end
+  end
+
   context "with an associated record" do
     it "renders a link to the record" do
       product = create(:product)
@@ -22,7 +42,9 @@ describe "fields/has_one/_index", type: :view do
         "Administrate::Field::HasOne",
         data: product,
         display_associated_resource: product.name,
+        associated_class: "Product",
       )
+      allow(view).to receive(:valid_action?).and_return(true)
 
       render(
         partial: "fields/has_one/index.html.erb",

@@ -18,7 +18,8 @@ All fields of has_one relationship would be rendered
 <% if field.data %>
   <fieldset class="attribute--nested">
     <legend>
-      <%= link_to(
+      <%= link_to_if(
+        valid_action?(:show, field.associated_class),
         field.display_associated_resource,
         [namespace, field.data],
       ) %>
