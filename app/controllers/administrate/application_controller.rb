@@ -16,7 +16,7 @@ module Administrate
         resources: resources,
         search_term: search_term,
         page: page,
-        show_search_bar: show_search_bar?
+        show_search_bar: show_search_bar?,
       }
     end
 
@@ -101,15 +101,15 @@ module Administrate
     end
 
     def order
-      @_order ||= Administrate::Order.new(params[:order], params[:direction])
+      @order ||= Administrate::Order.new(params[:order], params[:direction])
     end
 
     def dashboard
-      @_dashboard ||= dashboard_class.new
+      @dashboard ||= dashboard_class.new
     end
 
     def requested_resource
-      @_requested_resource ||= find_resource(params[:id]).tap do |resource|
+      @requested_resource ||= find_resource(params[:id]).tap do |resource|
         authorize_resource(resource)
       end
     end
@@ -152,7 +152,7 @@ module Administrate
     helper_method :resource_name
 
     def resource_resolver
-      @_resource_resolver ||=
+      @resource_resolver ||=
         Administrate::ResourceResolver.new(controller_path)
     end
 
@@ -165,11 +165,11 @@ module Administrate
 
     def show_search_bar?
       dashboard.attribute_types_for(
-        dashboard.collection_attributes
+        dashboard.collection_attributes,
       ).any? { |_name, attribute| attribute.searchable? }
     end
 
-    def show_action?(action, resource)
+    def show_action?(_action, _resource)
       true
     end
     helper_method :show_action?
