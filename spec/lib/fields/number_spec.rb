@@ -88,4 +88,11 @@ describe Administrate::Field::Number do
       Administrate::Field::Number.new(:number, num, :page, options)
     end
   end
+
+  describe "#short_plain_text" do
+    it "returns same values as #to_s" do
+      int = Administrate::Field::Number.new(:quantity, 3, :show)
+      expect(int.short_plain_text).to eq int.to_s
+    end
+  end
 end
