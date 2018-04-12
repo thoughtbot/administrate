@@ -33,6 +33,7 @@ group :test do
   gem "shoulda-matchers"
   gem "timecop"
   gem "webmock"
+  gem "pundit"
 end
 
 group :staging, :production do
