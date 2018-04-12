@@ -36,18 +36,11 @@ describe Administrate::Generators::RoutesGenerator, :generator do
       expect(routes).not_to contain("namespace :admin")
     end
 
-    it "skips namespaced models with a warning" do
+    it "generates routes for namespaced models" do
       routes = file("config/routes.rb")
-
-      output = run_generator
-
-      expect(routes).not_to contain("blog")
-      expect(routes).not_to contain("post")
-
-      expect(output).to include <<-MSG.strip_heredoc
-        WARNING: Unable to generate a dashboard for Blog::Post.
-                 Administrate does not yet support namespaced models.
-      MSG
+      run_generator
+      expect(routes).to contain("blog")
+      expect(routes).to contain("post")
     end
 
     it "skips models that aren't backed by the database with a warning" do
@@ -104,6 +97,6 @@ describe Administrate::Generators::RoutesGenerator, :generator do
 
     run_generator
 
-    expect(routes).to contain('root to: "customers#index')
+    expect(routes).to contain('root to: "application#show"')
   end
 end
