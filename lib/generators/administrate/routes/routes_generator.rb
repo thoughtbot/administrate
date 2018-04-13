@@ -71,7 +71,10 @@ module Administrate
         if index == items.size - 1
           "resources :#{items[index]}"
         else
-          "namespace :#{items[index]} do\n#{' ' * ((index + 2) * 2)}#{ generate_nested_resource_routes(items, index + 1)}\n#{' ' * ((index + 1) * 2)}end"
+          leading_indentation = ' ' * ((index + 2) * 2)
+          end_indentation = ' ' * ((index + 1) * 2)
+          resource_routes = generate_nested_resource_routes(items, index + 1)
+          "namespace :#{items[index]} do\n#{leading_indentation}#{resource_routes}\n#{end_indentation}end"
         end
       end
 
