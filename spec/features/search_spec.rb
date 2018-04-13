@@ -18,7 +18,8 @@ feature "Search" do
 
   scenario "admin searches for order by id", :js do
     # Long, predictable ids to avoid simple numbers matching more than one thing
-    target, *rest = 4.times.map{|i| create(:order, id: (i+1).to_s * 7) }.shuffle
+    orders = Array.new(4) { |i| create(:order, id: (i + 1).to_s * 7) }
+    target, *rest = orders.shuffle
 
     visit admin_orders_path
     fill_in :search, with: target.id
