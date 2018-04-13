@@ -15,11 +15,6 @@ module Administrate
       end
 
       def warn_about_invalid_models
-        namespaced_models.each do |invalid_model|
-          puts "WARNING: Unable to generate a dashboard for #{invalid_model}."
-          puts "         Administrate does not yet support namespaced models."
-        end
-
         models_without_tables.each do |invalid_model|
           puts "WARNING: Unable to generate a dashboard for #{invalid_model}."
           puts "         It is not connected to a database table."
@@ -52,7 +47,7 @@ module Administrate
       end
 
       def invalid_database_models
-        models_without_tables + namespaced_models + unnamed_constants
+        models_without_tables +  unnamed_constants
       end
 
       def models_without_tables
@@ -61,6 +56,23 @@ module Administrate
 
       def namespaced_models
         database_models.select { |model| model.to_s.include?("::") }
+      end
+
+      def generate_resource_routes(resource)
+        if resource.include?("/")
+          parts = resource.split("/")
+          generate_nested_resource_routes(parts, 0)
+        else
+          "resources :#{resource}"
+        end
+      end
+
+      def generate_nested_resource_routes(items, index)
+        if index == items.size - 1
+          "resources :#{items[index]}"
+        else
+          "namespace :#{items[index]} do\n#{' '*((index+2)*2)}#{ generate_nested_resource_routes(items,index+1)  }\n#{' '*((index+1)*2)}end"
+        end
       end
 
       def unnamed_constants
