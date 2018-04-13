@@ -47,7 +47,7 @@ module Administrate
       end
 
       def invalid_database_models
-        models_without_tables +  unnamed_constants
+        models_without_tables + unnamed_constants
       end
 
       def models_without_tables
@@ -71,7 +71,7 @@ module Administrate
         if index == items.size - 1
           "resources :#{items[index]}"
         else
-          "namespace :#{items[index]} do\n#{' '*((index+2)*2)}#{ generate_nested_resource_routes(items,index+1)  }\n#{' '*((index+1)*2)}end"
+          "namespace :#{items[index]} do\n#{' ' * ((index + 2) * 2)}#{ generate_nested_resource_routes(items, index + 1)}\n#{' ' * ((index + 1) * 2)}end"
         end
       end
 
