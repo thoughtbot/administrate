@@ -33,7 +33,7 @@ module Administrate
           "dashboard.rb.erb",
           Rails.root.join(
             "app/dashboards#{class_path_filename_fragment}",
-            "#{file_name}_dashboard.rb"
+            "#{file_name}_dashboard.rb",
           ),
         )
       end
