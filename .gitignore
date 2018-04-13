@@ -19,5 +19,3 @@ pkg
 *.iws
 *.iml
 /.idea
-.byebug_history
-gemfiles/.bundle/
