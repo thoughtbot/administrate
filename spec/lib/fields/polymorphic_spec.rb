@@ -51,4 +51,25 @@ describe Administrate::Field::Polymorphic do
       expect(field.selected_global_id).to eq(nil)
     end
   end
+
+  describe "#classes" do
+    let(:field) { Administrate::Field::Polymorphic.new(:foo, "hello", :show) }
+
+    context "not present in options" do
+      it "returns an empty array" do
+        allow(field).to receive(:options).and_return({})
+
+        expect(field.send(:classes)).to eq([])
+      end
+    end
+
+    context "present in options" do
+      it "returns an present value" do
+        classes = ["one", "two", "three"]
+        allow(field).to receive(:options).and_return(classes: classes)
+
+        expect(field.send(:classes)).to eq(classes)
+      end
+    end
+  end
 end
