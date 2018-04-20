@@ -21,8 +21,8 @@ ru:
         more: "%{count} из %{total_count}"
         none: Нет
     form:
-      error: error
-      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+      error: Ошибка
+      errors: "При сохранении %{resource_name} произошли ошибки:"
     search:
       clear: Очистить поиск
       label: Поиск %{resource}
