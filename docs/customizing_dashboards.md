@@ -10,7 +10,7 @@ require "administrate/dashboard/base"
 
 class CustomerDashboard < Administrate::Dashboard::Base
   ATTRIBUTE_TYPES = {
-    id: Field::Integer,
+    id: Field::Number,
     name: Field::String,
     email: Field::String,
     created_at: Field::DateTime,
@@ -145,6 +145,10 @@ with this, you will be able to search through the column `name` from the
 association `has_many :cities`, from your model.
 
 **Field::Number**
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Note that currently number fields are searched like text, which may yield
+more results than expected. Default is `false`.
 
 `:decimals` - Set the number of decimals to display. Defaults to `0`.
 

@@ -1,11 +1,15 @@
 require "rails_helper"
-require "administrate/field/string"
+require "administrate/field/belongs_to"
 require "administrate/field/email"
+require "administrate/field/has_many"
+require "administrate/field/has_one"
 require "administrate/field/number"
+require "administrate/field/string"
 require "administrate/search"
 
 class MockDashboard
   ATTRIBUTE_TYPES = {
+    id: Administrate::Field::Number.with_options(searchable: true),
     name: Administrate::Field::String,
     email: Administrate::Field::Email,
     phone: Administrate::Field::Number,
@@ -65,8 +69,12 @@ describe Administrate::Search do
                                           MockDashboard,
                                           "test")
         expected_query = [
-          'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?'\
-          ' OR LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+          [
+            'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
+            'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
+            'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+          ].join(" OR "),
+          "%test%",
           "%test%",
           "%test%",
         ]
@@ -86,8 +94,12 @@ describe Administrate::Search do
                                           MockDashboard,
                                           "Тест Test")
         expected_query = [
-          'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?'\
-          ' OR LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+          [
+            'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
+            'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
+            'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+          ].join(" OR "),
+          "%тест test%",
           "%тест test%",
           "%тест test%",
         ]
