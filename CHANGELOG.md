@@ -16,6 +16,28 @@
 
 ## Changes
 
+### 0.10.0 (April 20, 2018)
+
+* [BUGFIX] [#1121] Fix a bug where polymorphic fields could throw an exception.
+* [BUGFIX] [#1129] Include time for date_time field in index.
+* [i18n] [#1132] Add missing Russian locale error message.
+* [DOC] [#1131] Document that numbers are searchable.
+* [DOC] [#1145] Add `.byebug_history` and `gemfiles/.bundle/` to .gitignore.
+* [COMPAT] [#1148] Support Rails 5.2.
+* [DOC] [#1119] Add link to Authorization documentation.
+* [BUGFIX] [#1107] Exclude routes with modules, but no namespace.
+* [i18n] [#1117] Add translation for Albanian language.
+* [i18n] [#1115] Translate error message to Japanese.
+* [DOC] [#1106] Update Customizing Views docs with sidebar generator.
+* [FEATURE] [#1005] Add ability to search through association fields.
+* [FEATURE] [#1059] Use associated_class to render belongs_to links.
+* [FEATURE] [#961] Show errors when has_many restrict_with_error.
+* [FEATURE] [#1104] Add `scope` option to Field::BelongsTo.
+* [BUGFIX] [#1070] Use application timezone by default for DateTime fields.
+* [FEATURE] [#998] Add a password field type.
+* [FEATURE] [#903] Added Time Field.
+* [COMPAT] [#1103] Use cross-DB way to cast search queries to strings.
+
 ### 0.9.0 (February 17, 2018)
 
 * [COMPAT] [#1098] Update all the dependent gems.
