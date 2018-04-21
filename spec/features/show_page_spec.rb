@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "customer show page" do
-  describe "displays the customers orders paginated" do
+  describe "paginates customers' orders" do
     it "displays the first page by default, other pages when specified" do
       customer = create(:customer)
       orders = create_list(:order, 4, customer: customer)
