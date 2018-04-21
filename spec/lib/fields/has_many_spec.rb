@@ -1,3 +1,4 @@
+require "rails_helper"
 require "administrate/field/has_many"
 require "support/constant_helpers"
 require "support/mock_relation"
@@ -28,6 +29,18 @@ describe Administrate::Field::HasMany do
       ensure
         remove_constants :WidgetDashboard
       end
+    end
+
+    it "forwards the :show option to the index page" do
+      show_fields = %i[id name]
+      dashboard = double
+
+      field = Administrate::Field::HasMany.new(:widgets, [], :show, {show: show_fields})
+      allow(Administrate::Page::Collection).to receive(:new)
+      allow(field).to receive(:associated_dashboard) { dashboard }
+
+      field.associated_collection
+      expect(Administrate::Page::Collection).to have_received(:new).with(dashboard, show: show_fields)
     end
   end
 

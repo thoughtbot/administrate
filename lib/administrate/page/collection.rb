@@ -8,17 +8,21 @@ module Administrate
       end
 
       def attributes_for(resource)
-        attribute_names.map do |attr_name|
+        selected_attribute_names.map do |attr_name|
           attribute_field(dashboard, resource, attr_name, :index)
         end
       end
 
       def attribute_types
-        dashboard.attribute_types_for(attribute_names)
+        dashboard.attribute_types_for(selected_attribute_names)
       end
 
       def ordered_html_class(attr)
         ordered_by?(attr) && order.direction
+      end
+
+      def selected_attribute_names
+        Array(options[:show] || attribute_names)
       end
 
       delegate :ordered_by?, :order_params_for, to: :order

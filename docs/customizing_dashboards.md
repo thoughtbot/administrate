@@ -107,6 +107,9 @@ association `belongs_to :country`, from your model.
 
 **Field::HasMany**
 
+`:show` - An array of columns to display in the show view
+Defaults to all columns specified in the related dashboard class.
+
 `:limit` - Set the number of resources to display in the show view. Default is
 `5`.
 

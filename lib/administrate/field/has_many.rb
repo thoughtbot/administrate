@@ -12,7 +12,7 @@ module Administrate
       end
 
       def associated_collection
-        Administrate::Page::Collection.new(associated_dashboard)
+        Administrate::Page::Collection.new(associated_dashboard, show: options[:show])
       end
 
       def attribute_key
