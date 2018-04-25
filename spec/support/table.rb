@@ -14,7 +14,7 @@ module Features
   private
 
   def row_css_for(model)
-    "tr[data-url='#{url_for(model)}']"
+    "tr[id='#{model.model_name.param_key}_#{model.to_key.join('_')}']"
   end
 
   def clickable_table_elements
@@ -23,13 +23,5 @@ module Features
 
   def show_link_elements
     ".action-show"
-  end
-
-  def url_for(model)
-    "/" + [
-      :admin,
-      model.class.to_s.underscore.pluralize,
-      model.to_param,
-    ].join("/")
   end
 end
