@@ -165,7 +165,7 @@ module Administrate
 
     def show_search_bar?
       dashboard.attribute_types_for(
-        dashboard.collection_attributes,
+        dashboard.all_attributes,
       ).any? { |_name, attribute| attribute.searchable? }
     end
 
