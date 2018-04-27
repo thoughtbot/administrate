@@ -7,8 +7,7 @@ describe "fields/date_time/_index", type: :view do
       "Administrate::Field::DateTime.with_options(
         format: #{Time::DATE_FORMATS[:default]}
       )",
-      data: product,
-      datetime: product.created_at,
+      short_plain_text: product.created_at
     )
 
     render(
