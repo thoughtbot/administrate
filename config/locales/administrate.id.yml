@@ -6,6 +6,7 @@ id:
       destroy: Hapus
       edit: Perbarui
       edit_resource: Perbarui %{name}
+      export_csv: Unduh CSV
       show_resource: Tampilkan %{name}
       new_resource: "%{name} baru"
       back: Kembali
