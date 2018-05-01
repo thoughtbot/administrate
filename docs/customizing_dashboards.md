@@ -96,7 +96,7 @@ if `searchable` is `true`
 For example:
 
 ```ruby
-  country: Field::BelongsTo(
+  country: Field::BelongsTo.with_options(
     searchable: true,
     seachable_field: 'name',
   )
@@ -135,7 +135,7 @@ Default is `false`.
 For example:
 
 ```ruby
-  cities: Field::HasMany(
+  cities: Field::HasOne.with_options(
     searchable: true,
     seachable_field: 'name',
   )
