@@ -12,7 +12,7 @@ module Administrate
       end
 
       def short_plain_text
-        data
+        data.to_s
       end
 
       private
