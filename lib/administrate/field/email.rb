@@ -7,7 +7,9 @@ module Administrate
         true
       end
 
-      alias_method :short_plain_text, :data
+      def short_plain_text
+        data
+      end
     end
   end
 end

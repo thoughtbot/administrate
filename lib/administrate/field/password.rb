@@ -11,7 +11,9 @@ module Administrate
         data.to_s.gsub(/./, character)[0...truncation_length]
       end
 
-      alias_method :short_plain_text, :truncate
+      def short_plain_text
+        truncate
+      end
 
       private
 

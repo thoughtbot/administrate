@@ -7,7 +7,9 @@ module Administrate
         associated_dashboard.display_resource(data)
       end
 
-      alias_method :short_plain_text, :display_associated_resource
+      def short_plain_text
+        display_associated_resource
+      end
 
       def associated_class
         associated_class_name.constantize

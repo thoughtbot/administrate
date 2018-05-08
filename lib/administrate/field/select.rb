@@ -11,7 +11,9 @@ module Administrate
         collection
       end
 
-      alias_method :short_plain_text, :data
+      def short_plain_text
+        data
+      end
 
       private
 
