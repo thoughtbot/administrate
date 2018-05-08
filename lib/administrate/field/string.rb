@@ -1,24 +1,10 @@
-require_relative "base"
+require_relative "text"
 
 module Administrate
   module Field
-    class String < Field::Base
+    class String < Field::Text
       def self.searchable?
         true
-      end
-
-      def truncate
-        data.to_s[0...truncation_length]
-      end
-
-      def short_plain_text
-        truncate
-      end
-
-      private
-
-      def truncation_length
-        options.fetch(:truncate, 50)
       end
     end
   end
