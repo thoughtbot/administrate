@@ -146,7 +146,7 @@ describe Administrate::Field::DateTime do
       let(:field) { described_class.new(:start_date, nil, :show) }
 
       it "returns empty string" do
-        expect(field.short_plain_text).to eq ''
+        expect(field.short_plain_text).to eq ""
       end
     end
   end

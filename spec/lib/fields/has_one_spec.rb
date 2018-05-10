@@ -47,7 +47,11 @@ describe Administrate::Field::HasOne do
 
   describe "#short_plain_text" do
     it "returns title of associated resource" do
-      field = described_class.new(:product_meta_tag, create(:product_meta_tag), :show)
+      field = described_class.new(
+        :product_meta_tag,
+        create(:product_meta_tag),
+        :show
+      )
       expect(field.short_plain_text).to eq(field.display_associated_resource)
     end
   end
