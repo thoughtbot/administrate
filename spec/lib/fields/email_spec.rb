@@ -11,4 +11,12 @@ describe Administrate::Field::Email do
       expect(path).to eq("/fields/email/#{page}")
     end
   end
+
+  describe "#short_plain_text" do
+    it "returns email" do
+      email = "foo@example.com"
+      field = described_class.new(:email, email, :page)
+      expect(field.short_plain_text).to eq(email)
+    end
+  end
 end

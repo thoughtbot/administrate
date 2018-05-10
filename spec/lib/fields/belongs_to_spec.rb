@@ -123,4 +123,11 @@ describe Administrate::Field::BelongsTo do
       end
     end
   end
+
+  describe "#short_plain_text" do
+    it "returns title of associated resource" do
+      field = described_class.new(:customers, create(:customer), :view)
+      expect(field.short_plain_text).to eq(field.display_associated_resource)
+    end
+  end
 end

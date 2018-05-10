@@ -3,7 +3,7 @@ class MockRelation
     @data = data
   end
 
-  delegate :==, :empty?, :map, to: :@data
+  delegate :==, :empty?, :map, :size, to: :@data
 
   def page(n)
     self

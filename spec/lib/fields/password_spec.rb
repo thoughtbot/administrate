@@ -53,13 +53,20 @@ describe Administrate::Field::Password do
         expect(password.truncate).to eq(lorem(10, "-"))
       end
     end
+
+    def password_with_options(string, options)
+      Administrate::Field::Password.new(:string, string, :page, options)
+    end
+
+    def lorem(n, character = "•")
+      character * n
+    end
   end
 
-  def password_with_options(string, options)
-    Administrate::Field::Password.new(:string, string, :page, options)
-  end
-
-  def lorem(n, character = "•")
-    character * n
+  describe "#short_plain_text" do
+    it "returns #truncate" do
+      field = described_class.new(:short_secret, "c" * 30, :show)
+      expect(field.short_plain_text).to eq field.truncate
+    end
   end
 end

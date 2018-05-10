@@ -72,4 +72,21 @@ describe Administrate::Field::Polymorphic do
       end
     end
   end
+
+  describe "#short_plain_text" do
+    it "returns title of associated resource" do
+      begin
+        Thing = Class.new
+        ThingDashboard = Class.new do
+          def display_resource(*)
+            :success
+          end
+        end
+        field = described_class.new(:foo, Thing.new, :show)
+        expect(field.short_plain_text).to eq(field.display_associated_resource)
+      ensure
+        remove_constants :Thing, :ThingDashboard
+      end
+    end
+  end
 end

@@ -36,4 +36,11 @@ describe Administrate::Field::Boolean do
       end
     end
   end
+
+  describe "#short_plain_text" do
+    it "returns string" do
+      field = described_class.new(:boolean, true, :page)
+      expect(field.short_plain_text).to eq(field.to_s)
+    end
+  end
 end

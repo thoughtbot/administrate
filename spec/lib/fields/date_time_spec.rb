@@ -132,4 +132,22 @@ describe Administrate::Field::DateTime do
       end
     end
   end
+
+  describe "#short_plain_text" do
+    context "when value is present" do
+      let(:field) { described_class.new(:start_date, Time.current, :show) }
+
+      it "returns datetime string" do
+        expect(field.short_plain_text).to eq(field.datetime)
+      end
+    end
+
+    context "when value is blank" do
+      let(:field) { described_class.new(:start_date, nil, :show) }
+
+      it "returns empty string" do
+        expect(field.short_plain_text).to eq ''
+      end
+    end
+  end
 end

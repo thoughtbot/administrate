@@ -90,9 +90,9 @@ describe Administrate::Field::Number do
   end
 
   describe "#short_plain_text" do
-    it "returns same values as #to_s" do
-      int = Administrate::Field::Number.new(:quantity, 3, :show)
-      expect(int.short_plain_text).to eq int.to_s
+    it "returns same value as #to_s" do
+      field = described_class.new(:quantity, 4.2, :show)
+      expect(field.short_plain_text).to eq field.to_s
     end
   end
 end

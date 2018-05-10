@@ -1,6 +1,7 @@
 require "administrate/field/has_many"
 require "support/constant_helpers"
 require "support/mock_relation"
+require "rails_helper"
 
 describe Administrate::Field::HasMany do
   describe "#to_partial_path" do
@@ -204,6 +205,15 @@ describe Administrate::Field::HasMany do
 
         expect(field.selected_options).to be_nil
       end
+    end
+  end
+
+  describe "#short_plain_text" do
+    it "returns number of associated objects" do
+      number = 2
+      customers = MockRelation.new(create_list(:customer, number))
+      field = described_class.new(:customers, customers, :show)
+      expect(field.short_plain_text).to eq(number.to_s)
     end
   end
 end
