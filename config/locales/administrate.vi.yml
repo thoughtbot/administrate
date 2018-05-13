@@ -6,7 +6,7 @@ vi:
       destroy: Xóa
       edit: Sửa
       edit_resource: Sửa %{name}
-      export_csv: Download as CSV
+      export_csv: Tập tin CSV
       show_resource: Xem %{name}
       new_resource: Mới %{name}
       back: Trở lại

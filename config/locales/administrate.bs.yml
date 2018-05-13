@@ -5,7 +5,7 @@ bs:
       destroy: Izbrisati
       edit: Izmjena
       edit_resource: Izmjena %{name}
-      export_csv: Download as CSV
+      export_csv: Preuzmite kao CSV
       show_resource: Pregled %{name}
       new_resource: Novi %{name}
       back: Nazad

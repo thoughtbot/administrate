@@ -6,7 +6,7 @@ da:
       destroy: Slet
       edit: Rediger
       edit_resource: Rediger %{name}
-      export_csv: Download as CSV
+      export_csv: Download som CSV
       show_resource: Vis %{name}
       new_resource: Ny %{name}
       back: Tilbage

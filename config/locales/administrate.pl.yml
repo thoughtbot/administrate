@@ -6,7 +6,7 @@ pl:
       destroy: Usuń
       edit: Edytuj
       edit_resource: Edytuj %{name}
-      export_csv: Download as CSV
+      export_csv: Pobierz jako CSV
       show_resource: Wyświetl %{name}
       new_resource: Nowy %{name}
       back: Wstecz
