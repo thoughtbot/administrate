@@ -20,6 +20,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "i18n-tasks"
   gem "pry-rails"
+  gem "puma"
   gem "rspec-rails"
 end
 
