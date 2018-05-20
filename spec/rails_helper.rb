@@ -31,6 +31,8 @@ RSpec.configure do |config|
 end
 
 ActiveRecord::Migration.maintain_test_schema!
+
+Capybara.server = :puma, { Silent: true }
 Capybara.javascript_driver = :poltergeist
 Capybara.register_driver :poltergeist do |app|
   options = { phantomjs_options: ["--load-images=no"] }
