@@ -60,7 +60,7 @@ module Administrate
       end
 
       def order
-        @_order ||= Administrate::Order.new(sort_by, direction)
+        @order ||= Administrate::Order.new(sort_by, direction)
       end
 
       private
