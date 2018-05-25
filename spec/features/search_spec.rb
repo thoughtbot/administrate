@@ -85,6 +85,6 @@ feature "Search" do
   end
 
   def order_row_match(order)
-    %r{#{order.id} #{order.customer.name} }
+    /#{order.id}\s+#{order.customer.name}\s+/
   end
 end
