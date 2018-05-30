@@ -98,7 +98,7 @@ For example:
 ```ruby
   country: Field::BelongsTo(
     searchable: true,
-    seachable_field: 'name',
+    searchable_field: 'name',
   )
 ```
 
