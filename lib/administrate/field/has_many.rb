@@ -11,8 +11,8 @@ module Administrate
         { "#{attr.to_s.singularize}_ids".to_sym => [] }
       end
 
-      def associated_collection
-        Administrate::Page::Collection.new(associated_dashboard)
+      def associated_collection(order = self.order)
+        Administrate::Page::Collection.new(associated_dashboard, order: order)
       end
 
       def attribute_key
@@ -39,7 +39,7 @@ module Administrate
         self.class.permitted_attribute(attribute)
       end
 
-      def resources(page = 1)
+      def resources(page = 1, order = self.order)
         resources = order.apply(data).page(page).per(limit)
         includes.any? ? resources.includes(*includes) : resources
       end
@@ -49,7 +49,18 @@ module Administrate
       end
 
       def data
-        @data ||= associated_class.none 
+        @data ||= associated_class.none
+      end
+
+      def order_from_params(params)
+        Administrate::Order.new(
+          params.fetch(:order, sort_by),
+          params.fetch(:direction, direction),
+        )
+      end
+
+      def order
+        @order ||= Administrate::Order.new(sort_by, direction)
       end
 
       private
@@ -69,10 +80,6 @@ module Administrate
 
       def display_candidate_resource(resource)
         associated_dashboard.display_resource(resource)
-      end
-
-      def order
-        @_order ||= Administrate::Order.new(sort_by, direction)
       end
 
       def sort_by

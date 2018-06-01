@@ -101,7 +101,10 @@ module Administrate
     end
 
     def order
-      @order ||= Administrate::Order.new(params[:order], params[:direction])
+      @order ||= Administrate::Order.new(
+        params.fetch(resource_name, {}).fetch(:order, nil),
+        params.fetch(resource_name, {}).fetch(:direction, nil),
+      )
     end
 
     def dashboard

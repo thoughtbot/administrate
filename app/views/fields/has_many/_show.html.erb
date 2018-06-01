@@ -19,15 +19,18 @@ from the associated resource class's dashboard.
 %>
 
 <% if field.resources.any? %>
+  <% order = field.order_from_params(params.fetch(field.name, {})) %>
+  <% page_number = params.fetch(field.name, {}).fetch(:page, nil) %>
   <%= render(
     "collection",
-    collection_presenter: field.associated_collection,
-    resources: field.resources(params[field.name]),
-    table_title: field.name
+    collection_presenter: field.associated_collection(order),
+    collection_field_name: field.name,
+    page: page,
+    resources: field.resources(page_number, order),
+    table_title: field.name,
   ) %>
-
   <% if field.more_than_limit? %>
-    <%= paginate field.resources(params[field.name]), param_name: "#{field.name}" %>
+    <%= paginate field.resources(page_number), param_name: "#{field.name}[page]" %>
   <% end %>
 
 <% else %>

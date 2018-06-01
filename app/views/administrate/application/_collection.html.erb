@@ -28,14 +28,13 @@ to display a collection of resources in an HTML table.
         scope="col"
         role="columnheader"
         aria-sort="<%= sort_order(collection_presenter.ordered_html_class(attr_name)) %>">
-        <%= link_to(sanitized_order_params.merge(
-          collection_presenter.order_params_for(attr_name)
+        <%= link_to(sanitized_order_params(page, collection_field_name).merge(
+          collection_presenter.order_params_for(attr_name, key: collection_field_name)
         )) do %>
         <%= t(
           "helpers.label.#{collection_presenter.resource_name}.#{attr_name}",
           default: attr_name.to_s,
         ).titleize %>
-
             <% if collection_presenter.ordered_by?(attr_name) %>
               <span class="cell-label__sort-indicator cell-label__sort-indicator--<%= collection_presenter.ordered_html_class(attr_name) %>">
                 <svg aria-hidden="true">
