@@ -8,7 +8,7 @@ describe Administrate::CSV do
       begin
         class Foo
           def datetime
-            Time.current
+            @datetime ||= Time.current
           end
 
           def string
@@ -40,7 +40,7 @@ describe Administrate::CSV do
           end
 
           def time
-            Time.current
+            @time ||= Time.current
           end
 
           def polymorphic
@@ -94,7 +94,8 @@ describe Administrate::CSV do
           end
         end
         csv = described_class.new([resource], collection_page, view_context_class.new)
-        expect(CSV.parse(csv.generate)[1]).to(
+        csv_row = CSV.parse(csv.generate)[1]
+        expect(csv_row).to(
           eq(collection_page.fields_for(resource).map(&:short_plain_text))
         )
       ensure
