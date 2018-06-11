@@ -10,6 +10,13 @@ module Administrate
         )
       end
 
+      def nested_show
+        @nested_show ||= Administrate::Page::Show.new(
+                  resolver.dashboard_class.new,
+                  data || resolver.resource_class.new,
+                )
+      end
+
       def self.permitted_attribute(attr, options = nil)
         associated_class_name =
           if options
