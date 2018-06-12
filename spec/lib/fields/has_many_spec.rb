@@ -47,7 +47,7 @@ describe Administrate::Field::HasMany do
       field.associated_collection
       expect(Administrate::Page::Collection).to have_received(:new).with(
         dashboard,
-        show: show_fields,
+        hash_including(show: show_fields),
       )
     end
   end
