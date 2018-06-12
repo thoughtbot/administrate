@@ -49,11 +49,11 @@ feature "Search" do
   scenario "admin clears search" do
     query = "foo"
     mismatch = create(:customer, name: "someone")
-    visit admin_customers_path(search: query, order: :name)
+    visit admin_customers_path(search: query, customer: { order: :name })
 
     expect(page).not_to have_content(mismatch.email)
     clear_search
-    expect(page_params).to eq("order=name")
+    expect(page_params).to eq("customer[order]=name")
     expect(page).to have_content(mismatch.email)
   end
 
@@ -77,7 +77,7 @@ feature "Search" do
   end
 
   def page_params
-    URI.parse(page.current_url).query
+    CGI.unescape(URI.parse(page.current_url).query)
   end
 
   def submit_search
@@ -85,6 +85,6 @@ feature "Search" do
   end
 
   def order_row_match(order)
-    %r{#{order.id} #{order.customer.name} }
+    /#{order.id}\s+#{order.customer.name}\s+/
   end
 end

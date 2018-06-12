@@ -32,6 +32,10 @@ module Administrate
       end
     end
 
+    def all_attributes
+      attribute_types.keys
+    end
+
     def form_attributes
       self.class::FORM_ATTRIBUTES
     end
@@ -61,7 +65,7 @@ module Administrate
         field = self.class::ATTRIBUTE_TYPES[key]
 
         next key if association_classes.include?(field)
-        key if association_classes.include?(field.try :deferred_class)
+        key if association_classes.include?(field.try(:deferred_class))
       end.compact
     end
 

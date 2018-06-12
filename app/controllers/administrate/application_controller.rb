@@ -101,7 +101,10 @@ module Administrate
     end
 
     def order
-      @order ||= Administrate::Order.new(params[:order], params[:direction])
+      @order ||= Administrate::Order.new(
+        params.fetch(resource_name, {}).fetch(:order, nil),
+        params.fetch(resource_name, {}).fetch(:direction, nil),
+      )
     end
 
     def dashboard
@@ -165,7 +168,7 @@ module Administrate
 
     def show_search_bar?
       dashboard.attribute_types_for(
-        dashboard.collection_attributes,
+        dashboard.all_attributes,
       ).any? { |_name, attribute| attribute.searchable? }
     end
 

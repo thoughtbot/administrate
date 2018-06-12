@@ -21,8 +21,8 @@ zh-TW:
         more: 顯示 %{total_count} 筆中的 %{count} 筆資料
         none: 無
     form:
-      error: error
-      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+      error: 錯誤
+      errors: "%{pluralized_errors} 導致此 %{resource_name} 不能被儲存："
     search:
-      clear: 清除搜索
-      label: 搜索 %{resource}
+      clear: 清除搜尋
+      label: 搜尋 %{resource}
