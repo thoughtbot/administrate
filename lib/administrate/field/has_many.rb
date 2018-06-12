@@ -12,7 +12,11 @@ module Administrate
       end
 
       def associated_collection(order = self.order)
-        Administrate::Page::Collection.new(associated_dashboard, order: order, show: options[:show])
+        Administrate::Page::Collection.new(
+          associated_dashboard,
+          order: order,
+          show: options[:show]
+        )
       end
 
       def attribute_key

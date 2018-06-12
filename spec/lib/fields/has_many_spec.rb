@@ -35,12 +35,18 @@ describe Administrate::Field::HasMany do
       show_fields = %i[id name]
       dashboard = double
 
-      field = Administrate::Field::HasMany.new(:widgets, [], :show, {show: show_fields})
+      field = Administrate::Field::HasMany.new(
+        :widgets,
+        [],
+        :show,
+        show: show_fields
+      )
       allow(Administrate::Page::Collection).to receive(:new)
       allow(field).to receive(:associated_dashboard) { dashboard }
 
       field.associated_collection
-      expect(Administrate::Page::Collection).to have_received(:new).with(dashboard, show: show_fields)
+      expect(Administrate::Page::Collection).to have_received(:new)
+        .with(dashboard, show: show_fields)
     end
   end
 
