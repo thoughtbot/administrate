@@ -39,14 +39,16 @@ describe Administrate::Field::HasMany do
         :widgets,
         [],
         :show,
-        show: show_fields
+        show: show_fields,
       )
       allow(Administrate::Page::Collection).to receive(:new)
       allow(field).to receive(:associated_dashboard) { dashboard }
 
       field.associated_collection
-      expect(Administrate::Page::Collection).to have_received(:new)
-        .with(dashboard, show: show_fields)
+      expect(Administrate::Page::Collection).to have_received(:new).with(
+        dashboard,
+        hash_including(show: show_fields),
+      )
     end
   end
 
@@ -81,12 +83,12 @@ describe Administrate::Field::HasMany do
         allow(Foo).to receive(:uuid).and_return(uuid)
         allow(Foo).to receive(:id).and_return(1)
         allow_any_instance_of(FooDashboard).to(
-          receive(:display_resource).and_return(uuid)
+          receive(:display_resource).and_return(uuid),
         )
 
         association =
           Administrate::Field::HasMany.with_options(
-            primary_key: "uuid", class_name: "Foo"
+            primary_key: "uuid", class_name: "Foo",
           )
         field = association.new(:customers, [], :show)
         field.associated_resource_options
