@@ -15,7 +15,7 @@ module Administrate
         Administrate::Page::Collection.new(
           associated_dashboard,
           order: order,
-          show: options[:show]
+          show: options[:show],
         )
       end
 
