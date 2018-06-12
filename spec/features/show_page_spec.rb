@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "customer show page" do
-  describe "displays the customers orders paginated" do
+  describe "paginates customers' orders" do
     it "displays the first page by default, other pages when specified" do
       customer = create(:customer)
       orders = create_list(:order, 4, customer: customer)
@@ -10,7 +10,7 @@ RSpec.describe "customer show page" do
 
       visit admin_customer_path(customer)
 
-      within(".attribute-data--has-many") do
+      within(".attribute-data--has-many table[aria-labelledby=orders]") do
         ids_in_page1 = ids_in_table
         expect(ids_in_page1.count).to eq 2
         expect(order_ids).to include(*ids_in_page1)
@@ -18,7 +18,7 @@ RSpec.describe "customer show page" do
 
       click_on("Next ›")
 
-      within(".attribute-data--has-many") do
+      within(".attribute-data--has-many table[aria-labelledby=orders]") do
         ids_in_page2 = ids_in_table
         expect(ids_in_page2.count).to eq 2
         expect(order_ids).to include(*ids_in_page2)
@@ -56,6 +56,77 @@ RSpec.describe "customer show page" do
 
     orders.each do |order|
       expect(page).to have_content(order.total_price)
+    end
+  end
+
+  it "sorts each of the customer's orders" do
+    customer = create(:customer)
+    orders = create_list(:order, 4, customer: customer)
+
+    orders.map.with_index(1) do |order, index|
+      create(:line_item, order: order, unit_price: 10, quantity: index)
+    end
+
+    visit admin_customer_path(customer, orders: {
+                                order: :id, direction: :desc
+                              })
+
+    order_ids = orders.sort_by(&:id).map(&:id).reverse
+
+    within(".attribute-data--has-many table[aria-labelledby=orders]") do
+      expect(order_ids.first(2)).to eq(ids_in_table)
+    end
+
+    visit admin_customer_path(customer, orders: {
+                                order: :id, direction: :desc, page: 2
+                              })
+
+    within(".attribute-data--has-many table[aria-labelledby=orders]") do
+      expect(order_ids.last(2)).to eq(ids_in_table)
+    end
+  end
+
+  it "sorts each of the customer's orders and log entries independently" do
+    customer = create(:customer)
+    orders = create_list(:order, 4, customer: customer)
+    log_entries = create_list(:log_entry, 4, logeable: customer)
+
+    orders.map.with_index(1) do |order, index|
+      create(:line_item, order: order, unit_price: 10, quantity: index)
+    end
+
+    visit admin_customer_path(
+      customer,
+      orders: { order: :id, direction: :desc },
+      log_entries: { order: :id, direction: :asc },
+    )
+
+    order_ids = orders.sort_by(&:id).map(&:id).reverse
+    log_entry_ids = log_entries.sort_by(&:id).map(&:id)
+
+    within(".attribute-data--has-many table[aria-labelledby=orders]") do
+      expect(order_ids.first(2)).to eq(ids_in_table)
+    end
+
+    within(".attribute-data--has-many table[aria-labelledby=log_entries]") do
+      expect(log_entry_ids.first(2)).to eq(ids_in_table)
+    end
+
+    visit admin_customer_path(
+      customer,
+      orders: {
+        order: :id,
+        direction: :desc,
+        page: 2,
+      },
+    )
+
+    within(".attribute-data--has-many table[aria-labelledby=orders]") do
+      expect(order_ids.last(2)).to eq(ids_in_table)
+    end
+
+    within(".attribute-data--has-many table[aria-labelledby=log_entries]") do
+      expect(log_entry_ids.first(2)).to eq(ids_in_table)
     end
   end
 

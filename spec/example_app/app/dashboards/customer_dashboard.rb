@@ -7,7 +7,8 @@ class CustomerDashboard < Administrate::BaseDashboard
     email_subscriber: Field::Boolean,
     lifetime_value: Field::Number.with_options(prefix: "$", decimals: 2),
     name: Field::String,
-    orders: Field::HasMany.with_options(limit: 2),
+    orders: Field::HasMany.with_options(limit: 2, sort_by: :id),
+    log_entries: Field::HasMany.with_options(limit: 2, sort_by: :id),
     updated_at: Field::DateTime,
     kind: Field::Select.with_options(collection: Customer::KINDS),
     country: Field::BelongsTo.with_options(
