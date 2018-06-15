@@ -1,0 +1,6 @@
+<%#
+Just a copy of the HasMany _index partial, here to test that
+things won't break if the app adds new types of association fields
+%>
+
+<%= pluralize(field.data.size, field.attribute.to_s.humanize.downcase.singularize) %>

@@ -108,7 +108,7 @@ RSpec.describe "customer show page" do
       expect(order_ids.first(2)).to eq(ids_in_table)
     end
 
-    within(".attribute-data--has-many table[aria-labelledby=log_entries]") do
+    within(".attribute-data--has-many-variant table[aria-labelledby=log_entries]") do
       expect(log_entry_ids.first(2)).to eq(ids_in_table)
     end
 
@@ -125,7 +125,7 @@ RSpec.describe "customer show page" do
       expect(order_ids.last(2)).to eq(ids_in_table)
     end
 
-    within(".attribute-data--has-many table[aria-labelledby=log_entries]") do
+    within(".attribute-data--has-many-variant table[aria-labelledby=log_entries]") do
       expect(log_entry_ids.first(2)).to eq(ids_in_table)
     end
   end
