@@ -117,7 +117,7 @@ module Administrate
     def scoped_resource
       resource_class.default_scoped
     end
-    
+
     def search_term
       params[:search].to_s.strip
     end
