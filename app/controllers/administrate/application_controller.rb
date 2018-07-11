@@ -3,13 +3,6 @@ module Administrate
     protect_from_forgery with: :exception
 
     def index
-      search_term = params[:search].to_s.strip
-      resources = Administrate::Search.new(scoped_resource,
-                                           dashboard_class,
-                                           search_term).run
-      resources = apply_resource_includes(resources)
-      resources = order.apply(resources)
-      resources = resources.page(params[:page]).per(records_per_page)
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
       render locals: {
@@ -123,6 +116,22 @@ module Administrate
 
     def scoped_resource
       resource_class.default_scoped
+    end
+    
+    def search_term
+      params[:search].to_s.strip
+    end
+    
+    def resources
+      resources = Administrate::Search.new(
+        scoped_resource,
+        dashboard_class,
+        search_term
+      ).run
+      
+      resources = apply_resource_includes(resources)
+      resources = order.apply(resources)
+      resources.page(params[:page]).per(records_per_page)
     end
 
     def apply_resource_includes(relation)
