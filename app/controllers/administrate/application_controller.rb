@@ -126,7 +126,7 @@ module Administrate
       resources = Administrate::Search.new(
         scoped_resource,
         dashboard_class,
-        search_term
+        search_term,
       ).run
 
       resources = apply_resource_includes(resources)
