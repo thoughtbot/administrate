@@ -121,14 +121,14 @@ module Administrate
     def search_term
       params[:search].to_s.strip
     end
-    
+
     def resources
       resources = Administrate::Search.new(
         scoped_resource,
         dashboard_class,
         search_term
       ).run
-      
+
       resources = apply_resource_includes(resources)
       resources = order.apply(resources)
       resources.page(params[:page]).per(records_per_page)
