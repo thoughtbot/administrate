@@ -11,6 +11,8 @@ describe "product form has_one relationship" do
     fill_in "Meta title", with: "Example meta title"
     fill_in "Meta description", with: "Example meta description"
 
+    expect(page).to have_css("legend", text: "Product Meta Tag")
+
     click_on "Create Product"
 
     expect(page).to have_link(ProductMetaTag.last.id)
@@ -30,5 +32,28 @@ describe "product form has_one relationship" do
     expect(page).to have_flash(
       t("administrate.controller.update.success", resource: "Product")
     )
+  end
+
+  describe "has_one relationships" do
+    it "displays translated labels" do
+      custom_label = "Meta Tags"
+      product = create(:product)
+
+      translations = {
+        helpers: {
+          label: {
+            product: {
+              product_meta_tag: custom_label,
+            },
+          },
+        },
+      }
+
+      with_translations(:en, translations) do
+        visit edit_admin_product_path(product)
+
+        expect(page).to have_css("legend", text: custom_label)
+      end
+    end
   end
 end

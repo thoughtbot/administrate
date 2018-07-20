@@ -13,14 +13,14 @@ describe "fields/has_many/_form", type: :view do
         locals: { f: fake_form_builder, field: has_many },
       )
 
-      expect(rendered).to include("Associated Objects")
+      expect(rendered).to include("Associated objects")
     end
   end
 
   def fake_form_builder
     double("Form Builder").as_null_object.tap do |form_builder|
       allow(form_builder).to receive(:label) do |*args|
-        args.second.to_s.titleize
+        args.first.to_s.humanize
       end
     end
   end

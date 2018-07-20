@@ -23,6 +23,7 @@ describe "fields/has_one/_form", type: :view do
     allow(builder).to receive(:fields_for) do |&block|
       block.call(double("Fields For Form Builder"))
     end
+    allow(builder).to receive(:object_name).and_return(:product)
     builder
   end
 
