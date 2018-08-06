@@ -1,6 +1,12 @@
 require "rails_helper"
 
 describe "documentation navigation" do
+  it "shows a 404 for missing pages" do
+    visit "not_a_page"
+
+    expect(page).to have_http_status(:not_found)
+  end
+
   it "links to each documentation page" do
     visit root_path
     links = internal_documentation_links
