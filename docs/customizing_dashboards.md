@@ -262,7 +262,7 @@ en:
     models:
       customer:
         one: Happy Customer
-        others: Happy Customers
+        other: Happy Customers
 ```
 
 ## Customizing Actions
