@@ -96,7 +96,7 @@ if `searchable` is `true`
 For example:
 
 ```ruby
-  country: Field::BelongsTo(
+  country: Field::BelongsTo.with_options(
     searchable: true,
     seachable_field: 'name',
   )
@@ -192,7 +192,7 @@ in.
 
 **Field::Select**
 
-`:collection` - Specify the array or range to select from.  Defaults to `[]`.
+`:collection` - Specify the array or range to select from. Defaults to `[]`.
 
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `true`.
@@ -246,11 +246,11 @@ Add this method to the dashboard for Users.
 Use whatever attribute or method you like.
 Example for *user*:
 
-````ruby
+```ruby
 def display_resource(user)
   user.name
 end
-````
+```
 
 [define your own]: /adding_custom_field_types
 
