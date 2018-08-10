@@ -135,9 +135,9 @@ Default is `false`.
 For example:
 
 ```ruby
-  cities: Field::HasMany(
+  cities: Field::HasMany.with_options(
     searchable: true,
-    seachable_field: 'name',
+    searchable_field: 'name',
   )
 ```
 
