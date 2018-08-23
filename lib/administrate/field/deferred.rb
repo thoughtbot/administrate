@@ -30,7 +30,18 @@ module Administrate
       end
 
       def searchable_field
+        ActiveSupport::Deprecation.warn(
+          "searchable_field is deprecated, use searchable_fields instead",
+        )
         options.fetch(:searchable_field)
+      end
+
+      def searchable_fields
+        if options.key?(:searchable_field)
+          [searchable_field]
+        else
+          options.fetch(:searchable_fields)
+        end
       end
 
       def permitted_attribute(attr, _options = nil)
