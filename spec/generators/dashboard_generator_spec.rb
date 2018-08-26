@@ -82,6 +82,21 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
       end
 
+      if Rails.gem_version >= Gem::Version.new("5.0")
+        it "includes virtual attributes" do
+          class Customer < ActiveRecord::Base
+            attribute :plan, :string
+          end
+          dashboard = file("app/dashboards/customer_dashboard.rb")
+
+          run_generator ["customer"]
+
+          expect(dashboard).to contain(
+            "plan: Field::String",
+          )
+        end
+      end
+
       it "includes has_many relationships" do
         dashboard = file("app/dashboards/customer_dashboard.rb")
 
