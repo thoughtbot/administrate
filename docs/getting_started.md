@@ -149,7 +149,7 @@ You must also ensure that the all the required controller actions are available 
 ```ruby
 # routes.rb
 namespace :admin do
-  resources name, only: %i(index show new create edit update destroy)
+  resources :name, only: %i(index show new create edit update destroy)
 end
 
 # names_controller.rb
