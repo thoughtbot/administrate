@@ -1,8 +1,9 @@
 module Administrate
   class Order
-    def initialize(attribute = nil, direction = nil)
+    def initialize(attribute = nil, direction = nil, field = nil)
       @attribute = attribute
       @direction = direction || :asc
+      @field = field
     end
 
     def apply(relation)
@@ -32,7 +33,7 @@ module Administrate
 
     private
 
-    attr_reader :attribute
+    attr_reader :attribute, :field
 
     def reversed_direction_param_for(attr)
       if ordered_by?(attr)
@@ -49,7 +50,9 @@ module Administrate
     def order_by_association(relation)
       return order_by_count(relation) if has_many_attribute?(relation)
 
-      return order_by_id(relation) if belongs_to_attribute?(relation)
+      if belongs_to_attribute?(relation)
+        return field ? order_by_attribute(relation) : order_by_id(relation)
+      end
 
       relation
     end
@@ -63,6 +66,12 @@ module Administrate
 
     def order_by_id(relation)
       relation.reorder("#{attribute}_id #{direction}")
+    end
+
+    def order_by_attribute(relation)
+      relation.
+        joins(attribute.to_sym).
+        reorder("#{attribute.pluralize}.#{field} #{direction}")
     end
 
     def has_many_attribute?(relation)

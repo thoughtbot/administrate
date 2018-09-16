@@ -101,10 +101,24 @@ module Administrate
     end
 
     def order
-      @order ||= Administrate::Order.new(
-        params.fetch(resource_name, {}).fetch(:order, nil),
-        params.fetch(resource_name, {}).fetch(:direction, nil),
-      )
+      attribute = params.fetch(resource_name, {}).fetch(:order, nil)
+      direction = params.fetch(resource_name, {}).fetch(:direction, nil)
+      field = order_by_field(dashboard_attribute(attribute))
+      @order ||= Administrate::Order.new(attribute, direction, field)
+    end
+
+    def order_by_field(dashboard_attribute)
+      return unless class_inherited_belongs_to?(dashboard_attribute)
+      dashboard_attribute.options[:order]
+    end
+
+    def class_inherited_belongs_to?(dashboard_attribute)
+      return false unless dashboard_attribute.try(:deferred_class)
+      dashboard_attribute.deferred_class <= Administrate::Field::BelongsTo
+    end
+
+    def dashboard_attribute(attribute)
+      dashboard.attribute_types[attribute.to_sym] if attribute
     end
 
     def dashboard
