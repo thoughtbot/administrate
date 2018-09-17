@@ -16,6 +16,23 @@
 
 ## Changes
 
+### 0.11.0 (September 17, 2018)
+
+* [COMPAT] [#1260] Upgrade Ruby to 2.5.1.
+* [COMPAT] [#1216] Update ffi from 1.9.23 to 1.9.25.
+* [DOC] [#1166] Add forgotten .with_options in documentation .
+* [DOC] [#1199] Update customizing_dashboards doc.
+* [i18n] [#1200] Fix error in suggested translation key.
+* [DOC] [#1177] Return a 404 when docs pages are not found.
+* [i18n] [#1192] Fix i18n inconsistencies in forms for associations.
+* [FEATURE] [#945] Sort has_many fields.
+* [COMPAT] [#1169] Configure Capybara to use webrick.
+* [i18n] [#1163] Add missing zh-TW translations.
+* [DOC] [#1157] Fix has_many and polymorphic fields docs.
+* [BUGFIX] [#892] Fix search bar hiding even w/searchable attributes.
+* [i18n] [#1153] Add Indonesian locale.
+* [BUGFIX] [#1150] Ensure persistent order in pagination spec.
+
 ### 0.10.0 (April 20, 2018)
 
 * [BUGFIX] [#1121] Fix a bug where polymorphic fields could throw an exception.
