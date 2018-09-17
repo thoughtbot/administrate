@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Admin::Blog::PostsController, type: :controller do
+describe SuperAdmin::Blog::PostsController, type: :controller do
   describe "GET index" do
     it "passes all posts to the view" do
       blog_post = create(:blog_post)

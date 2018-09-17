@@ -442,7 +442,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       expect(controller).to have_correct_syntax
     end
 
-    it "subclasses Admin::ApplicationController by default" do
+    it "subclasses SuperAdmin::ApplicationController by default" do
       begin
         ActiveRecord::Schema.define { create_table :foos }
         class Foo < ActiveRecord::Base; end
@@ -450,8 +450,8 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         run_generator ["foo"]
         load file("app/controllers/admin/foos_controller.rb")
 
-        expect(Admin::FoosController.ancestors).
-          to include(Admin::ApplicationController)
+        expect(SuperAdmin::FoosController.ancestors).
+          to include(SuperAdmin::ApplicationController)
       ensure
         remove_constants :Foo
         Admin.send(:remove_const, :FoosController)
