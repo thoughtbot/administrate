@@ -53,7 +53,7 @@ jobs:
   ruby-2.3:
     <<: *default_job
     docker:
-      - image: circleci/ruby:2.3-node-browsers
+      - image: circleci/ruby:2.3-node-browsers-legacy
         environment:
           PGHOST: localhost
           PGUSER: administrate
