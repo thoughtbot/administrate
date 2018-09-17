@@ -3,9 +3,9 @@ require "rails_helper"
 # Test Authorization by using the Pundit concern and an example policy,
 # which will test all the authorization functionality.
 
-describe Admin::OrdersController, type: :controller do
+describe SuperAdmin::OrdersController, type: :controller do
   context "with Punditize concern" do
-    controller(Admin::OrdersController) do
+    controller(SuperAdmin::OrdersController) do
       include Administrate::Punditize
       def pundit_user
         Customer.first # assume the user is the first Customer

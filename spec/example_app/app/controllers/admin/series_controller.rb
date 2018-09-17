@@ -1,4 +1,4 @@
 module Admin
-  class SeriesController < Admin::ApplicationController
+  class SeriesController < SuperAdmin::ApplicationController
   end
 end

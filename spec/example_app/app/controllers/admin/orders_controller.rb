@@ -1,4 +1,4 @@
 module Admin
-  class OrdersController < Admin::ApplicationController
+  class OrdersController < SuperAdmin::ApplicationController
   end
 end

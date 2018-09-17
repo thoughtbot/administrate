@@ -1,6 +1,6 @@
 module Admin
   module Blog
-    class PostsController < Admin::ApplicationController
+    class PostsController < SuperAdmin::ApplicationController
     end
   end
 end

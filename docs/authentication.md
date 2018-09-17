@@ -7,7 +7,7 @@ system.
 The base `Admin::ApplicationController` has a `TODO` to be completed:
 
 ```ruby
-class Admin::ApplicationController < Administrate::ApplicationController
+class SuperAdmin::ApplicationController < Administrate::ApplicationController
   before_action :authenticate_admin
 
   def authenticate_admin
@@ -21,7 +21,7 @@ end
 [Clearance][clearance] provides Rails authentication with email & password.
 
 ```ruby
-class Admin::ApplicationController < Administrate::ApplicationController
+class SuperAdmin::ApplicationController < Administrate::ApplicationController
   include Clearance::Controller
   before_action :require_login
 end
@@ -33,7 +33,7 @@ end
 the authentication method for your model as a `before_action`:
 
 ```ruby
-class Admin::ApplicationController < Administrate::ApplicationController
+class SuperAdmin::ApplicationController < Administrate::ApplicationController
   before_action :authenticate_user!
 end
 ```
@@ -44,7 +44,7 @@ Rails includes the [`http_basic_authenticate_with`][rails-http-basic-auth]
 method which can be added to your base admin controller:
 
 ```ruby
-class Admin::ApplicationController < Administrate::ApplicationController
+class SuperAdmin::ApplicationController < Administrate::ApplicationController
   http_basic_authenticate_with(
     name: ENV.fetch("ADMIN_NAME"),
     password: ENV.fetch("ADMIN_PASSWORD")

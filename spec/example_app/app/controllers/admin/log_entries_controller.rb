@@ -1,4 +1,4 @@
 module Admin
-  class LogEntriesController < Admin::ApplicationController
+  class LogEntriesController < SuperAdmin::ApplicationController
   end
 end
