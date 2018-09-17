@@ -21,6 +21,9 @@
     },
     "SECRET_KEY_BASE": {
       "required": true
+    },
+    "RACK_TIMEOUT": {
+      "value": 10
     }
   },
   "formation": {
