@@ -1,4 +1,4 @@
 module Admin
-  class ProductMetaTagsController < Admin::ApplicationController
+  class ProductMetaTagsController < SuperAdmin::ApplicationController
   end
 end

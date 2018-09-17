@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Admin::CustomersController, type: :controller do
+describe SuperAdmin::CustomersController, type: :controller do
   describe "GET index" do
     it "passes all customers to the view" do
       customer = create(:customer)

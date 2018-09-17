@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Admin::LineItemsController, type: :controller do
+describe SuperAdmin::LineItemsController, type: :controller do
   describe "GET index" do
     it "hides the search bar" do
       line_item = create(:line_item)
@@ -10,4 +10,3 @@ describe Admin::LineItemsController, type: :controller do
     end
   end
 end
-

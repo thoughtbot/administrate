@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Admin::LogEntriesController, type: :controller do
+describe SuperAdmin::LogEntriesController, type: :controller do
   describe "POST create" do
     def post_create(action: "create", logeable: create(:customer))
       resource_params = attributes_for(:log_entry).merge(

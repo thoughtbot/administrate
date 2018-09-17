@@ -1,4 +1,4 @@
 module Admin
-  class PaymentsController < Admin::ApplicationController
+  class PaymentsController < SuperAdmin::ApplicationController
   end
 end

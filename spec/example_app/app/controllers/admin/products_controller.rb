@@ -1,5 +1,5 @@
 module Admin
-  class ProductsController < Admin::ApplicationController
+  class ProductsController < SuperAdmin::ApplicationController
     private
 
     def find_resource(param)

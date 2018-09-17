@@ -1,4 +1,4 @@
 module Admin
-  class LineItemsController < Admin::ApplicationController
+  class LineItemsController < SuperAdmin::ApplicationController
   end
 end
