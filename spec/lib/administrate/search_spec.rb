@@ -1,5 +1,6 @@
 require "rails_helper"
 require "administrate/field/belongs_to"
+require "administrate/field/boolean"
 require "administrate/field/email"
 require "administrate/field/has_many"
 require "administrate/field/has_one"
@@ -13,6 +14,7 @@ class MockDashboard
     name: Administrate::Field::String,
     email: Administrate::Field::Email,
     phone: Administrate::Field::Number,
+    activated: Administrate::Field::Boolean,
   }.freeze
 end
 
@@ -32,83 +34,75 @@ end
 describe Administrate::Search do
   describe "#run" do
     it "returns all records when no search term" do
-      begin
-        class User < ActiveRecord::Base; end
-        scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          nil)
-        expect(scoped_object).to receive(:all)
+      class User < ActiveRecord::Base; end
+      scoped_object = User.default_scoped
+      search = Administrate::Search.new(scoped_object,
+                                        MockDashboard,
+                                        nil)
+      expect(scoped_object).to receive(:all)
 
-        search.run
-      ensure
-        remove_constants :User
-      end
+      search.run
+    ensure
+      remove_constants :User
     end
 
     it "returns all records when search is empty" do
-      begin
-        class User < ActiveRecord::Base; end
-        scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "   ")
-        expect(scoped_object).to receive(:all)
+      class User < ActiveRecord::Base; end
+      scoped_object = User.default_scoped
+      search = Administrate::Search.new(scoped_object,
+                                        MockDashboard,
+                                        "   ")
+      expect(scoped_object).to receive(:all)
 
-        search.run
-      ensure
-        remove_constants :User
-      end
+      search.run
+    ensure
+      remove_constants :User
     end
 
     it "searches using LOWER + LIKE for all searchable fields" do
-      begin
-        class User < ActiveRecord::Base; end
-        scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "test")
-        expected_query = [
-          [
-            'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
-            'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
-            'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
-          ].join(" OR "),
-          "%test%",
-          "%test%",
-          "%test%",
-        ]
-        expect(scoped_object).to receive(:where).with(*expected_query)
+      class User < ActiveRecord::Base; end
+      scoped_object = User.default_scoped
+      search = Administrate::Search.new(scoped_object,
+                                        MockDashboard,
+                                        "test")
+      expected_query = [
+        [
+          'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
+          'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
+          'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+        ].join(" OR "),
+        "%test%",
+        "%test%",
+        "%test%",
+      ]
+      expect(scoped_object).to receive(:where).with(*expected_query)
 
-        search.run
-      ensure
-        remove_constants :User
-      end
+      search.run
+    ensure
+      remove_constants :User
     end
 
     it "converts search term LOWER case for latin and cyrillic strings" do
-      begin
-        class User < ActiveRecord::Base; end
-        scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "Тест Test")
-        expected_query = [
-          [
-            'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
-            'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
-            'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
-          ].join(" OR "),
-          "%тест test%",
-          "%тест test%",
-          "%тест test%",
-        ]
-        expect(scoped_object).to receive(:where).with(*expected_query)
+      class User < ActiveRecord::Base; end
+      scoped_object = User.default_scoped
+      search = Administrate::Search.new(scoped_object,
+                                        MockDashboard,
+                                        "Тест Test")
+      expected_query = [
+        [
+          'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
+          'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
+          'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+        ].join(" OR "),
+        "%тест test%",
+        "%тест test%",
+        "%тест test%",
+      ]
+      expect(scoped_object).to receive(:where).with(*expected_query)
 
-        search.run
-      ensure
-        remove_constants :User
-      end
+      search.run
+    ensure
+      remove_constants :User
     end
 
     context "when searching through associations" do
@@ -147,6 +141,83 @@ describe Administrate::Search do
         expect(scoped_object).to receive(:where).with(*expected_query)
 
         search.run
+      end
+    end
+
+    context "when using advanced search" do
+      it "accepts single-word searches on specific fields" do
+        class User < ActiveRecord::Base; end
+        scoped_object = User.default_scoped
+        search = Administrate::Search.new(scoped_object,
+                                          MockDashboard,
+                                          "email:test")
+        expected_query = ['LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+                          "%test%"]
+        expect(scoped_object).to receive(:where).with(*expected_query)
+
+        search.run
+      ensure
+        remove_constants :User
+      end
+
+      it "accepts multi-word searches on specific fields" do
+        class User < ActiveRecord::Base; end
+        scoped_object = User.default_scoped
+        search = Administrate::Search.new(scoped_object,
+                                          MockDashboard,
+                                          "name:'multiple words'")
+        expected_query = ['LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
+                          "%multiple words%"]
+        expect(scoped_object).to receive(:where).with(*expected_query)
+
+        search.run
+      ensure
+        remove_constants :User
+      end
+
+      it "accepts searches on boolean fields" do
+        class User < ActiveRecord::Base; end
+        scoped_object = User.default_scoped
+        search = Administrate::Search.new(scoped_object,
+                                          MockDashboard,
+                                          "activated:true")
+        expected_query = { activated: true }
+        expect(scoped_object).to receive(:where).with(expected_query)
+
+        search.run
+      ensure
+        remove_constants :User
+      end
+
+      it "accepts mixed basic/advanced searches" do
+        class User < ActiveRecord::Base; end
+        scoped_object = User.default_scoped
+        search = Administrate::Search.new(scoped_object,
+                                          MockDashboard,
+                                          "hello activated:true name:test")
+        basic_query = [
+          [
+            'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
+            'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+          ].join(" OR "),
+          "%hello%",
+          "%hello%",
+        ]
+        boolean_query = { activated: true }
+        string_query = ['LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
+                        "%test%"]
+        expect(scoped_object).to receive(:where).once.ordered.
+          with(*basic_query).
+          and_return(scoped_object)
+        expect(scoped_object).to receive(:where).once.ordered.
+          with(boolean_query).
+          and_return(scoped_object)
+        expect(scoped_object).to receive(:where).once.ordered.
+          with(*string_query)
+
+        search.run
+      ensure
+        remove_constants :User
       end
     end
   end
