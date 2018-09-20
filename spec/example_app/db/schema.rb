@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031155447) do
+ActiveRecord::Schema.define(version: 20180525115059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20171031155447) do
     t.string "country_code"
     t.time "example_time"
     t.string "password"
+    t.boolean "hidden", default: false, null: false
   end
 
   create_table "line_items", id: :serial, force: :cascade do |t|
