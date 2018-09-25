@@ -21,11 +21,7 @@ to be displayed on a resource's edit form page.
 <div class="field-unit__field">
   <%= f.select(
     field.attribute,
-    options_from_collection_for_select(
-      field.selectable_options,
-      :to_s,
-      :to_s,
-      field.data.presence,
-    )
+    field.selectable_options,
+    { selected: field.data.presence }
   ) %>
 </div>
