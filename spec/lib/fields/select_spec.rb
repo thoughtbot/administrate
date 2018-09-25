@@ -17,7 +17,8 @@ describe Administrate::Field::Select do
     {
       two: 2,
       approved: 'Approved!',
-      no_status: 'No status'
+      no_status: 'No status',
+      nil: nil
     }
   end
 
@@ -51,7 +52,7 @@ describe Administrate::Field::Select do
     it "returns an empty array without options" do
       field = Administrate::Field::Select.new(:select, persisted[:string], :show)
 
-      expect(field.selectable_options).to eq([])
+      expect(field.selectable_options).to eq(collections[:empty])
     end
 
     context "with collection" do
@@ -80,39 +81,41 @@ describe Administrate::Field::Select do
     it "returns nil without options" do
       field = Administrate::Field::Select.new(:select, persisted[:string], :show)
 
-      expect(field.label_data).to eq(nil)
+      expect(field.label_data).to eq(output[:nil])
     end
 
     context "with collection" do
       expected = {
-        [ :empty, :string ] => nil,
-        [ :array_int, nil ] => nil,
-        [ :array_int, :string ] => nil,
-        [ :array_int, :integer ] => :two,
-        [ :arrays_str, nil ] => nil,
-        [ :arrays_str, :string ] => :approved,
-        [ :arrays_str, :integer ] => nil,
-        [ :arrays_sym, nil ] => nil,
-        [ :arrays_sym, :string ] => :approved,
-        [ :arrays_sym, :integer ] => nil,
-        [ :arrays_nil, :nil ] => :no_status,
-        [ :arrays_nil, :string ] => :approved,
-        [ :arrays_nil, :integer ] => nil,
-        [ :hash_str, nil ] => nil,
-        [ :hash_str, :string ] => :approved,
-        [ :hash_str, :integer ] => nil,
-        [ :hash_sym, nil ] => nil,
-        [ :hash_sym, :string ] => :approved,
-        [ :hash_sym, :integer ] => nil,
-        [ :hash_nil, nil ] => :no_status,
-        [ :hash_nil, :string ] => :approved,
-        [ :hash_nil, :integer ] => nil,
+        %i(empty string) => :nil,
+        %i(array_int nil) => :nil,
+        %i(array_int string) => :nil,
+        %i(array_int integer) => :two,
+        %i(arrays_str nil) => :nil,
+        %i(arrays_str string) => :approved,
+        %i(arrays_str integer) => :nil,
+        %i(arrays_sym nil) => :nil,
+        %i(arrays_sym string) => :approved,
+        %i(arrays_sym integer) => :nil,
+        %i(arrays_nil nil) => :no_status,
+        %i(arrays_nil string) => :approved,
+        %i(arrays_nil integer) => :nil,
+        %i(hash_str nil) => :nil,
+        %i(hash_str string) => :approved,
+        %i(hash_str integer) => :nil,
+        %i(hash_sym nil) => :nil,
+        %i(hash_sym string) => :approved,
+        %i(hash_sym integer) => :nil,
+        %i(hash_nil nil) => :no_status,
+        %i(hash_nil string) => :approved,
+        %i(hash_nil integer) => :nil,
       }
 
       expected.each do |inputs, o_key|
-        it "`#{inputs.first}` and value `#{inputs.last}` returns output `#{o_key}`" do
-          c_key, p_key = inputs
-          field = select_with_options(persisted[p_key], collection: collections[c_key])
+        c_key, p_key = inputs
+        it "`#{c_key}` and value `#{p_key}` returns output `#{o_key}`" do
+          persisted_data = persisted[p_key]
+          collection = collections[c_key]
+          field = select_with_options(persisted_data, collection: collection)
 
           expect(field.label_data).to eq(output[o_key])
         end
