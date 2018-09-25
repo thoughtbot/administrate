@@ -16,7 +16,7 @@ module Administrate
         when NilClass
           nil
         when Array
-          pair = collection.detect { |l,v| v.to_s == data.to_s } || []
+          pair = collection.detect { |_, v| v.to_s == data.to_s } || []
           pair.first
         else
           collection.detect { |v| v.to_s == data.to_s }

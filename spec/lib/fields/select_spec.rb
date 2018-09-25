@@ -25,10 +25,10 @@ describe Administrate::Field::Select do
   let(:collections) do
     {
       empty: [],
-      array_int: [1,2,3],
-      arrays_str: [["Pending","submitted"],["Approved!","approved"]],
-      arrays_sym: [["Pending", :submitted],["Approved!",:approved]],
-      arrays_nil: [["No status",nil],["Approved!","approved"]],
+      array_int: [1, 2, 3],
+      arrays_str: [["Pending", "submitted"], ["Approved!", "approved"]],
+      arrays_sym: [["Pending", :submitted], ["Approved!", :approved]],
+      arrays_nil: [["No status", nil], ["Approved!", "approved"]],
       hash_str: { "Pending" => "submitted", "Approved!" => "approved" },
       hash_sym: { "Pending" => :submitted, "Approved!" => :approved },
       hash_nil: { "No status" => nil, "Approved!" => "approved" },
