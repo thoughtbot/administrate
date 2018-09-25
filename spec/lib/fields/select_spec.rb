@@ -7,31 +7,31 @@ describe Administrate::Field::Select do
 
   let(:persisted) do
     {
-      string: 'approved',
+      string: "approved",
       integer: 2,
-      nil: nil
+      nil: nil,
     }
   end
 
   let(:output) do
     {
       two: 2,
-      approved: 'Approved!',
-      no_status: 'No status',
-      nil: nil
+      approved: "Approved!",
+      no_status: "No status",
+      nil: nil,
     }
   end
 
   let(:collections) do
     {
       empty: [],
-      array_int: [1, 2, 3],
-      arrays_str: [ ['Pending', 'submitted'], ['Approved!', 'approved'] ],
-      arrays_sym: [ ['Pending', :submitted], ['Approved!', :approved] ],
-      arrays_nil: [ ['No status', nil], ['Approved!', 'approved'] ],
-      hash_str: { 'Pending' => 'submitted', 'Approved!' => 'approved' },
-      hash_sym: { 'Pending' => :submitted, 'Approved!' => :approved },
-      hash_nil: { 'No status' => nil, 'Approved!' => 'approved' }
+      array_int: [1,2,3],
+      arrays_str: [["Pending","submitted"],["Approved!","approved"]],
+      arrays_sym: [["Pending", :submitted],["Approved!",:approved]],
+      arrays_nil: [["No status",nil],["Approved!","approved"]],
+      hash_str: { "Pending" => "submitted", "Approved!" => "approved" },
+      hash_sym: { "Pending" => :submitted, "Approved!" => :approved },
+      hash_nil: { "No status" => nil, "Approved!" => "approved" },
     }
   end
 
@@ -64,7 +64,7 @@ describe Administrate::Field::Select do
         :arrays_nil => :arrays_nil,
         :hash_str => :arrays_str,
         :hash_sym => :arrays_sym,
-        :hash_nil => :arrays_nil
+        :hash_nil => :arrays_nil,
       }
 
       expected.each do |in_key, out_key|
