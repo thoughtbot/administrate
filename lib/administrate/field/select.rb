@@ -15,6 +15,18 @@ module Administrate
         options.fetch(:include_blank, false)
       end
 
+      def label_data
+        case collection.first
+        when NilClass
+          nil
+        when Array
+          pair = collection.detect { |l,v| v.to_s == data.to_s } || []
+          pair.first
+        else
+          collection.detect { |v| v.to_s == data.to_s }
+        end
+      end
+
       private
 
       def collection
