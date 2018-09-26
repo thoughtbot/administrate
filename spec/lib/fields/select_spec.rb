@@ -57,14 +57,14 @@ describe Administrate::Field::Select do
 
     context "with collection" do
       expected = {
-        :empty => :empty,
-        :array_int => :array_int,
-        :arrays_str => :arrays_str,
-        :arrays_sym => :arrays_sym,
-        :arrays_nil => :arrays_nil,
-        :hash_str => :arrays_str,
-        :hash_sym => :arrays_sym,
-        :hash_nil => :arrays_nil,
+        empty: :empty,
+        array_int: :array_int,
+        arrays_str: :arrays_str,
+        arrays_sym: :arrays_sym,
+        arrays_nil: :arrays_nil,
+        hash_str: :arrays_str,
+        hash_sym: :arrays_sym,
+        hash_nil: :arrays_nil,
       }
 
       expected.each do |in_key, out_key|
