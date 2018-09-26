@@ -38,7 +38,8 @@ describe Administrate::Field::Select do
   describe "#to_partial_path" do
     it "returns a partial based on the page being rendered" do
       page = :show
-      field = Administrate::Field::Select.new(:select, persisted[:string], page)
+      data = persisted[:string]
+      field = Administrate::Field::Select.new(:select, data, page)
 
       path = field.to_partial_path
 
@@ -50,7 +51,8 @@ describe Administrate::Field::Select do
 
   describe "#selectable_options" do
     it "returns an empty array without options" do
-      field = Administrate::Field::Select.new(:select, persisted[:string], :show)
+      data = persisted[:string]
+      field = Administrate::Field::Select.new(:select, data, :show)
 
       expect(field.selectable_options).to eq(collections[:empty])
     end
@@ -69,7 +71,9 @@ describe Administrate::Field::Select do
 
       expected.each do |in_key, out_key|
         it "`#{in_key}` returns collection `#{out_key}`" do
-          field = select_with_options(persisted[:string], collection: collections[in_key])
+          data = persisted[:string]
+          collection = collections[in_key]
+          field = select_with_options(data, collection: collection)
 
           expect(field.selectable_options).to eq(collections[out_key])
         end
@@ -79,7 +83,8 @@ describe Administrate::Field::Select do
 
   describe "#label_data" do
     it "returns nil without options" do
-      field = Administrate::Field::Select.new(:select, persisted[:string], :show)
+      data = persisted[:string]
+      field = Administrate::Field::Select.new(:select, data, :show)
 
       expect(field.label_data).to eq(output[:nil])
     end
