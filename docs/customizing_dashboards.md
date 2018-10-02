@@ -90,6 +90,9 @@ Example: `.with_options(scope: -> { MyModel.includes(:rel).limit(5) })`
 `:class_name` - Specifies the name of the associated class.
 Defaults to `:#{attribute}.to_s.singularize.camelcase`.
 
+`:include_blank` - Specifies if the select element to be rendered should include
+blank option. Default is `true`.
+
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `false`.
 
