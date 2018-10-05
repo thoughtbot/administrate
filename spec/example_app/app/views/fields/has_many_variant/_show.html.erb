@@ -1,0 +1,23 @@
+<%#
+Just a copy of the HasMany _show partial, here to test that
+things won't break if the app adds new types of association fields
+%>
+
+<% if field.resources.any? %>
+  <% order = field.order_from_params(params.fetch(field.name, {})) %>
+  <% page_number = params.fetch(field.name, {}).fetch(:page, nil) %>
+  <%= render(
+    "collection",
+    collection_presenter: field.associated_collection(order),
+    collection_field_name: field.name,
+    page: page,
+    resources: field.resources(page_number, order),
+    table_title: field.name,
+  ) %>
+  <% if field.more_than_limit? %>
+    <%= paginate field.resources(page_number), param_name: "#{field.name}[page]" %>
+  <% end %>
+
+<% else %>
+  <%= t("administrate.fields.has_many.none", default: "–") %>
+<% end %>

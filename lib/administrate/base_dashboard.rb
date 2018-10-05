@@ -59,8 +59,6 @@ module Administrate
     end
 
     def association_includes
-      association_classes = [Field::HasMany, Field::HasOne, Field::BelongsTo]
-
       collection_attributes.map do |key|
         field = self.class::ATTRIBUTE_TYPES[key]
 
@@ -73,6 +71,12 @@ module Administrate
 
     def attribute_not_found_message(attr)
       "Attribute #{attr} could not be found in #{self.class}::ATTRIBUTE_TYPES"
+    end
+
+    def association_classes
+      @association_classes ||=
+        ObjectSpace.each_object(Class).
+          select { |klass| klass < Administrate::Field::Associative }
     end
   end
 end
