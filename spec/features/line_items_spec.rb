@@ -33,14 +33,14 @@ RSpec.describe "line item index page" do
 
   it "links to the new page" do
     visit admin_line_items_path
-    click_on("New line item")
+    click_on("New Line item")
 
-    expect(page).to have_header("New Line Item")
+    expect(page).to have_header("New Line item")
   end
 
   it "links back to line items" do
     visit admin_line_items_path
-    click_on("New line item")
+    click_on("New Line item")
 
     click_on("Back")
 

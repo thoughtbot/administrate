@@ -43,7 +43,7 @@ feature "log entries index page" do
 
   scenario "user clicks through to the new page" do
     visit admin_log_entries_path
-    click_on("New log entry")
+    click_on("New Log entry")
 
     expect(current_path).to eq(new_admin_log_entry_path)
   end
