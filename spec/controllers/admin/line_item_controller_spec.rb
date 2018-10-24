@@ -9,5 +9,12 @@ describe Admin::LineItemsController, type: :controller do
       expect(locals[:show_search_bar]).to be_falsey
     end
   end
-end
 
+  describe "GET new" do
+    it "passes parent resource to new form page object" do
+      locals = capture_view_locals { get :new, "order_id": 123 }
+
+      expect(locals[:page].resource[:order_id]).to eq(123)
+    end
+  end
+end

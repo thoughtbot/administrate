@@ -158,6 +158,17 @@ RSpec.describe "customer show page" do
     expect(page).to have_header("Edit #{displayed(customer)}")
   end
 
+  it "links to new order page" do
+
+    customer1 = create(:customer)
+    customer2 = create(:customer)
+
+    visit admin_customer_path(customer2)
+    click_on "New order"
+
+    expect(page).to have_select('Customer', selected: customer2.name)
+  end
+
   it "displays translated labels" do
     custom_label = "Newsletter Subscriber"
     customer = create(:customer)

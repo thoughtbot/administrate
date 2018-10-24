@@ -44,6 +44,20 @@ as well as a link to its edit page.
 
       <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
           ><%= render_field attribute, page: page %></dd>
+      <% if attribute.respond_to? :associated_collection %>
+        &nbsp;
+        <div>
+          <%= link_to(
+            t(
+              "administrate.actions.new_resource",
+              name: attribute.name.singularize
+            ),
+            [:new, namespace, attribute.resource, attribute.associated_class.name.underscore],
+            class: "button",
+          ) if valid_action?(:new, attribute.associated_class) && show_action?(:new, attribute.associated_class) %>
+        </div>
+      <% end %>
+
     <% end %>
   </dl>
 </section>

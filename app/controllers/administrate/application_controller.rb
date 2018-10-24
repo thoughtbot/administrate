@@ -27,7 +27,7 @@ module Administrate
     end
 
     def new
-      resource = resource_class.new
+      resource = resource_class.new new_params
       authorize_resource(resource)
       render locals: {
         page: Administrate::Page::Form.new(dashboard, resource),
@@ -135,6 +135,10 @@ module Administrate
       params.require(resource_class.model_name.param_key).
         permit(dashboard.permitted_attributes).
         transform_values { |v| read_param_value(v) }
+    end
+
+    def new_params
+      params.permit(resource_class.reflect_on_all_associations.map { |e| e.association_foreign_key })
     end
 
     def read_param_value(data)

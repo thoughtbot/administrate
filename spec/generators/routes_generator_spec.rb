@@ -97,6 +97,21 @@ describe Administrate::Generators::RoutesGenerator, :generator do
           "dashboard for AbstractModel")
       end
     end
+
+    it "generates nested new for has_many association, skips others" do
+      routes = file("config/routes.rb")
+
+      run_generator
+
+      expect(routes).to contain("resources :customers, only: []")
+      expect(routes).to contain("resources :orders, only: :new")
+
+      # Skip has_one
+      expect(routes).not_to contain("resources :product_meta_tag, only: :new")
+
+      # Skip belongs_to
+      expect(routes).not_to contain("resources :country, only: :new")
+    end    
   end
 
   it "creates a root route for the admin namespace" do

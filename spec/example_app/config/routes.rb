@@ -13,6 +13,18 @@ Rails.application.routes.draw do
       resources :posts
     end
 
+    resources :customers, only: [] do
+      resources :orders, only: :new
+    end
+
+    resources :customers, only: [] do
+      resources :log_entries, only: :new
+    end
+
+    resources :orders, only: [] do
+      resources :line_items, only: :new
+    end
+
     root to: "customers#index"
   end
 

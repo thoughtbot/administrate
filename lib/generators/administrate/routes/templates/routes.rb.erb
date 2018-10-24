@@ -1,5 +1,10 @@
 namespace :<%= namespace %> do
-<% dashboard_resources.each do |resource| %>    resources :<%= resource %>
+<% dashboard_resources.each do |resource| %>  resources :<%= resource %>
 <%end%>
-    root to: "<%= dashboard_resources.first %>#index"
+<% associated_collections.each do |collection| %>
+  resources :<%= collection[:parent] %>, only: [] do
+    resources :<%= collection[:nested] %>, only: :new
   end
+<% end %>
+  root to: "<%= dashboard_resources.first %>#index"
+end
