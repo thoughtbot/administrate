@@ -44,16 +44,13 @@ module Administrate
       end
 
       def associated_collections
-        valid_dashboard_models.map { |e|
-          e.reflect_on_all_associations
-        }.flatten.select { |e|
-          e.collection?
-        }.map { |e|
+        valid_dashboard_models.map(&:reflect_on_all_associations).
+          flatten.select(&:collection?).map do |e|
           {
             parent: e.active_record.model_name.plural,
-            nested: e.plural_name
+            nested: e.plural_name,
           }
-        }
+        end
       end
 
       def valid_dashboard_models

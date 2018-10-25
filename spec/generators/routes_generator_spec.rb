@@ -111,7 +111,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
 
       # Skip belongs_to
       expect(routes).not_to contain("resources :country, only: :new")
-    end    
+    end
   end
 
   it "creates a root route for the admin namespace" do

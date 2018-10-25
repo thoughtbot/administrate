@@ -159,12 +159,11 @@ RSpec.describe "customer show page" do
   end
 
   it "links to new order page" do
-
-    customer1 = create(:customer)
+    create(:customer)
     customer2 = create(:customer)
 
     visit admin_customer_path(customer2)
-    click_on "New order"
+    click_on 'New order'
 
     expect(page).to have_select('Customer', selected: customer2.name)
   end

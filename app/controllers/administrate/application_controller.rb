@@ -138,7 +138,8 @@ module Administrate
     end
 
     def new_params
-      params.permit(resource_class.reflect_on_all_associations.map { |e| e.association_foreign_key })
+      params.permit(resource_class.
+        reflect_on_all_associations.map(&:association_foreign_key))
     end
 
     def read_param_value(data)
