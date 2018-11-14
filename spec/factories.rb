@@ -40,8 +40,9 @@ FactoryBot.define do
     sequence(:name) { |n| "Monopoly #{n}" }
     price { 10.50 }
     description { "A cutthroat game of financial conquest" }
-    image_url \
-      { "https://cdn.recombu.com/mobile/images/news/M11370/1264769196_w670.jpg" }
+    image_url do
+      "https://cdn.recombu.com/mobile/images/news/M11370/1264769196_w670.jpg"
+    end
     product_meta_tag
   end
 
