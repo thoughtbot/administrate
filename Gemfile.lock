@@ -133,7 +133,7 @@ GEM
     kgio (2.11.2)
     launchy (2.4.3)
       addressable (~> 2.3)
-    loofah (2.2.2)
+    loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     method_source (0.9.0)
@@ -143,7 +143,7 @@ GEM
     momentjs-rails (2.20.1)
       railties (>= 3.1)
     multipart-post (2.0.0)
-    nokogiri (1.8.4)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     parser (2.5.1.2)
       ast (~> 2.4.0)
@@ -160,7 +160,7 @@ GEM
     public_suffix (3.0.3)
     pundit (2.0.0)
       activesupport (>= 3.0.0)
-    rack (2.0.5)
+    rack (2.0.6)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rack-timeout (0.5.1)
@@ -284,4 +284,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.16.3
+   1.17.1
