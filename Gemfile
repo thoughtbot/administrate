@@ -29,10 +29,11 @@ group :test do
   gem "formulaic"
   gem "launchy"
   gem "poltergeist"
+  gem "pundit"
   gem "shoulda-matchers"
   gem "timecop"
   gem "webmock"
-  gem "pundit"
+  gem "xpath", "3.1.0"
 end
 
 group :staging, :production do

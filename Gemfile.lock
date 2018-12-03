@@ -282,6 +282,7 @@ DEPENDENCIES
   uglifier
   unicorn
   webmock
+  xpath (= 3.1.0)
 
 BUNDLED WITH
    1.17.1
