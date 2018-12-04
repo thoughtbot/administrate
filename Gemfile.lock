@@ -201,7 +201,7 @@ GEM
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
     safe_yaml (1.0.4)
-    sass (3.5.7)
+    sass (3.7.2)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
