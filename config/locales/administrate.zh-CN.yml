@@ -21,8 +21,8 @@ zh-CN:
         more: 显示所有 %{total_count} 中 %{count} 条
         none: 无
     form:
-      error: error
-      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+      error: 错误
+      errors: "%{resource_name} 保存前出现了 %{pluralized_errors} 个错误："
     search:
       clear: 清除搜索
       label: 搜索 %{resource}
