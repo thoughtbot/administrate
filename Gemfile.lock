@@ -267,7 +267,7 @@ DEPENDENCIES
   faker
   formulaic
   globalid
-  i18n-tasks
+  i18n-tasks (= 0.9.24)
   launchy
   pg (= 0.21.0)
   poltergeist
