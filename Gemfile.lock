@@ -260,6 +260,7 @@ DEPENDENCIES
   awesome_print
   bundler-audit
   byebug
+  capybara (= 2.18.0)
   database_cleaner
   dotenv-rails
   factory_bot_rails
