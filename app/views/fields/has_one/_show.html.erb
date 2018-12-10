@@ -4,7 +4,7 @@
 This partial renders a has_one relationship,
 to be displayed on a resource's show page.
 
-All fields of has_one relationship would be rendered
+All show page attributes of has_one relationship would be rendered
 
 ## Local variables:
 
@@ -23,7 +23,7 @@ All fields of has_one relationship would be rendered
         [namespace, field.data],
       ) %>
     </legend>
-    <% field.nested_form.attributes.each do |attribute| -%>
+    <% field.nested_show.attributes.each do |attribute| -%>
       <div>
       <dt class="attribute-label">
         <%= t(
@@ -32,7 +32,7 @@ All fields of has_one relationship would be rendered
         ) %>
       </dt>
       <dd class="attribute-data attribute-data--<%= attribute.html_class %>">
-        <%= attribute.data %>
+        <%= render_field attribute %>
       </dd>
       </div>
     <% end -%>

@@ -27,7 +27,7 @@ describe "fields/has_one/_show", type: :view do
         "Administrate::Field::HasOne",
         display_associated_resource: product.name,
         data: product,
-        nested_form: nested_form,
+        nested_show: nested_show,
       )
 
       render(
@@ -40,24 +40,16 @@ describe "fields/has_one/_show", type: :view do
       )
 
       link = "<a href=\"#{product_path}\">#{product.name}</a>"
-      field_name = "Meta Title"
-      field_value = "Very Nice Title"
       expect(rendered.strip).to include(link)
-      expect(rendered.strip).to include(field_name)
-      expect(rendered.strip).to include(field_value)
     end
 
-    def nested_form
+    def nested_show
       instance_double(
         "Administrate::Page::Show",
         resource: double(
           class: ProductMetaTag,
         ),
-        attributes: [double(
-          html_class: "string",
-          name: "meta_title",
-          data: "Very Nice Title",
-        )],
+        attributes: [],
         resource_name: "Product Tag",
       )
     end
