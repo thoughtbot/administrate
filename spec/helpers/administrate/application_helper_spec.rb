@@ -15,7 +15,7 @@ RSpec.describe Administrate::ApplicationHelper do
     end
 
     it "shows a default string when supplied" do
-      displayed = display_resource_name(:customer, default: 'Special Customer')
+      displayed = display_resource_name(:customer, default: "Special Customer")
 
       expect(displayed).to eq("Special Customer")
     end
