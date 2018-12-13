@@ -14,6 +14,12 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(displayed).to eq("Customer")
     end
 
+    it "shows a default string when supplied" do
+      displayed = display_resource_name(:customer, default: 'Special Customer')
+
+      expect(displayed).to eq("Special Customer")
+    end
+
     it "handles string arguments" do
       displayed = display_resource_name("customer")
 
@@ -74,6 +80,13 @@ RSpec.describe Administrate::ApplicationHelper do
         displayed = display_resource_name(:stats)
 
         expect(displayed).to eq("Stats")
+
+      it "ignores the default string" do
+        with_translations(:en, translations) do
+          displayed = display_resource_name(:customer, default: 'Ignored')
+
+          expect(displayed).to eq("Users")
+        end
       end
     end
   end

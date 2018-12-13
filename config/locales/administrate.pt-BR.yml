@@ -28,4 +28,4 @@ pt-BR:
       back_to_app: Voltar ao aplicativo
     search:
       clear: Limpar pesquisa
-      label: Pesquisa %{resource}
+      label: Pesquisar %{resource}
