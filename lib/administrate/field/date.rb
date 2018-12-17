@@ -5,8 +5,16 @@ module Administrate
     class Date < Base
       def date
         I18n.localize(
-          data.to_date,
+          data.in_time_zone(timezone).to_date,
           format: format,
+        )
+      end
+
+      def datetime
+        I18n.localize(
+          data.in_time_zone(timezone),
+          format: format,
+          default: data,
         )
       end
 
@@ -14,6 +22,10 @@ module Administrate
 
       def format
         options.fetch(:format, :default)
+      end
+
+      def timezone
+        options.fetch(:timezone, ::Time.zone.name || "UTC")
       end
     end
   end
