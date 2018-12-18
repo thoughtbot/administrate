@@ -19,7 +19,7 @@ module Administrate
       end
 
       def datetimepicker_format
-        options.fetch(:datetimepicker_format, '')
+        options.fetch(:datetimepicker_format, "")
       end
 
       private

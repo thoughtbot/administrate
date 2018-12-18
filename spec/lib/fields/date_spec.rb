@@ -49,7 +49,7 @@ describe Administrate::Field::Date do
 
     context "with `timezone` option set to New York & early DateTime" do
       it "displays previous day because of the time difference" do
-        start_date = DateTime.parse("2015-12-25 02:15:45")
+        start_date = Time.parse("2015-12-25 02:15:45")
         options_field = Administrate::Field::Date.
           with_options(format: :short, timezone: "America/New_York")
         field = options_field.new(:start_date, start_date, :show)

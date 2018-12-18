@@ -1,20 +1,20 @@
 $(function () {
-  $('[data-type="time"]').each(function(){
+  $('[data-type="time"]').each(function() {
     $(this).datetimepicker({
       debug: false,
-      format: $(this).data('format') || "HH:mm:ss",
-    })
+      format: $(this).data('format') || 'HH:mm:ss',
+    });
   });
-  $('[data-type="date"]').each(function(){
+  $('[data-type="date"]').each(function() {
     $(this).datetimepicker({
       debug: false,
-      format: $(this).data('format') || "YYYY-MM-DD",
-    })
+      format: $(this).data('format') || 'YYYY-MM-DD',
+    });
   });
-  $('[data-type="datetime"]').each(function(){
+  $('[data-type="datetime"]').each(function() {
     $(this).datetimepicker({
       debug: false,
-      format: $(this).data('format') || "YYYY-MM-DD HH:mm:ss",
-    })
+      format: $(this).data('format') || 'YYYY-MM-DD HH:mm:ss',
+    });
   });
 });
