@@ -1,4 +1,10 @@
 require "rails_helper"
+include Administrate::ApplicationHelper
+
+class Team
+  extend ActiveModel::Naming
+  extend ActiveModel::Translation
+end
 
 describe "fields/has_many/_index", type: :view do
   context "without any associated records" do
