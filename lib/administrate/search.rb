@@ -44,8 +44,11 @@ module Administrate
 
     def query_table_name(attr)
       if association_search?(attr)
-        table_name = attribute_types[attr].options[:class_name]&.constantize&.table_name ||
-          attr.to_s.pluralize
+        table_name = if attribute_types[attr].options[:class_name].present?
+                       attribute_types[attr].options[:class_name].constantize.table_name
+                     else
+                       attr.to_s.pluralize
+                     end
 
         ActiveRecord::Base.connection.quote_table_name(table_name)
       else
