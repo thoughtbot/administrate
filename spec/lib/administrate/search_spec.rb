@@ -25,7 +25,7 @@ class MockDashboardWithAssociation
     address: Administrate::Field::HasOne.with_options(
       searchable: true,
       searchable_field: "street",
-      class_name: "Namespace::Address"
+      class_name: "Namespace::Address",
     ),
   }.freeze
 end
@@ -130,17 +130,17 @@ describe Administrate::Search do
 
       let(:expected_query) do
         [
-          'LOWER(CAST("roles"."name" AS CHAR(256))) LIKE ?'\
-          ' OR LOWER(CAST("schema"."namespace_addresses"."street" AS CHAR(256))) LIKE ?',
+          'LOWER(CAST("roles"."name" AS CHAR(256))) LIKE ?' \
+          ' OR LOWER(CAST("schema"."namespace_addresses"."street"' \
+          ' AS CHAR(256))) LIKE ?',
           "%тест test%",
           "%тест test%",
         ]
       end
 
       before do
-        allow(Namespace::Address)
-          .to receive(:table_name)
-          .and_return('schema.namespace_addresses')
+        allow(Namespace::Address).to receive(:table_name).
+          and_return("schema.namespace_addresses")
       end
 
       it "joins with the correct association table to query" do
