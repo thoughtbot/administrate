@@ -66,7 +66,7 @@ module Administrate
       private
 
       def includes
-        associated_dashboard.association_includes
+        associated_dashboard.collection_includes
       end
 
       def candidate_resources

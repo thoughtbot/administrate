@@ -58,13 +58,12 @@ module Administrate
       "#{resource.class} ##{resource.id}"
     end
 
-    def association_includes
-      collection_attributes.map do |key|
-        field = self.class::ATTRIBUTE_TYPES[key]
+    def collection_includes
+      attribute_includes(collection_attributes)
+    end
 
-        next key if association_classes.include?(field)
-        key if association_classes.include?(field.try(:deferred_class))
-      end.compact
+    def item_includes
+      attribute_includes(show_page_attributes)
     end
 
     private
@@ -77,6 +76,15 @@ module Administrate
       @association_classes ||=
         ObjectSpace.each_object(Class).
           select { |klass| klass < Administrate::Field::Associative }
+    end
+
+    def attribute_includes(attributes)
+      attributes.map do |key|
+        field = self.class::ATTRIBUTE_TYPES[key]
+
+        next key if association_classes.include?(field)
+        key if association_classes.include?(field.try(:deferred_class))
+      end.compact
     end
   end
 end
