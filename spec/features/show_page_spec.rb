@@ -33,10 +33,10 @@ RSpec.describe "customer show page" do
      "and there's another paginable association",
     ) do
       it "doesn't break" do
-        original_collection_attributes = CustomerDashboard::COLLECTION_ATTRIBUTES
+        orig_collection_attributes = CustomerDashboard::COLLECTION_ATTRIBUTES
         allow_any_instance_of(CustomerDashboard).to(
           receive(:collection_attributes).
-          and_return(original_collection_attributes - [:orders]),
+          and_return(orig_collection_attributes - [:orders]),
         )
 
         customer = create(:customer)
