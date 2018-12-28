@@ -28,9 +28,13 @@ RSpec.describe "customer show page" do
       expect(ids_in_table).to match_array(order_ids)
     end
 
-    it "when these are not a collection field and there's another paginable association" do
+    it "when these are not a collection field" +
+       "and there's another paginable association" do
       original_collection_attributes = CustomerDashboard::COLLECTION_ATTRIBUTES
-      allow_any_instance_of(CustomerDashboard).to receive(:collection_attributes).and_return(original_collection_attributes - [:orders])
+      allow_any_instance_of(CustomerDashboard).to(
+        receive(:collection_attributes).
+        and_return(original_collection_attributes - [:orders])
+      )
 
       customer = create(:customer)
       create_list(:order, 4, customer: customer)
