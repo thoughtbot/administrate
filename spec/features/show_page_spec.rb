@@ -27,6 +27,26 @@ RSpec.describe "customer show page" do
       ids_in_table = (ids_in_page1 + ids_in_page2).uniq
       expect(ids_in_table).to match_array(order_ids)
     end
+
+    describe(
+      "when these are not a collection field" +
+      "and there's another paging association",
+    ) do
+      it "doesn't break" do
+        orig_collection_attributes = CustomerDashboard::COLLECTION_ATTRIBUTES
+        allow_any_instance_of(CustomerDashboard).to(
+          receive(:collection_attributes).
+          and_return(orig_collection_attributes - [:orders]),
+        )
+
+        customer = create(:customer)
+        create_list(:order, 4, customer: customer)
+        create_list(:log_entry, 1, logeable: customer)
+
+        visit admin_customer_path(customer)
+        click_on("Next ›")
+      end
+    end
   end
 
   it "displays the customer's title attribute as the header" do
