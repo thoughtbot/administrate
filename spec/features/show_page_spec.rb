@@ -30,7 +30,7 @@ RSpec.describe "customer show page" do
 
     describe(
       "when these are not a collection field" +
-     "and there's another paginable association",
+      "and there's another paging association",
     ) do
       it "doesn't break" do
         orig_collection_attributes = CustomerDashboard::COLLECTION_ATTRIBUTES
