@@ -16,6 +16,7 @@ module Administrate
           copy_resource_template("_stylesheet")
           copy_resource_template("_javascript")
           copy_resource_template("_flashes")
+          copy_resource_template("_icons")
         end
       end
     end
