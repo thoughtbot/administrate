@@ -18,6 +18,18 @@ module Administrate
   class BaseDashboard
     include Administrate
 
+    DASHBOARD_SUFFIX = "Dashboard".freeze
+
+    class << self
+      def model
+        to_s.chomp(DASHBOARD_SUFFIX).classify.constantize
+      end
+
+      def resource_name(opts)
+        model.model_name.human(opts)
+      end
+    end
+
     def attribute_types
       self.class::ATTRIBUTE_TYPES
     end
