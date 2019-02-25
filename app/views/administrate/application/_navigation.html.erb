@@ -8,10 +8,10 @@ as defined by the routes in the `admin/` namespace
 %>
 
 <nav class="navigation" role="navigation">
-  <% Administrate::Namespace.new(namespace).resources.each do |resource| %>
+  <% Administrate::Namespace.new(namespace).resources_with_index_route.each do |resource| %>
     <%= link_to(
       display_resource_name(resource),
-      [namespace, resource_index_route_key(resource)],
+      resource_index_route(resource),
       class: "navigation__link navigation__link--#{nav_link_state(resource)}"
     ) %>
   <% end %>

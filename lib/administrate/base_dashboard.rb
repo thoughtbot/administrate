@@ -17,6 +17,18 @@ module Administrate
   class BaseDashboard
     include Administrate
 
+    DASHBOARD_SUFFIX = "Dashboard".freeze
+
+    class << self
+      def model
+        to_s.chomp(DASHBOARD_SUFFIX).classify.constantize
+      end
+
+      def resource_name(opts)
+        model.model_name.human(opts)
+      end
+    end
+
     def attribute_types
       self.class::ATTRIBUTE_TYPES
     end
@@ -84,6 +96,7 @@ module Administrate
         field = self.class::ATTRIBUTE_TYPES[key]
 
         next key if association_classes.include?(field)
+
         key if association_classes.include?(field.try(:deferred_class))
       end.compact
     end

@@ -95,7 +95,7 @@ describe Admin::Blog::PostsController, type: :controller do
 
         post :create, blog_post: invalid_attributes
 
-        expect(page.find("h1")).to have_content "New Blog/Post"
+        expect(page.find("h1")).to have_content "New Blog Post"
       end
     end
   end

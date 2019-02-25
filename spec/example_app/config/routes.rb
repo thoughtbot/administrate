@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       resources :posts
     end
 
+    resources :stats, only: [:index]
+
     root to: "customers#index"
   end
 

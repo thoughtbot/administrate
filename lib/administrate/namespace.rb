@@ -18,6 +18,10 @@ module Administrate
       end
     end
 
+    def resources_with_index_route
+      routes.select { |_resource, route| route == "index" }.map(&:first).uniq
+    end
+
     private
 
     attr_reader :namespace

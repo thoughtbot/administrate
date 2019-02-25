@@ -20,6 +20,12 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(displayed).to eq("Customers")
     end
 
+    it "handles namespaced resources" do
+      displayed = display_resource_name("blog/posts")
+
+      expect(displayed).to eq("Blog Posts")
+    end
+
     context "when translations are defined" do
       it "uses the plural of the defined translation" do
         translations = {
@@ -40,17 +46,19 @@ RSpec.describe Administrate::ApplicationHelper do
         end
       end
     end
-  end
 
-  describe "#resource_index_route_key" do
-    it "handles index routes when resource is uncountable" do
-      route_key = resource_index_route_key(:series)
-      expect(route_key).to eq("series_index")
-    end
+    context "using custom dashboards" do
+      it "pluralizes the resource name" do
+        displayed = display_resource_name("stat")
 
-    it "handles normal inflection" do
-      route_key = resource_index_route_key(:customer)
-      expect(route_key).to eq("customers")
+        expect(displayed).to eq("Stats")
+      end
+
+      it "handles plural arguments" do
+        displayed = display_resource_name(:stats)
+
+        expect(displayed).to eq("Stats")
+      end
     end
   end
 
