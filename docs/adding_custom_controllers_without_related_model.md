@@ -1,10 +1,10 @@
 # Adding Controllers Without Related Model
 
 Sometimes you may want to add a custom controller that has no resource
-related with it (for example for a statistics page).
+related to it (for example for a statistics page).
 
 To do that, you must define an `index` route, as only controllers with index
-routes are displayed in the sidebar and adding a custom dashboard.
+routes are displayed in the sidebar and then add a custom dashboard:
 
 ```ruby
 # app/dashboards/stat_dashboard.rb
@@ -17,7 +17,7 @@ end
 ```
 
 ```ruby
-# config/router.rb
+# config/routes.rb
 
 namespace :admin do
   # ...
