@@ -9,6 +9,10 @@ module Administrate
       class_option :namespace, type: :string, default: "admin"
 
       def insert_dashboard_routes
+        if Rails.configuration.try(:autoloader) == :zeitwerk
+          Rails.autoloaders.main.eager_load
+        end
+
         if should_route_dashboard?
           route(dashboard_routes)
         end
