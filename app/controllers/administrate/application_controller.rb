@@ -45,10 +45,19 @@ module Administrate
       authorize_resource(resource)
 
       if resource.save
-        redirect_to(
-          [namespace, resource],
-          notice: translate_with_resource("create.success"),
-        )
+        respond_to do |format|
+          format.html do
+            redirect_to(
+              [namespace, resource],
+              notice: translate_with_resource("create.success"),
+            )
+          end
+          format.json do
+            render :show, locals: {
+              page: Administrate::Page::Show.new(dashboard, resource),
+            }
+          end
+        end
       else
         render :new, locals: {
           page: Administrate::Page::Form.new(dashboard, resource),
@@ -58,10 +67,19 @@ module Administrate
 
     def update
       if requested_resource.update(resource_params)
-        redirect_to(
-          [namespace, requested_resource],
-          notice: translate_with_resource("update.success"),
-        )
+        respond_to do |format|
+          format.html do
+            redirect_to(
+              [namespace, requested_resource],
+              notice: translate_with_resource("update.success"),
+            )
+          end
+          format.json do
+            render :show, locals: {
+              page: Administrate::Page::Show.new(dashboard, requested_resource),
+            }
+          end
+        end
       else
         render :edit, locals: {
           page: Administrate::Page::Form.new(dashboard, requested_resource),
@@ -71,11 +89,30 @@ module Administrate
 
     def destroy
       if requested_resource.destroy
-        flash[:notice] = translate_with_resource("destroy.success")
+        respond_to do |format|
+          format.html do
+            flash[:notice] = translate_with_resource("destroy.success")
+            redirect_to action: :index
+          end
+          format.json do
+            render :show, locals: {
+              page: Administrate::Page::Show.new(dashboard, requested_resource),
+            }
+          end
+        end
       else
-        flash[:error] = requested_resource.errors.full_messages.join("<br/>")
+        respond_to do |format|
+          format.html do
+            flash[:error] = requested_resource.errors.full_messages.join("<br/>")
+            redirect_to action: :index
+          end
+          format.json do
+            render :edit, locals: {
+              page: Administrate::Page::Form.new(dashboard, requested_resource),
+            }
+          end
+        end
       end
-      redirect_to action: :index
     end
 
     private
