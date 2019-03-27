@@ -103,7 +103,8 @@ module Administrate
       else
         respond_to do |format|
           format.html do
-            flash[:error] = requested_resource.errors.full_messages.join("<br/>")
+            errors = requested_resource.errors
+            flash[:error] = errors.full_messages.join("<br/>")
             redirect_to action: :index
           end
           format.json do
