@@ -15,8 +15,12 @@ module Administrate
         @resource_path ||= resource_name.gsub("/", "_")
       end
 
-      def association_includes
-        dashboard.try(:association_includes) || []
+      def collection_includes
+        dashboard.try(:collection_includes) || []
+      end
+
+      def item_includes
+        dashboard.try(:item_includes) || []
       end
 
       protected
