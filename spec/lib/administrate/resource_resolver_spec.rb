@@ -5,7 +5,7 @@ require "administrate/resource_resolver"
 
 describe Administrate::ResourceResolver do
   describe "#dashboard_class" do
-    it "handles global-namepsace models" do
+    it "handles global-namespace models" do
       begin
         class UserDashboard; end
         resolver = Administrate::ResourceResolver.new("admin/users")
@@ -37,7 +37,7 @@ describe Administrate::ResourceResolver do
   end
 
   describe "#resource_class" do
-    it "handles global-namepsace models" do
+    it "handles global-namespace models" do
       begin
         class User; end
         resolver = Administrate::ResourceResolver.new("admin/users")
@@ -58,10 +58,21 @@ describe Administrate::ResourceResolver do
         remove_constants :Library
       end
     end
+
+    it "does not singularize namespaces" do
+      begin
+        module Libraries; class Book; end; end
+        resolver = Administrate::ResourceResolver.new("admin/libraries/books")
+
+        expect(resolver.resource_class).to eq(Libraries::Book)
+      ensure
+        remove_constants :Libraries
+      end
+    end
   end
 
   describe "#resource_title" do
-    it "handles global-namepsace models" do
+    it "handles global-namespace models" do
       resolver = Administrate::ResourceResolver.new("admin/users")
 
       expect(resolver.resource_title).to eq("User")
@@ -75,7 +86,7 @@ describe Administrate::ResourceResolver do
   end
 
   describe "#resource_name" do
-    it "handles global-namepsace models" do
+    it "handles global-namespace models" do
       resolver = Administrate::ResourceResolver.new("admin/users")
 
       expect(resolver.resource_name).to eq(:user)
