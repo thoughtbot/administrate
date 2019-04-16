@@ -36,34 +36,6 @@ default_job: &default_job
     - run: bundle exec appraisal rake
 
 jobs:
-  ruby-2.2:
-    <<: *default_job
-    docker:
-      - image: circleci/ruby:2.2.9-node-browsers
-        environment:
-          PGHOST: localhost
-          PGUSER: administrate
-          RAILS_ENV: test
-      - image: postgres:9.5-alpine
-        environment:
-          POSTGRES_USER: administrate
-          POSTGRES_DB: ruby22
-          POSTGRES_PASSWORD: ""
-
-  ruby-2.3:
-    <<: *default_job
-    docker:
-      - image: circleci/ruby:2.3-node-browsers-legacy
-        environment:
-          PGHOST: localhost
-          PGUSER: administrate
-          RAILS_ENV: test
-      - image: postgres:10.1-alpine
-        environment:
-          POSTGRES_USER: administrate
-          POSTGRES_DB: ruby23
-          POSTGRES_PASSWORD: ""
-
   ruby-2.4:
     <<: *default_job
     docker:
@@ -114,5 +86,3 @@ workflows:
       - ruby-2.6
       - ruby-2.5
       - ruby-2.4
-      - ruby-2.3
-      - ruby-2.2
