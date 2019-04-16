@@ -92,10 +92,26 @@ jobs:
           POSTGRES_DB: ruby25
           POSTGRES_PASSWORD: ""
 
+  ruby-2.6:
+    <<: *default_job
+    docker:
+      - image: circleci/ruby:2.6.2-node-browsers-legacy
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby26
+          POSTGRES_PASSWORD: ""
+
+
 workflows:
   version: 2
   multiple-rubies:
     jobs:
+      - ruby-2.6
       - ruby-2.5
       - ruby-2.4
       - ruby-2.3
