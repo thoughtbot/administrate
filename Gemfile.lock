@@ -103,7 +103,7 @@ GEM
       activesupport
       capybara
       i18n
-    globalid (0.4.1)
+    globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashdiff (0.3.7)
     highline (2.0.2)
