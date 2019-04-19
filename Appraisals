@@ -1,7 +1,3 @@
-appraise "sass-3-4" do
-  gem "sass", "~> 3.4"
-end
-
 appraise "rails42" do
   gem "actionpack", "~> 4.2.0"
   gem "actionview", "~> 4.2.0"
