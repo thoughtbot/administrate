@@ -34,7 +34,7 @@ group :test do
   gem "shoulda-matchers"
   gem "timecop"
   gem "webmock"
-  gem "xpath", "3.1.0"
+  gem "xpath", "3.2.0"
 end
 
 group :staging, :production do
