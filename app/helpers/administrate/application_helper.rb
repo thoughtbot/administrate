@@ -2,6 +2,14 @@ module Administrate
   module ApplicationHelper
     PLURAL_MANY_COUNT = 2.1
 
+    def application_title
+      if Rails::VERSION::MAJOR <= 5
+        Rails.application.class.parent_name.titlecase
+      else
+        Rails.application.class.module_parent_name.titlecase
+      end
+    end
+
     def render_field(field, locals = {})
       locals.merge!(field: field)
       render locals: locals, partial: field.to_partial_path
