@@ -10,7 +10,7 @@ across all dashboards. You can customize the following built in field types:
 - `has_many`
 - `has_one`
 - `number`
-- `polymporphic`
+- `polymorphic`
 - `select`
 - `string`
 - `text`
