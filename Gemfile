@@ -24,7 +24,7 @@ end
 
 group :test do
   gem "ammeter"
-  gem "capybara", "3.21.0"
+  gem "capybara", "3.22.0"
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
