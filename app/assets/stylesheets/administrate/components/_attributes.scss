@@ -18,6 +18,7 @@
   margin-bottom: $base-spacing;
   margin-left: 2rem;
   width: calc(80% - 1rem);
+  word-break: break-word;
 }
 
 .attribute--nested {
