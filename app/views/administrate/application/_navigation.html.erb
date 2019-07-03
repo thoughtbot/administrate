@@ -13,6 +13,8 @@ as defined by the routes in the `admin/` namespace
       display_resource_name(resource),
       [namespace, resource_index_route_key(resource)],
       class: "navigation__link navigation__link--#{nav_link_state(resource)}"
+    ) if Rails.application.routes.url_helpers.method_defined?(
+        "#{resource.namespace}_#{resource.path}_path".to_sym
     ) %>
   <% end %>
 </nav>
