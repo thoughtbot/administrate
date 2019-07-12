@@ -1,3 +1,3 @@
-class Country < ActiveRecord::Base
+class Country < ApplicationRecord
   validates :code, :name, presence: true
 end

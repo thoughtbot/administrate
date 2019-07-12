@@ -1,3 +1,3 @@
-class Series < ActiveRecord::Base
+class Series < ApplicationRecord
   validates :name, presence: true
 end

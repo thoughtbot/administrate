@@ -33,7 +33,7 @@ describe Administrate::Search do
   describe "#run" do
     it "returns all records when no search term" do
       begin
-        class User < ActiveRecord::Base; end
+        class User < ApplicationRecord; end
         scoped_object = User.default_scoped
         search = Administrate::Search.new(scoped_object,
                                           MockDashboard,
@@ -48,7 +48,7 @@ describe Administrate::Search do
 
     it "returns all records when search is empty" do
       begin
-        class User < ActiveRecord::Base; end
+        class User < ApplicationRecord; end
         scoped_object = User.default_scoped
         search = Administrate::Search.new(scoped_object,
                                           MockDashboard,
@@ -63,7 +63,7 @@ describe Administrate::Search do
 
     it "searches using LOWER + LIKE for all searchable fields" do
       begin
-        class User < ActiveRecord::Base; end
+        class User < ApplicationRecord; end
         scoped_object = User.default_scoped
         search = Administrate::Search.new(scoped_object,
                                           MockDashboard,
@@ -88,7 +88,7 @@ describe Administrate::Search do
 
     it "converts search term LOWER case for latin and cyrillic strings" do
       begin
-        class User < ActiveRecord::Base; end
+        class User < ApplicationRecord; end
         scoped_object = User.default_scoped
         search = Administrate::Search.new(scoped_object,
                                           MockDashboard,
