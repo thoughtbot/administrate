@@ -37,11 +37,11 @@ Rails.application.routes.draw do
     # Add dashboard for your models here
     resources :customers,
     resources :orders
-  
+
     root to: "customers#index" # <--- Root route
   end
  end
- ```
+```
 
 The routes can be customized to show or hide
 different models on the dashboard.
@@ -71,6 +71,15 @@ Add a route for the new dashboard.
 namespace :admin do
   resources :foos
 end
+```
+
+## Using a Custom Namespace
+
+Administrate supports using a namespace other than `Admin`, such as
+`Supervisor`. This will also change the route it's using:
+
+```sh
+rails generate administrate:install --namespace=supervisor
 ```
 
 ## Keep Dashboards Updated as Model Attributes Change
