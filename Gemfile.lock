@@ -188,7 +188,7 @@ GEM
     rainbow (3.0.0)
     raindrops (0.19.0)
     rake (12.3.2)
-    redcarpet (3.4.0)
+    redcarpet (3.5.0)
     regexp_parser (1.5.1)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
