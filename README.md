@@ -44,7 +44,7 @@ To accomplish these goals, Administrate follows a few guiding principles:
 ## Getting Started
 
 Administrate supports Rails from 4.2, up to 5.0 and beyond. We support Ruby
-2.2.9 and up.
+2.4 and up.
 
 Add Administrate to your Gemfile and re-bundle:
 
@@ -133,7 +133,7 @@ community](https://github.com/thoughtbot/administrate/graphs/contributors).
 
 ## License
 
-administrate is Copyright © 2015-2018 thoughtbot.
+administrate is Copyright © 2015-2019 thoughtbot.
 It is free software, and may be redistributed under the terms specified in the
 [LICENSE](/LICENSE.md) file.
 

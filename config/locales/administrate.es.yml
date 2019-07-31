@@ -22,7 +22,7 @@ es:
         none: Ninguno
     form:
       error: error
-      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+      errors: "%{pluralized_errors} no permitieron guardar este %{resource_name}:"
     search:
       clear: Borrar búsqueda
       label: Buscar %{resource}

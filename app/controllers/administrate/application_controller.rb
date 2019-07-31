@@ -7,7 +7,7 @@ module Administrate
       resources = Administrate::Search.new(scoped_resource,
                                            dashboard_class,
                                            search_term).run
-      resources = apply_resource_includes(resources)
+      resources = apply_collection_includes(resources)
       resources = order.apply(resources)
       resources = resources.page(params[:page]).per(records_per_page)
       page = Administrate::Page::Collection.new(dashboard, order: order)
@@ -125,8 +125,8 @@ module Administrate
       resource_class.default_scoped
     end
 
-    def apply_resource_includes(relation)
-      resource_includes = dashboard.association_includes
+    def apply_collection_includes(relation)
+      resource_includes = dashboard.collection_includes
       return relation if resource_includes.empty?
       relation.includes(*resource_includes)
     end

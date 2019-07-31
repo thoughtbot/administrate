@@ -10,7 +10,7 @@ gem "pg"
 gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
-gem "sass", "~> 3.4"
+gem "rails", "~> 6.0.0.rc1"
 
 group :development, :test do
   gem "appraisal"
@@ -21,12 +21,12 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "i18n-tasks", "0.9.29"
   gem "pry-rails"
-  gem "rspec-rails"
+  gem "rspec-rails", "~> 4.0.0.beta2"
 end
 
 group :test do
   gem "ammeter"
-  gem "capybara", "3.17.0"
+  gem "capybara", "3.24.0"
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
