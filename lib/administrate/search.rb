@@ -13,7 +13,7 @@ module Administrate
       if @term.blank?
         @scoped_resource.all
       else
-        @scoped_resource.joins(tables_to_join).where(query, *search_terms)
+        @scoped_resource.left_joins(tables_to_join).where(query, *search_terms)
       end
     end
 
