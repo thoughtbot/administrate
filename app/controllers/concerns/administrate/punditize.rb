@@ -1,6 +1,6 @@
-if Object.const_defined?("Pundit")
-  module Administrate
-    module Punditize
+module Administrate
+  module Punditize
+    if Object.const_defined?("Pundit")
       extend ActiveSupport::Concern
       include Pundit
 
