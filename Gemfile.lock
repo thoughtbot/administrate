@@ -148,7 +148,7 @@ GEM
     minitest (5.11.3)
     momentjs-rails (2.20.1)
       railties (>= 3.1)
-    multipart-post (2.0.0)
+    multipart-post (2.1.1)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
     parser (2.6.2.1)
@@ -218,7 +218,7 @@ GEM
       sprockets-rails
       tilt
     selectize-rails (0.12.6)
-    sentry-raven (2.9.0)
+    sentry-raven (2.11.0)
       faraday (>= 0.7.6, < 1.0)
     shoulda-matchers (4.1.1)
       activesupport (>= 4.2.0)
