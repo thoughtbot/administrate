@@ -106,7 +106,7 @@ GEM
       i18n
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    hashdiff (0.4.0)
+    hashdiff (1.0.0)
     highline (2.0.2)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
@@ -243,7 +243,7 @@ GEM
     unicorn (5.5.1)
       kgio (~> 2.6)
       raindrops (~> 0.7)
-    webmock (3.6.0)
+    webmock (3.6.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
