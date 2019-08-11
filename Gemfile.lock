@@ -149,7 +149,7 @@ GEM
     momentjs-rails (2.20.1)
       railties (>= 3.1)
     multipart-post (2.1.1)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     parser (2.6.2.1)
       ast (~> 2.4.0)
