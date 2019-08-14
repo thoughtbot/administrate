@@ -71,7 +71,7 @@ module Administrate
 
       association_classes.include?(attribute_types[attribute].deferred_class)
     end
-    
+
     def association_classes
       @association_classes ||=
         ObjectSpace.each_object(Class).
