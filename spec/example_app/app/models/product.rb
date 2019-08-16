@@ -1,4 +1,4 @@
-class Product < ActiveRecord::Base
+class Product < ApplicationRecord
   has_many :line_items, dependent: :destroy
   has_one :product_meta_tag, dependent: :destroy
 

@@ -1,4 +1,4 @@
-class LogEntry < ActiveRecord::Base
+class LogEntry < ApplicationRecord
   belongs_to :logeable, polymorphic: true
 
   validate do |log_entry|

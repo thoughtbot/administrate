@@ -52,7 +52,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
 
     it "skips models that aren't backed by the database with a warning" do
       begin
-        class ModelWithoutDBTable < ActiveRecord::Base; end
+        class ModelWithoutDBTable < ApplicationRecord; end
         routes = file("config/routes.rb")
 
         output = run_generator
@@ -69,7 +69,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
       ActiveRecord::Migration.suppress_messages do
         ActiveRecord::Schema.define { create_table(:foos) }
       end
-      _unnamed_model = Class.new(ActiveRecord::Base) do
+      _unnamed_model = Class.new(ApplicationRecord) do
         def self.table_name
           :foos
         end
@@ -86,7 +86,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
       routes = file("config/routes.rb")
 
       begin
-        class AbstractModel < ActiveRecord::Base
+        class AbstractModel < ApplicationRecord
           self.abstract_class = true
         end
 
