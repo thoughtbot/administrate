@@ -32,6 +32,10 @@ class CustomerDashboard < Administrate::BaseDashboard
     :password,
   ].freeze
 
+  COLLECTION_FILTERS = {
+    vip: ->(resources) { resources.where(kind: :vip) },
+  }.freeze
+
   def display_resource(customer)
     customer.name
   end

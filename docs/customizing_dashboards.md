@@ -277,3 +277,31 @@ end
 ```
 
 Action is one of `new`, `edit`, `show`, `destroy`.
+
+## Collection Filters
+
+Resources can be filtered with pre-set filters. For example if we added:
+
+```ruby
+COLLECTION_FILTERS = {
+  inactive: ->(resources) { resources.where("login_at < ?", 1.week.ago) }
+}
+```
+
+…to a dashboard, we can query the resources of that dashboard with:
+
+```ruby
+bob inactive:
+```
+
+…to find users named "bob" who hasn't logged in the last week.
+
+If you already had the `inactive` scope you could define the filter like so to
+take advantage of existing ActiveRecord scopes (and other class methods on the
+resource class).
+
+```ruby
+COLLECTION_FILTERS = {
+  inactive: ->(resources) { resources.inactive }
+}
+```

@@ -1,5 +1,8 @@
 require "rails_helper"
+require "spec_helper"
+require "support/constant_helpers"
 require "administrate/field/belongs_to"
+require "administrate/field/string"
 require "administrate/field/email"
 require "administrate/field/has_many"
 require "administrate/field/has_one"
@@ -13,6 +16,10 @@ class MockDashboard
     name: Administrate::Field::String,
     email: Administrate::Field::Email,
     phone: Administrate::Field::Number,
+  }.freeze
+
+  COLLECTION_FILTERS = {
+    vip: ->(resources) { resources.where(kind: :vip) },
   }.freeze
 end
 
@@ -147,6 +154,27 @@ describe Administrate::Search do
         expect(scoped_object).to receive(:where).with(*expected_query)
 
         search.run
+      end
+    end
+
+    it "searches using a filter" do
+      begin
+        class User < ActiveRecord::Base
+          scope :vip, -> { where(kind: :vip) }
+        end
+        scoped_object = User.default_scoped
+        search = Administrate::Search.new(scoped_object,
+                                          MockDashboard,
+                                          "vip:")
+        expect(scoped_object).to \
+          receive(:where).
+          with(kind: :vip).
+          and_return(scoped_object)
+        expect(scoped_object).to receive(:where).and_return(scoped_object)
+
+        search.run
+      ensure
+        remove_constants :User
       end
     end
   end
