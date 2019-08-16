@@ -6,7 +6,7 @@ ko:
       destroy: 삭제
       edit: 수정
       edit_resource: 수정 %{name}
-      show_resource: %{name}
+      show_resource: "%{name}"
       new_resource: 새 %{name}
       back: 뒤로
     controller:
