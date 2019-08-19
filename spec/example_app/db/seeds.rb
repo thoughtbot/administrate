@@ -27,7 +27,7 @@ customer_attributes = Array.new(100) do
   name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
   {
     name: name,
-    email: Faker::Internet.safe_email(name),
+    email: Faker::Internet.safe_email(name: name),
     country: countries.sample,
     password: Faker::Internet.password,
   }
