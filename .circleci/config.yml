@@ -12,7 +12,7 @@ commands:
           key: administrate-{{ checksum "Gemfile.lock" }}
 
       # Install latest bundler
-      - run: gem install bundler -v '2.0.2'
+      - run: gem install bundler -v '2.1.0.pre.1'
 
       # Bundle install dependencies
       - run: bundle install --path vendor/bundle
@@ -53,7 +53,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
-          BUNDLER_VERSION: 2.0.2
+          BUNDLER_VERSION: 2.1.0.pre.1
       - image: postgres:10.1-alpine
         environment:
           POSTGRES_USER: administrate
@@ -79,7 +79,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
-          BUNDLER_VERSION: 2.0.2
+          BUNDLER_VERSION: 2.1.0.pre.1
       - image: postgres:10.1-alpine
         environment:
           POSTGRES_USER: administrate
@@ -94,7 +94,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
-          BUNDLER_VERSION: 2.0.2
+          BUNDLER_VERSION: 2.1.0.pre.1
       - image: postgres:10.1-alpine
         environment:
           POSTGRES_USER: administrate
