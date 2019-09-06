@@ -42,31 +42,6 @@ default_job: &default_job
     - run: bundle exec appraisal rake
 
 jobs:
-  ruby-24:
-    <<: *default_job
-    docker:
-      - image: circleci/ruby:2.4.3-node-browsers
-        environment:
-          PGHOST: localhost
-          PGUSER: administrate
-          RAILS_ENV: test
-      - image: postgres:10.1-alpine
-        environment:
-          POSTGRES_USER: administrate
-          POSTGRES_DB: ruby24
-          POSTGRES_PASSWORD: ""
-    steps:
-      - shared_steps
-      # Run the tests against multiple versions of Rails
-      - run: BUNDLE_GEMFILE=gemfiles/rails42.gemfile bundle install
-      - run: BUNDLE_GEMFILE=gemfiles/rails50.gemfile bundle install
-      - run: BUNDLE_GEMFILE=gemfiles/rails51.gemfile bundle install
-      - run: BUNDLE_GEMFILE=gemfiles/rails52.gemfile bundle install
-      - run: bundle exec appraisal rails42 rake
-      - run: bundle exec appraisal rails50 rake
-      - run: bundle exec appraisal rails51 rake
-      - run: bundle exec appraisal rails52 rake
-
   ruby-25:
     <<: *default_job
     docker:
@@ -102,4 +77,3 @@ workflows:
     jobs:
       - ruby-26
       - ruby-25
-      - ruby-24
