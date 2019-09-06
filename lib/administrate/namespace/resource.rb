@@ -3,6 +3,9 @@ module Administrate
     class Resource
       attr_reader :namespace, :resource
 
+      delegate :display_in_navigation?, to: :dashboard_class
+      delegate :dashboard_class, to: :resource_resolver
+
       def initialize(namespace, resource)
         @namespace = namespace
         @resource = resource
@@ -22,6 +25,12 @@ module Administrate
 
       def path
         name.to_s.gsub("/", "_")
+      end
+
+      private
+
+      def resource_resolver
+        @resource_resolver ||= ResourceResolver.new("#{namespace}/#{resource}")
       end
     end
   end

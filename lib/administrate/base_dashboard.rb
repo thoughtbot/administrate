@@ -17,6 +17,20 @@ module Administrate
   class BaseDashboard
     include Administrate
 
+    class << self
+      def configuration
+        @configuration ||= Configuration.new
+      end
+
+      def configure
+        yield configuration
+      end
+
+      def display_in_navigation?
+        configuration.navigation == true
+      end
+    end
+
     def attribute_types
       self.class::ATTRIBUTE_TYPES
     end
@@ -86,6 +100,14 @@ module Administrate
         next key if association_classes.include?(field)
         key if association_classes.include?(field.try(:deferred_class))
       end.compact
+    end
+
+    class Configuration
+      attr_accessor :navigation
+
+      def initialize
+        @navigation = true
+      end
     end
   end
 end

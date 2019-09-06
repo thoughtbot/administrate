@@ -43,8 +43,18 @@ Rails.application.routes.draw do
  end
 ```
 
-The routes can be customized to show or hide
-different models on the dashboard.
+Removing resources from the routes will hide them on the dashboard.
+
+There might be situations where resources shall be hidden in the navigation
+but still be nested in another resource. In this case you keep the route but configure the dashboard to not be displayed in the navigation.
+
+```ruby
+class LineItemDashboard < Administrate::BaseDashboard
+  configure do |config|
+    config.navigation = false
+  end
+end
+```
 
 Each `FooDashboard` specifies which attributes should be displayed
 on the admin dashboard for the `Foo` resource.

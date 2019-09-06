@@ -14,6 +14,7 @@ require "administrate/resource_resolver"
 require "administrate/search"
 require "administrate/namespace"
 require "administrate/namespace/resource"
+require "administrate/navigation"
 
 module Administrate
   class Engine < ::Rails::Engine
