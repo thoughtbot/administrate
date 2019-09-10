@@ -16,11 +16,39 @@
 
 ## Changes
 
+### 0.12.0 (September 10, 2019)
+
+* [COMPAT] [#1331] Drop active_job from the dependencies.
+* [COMPAT] [#1402] Upgrade to Rails 6.
+* [COMPAT] [#1402] Drop support for Ruby 2.4.
+* [COMPAT] [#1406] Use Zeitwerk for loading models in Rails 6.
+* [i18n] [#1400] Fix unusable expressions and wrong spacing in Korean.
+* [BUGFIX] [#1285] Added icons to copied templates.
+* [DOC] [#1378] Break Rails API documentation out to it's own page.
+* [DOC] [#1379] Document using a custom namespace.
+* [COMPAT] [#1377] AR models should inherit from ApplicationRecord.
+* [FEAT] [#947] Add search filters to dashboards.
+* [BUGFIX] [#1394] Fix loading of `Punditize`.
+* [i18n] [#1362] Fix spanish locale.
+* [BUGFIX] [#1336] Run a subset of appraisals fro Ruby 2.4.
+* [BUGFIX] [#1334] Fix warning message related to 'text-decoration-skip: ink'.
+* [BUGFIX] [#1334] Fix warning message related to Faker::LordOfTheRings.
+* [DOC] [#1310] Fix typo: `polymporphic` -> `polymorphic`.
+* [COMPAT] [#1197] Switch to sassc-rails.
+* [BUGFIX] [#1320] Patch Rails 4.2 tests to work with Ruby 2.6.
+* [COMPAT] [#1318] Drop support for Ruby 2.2, 2.3.
+* [BUGFIX] [#1290] Fix generator for non-association/columnar attrs.
+* [FEAT] [#1262] Introduce `Fields::Url`.
+* [BUGFIX] [#1268] Fix multiple association pagination.
+* [i18n] [#1239] Translate form error keys in chinese.
+* [FEAT] [#1176] Support for other types of association fields.
+* [DOC] [#1214] Adds missing colon to :name in Rails API docs.
+
 ### 0.11.0 (September 17, 2018)
 
 * [COMPAT] [#1260] Upgrade Ruby to 2.5.1.
 * [COMPAT] [#1216] Update ffi from 1.9.23 to 1.9.25.
-* [DOC] [#1166] Add forgotten .with_options in documentation .
+* [DOC] [#1166] Add forgotten .with_options in documentation.
 * [DOC] [#1199] Update customizing_dashboards doc.
 * [i18n] [#1200] Fix error in suggested translation key.
 * [DOC] [#1177] Return a 404 when docs pages are not found.
