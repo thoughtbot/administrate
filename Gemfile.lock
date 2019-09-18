@@ -236,7 +236,7 @@ GEM
     unicorn (5.5.1)
       kgio (~> 2.6)
       raindrops (~> 0.7)
-    webmock (3.7.4)
+    webmock (3.7.5)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
