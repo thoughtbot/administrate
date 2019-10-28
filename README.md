@@ -64,6 +64,21 @@ to see your new dashboard in action.
 
 For more detailed instructions or to make it work with Rails API-only applications, please go through the ['Getting Started` guide](https://administrate-prototype.herokuapp.com/getting_started).
 
+If your apps uses Sprockets 4, you'll need to add Administrate's assets to your `manifest.js` file. To do this, add these two lines to the file:
+
+```
+//= link administrate/application.css
+//= link administrate/application.js
+```
+
+Otherwise, your app will show you this error:
+
+```
+Asset `administrate/application.css` was not declared to be precompiled in production.
+Declare links to your assets in `app/assets/config/manifest.js`.
+```
+
+For more information on why this is necessary, see https://www.schneems.com/2017/11/22/self-hosted-config-introducing-the-sprockets-manifestjs
 
 ## Create Additional Dashboards
 
