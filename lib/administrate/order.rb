@@ -11,7 +11,7 @@ module Administrate
 
       order = "#{relation.table_name}.#{attribute} #{direction}"
 
-      return relation.reorder(order) if
+      return relation.reorder(Arel.sql(order)) if
         relation.columns_hash.keys.include?(attribute.to_s)
 
       relation
