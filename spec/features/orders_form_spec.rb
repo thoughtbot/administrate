@@ -36,8 +36,8 @@ describe "order form" do
       line_items = create_list(:line_item, 3)
 
       visit edit_admin_order_path(order)
-      find_option(line_items.first, "line_item_ids").select_option
-      find_option(line_items.last, "line_item_ids").select_option
+      find_option(line_items.first, "Line items").select_option
+      find_option(line_items.last, "Line items").select_option
       click_on "Update Order"
 
       order.reload
@@ -51,7 +51,7 @@ describe "order form" do
       line_item = create(:line_item, order: order)
 
       visit edit_admin_order_path(order)
-      find_option(line_item, "line_item_ids").unselect_option
+      find_option(line_item, "Line items").unselect_option
       click_on "Update Order"
 
       order.reload
@@ -68,11 +68,32 @@ describe "order form" do
       visit edit_admin_order_path(order)
 
       expected = order.line_items.pluck(:id).map(&:to_s)
-      expect(find("#order_line_item_ids").value).to eq expected
+      expect(find("#order_line_item_ids").value).to match_array(expected)
     end
 
-    def find_option(associated_model, field_id)
-      field = find("#order_" + field_id)
+    it "displays translated labels" do
+      custom_label = "Lines"
+      order = create(:order)
+
+      translations = {
+        helpers: {
+          label: {
+            order: {
+              line_items: custom_label,
+            },
+          },
+        },
+      }
+
+      with_translations(:en, translations) do
+        visit edit_admin_order_path(order)
+
+        expect(page).to have_css("label", text: custom_label)
+      end
+    end
+
+    def find_option(associated_model, field_locator)
+      field = find_field(field_locator)
       field.find("option", text: displayed(associated_model))
     end
   end
@@ -103,7 +124,7 @@ describe "order form" do
 
       page.execute_script(<<-JS)
         var date = moment("#{time_string}", "YYYY-MM-DD hh:mm:ss");
-        $(".datetimepicker").data("DateTimePicker").date(date);
+        $('[data-type="datetime"]').data("DateTimePicker").date(date);
       JS
     end
   end

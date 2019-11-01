@@ -5,19 +5,36 @@ class DocsController < ApplicationController
   }.freeze
 
   def index
-    render_markdown "README"
+    render_page "README"
   end
 
   def show
-    render_markdown "docs/#{params[:page]}"
+    render_page "docs/#{params[:page]}"
   end
 
   private
 
-  def render_markdown(file)
-    text = File.read(Rails.root + "../../#{file}.md")
+  def render_page(name)
+    path = full_page_path(name)
+
+    if File.exist?(path)
+      render layout: "docs", html: render_markdown(path).html_safe
+    else
+      render file: "#{Rails.root}/public/404.html",
+             layout: false,
+             status: :not_found
+    end
+  end
+
+  def full_page_path(page)
+    Rails.root + "../../#{page}.md"
+  end
+
+  def render_markdown(path)
+    text = File.read(path)
     renderer = Redcarpet::Render::HTML
     markdown = Redcarpet::Markdown.new(renderer, REDCARPET_CONFIG)
-    render layout: "docs", html: markdown.render(text).html_safe
+
+    markdown.render(text)
   end
 end

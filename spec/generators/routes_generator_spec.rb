@@ -19,6 +19,14 @@ describe Administrate::Generators::RoutesGenerator, :generator do
       end
     end
 
+    it "populates default dashboards under the given namespace" do
+      routes = file("config/routes.rb")
+
+      run_generator ["--namespace", "manager"]
+
+      expect(routes).to contain("namespace :manager")
+    end
+
     it "does not populate routes when no models exist" do
       routes = file("config/routes.rb")
       allow(ActiveRecord::Base).to receive(:descendants).and_return([])
@@ -36,7 +44,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
       expect(routes).not_to contain("blog")
       expect(routes).not_to contain("post")
 
-      expect(output).to include <<~MSG
+      expect(output).to include <<-MSG.strip_heredoc
         WARNING: Unable to generate a dashboard for Blog::Post.
                  Administrate does not yet support namespaced models.
       MSG
@@ -44,7 +52,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
 
     it "skips models that aren't backed by the database with a warning" do
       begin
-        class ModelWithoutDBTable < ActiveRecord::Base; end
+        class ModelWithoutDBTable < ApplicationRecord; end
         routes = file("config/routes.rb")
 
         output = run_generator
@@ -58,8 +66,10 @@ describe Administrate::Generators::RoutesGenerator, :generator do
     end
 
     it "skips models that don't have a named constant" do
-      ActiveRecord::Schema.define { create_table(:foos) }
-      _unnamed_model = Class.new(ActiveRecord::Base) do
+      ActiveRecord::Migration.suppress_messages do
+        ActiveRecord::Schema.define { create_table(:foos) }
+      end
+      _unnamed_model = Class.new(ApplicationRecord) do
         def self.table_name
           :foos
         end
@@ -76,7 +86,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
       routes = file("config/routes.rb")
 
       begin
-        class AbstractModel < ActiveRecord::Base
+        class AbstractModel < ApplicationRecord
           self.abstract_class = true
         end
 

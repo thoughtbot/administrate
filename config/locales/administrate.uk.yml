@@ -5,8 +5,9 @@ uk:
       confirm: Ви впевнені?
       destroy: Видалити
       edit: Редагувати
-      show: Показати
-      new: Новий
+      edit_resource: Редагувати %{name}
+      show_resource: Показати %{name}
+      new_resource: Новий %{name}
       back: Назад
     controller:
       create:
@@ -19,10 +20,9 @@ uk:
       has_many:
         more: "%{count} із %{total_count}"
         none: Немає
-      polymorphic:
-        not_supported: Поліморфні відношення у формах не підтримуються.
-      has_one:
-        not_supported: HasOne відношення у формах не підтримуються.
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: Очистити пошук
       label: пошук %{resource}

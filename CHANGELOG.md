@@ -16,6 +16,172 @@
 
 ## Changes
 
+### 0.12.0 (September 10, 2019)
+
+* [COMPAT] [#1331] Drop active_job from the dependencies.
+* [COMPAT] [#1402] Upgrade to Rails 6.
+* [COMPAT] [#1402] Drop support for Ruby 2.4.
+* [COMPAT] [#1406] Use Zeitwerk for loading models in Rails 6.
+* [i18n] [#1400] Fix unusable expressions and wrong spacing in Korean.
+* [BUGFIX] [#1285] Added icons to copied templates.
+* [DOC] [#1378] Break Rails API documentation out to it's own page.
+* [DOC] [#1379] Document using a custom namespace.
+* [COMPAT] [#1377] AR models should inherit from ApplicationRecord.
+* [FEAT] [#947] Add search filters to dashboards.
+* [BUGFIX] [#1394] Fix loading of `Punditize`.
+* [i18n] [#1362] Fix spanish locale.
+* [BUGFIX] [#1336] Run a subset of appraisals fro Ruby 2.4.
+* [BUGFIX] [#1334] Fix warning message related to 'text-decoration-skip: ink'.
+* [BUGFIX] [#1334] Fix warning message related to Faker::LordOfTheRings.
+* [DOC] [#1310] Fix typo: `polymporphic` -> `polymorphic`.
+* [COMPAT] [#1197] Switch to sassc-rails.
+* [BUGFIX] [#1320] Patch Rails 4.2 tests to work with Ruby 2.6.
+* [COMPAT] [#1318] Drop support for Ruby 2.2, 2.3.
+* [BUGFIX] [#1290] Fix generator for non-association/columnar attrs.
+* [FEAT] [#1262] Introduce `Fields::Url`.
+* [BUGFIX] [#1268] Fix multiple association pagination.
+* [i18n] [#1239] Translate form error keys in chinese.
+* [FEAT] [#1176] Support for other types of association fields.
+* [DOC] [#1214] Adds missing colon to :name in Rails API docs.
+
+### 0.11.0 (September 17, 2018)
+
+* [COMPAT] [#1260] Upgrade Ruby to 2.5.1.
+* [COMPAT] [#1216] Update ffi from 1.9.23 to 1.9.25.
+* [DOC] [#1166] Add forgotten .with_options in documentation.
+* [DOC] [#1199] Update customizing_dashboards doc.
+* [i18n] [#1200] Fix error in suggested translation key.
+* [DOC] [#1177] Return a 404 when docs pages are not found.
+* [i18n] [#1192] Fix i18n inconsistencies in forms for associations.
+* [FEATURE] [#945] Sort has_many fields.
+* [COMPAT] [#1169] Configure Capybara to use webrick.
+* [i18n] [#1163] Add missing zh-TW translations.
+* [DOC] [#1157] Fix has_many and polymorphic fields docs.
+* [BUGFIX] [#892] Fix search bar hiding even w/searchable attributes.
+* [i18n] [#1153] Add Indonesian locale.
+* [BUGFIX] [#1150] Ensure persistent order in pagination spec.
+
+### 0.10.0 (April 20, 2018)
+
+* [BUGFIX] [#1121] Fix a bug where polymorphic fields could throw an exception.
+* [BUGFIX] [#1129] Include time for date_time field in index.
+* [i18n] [#1132] Add missing Russian locale error message.
+* [DOC] [#1131] Document that numbers are searchable.
+* [DOC] [#1145] Add `.byebug_history` and `gemfiles/.bundle/` to .gitignore.
+* [COMPAT] [#1148] Support Rails 5.2.
+* [DOC] [#1119] Add link to Authorization documentation.
+* [BUGFIX] [#1107] Exclude routes with modules, but no namespace.
+* [i18n] [#1117] Add translation for Albanian language.
+* [i18n] [#1115] Translate error message to Japanese.
+* [DOC] [#1106] Update Customizing Views docs with sidebar generator.
+* [FEATURE] [#1005] Add ability to search through association fields.
+* [FEATURE] [#1059] Use associated_class to render belongs_to links.
+* [FEATURE] [#961] Show errors when has_many restrict_with_error.
+* [FEATURE] [#1104] Add `scope` option to Field::BelongsTo.
+* [BUGFIX] [#1070] Use application timezone by default for DateTime fields.
+* [FEATURE] [#998] Add a password field type.
+* [FEATURE] [#903] Added Time Field.
+* [COMPAT] [#1103] Use cross-DB way to cast search queries to strings.
+
+### 0.9.0 (February 17, 2018)
+
+* [COMPAT] [#1098] Update all the dependent gems.
+* [COMPAT] [#1099] Update shoulda-matchers from 2.8.0 to 3.1.2.
+* [DOC] [#1081] Update Field::Polymorphic doc to include order option.
+* [COMPAT] [#1095] Upgrade nokogiri to 1.8.2.
+* [i18n] [#1094] Translate form error keys in French.
+* [COMPAT] [#1079] Cast all search queries to text.
+* [COMPAT] [#1077] Switch out squiggly-heredoc for Ruby 2.2 support.
+* [COMPAT] [#1077] Add Ruby 2.2.9 to Circle and clarify support.
+* [BUGFIX] [#1076] [#1078] Fix issues with flaky tests due to ordering
+* [COMPAT] [#1075] Upgrade Circle CI Postgres to 10.1.
+* [COMPAT] [#1032] Add additional Rubies to CI using Workflows.
+* [COMPAT] [#1074] Upgrade to Ruby 2.5.0.
+* [BUGFIX] [#1046] Fix wrong variable name in new_resource key.
+* [i18n] [#1055] Singularize field name in HasMany index partial.
+* [BUGFIX] [#1068] Only define Punditize if Pundit has been loaded.
+* [COMPAT] [#1067] Include pundit in the Gemfiles.
+* [i18n] [#1056] Don't pluralise "New [resource]" buttons.
+* [i18n] [#1057] Translate form error keys in Catalan.
+* [i18n] [#1054] Add missing keys to Catalan.
+* [DOC] [#1040] Add a note about adding to Dashboards.
+* [BUGFIX] [#1028] Fix of class_name option on has_one fields.
+* [DOC] [#1052] Fix Typo in Changelog.
+* [FEATURE] [#999] Order attributes by association if it exists.
+* [DOC] [#1039] Merge both Field::BelongsTo options_with sections.
+* [i18n] [#1041] Improve German translation of form.errors.
+* [i18n] [#1004] Add form I18n keys to non-default locales.
+* [i18n] [#1004] Add show-/new-/edit- _resource I18n keys non-default locales.
+* [i18n] [#1004] Add and improve I18n for application templates.
+* [FEATURE] [#971] Add authorization features and a Pundit mixin.
+* [DOC] [#1031] Switch to Circle 2.0.
+* [FEATURE] [#1009] Option for Date(Time) objects be **in a timezone**.
+* [COMPAT] [#1027] Add hardcoded development secret_key_base.
+* [FEATURE] [#1020] Add support for editing polymorphic fields.
+* [FEATURE] [#956] Add namespace option to generators.
+* [DOC] [#1018] Remove suggestion than rerunning install works.
+* [COMPAT] [#1016] FactoryGirl is now FactoryBot.
+* [FEATURE] [#992] Improve field generators.
+* [DOC] [#1008] Adding instructions for getting started with API-only apps.
+* [i18n] [#988] Adds Catalan locales.
+* [FEATURE] [#1000] Add test coverage to ApplicationHelper#sort_order.
+* [UI] [#987] Fix cell sort indicator positioning.
+* [i18n] [#981] Add localization for Bosnian language.
+* [BUGFIX] [#982] Update name of specification example.
+* [DOC] [#980] Update copyright range.
+* [DOC] [#976] Explain that installer requires models.
+* [COMPAT] [#977] Update gems for CVE-2017-9050.
+* [BUGFIX] [#967] Change const_get to constantize to fix undefined method.
+* [DOC] [#972] Fix interpolation highlighting at documentation examples.
+* [FEATURE] [#807] Add foreign key option to Fields.
+* [FEATURE] [#939] Add order option for belongs_to field.
+* [DOC] [#946] Document renaming dashboards.
+* [DOC] [#942] Add IntelliJ-generated files to .gitignore.
+* [DOC] [#940] Add instructions of how to disable some actions.
+* [UI] [#933] Switch to thoughtbot hosted seed images.
+* [FEATURE] [#934] Support for models with uncountable inflections.
+
+### 0.8.1 (July 14, 2017)
+
+* [BUGFIX] [#935] Move normalize.css out of vendor.
+
+### 0.8.0 (July 14, 2017)
+
+* [FEATURE] [#788] Allow resource to be accessed from field.
+* [OPTIM] [#859] Remove dependency on remote images in tests.
+* [BUGFIX] [#771] Handle case where `Field::HasMany` data is nil.
+* [FEATURE] [#801] Add HasOne support as nested form.
+* [FEATURE] [#926] Accepts string instead of symbol on order.
+* [DOC] [#928] Fix partial name in view customization docs.
+* [BUGFIX] [#927] Remove rails-controller-testing gem to fix specs with Rails
+  4.2.
+* [BUGFIX] [#925] Silence ActiveRecord migration output during specs.
+* [CHANGE} [#924] Replace dashboard_class method with a delegate.
+* [BUGFIX] [#594] Fix Label Translation Lookup for has_many Collections.
+* [CHANGE] [#914] Allow custom scope for dashboards.
+* [CHANGE] [#916] Adds `_stylesheet` to the resources to be generated.
+* [UI] [#554] Make it easier to override Sass variables.
+* [FEATURE] [#910] Allow custom scope for dashboard resource.
+* [FEATURE] [#871] Add support for namespaced models.
+* [I18n] [#904] Improve Korean translation for search input.
+* [UI] [#881] Redesign search.
+* [I18n] [#902] Fixes to Dutch translation.
+* [COMPAT] [#887] Update autoprefixer-rails >= 6.0.
+* [UI] [#896] Make entire search bar clickable.
+* [I18n] [#891] Add translation for search input.
+* [UI] [#886] Fix `aria-labelledby` on tables.
+* [UI] [#884] Add `aria-sort` attribute to table headers.
+* [UI] [#882] Update normalize.css and change how we include it.
+* [OPTIM] [#898] Retroactively set migration versions.
+* [FEATURE] [#856] Allow Rails 5.1 usage.
+* [DOC] [#885] Update and test documentation navigation.
+* [UI] [#880] Use SVG `symbol` for icon system.
+* [CHANGE] [#883] Nested collection links should honour routes.
+* [UI] [#879] Remove unused SVG asset.
+* [DOCS] [#877] Add appraisal and foreman commands to docs.
+* [I18n] [#873] Add support for cyrillic search.
+* [CHANGE] [#857] Abstract model classes should be skipped without warning.
+
 ### 0.7.0 (May 08, 2017)
 
 * [CHANGE] [#789] Remove Bourbon.
@@ -48,7 +214,7 @@
 * [DOC] [#844] Remove the word "simply".
 * [CHANGE] [#791] Remove unneeded Rails dependencies.
 * [CHANGE] [#810] Add `sort_by` and `direction` option for HasMany field.
-* [CHANGE] [#842] Add support for big decimals in formating numbers.
+* [CHANGE] [#842] Add support for big decimals in formatting numbers.
 * [CHANGE] [#793] Update Ruby to 2.4.1 and use .ruby-version on CircleCI.
 * [CHANGE] [#820] Remove markdown-rails and high_voltage.
 * [CHANGE] [#824] Install the latest bundler version on CI.

@@ -55,4 +55,15 @@ feature "order index page" do
       t("administrate.controller.destroy.success", resource: "Order")
     )
   end
+
+  scenario "cannot delete because associated payment" do
+    create(:payment, order: create(:order))
+
+    visit admin_orders_path
+    click_on t("administrate.actions.destroy")
+
+    expect(page).to have_flash(
+      "Cannot delete record because dependent payments exist", type: :error
+    )
+  end
 end

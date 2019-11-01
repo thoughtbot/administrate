@@ -80,6 +80,7 @@ code {
     padding-left: 1rem;
 
     .hljs-string { color: $code-green; }
+    .hljs-subst { color: $code-white; }
     .hljs-constant { color: $code-blue; }
     .hljs-symbol { color: $code-red; }
     .hljs-keyword { color: $code-yellow; }

@@ -9,6 +9,14 @@ describe Admin::CustomersController, type: :controller do
       expect(locals[:resources]).to eq([customer])
     end
 
+    it "applies any scope overrides" do
+      _hidden_customer = create(:customer, hidden: true)
+      visible_customer = create(:customer, hidden: false)
+
+      locals = capture_view_locals { get :index }
+      expect(locals[:resources]).to contain_exactly visible_customer
+    end
+
     it "passes the search term to the view" do
       locals = capture_view_locals do
         get :index, search: "foo"

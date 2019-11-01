@@ -1,0 +1,79 @@
+---
+version: 2.1
+
+commands:
+  shared_steps:
+    steps:
+      - checkout
+
+      # Restore Cached Dependencies
+      - restore_cache:
+          name: Restore bundle cache
+          key: administrate-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Cache Dependencies
+      - save_cache:
+          name: Store bundle cache
+          key: administrate-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # Wait for DB
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      # Setup the environment
+      - run: cp .sample.env .env
+
+      # Setup the database
+      - run: bundle exec rake db:setup
+
+      # Run the tests
+      - run: bundle exec rake
+
+default_job: &default_job
+  working_directory: ~/administrate
+  steps:
+    - shared_steps
+    # Run the tests against multiple versions of Rails
+    - run: bundle exec appraisal install
+    - run: bundle exec appraisal rake
+
+jobs:
+  ruby-25:
+    <<: *default_job
+    docker:
+      - image: circleci/ruby:2.5.0-node-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby25
+          POSTGRES_PASSWORD: ""
+
+  ruby-26:
+    <<: *default_job
+    docker:
+      - image: circleci/ruby:2.6.3-node-browsers-legacy
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby26
+          POSTGRES_PASSWORD: ""
+
+
+workflows:
+  version: 2
+  multiple-rubies:
+    jobs:
+      - ruby-26
+      - ruby-25

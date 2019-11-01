@@ -19,7 +19,7 @@ By default, it renders:
   <meta name="ROBOTS" content="NOODP">
   <meta name="viewport" content="initial-scale=1">
   <title>
-    <%= content_for(:title) %> - <%= Rails.application.class.parent_name.titlecase %>
+    <%= content_for(:title) %> - <%= application_title %>
   </title>
   <%= render "stylesheet" %>
   <%= csrf_meta_tags %>

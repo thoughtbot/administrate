@@ -9,6 +9,9 @@ require "administrate/field/polymorphic"
 require "administrate/field/select"
 require "administrate/field/string"
 require "administrate/field/text"
+require "administrate/field/time"
+require "administrate/field/url"
+require "administrate/field/password"
 
 module Administrate
   class BaseDashboard
@@ -28,6 +31,10 @@ module Administrate
       attribute_names.each_with_object({}) do |name, attributes|
         attributes[name] = attribute_type_for(name)
       end
+    end
+
+    def all_attributes
+      attribute_types.keys
     end
 
     def form_attributes
@@ -52,21 +59,33 @@ module Administrate
       "#{resource.class} ##{resource.id}"
     end
 
-    def association_includes
-      association_classes = [Field::HasMany, Field::HasOne, Field::BelongsTo]
+    def collection_includes
+      attribute_includes(collection_attributes)
+    end
 
-      collection_attributes.map do |key|
-        field = self.class::ATTRIBUTE_TYPES[key]
-
-        next key if association_classes.include?(field)
-        key if association_classes.include?(field.try :deferred_class)
-      end.compact
+    def item_includes
+      attribute_includes(show_page_attributes)
     end
 
     private
 
     def attribute_not_found_message(attr)
       "Attribute #{attr} could not be found in #{self.class}::ATTRIBUTE_TYPES"
+    end
+
+    def association_classes
+      @association_classes ||=
+        ObjectSpace.each_object(Class).
+          select { |klass| klass < Administrate::Field::Associative }
+    end
+
+    def attribute_includes(attributes)
+      attributes.map do |key|
+        field = self.class::ATTRIBUTE_TYPES[key]
+
+        next key if association_classes.include?(field)
+        key if association_classes.include?(field.try(:deferred_class))
+      end.compact
     end
   end
 end

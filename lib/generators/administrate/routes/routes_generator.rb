@@ -1,4 +1,9 @@
-Rails.application.eager_load!
+if defined?(Zeitwerk)
+  Zeitwerk::Loader.eager_load_all
+else
+  Rails.application.eager_load!
+end
+
 require "rails/generators/base"
 require "administrate/namespace"
 
@@ -6,6 +11,7 @@ module Administrate
   module Generators
     class RoutesGenerator < Rails::Generators::Base
       source_root File.expand_path("../templates", __FILE__)
+      class_option :namespace, type: :string, default: "admin"
 
       def insert_dashboard_routes
         if should_route_dashboard?
@@ -31,6 +37,10 @@ module Administrate
       end
 
       private
+
+      def namespace
+        options[:namespace]
+      end
 
       def dashboard_resources
         valid_dashboard_models.map do |model|

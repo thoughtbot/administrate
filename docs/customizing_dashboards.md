@@ -10,7 +10,7 @@ require "administrate/dashboard/base"
 
 class CustomerDashboard < Administrate::Dashboard::Base
   ATTRIBUTE_TYPES = {
-    id: Field::Integer,
+    id: Field::Number,
     name: Field::String,
     email: Field::String,
     created_at: Field::DateTime,
@@ -62,6 +62,7 @@ specify, including:
 - `Field::Select`
 - `Field::String`
 - `Field::Text`
+- `Field::Password`
 
 ## Customizing Fields
 
@@ -69,6 +70,40 @@ specify, including:
 
 Each of the `Field` types take a different set of options,
 which are specified through the `.with_options` class method:
+
+**Field::BelongsTo**
+
+`:order` - Specifies the order of the dropdown menu, can be ordered by more
+than one column. e.g.: `"name, email DESC"`.
+
+`:primary_key` - Specifies object's primary_key. Defaults to `:id`.
+
+`:foreign_key` - Specifies the name of the foreign key directly.
+Defaults to `:#{attribute}_id`.
+
+`:scope` - Specifies a custom scope inside a callable. Useful for preloading.
+Example: `.with_options(scope: -> { MyModel.includes(:rel).limit(5) })`
+
+`:class_name` - Specifies the name of the associated class.
+Defaults to `:#{attribute}.to_s.singularize.camelcase`.
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `false`.
+
+`searchable_field` - Specify which column to use on the search, only applies
+if `searchable` is `true`
+
+For example:
+
+```ruby
+  country: Field::BelongsTo.with_options(
+    searchable: true,
+    searchable_field: 'name',
+  )
+```
+
+with this, you will be able to search through the column `name` from the
+association `belongs_to :country`, from your model.
 
 **Field::HasMany**
 
@@ -79,7 +114,41 @@ which are specified through the `.with_options` class method:
 
 `:direction` - What direction the sort should be in, `:asc` (default) or `:desc`.
 
+`:primary_key` - Specifies object's primary_key. Defaults to `:id`.
+
+`:foreign_key` - Specifies the name of the foreign key directly. Defaults to `:#{attribute}_id`
+
+`:class_name` - Specifies the name of the associated class.
+Defaults to `:#{attribute}.to_s.singularize.camelcase`.
+
+**Field::HasOne**
+
+`:class_name` - Specifies the name of the associated class.
+Defaults to `:#{attribute}.to_s.singularize.camelcase`.
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `false`.
+
+`searchable_field` - Specify which column to use on the search, only applies if
+`searchable` is `true`
+
+For example:
+
+```ruby
+  cities: Field::HasMany.with_options(
+    searchable: true,
+    searchable_field: 'name',
+  )
+```
+
+with this, you will be able to search through the column `name` from the
+association `has_many :cities`, from your model.
+
 **Field::Number**
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Note that currently number fields are searched like text, which may yield
+more results than expected. Default is `false`.
 
 `:decimals` - Set the number of decimals to display. Defaults to `0`.
 
@@ -105,9 +174,25 @@ Or, to display a distance in kilometers:
   )
 ```
 
+**Field::Polymorphic**
+
+`:classes` - Specify a list of classes whose objects will be used to populate select boxes for editing this polymorphic field.
+Default is `[]`.
+
+`:order` - What to sort the association by in the form select.
+Default is `nil`.
+
+**Field::DateTime**
+
+`:format` - Specify what format, using `strftime` you would like `DateTime`
+objects to display as.
+
+`:timezone` - Specify which timezone `Date` and `DateTime` objects are based
+in.
+
 **Field::Select**
 
-`:collection` - Specify the array or range to select from.  Defaults to `[]`.
+`:collection` - Specify the array or range to select from. Defaults to `[]`.
 
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `true`.
@@ -127,6 +212,17 @@ Default is `false`.
 
 `:truncate` - Set the number of characters to display in the index view.
 Defaults to `50`.
+
+**Field::Password**
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `false`.
+
+`:truncate` - Set the number of characters to display in the views.
+Defaults to `50`.
+
+`:character` - Set the replace character.
+Defaults to `•`.
 
 ### Defining Labels
 
@@ -150,10 +246,62 @@ Add this method to the dashboard for Users.
 Use whatever attribute or method you like.
 Example for *user*:
 
-````ruby
+```ruby
 def display_resource(user)
   user.name
 end
-````
+```
 
 [define your own]: /adding_custom_field_types
+
+To change the dashboard name in sidebar menu, sub-header and search string use default ActiveRecord i18n translations for models:
+
+```yaml
+en:
+  activerecord:
+    models:
+      customer:
+        one: Happy Customer
+        other: Happy Customers
+```
+
+## Customizing Actions
+
+To enable or disable certain actions you could override `valid_action?` method in your dashboard controller like this:
+
+```ruby
+# disable 'edit' and 'destroy' links
+def valid_action?(name, resource = resource_class)
+  %w[edit destroy].exclude?(name.to_s) && super
+end
+```
+
+Action is one of `new`, `edit`, `show`, `destroy`.
+
+## Collection Filters
+
+Resources can be filtered with pre-set filters. For example if we added:
+
+```ruby
+COLLECTION_FILTERS = {
+  inactive: ->(resources) { resources.where("login_at < ?", 1.week.ago) }
+}
+```
+
+…to a dashboard, we can query the resources of that dashboard with:
+
+```ruby
+bob inactive:
+```
+
+…to find users named "bob" who hasn't logged in the last week.
+
+If you already had the `inactive` scope you could define the filter like so to
+take advantage of existing ActiveRecord scopes (and other class methods on the
+resource class).
+
+```ruby
+COLLECTION_FILTERS = {
+  inactive: ->(resources) { resources.inactive }
+}
+```

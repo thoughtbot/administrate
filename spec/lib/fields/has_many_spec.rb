@@ -101,12 +101,23 @@ describe Administrate::Field::HasMany do
 
       expect(field.more_than_limit?).to eq(false)
     end
+
+    context "when there are no records" do
+      it "returns false" do
+        resources = nil
+
+        association = Administrate::Field::HasMany
+        field = association.new(:customers, resources, :show)
+
+        expect(field.more_than_limit?).to eq(false)
+      end
+    end
   end
 
   describe "#resources" do
     it "limits the number of records shown" do
       limit = Administrate::Field::HasMany::DEFAULT_LIMIT
-      customer = FactoryGirl.create(:customer, :with_orders, order_count: 10)
+      customer = FactoryBot.create(:customer, :with_orders, order_count: 10)
       resources = customer.orders
 
       association = Administrate::Field::HasMany
@@ -115,9 +126,20 @@ describe Administrate::Field::HasMany do
       expect(field.resources.size).to eq(limit)
     end
 
+    context "when there are no records" do
+      it "returns an empty collection" do
+        resources = nil
+
+        association = Administrate::Field::HasMany
+        field = association.new(:customers, resources, :show)
+
+        expect(field.resources).to eq([])
+      end
+    end
+
     context "with `limit` option" do
       it "limits the number of items returned" do
-        customer = FactoryGirl.create(:customer, :with_orders)
+        customer = FactoryBot.create(:customer, :with_orders)
         resources = customer.orders
 
         association = Administrate::Field::HasMany.with_options(limit: 1)
@@ -129,7 +151,7 @@ describe Administrate::Field::HasMany do
 
     context "with `sort_by` option" do
       it "returns the resources in correct order" do
-        customer = FactoryGirl.create(:customer, :with_orders)
+        customer = FactoryBot.create(:customer, :with_orders)
         options = { sort_by: :address_line_two }
         association = Administrate::Field::HasMany.with_options(options)
         field = association.new(:orders, customer.orders, :show)
@@ -146,7 +168,7 @@ describe Administrate::Field::HasMany do
 
     context "with `direction` option" do
       it "returns the resources in correct order" do
-        customer = FactoryGirl.create(:customer, :with_orders)
+        customer = FactoryBot.create(:customer, :with_orders)
         options = { sort_by: :address_line_two, direction: :desc }
         association = Administrate::Field::HasMany.with_options(options)
         field = association.new(:orders, customer.orders, :show)
@@ -158,6 +180,29 @@ describe Administrate::Field::HasMany do
 
         expect(field.resources.map(&:id)).to eq correct_order.map(&:id)
         expect(field.resources.map(&:id)).to_not eq reversed_order
+      end
+    end
+  end
+
+  describe "#selected_options" do
+    it "returns a collection of primary keys" do
+      model = double("model", id: 123)
+      resources = MockRelation.new([model])
+
+      association = Administrate::Field::HasMany
+      field = association.new(:customers, resources, :show)
+
+      expect(field.selected_options).to eq([123])
+    end
+
+    context "when there are no records" do
+      it "returns an empty collection" do
+        resources = nil
+
+        association = Administrate::Field::HasMany
+        field = association.new(:customers, resources, :show)
+
+        expect(field.selected_options).to be_nil
       end
     end
   end

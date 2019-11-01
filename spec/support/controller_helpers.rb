@@ -11,4 +11,40 @@ module ControllerHelpers
     end
     locals
   end
+
+  def use_new_params_syntax?
+    Rails::VERSION::STRING >= "5.2"
+  end
+
+  def get(method, params = {})
+    if use_new_params_syntax?
+      super(method, params: params)
+    else
+      super
+    end
+  end
+
+  def post(method, params = {})
+    if use_new_params_syntax?
+      super(method, params: params)
+    else
+      super
+    end
+  end
+
+  def put(method, params = {})
+    if use_new_params_syntax?
+      super(method, params: params)
+    else
+      super
+    end
+  end
+
+  def delete(method, params = {})
+    if use_new_params_syntax?
+      super(method, params: params)
+    else
+      super
+    end
+  end
 end

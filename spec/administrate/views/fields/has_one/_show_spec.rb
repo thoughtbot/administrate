@@ -27,15 +27,39 @@ describe "fields/has_one/_show", type: :view do
         "Administrate::Field::HasOne",
         display_associated_resource: product.name,
         data: product,
+        nested_form: nested_form,
       )
 
       render(
         partial: "fields/has_one/show.html.erb",
-        locals: { field: has_one, namespace: "admin" },
+        locals: {
+          field: has_one,
+          namespace: "admin",
+          resource_name: "product_meta_tag",
+        },
       )
 
-      expected = "<a href=\"#{product_path}\">#{product.name}</a>"
-      expect(rendered.strip).to eq(expected)
+      link = "<a href=\"#{product_path}\">#{product.name}</a>"
+      field_name = "Meta Title"
+      field_value = "Very Nice Title"
+      expect(rendered.strip).to include(link)
+      expect(rendered.strip).to include(field_name)
+      expect(rendered.strip).to include(field_value)
+    end
+
+    def nested_form
+      instance_double(
+        "Administrate::Page::Show",
+        resource: double(
+          class: ProductMetaTag,
+        ),
+        attributes: [double(
+          html_class: "string",
+          name: "meta_title",
+          data: "Very Nice Title",
+        )],
+        resource_name: "Product Tag",
+      )
     end
   end
 end

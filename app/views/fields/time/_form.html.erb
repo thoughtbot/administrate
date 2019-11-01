@@ -1,0 +1,22 @@
+<%#
+# Time Form Partial
+
+This partial renders an input element for time attributes.
+By default, the input is a select field for the time attributes.
+
+## Local variables:
+
+- `f`:
+  A Rails form generator, used to help create the appropriate input fields.
+- `field`:
+  An instance of [Administrate::Field::Time][1].
+  A wrapper around the tmie attributes pulled from the model.
+
+%>
+
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.text_field field.attribute, data: { type: 'time' } %>
+</div>

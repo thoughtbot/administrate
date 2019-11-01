@@ -29,6 +29,20 @@ The `Admin::ApplicationController` can be customized to add
 authentication logic, authorization, pagination,
 or other controller-level concerns.
 
+You will also want to add a `root` route to show a dashboard when you go to `/admin`.
+
+```ruby
+Rails.application.routes.draw do
+  namespace :admin do
+    # Add dashboard for your models here
+    resources :customers,
+    resources :orders
+
+    root to: "customers#index" # <--- Root route
+  end
+ end
+```
+
 The routes can be customized to show or hide
 different models on the dashboard.
 
@@ -59,18 +73,54 @@ namespace :admin do
 end
 ```
 
-## Rails API
+## Using a Custom Namespace
 
-Since Rails 5.0, we've been able to have API only applications. Yet, sometimes
-we still want to have an admin. To get this working, please update this config:
+Administrate supports using a namespace other than `Admin`, such as
+`Supervisor`. This will also change the route it's using:
 
-```ruby
-# config/application.rb
-config.api_only = false
+```sh
+rails generate administrate:install --namespace=supervisor
 ```
 
-That means, when your app _boots_, we'll have access to flashes and such. We
-also don't use your `ApplicationController`. Instead, Administrate provides its
-own. Meaning you're free to specify `ActionController::API` as your parent
-controller to make sure no flash, session, or cookie middleware is used by your
-API.
+## Keep Dashboards Updated as Model Attributes Change
+
+If you've installed Administrate and generated dashboards and _then_ 
+subsequently added attributes to your models you'll need to manually add 
+these additions (or removals) to your dashboards.
+
+Example:
+
+```ruby
+# app/dashboards/your_model_dashboard.rb
+
+  ATTRIBUTE_TYPES = {
+    # ...
+    the_new_attribute: Field::String,
+    # ...
+  }.freeze
+  
+  SHOW_PAGE_ATTRIBUTES = [
+    # ...
+    :the_new_attribute,
+    # ...
+  ].freeze
+
+  FORM_ATTRIBUTES = [
+    # ...
+    :the_new_attribute,
+    # ...
+  ].freeze
+  
+  COLLECTION_ATTRIBUTES = [
+    # ...
+    :the_new_attribute, # if you want it on the index, also.
+    # ...
+  ].freeze
+```
+
+It's recommended that you make this change at the same time as you add the 
+attribute to the model.
+
+The alternative way to handle this is to re-run `rails g administrate:install`
+and carefully pick through the diffs. This latter method is probably more
+cumbersome.

@@ -32,3 +32,9 @@ end
 
 ActiveRecord::Migration.maintain_test_schema!
 Capybara.javascript_driver = :poltergeist
+Capybara.register_driver :poltergeist do |app|
+  options = { phantomjs_options: ["--load-images=no"] }
+  Capybara::Poltergeist::Driver.new(app, options)
+end
+
+Capybara.server = :webrick
