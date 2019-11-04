@@ -455,6 +455,23 @@ describe Administrate::Generators::DashboardGenerator, :generator do
     end
   end
 
+  describe "FILTER_MODE" do
+    it "generates fuzzy search mode by default" do
+      ActiveRecord::Schema.define { create_table :foos }
+
+      class Foo < ApplicationRecord
+        reset_column_information
+      end
+
+      run_generator ["foo"]
+      load file("app/dashboards/foo_dashboard.rb")
+
+      expect(FooDashboard::FILTER_MODE).to eq(:fuzzy)
+    ensure
+      remove_constants :Foo, :FooDashboard
+    end
+  end
+
   describe "resource controller" do
     it "has valid syntax" do
       controller = file("app/controllers/admin/customers_controller.rb")

@@ -23,6 +23,10 @@ class MockDashboard
   }.freeze
 end
 
+class MockDashboardWithStrictSearch < MockDashboard
+  FILTER_MODE = :strict
+end
+
 class MockDashboardWithAssociation
   ATTRIBUTE_TYPES = {
     role: Administrate::Field::BelongsTo.with_options(
@@ -116,6 +120,31 @@ describe Administrate::Search do
           "%тест test%",
           "%тест test%",
           "%тест test%",
+        ]
+        expect(scoped_object).to receive(:where).with(*expected_query)
+
+        search.run
+      ensure
+        remove_constants :User
+      end
+    end
+
+    context "with strict search mode" do
+      it "searches equality for all searchable fields" do
+        class User < ApplicationRecord; end
+        scoped_object = User.default_scoped
+        search = Administrate::Search.new(scoped_object,
+                                          MockDashboardWithStrictSearch,
+                                          "test")
+        expected_query = [
+          [
+            '"users"."id" = ?',
+            '"users"."name" = ?',
+            '"users"."email" = ?',
+          ].join(" OR "),
+          "test",
+          "test",
+          "test",
         ]
         expect(scoped_object).to receive(:where).with(*expected_query)
 

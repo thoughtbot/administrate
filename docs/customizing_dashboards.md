@@ -43,6 +43,8 @@ class CustomerDashboard < Administrate::Dashboard::Base
     :email,
     :orders,
   ]
+
+  FILTER_MODE = :fuzzy
 end
 ```
 
@@ -300,4 +302,62 @@ resource class).
 COLLECTION_FILTERS = {
   inactive: ->(resources) { resources.inactive }
 }
+```
+
+## Filter modes
+
+You can choose between two different modes of filtering: `fuzzy` and `strict`.
+
+### Fuzzy mode
+
+In `fuzzy` mode (default) it's produces `LIKE` normalized sql statements for each searchable field with `OR` operator. Working as simple quick text search
+
+In example:
+```ruby
+# user_dashboard.rb
+
+ATTRIBUTE_TYPES = {
+  id: Field::Number.with_options(searchable: true),
+  name: Field::String.with_options(searchable: true)
+}
+
+FILTER_MODE = :fuzzy
+```
+
+...and searching string:
+```
+BOB
+```
+
+...produces sql:
+
+```sql
+SELECT * FROM users where LOWER(CAST(id AS CHAR(256))) LIKE %bob% OR LOWER(CAST(name AS CHAR(256))) LIKE %bob%
+```
+
+### Strict mode
+
+In `strict` mode (default) it's produces equal statements with data "as is" for each searchable field with `OR` operator
+
+In example:
+```ruby
+# user_dashboard.rb
+
+ATTRIBUTE_TYPES = {
+  id: Field::Number.with_options(searchable: true),
+  name: Field::String.with_options(searchable: true)
+}
+
+FILTER_MODE = :strict
+```
+
+...and searching string:
+```
+BOB
+```
+
+...produces sql:
+
+```sql
+SELECT * FROM users where id = 'BOB' OR name = 'BOB'
 ```

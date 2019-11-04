@@ -65,4 +65,9 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   # def display_resource(<%= file_name %>)
   #   "<%= class_name %> ##{<%= file_name %>.id}"
   # end
+
+  ### FILTER_MODE
+  # a symbol representing searching strategy for quick search.
+  # Available modes: `:fuzzy` and `:strict`
+  FILTER_MODE = :fuzzy
 end

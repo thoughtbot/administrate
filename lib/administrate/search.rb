@@ -81,11 +81,20 @@ module Administrate
     def query_template
       search_attributes.map do |attr|
         table_name = query_table_name(attr)
+
         searchable_fields(attr).map do |field|
           attr_name = column_to_query(field)
-          "LOWER(CAST(#{table_name}.#{attr_name} AS CHAR(256))) LIKE ?"
+          query_string(table_name, attr_name)
         end.join(" OR ")
       end.join(" OR ")
+    end
+
+    def query_string(table_name, attr_name)
+      if strict_search?
+        "#{table_name}.#{attr_name} = ?"
+      else
+        "LOWER(CAST(#{table_name}.#{attr_name} AS CHAR(256))) LIKE ?"
+      end
     end
 
     def searchable_fields(attr)
@@ -98,7 +107,11 @@ module Administrate
       fields_count = search_attributes.sum do |attr|
         searchable_fields(attr).count
       end
-      ["%#{term.mb_chars.downcase}%"] * fields_count
+      if strict_search?
+        [term] * fields_count
+      else
+        ["%#{term.mb_chars.downcase}%"] * fields_count
+      end
     end
 
     def search_attributes
@@ -155,6 +168,18 @@ module Administrate
 
     def term
       query.terms
+    end
+
+    def strict_search?
+      search_mode == :strict
+    end
+
+    def search_mode
+      if @dashboard_class.const_defined?(:FILTER_MODE)
+        @dashboard_class.const_get(:FILTER_MODE)
+      else
+        :fuzzy
+      end
     end
 
     attr_reader :resolver, :query
