@@ -69,7 +69,10 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
-    cliver (0.3.2)
+    capybara-selenium (0.0.6)
+      capybara
+      selenium-webdriver
+    childprocess (3.0.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crack (0.4.3)
@@ -92,9 +95,9 @@ GEM
       railties (>= 4.2.0)
     faker (2.8.0)
       i18n (>= 1.6, < 1.8)
-    faraday (0.17.0)
+    faraday (0.17.1)
       multipart-post (>= 1.2, < 3)
-    ffi (1.11.1)
+    ffi (1.11.3)
     formulaic (0.4.1)
       activesupport
       capybara
@@ -102,7 +105,7 @@ GEM
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashdiff (1.0.0)
-    highline (2.0.2)
+    highline (2.0.3)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.29)
@@ -134,7 +137,7 @@ GEM
     kgio (2.11.2)
     launchy (2.4.3)
       addressable (~> 2.3)
-    loofah (2.3.1)
+    loofah (2.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     method_source (0.9.2)
@@ -144,15 +147,11 @@ GEM
     momentjs-rails (2.20.1)
       railties (>= 3.1)
     multipart-post (2.1.1)
-    nokogiri (1.10.5)
+    nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
-    parser (2.6.2.1)
+    parser (2.6.5.0)
       ast (~> 2.4.0)
     pg (1.1.4)
-    poltergeist (1.18.1)
-      capybara (>= 2.1, < 4)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -181,7 +180,7 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rainbow (3.0.0)
     raindrops (0.19.0)
-    rake (13.0.0)
+    rake (13.0.1)
     redcarpet (3.5.0)
     regexp_parser (1.6.0)
     rspec-core (3.9.0)
@@ -192,15 +191,16 @@ GEM
     rspec-mocks (3.9.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
-    rspec-rails (4.0.0.beta3)
-      actionpack (>= 4.2)
-      activesupport (>= 4.2)
-      railties (>= 4.2)
-      rspec-core (~> 3.8)
-      rspec-expectations (~> 3.8)
-      rspec-mocks (~> 3.8)
-      rspec-support (~> 3.8)
+    rspec-rails (3.9.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.9.0)
+      rspec-expectations (~> 3.9.0)
+      rspec-mocks (~> 3.9.0)
+      rspec-support (~> 3.9.0)
     rspec-support (3.9.0)
+    rubyzip (2.0.0)
     safe_yaml (1.0.5)
     sassc (2.2.1)
       ffi (~> 1.9)
@@ -211,6 +211,9 @@ GEM
       sprockets-rails
       tilt
     selectize-rails (0.12.6)
+    selenium-webdriver (3.142.6)
+      childprocess (>= 0.5, < 4.0)
+      rubyzip (>= 1.2.2)
     sentry-raven (2.12.3)
       faraday (>= 0.7.6, < 1.0)
     shoulda-matchers (4.1.2)
@@ -236,16 +239,17 @@ GEM
     unicorn (5.5.1)
       kgio (~> 2.6)
       raindrops (~> 0.7)
+    webdrivers (4.1.3)
+      nokogiri (~> 1.6)
+      rubyzip (>= 1.3.0)
+      selenium-webdriver (>= 3.0, < 4.0)
     webmock (3.7.6)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    websocket-driver (0.7.0)
-      websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.2.1)
+    zeitwerk (2.2.2)
 
 PLATFORMS
   ruby
@@ -259,7 +263,7 @@ DEPENDENCIES
   awesome_print
   bundler-audit
   byebug
-  capybara (= 3.29.0)
+  capybara-selenium
   database_cleaner
   dotenv-rails
   factory_bot_rails
@@ -269,19 +273,19 @@ DEPENDENCIES
   i18n-tasks (= 0.9.29)
   launchy
   pg
-  poltergeist
   pry-rails
   pundit
   rack-timeout
   redcarpet
   rspec-rails
+  selenium-webdriver
   sentry-raven
   shoulda-matchers
   timecop
   uglifier
   unicorn
+  webdrivers
   webmock
-  xpath (= 3.2.0)
 
 BUNDLED WITH
    1.17.3

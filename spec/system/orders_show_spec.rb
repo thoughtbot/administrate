@@ -1,7 +1,7 @@
 require "rails_helper"
 
-feature "order show page" do
-  scenario "displays line item information" do
+RSpec.describe "order show page", type: SYSTEM_TEST do
+  it "displays line item information" do
     line_item = create(:line_item)
 
     visit admin_order_path(line_item.order)
@@ -11,7 +11,7 @@ feature "order show page" do
     expect(page).to have_content(line_item.total_price)
   end
 
-  scenario "links to line items", :js do
+  it "links to line items", :js do
     line_item = create(:line_item)
 
     visit admin_order_path(line_item.order)
@@ -20,7 +20,7 @@ feature "order show page" do
     expect(page).to have_header(displayed(line_item))
   end
 
-  scenario "user cannot click through to payment edit page" do
+  it "user cannot click through to payment edit page" do
     payment = create(:payment)
 
     visit admin_order_path(payment.order)
@@ -30,7 +30,7 @@ feature "order show page" do
     end
   end
 
-  scenario "user cannot click through to payment delete record" do
+  it "user cannot click through to payment delete record" do
     payment = create(:payment)
 
     visit admin_order_path(payment.order)

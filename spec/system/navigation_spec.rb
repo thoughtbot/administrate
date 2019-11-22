@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "navigation" do
+RSpec.describe "navigation", type: SYSTEM_TEST do
   it "highlights the link to the current page's resource type" do
     visit admin_customers_path
 

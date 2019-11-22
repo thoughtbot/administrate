@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "log entry form" do
+RSpec.describe "log entry form", type: SYSTEM_TEST do
   it "displays a select box for the logeable" do
     customer = create(:customer)
 

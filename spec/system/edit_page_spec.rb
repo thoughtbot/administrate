@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "customer edit page" do
+RSpec.describe "customer edit page", type: SYSTEM_TEST do
   it "displays the customer's title attribute as the header" do
     customer = create(:customer)
 

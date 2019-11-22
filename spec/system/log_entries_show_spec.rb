@@ -1,7 +1,7 @@
 require "rails_helper"
 
-feature "log entry show page" do
-  scenario "displays logeable information" do
+RSpec.describe "log entry show page", type: SYSTEM_TEST do
+  it "displays logeable information" do
     log_entry = create(:log_entry)
 
     visit admin_log_entry_path(log_entry)
@@ -10,7 +10,7 @@ feature "log entry show page" do
     expect(page).to have_content(displayed(log_entry.logeable))
   end
 
-  scenario "links to logeable", :js do
+  it "links to logeable", :js do
     log_entry = create(:log_entry)
 
     visit admin_log_entry_path(log_entry)

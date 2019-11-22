@@ -1,4 +1,4 @@
-module Features
+module SystemHelpers
   def click_row_for(model)
     within(row_css_for(model)) do
       all(clickable_table_elements).first.click

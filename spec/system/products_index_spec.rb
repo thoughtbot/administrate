@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "product index page" do
+RSpec.describe "product index page", type: SYSTEM_TEST do
   it "displays products' name and description" do
     product = create(:product)
 

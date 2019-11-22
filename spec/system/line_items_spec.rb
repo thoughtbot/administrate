@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "line item index page" do
+RSpec.describe "line item index page", type: SYSTEM_TEST do
   it "displays line items' information" do
     line_item = create(:line_item)
 

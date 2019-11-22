@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "customer show page" do
+RSpec.describe "customer show page", type: SYSTEM_TEST do
   describe "paginates customers' orders" do
     it "displays the first page by default, other pages when specified" do
       customer = create(:customer)

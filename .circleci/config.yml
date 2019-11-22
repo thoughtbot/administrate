@@ -21,6 +21,8 @@ commands:
           paths:
             - vendor/bundle
 
+      - run: bundle exec rails webdrivers:chromedriver:update[75.0.3770.8]
+
       # Wait for DB
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
@@ -59,7 +61,7 @@ jobs:
   ruby-26:
     <<: *default_job
     docker:
-      - image: circleci/ruby:2.6.3-node-browsers-legacy
+      - image: circleci/ruby:2.6.3-node-browsers
         environment:
           PGHOST: localhost
           PGUSER: administrate

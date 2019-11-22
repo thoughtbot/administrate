@@ -1,7 +1,7 @@
 require "rails_helper"
 
-feature "Search" do
-  scenario "admin searches for customer by email", :js do
+RSpec.describe "Search", type: SYSTEM_TEST do
+  it "admin searches for customer by email", :js do
     query = "bar@baz.com"
     perfect_match = create(:customer, email: "bar@baz.com")
     partial_match = create(:customer, email: "foobar@baz.com")
@@ -16,7 +16,7 @@ feature "Search" do
     expect(page).not_to have_content(mismatch.email)
   end
 
-  scenario "admin searches for order by id", :js do
+  it "admin searches for order by id", :js do
     # Long, predictable ids to avoid simple numbers matching more than one thing
     orders = Array.new(4) { |i| create(:order, id: (i + 1).to_s * 7) }
     target, *rest = orders.shuffle
@@ -31,7 +31,7 @@ feature "Search" do
     end
   end
 
-  scenario "admin searches across different fields", :js do
+  it "admin searches across different fields", :js do
     query = "dan"
     name_match = create(:customer, name: "Dan Croak", email: "foo@bar.com")
     email_match = create(:customer, name: "foo", email: "dan@thoughtbot.com")
@@ -46,7 +46,7 @@ feature "Search" do
     expect(page).not_to have_content(mismatch.email)
   end
 
-  scenario "admin searches with a filter", :js do
+  it "admin searches with a filter", :js do
     query = "vip:"
     kind_match = create(:customer, kind: "vip", email: "vip@kind.com")
     mismatch = create(:customer, kind: "standard", email: "standard@kind.com")
@@ -61,7 +61,7 @@ feature "Search" do
     expect(page).not_to have_content(name_match_only.email)
   end
 
-  scenario "admin searches with an unknown filter", :js do
+  it "admin searches with an unknown filter", :js do
     query = "whatevs:"
     some_customer = create(:customer)
     another_customer = create(:customer)
@@ -74,7 +74,7 @@ feature "Search" do
     expect(page).to have_content(another_customer.email)
   end
 
-  scenario "admin clears search" do
+  it "admin clears search" do
     query = "foo"
     mismatch = create(:customer, name: "someone")
     visit admin_customers_path(search: query, customer: { order: :name })
@@ -85,7 +85,7 @@ feature "Search" do
     expect(page).to have_content(mismatch.email)
   end
 
-  scenario "admin searches across associations fields", :js do
+  it "admin searches across associations fields", :js do
     country = create(:country, name: "Brazil", code: "BR")
     country_match = create(:customer, country: country)
     mismatch = create(:customer)

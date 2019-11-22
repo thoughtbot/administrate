@@ -1,7 +1,7 @@
 require "rails_helper"
 
-feature "form errors" do
-  scenario "error messages for new resource" do
+RSpec.describe "form errors", type: SYSTEM_TEST do
+  it "error messages for new resource" do
     visit new_admin_customer_path
     fill_in("Name", with: "")
     click_on "Create Customer"
@@ -9,7 +9,7 @@ feature "form errors" do
     expect(page).to have_content "Name can't be blank"
   end
 
-  scenario "error messages for editing resource" do
+  it "error messages for editing resource" do
     customer = create(:customer)
 
     visit edit_admin_customer_path(customer)

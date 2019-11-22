@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "product form has_one relationship" do
+RSpec.describe "product form has_one relationship", type: SYSTEM_TEST do
   it "saves product and meta tag data correctly" do
     visit new_admin_product_path
 

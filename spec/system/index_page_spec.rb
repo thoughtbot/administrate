@@ -2,7 +2,7 @@ require "rails_helper"
 
 search_input_selector = ".search__input"
 
-describe "customer index page" do
+RSpec.describe "customer index page", type: SYSTEM_TEST do
   it "displays customers' name and email" do
     customer = create(:customer)
 
@@ -126,7 +126,7 @@ describe "customer index page" do
   end
 end
 
-describe "search input" do
+RSpec.describe "search input", type: SYSTEM_TEST do
   context "when resource has searchable fields" do
     let(:index_with_searchable_fields) { admin_log_entries_path }
 

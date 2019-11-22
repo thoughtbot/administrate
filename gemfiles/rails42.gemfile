@@ -13,6 +13,7 @@ gem "unicorn"
 gem "actionpack", "~> 4.2.0"
 gem "actionview", "~> 4.2.0"
 gem "activerecord", "~> 4.2.0"
+gem "capybara", "~> 2.13.0"
 
 group :development, :test do
   gem "appraisal"
@@ -23,21 +24,21 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "i18n-tasks", "0.9.29"
   gem "pry-rails"
-  gem "rspec-rails"
+  gem "rspec-rails", "~> 3.6.0"
 end
 
 group :test do
   gem "ammeter"
-  gem "capybara", "3.29.0"
-  gem "database_cleaner"
+  gem "capybara-selenium"
+  gem "database_cleaner", require: false
   gem "formulaic"
   gem "launchy"
-  gem "poltergeist"
   gem "pundit"
+  gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "timecop"
+  gem "webdrivers"
   gem "webmock"
-  gem "xpath", "3.2.0"
 end
 
 group :staging, :production do

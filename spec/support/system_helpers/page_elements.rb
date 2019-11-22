@@ -1,4 +1,4 @@
-module Features
+module SystemHelpers
   def have_header(title)
     have_css("h1", text: title)
   end
