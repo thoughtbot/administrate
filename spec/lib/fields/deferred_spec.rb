@@ -1,4 +1,5 @@
 require "administrate/field/deferred"
+require "administrate/field/belongs_to"
 require "administrate/field/string"
 
 describe Administrate::Field::Deferred do

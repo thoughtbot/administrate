@@ -1,4 +1,4 @@
-require "administrate/page/form"
+require "rails_helper"
 
 describe Administrate::Page::Form do
   describe "#page_title" do

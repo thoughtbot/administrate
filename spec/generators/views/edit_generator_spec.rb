@@ -1,6 +1,5 @@
-require "spec_helper"
-require "generators/administrate/views/edit_generator"
 require "support/generator_spec_helpers"
+require "generators/administrate/views/edit_generator"
 
 describe Administrate::Generators::Views::EditGenerator, :generator do
   describe "administrate:views:edit" do

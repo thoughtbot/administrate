@@ -1,7 +1,7 @@
 require "rails_helper"
-require "generators/administrate/install/install_generator"
-require "support/generator_spec_helpers"
 require "support/constant_helpers"
+require "support/generator_spec_helpers"
+require "generators/administrate/install/install_generator"
 
 describe Administrate::Generators::InstallGenerator, :generator do
   after { reset_routes }

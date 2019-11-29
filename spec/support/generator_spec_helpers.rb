@@ -1,3 +1,4 @@
+require "rails_helper"
 require "ammeter/rspec/generator/example"
 require "ammeter/rspec/generator/matchers"
 require "ammeter/init"

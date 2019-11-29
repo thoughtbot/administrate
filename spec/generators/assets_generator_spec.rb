@@ -1,6 +1,6 @@
 require "rails_helper"
-require "generators/administrate/assets/assets_generator"
 require "support/generator_spec_helpers"
+require "generators/administrate/assets/assets_generator"
 
 describe Administrate::Generators::AssetsGenerator, :generator do
   describe "administrate:assets" do

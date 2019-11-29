@@ -1,7 +1,7 @@
 require "rails_helper"
-require "generators/administrate/routes/routes_generator"
-require "support/generator_spec_helpers"
 require "support/constant_helpers"
+require "support/generator_spec_helpers"
+require "generators/administrate/routes/routes_generator"
 
 describe Administrate::Generators::RoutesGenerator, :generator do
   before { stub_generator_dependencies }

@@ -1,6 +1,6 @@
 require "rails_helper"
-require "generators/administrate/assets/stylesheets_generator"
 require "support/generator_spec_helpers"
+require "generators/administrate/assets/stylesheets_generator"
 
 describe Administrate::Generators::Assets::StylesheetsGenerator, :generator do
   describe "administrate:assets:stylesheets" do
