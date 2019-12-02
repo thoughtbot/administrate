@@ -145,7 +145,7 @@ module Administrate
           raise "Unrecognised param data: #{data.inspect}"
         end
       else
-        data
+        data.presence
       end
     end
 
