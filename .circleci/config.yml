@@ -13,6 +13,11 @@ commands:
 
       # Bundle install dependencies
       - run: bundle install --path vendor/bundle
+      - run: BUNDLE_GEMFILE=gemfiles/rails42.gemfile bundle install --path vendor/bundle
+      - run: BUNDLE_GEMFILE=gemfiles/rails50.gemfile bundle install --path vendor/bundle
+      - run: BUNDLE_GEMFILE=gemfiles/rails51.gemfile bundle install --path vendor/bundle
+      - run: BUNDLE_GEMFILE=gemfiles/rails52.gemfile bundle install --path vendor/bundle
+      - run: BUNDLE_GEMFILE=gemfiles/rails60.gemfile bundle install --path vendor/bundle
 
       # Cache Dependencies
       - save_cache:
@@ -38,7 +43,6 @@ default_job: &default_job
   steps:
     - shared_steps
     # Run the tests against multiple versions of Rails
-    - run: bundle exec appraisal install
     - run: bundle exec appraisal rake
 
 jobs:
