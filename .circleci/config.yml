@@ -50,6 +50,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
+          RUBY_VERSION: 2.5.0
       - image: postgres:10.1-alpine
         environment:
           POSTGRES_USER: administrate
@@ -64,6 +65,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
+          RUBY_VERSION: 2.6.3
       - image: postgres:10.1-alpine
         environment:
           POSTGRES_USER: administrate

@@ -19,6 +19,7 @@ group :development, :test do
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "i18n-tasks", "0.9.29"
+  gem "parser", ENV.fetch("RUBY_VERSION", Pathname(".ruby-version").read)
   gem "pry-rails"
 end
 
