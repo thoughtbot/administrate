@@ -68,6 +68,8 @@ to display a collection of resources in an HTML table.
                  >
                 <%= render_field attribute %>
               </a>
+            <% else %>
+              <%= render_field attribute %>
             <% end -%>
           </td>
         <% end %>
