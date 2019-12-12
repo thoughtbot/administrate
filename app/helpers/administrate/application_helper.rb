@@ -1,6 +1,12 @@
 module Administrate
   module ApplicationHelper
+    include ::Webpacker::Helper
+
     PLURAL_MANY_COUNT = 2.1
+
+    def current_webpacker_instance
+      Administrate.webpacker
+    end
 
     def application_title
       if Rails::VERSION::MAJOR <= 5
