@@ -2,13 +2,8 @@
   "name": "action_text_test",
   "private": true,
   "dependencies": {
-    "@rails/actioncable": "^6.0.0",
-    "@rails/actiontext": "^6.0.1",
-    "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
-    "trix": "^1.0.0",
-    "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
