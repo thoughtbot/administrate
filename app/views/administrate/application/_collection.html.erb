@@ -63,6 +63,7 @@ to display a collection of resources in an HTML table.
           <td class="cell-data cell-data--<%= attribute.html_class %>">
             <% if show_action? :show, resource -%>
               <a href="<%= polymorphic_path([namespace, resource]) -%>"
+                 tabindex="-1"
                  class="action-show"
                  >
                 <%= render_field attribute %>
