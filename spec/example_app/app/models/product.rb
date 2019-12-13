@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
-  def self.policy_class=(p)
-    @policy_class = p
+  def self.policy_class=(policy)
+    @policy_class = policy
   end
 
   def self.policy_class
