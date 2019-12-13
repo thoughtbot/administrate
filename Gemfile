@@ -42,3 +42,5 @@ group :staging, :production do
   gem "rack-timeout"
   gem "uglifier"
 end
+
+gem "webpacker"
