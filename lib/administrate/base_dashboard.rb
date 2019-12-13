@@ -12,6 +12,7 @@ require "administrate/field/text"
 require "administrate/field/time"
 require "administrate/field/url"
 require "administrate/field/password"
+require "administrate/field/action_text"
 
 module Administrate
   class BaseDashboard
