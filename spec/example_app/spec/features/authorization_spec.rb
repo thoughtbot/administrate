@@ -5,7 +5,7 @@ RSpec.feature "Authorization", type: :feature do
     class TestProductPolicy < ProductPolicy
       class Scope < Scope
         def resolve
-          scope.where('price < :threshold', threshold: 15)
+          scope.where("price < :threshold", threshold: 15)
         end
       end
 
@@ -30,6 +30,6 @@ RSpec.feature "Authorization", type: :feature do
 
     expect(page).to have_content(p0.name)
     expect(page).not_to have_content(p1.name)
-    expect(page).to have_css('.js-table-row', count: 1)
+    expect(page).to have_css(".js-table-row", count: 1)
   end
 end
