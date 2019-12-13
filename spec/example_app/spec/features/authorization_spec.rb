@@ -2,11 +2,24 @@ require "rails_helper"
 
 RSpec.feature "Authorization", type: :feature do
   before do
-    class ProductPolicy::Scope
-      def resolve
-        scope.where('price < :threshold', threshold: 15)
+    class TestProductPolicy < ProductPolicy
+      class Scope < Scope
+        def resolve
+          scope.where('price < :threshold', threshold: 15)
+        end
+      end
+
+      def show?
+        false
       end
     end
+
+    @original_product_policy = Product.policy_class
+    Product.policy_class = TestProductPolicy
+  end
+
+  after do
+    Product.policy_class = @original_product_policy
   end
 
   it "renders all results yielded by the scope" do
