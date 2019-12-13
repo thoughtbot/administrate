@@ -4,9 +4,9 @@ namespace :administrate do
     desc "Install deps with yarn"
     task :yarn_install do
       Dir.chdir(File.join(__dir__, "..", "..")) do
-        has_integrity? = system("yarn check --integrity", out: File::NULL)
+        has_integrity = system("yarn check --integrity", out: File::NULL)
 
-        if !has_integrity?
+        if !has_integrity
           system "yarn install --no-progress"
         end
       end
