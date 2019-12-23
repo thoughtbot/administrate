@@ -13,7 +13,7 @@ $(function() {
       var dataUrl = $(event.target).closest("tr").data("url");
       var selection = window.getSelection().toString();
       if (selection.length === 0 && dataUrl) {
-        window.location.pathname = dataUrl;
+        window.location = window.location.protocol + '//' + window.location.host + dataUrl;
       }
     }
   };
