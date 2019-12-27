@@ -95,6 +95,16 @@ describe "customer index page" do
       expect_to_appear_in_order("unique name one", "unique name two")
     end
 
+    it "allows clicking through after sorting", :js do
+      customer = create(:customer)
+      create(:order, customer: customer)
+
+      visit admin_customers_path
+      click_on "Name"
+      find("[data-url]").click
+      expect(page).to have_header("Show #{customer.name}")
+    end
+
     it "allows reverse sorting" do
       create(:customer, name: "unique name one")
       create(:customer, name: "unique name two")
