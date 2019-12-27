@@ -1,6 +1,5 @@
-require "spec_helper"
-require "generators/administrate/views/index_generator"
 require "support/generator_spec_helpers"
+require "generators/administrate/views/index_generator"
 
 describe Administrate::Generators::Views::IndexGenerator, :generator do
   describe "administrate:views:index" do

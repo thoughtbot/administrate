@@ -1,4 +1,4 @@
-require "administrate/page/show"
+require "rails_helper"
 
 describe Administrate::Page::Show do
   describe "#page_title" do

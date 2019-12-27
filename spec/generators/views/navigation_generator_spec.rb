@@ -1,6 +1,5 @@
-require "spec_helper"
-require "generators/administrate/views/navigation_generator"
 require "support/generator_spec_helpers"
+require "generators/administrate/views/navigation_generator"
 
 describe Administrate::Generators::Views::NavigationGenerator, :generator do
   describe "administrate:views:navigation" do

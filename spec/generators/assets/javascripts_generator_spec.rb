@@ -1,6 +1,6 @@
 require "rails_helper"
-require "generators/administrate/assets/javascripts_generator"
 require "support/generator_spec_helpers"
+require "generators/administrate/assets/javascripts_generator"
 
 describe Administrate::Generators::Assets::JavascriptsGenerator, :generator do
   describe "administrate:assets:javascripts" do

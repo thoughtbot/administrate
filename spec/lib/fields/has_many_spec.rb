@@ -1,3 +1,4 @@
+require "rails_helper"
 require "administrate/field/has_many"
 require "support/constant_helpers"
 require "support/mock_relation"

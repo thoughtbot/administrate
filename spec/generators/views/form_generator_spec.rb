@@ -1,6 +1,5 @@
-require "spec_helper"
-require "generators/administrate/views/form_generator"
 require "support/generator_spec_helpers"
+require "generators/administrate/views/form_generator"
 
 describe Administrate::Generators::Views::FormGenerator, :generator do
   describe "administrate:views:form" do

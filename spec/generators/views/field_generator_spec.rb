@@ -1,6 +1,6 @@
 require "rails_helper"
-require "generators/administrate/views/field_generator"
 require "support/generator_spec_helpers"
+require "generators/administrate/views/field_generator"
 
 describe Administrate::Generators::Views::FieldGenerator, :generator do
   context "for an existing field type" do

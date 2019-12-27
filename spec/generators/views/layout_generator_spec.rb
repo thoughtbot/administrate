@@ -1,6 +1,6 @@
 require "rails_helper"
-require "generators/administrate/views/layout_generator"
 require "support/generator_spec_helpers"
+require "generators/administrate/views/layout_generator"
 
 describe Administrate::Generators::Views::LayoutGenerator, :generator do
   describe "administrate:views:layout" do

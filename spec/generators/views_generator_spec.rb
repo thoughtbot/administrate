@@ -1,6 +1,6 @@
 require "rails_helper"
-require "generators/administrate/views/views_generator"
 require "support/generator_spec_helpers"
+require "generators/administrate/views/views_generator"
 
 describe Administrate::Generators::ViewsGenerator, :generator do
   describe "administrate:views resource" do
