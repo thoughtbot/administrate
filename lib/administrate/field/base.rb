@@ -20,16 +20,16 @@ module Administrate
         to_s.split("::").last.underscore
       end
 
+      def self.permitted_attribute(attr, _options = nil)
+        attr
+      end
+
       def initialize(attribute, data, page, options = {})
         @attribute = attribute
         @data = data
         @page = page
         @resource = options.delete(:resource)
         @options = options
-      end
-
-      def self.permitted_attribute(attr, _options = nil)
-        attr
       end
 
       def html_class
