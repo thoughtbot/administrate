@@ -5,14 +5,14 @@ module Administrate
   class ViewGenerator < Rails::Generators::Base
     include Administrate::GeneratorHelpers
 
-    private
-
     def self.template_source_path
       File.expand_path(
         "../../../app/views/administrate/application",
         __FILE__,
       )
     end
+
+    private
 
     def copy_resource_template(template_name)
       template_file = "#{template_name}.html.erb"
