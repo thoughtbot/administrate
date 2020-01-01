@@ -16,6 +16,10 @@ module Administrate
         false
       end
 
+      def self.field_type
+        to_s.split("::").last.underscore
+      end
+
       def initialize(attribute, data, page, options = {})
         @attribute = attribute
         @data = data
@@ -41,12 +45,6 @@ module Administrate
       end
 
       attr_reader :attribute, :data, :options, :page, :resource
-
-      protected
-
-      def self.field_type
-        to_s.split("::").last.underscore
-      end
     end
   end
 end
