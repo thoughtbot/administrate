@@ -117,7 +117,7 @@ If you'd like, you can use our [PGP key] when reporting vulnerabilities.
 ## Releasing
 
 New releases (and the time period between them) is arbitrary, but usually
-motivated by a new Rails release or enough bug fixes and/or features that
+motivated by a new Rails release or enough bug fixes or features that
 there's significant enough changes.
 
 A new release involves cutting and pushing a new version to [Ruby Gems][] and
