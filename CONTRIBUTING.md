@@ -49,7 +49,7 @@ This will start the application defined in `spec/example_app`.
 * The demo app is nested within `spec/example_app`.
 * The guides as seen at
   [https://administrate-demo.herokuapp.com][docs] live as
-  markdown files in the `docs` subdirectory.
+  Markdown files in the `docs` subdirectory.
 
 Rails configuration files have been changed
 to recognize the app in the new location,
