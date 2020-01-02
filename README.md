@@ -97,46 +97,6 @@ see the guides at
 These guides are available as markdown files in the `docs` subdirectory of the
 git repository, too.
 
-## Repository Structure
-
-This repository contains both the source code for Administrate,
-and a demo Rails app that uses Administrate.
-The demo app is [hosted publicly on Heroku][demo].
-
-- The gem's source code lives in the `app` and `lib` subdirectories.
-- The demo app is nested within `spec/example_app`.
-- The guides as seen at
-  [https://administrate-prototype.herokuapp.com][prototype_heroku] live as
-  markdown files in the `docs` subdirectory.
-
-Rails configuration files have been changed
-to recognize the app in the new location,
-so running the server or deploying to Heroku works normally.
-
-With this structure, developing a typical feature looks like:
-
-- Add tests in `spec/`
-- Implement a feature in `administrate/`
-- Exercise the feature using the demo rails app (`spec/example_app/app/`)
-
-## Front-end Architecture
-
-This project uses:
-
-- Sass
-- [BEM]-style CSS selectors, with [namespaces]
-- Autoprefixer
-- SCSS-Lint, with [Hound] ([configuration](.scss-lint.yml))
-- A variety of CSS units:
-  - `em` for typographical-related elements
-  - `rem` for lengths related to components
-  - `px` for borders, text shadows, etc.
-  - `vw`/`vh` for lengths that should be relational to the viewport
-
-[BEM]: http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/
-[namespaces]: http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/
-[Hound]: https://houndci.com/
-
 ## Contributing
 
 Please see [CONTRIBUTING.md](/CONTRIBUTING.md).
