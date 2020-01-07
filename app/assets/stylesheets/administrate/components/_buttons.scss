@@ -41,3 +41,11 @@ input[type="submit"],
     }
   }
 }
+
+.button--alt {
+  background-color: transparent;
+  border: $base-border;
+  border-color: $blue;
+  color: $blue;
+  margin-bottom: $base-spacing;
+}

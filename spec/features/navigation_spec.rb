@@ -1,6 +1,13 @@
 require "rails_helper"
 
 describe "navigation" do
+  it "has the link of back to application" do
+    visit admin_customers_path
+
+    navigation = find(".navigation")
+    expect(navigation).to have_link("Back to app")
+  end
+
   it "highlights the link to the current page's resource type" do
     visit admin_customers_path
 
