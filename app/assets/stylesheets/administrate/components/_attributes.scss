@@ -3,7 +3,7 @@
   clear: left;
   float: left;
   margin-bottom: $base-spacing;
-  margin-top: 0;
+  margin-top: $top-space;
   text-align: right;
   width: calc(15% - 1rem);
 }
