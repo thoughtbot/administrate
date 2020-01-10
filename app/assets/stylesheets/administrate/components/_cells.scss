@@ -1,8 +1,6 @@
-th.cell-label {
-  padding-top: $top-space;
-}
-
 .cell-label {
+  padding-top: $top-space;
+
   &:hover {
     a {
       color: $action-color;
