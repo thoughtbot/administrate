@@ -24,9 +24,9 @@ module Administrate
     end
 
     def has_presence_validator?(resource_class, field_name)
-      resource_class.validators_on(field_name)
-                    .map(&:class)
-                    .include?(ActiveRecord::Validations::PresenceValidator)
+      resource_class.validators_on(field_name).
+        map(&:class).
+        include?(ActiveRecord::Validations::PresenceValidator)
     end
 
     def class_from_resource(resource_name)
