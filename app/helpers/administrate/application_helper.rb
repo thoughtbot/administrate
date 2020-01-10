@@ -15,12 +15,18 @@ module Administrate
       render locals: locals, partial: field.to_partial_path
     end
 
+    def requireness(field)
+      required_field?(field) ? "required" : "optional"
+    end
+
     def required_field?(field)
-      has_presence_validator?(field.resource.class, field.attribute) ? 'required' : 'optional'
+      has_presence_validator?(field.resource.class, field.attribute)
     end
 
     def has_presence_validator?(resource_class, field_name)
-      resource_class.validators_on(field_name).map(&:class).include?(ActiveRecord::Validations::PresenceValidator)
+      resource_class.validators_on(field_name)
+                    .map(&:class)
+                    .include?(ActiveRecord::Validations::PresenceValidator)
     end
 
     def class_from_resource(resource_name)

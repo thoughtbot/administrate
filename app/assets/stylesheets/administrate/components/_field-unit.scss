@@ -36,8 +36,8 @@
 }
 
 .field-unit--required {
-  label:after {
-    content:" *";
-    color: tomato;
+  label::after {
+    color: $red;
+    content: " *";
   }
 }
