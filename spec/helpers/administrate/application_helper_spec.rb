@@ -54,6 +54,18 @@ RSpec.describe Administrate::ApplicationHelper do
     end
   end
 
+  describe "#has_presence_validator?" do
+    it "returns true if field is required" do
+      required = has_presence_validator?(Blog::Post, :title)
+      expect(required).to eq(true)
+    end
+
+    it "returns false if field is not required" do
+      required = has_presence_validator?(Blog::Post, :publish_at)
+      expect(required).to eq(false)
+    end
+  end
+
   describe "#sort_order" do
     it "sanitizes to ascending/descending/none" do
       expect(sort_order("asc")).to eq("ascending")
