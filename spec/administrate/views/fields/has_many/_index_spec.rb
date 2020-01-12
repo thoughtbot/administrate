@@ -1,6 +1,13 @@
 require "rails_helper"
 
+class Team
+  extend ActiveModel::Naming
+  extend ActiveModel::Translation
+end
+
 describe "fields/has_many/_index", type: :view do
+  helper Administrate::ApplicationHelper
+
   context "without any associated records" do
     it "displays the pluralized attribute name" do
       has_many = double(

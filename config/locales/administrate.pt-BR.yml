@@ -26,4 +26,4 @@ pt-BR:
       errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
     search:
       clear: Limpar pesquisa
-      label: Pesquisa %{resource}
+      label: Pesquisar %{resource}

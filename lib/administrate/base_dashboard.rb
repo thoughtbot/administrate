@@ -1,5 +1,6 @@
 require "administrate/field/belongs_to"
 require "administrate/field/boolean"
+require "administrate/field/date"
 require "administrate/field/date_time"
 require "administrate/field/email"
 require "administrate/field/has_many"
@@ -56,7 +57,7 @@ module Administrate
     end
 
     def display_resource(resource)
-      "#{resource.class} ##{resource.id}"
+      "#{resource.model_name.human} ##{resource.id}"
     end
 
     def collection_includes

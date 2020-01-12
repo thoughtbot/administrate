@@ -8,6 +8,18 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(displayed).to eq("Customers")
     end
 
+    it "shows the singular of the model name" do
+      displayed = display_resource_name(:customer, count: 1)
+
+      expect(displayed).to eq("Customer")
+    end
+
+    it "shows a default string when supplied" do
+      displayed = display_resource_name(:customer, default: "Special Customer")
+
+      expect(displayed).to eq("Special Customer")
+    end
+
     it "handles string arguments" do
       displayed = display_resource_name("customer")
 
@@ -20,9 +32,15 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(displayed).to eq("Customers")
     end
 
+    it "handles namespaced resources" do
+      displayed = display_resource_name(:blog__post)
+
+      expect(displayed).to eq("Blog Posts")
+    end
+
     context "when translations are defined" do
-      it "uses the plural of the defined translation" do
-        translations = {
+      before do
+        @translations = {
           activerecord: {
             models: {
               customer: {
@@ -32,9 +50,27 @@ RSpec.describe Administrate::ApplicationHelper do
             },
           },
         }
+      end
 
-        with_translations(:en, translations) do
+      it "uses the plural of the defined translation" do
+        with_translations(:en, @translations) do
           displayed = display_resource_name(:customer)
+
+          expect(displayed).to eq("Users")
+        end
+      end
+
+      it "uses the singular of the defined translation when count is 1" do
+        with_translations(:en, @translations) do
+          displayed = display_resource_name(:customer, count: 1)
+
+          expect(displayed).to eq("User")
+        end
+      end
+
+      it "ignores the default string" do
+        with_translations(:en, @translations) do
+          displayed = display_resource_name(:customer, default: "Ignored")
 
           expect(displayed).to eq("Users")
         end

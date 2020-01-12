@@ -2,7 +2,7 @@ require_relative "base"
 
 module Administrate
   module Field
-    class DateTime < Base
+    class Date < Base
       def date
         I18n.localize(
           data.in_time_zone(timezone).to_date,

@@ -1,5 +1,7 @@
 module Administrate
   class ApplicationController < ActionController::Base
+    include ApplicationHelper
+
     protect_from_forgery with: :exception
 
     def index
@@ -162,7 +164,11 @@ module Administrate
     def translate_with_resource(key)
       t(
         "administrate.controller.#{key}",
-        resource: resource_resolver.resource_title,
+        resource: display_resource_name(
+          resource_resolver.resource_name,
+          count: 1,
+          default: resource_resolver.resource_title,
+        ),
       )
     end
 

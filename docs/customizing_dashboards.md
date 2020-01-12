@@ -182,10 +182,24 @@ Default is `[]`.
 `:order` - What to sort the association by in the form select.
 Default is `nil`.
 
+**Field::Date**
+
+`:format` - Specify what format, using `strftime` you would like `Date`
+objects to display as.
+
+`:datetimepicker_format` - Specify what format will be used inside the
+datetimepicker input. eg: YYYY-MM-DD HH:mm:ss.
+
+`:timezone` - Specify which timezone `Date` and `DateTime` objects are based
+in.
+
 **Field::DateTime**
 
 `:format` - Specify what format, using `strftime` you would like `DateTime`
 objects to display as.
+
+`:datetimepicker_format` - Specify what format will be used inside the
+datetimepicker input. eg: YYYY-MM-DD HH:mm:ss.
 
 `:timezone` - Specify which timezone `Date` and `DateTime` objects are based
 in.
