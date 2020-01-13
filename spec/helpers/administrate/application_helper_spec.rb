@@ -54,6 +54,20 @@ RSpec.describe Administrate::ApplicationHelper do
     end
   end
 
+  describe "#requireness" do
+    let(:page) { Administrate::Page::Form.new(Blog::PostDashboard.new, Blog::Post.new) }
+
+    it "returns 'required' if field is required" do
+      title_field = page.attributes.select { |i| i.attribute == :title }.first
+      expect(requireness(title_field)).to eq('required')
+    end
+
+    it "returns 'optional' if field is not required" do
+      publish_at_field = page.attributes.select { |i| i.attribute == :published_at }.first
+      expect(requireness(publish_at_field)).to eq('optional')
+    end
+  end
+
   describe "#has_presence_validator?" do
     it "returns true if field is required" do
       required = has_presence_validator?(Blog::Post, :title)
