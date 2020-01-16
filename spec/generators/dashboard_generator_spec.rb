@@ -174,8 +174,8 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
       end
 
-      it "assigns dates, times, and datetimes a type of `DateTime` and
-          `Time`" do
+      it "assigns dates, times, and datetimes a type of `Date`, `DateTime` and
+      `Time` respectively" do
         begin
           ActiveRecord::Schema.define do
             create_table :events do |t|
@@ -193,7 +193,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/event_dashboard.rb")
           attrs = EventDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:start_date]).to eq(Administrate::Field::DateTime)
+          expect(attrs[:start_date]).to eq(Administrate::Field::Date)
           expect(attrs[:start_time]).to eq(Administrate::Field::Time)
           expect(attrs[:ends_at]).to eq(Administrate::Field::DateTime)
         ensure

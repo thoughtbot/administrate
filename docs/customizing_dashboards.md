@@ -190,6 +190,11 @@ objects to display as.
 `:timezone` - Specify which timezone `Date` and `DateTime` objects are based
 in.
 
+**Field::Date**
+
+`:format` - Specify what format, using `strftime` you would like `Date`
+objects to display as.
+
 **Field::Select**
 
 `:collection` - Specify the array or range to select from. Defaults to `[]`.
