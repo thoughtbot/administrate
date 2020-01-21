@@ -24,9 +24,13 @@ module Administrate
     end
 
     def has_presence_validator?(resource_class, field_name)
-      resource_class.
-        validators_on(field_name).
+      validators_on(resource_class, field_name).
         any? { |v| v.class == ActiveRecord::Validations::PresenceValidator }
+    end
+
+    def validators_on(resource_class, field_name)
+      return [] unless resource_class.respond_to?(:validators_on)
+      resource_class.validators_on(field_name)
     end
 
     def class_from_resource(resource_name)
