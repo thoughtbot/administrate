@@ -60,12 +60,12 @@ RSpec.describe Administrate::ApplicationHelper do
     }
 
     it "returns 'required' if field is required" do
-      title = page.attributes.find { |i| i.attribute == :title }
+      title = page.attributes.detect { |i| i.attribute == :title }
       expect(requireness(title)).to eq("required")
     end
 
     it "returns 'optional' if field is not required" do
-      publish_at = page.attributes.find { |i| i.attribute == :published_at }
+      publish_at = page.attributes.detect { |i| i.attribute == :published_at }
       expect(requireness(publish_at)).to eq("optional")
     end
   end

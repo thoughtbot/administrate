@@ -30,6 +30,7 @@ module Administrate
 
     def validators_on(resource_class, field_name)
       return [] unless resource_class.respond_to?(:validators_on)
+
       resource_class.validators_on(field_name)
     end
 
