@@ -55,9 +55,9 @@ RSpec.describe Administrate::ApplicationHelper do
   end
 
   describe "#requireness" do
-    let(:page) {
+    let(:page) do
       Administrate::Page::Form.new(Blog::PostDashboard.new, Blog::Post.new)
-    }
+    end
 
     it "returns 'required' if field is required" do
       title = page.attributes.detect { |i| i.attribute == :title }
