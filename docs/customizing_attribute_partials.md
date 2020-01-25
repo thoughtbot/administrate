@@ -6,6 +6,7 @@ across all dashboards. You can customize the following built in field types:
 - `belongs_to`
 - `boolean`
 - `date_time`
+- `date`
 - `email`
 - `has_many`
 - `has_one`
