@@ -54,6 +54,34 @@ RSpec.describe Administrate::ApplicationHelper do
     end
   end
 
+  describe "#requireness" do
+    let(:page) do
+      Administrate::Page::Form.new(Blog::PostDashboard.new, Blog::Post.new)
+    end
+
+    it "returns 'required' if field is required" do
+      title = page.attributes.detect { |i| i.attribute == :title }
+      expect(requireness(title)).to eq("required")
+    end
+
+    it "returns 'optional' if field is not required" do
+      publish_at = page.attributes.detect { |i| i.attribute == :published_at }
+      expect(requireness(publish_at)).to eq("optional")
+    end
+  end
+
+  describe "#has_presence_validator?" do
+    it "returns true if field is required" do
+      required = has_presence_validator?(Blog::Post, :title)
+      expect(required).to eq(true)
+    end
+
+    it "returns false if field is not required" do
+      required = has_presence_validator?(Blog::Post, :publish_at)
+      expect(required).to eq(false)
+    end
+  end
+
   describe "#sort_order" do
     it "sanitizes to ascending/descending/none" do
       expect(sort_order("asc")).to eq("ascending")

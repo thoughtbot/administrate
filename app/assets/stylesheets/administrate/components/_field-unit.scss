@@ -34,3 +34,10 @@
     width: calc(25% - 1rem);
   }
 }
+
+.field-unit--required {
+  label::after {
+    color: $red;
+    content: " *";
+  }
+}
