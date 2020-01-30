@@ -75,7 +75,7 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
-    database_cleaner (1.7.0)
+    database_cleaner (1.8.0)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
     diff-lcs (1.3)
