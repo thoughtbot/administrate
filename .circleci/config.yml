@@ -24,6 +24,21 @@ commands:
           paths:
             - vendor/bundle
 
+      # Restore cached appraisal dependencies
+      - restore_cache:
+          name: Restore bundle cache
+          key: administrate-appraisal-{{ checksum "Gemfile.lock" }}
+
+      # Install appraisal dependencies
+      - run: bundle exec appraisal install --path vendor/appraisal
+
+      # Cache appraisal dependencies
+      - save_cache:
+          name: Store bundle cache
+          key: administrate-appraisal-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/appraisal
+
       # Wait for DB
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
@@ -41,7 +56,6 @@ default_job: &default_job
   steps:
     - shared_steps
     # Run the tests against multiple versions of Rails
-    - run: bundle exec appraisal install
     - run: bundle exec appraisal rake
 
 jobs:
