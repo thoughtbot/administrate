@@ -53,7 +53,13 @@ class DocsController < ApplicationController
           renderer = Redcarpet::Render::HTML
           markdown = Redcarpet::Markdown.new(renderer, REDCARPET_CONFIG)
 
-          markdown.render(source_text)
+          source_text_with_heading = <<~MARKDOWN
+            # #{title}
+
+            #{source_text}
+          MARKDOWN
+
+          markdown.render(source_text_with_heading)
         end
     end
 
