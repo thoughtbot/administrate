@@ -1,4 +1,6 @@
-# Contributing Guide
+---
+title: Contributing Guide
+---
 
 ## Code of Conduct
 

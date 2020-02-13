@@ -1,4 +1,6 @@
-## Rails API
+---
+title: Rails API
+---
 
 Since Rails 5.0, we've been able to have API only applications. Yet, sometimes
 we still want to have an admin. 

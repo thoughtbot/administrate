@@ -99,6 +99,7 @@ GEM
       activesupport
       capybara
       i18n
+    front_matter_parser (0.2.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashdiff (1.0.0)
@@ -265,6 +266,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   formulaic
+  front_matter_parser
   globalid
   i18n-tasks (= 0.9.30)
   launchy

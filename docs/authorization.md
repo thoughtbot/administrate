@@ -1,4 +1,6 @@
-# Authorization
+---
+title: Authorization
+---
 
 The default configuration of Administrate is "authenticate-only" - once a
 user is authenticated, that user has access to every action of every object.

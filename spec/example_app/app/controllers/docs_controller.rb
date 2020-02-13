@@ -18,7 +18,7 @@ class DocsController < ApplicationController
     path = full_page_path(name)
 
     if File.exist?(path)
-      contents = parse_markdown(path)
+      contents = parse_document(path)
       @page_title = contents.title
       # rubocop:disable Rails/OutputSafety
       render layout: "docs", html: contents.body.html_safe
@@ -34,14 +34,16 @@ class DocsController < ApplicationController
     Rails.root + "../../#{page}.md"
   end
 
-  def parse_markdown(path)
+  def parse_document(path)
     text = File.read(path)
-    MarkdownParser.new(text)
+    DocumentParser.new(text)
   end
 
-  class MarkdownParser
+  class DocumentParser
     def initialize(source_text)
-      @source_text = source_text
+      front_matter_parsed = FrontMatterParser::Parser.new(:md).call(source_text)
+      @source_text = front_matter_parsed.content
+      @metadata = front_matter_parsed.front_matter
     end
 
     def body
@@ -55,17 +57,11 @@ class DocsController < ApplicationController
     end
 
     def title
-      @title ||=
-        begin
-          h1_match = @source_text.scan(/^# (.*)$/).first
-          raise "Please provide an H1 heading for the page" if h1_match.empty?
-
-          h1_match.first
-        end
+      metadata["title"]
     end
 
     private
 
-    attr_reader :source_text
+    attr_reader :source_text, :metadata
   end
 end

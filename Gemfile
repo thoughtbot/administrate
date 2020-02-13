@@ -5,6 +5,7 @@ gemspec
 gem "administrate-field-image"
 gem "autoprefixer-rails"
 gem "faker"
+gem "front_matter_parser"
 gem "globalid"
 gem "pg"
 gem "redcarpet"
