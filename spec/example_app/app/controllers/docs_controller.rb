@@ -20,6 +20,7 @@ class DocsController < ApplicationController
     if File.exist?(path)
       contents = parse_document(path)
       @page_title = contents.title
+      @page_title_suffix = contents.title_suffix
       # rubocop:disable Rails/OutputSafety
       render layout: "docs", html: contents.body.html_safe
       # rubocop:enable Rails/OutputSafety
@@ -58,6 +59,10 @@ class DocsController < ApplicationController
 
     def title
       metadata["title"]
+    end
+
+    def title_suffix
+      metadata["home"] ? "" : " - Administrate"
     end
 
     private

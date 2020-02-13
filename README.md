@@ -1,5 +1,6 @@
 ---
 title: Administrate
+home: true
 ---
 
 [![CircleCI](https://img.shields.io/circleci/project/github/thoughtbot/administrate.svg)](https://circleci.com/gh/thoughtbot/administrate/tree/master)
