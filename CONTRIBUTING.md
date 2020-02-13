@@ -26,7 +26,7 @@ To maintain compatibility with multiple dependency versions, we use
 ### Opening a PR
 
 1. Fork the repo,
-2. Run `./bin/setup` to install the base dependencies and setup a local 
+2. Run `./bin/setup` to install the base dependencies and setup a local
    database,
 3. Run the test suite: `bundle exec rspec && bundle exec appraisal rspec`,
 4. Make your changes,
