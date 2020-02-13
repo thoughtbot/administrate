@@ -40,11 +40,9 @@ module Administrate
         "/fields/#{self.class.field_type}/#{page}"
       end
 
-      attr_reader :attribute, :data, :page, :resource
+      attr_reader :attribute, :data, :options, :page, :resource
 
       protected
-
-      attr_reader :options
 
       def self.field_type
         to_s.split("::").last.underscore
