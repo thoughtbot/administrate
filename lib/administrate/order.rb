@@ -62,7 +62,7 @@ module Administrate
     end
 
     def order_by_id(relation)
-      relation.reorder("#{attribute}_id #{direction}")
+      relation.reorder("#{foreign_key(relation)} #{direction}")
     end
 
     def has_many_attribute?(relation)
@@ -75,6 +75,10 @@ module Administrate
 
     def reflect_association(relation)
       relation.klass.reflect_on_association(attribute.to_s)
+    end
+
+    def foreign_key(relation)
+      reflect_association(relation).foreign_key
     end
   end
 end

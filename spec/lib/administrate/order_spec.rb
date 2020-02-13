@@ -73,7 +73,10 @@ describe Administrate::Order do
     context "when relation has belongs_to association" do
       it "orders by id" do
         order = Administrate::Order.new(:name)
-        relation = relation_with_association(:belongs_to, foreign_key: "some_foreign_key")
+        relation = relation_with_association(
+          :belongs_to,
+          foreign_key: "some_foreign_key",
+        )
         allow(relation).to receive(:reorder).and_return(relation)
 
         ordered = order.apply(relation)
