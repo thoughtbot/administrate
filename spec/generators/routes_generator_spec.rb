@@ -46,7 +46,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
 
       expect(output).to include <<-MSG.strip_heredoc
         WARNING: Unable to generate a dashboard for Blog::Post.
-                 Administrate does not yet support namespaced models.
+               - Administrate does not yet support namespaced models.
       MSG
     end
 
@@ -96,6 +96,22 @@ describe Administrate::Generators::RoutesGenerator, :generator do
         expect(output).not_to include("WARNING: Unable to generate a "\
           "dashboard for AbstractModel")
       end
+    end
+
+    it "groups together warnings related to the same model" do
+      class TestModelNamespace
+        class ModelWithoutDBTable < ApplicationRecord; end
+      end
+
+      model_name = TestModelNamespace::ModelWithoutDBTable.to_s
+      output = run_generator
+
+      warning = "WARNING: Unable to generate a dashboard " \
+        "for #{model_name}."
+      occurrences = output.scan(warning).count
+      expect(occurrences).to eq(1)
+    ensure
+      remove_constants :TestModelNamespace
     end
   end
 
