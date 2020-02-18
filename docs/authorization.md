@@ -1,4 +1,6 @@
-# Authorization
+---
+title: Authorization
+---
 
 The default configuration of Administrate is "authenticate-only" - once a
 user is authenticated, that user has access to every action of every object.
@@ -37,7 +39,7 @@ class PostPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
-    
+
     def resolve_admin
       scope.where(owner: user)
     end
@@ -62,7 +64,7 @@ def authorize_resource(resource)
   raise "Erg!" unless show_action?(params[:action], resource)
 end
 
-# Hide links to actions if the user is not allowed to do them      
+# Hide links to actions if the user is not allowed to do them
 def show_action?(action, resource)
   current_user.can? action, resource
 end

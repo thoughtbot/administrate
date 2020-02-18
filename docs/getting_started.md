@@ -1,4 +1,6 @@
-# Getting Started
+---
+title: Getting Started
+---
 
 Administrate is released as a Ruby gem, and can be installed on Rails
 applications version 4.2 or greater.
@@ -84,8 +86,8 @@ rails generate administrate:install --namespace=supervisor
 
 ## Keep Dashboards Updated as Model Attributes Change
 
-If you've installed Administrate and generated dashboards and _then_ 
-subsequently added attributes to your models you'll need to manually add 
+If you've installed Administrate and generated dashboards and _then_
+subsequently added attributes to your models you'll need to manually add
 these additions (or removals) to your dashboards.
 
 Example:
@@ -98,7 +100,7 @@ Example:
     the_new_attribute: Field::String,
     # ...
   }.freeze
-  
+
   SHOW_PAGE_ATTRIBUTES = [
     # ...
     :the_new_attribute,
@@ -110,7 +112,7 @@ Example:
     :the_new_attribute,
     # ...
   ].freeze
-  
+
   COLLECTION_ATTRIBUTES = [
     # ...
     :the_new_attribute, # if you want it on the index, also.
@@ -118,7 +120,7 @@ Example:
   ].freeze
 ```
 
-It's recommended that you make this change at the same time as you add the 
+It's recommended that you make this change at the same time as you add the
 attribute to the model.
 
 The alternative way to handle this is to re-run `rails g administrate:install`

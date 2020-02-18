@@ -1,4 +1,6 @@
-# Adding Custom Field Types
+---
+title: Adding Custom Field Types
+---
 
 If your application deals with a nonstandard data type,
 you can create an `Administrate::Field` object to help display

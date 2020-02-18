@@ -1,7 +1,9 @@
-## Rails API
+---
+title: Rails API
+---
 
 Since Rails 5.0, we've been able to have API only applications. Yet, sometimes
-we still want to have an admin. 
+we still want to have an admin.
 
 To get this working, we recommend updating this config:
 
@@ -29,7 +31,7 @@ config.middleware.use ::Rack::MethodOverride
 ```
 
 You must also ensure that all the required controller actions are available
-and accessible as routes since generators in API-only applications only 
+and accessible as routes since generators in API-only applications only
 generate some of the required actions. Here is an example:
 
 ```ruby

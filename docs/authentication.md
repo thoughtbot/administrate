@@ -1,4 +1,6 @@
-# Authenticating admin users
+---
+title: Authenticating admin users
+---
 
 Authentication is left for you to implement after you install Administrate into
 your app. It's expected that you can plugin your existing authentication

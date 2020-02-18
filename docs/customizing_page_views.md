@@ -1,4 +1,6 @@
-# Customizing page views
+---
+title: Customizing page views
+---
 
 In order to change the appearance of any page,
 you can write custom Rails views.

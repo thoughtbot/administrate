@@ -1,4 +1,6 @@
-# Customizing controller actions
+---
+title: Customizing controller actions
+---
 
 When you install Administrate into your app,
 we generate empty controllers for each of your resources.
