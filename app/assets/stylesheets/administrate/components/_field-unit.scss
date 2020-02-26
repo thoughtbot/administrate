@@ -17,16 +17,16 @@
 .field-unit__field {
   float: left;
   margin-left: 2rem;
-  width: 100%;
   max-width: 50rem;
+  width: 100%;
 }
 
 .field-unit--nested {
   border: $base-border;
   margin-left: 7.5%;
+  max-width: 60rem;
   padding: $small-spacing;
   width: 100%;
-  max-width: 60rem;
 
   .field-unit__field {
     width: 100%;
