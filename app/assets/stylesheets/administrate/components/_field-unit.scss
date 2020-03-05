@@ -17,21 +17,23 @@
 .field-unit__field {
   float: left;
   margin-left: 2rem;
-  width: 45%;
+  max-width: 50rem;
+  width: 100%;
 }
 
 .field-unit--nested {
   border: $base-border;
   margin-left: 7.5%;
+  max-width: 60rem;
   padding: $small-spacing;
-  width: 50%;
+  width: 100%;
 
   .field-unit__field {
-    width: calc(75% - 1rem);
+    width: 100%;
   }
 
   .field-unit__label {
-    width: calc(25% - 1rem);
+    width: 10rem;
   }
 }
 
