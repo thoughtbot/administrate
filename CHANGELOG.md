@@ -13,8 +13,52 @@
 * `[I18n]`: Internationalization. Changes to translations or localizations.
 * `[OPTIM]`: Optimization or performance increase.
 * `[DOC]`: Documentation changes. No changes to the library's behavior.
+* `[SECURITY]`: A change which fixes a security vulnerability.
 
 ## Changes
+
+### 0.13.0 (March 13, 2020)
+
+**NOTE:** This release contains the fix for [`CVE-2020-5257`][cve-5257], which
+fixes a potential SQL injection on dashboard sorting.
+
+* [SECURITY] Fix Sort order SQL injection.
+* [BUGFIX] [#1561] Fix very narrow nested fields.
+* [BUGFIX] [#1565] Fix unterminated single quote.
+* [UI] [#1537] Provide <title> tags for doc pages.
+* [BUGFIX] [#1552] Use the correct foreign key when sorting belongs_to
+  associations.
+* [FEATURE] [#1551] More readable warnings.
+* [FEATURE] [#1512] Avoid confusion with class methods and protected/private
+  modifiers.
+* [FEATURE] [#1513] Accessible from templates; avoids having to create new
+  field types.
+* [UI] [#1536] Declare doctype, language and charset.
+* [DOC] [#1540] Add new Date field to docs.
+* [FEATURE] [#1530] Include Date Field.
+* [BUGFIX] [#1522] Align label and data on show page.
+* [FEATURE] [#1521] Expose required fields on form.
+* [DOC] [#1531] Remove project level rubocop.yml.
+* [DOC] [#1534] Move documentation of how to disable some actions on
+  controller.
+* [UI] [#1524] Hide resources without index in the navigation.
+* [DOC] [#1523] Update screenshot.
+* [UI] [#1376] Add a "back" link to the navigation.
+* [DOC] [#1187] Update comment with new namespace.
+* [DOC] [#1514] Rewrite the contributing guide.
+* [BUGFIX] [#1495] Attempt to fix random CI failures.
+* [BUGFIX] [#1507] Remove query from link, to avoid triggering banned params.
+* [DOC] [#1479] Document controller APIs.
+* [COMPAT] [#1475] Allows running specs individually.
+* [UI] [#1484] Double-click to select attribute text.
+* [DOC] Configure GitHub Sponsors.
+* [COMPAT] [#1457] Fix PhantomJS test behaviour on Linux.
+* [BUGFIX] [#920] Remove NameError rescue in page base.
+* [BUGFIX] [#1447] Don't pass raw SQL when changing sort order.
+* [FEATURE] [#1452] Support Sprockets 4.
+* [DOC] [#1426] Add issue templates.
+
+[cve-5257]: https://github.com/thoughtbot/administrate/security/advisories/GHSA-2p5p-m353-833w
 
 ### 0.12.0 (September 10, 2019)
 

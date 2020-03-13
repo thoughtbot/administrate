@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    administrate (0.12.0)
+    administrate (0.13.0)
       actionpack (>= 4.2)
       actionview (>= 4.2)
       activerecord (>= 4.2)
@@ -94,7 +94,7 @@ GEM
       i18n (>= 1.6, < 2)
     faraday (1.0.0)
       multipart-post (>= 1.2, < 3)
-    ffi (1.11.3)
+    ffi (1.12.2)
     formulaic (0.4.1)
       activesupport
       capybara
