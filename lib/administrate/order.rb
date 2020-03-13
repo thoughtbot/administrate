@@ -2,7 +2,7 @@ module Administrate
   class Order
     def initialize(attribute = nil, direction = nil)
       @attribute = attribute
-      @direction = direction || :asc
+      @direction = sanitize_direction(direction)
     end
 
     def apply(relation)
@@ -34,6 +34,10 @@ module Administrate
 
     attr_reader :attribute
 
+    def sanitize_direction(direction)
+      %w[asc desc].include?(direction.to_s) ? direction.to_sym : :asc
+    end
+
     def reversed_direction_param_for(attr)
       if ordered_by?(attr)
         opposite_direction
@@ -43,7 +47,7 @@ module Administrate
     end
 
     def opposite_direction
-      direction.to_sym == :asc ? :desc : :asc
+      direction == :asc ? :desc : :asc
     end
 
     def order_by_association(relation)

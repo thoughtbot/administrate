@@ -51,6 +51,17 @@ describe Administrate::Order do
         expect(relation).to have_received(:reorder).with("table_name.name desc")
         expect(ordered).to eq(relation)
       end
+
+      it "sanitizes arbitary direction parameters" do
+        order = Administrate::Order.new(:name, :foo)
+        relation = relation_with_column(:name)
+        allow(relation).to receive(:reorder).and_return(relation)
+
+        ordered = order.apply(relation)
+
+        expect(relation).to have_received(:reorder).with("table_name.name asc")
+        expect(ordered).to eq(relation)
+      end
     end
 
     context "when relation has_many association" do
