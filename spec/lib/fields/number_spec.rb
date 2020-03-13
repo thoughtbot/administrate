@@ -1,3 +1,4 @@
+require "rails_helper"
 require "administrate/field/number"
 require "support/field_matchers"
 
@@ -16,7 +17,13 @@ describe Administrate::Field::Number do
     end
   end
 
-  it { should_permit_param(:foo, for_attribute: :foo) }
+  it do
+    should_permit_param(
+      :foo,
+      on_model: Customer,
+      for_attribute: :foo,
+    )
+  end
 
   describe "#to_s" do
     it "defaults to displaying no decimal points" do

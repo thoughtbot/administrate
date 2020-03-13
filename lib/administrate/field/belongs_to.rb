@@ -3,8 +3,14 @@ require_relative "associative"
 module Administrate
   module Field
     class BelongsTo < Associative
-      def self.permitted_attribute(attr, _options = nil)
-        :"#{attr}_id"
+      def self.permitted_attribute(attr, options = {})
+        resource_class = options[:resource_class]
+        if resource_class
+          foreign_key_for(resource_class, attr)
+        else
+          Administrate.warn_of_missing_resource_class
+          :"#{attr}_id"
+        end
       end
 
       def permitted_attribute

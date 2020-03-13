@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 require "administrate/field/boolean"
 require "support/field_matchers"
 
@@ -17,7 +17,13 @@ describe Administrate::Field::Boolean do
     end
   end
 
-  it { should_permit_param(:foo, for_attribute: :foo) }
+  it do
+    should_permit_param(
+      :foo,
+      on_model: Customer,
+      for_attribute: :foo,
+    )
+  end
 
   describe "#to_s" do
     it "prints true or false" do

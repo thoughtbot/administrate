@@ -90,20 +90,6 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         expect(dashboard).to contain("orders: Field::HasMany")
       end
 
-      it "looks for class_name options on has_many fields" do
-        class Customer < ApplicationRecord
-          reset_column_information
-          has_many :purchases, class_name: "Order", foreign_key: "purchase_id"
-        end
-        dashboard = file("app/dashboards/customer_dashboard.rb")
-
-        run_generator ["customer"]
-
-        expect(dashboard).to contain(
-          'purchases: Field::HasMany.with_options(class_name: "Order")',
-        )
-      end
-
       it "assigns numeric fields a type of `Number`" do
         begin
           ActiveRecord::Schema.define do
@@ -225,54 +211,6 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
       end
 
-      it "determines a class_name from `through` and `source` options" do
-        begin
-          ActiveRecord::Schema.define do
-            create_table :people
-            create_table :concerts
-            create_table(:numbers) { |t| t.references :ticket }
-
-            create_table :tickets do |t|
-              t.references :concert
-              t.references :attendee
-            end
-          end
-
-          class Concert < ApplicationRecord
-            reset_column_information
-            has_many :tickets
-            has_many :attendees, through: :tickets, source: :person
-            has_many :venues, through: :tickets
-            has_many :numbers, through: :tickets
-          end
-
-          class Ticket < ApplicationRecord
-            reset_column_information
-            belongs_to :concert
-            belongs_to :person
-            belongs_to :venue
-            has_many :numbers
-          end
-
-          class Number; end
-          class Person < ApplicationRecord
-            reset_column_information
-          end
-
-          dashboard = file("app/dashboards/concert_dashboard.rb")
-
-          run_generator ["concert"]
-
-          expect(dashboard).to contain(
-            'attendees: Field::HasMany.with_options(class_name: "Person"),',
-          )
-          expect(dashboard).to contain("venues: Field::HasMany,")
-          expect(dashboard).to contain("numbers: Field::HasMany,")
-        ensure
-          remove_constants :Concert, :Ticket, :Number, :Person
-        end
-      end
-
       it "detects belongs_to relationships" do
         begin
           ActiveRecord::Schema.define do
@@ -290,34 +228,6 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           expect(attrs.keys).not_to include(:post_id)
         ensure
           remove_constants :Comment, :CommentDashboard
-        end
-      end
-
-      it "detects custom class names for belongs_to relationships" do
-        begin
-          ActiveRecord::Schema.define do
-            create_table :users
-            create_table :invitations do |t|
-              t.references :sender
-              t.references :recipient
-            end
-          end
-          class User < ApplicationRecord; end
-          class Invitation < ApplicationRecord
-            belongs_to :sender, class_name: "User"
-            belongs_to :recipient, class_name: "User"
-          end
-
-          run_generator ["invitation"]
-          load file("app/dashboards/invitation_dashboard.rb")
-          attrs = InvitationDashboard::ATTRIBUTE_TYPES
-
-          expected_field = Administrate::Field::BelongsTo.
-            with_options(class_name: "User")
-          expect(attrs[:sender]).to eq(expected_field)
-          expect(attrs[:recipient]).to eq(expected_field)
-        ensure
-          remove_constants :User, :Invitation, :InvitationDashboard
         end
       end
 

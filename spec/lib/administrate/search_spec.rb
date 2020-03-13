@@ -10,128 +10,162 @@ require "administrate/field/number"
 require "administrate/field/string"
 require "administrate/search"
 
-class MockDashboard
-  ATTRIBUTE_TYPES = {
-    id: Administrate::Field::Number.with_options(searchable: true),
-    name: Administrate::Field::String,
-    email: Administrate::Field::Email,
-    phone: Administrate::Field::Number,
-  }.freeze
-
-  COLLECTION_FILTERS = {
-    vip: ->(resources) { resources.where(kind: :vip) },
-  }.freeze
-end
-
-class MockDashboardWithAssociation
-  ATTRIBUTE_TYPES = {
-    role: Administrate::Field::BelongsTo.with_options(
-      searchable: true,
-      searchable_field: "name",
-    ),
-    author: Administrate::Field::BelongsTo.with_options(
-      searchable: true,
-      searchable_fields: ["first_name", "last_name"],
-    ),
-    address: Administrate::Field::HasOne.with_options(
-      searchable: true,
-      searchable_fields: ["street"],
-    ),
-  }.freeze
-end
-
 describe Administrate::Search do
+  before :all do
+    module Administrate
+      module SearchSpecMocks
+        class MockRecord < ApplicationRecord
+          def self.table_name
+            name.demodulize.underscore.pluralize
+          end
+        end
+
+        class Role < MockRecord; end
+        class Person < MockRecord; end
+        class Address < MockRecord; end
+
+        class Foo < MockRecord
+          belongs_to :role
+          belongs_to(
+            :author,
+            class_name: "Administrate::SearchSpecMocks::Person",
+          )
+          has_one :address
+        end
+
+        class UserDashboard
+          ATTRIBUTE_TYPES = {
+            id: Administrate::Field::Number.with_options(searchable: true),
+            name: Administrate::Field::String,
+            email: Administrate::Field::Email,
+            phone: Administrate::Field::Number,
+          }.freeze
+
+          COLLECTION_FILTERS = {
+            vip: ->(resources) { resources.where(kind: :vip) },
+          }.freeze
+        end
+
+        class FooDashboard
+          ATTRIBUTE_TYPES = {
+            role: Administrate::Field::BelongsTo.with_options(
+              searchable: true,
+              searchable_field: "name",
+            ),
+            author: Administrate::Field::BelongsTo.with_options(
+              searchable: true,
+              searchable_fields: ["first_name", "last_name"],
+              class_name: "Administrate::SearchSpecMocks::Person",
+            ),
+            address: Administrate::Field::HasOne.with_options(
+              searchable: true,
+              searchable_fields: ["street"],
+            ),
+          }.freeze
+        end
+      end
+    end
+  end
+
+  after :all do
+    Administrate.send(:remove_const, :SearchSpecMocks)
+  end
+
   before { ActiveSupport::Deprecation.silenced = true }
   after { ActiveSupport::Deprecation.silenced = false }
 
   describe "#run" do
     it "returns all records when no search term" do
-      begin
-        class User < ApplicationRecord; end
-        scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          nil)
-        expect(scoped_object).to receive(:all)
+      class User < ApplicationRecord; end
+      scoped_object = User.default_scoped
+      search = Administrate::Search.new(
+        scoped_object,
+        Administrate::SearchSpecMocks::UserDashboard,
+        nil,
+      )
+      expect(scoped_object).to receive(:all)
 
-        search.run
-      ensure
-        remove_constants :User
-      end
+      search.run
+    ensure
+      remove_constants :User
     end
 
     it "returns all records when search is empty" do
-      begin
-        class User < ApplicationRecord; end
-        scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "   ")
-        expect(scoped_object).to receive(:all)
+      class User < ApplicationRecord; end
+      scoped_object = User.default_scoped
+      search = Administrate::Search.new(
+        scoped_object,
+        Administrate::SearchSpecMocks::UserDashboard,
+        "   ",
+      )
+      expect(scoped_object).to receive(:all)
 
-        search.run
-      ensure
-        remove_constants :User
-      end
+      search.run
+    ensure
+      remove_constants :User
     end
 
     it "searches using LOWER + LIKE for all searchable fields" do
-      begin
-        class User < ApplicationRecord; end
-        scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "test")
-        expected_query = [
-          [
-            'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
-            'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
-            'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
-          ].join(" OR "),
-          "%test%",
-          "%test%",
-          "%test%",
-        ]
-        expect(scoped_object).to receive(:where).with(*expected_query)
+      class User < ApplicationRecord; end
+      scoped_object = User.default_scoped
+      search = Administrate::Search.new(
+        scoped_object,
+        Administrate::SearchSpecMocks::UserDashboard,
+        "test",
+      )
+      expected_query = [
+        [
+          'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
+          'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
+          'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+        ].join(" OR "),
+        "%test%",
+        "%test%",
+        "%test%",
+      ]
+      expect(scoped_object).to receive(:where).with(*expected_query)
 
-        search.run
-      ensure
-        remove_constants :User
-      end
+      search.run
+    ensure
+      remove_constants :User
     end
 
     it "converts search term LOWER case for latin and cyrillic strings" do
-      begin
-        class User < ApplicationRecord; end
-        scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "Тест Test")
-        expected_query = [
-          [
-            'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
-            'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
-            'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
-          ].join(" OR "),
-          "%тест test%",
-          "%тест test%",
-          "%тест test%",
-        ]
-        expect(scoped_object).to receive(:where).with(*expected_query)
+      class User < ApplicationRecord; end
+      scoped_object = User.default_scoped
+      search = Administrate::Search.new(
+        scoped_object,
+        Administrate::SearchSpecMocks::UserDashboard,
+        "Тест Test",
+      )
+      expected_query = [
+        [
+          'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
+          'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
+          'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+        ].join(" OR "),
+        "%тест test%",
+        "%тест test%",
+        "%тест test%",
+      ]
+      expect(scoped_object).to receive(:where).with(*expected_query)
 
-        search.run
-      ensure
-        remove_constants :User
-      end
+      search.run
+    ensure
+      remove_constants :User
     end
 
     context "when searching through associations" do
-      let(:scoped_object) { double(:scoped_object) }
+      before do
+        allow(ActiveSupport::Deprecation).to receive(:warn)
+      end
+
+      let(:scoped_object) { Administrate::SearchSpecMocks::Foo }
 
       let(:search) do
         Administrate::Search.new(
           scoped_object,
-          MockDashboardWithAssociation,
+          Administrate::SearchSpecMocks::FooDashboard,
           "Тест Test",
         )
       end
@@ -139,8 +173,8 @@ describe Administrate::Search do
       let(:expected_query) do
         [
           'LOWER(CAST("roles"."name" AS CHAR(256))) LIKE ?'\
-          ' OR LOWER(CAST("authors"."first_name" AS CHAR(256))) LIKE ?'\
-          ' OR LOWER(CAST("authors"."last_name" AS CHAR(256))) LIKE ?'\
+          ' OR LOWER(CAST("people"."first_name" AS CHAR(256))) LIKE ?'\
+          ' OR LOWER(CAST("people"."last_name" AS CHAR(256))) LIKE ?'\
           ' OR LOWER(CAST("addresses"."street" AS CHAR(256))) LIKE ?',
           "%тест test%",
           "%тест test%",
@@ -151,44 +185,60 @@ describe Administrate::Search do
 
       it "joins with the correct association table to query" do
         allow(scoped_object).to receive(:where)
-
-        expect(scoped_object).to receive(:left_joins).
-          with(%i(role author address)).
-          and_return(scoped_object)
+        allow(scoped_object).to receive(:left_joins).and_return(scoped_object)
 
         search.run
+
+        expect(scoped_object).to(
+          have_received(:left_joins).with(%i(role author address)),
+        )
       end
 
       it "builds the 'where' clause using the joined tables" do
-        allow(scoped_object).to receive(:left_joins).
-          with(%i(role author address)).
-          and_return(scoped_object)
-
-        expect(scoped_object).to receive(:where).with(*expected_query)
+        allow(scoped_object).to receive(:where)
+        allow(scoped_object).to receive(:left_joins).and_return(scoped_object)
 
         search.run
+
+        expect(scoped_object).to(
+          have_received(:where).with(*expected_query),
+        )
+      end
+
+      it "triggers a deprecation warning" do
+        allow(scoped_object).to receive(:where)
+        allow(scoped_object).to(
+          receive(:left_joins).
+            with(%i(role author address)).
+            and_return(scoped_object),
+        )
+
+        search.run
+
+        expect(ActiveSupport::Deprecation).to have_received(:warn).
+          with(/:class_name is deprecated/)
       end
     end
 
     it "searches using a filter" do
-      begin
-        class User < ActiveRecord::Base
-          scope :vip, -> { where(kind: :vip) }
-        end
-        scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "vip:")
-        expect(scoped_object).to \
-          receive(:where).
-          with(kind: :vip).
-          and_return(scoped_object)
-        expect(scoped_object).to receive(:where).and_return(scoped_object)
-
-        search.run
-      ensure
-        remove_constants :User
+      class User < ApplicationRecord
+        scope :vip, -> { where(kind: :vip) }
       end
+      scoped_object = User.default_scoped
+      search = Administrate::Search.new(
+        scoped_object,
+        Administrate::SearchSpecMocks::UserDashboard,
+        "vip:",
+      )
+      expect(scoped_object).to \
+        receive(:where).
+        with(kind: :vip).
+        and_return(scoped_object)
+      expect(scoped_object).to receive(:where).and_return(scoped_object)
+
+      search.run
+    ensure
+      remove_constants :User
     end
   end
 end
