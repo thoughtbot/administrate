@@ -32,7 +32,9 @@ module Administrate
       end
 
       def get_attribute_value(resource, attribute_name)
-        resource.public_send(attribute_name)
+        unless resource.is_a? ActiveRecord::Associations::CollectionProxy
+          resource.public_send(attribute_name)
+        end
       end
 
       attr_reader :dashboard, :options
