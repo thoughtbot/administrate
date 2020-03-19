@@ -12,6 +12,10 @@ module Administrate
         field_type.dasherize
       end
 
+      def self.associative?
+        self < Associative
+      end
+
       def self.searchable?
         false
       end

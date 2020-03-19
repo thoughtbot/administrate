@@ -78,9 +78,7 @@ module Administrate
       attributes.map do |key|
         field = self.class::ATTRIBUTE_TYPES[key]
 
-        next key if field < Administrate::Field::Associative
-        deferred_class = field.try(:deferred_class)
-        key if deferred_class && deferred_class < Administrate::Field::Associative
+        key if field.associative?
       end.compact
     end
   end

@@ -21,6 +21,10 @@ module Administrate
           options == other.options
       end
 
+      def associative?
+        deferred_class.associative?
+      end
+
       def searchable?
         options.fetch(:searchable, deferred_class.searchable?)
       end
