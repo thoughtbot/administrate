@@ -117,7 +117,12 @@ module Administrate
 
     def query_table_name(attr)
       if association_search?(attr)
-        ActiveRecord::Base.connection.quote_table_name(attr.to_s.pluralize)
+        provided_class_name = attribute_types[attr].options[:class_name]
+        if provided_class_name
+          provided_class_name.constantize.table_name
+        else
+          ActiveRecord::Base.connection.quote_table_name(attr.to_s.pluralize)
+        end
       else
         ActiveRecord::Base.connection.
           quote_table_name(@scoped_resource.table_name)

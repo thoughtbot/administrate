@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :customer do
-    country
+    association :territory, factory: :country
     sequence(:name) { |n| "Customer #{n}" }
     email { name.downcase.gsub(" ", "_") + "@example.com" }
 

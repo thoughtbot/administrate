@@ -87,7 +87,7 @@ feature "Search" do
 
   scenario "admin searches across associations fields", :js do
     country = create(:country, name: "Brazil", code: "BR")
-    country_match = create(:customer, country: country)
+    country_match = create(:customer, territory: country)
     mismatch = create(:customer)
 
     visit admin_customers_path
