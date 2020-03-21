@@ -74,18 +74,11 @@ module Administrate
       "Attribute #{attr} could not be found in #{self.class}::ATTRIBUTE_TYPES"
     end
 
-    def association_classes
-      @association_classes ||=
-        ObjectSpace.each_object(Class).
-          select { |klass| klass < Administrate::Field::Associative }
-    end
-
     def attribute_includes(attributes)
       attributes.map do |key|
         field = self.class::ATTRIBUTE_TYPES[key]
 
-        next key if association_classes.include?(field)
-        key if association_classes.include?(field.try(:deferred_class))
+        key if field.associative?
       end.compact
     end
   end

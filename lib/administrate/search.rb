@@ -145,15 +145,7 @@ module Administrate
     end
 
     def association_search?(attribute)
-      return unless attribute_types[attribute].respond_to?(:deferred_class)
-
-      association_classes.include?(attribute_types[attribute].deferred_class)
-    end
-
-    def association_classes
-      @association_classes ||=
-        ObjectSpace.each_object(Class).
-          select { |klass| klass < Administrate::Field::Associative }
+      attribute_types[attribute].associative?
     end
 
     def term
