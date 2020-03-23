@@ -109,7 +109,7 @@ module Administrate
 
     def search_results(resources)
       resources.
-        joins(tables_to_join).
+        left_joins(tables_to_join).
         where(query_template, *query_values)
     end
 
