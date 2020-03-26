@@ -21,6 +21,9 @@ tr {
 tbody tr {
   &:hover {
     background-color: $base-background-color;
+  }
+
+  [role=link] {
     cursor: pointer;
   }
 
