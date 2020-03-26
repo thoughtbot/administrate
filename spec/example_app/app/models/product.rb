@@ -6,6 +6,11 @@ class Product < ApplicationRecord
   validates :image_url, presence: true
   validates :name, presence: true
   validates :price, presence: true
+  validates :release_year,
+            numericality: {
+              less_than_or_equal_to: ->(_product) { Time.current.year },
+            },
+            allow_blank: true
   validates :slug, uniqueness: true
   validate :valid_slug
 

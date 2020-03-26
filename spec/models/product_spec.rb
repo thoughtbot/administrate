@@ -7,6 +7,11 @@ RSpec.describe Product do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:price) }
 
+    it do
+      should validate_numericality_of(:release_year).
+        is_less_than_or_equal_to(Time.now.year)
+    end
+
     it "should not allow names that produce empty slugs" do
       product = build(:product, name: "???")
 
