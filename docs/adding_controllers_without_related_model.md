@@ -1,4 +1,4 @@
-# Adding Controllers Without Related Model
+# Adding Controllers without a related Model
 
 Sometimes you may want to add a custom controller that has no resource
 related to it (for example for a statistics page).
