@@ -14,7 +14,10 @@ module Administrate
       private
 
       def collection
-        @collection ||= options.fetch(:collection, [])
+        maybe_proc = options.fetch(:collection, [])
+        return maybe_proc.call if maybe_proc.respond_to? :call
+
+        @collection ||= maybe_proc
       end
     end
   end

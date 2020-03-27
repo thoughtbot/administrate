@@ -200,7 +200,8 @@ objects to display as.
 
 **Field::Select**
 
-`:collection` - Specify the array or range to select from. Defaults to `[]`.
+`:collection` - Specify the options shown on the select field. It accept either
+an array or an object responding to `:call`. Defaults to `[]`.
 
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `true`.

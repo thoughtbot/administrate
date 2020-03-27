@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "product form has_one relationship" do
+  include ActiveSupport::Testing::TimeHelpers
+
   it "saves product and meta tag data correctly" do
     visit new_admin_product_path
 
@@ -19,6 +21,18 @@ describe "product form has_one relationship" do
     expect(page).to have_flash(
       t("administrate.controller.create.success", resource: "Product")
     )
+  end
+
+  it "have dynamic release_year" do
+    visit new_admin_product_path
+    current_year = Time.current.year
+    expect(page).to have_select("Release year", with_options: [current_year])
+
+    travel_to(1.year.ago) do
+      visit new_admin_product_path
+      expect(page).
+        not_to have_select("Release year", with_options: [current_year])
+    end
   end
 
   it "edits product and meta tag data correctly" do
