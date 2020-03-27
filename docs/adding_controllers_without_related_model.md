@@ -20,7 +20,6 @@ routes are displayed in the sidebar and then add a custom dashboard:
 
 ```ruby
 # app/dashboards/stat_dashboard.rb
-
 require "administrate/custom_dashboard"
 
 class StatDashboard < Administrate::CustomDashboard
