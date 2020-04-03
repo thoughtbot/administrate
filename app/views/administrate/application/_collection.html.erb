@@ -55,7 +55,7 @@ to display a collection of resources in an HTML table.
   <tbody>
     <% resources.each do |resource| %>
       <tr class="js-table-row"
-          <% if valid_action? :show, collection_presenter.resource_name %>
+          <% if show_action? :show, resource %>
             <%= %(tabindex=0 role=link data-url=#{polymorphic_path([namespace, resource])}) %>
           <% end %>
           >
@@ -68,6 +68,8 @@ to display a collection of resources in an HTML table.
                  >
                 <%= render_field attribute %>
               </a>
+            <% else %>
+              <%= render_field attribute %>
             <% end -%>
           </td>
         <% end %>
