@@ -11,6 +11,10 @@ module Administrate
         { "#{attr.to_s.singularize}_ids".to_sym => [] }
       end
 
+      def self.advanced_form?
+        options.fetch(:advanced_form, true)
+      end
+
       def associated_collection(order = self.order)
         Administrate::Page::Collection.new(associated_dashboard, order: order)
       end

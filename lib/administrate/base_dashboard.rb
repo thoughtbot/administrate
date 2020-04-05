@@ -1,5 +1,6 @@
 require "administrate/field/belongs_to"
 require "administrate/field/boolean"
+require "administrate/field/collection_select"
 require "administrate/field/date_time"
 require "administrate/field/date"
 require "administrate/field/email"

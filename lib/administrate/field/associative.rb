@@ -3,6 +3,10 @@ require_relative "base"
 module Administrate
   module Field
     class Associative < Base
+      def self.advanced_form?
+        options.fetch(:advanced_form, false)
+      end
+
       def display_associated_resource
         associated_dashboard.display_resource(data)
       end

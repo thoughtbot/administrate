@@ -17,6 +17,9 @@
 
 ## Changes
 
+* [FEATURE] Add a `CollectionSelect` field for displaying a drop-down menu of
+  options on form pages. For details and options, refer to the documentation.
+
 ### 0.13.0 (March 13, 2020)
 
 **NOTE:** This release contains the fix for [`CVE-2020-5257`][cve-5257], which
