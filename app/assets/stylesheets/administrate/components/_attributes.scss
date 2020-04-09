@@ -1,3 +1,6 @@
+@import '../library/variables';
+@import '../library/data-label';
+
 .attribute-label {
   @include data-label;
   clear: left;
