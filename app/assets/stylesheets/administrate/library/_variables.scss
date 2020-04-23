@@ -47,12 +47,12 @@ $focus-outline: $focus-outline-width solid $focus-outline-color;
 $focus-outline-offset: 1px;
 
 // Flash Colors
-$flash-colors: (
-  alert: $light-yellow,
-  error: $red,
-  notice: mix($white, $blue, 50%),
-  success: $light-green
-);
+$flashes: (
+  "alert": #fff6bf,
+  "error": #fbe3e4,
+  "notice": #e5edf8,
+  "success": #e6efc2,
+) !default;
 
 // Border
 $base-border-color: $grey-1 !default;
