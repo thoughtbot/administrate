@@ -50,10 +50,10 @@ $focus-outline-offset: 1px;
 
 // Flash Colors
 $flashes: (
-  alert: $light-yellow,
-  error: $light-red,
-  notice: $light-blue,
-  success: $light-green
+  "alert": $light-yellow,
+  "error": $light-red,
+  "notice": $light-blue,
+  "success": $light-green
 ) !default;
 
 // Border
