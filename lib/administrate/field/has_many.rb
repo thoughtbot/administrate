@@ -25,6 +25,21 @@ module Administrate
         end
       end
 
+      def collection_partial(namespace)
+        partial = 'collection'
+        prefix = options[:class_name].try(:underscore).try(:pluralize) || name
+        view_paths = ActionView::PathSet.new(["app/views/#{namespace}"])
+        lookup_context = ActionView::LookupContext.new(view_paths)
+
+        resouce_template_exists = lookup_context.exists?(partial, [namespace, prefix], true)
+        return [namespace, prefix, partial].join('/') if resouce_template_exists
+
+        application_template_exists = lookup_context.exists?(partial, [namespace, '/'], true)
+        return [namespace, partial].join('/') if application_template_exists
+
+        ['administrate', 'application', partial].join('/')
+      end
+
       def selected_options
         return if data.empty?
 
