@@ -21,7 +21,7 @@ module Administrate
     end
 
     def resource_title
-      model_path_parts.join(" ")
+      resource_class.model_name.human
     end
 
     private

@@ -65,13 +65,23 @@ describe "customer edit page" do
     new_email = "example@example.com"
     customer = create(:customer)
 
-    visit edit_admin_customer_path(customer)
-    fill_in "Name", with: new_name
-    fill_in "Email", with: new_email
-    click_on "Update Customer"
+    translations = {
+      activerecord: {
+        models: {
+          customer: "Custom name",
+        },
+      },
+    }
+
+    with_translations(:en, translations) do
+      visit edit_admin_customer_path(customer)
+      fill_in "Name", with: new_name
+      fill_in "Email", with: new_email
+      click_on "Update Custom name"
+    end
 
     expect(page).to have_text(new_name)
     expect(page).to have_text(new_email)
-    expect(page).to have_flash("Customer was successfully updated.")
+    expect(page).to have_flash("Custom name was successfully updated.")
   end
 end
