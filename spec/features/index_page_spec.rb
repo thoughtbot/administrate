@@ -43,8 +43,19 @@ describe "customer index page" do
   end
 
   it "links to the new page" do
-    visit admin_customers_path
-    click_on("New customer")
+    translations = {
+      activerecord: {
+        models: {
+          customer: "Basic Customer",
+        },
+      },
+    }
+
+    with_translations(:en, translations) do
+      visit admin_customers_path
+
+      click_on("New basic customer")
+    end
 
     expect(current_path).to eq(new_admin_customer_path)
   end
