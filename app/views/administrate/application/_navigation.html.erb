@@ -12,7 +12,7 @@ as defined by the routes in the `admin/` namespace
 
   <% Administrate::Namespace.new(namespace).resources_with_index_route.each do |resource| %>
     <%= link_to(
-      display_resource_name(resource),
+      display_resource_name(resource, plural: true),
       resource_index_route(resource),
       class: "navigation__link navigation__link--#{nav_link_state(resource)}"
     ) if valid_action? :index, resource  %>

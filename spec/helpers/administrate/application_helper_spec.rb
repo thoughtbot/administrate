@@ -2,33 +2,39 @@ require "rails_helper"
 
 RSpec.describe Administrate::ApplicationHelper do
   describe "#display_resource_name" do
-    it "defaults to the plural of the model name" do
-      displayed = display_resource_name(:customer)
+    it "handles singular arguments" do
+      displayed = display_resource_name(:customer, plural: true)
 
       expect(displayed).to eq("Customers")
     end
 
     it "handles string arguments" do
-      displayed = display_resource_name("customer")
+      displayed = display_resource_name("customer", plural: true)
 
       expect(displayed).to eq("Customers")
     end
 
     it "handles plural arguments" do
-      displayed = display_resource_name(:customers)
+      displayed = display_resource_name(:customers, plural: true)
 
       expect(displayed).to eq("Customers")
     end
 
     it "handles namespaced resources" do
-      displayed = display_resource_name("blog/posts")
+      displayed = display_resource_name("blog/posts", plural: true)
 
       expect(displayed).to eq("Blog Posts")
     end
 
+    it "handles singular output" do
+      displayed = display_resource_name(:customer, plural: false)
+
+      expect(displayed).to eq("Customer")
+    end
+
     context "when translations are defined" do
-      it "uses the plural of the defined translation" do
-        translations = {
+      let(:translations) do
+        {
           activerecord: {
             models: {
               customer: {
@@ -38,24 +44,36 @@ RSpec.describe Administrate::ApplicationHelper do
             },
           },
         }
+      end
 
+      around do |example|
         with_translations(:en, translations) do
-          displayed = display_resource_name(:customer)
-
-          expect(displayed).to eq("Users")
+          example.run
         end
+      end
+
+      it "uses the plural of the defined translation" do
+        displayed = display_resource_name(:customer, plural: true)
+
+        expect(displayed).to eq("Users")
+      end
+
+      it "uses the singular of the defined translation" do
+        displayed = display_resource_name(:customer, plural: false)
+
+        expect(displayed).to eq("User")
       end
     end
 
     context "using custom dashboards" do
       it "pluralizes the resource name" do
-        displayed = display_resource_name("stat")
+        displayed = display_resource_name("stat", plural: true)
 
         expect(displayed).to eq("Stats")
       end
 
       it "handles plural arguments" do
-        displayed = display_resource_name(:stats)
+        displayed = display_resource_name(:stats, plural: true)
 
         expect(displayed).to eq("Stats")
       end

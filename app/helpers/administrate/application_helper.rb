@@ -38,10 +38,10 @@ module Administrate
       "#{resource_name.to_s.singularize}_dashboard".classify.constantize
     end
 
-    def display_resource_name(resource_name)
+    def display_resource_name(resource_name, plural:)
       dashboard_from_resource(resource_name).resource_name(
-        count: PLURAL_MANY_COUNT,
-        default: default_resource_name(resource_name),
+        count: plural ? PLURAL_MANY_COUNT : 1,
+        default: default_resource_name(resource_name, plural),
       )
     end
 
@@ -76,8 +76,12 @@ module Administrate
 
     private
 
-    def default_resource_name(resource_name)
-      resource_name.to_s.pluralize.gsub("/", "_").titleize
+    def default_resource_name(resource_name, plural)
+      base = resource_name.to_s
+      if plural
+        base = base.pluralize
+      end
+      base.gsub("/", "_").titleize
     end
   end
 end
