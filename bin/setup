@@ -10,6 +10,8 @@ set -e
 gem install bundler --conservative
 bundle check || bundle install
 
+bundle exec appraisal install
+
 # Set up configurable environment variables
 if [ ! -f .env ]; then
   cp .sample.env .env
