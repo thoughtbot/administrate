@@ -22,6 +22,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "i18n-tasks", "0.9.31"
   gem "pry-rails"
+  gem "yard"
   gem "rspec-rails", "~> 4.0.0.beta2"
 end
 
