@@ -301,3 +301,43 @@ COLLECTION_FILTERS = {
   inactive: ->(resources) { resources.inactive }
 }
 ```
+
+## Default Ordering
+
+A default sorting order and direction can be defined for all index listings, which can then be overridden per controller as needed:
+
+```ruby
+# app/controllers/admin/application_controller.rb
+module Admin
+  class ApplicationController < Administrate::ApplicationController
+    ....
+
+    def order
+      @order ||= Administrate::Order.new(
+        params.fetch(resource_name, {}).fetch(:order, default_sort[:order]),
+        params.fetch(resource_name, {}).fetch(:direction, default_sort[:direction]),
+      )
+    end
+
+    # override this in specific controllers as needed
+    def default_sort
+      { order: :updated_at, direction: :desc }
+    end
+    
+    ...
+  end
+end
+
+# app/controllers/admin/foo_controller.rb
+module Admin
+  class FooController < ApplicationController
+    ....
+
+    def default_sort
+      { order: :created_at, direction: :asc }
+    end
+    
+    ...
+  end
+end
+```
