@@ -49,8 +49,8 @@ describe Admin::CustomersController, type: :controller do
 
     it "supports default sorting overrides" do
       allow_any_instance_of(Admin::CustomersController).to(receive_messages(
-        default_sorting_attribute: :name, 
-        default_sorting_direction: :desc
+        default_sorting_attribute: :name,
+        default_sorting_direction: :desc,
       ))
 
       customer1 = create(:customer)
