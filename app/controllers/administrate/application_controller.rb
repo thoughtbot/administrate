@@ -97,7 +97,7 @@ module Administrate
       params.fetch(resource_name, {}).fetch(
         :direction,
         default_sorting_direction,
-       )
+      )
     end
 
     private
