@@ -78,6 +78,22 @@ module Administrate
       redirect_to action: :index
     end
 
+    def default_sorting_attribute
+      :id
+    end
+
+    def default_sorting_direction
+      :asc
+    end
+
+    def sorting_attribute
+      params.fetch(resource_name, {}).fetch(:order, default_sorting_attribute)
+    end
+    
+    def sorting_direction
+        params.fetch(resource_name, {}).fetch(:direction, default_sorting_direction)
+    end
+
     private
 
     helper_method :nav_link_state
@@ -101,10 +117,7 @@ module Administrate
     end
 
     def order
-      @order ||= Administrate::Order.new(
-        params.fetch(resource_name, {}).fetch(:order, nil),
-        params.fetch(resource_name, {}).fetch(:direction, nil),
-      )
+      @order ||= Administrate::Order.new(sorting_attribute, sorting_direction)
     end
 
     def dashboard

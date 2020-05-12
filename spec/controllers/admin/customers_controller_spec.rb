@@ -37,6 +37,25 @@ describe Admin::CustomersController, type: :controller do
       locals = capture_view_locals { get :index }
       expect(locals[:show_search_bar]).to be_truthy
     end
+
+    it "sorts by id by default" do
+      customer1 = create(:customer)
+      customer2 = create(:customer)
+
+      locals = capture_view_locals { get :index }
+      expect(locals[:resources].map(&:id)).to eq [customer1, customer2].map(&:id).sort
+    end
+
+    it "supports default sorting overrides" do
+      allow_any_instance_of(Admin::CustomersController).to receive(:default_sorting_attribute).and_return(:name)
+      allow_any_instance_of(Admin::CustomersController).to receive(:default_sorting_direction).and_return(:desc)
+
+      customer1 = create(:customer)
+      customer2 = create(:customer)
+
+      locals = capture_view_locals { get :index }
+      expect(locals[:resources].map(&:name)).to eq [customer1, customer2].map(&:name).sort.reverse
+    end
   end
 
   describe "GET show" do
