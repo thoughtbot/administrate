@@ -41,20 +41,25 @@ describe Admin::CustomersController, type: :controller do
     it "sorts by id by default" do
       customer1 = create(:customer)
       customer2 = create(:customer)
+      customers = [customer1, customer2]
 
       locals = capture_view_locals { get :index }
-      expect(locals[:resources].map(&:id)).to eq [customer1, customer2].map(&:id).sort
+      expect(locals[:resources].map(&:id)).to eq customers.map(&:id).sort
     end
 
     it "supports default sorting overrides" do
-      allow_any_instance_of(Admin::CustomersController).to receive(:default_sorting_attribute).and_return(:name)
-      allow_any_instance_of(Admin::CustomersController).to receive(:default_sorting_direction).and_return(:desc)
+      allow_any_instance_of(Admin::CustomersController).to(receive_messages(
+        default_sorting_attribute: :name, 
+        default_sorting_direction: :desc
+      ))
 
       customer1 = create(:customer)
       customer2 = create(:customer)
+      customers = [customer1, customer2]
+      sorted_customer_names = customers.map(&:name).sort.reverse
 
       locals = capture_view_locals { get :index }
-      expect(locals[:resources].map(&:name)).to eq [customer1, customer2].map(&:name).sort.reverse
+      expect(locals[:resources].map(&:name)).to eq sorted_customer_names
     end
   end
 

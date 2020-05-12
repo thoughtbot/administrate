@@ -87,11 +87,17 @@ module Administrate
     end
 
     def sorting_attribute
-      params.fetch(resource_name, {}).fetch(:order, default_sorting_attribute)
+      params.fetch(resource_name, {}).fetch(
+        :order, 
+        default_sorting_attribute
+      )
     end
-    
+
     def sorting_direction
-        params.fetch(resource_name, {}).fetch(:direction, default_sorting_direction)
+      params.fetch(resource_name, {}).fetch(
+        :direction,
+        default_sorting_direction
+      )
     end
 
     private
