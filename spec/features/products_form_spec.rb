@@ -37,13 +37,13 @@ describe "product form has_one relationship" do
 
   it "respects setting of label/value in Field::Select" do
     old_release_year = ProductDashboard::ATTRIBUTE_TYPES[:release_year]
-
-    ProductDashboard::ATTRIBUTE_TYPES[:release_year] = Administrate::Field::Select.with_options(
+    new_release_year = Administrate::Field::Select.with_options(
       collection: [
         ["Last Year", 2019],
-        ["This Year", 2020]
+        ["This Year", 2020],
       ],
     )
+    ProductDashboard::ATTRIBUTE_TYPES[:release_year] = new_release_year
 
     visit new_admin_product_path
     expect(page).to have_select("Release year", with_options: ["This Year"])
