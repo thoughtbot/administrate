@@ -47,12 +47,8 @@ describe Admin::CustomersController, type: :controller do
       expect(locals[:resources].map(&:id)).to eq customers.map(&:id).sort
     end
 
-    it "uses sorts using the override" do
-      @controller = Class.new(Admin::CustomersController) do
-        def self.name
-          superclass.name
-        end
-
+    context "with alternate sorting attributes" do
+      controller(Admin::CustomersController) do
         def default_sorting_attribute
           :name
         end
@@ -60,13 +56,15 @@ describe Admin::CustomersController, type: :controller do
         def default_sorting_direction
           :desc
         end
-      end.new
+      end
 
-      customers = create_list(:customer, 5)
-      sorted_customer_names = customers.map(&:name).sort.reverse
+      it "retreives resources in the correct order" do
+        customers = create_list(:customer, 5)
+        sorted_customer_names = customers.map(&:name).sort.reverse
 
-      locals = capture_view_locals { get :index }
-      expect(locals[:resources].map(&:name)).to eq sorted_customer_names
+        locals = capture_view_locals { get :index }
+        expect(locals[:resources].map(&:name)).to eq sorted_customer_names
+      end
     end
   end
 
