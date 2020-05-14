@@ -104,14 +104,6 @@ module Administrate
       @order ||= Administrate::Order.new(sorting_attribute, sorting_direction)
     end
 
-    def default_sorting_attribute
-      :id
-    end
-
-    def default_sorting_direction
-      :asc
-    end
-
     def sorting_attribute
       params.fetch(resource_name, {}).fetch(
         :order,
@@ -119,11 +111,19 @@ module Administrate
       )
     end
 
+    def default_sorting_attribute
+      nil
+    end
+
     def sorting_direction
       params.fetch(resource_name, {}).fetch(
         :direction,
         default_sorting_direction,
       )
+    end
+
+    def default_sorting_direction
+      nil
     end
 
     def dashboard
