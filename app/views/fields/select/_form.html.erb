@@ -19,13 +19,25 @@ to be displayed on a resource's edit form page.
   <%= f.label field.attribute %>
 </div>
 <div class="field-unit__field">
-  <%= f.select(
-    field.attribute,
-    options_from_collection_for_select(
-      field.selectable_options,
-      :to_s,
-      :to_s,
-      field.data.presence,
-    )
-  ) %>
+  <% if field.selectable_options.first&.is_a?(Array) %>
+    <%= f.select(
+      field.attribute,
+      options_from_collection_for_select(
+        field.selectable_options,
+        :last,
+        :first,
+        field.data.presence,
+      )
+    ) %>
+  <% else %>
+    <%= f.select(
+      field.attribute,
+      options_from_collection_for_select(
+        field.selectable_options,
+        :to_s,
+        :to_s,
+        field.data.presence,
+      )
+    ) %>
+  <% end %>
 </div>
