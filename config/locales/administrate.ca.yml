@@ -23,6 +23,8 @@ ca:
     form:
       error: error
       errors: "%{pluralized_errors} han impedit que %{resource_name} es guardés amb èxit:"
+    navigation:
+      back_to_app: Torna a l'aplicació
     search:
       clear: Esborrar la cerca
       label: Cerca %{resource}

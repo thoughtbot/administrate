@@ -23,6 +23,8 @@ ar:
     form:
       error: error
       errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    navigation:
+      back_to_app: العودة إلى التطبيق
     search:
       clear: مسح البحث
       label: بحث %{resource}

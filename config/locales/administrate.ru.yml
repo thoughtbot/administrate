@@ -23,6 +23,8 @@ ru:
     form:
       error: Ошибка
       errors: "При сохранении %{resource_name} произошли ошибки:"
+    navigation:
+      back_to_app: Вернуться в приложение
     search:
       clear: Очистить поиск
       label: Поиск %{resource}
