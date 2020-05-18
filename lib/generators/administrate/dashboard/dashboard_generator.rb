@@ -3,7 +3,7 @@ module Administrate
   module Generators
     class DashboardGenerator < Rails::Generators::NamedBase
       ATTRIBUTE_TYPE_MAPPING = {
-        #enum is handled in enum_type_definition method
+        # enum is handled in enum_type_definition method
         boolean: "Field::Boolean",
         date: "Field::Date",
         datetime: "Field::DateTime",
@@ -15,7 +15,7 @@ module Administrate
       }
 
       ATTRIBUTE_OPTIONS_MAPPING = {
-        #enum is handled in enum_type_definition method
+        # enum is handled in enum_type_definition method
         float: { decimals: 2 },
       }
 
