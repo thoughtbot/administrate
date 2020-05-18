@@ -1,13 +1,12 @@
 require "rails/generators/named_base"
-
 module Administrate
   module Generators
     class DashboardGenerator < Rails::Generators::NamedBase
       ATTRIBUTE_TYPE_MAPPING = {
+        #enum is handled in enum_type_definition method
         boolean: "Field::Boolean",
         date: "Field::Date",
         datetime: "Field::DateTime",
-        enum: "Field::String",
         float: "Field::Number",
         integer: "Field::Number",
         time: "Field::Time",
@@ -16,17 +15,21 @@ module Administrate
       }
 
       ATTRIBUTE_OPTIONS_MAPPING = {
-        enum: { searchable: false },
+        #enum is handled in enum_type_definition method
         float: { decimals: 2 },
       }
 
       DEFAULT_FIELD_TYPE = "Field::String.with_options(searchable: false)"
       COLLECTION_ATTRIBUTE_LIMIT = 4
       READ_ONLY_ATTRIBUTES = %w[id created_at updated_at]
-
       class_option :namespace, type: :string, default: "admin"
-
       source_root File.expand_path("../templates", __FILE__)
+
+      def enum_type_definition(attr = nil)
+        options = "searchable: false"
+        options += ", collection: #{klass.name}.#{attr.pluralize}.keys" if attr
+        "Field::Select.with_options(#{options})"
+      end
 
       def create_dashboard_definition
         template(
@@ -39,7 +42,6 @@ module Administrate
         destination = Rails.root.join(
           "app/controllers/#{namespace}/#{file_name.pluralize}_controller.rb",
         )
-
         template("controller.rb.erb", destination)
       end
 
@@ -76,8 +78,9 @@ module Administrate
 
       def field_type(attribute)
         type = column_type_for_attribute(attribute.to_s)
-
-        if type
+        if type == :enum
+          enum_type_definition(attribute)
+        elsif type
           ATTRIBUTE_TYPE_MAPPING.fetch(type, DEFAULT_FIELD_TYPE) +
             options_string(ATTRIBUTE_OPTIONS_MAPPING.fetch(type, {}))
         else
