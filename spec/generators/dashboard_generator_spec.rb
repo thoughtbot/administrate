@@ -148,9 +148,9 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           attrs = ShipmentDashboard::ATTRIBUTE_TYPES
 
           expect(attrs[:status]).
-            to eq(Administrate::Field::Select
-                      .with_options(searchable: false,
-                                    collection: Shipment.statuses.keys))
+            to eq(Administrate::Field::Select.
+                  with_options(searchable: false,
+                               collection: Shipment.statuses.keys))
         ensure
           remove_constants :Shipment, :ShipmentDashboard
         end
