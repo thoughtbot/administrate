@@ -58,7 +58,7 @@ describe Admin::CustomersController, type: :controller do
         end
       end
 
-      it "retreives resources in the correct order" do
+      it "retrieves resources in the correct order" do
         customers = create_list(:customer, 5)
         sorted_customer_names = customers.map(&:name).sort.reverse
 
