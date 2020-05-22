@@ -14,10 +14,12 @@ module Administrate
       private
 
       def collection
-        maybe_proc = options.fetch(:collection, [])
-        return maybe_proc.call if maybe_proc.respond_to? :call
+        values = options.fetch(:collection, [])
+        if values.respond_to? :call
+          return values.arity.positive? ? values.call(self) : values.call
+        end
 
-        @collection ||= maybe_proc
+        @collection ||= values
       end
     end
   end

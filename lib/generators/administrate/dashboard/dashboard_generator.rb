@@ -1,12 +1,13 @@
 require "rails/generators/named_base"
+
 module Administrate
   module Generators
     class DashboardGenerator < Rails::Generators::NamedBase
       ATTRIBUTE_TYPE_MAPPING = {
-        # enum is handled in enum_type_definition method
         boolean: "Field::Boolean",
         date: "Field::Date",
         datetime: "Field::DateTime",
+        enum: "Field::Select",
         float: "Field::Number",
         integer: "Field::Number",
         time: "Field::Time",
@@ -15,7 +16,9 @@ module Administrate
       }
 
       ATTRIBUTE_OPTIONS_MAPPING = {
-        # enum is handled in enum_type_definition method
+        # procs must be defined in one line!
+        enum: {  searchable: false,
+                 collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys } },
         float: { decimals: 2 },
       }
 
@@ -38,17 +41,11 @@ module Administrate
         destination = Rails.root.join(
           "app/controllers/#{namespace}/#{file_name.pluralize}_controller.rb",
         )
+
         template("controller.rb.erb", destination)
       end
 
       private
-
-      def enum_type_definition(attr)
-        options = ["searchable: false",
-                   "collection: #{klass.name}.#{attr.pluralize}.keys"]
-
-        "Field::Select.with_options(#{options.join(', ')})"
-      end
 
       def namespace
         options[:namespace]
@@ -81,9 +78,8 @@ module Administrate
 
       def field_type(attribute)
         type = column_type_for_attribute(attribute.to_s)
-        if type == :enum
-          enum_type_definition(attribute)
-        elsif type
+
+        if type
           ATTRIBUTE_TYPE_MAPPING.fetch(type, DEFAULT_FIELD_TYPE) +
             options_string(ATTRIBUTE_OPTIONS_MAPPING.fetch(type, {}))
         else
@@ -142,7 +138,16 @@ module Administrate
       end
 
       def inspect_hash_as_ruby(hash)
-        hash.map { |key, value| "#{key}: #{value.inspect}" }.join(", ")
+        hash.map do |key, value|
+          v_str = value.respond_to?(:call) ? proc_string(value) : value.inspect
+          "#{key}: #{v_str}"
+        end.join(", ")
+      end
+
+      def proc_string(value)
+        source = value.source_location
+        proc_string = IO.readlines(source.first)[source.second - 1]
+        proc_string[/(->.*?){(.*?)}/]
       end
     end
   end
