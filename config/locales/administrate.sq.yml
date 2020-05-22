@@ -23,6 +23,8 @@ sq:
     form:
       error: gabim
       errors: "%{pluralized_errors} nuk e lejoj %{resource_name} të ruhet:"
+    navigation:
+      back_to_app: Kthehu tek aplikacioni
     search:
       clear: Pastro kërkimin
       label: Kërko %{resource}

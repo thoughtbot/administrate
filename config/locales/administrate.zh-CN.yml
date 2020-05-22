@@ -23,6 +23,8 @@ zh-CN:
     form:
       error: 错误
       errors: "%{resource_name} 保存前出现了 %{pluralized_errors} 个错误："
+    navigation:
+      back_to_app: 返回应用
     search:
       clear: 清除搜索
       label: 搜索 %{resource}

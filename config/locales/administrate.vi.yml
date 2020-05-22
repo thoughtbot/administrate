@@ -23,6 +23,8 @@ vi:
     form:
       error: error
       errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    navigation:
+      back_to_app: Quay lại ứng dụng
     search:
       clear: Tìm kiếm rõ ràng
       label: Tìm kiếm %{resource}

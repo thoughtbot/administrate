@@ -23,6 +23,8 @@ id:
     form:
       error: error
       errors: "%{pluralized_errors} membuat %{resource_name} tidak bisa tersimpan:"
+    navigation:
+      back_to_app: Kembali ke aplikasi
     search:
       clear: Kosongkan pencarian
       label: Cari %{resource}

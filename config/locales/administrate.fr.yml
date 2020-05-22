@@ -23,6 +23,8 @@ fr:
     form:
       error: erreur
       errors: "%{pluralized_errors} ont empêchés %{resource_name} d'être sauvergardé :"
+    navigation:
+      back_to_app: Retour à l'application
     search:
       clear: Effacer la recherche
       label: Chercher %{resource}
