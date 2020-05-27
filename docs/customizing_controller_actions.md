@@ -56,3 +56,17 @@ end
 ```
 
 Action is one of `new`, `edit`, `show`, `destroy`.
+
+## Customizing Default Sorting
+
+To set the default sorting on the index action you could override `default_sorting_attribute` or `default_sorting_direction` in your dashboard controller like this:
+
+```ruby
+def default_sorting_attribute
+  :age
+end
+
+def default_sorting_direction
+  :desc
+end
+```
