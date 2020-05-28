@@ -7,6 +7,10 @@ module Administrate
         :"#{attr}_id"
       end
 
+      def self.advanced_form?
+        options.fetch(:advanced_form, true)
+      end
+
       def permitted_attribute
         foreign_key
       end

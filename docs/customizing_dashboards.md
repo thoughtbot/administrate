@@ -63,6 +63,7 @@ specify, including:
 - `Field::Number`
 - `Field::Polymorphic`
 - `Field::Select`
+- `Field::CollectionSelect`
 - `Field::String`
 - `Field::Text`
 - `Field::Password`
@@ -205,6 +206,16 @@ an array or an object responding to `:call`. Defaults to `[]`.
 
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `true`.
+
+**Field::CollectionSelect**
+
+`:method`, `:collection`, `:value_method`, `:text_method`, `:options`, `:html_options` -
+ For details, refer to ActionView's
+[collection_select](https://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_select).
+
+`:label` - The label to display beside this field. Defaults to the field's attribute name.
+
+`:selectize` - Specify whether Selectize should be enabled for this field. Defaults to `true`.
 
 **Field::String**
 

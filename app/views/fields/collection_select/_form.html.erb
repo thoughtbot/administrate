@@ -1,0 +1,29 @@
+<%#
+# Collection Select Form Partial
+
+This partial renders a selectable collection attribute,
+to be displayed on a resource's edit form page.
+
+## Local variables:
+
+- `f`:
+  A Rails form generator, used to help create the appropriate input fields.
+- `field`:
+  An instance of [Administrate::Field::CollectionSelect][1].
+
+[1]: https://www.rubydoc.info/gems/administrate/Administrate/Field/CollectionSelect
+%>
+
+<div class='field-unit__label'>
+  <%= f.label field.label %>
+</div>
+<div class='field-unit__field'>
+  <%= f.collection_select(
+          field.method,
+          field.collection,
+          field.value_method,
+          field.text_method,
+          field.options,
+          field.html_options
+      ) %>
+</div>
