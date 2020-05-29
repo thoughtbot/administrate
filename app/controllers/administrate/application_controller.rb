@@ -163,6 +163,8 @@ module Administrate
         else
           raise "Unrecognised param data: #{data.inspect}"
         end
+      elsif data.is_a?(ActionController::Parameters)
+        data.transform_values { |v| read_param_value(v) }
       else
         data
       end
