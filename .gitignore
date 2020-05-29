@@ -25,6 +25,7 @@
 
 /spec/example_app/node_modules
 /spec/example_app/config/database.yml
+/spec/example_app/storage
 
 /node_modules
 /public
