@@ -57,8 +57,7 @@ describe Administrate::Search do
 
         described_class.run(scoped_object,
                             MockDashboard,
-                            nil
-        )
+                            nil)
       ensure
         remove_constants :User
       end
@@ -130,9 +129,6 @@ describe Administrate::Search do
       it "searches equality for all searchable fields" do
         class User < ApplicationRecord; end
         scoped_object = User.default_scoped
-        search = described_class.new(scoped_object,
-                                          MockDashboardWithStrictSearch,
-                                          "test")
         expected_query = [
           [
             '"users"."id" = ?',
