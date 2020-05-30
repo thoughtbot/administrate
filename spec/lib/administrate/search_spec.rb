@@ -53,12 +53,12 @@ describe Administrate::Search do
       begin
         class User < ApplicationRecord; end
         scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          nil)
         expect(scoped_object).to receive(:all)
 
-        search.run
+        described_class.run(scoped_object,
+                            MockDashboard,
+                            nil
+        )
       ensure
         remove_constants :User
       end
@@ -68,12 +68,11 @@ describe Administrate::Search do
       begin
         class User < ApplicationRecord; end
         scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "   ")
         expect(scoped_object).to receive(:all)
 
-        search.run
+        described_class.run(scoped_object,
+                            MockDashboard,
+                            "   ")
       ensure
         remove_constants :User
       end
@@ -83,9 +82,6 @@ describe Administrate::Search do
       begin
         class User < ApplicationRecord; end
         scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "test")
         expected_query = [
           [
             'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
@@ -98,7 +94,9 @@ describe Administrate::Search do
         ]
         expect(scoped_object).to receive(:where).with(*expected_query)
 
-        search.run
+        described_class.run(scoped_object,
+                            MockDashboard,
+                            "test")
       ensure
         remove_constants :User
       end
@@ -108,9 +106,6 @@ describe Administrate::Search do
       begin
         class User < ApplicationRecord; end
         scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "Тест Test")
         expected_query = [
           [
             'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
@@ -123,7 +118,9 @@ describe Administrate::Search do
         ]
         expect(scoped_object).to receive(:where).with(*expected_query)
 
-        search.run
+        described_class.run(scoped_object,
+                            MockDashboard,
+                            "Тест Test")
       ensure
         remove_constants :User
       end
@@ -133,7 +130,7 @@ describe Administrate::Search do
       it "searches equality for all searchable fields" do
         class User < ApplicationRecord; end
         scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
+        search = described_class.new(scoped_object,
                                           MockDashboardWithStrictSearch,
                                           "test")
         expected_query = [
@@ -148,7 +145,9 @@ describe Administrate::Search do
         ]
         expect(scoped_object).to receive(:where).with(*expected_query)
 
-        search.run
+        described_class.run(scoped_object,
+                            MockDashboardWithStrictSearch,
+                            "test")
       ensure
         remove_constants :User
       end
@@ -157,8 +156,8 @@ describe Administrate::Search do
     context "when searching through associations" do
       let(:scoped_object) { double(:scoped_object) }
 
-      let(:search) do
-        Administrate::Search.new(
+      subject(:search_run) do
+        described_class.run(
           scoped_object,
           MockDashboardWithAssociation,
           "Тест Test",
@@ -184,7 +183,7 @@ describe Administrate::Search do
         expect(scoped_object).to receive(:joins).with(%i(role author address)).
           and_return(scoped_object)
 
-        search.run
+        search_run
       end
 
       it "builds the 'where' clause using the joined tables" do
@@ -193,7 +192,7 @@ describe Administrate::Search do
 
         expect(scoped_object).to receive(:where).with(*expected_query)
 
-        search.run
+        search_run
       end
     end
 
@@ -203,16 +202,15 @@ describe Administrate::Search do
           scope :vip, -> { where(kind: :vip) }
         end
         scoped_object = User.default_scoped
-        search = Administrate::Search.new(scoped_object,
-                                          MockDashboard,
-                                          "vip:")
         expect(scoped_object).to \
           receive(:where).
           with(kind: :vip).
           and_return(scoped_object)
         expect(scoped_object).to receive(:where).and_return(scoped_object)
 
-        search.run
+        described_class.run(scoped_object,
+                            MockDashboard,
+                            "vip:")
       ensure
         remove_constants :User
       end

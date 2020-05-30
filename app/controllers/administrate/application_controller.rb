@@ -4,9 +4,9 @@ module Administrate
 
     def index
       search_term = params[:search].to_s.strip
-      resources = Administrate::Search.new(scoped_resource,
+      resources = Administrate::Search.run(scoped_resource,
                                            dashboard_class,
-                                           search_term).run
+                                           search_term)
       resources = apply_collection_includes(resources)
       resources = order.apply(resources)
       resources = resources.page(params[:page]).per(records_per_page)
