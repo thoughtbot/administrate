@@ -147,7 +147,7 @@ module Administrate
       def proc_string(value)
         source = value.source_location
         proc_string = IO.readlines(source.first)[source.second - 1]
-        proc_string[/(->.*?){(.*?)}/]
+        proc_string[/->[^}]*} | (lambda|proc).*end/x]
       end
     end
   end
