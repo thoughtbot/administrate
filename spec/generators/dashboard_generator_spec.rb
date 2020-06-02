@@ -130,28 +130,52 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
       end
 
-      it "detects enum field as `String`" do
-        begin
-          ActiveRecord::Schema.define do
-            create_table :shipments do |t|
-              t.integer :status
-            end
+      it "detects enum field as `Select`" do
+        ActiveRecord::Schema.define do
+          create_table :shipments do |t|
+            t.integer :status
           end
-
-          class Shipment < ApplicationRecord
-            enum status: [:ready, :processing, :shipped]
-            reset_column_information
-          end
-
-          run_generator ["shipment"]
-          load file("app/dashboards/shipment_dashboard.rb")
-          attrs = ShipmentDashboard::ATTRIBUTE_TYPES
-
-          expect(attrs[:status]).
-            to eq(Administrate::Field::String.with_options(searchable: false))
-        ensure
-          remove_constants :Shipment, :ShipmentDashboard
         end
+
+        class Shipment < ApplicationRecord
+          enum status: %i[ready processing shipped]
+          reset_column_information
+        end
+
+        run_generator ["shipment"]
+        load file("app/dashboards/shipment_dashboard.rb")
+        attrs = ShipmentDashboard::ATTRIBUTE_TYPES
+
+        expect(attrs[:status].deferred_class).to eq(Administrate::Field::Select)
+      ensure
+        remove_constants :Shipment, :ShipmentDashboard
+      end
+
+      it "handles collection procs option in the 'Select' field" do
+        ActiveRecord::Schema.define do
+          create_table :shipments do |t|
+            t.integer :status
+          end
+        end
+
+        class Shipment < ApplicationRecord
+          enum status: %i[ready processing shipped]
+          reset_column_information
+        end
+
+        run_generator ["shipment"]
+        load file("app/dashboards/shipment_dashboard.rb")
+        attrs = ShipmentDashboard::ATTRIBUTE_TYPES
+        enum_collection_option = attrs[:status].options[:collection]
+        select_field = Administrate::Field::Select.new(:status,
+                                                       nil,
+                                                       attrs[:status].options,
+                                                       resource: Shipment.new)
+
+        expect(enum_collection_option.call(select_field)).
+          to eq(Shipment.statuses.keys)
+      ensure
+        remove_constants :Shipment, :ShipmentDashboard
       end
 
       it "detects boolean values" do
