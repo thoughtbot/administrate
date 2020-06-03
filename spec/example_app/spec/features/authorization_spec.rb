@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "Authorization", type: :feature do
   before do
-    class TestProductPolicy < ProductPolicy
+    class TestProductPolicy < Admin::ProductPolicy
       class Scope < Scope
         def resolve
           scope.where("price < :threshold", threshold: 15)

@@ -11,41 +11,16 @@ controller.
 ## Using Pundit
 
 If your app already uses [Pundit](https://github.com/elabs/pundit) for
-authorization, you just need to add one line to your
-`Admin::ApplicationController`:
+authorization, you can add this line to `Admin::ApplicationController`:
 
 ```ruby
 include Administrate::Punditize
 ```
 
-This will use all the policies from your main app to determine if the
-current user is able to view a given record or perform a given action.
-
-### Further limiting scope
-
-You may want to limit the scope for a given user beyond what they
-technically have access to see in the main app. For example, a user may
-have all public records in their scope, but you want to only show *their*
-records in the admin interface to reduce confusion.
-
-In this case, you can add an additional `resolve_admin` to your policy's
-scope and Administrate will use this instead of the `resolve` method.
-
-For example:
-
-```ruby
-class PostPolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
-
-    def resolve_admin
-      scope.where(owner: user)
-    end
-  end
-end
-```
+This will use a default set of policies to determine if the current user
+is able to view a given record or perform a given action. Custom policies
+can be enabled by defining policy classes under `policies/admin` extending
+`Admin::ApplicationPolicy`.
 
 ## Authorization without Pundit
 

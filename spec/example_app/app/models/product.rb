@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   end
 
   def self.policy_class
-    @policy_class ||= ProductPolicy
+    @policy_class ||= Admin::ProductPolicy
   end
 
   has_many :line_items, dependent: :destroy

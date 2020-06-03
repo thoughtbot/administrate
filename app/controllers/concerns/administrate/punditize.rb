@@ -6,29 +6,31 @@ module Administrate
 
       included do
         def scoped_resource
-          policy_scope_admin super
+          policy_scope super
+        end
+
+        def policy_scope(scope)
+          super([:admin, scope])
+        rescue ::Pundit::NotDefinedError
+          # Fall back to admin application scope if none exists
+          # for this particular record
+          super(scope, policy_scope_class: Admin::ApplicationPolicy::Scope)
         end
 
         def authorize_resource(resource)
           authorize resource
         end
 
-        def show_action?(action, resource)
-          Pundit.policy!(pundit_user, resource).send("#{action}?".to_sym)
+        def policy(record)
+          super([:admin, record])
+        rescue ::Pundit::NotDefinedError
+          # Fall back to admin application policy if none exists
+          # for this particular record
+          Admin::ApplicationPolicy.new(pundit_user, record)
         end
-      end
 
-      private
-
-      # Like the policy_scope method in stock Pundit, but allows the 'resolve'
-      # to be overridden by 'resolve_admin' for a different index scope in Admin
-      # controllers.
-      def policy_scope_admin(scope)
-        ps = Pundit::PolicyFinder.new(scope).scope!.new(pundit_user, scope)
-        if ps.respond_to? :resolve_admin
-          ps.resolve_admin
-        else
-          ps.resolve
+        def show_action?(action, resource)
+          policy(resource).send("#{action}?".to_sym)
         end
       end
     end
