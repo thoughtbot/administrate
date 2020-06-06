@@ -38,6 +38,11 @@ module Administrate
       "#{resource_name.to_s.singularize}_dashboard".classify.constantize
     end
 
+    def model_from_resource(resource_name)
+      dashboard = dashboard_from_resource(resource_name)
+      dashboard.try(:model) || resource_name.to_sym
+    end
+
     def display_resource_name(resource_name)
       dashboard_from_resource(resource_name).resource_name(
         count: PLURAL_MANY_COUNT,
