@@ -18,5 +18,5 @@ By default, the input is a select field for the time attributes.
   <%= f.label field.attribute %>
 </div>
 <div class="field-unit__field">
-  <%= f.text_field field.attribute, data: { type: 'time' } %>
+  <%= f.text_field field.attribute, data: { type: 'time' }, value: field.data.strftime("%H:%M:%S") %>
 </div>
