@@ -53,7 +53,7 @@ GEM
       rake
       thor (>= 0.14.0)
     ast (2.4.0)
-    autoprefixer-rails (9.7.6)
+    autoprefixer-rails (9.8.1)
       execjs
     awesome_print (1.8.0)
     builder (3.2.4)
