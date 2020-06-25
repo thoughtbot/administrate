@@ -21,9 +21,15 @@ module Administrate
     end
 
     def show
-      render locals: {
-        page: Administrate::Page::Show.new(dashboard, requested_resource),
-      }
+      if params[:destroy]
+        render :destroy, locals: {
+          page: Administrate::Page::Destroy.new(dashboard, requested_resource),
+        }
+      else
+        render locals: {
+          page: Administrate::Page::Show.new(dashboard, requested_resource),
+        }
+      end
     end
 
     def new

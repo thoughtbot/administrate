@@ -85,11 +85,11 @@ to display a collection of resources in an HTML table.
         <% if valid_action? :destroy, collection_presenter.resource_name %>
           <td><%= link_to(
             t("administrate.actions.destroy"),
-            [namespace, resource],
-            class: "text-color-red",
-            method: :delete,
-            data: { confirm: t("administrate.actions.confirm") }
-          ) if show_action? :destroy, resource %></td>
+            polymorphic_path([namespace, resource], destroy: true),
+            html_options: {
+              class: "text-color-red",
+            },
+          ) if show_action?(:destroy, resource) %></td>
         <% end %>
       </tr>
     <% end %>

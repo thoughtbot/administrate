@@ -8,6 +8,7 @@ en:
       edit_resource: Edit %{name}
       show_resource: Show %{name}
       new_resource: New %{name}
+      destroy_resource: Destroy %{name}
       back: Back
     controller:
       create:

@@ -1,0 +1,42 @@
+<%#
+# Destroy
+
+This view is the template for the destroy page.
+It renders a confirmation form, asking the user
+whether they actually intend to destroy the
+requested record.
+
+## Local variables:
+
+- `page`:
+  An instance of [Administrate::Page::Destroy][1].
+  Contains methods for accessing the resource to be displayed on the page,
+  helping compose a confirmation message.
+
+  [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Destroy
+%>
+
+<% content_for(:title) { t("administrate.actions.destroy_resource", name: page.page_title) } %>
+
+<header class="main-content__header" role="banner">
+  <h1 class="main-content__page-title">
+    <%= content_for(:title) %>
+  </h1>
+
+  <div>
+    <%= link_to(
+      t("administrate.actions.show_resource", name: page.page_title),
+      [namespace, page.resource],
+      class: "button",
+    ) if valid_action?(:show) && show_action?(:show, page.resource) %>
+  </div>
+</header>
+
+<section class="main-content__body">
+  <%= form_for([namespace, page.resource], method: :delete, html: { class: "form" }) do |f| %>
+    <div class="form-actions">
+      <p><%= t("administrate.actions.confirm") %></p>
+      <%= f.submit t("administrate.actions.destroy") %>
+    </div>
+  <% end %>
+</section>
