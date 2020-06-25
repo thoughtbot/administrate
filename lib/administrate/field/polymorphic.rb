@@ -23,7 +23,7 @@ module Administrate
         data ? data.to_global_id : nil
       end
 
-      protected
+      private
 
       def associated_dashboard(klass = data.class)
         "#{klass.name}Dashboard".constantize.new
