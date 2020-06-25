@@ -49,11 +49,18 @@ feature "log entries index page" do
   end
 
   scenario "user deletes record" do
-    create(:log_entry)
+    log_entry = create(:log_entry)
 
     visit admin_log_entries_path
     click_on t("administrate.actions.destroy")
+    expect(page).to have_text(
+      t(
+        "administrate.actions.destroy_resource",
+        name: LogEntryDashboard.new.display_resource(log_entry),
+      ),
+    )
 
+    click_on t("administrate.actions.destroy")
     expect(page).to have_flash(
       t("administrate.controller.destroy.success", resource: "LogEntry"),
     )

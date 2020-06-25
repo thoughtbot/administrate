@@ -46,13 +46,20 @@ feature "order index page" do
   end
 
   scenario "user deletes record" do
-    create(:order)
+    order = create(:order)
 
     visit admin_orders_path
     click_on t("administrate.actions.destroy")
+    expect(page).to have_text(
+      t(
+        "administrate.actions.destroy_resource",
+        name: OrderDashboard.new.display_resource(order),
+      ),
+    )
 
+    click_on t("administrate.actions.destroy")
     expect(page).to have_flash(
-      t("administrate.controller.destroy.success", resource: "Order")
+      t("administrate.controller.destroy.success", resource: "Order"),
     )
   end
 
@@ -61,7 +68,7 @@ feature "order index page" do
 
     visit admin_orders_path
     click_on t("administrate.actions.destroy")
-
+    click_on t("administrate.actions.destroy")
     expect(page).to have_flash(
       "Cannot delete record because dependent payments exist", type: :error
     )
