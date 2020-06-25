@@ -20,7 +20,7 @@ module Administrate
         dashboard.display_resource(resource)
       end
 
-      protected
+      private
 
       attr_reader :dashboard
     end

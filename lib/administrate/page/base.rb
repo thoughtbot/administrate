@@ -23,7 +23,7 @@ module Administrate
         dashboard.try(:item_includes) || []
       end
 
-      protected
+      private
 
       def attribute_field(dashboard, resource, attribute_name, page)
         value = get_attribute_value(resource, attribute_name)
