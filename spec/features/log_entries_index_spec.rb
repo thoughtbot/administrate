@@ -48,7 +48,7 @@ feature "log entries index page" do
     expect(current_path).to eq(new_admin_log_entry_path)
   end
 
-  scenario "user deletes record" do
+  scenario "user deletes record", js: true do
     create(:log_entry)
 
     visit admin_log_entries_path
