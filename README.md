@@ -104,7 +104,7 @@ git repository, too.
 
 Please see [CONTRIBUTING.md](/CONTRIBUTING.md).
 
-administrate was originally written by Grayson Wright and is now maintained by
+administrate was originally written by Grace Youngblood and is now maintained by
 Nick Charlton. Many improvements and bugfixes were contributed by the [open
 source
 community](https://github.com/thoughtbot/administrate/graphs/contributors).
