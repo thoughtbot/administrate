@@ -2,12 +2,24 @@
 title: Customizing page views
 ---
 
-In order to change the appearance of any page,
-you can write custom Rails views.
+You can provide replacements for any of Administrate's templates.
+This way you can change the appearance of any page or element of
+the interface.
+
+In general, you can override any of the views under Administrate's
+[/app/views][1].
+For example, say that you want to customize the template used for flash
+messages. You can provide your own as
+`/app/views/administrate/application/_flashes.html.erb`, and it will replace
+Administrate's own.
+
+Figuring out which views are available and where can be repetitive. You can
+spare yourself some effort by using the built-in view generators.
+
+[1]: https://github.com/thoughtbot/administrate/tree/master/app/views
 
 ## Customizing for all resources
 
-The easiest way to get started is by using the built-in generators.
 In order to change the appearance of views for all resource types,
 call the generators with no arguments.
 
