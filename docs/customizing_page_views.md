@@ -16,7 +16,7 @@ Administrate's own.
 Figuring out which views are available and where can be repetitive. You can
 spare yourself some effort by using the built-in view generators.
 
-[1](https://github.com/thoughtbot/administrate/tree/master/app/views).
+[1]: https://github.com/thoughtbot/administrate/tree/master/app/views
 
 ## Customizing for all resources
 
