@@ -4,7 +4,10 @@ class DocsController < ApplicationController
     {
       file: "CONTRIBUTING",
       page: "contributing",
-    }.freeze
+    }, {
+      file: "djsfhkjdh",
+      page: "ksfhalk",
+    }
 
   ]
 
@@ -18,9 +21,11 @@ class DocsController < ApplicationController
   end
 
   def show
-    # First check if page in special files, if so
-    if (params[:page] == SPECIAL_FILES[0][:page])
-      render_page SPECIAL_FILES[0][:file]
+
+    p  SPECIAL_FILES.select { |page| page[:page] == params[:page]}
+
+    if SPECIAL_FILES.select { |page| page[:page] == params[:page]}.length > 0 
+      render_page SPECIAL_FILES.select { |page| page[:page] == params[:page]}[0][:file]
     else
       render_page "docs/#{params[:page]}"
     end
