@@ -4,11 +4,7 @@ class DocsController < ApplicationController
     {
       file: "CONTRIBUTING",
       page: "contributing",
-    }, {
-      file: "djsfhkjdh",
-      page: "ksfhalk",
     }
-
   ]
 
   REDCARPET_CONFIG = {
@@ -21,8 +17,6 @@ class DocsController < ApplicationController
   end
 
   def show
-
-    p  SPECIAL_FILES.select { |page| page[:page] == params[:page]}
 
     if SPECIAL_FILES.select { |page| page[:page] == params[:page]}.length > 0 
       render_page SPECIAL_FILES.select { |page| page[:page] == params[:page]}[0][:file]
