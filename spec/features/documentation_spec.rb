@@ -37,4 +37,5 @@ describe "documentation navigation" do
       map { |anchor| anchor[:href] }.
       select { |href| URI.parse(href).relative? }
   end
+
 end

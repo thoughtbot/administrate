@@ -1,4 +1,15 @@
 class DocsController < ApplicationController
+
+  SPECIAL_FILES = [
+    {
+      file: "CONTRIBUTING.md",
+      name: "Contributing",
+      path: "Contributing",
+      page: "CONTRIBUTING",
+    }.freeze
+
+  ]
+
   REDCARPET_CONFIG = {
     fenced_code_blocks: true,
     autolink: true,
@@ -9,7 +20,12 @@ class DocsController < ApplicationController
   end
 
   def show
-    render_page "docs/#{params[:page]}"
+    # First check if page in special files, if so
+    if (params[:page] == "contributing")
+      render_page "CONTRIBUTING"
+    else
+      render_page "docs/#{params[:page]}"
+    end
   end
 
   private
