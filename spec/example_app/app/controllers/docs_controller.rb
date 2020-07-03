@@ -2,10 +2,8 @@ class DocsController < ApplicationController
 
   SPECIAL_FILES = [
     {
-      file: "CONTRIBUTING.md",
-      name: "Contributing",
-      path: "Contributing",
-      page: "CONTRIBUTING",
+      file: "CONTRIBUTING",
+      page: "contributing",
     }.freeze
 
   ]
@@ -21,8 +19,8 @@ class DocsController < ApplicationController
 
   def show
     # First check if page in special files, if so
-    if (params[:page] == "contributing")
-      render_page "CONTRIBUTING"
+    if (params[:page] == SPECIAL_FILES[0][:page])
+      render_page SPECIAL_FILES[0][:file]
     else
       render_page "docs/#{params[:page]}"
     end
