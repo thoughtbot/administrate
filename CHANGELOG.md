@@ -17,6 +17,38 @@
 
 ## Changes
 
+### 0.14.0 (July 2, 2020)
+
+* [BUGFIX] [#1695] Fix local development by keeping tmp/pids around.
+* [DOC] [#1679] Any view can be replaced, not only from generators.
+* [BUGFIX] [#1690] Restore destroy functionality.
+* [OPTIM] [#1687] Remove usages of `protected` visibility.
+* [BUGFIX] [#1672] Fix time fields default to 8pm.
+* [FEATURE] [#1591] Check if routes can be shown in navigation.
+* [FEATURE] [#1655] Detect enum fields as Selects rather than as Strings.
+* [FEATURE] [#1648] Recursively handle polymorphic parameters.
+* [FEATURE] [#1644] Allow overriding default sorting.
+* [OPTIM] [#1649] Use singular resource name for error explanation.
+* [I18n] [#1651] Translate "Back to app" label.
+* [FEATURE] [#1646] Allow for label/value setting in Field::Select collection.
+* [UI] [#1620] Dry up flashes SCSS and remove unused variables.
+* [COMPAT] [#1618] Remove jQuery ujs.
+* [FEATURE] [#1203] Support for searching over multiple fields.
+* [DOC] [#1621] Add Appraisal install to the setup script.
+* [I18n] [#1604] Use proper translation for "clear" I18n key in nl.
+* [BUGFIX] [#1596] Render all records allowed by the authorization scope.
+* [FEATURE] [#1589] Allow collections to accept proc as value.
+* [FEATURE] [#1579] Allow controllers without a related model.
+* [OPTIM] [#1097] Use new_resource in new action.
+* [UI] [#1557] Provide more natural tabbing across rows in table.
+* [BUGFIX] [#1574] Fix non defined root_url bug.
+* [I18n] [#1165] Change Albanian two-letter code to "sq" as per ISO 639-1.
+* [BUGIFX] [#1576] Simplify detection of associative fields.
+* [FEATURE] [#1569] Allow tables which are not named after models.
+* [FEATURE] [#1566] Enable Selectize for BelongsTo.
+* [FEATURE] [#1398] Support association search for other types of association
+  fields.
+
 ### 0.13.0 (March 13, 2020)
 
 **NOTE:** This release contains the fix for [`CVE-2020-5257`][cve-5257], which

@@ -45,7 +45,7 @@ feature "order index page" do
     expect(current_path).to eq(new_admin_order_path)
   end
 
-  scenario "user deletes record" do
+  scenario "user deletes record", js: true do
     create(:order)
 
     visit admin_orders_path
@@ -56,7 +56,7 @@ feature "order index page" do
     )
   end
 
-  scenario "cannot delete because associated payment" do
+  scenario "cannot delete because associated payment", js: true do
     create(:payment, order: create(:order))
 
     visit admin_orders_path
