@@ -25,7 +25,7 @@ class DocsController < ApplicationController
   end
 
   def check_special_file
-    SPECIAL_FILES.select { |page| page[:page] == params[:page]}
+    SPECIAL_FILES.select { |page| page[:page] == params[:page] }
   end
 
   private
