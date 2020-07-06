@@ -2,8 +2,8 @@ class DocsController < ApplicationController
 
   SPECIAL_FILES = [
     {
-      file: "CONTRIBUTING",
-      page: "contributing",
+      file: 'CONTRIBUTING',
+      page: 'contributing'
     }
   ]
 
