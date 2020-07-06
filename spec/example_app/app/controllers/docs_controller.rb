@@ -1,11 +1,10 @@
 class DocsController < ApplicationController
-
   SPECIAL_FILES = [
     {
       file: 'CONTRIBUTING',
       page: 'contributing'
     }
-  ]
+  ].freeze
 
   REDCARPET_CONFIG = {
     fenced_code_blocks: true,
