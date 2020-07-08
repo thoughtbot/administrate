@@ -23,6 +23,8 @@ class DocsController < ApplicationController
     params[:page].nil? ? retrieve_index_content : retrieve_everypage_content
   end
 
+  private
+
   def retrieve_index_content
     SPECIAL_FILES.find { |page| page[:page] == 'index' }
   end
@@ -30,8 +32,6 @@ class DocsController < ApplicationController
   def retrieve_everypage_content
     SPECIAL_FILES.find { |page| page[:page] == params[:page] }
   end
-
-  private
 
   def render_correct_page
     if find_special_file
