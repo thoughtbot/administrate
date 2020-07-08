@@ -20,7 +20,15 @@ class DocsController < ApplicationController
   end
 
   def find_special_file
-    params[:page].nil? ? SPECIAL_FILES.find { |page| page[:page] == 'index' } : SPECIAL_FILES.find { |page| page[:page] == params[:page] }
+    params[:page].nil? ? retrieve_index_content : retrieve_everypage_content
+  end
+
+  def retrieve_index_content
+    SPECIAL_FILES.find { |page| page[:page] == 'index' }
+  end
+
+  def retrieve_everypage_content
+    SPECIAL_FILES.find { |page| page[:page] == params[:page] }
   end
 
   private
