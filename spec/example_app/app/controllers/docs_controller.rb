@@ -3,6 +3,10 @@ class DocsController < ApplicationController
     {
       file: 'CONTRIBUTING',
       page: 'contributing'
+    },
+    {
+      file: "README",
+      page: "index"
     }
   ].freeze
 
@@ -20,16 +24,22 @@ class DocsController < ApplicationController
   end
 
   def find_special_file
-    SPECIAL_FILES.select { |page| page[:page] == params[:page] }.first
+    if params[:page] == nil
+      SPECIAL_FILES.select { |page| page[:page] == "index" }.first
+    else
+      SPECIAL_FILES.select { |page| page[:page] == params[:page] }.first
+    end
   end
 
   private
 
   def render_correct_page
     if !find_special_file.nil?
+      p find_special_file
       render_page find_special_file[:file]
-    elsif params[:page] == nil
-      render_page "README"
+    # elsif params[:page] == nil
+    #     p params
+    #   render_page "README"
     else
       p "here"
       p params
