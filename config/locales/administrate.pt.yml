@@ -23,7 +23,7 @@ pt:
         none: Nenhum
     form:
       error: erro
-      errors: "%{pluralized_errors} não permitiram guardar este %{resource_name}:"
+      errors: "%{pluralized_errors} impediram %{resource_name} de ser gravado:"
     navigation:
       back_to_app: Voltar à aplicação
     search:
