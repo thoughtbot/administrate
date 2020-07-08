@@ -16,7 +16,6 @@ class DocsController < ApplicationController
   end
 
   def show
-    p find_special_file
     if find_special_file != nil 
       render_page find_special_file[:file]
     else
