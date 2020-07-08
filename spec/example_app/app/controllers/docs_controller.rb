@@ -4,9 +4,6 @@ class DocsController < ApplicationController
       file: 'CONTRIBUTING',
       page: 'contributing'
     }
-    {
-
-    }
   ].freeze
 
   REDCARPET_CONFIG = {
@@ -19,8 +16,8 @@ class DocsController < ApplicationController
   end
 
   def show
-    if check_special_file.length > 0 
-      render_page check_special_file[0][:file]
+    if find_special_file.length > 0 
+      render_page find_special_file[0][:file]
     else
       render_page "docs/#{params[:page]}"
     end
