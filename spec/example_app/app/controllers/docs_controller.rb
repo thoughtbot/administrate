@@ -11,9 +11,9 @@ class DocsController < ApplicationController
     autolink: true,
   }.freeze
 
-  def index
-    render_page "README"
-  end
+  # def index
+  #   render_page "README"
+  # end
 
   def show
     render_correct_page
@@ -28,7 +28,11 @@ class DocsController < ApplicationController
   def render_correct_page
     if !find_special_file.nil?
       render_page find_special_file[:file]
+    elsif params[:page] == nil
+      render_page "README"
     else
+      p "here"
+      p params
       render_page "docs/#{params[:page]}"
     end
   end
