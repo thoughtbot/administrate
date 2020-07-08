@@ -16,11 +16,7 @@ class DocsController < ApplicationController
   end
 
   def show
-    if !find_special_file.nil?
-      render_page find_special_file[:file]
-    else
-      render_page "docs/#{params[:page]}"
-    end
+    render_correct_page
   end
 
   def find_special_file
@@ -28,6 +24,14 @@ class DocsController < ApplicationController
   end
 
   private
+
+  def render_correct_page
+    if !find_special_file.nil?
+      render_page find_special_file[:file]
+    else
+      render_page "docs/#{params[:page]}"
+    end
+  end
 
   def render_page(name)
     path = full_page_path(name)
