@@ -4,6 +4,9 @@ class DocsController < ApplicationController
       file: 'CONTRIBUTING',
       page: 'contributing'
     }
+    {
+
+    }
   ].freeze
 
   REDCARPET_CONFIG = {
@@ -23,7 +26,7 @@ class DocsController < ApplicationController
     end
   end
 
-  def check_special_file
+  def find_special_file
     SPECIAL_FILES.select { |page| page[:page] == params[:page] }
   end
 
