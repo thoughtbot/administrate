@@ -5,8 +5,8 @@ class DocsController < ApplicationController
       page: 'contributing'
     },
     {
-      file: "README",
-      page: "index"
+      file: 'README',
+      page: 'index'
     }
   ].freeze
 
@@ -20,8 +20,8 @@ class DocsController < ApplicationController
   end
 
   def find_special_file
-    if params[:page] == nil
-      SPECIAL_FILES.find { |page| page[:page] == "index" }
+    if params[:page].nil?
+      SPECIAL_FILES.find { |page| page[:page] == 'index' }
     else
       SPECIAL_FILES.find { |page| page[:page] == params[:page] }
     end
