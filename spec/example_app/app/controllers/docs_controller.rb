@@ -21,16 +21,16 @@ class DocsController < ApplicationController
 
   def find_special_file
     if params[:page] == nil
-      SPECIAL_FILES.select { |page| page[:page] == "index" }.first
+      SPECIAL_FILES.find { |page| page[:page] == "index" }
     else
-      SPECIAL_FILES.select { |page| page[:page] == params[:page] }.first
+      SPECIAL_FILES.find { |page| page[:page] == params[:page] }
     end
   end
 
   private
 
   def render_correct_page
-    if !find_special_file.nil?
+    if find_special_file
       render_page find_special_file[:file]
     else
       render_page "docs/#{params[:page]}"
