@@ -19,11 +19,11 @@ class DocsController < ApplicationController
     render_correct_page
   end
 
+  private
+
   def find_special_file
     SPECIAL_FILES.select { |page| page[:page] == params[:page] }.first
   end
-
-  private
 
   def render_correct_page
     if !find_special_file.nil?
