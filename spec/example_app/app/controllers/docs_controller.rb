@@ -3,10 +3,6 @@ class DocsController < ApplicationController
     {
       file: 'CONTRIBUTING',
       page: 'contributing'
-    },
-    {
-      file: 'README',
-      page: 'index'
     }
   ].freeze
 
@@ -15,26 +11,22 @@ class DocsController < ApplicationController
     autolink: true,
   }.freeze
 
+  def index
+    render_page "README"
+  end
+
   def show
     render_correct_page
   end
 
   def find_special_file
-    params[:page].nil? ? retrieve_index_content : retrieve_everypage_content
+    SPECIAL_FILES.select { |page| page[:page] == params[:page] }.first
   end
 
   private
 
-  def retrieve_index_content
-    SPECIAL_FILES.find { |page| page[:page] == 'index' }
-  end
-
-  def retrieve_everypage_content
-    SPECIAL_FILES.find { |page| page[:page] == params[:page] }
-  end
-
   def render_correct_page
-    if find_special_file
+    if !find_special_file.nil?
       render_page find_special_file[:file]
     else
       render_page "docs/#{params[:page]}"

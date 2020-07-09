@@ -19,5 +19,5 @@ Rails.application.routes.draw do
   end
 
   get "/:page", to: "docs#show"
-  root to: 'docs#show'
+  root to: "docs#index"
 end
