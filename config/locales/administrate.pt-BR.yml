@@ -22,8 +22,8 @@ pt-BR:
         more: "Exibindo %{count} de %{total_count}"
         none: Nenhum
     form:
-      error: error
-      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+      error: erro
+      errors: "%{pluralized_errors} impediram %{resource_name} de ser gravado:"
     navigation:
       back_to_app: Voltar ao aplicativo
     search:
