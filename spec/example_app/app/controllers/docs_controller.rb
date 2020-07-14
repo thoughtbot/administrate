@@ -73,7 +73,7 @@ class DocsController < ApplicationController
       front_matter_parsed = FrontMatterParser::Parser.new(:md).call(source_text)
       @source_text = front_matter_parsed.content
       @metadata = if front_matter_parsed.front_matter.empty?
-                    { "home"=>true }
+                    { 'home' => true }
                   else
                     front_matter_parsed.front_matter
                   end
@@ -100,7 +100,7 @@ class DocsController < ApplicationController
     end
 
     def title_suffix
-      metadata["home"] ? 'Administrate' : ' - Administrate'
+      metadata['home'] ? 'Administrate' : ' - Administrate'
     end
 
     private
