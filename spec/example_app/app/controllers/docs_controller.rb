@@ -65,8 +65,6 @@ class DocsController < ApplicationController
 
   def parse_document(path)
     text = File.read(path)
-    # @page_title = retrieve_index_content[:title]
-    # @page_title_suffix = ""
     DocumentParser.new(text)
   end
 
@@ -74,11 +72,11 @@ class DocsController < ApplicationController
     def initialize(source_text)
       front_matter_parsed = FrontMatterParser::Parser.new(:md).call(source_text)
       @source_text = front_matter_parsed.content
-      if front_matter_parsed.front_matter.empty?
-        @metadata = {"home"=>true}
-      else
-        @metadata = front_matter_parsed.front_matter
-      end
+      @metadata = if front_matter_parsed.front_matter.empty?
+          { "home"=>true }
+        else
+          front_matter_parsed.front_matter
+        end
     end
 
     def body
@@ -102,7 +100,7 @@ class DocsController < ApplicationController
     end
 
     def title_suffix
-      metadata["home"] ? "Administrate" : " - Administrate"
+      metadata["home"] ? 'Administrate' : ' - Administrate'
     end
 
     private
