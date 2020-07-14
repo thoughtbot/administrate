@@ -6,7 +6,8 @@ class DocsController < ApplicationController
     },
     {
       file: 'README',
-      page: 'index'
+      page: 'index',
+      home: true
     }
   ].freeze
 
@@ -19,11 +20,11 @@ class DocsController < ApplicationController
     render_correct_page
   end
 
+  private
+
   def find_special_file
     params[:page].nil? ? retrieve_index_content : retrieve_everypage_content
   end
-
-  private
 
   def retrieve_index_content
     SPECIAL_FILES.find { |page| page[:page] == 'index' }
@@ -64,14 +65,23 @@ class DocsController < ApplicationController
 
   def parse_document(path)
     text = File.read(path)
-    DocumentParser.new(text)
+    @page_title = retrieve_index_content[:title]
+    @page_title_suffix = ""
+    DocumentParser.new(text, @page_title, @page_title_suffix)
   end
 
   class DocumentParser
-    def initialize(source_text)
+    def initialize(source_text, page_title, page_title_suffix)
       front_matter_parsed = FrontMatterParser::Parser.new(:md).call(source_text)
       @source_text = front_matter_parsed.content
-      @metadata = front_matter_parsed.front_matter
+      if front_matter_parsed.front_matter.empty?
+        p "here"
+        @metadata = {"home"=>true}
+      else
+        @metadata = front_matter_parsed.front_matter
+      end
+      p @metadata
+      @page_title_suffix = page_title_suffix
     end
 
     def body
@@ -95,7 +105,7 @@ class DocsController < ApplicationController
     end
 
     def title_suffix
-      metadata["home"] ? "" : " - Administrate"
+      metadata["home"] ? "Administrate" : " - Administrate"
     end
 
     private
