@@ -37,6 +37,35 @@ describe Admin::CustomersController, type: :controller do
       locals = capture_view_locals { get :index }
       expect(locals[:show_search_bar]).to be_truthy
     end
+
+    it "sorts by id by default" do
+      customer1 = create(:customer)
+      customer2 = create(:customer)
+      customers = [customer1, customer2]
+
+      locals = capture_view_locals { get :index }
+      expect(locals[:resources].map(&:id)).to eq customers.map(&:id).sort
+    end
+
+    context "with alternate sorting attributes" do
+      controller(Admin::CustomersController) do
+        def default_sorting_attribute
+          :name
+        end
+
+        def default_sorting_direction
+          :desc
+        end
+      end
+
+      it "retrieves resources in the correct order" do
+        customers = create_list(:customer, 5)
+        sorted_customer_names = customers.map(&:name).sort.reverse
+
+        locals = capture_view_locals { get :index }
+        expect(locals[:resources].map(&:name)).to eq sorted_customer_names
+      end
+    end
   end
 
   describe "GET show" do

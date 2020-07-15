@@ -23,6 +23,8 @@ zh-TW:
     form:
       error: 錯誤
       errors: "%{pluralized_errors} 導致此 %{resource_name} 不能被儲存："
+    navigation:
+      back_to_app: 返回应用
     search:
       clear: 清除搜尋
       label: 搜尋 %{resource}

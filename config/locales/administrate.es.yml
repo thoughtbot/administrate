@@ -23,6 +23,8 @@ es:
     form:
       error: error
       errors: "%{pluralized_errors} no permitieron guardar este %{resource_name}:"
+    navigation:
+      back_to_app: Regresar a la aplicación
     search:
       clear: Borrar búsqueda
       label: Buscar %{resource}

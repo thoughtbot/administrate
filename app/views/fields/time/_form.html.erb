@@ -2,7 +2,7 @@
 # Time Form Partial
 
 This partial renders an input element for time attributes.
-By default, the input is a select field for the time attributes.
+By default, the input is a text field that is augmented with [DateTimePicker].
 
 ## Local variables:
 
@@ -12,11 +12,12 @@ By default, the input is a select field for the time attributes.
   An instance of [Administrate::Field::Time][1].
   A wrapper around the tmie attributes pulled from the model.
 
+[DateTimePicker]: https://github.com/Eonasdan/bootstrap-datetimepicker
 %>
 
 <div class="field-unit__label">
   <%= f.label field.attribute %>
 </div>
 <div class="field-unit__field">
-  <%= f.text_field field.attribute, data: { type: 'time' } %>
+  <%= f.text_field field.attribute, data: { type: 'time' }, value: field.data&.strftime("%H:%M:%S") %>
 </div>

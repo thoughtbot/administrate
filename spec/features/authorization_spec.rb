@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.feature "Authorization", type: :feature do
+describe "authorization" do
   before do
     class TestProductPolicy < ProductPolicy
-      class Scope < Scope
+      class Scope < ProductPolicy::Scope
         def resolve
           scope.where("price < :threshold", threshold: 15)
         end
@@ -20,6 +20,18 @@ RSpec.feature "Authorization", type: :feature do
 
   after do
     Product.policy_class = @original_product_policy
+  end
+
+  it "shows link to resource for which index? is authorized" do
+    visit admin_customers_path
+    navigation = find(".navigation")
+    expect(navigation).to have_link("Products")
+  end
+
+  it "hides link to resource for which index? is not authorized" do
+    visit admin_customers_path
+    navigation = find(".navigation")
+    expect(navigation).not_to have_link("Orders")
   end
 
   it "renders all results yielded by the scope" do

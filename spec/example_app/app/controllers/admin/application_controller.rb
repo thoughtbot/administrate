@@ -11,6 +11,10 @@ class Admin::ApplicationController < Administrate::ApplicationController
     # TODO Add authentication logic here.
   end
 
+  def show_action?(action, resource)
+    action != :index || resource != ::Order
+  end
+
   # Override this value to specify the number of elements to display at a time
   # on index pages. Defaults to 20.
   # def records_per_page

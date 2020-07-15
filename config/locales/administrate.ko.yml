@@ -23,6 +23,8 @@ ko:
     form:
       error: 에러
       errors: "%{pluralized_errors}로 인하여 %{resource_name}을(를) 저장하는데 실패하였습니다."
+    navigation:
+      back_to_app: 앱으로 돌아 가기
     search:
       clear: 검색 초기화
       label: "%{resource} 검색"

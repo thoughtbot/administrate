@@ -37,4 +37,8 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, options)
 end
 
+Capybara.register_driver :rack_test do |app|
+  Capybara::RackTest::Driver.new(app, respect_data_method: false)
+end
+
 Capybara.server = :webrick

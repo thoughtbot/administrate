@@ -11,7 +11,7 @@ module Administrate
         associated_class_name.constantize
       end
 
-      protected
+      private
 
       def associated_dashboard
         "#{associated_class_name}Dashboard".constantize.new

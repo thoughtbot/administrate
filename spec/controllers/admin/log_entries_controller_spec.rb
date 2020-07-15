@@ -26,6 +26,52 @@ describe Admin::LogEntriesController, type: :controller do
         post_create
         expect(response).to redirect_to([:admin, LogEntry.last])
       end
+
+      it "parses nested polymorphic resources" do
+        customer = create(:customer)
+
+        resource_params = attributes_for(:log_entry).merge(
+          arbitrarily: {
+            nested: {
+              params: {
+                logeable: {
+                  type: "Administrate::Field::Polymorphic",
+                  value: customer.to_global_id.to_s,
+                },
+              },
+            },
+          },
+        )
+
+        allow_any_instance_of(
+          LogEntryDashboard,
+        ).to receive(:permitted_attributes).and_return(
+          [
+            arbitrarily: {
+              nested: {
+                params: {
+                  logeable: [
+                    :type,
+                    :value,
+                  ],
+                },
+              },
+            },
+          ],
+        )
+
+        LogEntry.attr_accessor :arbitrarily
+
+        post :create, log_entry: resource_params
+
+        logeable_in_params = subject.send(:resource_params).dig(
+          :arbitrarily,
+          :nested,
+          :params,
+          :logeable,
+        )
+        expect(logeable_in_params).to eq(customer)
+      end
     end
 
     describe "with invalid params" do

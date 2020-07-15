@@ -1,0 +1,2 @@
+class SeriesPolicy < ApplicationPolicy
+end

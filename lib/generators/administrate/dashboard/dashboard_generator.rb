@@ -7,7 +7,7 @@ module Administrate
         boolean: "Field::Boolean",
         date: "Field::Date",
         datetime: "Field::DateTime",
-        enum: "Field::String",
+        enum: "Field::Select",
         float: "Field::Number",
         integer: "Field::Number",
         time: "Field::Time",
@@ -16,7 +16,9 @@ module Administrate
       }
 
       ATTRIBUTE_OPTIONS_MAPPING = {
-        enum: { searchable: false },
+        # procs must be defined in one line!
+        enum: {  searchable: false,
+                 collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys } },
         float: { decimals: 2 },
       }
 
@@ -136,7 +138,16 @@ module Administrate
       end
 
       def inspect_hash_as_ruby(hash)
-        hash.map { |key, value| "#{key}: #{value.inspect}" }.join(", ")
+        hash.map do |key, value|
+          v_str = value.respond_to?(:call) ? proc_string(value) : value.inspect
+          "#{key}: #{v_str}"
+        end.join(", ")
+      end
+
+      def proc_string(value)
+        source = value.source_location
+        proc_string = IO.readlines(source.first)[source.second - 1]
+        proc_string[/->[^}]*} | (lambda|proc).*end/x]
       end
     end
   end

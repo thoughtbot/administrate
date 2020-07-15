@@ -23,6 +23,8 @@ ja:
     form:
       error: エラー
       errors: "%{pluralized_errors}のため%{resource_name}を保存できません。"
+    navigation:
+      back_to_app: アプリに戻る
     search:
       clear: 検索をクリアする
       label: サーチ %{resource}

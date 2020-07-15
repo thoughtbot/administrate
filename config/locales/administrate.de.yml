@@ -23,6 +23,8 @@ de:
     form:
       error: error
       errors: "%{pluralized_errors} haben das Speichern dieses %{resource_name} verhindert:"
+    navigation:
+      back_to_app: Zurück zur App
     search:
       clear: Suche zurücksetzen
       label: "%{resource} durchsuchen"

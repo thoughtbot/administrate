@@ -23,6 +23,8 @@ pl:
     form:
       error: error
       errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    navigation:
+      back_to_app: Powrót do aplikacji
     search:
       clear: Wyczyść wyszukiwanie
       label: Szukanie %{resource}

@@ -7,6 +7,7 @@ feature "form errors" do
     click_on "Create Customer"
 
     expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content "prohibited this Customer from being saved"
   end
 
   scenario "error messages for editing resource" do
