@@ -63,7 +63,10 @@ feature "order index page" do
     create(:payment, order: create(:order))
 
     visit admin_orders_path
-    click_on t("administrate.actions.destroy")
+    
+    accept_confirm do
+      click_on t("administrate.actions.destroy")
+    end
 
     expect(page).to have_flash(
       "Cannot delete record because dependent payments exist", type: :error
