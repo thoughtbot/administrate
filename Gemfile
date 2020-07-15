@@ -29,7 +29,8 @@ group :test do
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
-  gem "poltergeist"
+  gem 'selenium-webdriver'
+  # gem "poltergeist"
   gem "pundit"
   gem "shoulda-matchers"
   gem "timecop"
