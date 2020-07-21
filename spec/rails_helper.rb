@@ -6,7 +6,7 @@ require File.expand_path("../../spec/example_app/config/environment", __FILE__)
 
 require "rspec/rails"
 require "shoulda/matchers"
-require "selenium/webdriver"
+require 'selenium/webdriver'
 
 Dir[Rails.root.join("../../spec/support/**/*.rb")].each { |file| require file }
 
@@ -42,7 +42,6 @@ Capybara.register_driver :headless_chrome do |app|
       args: %w[headless enable-features=NetworkService,NetworkServiceInProcess]
     }
   )
-
   Capybara::Selenium::Driver.new app,
     browser: :chrome,
     desired_capabilities: capabilities

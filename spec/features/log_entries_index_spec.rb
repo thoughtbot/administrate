@@ -53,9 +53,8 @@ feature "log entries index page" do
 
     visit admin_log_entries_path
     accept_confirm do
-      click_on t("administrate.actions.destroy")
+      click_on t('administrate.actions.destroy')
     end
-    
     expect(page).to have_flash(
       t("administrate.controller.destroy.success", resource: "LogEntry"),
     )
