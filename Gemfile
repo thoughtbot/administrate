@@ -30,7 +30,7 @@ group :test do
   gem "formulaic"
   gem "launchy"
   gem "pundit"
-  gem 'selenium-webdriver'
+  gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "timecop"
   gem "webmock"
