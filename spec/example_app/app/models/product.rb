@@ -8,6 +8,7 @@ class Product < ApplicationRecord
   end
 
   has_many :line_items, dependent: :destroy
+  has_many :pages, dependent: :destroy
   has_one :product_meta_tag, dependent: :destroy
 
   validates :description, presence: true

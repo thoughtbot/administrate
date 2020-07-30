@@ -54,6 +54,24 @@ product_attributes.each do |attributes|
   Product.create! attributes.merge(price: 20 + rand(50))
 end
 
+Product.find_each do |p|
+  Page.create!(
+    title: "Something about #{p.name}",
+    body: Faker::Lorem.paragraph,
+    product: p,
+  )
+  Page.create!(
+    title: "The secrets of the game #{p.name}",
+    body: Faker::Lorem.paragraph,
+    product: p,
+  )
+  Page.create!(
+    title: "If you liked #{p.name}, you will love these games",
+    body: Faker::Lorem.paragraph,
+    product: p,
+  )
+end
+
 customers.each do |customer|
   (1..3).to_a.sample.times do
     order = Order.create!(
