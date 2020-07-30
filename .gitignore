@@ -12,7 +12,7 @@
 /spec/example_app/public/system
 /spec/example_app/public/assets
 /tags
-/tmp/*
+/tmp/app
 /spec/example_app/tmp/*
 pkg
 *.ipr

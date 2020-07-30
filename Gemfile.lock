@@ -69,7 +69,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
-    cliver (0.3.2)
+    childprocess (3.0.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.6)
     crack (0.4.3)
@@ -150,10 +150,6 @@ GEM
     parser (2.7.0.4)
       ast (~> 2.4.0)
     pg (1.2.3)
-    poltergeist (1.18.1)
-      capybara (>= 2.1, < 4)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -202,6 +198,7 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.3)
+    rubyzip (2.3.0)
     safe_yaml (1.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -212,6 +209,9 @@ GEM
       sprockets-rails
       tilt
     selectize-rails (0.12.6)
+    selenium-webdriver (3.142.7)
+      childprocess (>= 0.5, < 4.0)
+      rubyzip (>= 1.2.2)
     sentry-raven (3.0.0)
       faraday (>= 1.0)
     shoulda-matchers (4.3.0)
@@ -241,9 +241,6 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    websocket-driver (0.7.0)
-      websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.3.1)
@@ -271,12 +268,12 @@ DEPENDENCIES
   i18n-tasks (= 0.9.31)
   launchy
   pg
-  poltergeist
   pry-rails
   pundit
   rack-timeout
   redcarpet
   rspec-rails
+  selenium-webdriver
   sentry-raven
   shoulda-matchers
   timecop
