@@ -27,7 +27,7 @@ class DocsController < ApplicationController
 
   def render_correct_page
     if !find_special_file.nil?
-      render_page find_special_file[:file]
+      render_page(find_special_file[:file])
     else
       render_page "docs/#{params[:page]}"
     end
