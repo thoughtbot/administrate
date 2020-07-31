@@ -9,7 +9,7 @@ module Administrate
                                            search_term).run
       resources = apply_collection_includes(resources)
       resources = order.apply(resources)
-      resources = resources.page(params[:page]).per(records_per_page)
+      resources = resources.page(params[:_page]).per(records_per_page)
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
       render locals: {
@@ -105,10 +105,7 @@ module Administrate
     end
 
     def sorting_attribute
-      params.fetch(resource_name, {}).fetch(
-        :order,
-        default_sorting_attribute,
-      )
+      sorting_params.fetch(:order) { default_sorting_attribute }
     end
 
     def default_sorting_attribute
@@ -116,14 +113,15 @@ module Administrate
     end
 
     def sorting_direction
-      params.fetch(resource_name, {}).fetch(
-        :direction,
-        default_sorting_direction,
-      )
+      sorting_params.fetch(:direction) { default_sorting_direction }
     end
 
     def default_sorting_direction
       nil
+    end
+
+    def sorting_params
+      Hash.try_convert(request.query_parameters[resource_name]) || {}
     end
 
     def dashboard
