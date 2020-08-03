@@ -1,4 +1,11 @@
 class DocsController < ApplicationController
+  SPECIAL_FILES = [
+    {
+      file: 'CONTRIBUTING',
+      page: 'contributing'
+    }
+  ].freeze
+
   REDCARPET_CONFIG = {
     fenced_code_blocks: true,
     autolink: true,
@@ -9,10 +16,22 @@ class DocsController < ApplicationController
   end
 
   def show
-    render_page "docs/#{params[:page]}"
+    render_correct_page
   end
 
   private
+
+  def find_special_file
+    SPECIAL_FILES.select { |page| page[:page] == params[:page] }.first
+  end
+
+  def render_correct_page
+    if !find_special_file.nil?
+      render_page(find_special_file[:file])
+    else
+      render_page("docs/#{params[:page]}")
+    end
+  end
 
   def render_page(name)
     path = full_page_path(name)

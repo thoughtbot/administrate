@@ -70,11 +70,11 @@ module Administrate
       association_params = collection_names.map do |assoc_name|
         { assoc_name => %i[order direction page per_page] }
       end
-      params.permit(:search, :id, :page, :per_page, association_params)
+      params.permit(:search, :id, :_page, :per_page, association_params)
     end
 
     def clear_search_params
-      params.except(:search, :page).permit(
+      params.except(:search, :_page).permit(
         :per_page, resource_name => %i[order direction]
       )
     end
