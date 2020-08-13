@@ -1,8 +1,9 @@
 module Administrate
   class Order
-    def initialize(attribute = nil, direction = nil)
+    def initialize(attribute = nil, direction = nil, first_sort_direction = nil)
       @attribute = attribute
       @direction = sanitize_direction(direction)
+      @first_sort_direction = first_sort_direction
     end
 
     def apply(relation)
@@ -42,7 +43,7 @@ module Administrate
       if ordered_by?(attr)
         opposite_direction
       else
-        :asc
+        @first_sort_direction ||= :asc
       end
     end
 

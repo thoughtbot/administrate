@@ -155,6 +155,26 @@ describe Administrate::Order do
       end
     end
 
+    context "when given a first sort direction" do
+      it "sorts by desc if specified" do
+        order = Administrate::Order.new(:email, nil, :desc)
+        params = order.order_params_for(:order)
+        expect(params[:direction]).to eq(:desc)
+      end
+      
+      it "sorts by asc if specified" do
+        order = Administrate::Order.new(:email, nil, :asc)
+        params = order.order_params_for(:order)
+        expect(params[:direction]).to eq(:asc)
+      end
+      
+      it "sorts by asc if not specified" do
+        order = Administrate::Order.new(:email)
+        params = order.order_params_for(:order)
+        expect(params[:direction]).to eq(:asc)
+      end
+    end
+
     context "when the data is already ordered by the given attribute" do
       it "returns the attribute" do
         order = Administrate::Order.new(:name)

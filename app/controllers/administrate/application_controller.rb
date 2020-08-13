@@ -101,7 +101,15 @@ module Administrate
     end
 
     def order
-      @order ||= Administrate::Order.new(sorting_attribute, sorting_direction)
+      @order ||= Administrate::Order.new(sorting_attribute, sorting_direction, first_sort_direction)
+    end
+
+    def first_sort_direction
+      sorting_params.fetch(:first_sort_direction) { default_first_sort_direction }
+    end
+
+    def default_first_sort_direction
+      nil
     end
 
     def sorting_attribute
