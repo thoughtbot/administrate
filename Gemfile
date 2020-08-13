@@ -21,7 +21,6 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "i18n-tasks", "0.9.31"
   gem "pry-rails"
-  gem 'pry-byebug'
 end
 
 group :test do
