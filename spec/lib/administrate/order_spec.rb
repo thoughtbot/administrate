@@ -161,19 +161,19 @@ describe Administrate::Order do
         params = order.order_params_for(:order)
         expect(params[:direction]).to eq(:desc)
       end
-      
+
       it "sorts by asc if specified" do
         order = Administrate::Order.new(:email, nil, :asc)
         params = order.order_params_for(:order)
         expect(params[:direction]).to eq(:asc)
       end
-      
+
       it "sorts by asc if not specified" do
         order = Administrate::Order.new(:email)
         params = order.order_params_for(:order)
         expect(params[:direction]).to eq(:asc)
       end
-      
+
       it "sorts by asc if invalid input" do
         order = Administrate::Order.new(:email, nil, :foobar)
         params = order.order_params_for(:order)

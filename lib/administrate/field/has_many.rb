@@ -56,12 +56,13 @@ module Administrate
         Administrate::Order.new(
           params.fetch(:order, sort_by),
           params.fetch(:direction, direction),
-          params.fetch(:first_sort_direction, first_sort_direction)
+          params.fetch(:first_sort_direction, first_sort_direction),
         )
       end
 
       def order
-        @order ||= Administrate::Order.new(sort_by, direction, first_sort_direction)
+        @order ||= Administrate::Order.new(sort_by, direction,
+          first_sort_direction)
       end
 
       private
