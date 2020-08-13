@@ -173,6 +173,12 @@ describe Administrate::Order do
         params = order.order_params_for(:order)
         expect(params[:direction]).to eq(:asc)
       end
+      
+      it "sorts by asc if invalid input" do
+        order = Administrate::Order.new(:email, nil, :foobar)
+        params = order.order_params_for(:order)
+        expect(params[:direction]).to eq(:asc)
+      end
     end
 
     context "when the data is already ordered by the given attribute" do

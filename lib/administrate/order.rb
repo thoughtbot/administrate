@@ -3,7 +3,7 @@ module Administrate
     def initialize(attribute = nil, direction = nil, first_sort_direction = nil)
       @attribute = attribute
       @direction = sanitize_direction(direction)
-      @first_sort_direction = first_sort_direction
+      @first_sort_direction = sanitize_direction(first_sort_direction)
     end
 
     def apply(relation)
