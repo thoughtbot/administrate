@@ -55,7 +55,7 @@ RSpec.configure do |config|
   config.include GeneratorSpecHelpers
 
   config.before(:example, :generator) do
-    destination File.expand_path("../../../tmp", __FILE__)
+    destination File.expand_path("../../tmp/generator_tests_output", __dir__)
     prepare_destination
   end
 end
