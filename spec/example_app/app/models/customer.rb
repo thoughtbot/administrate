@@ -19,4 +19,20 @@ class Customer < ApplicationRecord
   def lifetime_value
     orders.map(&:total_price).reduce(0, :+)
   end
+
+  class Index < Customer
+    self.table_name = "customers_index"
+
+    def readonly?
+      true
+    end
+
+    def to_model
+      becomes(Customer)
+    end
+
+    def lifetime_value
+      read_attribute(:lifetime_value)
+    end
+  end
 end

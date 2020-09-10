@@ -42,7 +42,7 @@ module Administrate
     end
 
     def create
-      resource = resource_class.new(resource_params)
+      resource = resource_class_for_current_action.new(resource_params)
       authorize_resource(resource)
 
       if resource.save
@@ -87,7 +87,7 @@ module Administrate
     end
 
     helper_method :valid_action?
-    def valid_action?(name, resource = resource_class)
+    def valid_action?(name, resource = resource_class_for_action(name))
       !!routes.detect do |controller, action|
         controller == resource.to_s.underscore.pluralize && action == name.to_s
       end
@@ -140,7 +140,15 @@ module Administrate
     end
 
     def scoped_resource
-      resource_class.default_scoped
+      resource_class_for_current_action.default_scoped
+    end
+
+    def resource_class_for_current_action
+      resource_class_for_action(action_name)
+    end
+
+    def resource_class_for_action(_action_name)
+      resource_class
     end
 
     def apply_collection_includes(relation)
@@ -199,7 +207,7 @@ module Administrate
     helper_method :show_action?
 
     def new_resource
-      resource_class.new
+      resource_class_for_current_action.new
     end
     helper_method :new_resource
 

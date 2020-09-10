@@ -271,6 +271,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    scenic (1.5.4)
+      activerecord (>= 4.0.0)
+      railties (>= 4.0.0)
     selectize-rails (0.12.6)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
@@ -339,6 +342,7 @@ DEPENDENCIES
   rack-timeout
   redcarpet
   rspec-rails
+  scenic
   selenium-webdriver
   sentry-raven
   shoulda-matchers

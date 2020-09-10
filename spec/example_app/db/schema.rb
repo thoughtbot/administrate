@@ -122,4 +122,36 @@ ActiveRecord::Schema.define(version: 2020_07_14_081950) do
   add_foreign_key "orders", "customers"
   add_foreign_key "pages", "products"
   add_foreign_key "payments", "orders"
+
+  create_view "customers_index", sql_definition: <<-SQL
+      SELECT customers.id,
+      customers.name,
+      customers.email,
+      customers.created_at,
+      customers.updated_at,
+      customers.email_subscriber,
+      customers.kind,
+      customers.country_code,
+      customers.example_time,
+      customers.password,
+      customers.hidden,
+      COALESCE(sum((line_items.unit_price * (line_items.quantity)::double precision)), (0)::double precision) AS lifetime_value
+     FROM ((customers
+       LEFT JOIN orders ON ((customers.id = orders.customer_id)))
+       LEFT JOIN line_items ON ((orders.id = line_items.order_id)))
+    GROUP BY customers.id;
+  SQL
+  create_view "products_index", sql_definition: <<-SQL
+      SELECT products.id,
+      products.name,
+      products.price,
+      products.description,
+      products.image_url,
+      products.created_at,
+      products.updated_at,
+      products.slug,
+      product_meta_tags.meta_title AS product_meta_title
+     FROM (products
+       LEFT JOIN product_meta_tags ON ((products.id = product_meta_tags.product_id)));
+  SQL
 end

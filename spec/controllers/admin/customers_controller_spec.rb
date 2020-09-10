@@ -6,7 +6,8 @@ describe Admin::CustomersController, type: :controller do
       customer = create(:customer)
 
       locals = capture_view_locals { get :index }
-      expect(locals[:resources]).to eq([customer])
+      listed_records = locals[:resources].map(&:to_model)
+      expect(listed_records).to eq([customer])
     end
 
     it "applies any scope overrides" do
@@ -14,7 +15,8 @@ describe Admin::CustomersController, type: :controller do
       visible_customer = create(:customer, hidden: false)
 
       locals = capture_view_locals { get :index }
-      expect(locals[:resources]).to contain_exactly visible_customer
+      listed_records = locals[:resources].map(&:to_model)
+      expect(listed_records).to contain_exactly visible_customer
     end
 
     it "passes the search term to the view" do

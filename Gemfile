@@ -9,6 +9,7 @@ gem "globalid"
 gem "kaminari-i18n"
 gem "pg"
 gem "redcarpet"
+gem "scenic"
 gem "sentry-raven"
 gem "unicorn"
 

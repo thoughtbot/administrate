@@ -40,4 +40,16 @@ class Product < ApplicationRecord
       errors.add :name, "must have letters or numbers for the URL"
     end
   end
+
+  class Index < Product
+    self.table_name = "products_index"
+
+    def readonly?
+      true
+    end
+
+    def to_model
+      becomes(Product)
+    end
+  end
 end

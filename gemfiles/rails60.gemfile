@@ -12,6 +12,7 @@ gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
 gem "rails", "~> 6.0.3.4"
+gem "scenic"
 
 group :development, :test do
   gem "appraisal"
