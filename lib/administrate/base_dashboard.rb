@@ -91,7 +91,7 @@ module Administrate
 
     def attribute_includes(attributes)
       attributes.map do |key|
-        field = self.class::ATTRIBUTE_TYPES[key]
+        field = self.class::ATTRIBUTE_TYPES.fetch(key)
 
         key if field.associative?
       end.compact
