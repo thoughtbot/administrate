@@ -19,13 +19,21 @@ describe Administrate::Field::HasMany do
   describe "#associated_collection" do
     it "returns an index page for the dashboard of the associated attribute" do
       begin
-        WidgetDashboard = Class.new
+        WidgetDashboard = Class.new do
+          def collection_attributes
+            %i[coolness shininess]
+          end
+        end
+
         widgets = []
         field = Administrate::Field::HasMany.new(:widgets, widgets, :show)
+        order = instance_double(Administrate::Order)
+        allow(order).to receive(:ordered_by?).with(:coolness).and_return(true)
 
-        page = field.associated_collection
+        page = field.associated_collection(order)
 
-        expect(page).to be_instance_of(Administrate::Page::Collection)
+        expect(page.attribute_names).to eq(%i[coolness shininess])
+        expect(page.ordered_by?(:coolness)).to eq true
       ensure
         remove_constants :WidgetDashboard
       end
