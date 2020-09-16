@@ -3,6 +3,13 @@ require_relative "base"
 module Administrate
   module Page
     class Collection < Page::Base
+      def initialize(dashboard, resources, options = {})
+        super(dashboard, options)
+        @resources = resources
+      end
+
+      attr_reader :resources
+
       def attribute_names
         dashboard.collection_attributes
       end

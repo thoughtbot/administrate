@@ -30,7 +30,7 @@ describe Administrate::Field::HasMany do
         order = instance_double(Administrate::Order)
         allow(order).to receive(:ordered_by?).with(:coolness).and_return(true)
 
-        page = field.associated_collection(order)
+        page = field.associated_collection(widgets, order)
 
         expect(page.attribute_names).to eq(%i[coolness shininess])
         expect(page.ordered_by?(:coolness)).to eq true
@@ -50,7 +50,7 @@ describe Administrate::Field::HasMany do
         association = Administrate::Field::HasMany.
           with_options(class_name: "Foo")
         field = association.new(:customers, [], :show)
-        collection = field.associated_collection
+        collection = field.associated_collection(double)
         attributes = collection.attribute_names
 
         expect(dashboard_double).to have_received(:collection_attributes)

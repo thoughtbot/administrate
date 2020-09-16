@@ -6,7 +6,7 @@ describe Admin::CustomersController, type: :controller do
       customer = create(:customer)
 
       locals = capture_view_locals { get :index }
-      expect(locals[:resources]).to eq([customer])
+      expect(locals[:page].resources).to eq([customer])
     end
 
     it "applies any scope overrides" do
@@ -14,7 +14,7 @@ describe Admin::CustomersController, type: :controller do
       visible_customer = create(:customer, hidden: false)
 
       locals = capture_view_locals { get :index }
-      expect(locals[:resources]).to contain_exactly visible_customer
+      expect(locals[:page].resources).to contain_exactly visible_customer
     end
 
     it "passes the search term to the view" do
@@ -44,7 +44,7 @@ describe Admin::CustomersController, type: :controller do
       customers = [customer1, customer2]
 
       locals = capture_view_locals { get :index }
-      expect(locals[:resources].map(&:id)).to eq customers.map(&:id).sort
+      expect(locals[:page].resources.map(&:id)).to eq customers.map(&:id).sort
     end
 
     context "with alternate sorting attributes" do
@@ -63,7 +63,7 @@ describe Admin::CustomersController, type: :controller do
         sorted_customer_names = customers.map(&:name).sort.reverse
 
         locals = capture_view_locals { get :index }
-        expect(locals[:resources].map(&:name)).to eq sorted_customer_names
+        expect(locals[:page].resources.map(&:name)).to eq sorted_customer_names
       end
     end
   end

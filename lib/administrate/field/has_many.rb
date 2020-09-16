@@ -11,8 +11,8 @@ module Administrate
         { "#{attr.to_s.singularize}_ids".to_sym => [] }
       end
 
-      def associated_collection(order = self.order)
-        Administrate::Page::Collection.new(associated_dashboard, order: order)
+      def associated_collection(resources, order = self.order)
+        Administrate::Page::Collection.new(associated_dashboard, resources, order: order)
       end
 
       def attribute_key
