@@ -65,4 +65,11 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   # def display_resource(<%= file_name %>)
   #   "<%= class_name %> ##{<%= file_name %>.id}"
   # end
+
+  # Implement this method if you want to use Decorator pattern.
+  # Fields will access the returned object instead of the resource.
+  #
+  # def decorate_resource(<%= file_name %>)
+  #   <%= file_name %>
+  # end
 end

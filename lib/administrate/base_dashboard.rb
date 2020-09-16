@@ -72,6 +72,14 @@ module Administrate
       "#{resource.class} ##{resource.id}"
     end
 
+    def decorate_resource(resource)
+      resource
+    end
+
+    def decorate_resource_collection(resources)
+      resources.map { |resource| decorate_resource(resource) }
+    end
+
     def collection_includes
       attribute_includes(collection_attributes)
     end

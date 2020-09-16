@@ -8,7 +8,9 @@ module Administrate
         @resource = resource
       end
 
-      attr_reader :resource
+      def resource
+        dashboard.decorate_resource(@resource)
+      end
 
       def attributes
         dashboard.form_attributes.map do |attribute|
@@ -17,7 +19,7 @@ module Administrate
       end
 
       def page_title
-        dashboard.display_resource(resource)
+        dashboard.display_resource(@resource)
       end
 
       private

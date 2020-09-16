@@ -15,7 +15,7 @@ things won't break if the app adds new types of association fields
     table_title: field.name,
   ) %>
   <% if field.more_than_limit? %>
-    <%= paginate associated_collection.resources, param_name: "#{field.name}[page]" %>
+    <%= paginate associated_collection.resources_for_pagination, param_name: "#{field.name}[page]" %>
   <% end %>
 
 <% else %>

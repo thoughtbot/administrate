@@ -2,12 +2,13 @@ require "rails_helper"
 
 feature "order index page" do
   scenario "user views order attributes" do
-    order = create(:order)
+    order = create(:order, address_state: "AL", address_city: "Montgomery")
 
     visit admin_orders_path
 
     expect(page).to have_header("Orders")
     expect(page).to have_content(order.id)
+    expect(page).to have_content("Montgomery, Alabama")
   end
 
   scenario "user clicks through to customer show page" do

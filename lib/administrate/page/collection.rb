@@ -8,8 +8,6 @@ module Administrate
         @resources = resources
       end
 
-      attr_reader :resources
-
       def attribute_names
         dashboard.collection_attributes
       end
@@ -32,6 +30,14 @@ module Administrate
 
       def order_params_for(attr, key: resource_name)
         { key => order.order_params_for(attr) }
+      end
+
+      def resources
+        dashboard.decorate_resource_collection(@resources)
+      end
+
+      def resources_for_pagination
+        @resources
       end
 
       private

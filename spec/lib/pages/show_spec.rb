@@ -19,4 +19,17 @@ describe Administrate::Page::Show do
       expect(page.attributes.first.resource.name).to eq("Worf")
     end
   end
+
+  describe "#resource" do
+    context "when dashboard of associated resource has decorator method" do
+      it "returns decorated resource" do
+        order = FactoryBot.create(:order,
+                                  address_city: "San Francisco",
+                                  address_state: "CA")
+        page = described_class.new(OrderDashboard.new, order)
+
+        expect(page.resource.address).to eq("San Francisco, California")
+      end
+    end
+  end
 end
