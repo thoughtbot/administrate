@@ -254,7 +254,6 @@ DEPENDENCIES
   administrate-field-image
   ammeter
   appraisal
-  autoprefixer-rails
   awesome_print
   bundler-audit
   byebug
