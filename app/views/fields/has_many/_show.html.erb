@@ -25,7 +25,7 @@ from the associated resource class's dashboard.
     "collection",
     collection_presenter: field.associated_collection(order),
     collection_field_name: field.name,
-    page: page,
+    collection_names: page.item_includes,
     resources: field.resources(page_number, order),
     table_title: field.name,
   ) %>

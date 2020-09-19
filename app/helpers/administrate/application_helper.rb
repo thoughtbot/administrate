@@ -65,8 +65,7 @@ module Administrate
       )
     end
 
-    def sanitized_order_params(page, current_field_name)
-      collection_names = page.item_includes + [current_field_name]
+    def sanitized_order_params(collection_names)
       association_params = collection_names.map do |assoc_name|
         { assoc_name => %i[order direction page per_page] }
       end
