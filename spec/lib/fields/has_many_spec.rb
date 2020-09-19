@@ -23,14 +23,16 @@ describe Administrate::Field::HasMany do
           def collection_attributes
             %i[coolness shininess]
           end
+
+          def collection_includes
+            []
+          end
         end
 
-        widgets = []
-        field = Administrate::Field::HasMany.new(:widgets, widgets, :show)
-        order = instance_double(Administrate::Order)
-        allow(order).to receive(:ordered_by?).with(:coolness).and_return(true)
+        field = Administrate::Field::HasMany.new(:widgets, Product.none, :show)
+        order = Administrate::Order.new("coolness", "asc")
 
-        page = field.associated_collection(widgets, order)
+        page = field.associated_collection(1, order)
 
         expect(page.attribute_names).to eq(%i[coolness shininess])
         expect(page.ordered_by?(:coolness)).to eq true
@@ -44,13 +46,16 @@ describe Administrate::Field::HasMany do
     it "determines what dashboard is used to present the association" do
       begin
         FooDashboard = Class.new
-        dashboard_double = double(collection_attributes: [])
+        dashboard_double = double(
+          collection_attributes: [],
+          collection_includes: [],
+        )
         allow(FooDashboard).to receive(:new).and_return(dashboard_double)
 
         association = Administrate::Field::HasMany.
           with_options(class_name: "Foo")
-        field = association.new(:customers, [], :show)
-        collection = field.associated_collection(double)
+        field = association.new(:customers, Customer.none, :show)
+        collection = field.associated_collection
         attributes = collection.attribute_names
 
         expect(dashboard_double).to have_received(:collection_attributes)
@@ -123,7 +128,7 @@ describe Administrate::Field::HasMany do
     end
   end
 
-  describe "#resources" do
+  describe "#associated_collection.resources" do
     it "limits the number of records shown" do
       limit = Administrate::Field::HasMany::DEFAULT_LIMIT
       customer = FactoryBot.create(:customer, :with_orders, order_count: 10)
@@ -132,7 +137,7 @@ describe Administrate::Field::HasMany do
       association = Administrate::Field::HasMany
       field = association.new(:orders, resources, :show)
 
-      expect(field.resources.size).to eq(limit)
+      expect(field.associated_collection.resources.size).to eq(limit)
     end
 
     context "when there are no records" do
@@ -142,7 +147,7 @@ describe Administrate::Field::HasMany do
         association = Administrate::Field::HasMany
         field = association.new(:customers, resources, :show)
 
-        expect(field.resources).to eq([])
+        expect(field.associated_collection.resources).to eq([])
       end
     end
 
@@ -154,7 +159,7 @@ describe Administrate::Field::HasMany do
         association = Administrate::Field::HasMany.with_options(limit: 1)
         field = association.new(:orders, resources, :show)
 
-        expect(field.resources).to be_one
+        expect(field.associated_collection.resources).to be_one
       end
     end
 
@@ -170,8 +175,9 @@ describe Administrate::Field::HasMany do
           b.address_line_two <=> a.address_line_two
         end
 
-        expect(field.resources.map(&:id)).to eq correct_order
-        expect(field.resources.map(&:id)).to_not eq reversed_order.map(&:id)
+        resources = field.associated_collection.resources
+        expect(resources.map(&:id)).to eq correct_order
+        expect(resources.map(&:id)).to_not eq reversed_order.map(&:id)
       end
     end
 
@@ -187,8 +193,9 @@ describe Administrate::Field::HasMany do
           b.address_line_two <=> a.address_line_two
         end
 
-        expect(field.resources.map(&:id)).to eq correct_order.map(&:id)
-        expect(field.resources.map(&:id)).to_not eq reversed_order
+        resources = field.associated_collection.resources
+        expect(resources.map(&:id)).to eq correct_order.map(&:id)
+        expect(resources.map(&:id)).to_not eq reversed_order
       end
     end
   end

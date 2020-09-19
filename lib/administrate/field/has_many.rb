@@ -11,8 +11,12 @@ module Administrate
         { "#{attr.to_s.singularize}_ids".to_sym => [] }
       end
 
-      def associated_collection(resources, order = self.order)
-        Administrate::Page::Collection.new(associated_dashboard, resources, order: order)
+      def associated_collection(page = 1, order = self.order)
+        Administrate::Page::Collection.new(
+          associated_dashboard,
+          resources(page, order),
+          order: order,
+        )
       end
 
       def attribute_key
@@ -39,11 +43,6 @@ module Administrate
         self.class.permitted_attribute(attribute)
       end
 
-      def resources(page = 1, order = self.order)
-        resources = order.apply(data).page(page).per(limit)
-        includes.any? ? resources.includes(*includes) : resources
-      end
-
       def more_than_limit?
         data.count(:all) > limit
       end
@@ -64,6 +63,11 @@ module Administrate
       end
 
       private
+
+      def resources(page, order)
+        resources = order.apply(data).page(page).per(limit)
+        includes.any? ? resources.includes(*includes) : resources
+      end
 
       def includes
         associated_dashboard.collection_includes

@@ -3,19 +3,19 @@ Just a copy of the HasMany _show partial, here to test that
 things won't break if the app adds new types of association fields
 %>
 
-<% if field.resources.any? %>
+<% if field.data.any? %>
   <% order = field.order_from_params(params.fetch(field.name, {})) %>
   <% page_number = params.fetch(field.name, {}).fetch(:page, nil) %>
-  <% resources = field.resources(page_number, order) %>
+  <% associated_collection = field.associated_collection(page_number, order)%>
   <%= render(
     "collection",
-    collection_presenter: field.associated_collection(resources, order),
+    collection_presenter: associated_collection,
     collection_field_name: field.name,
     collection_names: page.item_includes,
     table_title: field.name,
   ) %>
   <% if field.more_than_limit? %>
-    <%= paginate resources, param_name: "#{field.name}[page]" %>
+    <%= paginate associated_collection.resources, param_name: "#{field.name}[page]" %>
   <% end %>
 
 <% else %>
