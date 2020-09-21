@@ -47,10 +47,6 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec-rails (>= 2.2)
-    appraisal (2.3.0)
-      bundler
-      rake
-      thor (>= 0.14.0)
     ast (2.4.0)
     awesome_print (1.8.0)
     builder (3.2.4)
@@ -250,7 +246,6 @@ DEPENDENCIES
   administrate!
   administrate-field-image
   ammeter
-  appraisal
   awesome_print
   bundler-audit
   byebug
