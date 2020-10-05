@@ -9,12 +9,29 @@ describe Administrate::Field::HasOne do
   describe "#nested_form" do
     it "returns a form" do
       product_meta_tag = double
-      field = Administrate::Field::HasOne.new(:product_meta_tag,
-        product_meta_tag, :show)
-
+      field = Administrate::Field::HasOne.new(
+        :product_meta_tag,
+        product_meta_tag,
+        :show,
+      )
       form = field.nested_form
 
       expect(form).to be_present
+    end
+  end
+
+  describe "#nested_show" do
+    it "returns a Show" do
+      product_meta_tag = double
+      field = Administrate::Field::HasOne.new(
+        :product_meta_tag,
+        product_meta_tag,
+        :show,
+      )
+
+      show = field.nested_show
+
+      expect(show).to be_a(Administrate::Page::Show)
     end
   end
 
@@ -36,9 +53,11 @@ describe Administrate::Field::HasOne do
     it "returns a partial based on the page being rendered" do
       page = :show
       product_meta_tag = double
-      field = Administrate::Field::HasOne.new(:product_meta_tag,
-        product_meta_tag, page)
-
+      field = Administrate::Field::HasOne.new(
+        :product_meta_tag,
+        product_meta_tag,
+        :show,
+      )
       path = field.to_partial_path
 
       expect(path).to eq("/fields/has_one/#{page}")
