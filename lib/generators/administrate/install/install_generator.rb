@@ -12,7 +12,7 @@ module Administrate
 
       def model_check
         if database_models.none?
-          puts "WARNING: database needs models for administrate"
+          puts "ERROR: Unable to generate a dashboard without models."
         end
       end
 
