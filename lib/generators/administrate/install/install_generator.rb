@@ -10,6 +10,12 @@ module Administrate
 
       class_option :namespace, type: :string, default: "admin"
 
+      def model_check
+        if database_models.none?
+          puts "WARNING: database needs models for administrate"
+        end
+      end
+
       def run_routes_generator
         if dashboard_resources.none?
           call_generator("administrate:routes", "--namespace", namespace)
@@ -43,6 +49,10 @@ module Administrate
 
       def dashboard_resources
         Administrate::Namespace.new(namespace).resources
+      end
+
+      def database_models
+        ActiveRecord::Base.descendants.reject(&:abstract_class?)
       end
     end
   end
