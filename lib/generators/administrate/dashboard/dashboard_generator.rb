@@ -13,6 +13,7 @@ module Administrate
         time: "Field::Time",
         text: "Field::Text",
         string: "Field::String",
+        uuid: "Field::String",
       }
 
       ATTRIBUTE_OPTIONS_MAPPING = {
