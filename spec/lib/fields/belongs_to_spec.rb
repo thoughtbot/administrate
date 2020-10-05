@@ -33,9 +33,35 @@ describe Administrate::Field::BelongsTo do
         candidates = field.associated_resource_options
 
         expect(Foo).to have_received(:all)
-        expect(candidates).to eq([nil])
+        expect(candidates).to eq([])
       ensure
         remove_constants :Foo
+      end
+    end
+  end
+
+  describe "include_blank option" do
+    context "default value as true" do
+      it "determines if choices has blank option or not" do
+        association = Administrate::Field::BelongsTo
+        field = association.new(:customers, [], :edit)
+        candidates = field.associated_resource_options
+
+        expect(field.include_blank_option). to eq(true)
+        expect(candidates).to eq([])
+      end
+    end
+
+    context "set value as false" do
+      it "determines if choices has blank option or not" do
+        association = Administrate::Field::BelongsTo.with_options(
+          include_blank: false,
+        )
+        field = association.new(:customers, [], :edit)
+        candidates = field.associated_resource_options
+
+        expect(field.include_blank_option). to eq(false)
+        expect(candidates).to eq([])
       end
     end
   end

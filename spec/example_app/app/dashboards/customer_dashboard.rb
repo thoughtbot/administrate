@@ -18,6 +18,7 @@ class CustomerDashboard < Administrate::BaseDashboard
       class_name: "Country",
       searchable: true,
       searchable_fields: ["name"],
+      include_blank: true,
     ),
     password: Field::Password,
   }

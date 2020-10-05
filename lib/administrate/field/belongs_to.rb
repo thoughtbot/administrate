@@ -12,13 +12,17 @@ module Administrate
       end
 
       def associated_resource_options
-        [nil] + candidate_resources.map do |resource|
+        candidate_resources.map do |resource|
           [display_candidate_resource(resource), resource.send(primary_key)]
         end
       end
 
       def selected_option
         data && data.send(primary_key)
+      end
+
+      def include_blank_option
+        options.fetch(:include_blank, true)
       end
 
       private
