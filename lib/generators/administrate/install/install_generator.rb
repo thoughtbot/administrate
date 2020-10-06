@@ -1,3 +1,9 @@
+if defined?(Zeitwerk)
+  Zeitwerk::Loader.eager_load_all
+else
+  Rails.application.eager_load!
+end
+
 require "rails/generators/base"
 require "administrate/generator_helpers"
 require "administrate/namespace"
