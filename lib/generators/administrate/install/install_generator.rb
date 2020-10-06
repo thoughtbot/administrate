@@ -13,8 +13,9 @@ module Administrate
       def model_check
         if database_models.none?
           puts "ERROR: Add models before installing Administrate."
+          exit
         end
-        exit
+        
       end
 
       def run_routes_generator
