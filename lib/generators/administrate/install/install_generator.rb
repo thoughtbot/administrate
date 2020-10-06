@@ -12,8 +12,9 @@ module Administrate
 
       def model_check
         if database_models.none?
-          puts "ERROR: Unable to generate a dashboard without models."
+          puts "ERROR: Add models before installing Administrate."
         end
+        exit
       end
 
       def run_routes_generator
