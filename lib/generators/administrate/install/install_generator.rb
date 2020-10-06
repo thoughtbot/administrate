@@ -21,7 +21,7 @@ module Administrate
       end
 
       private
-      
+
       def run_routes_generator
         if dashboard_resources.none?
           call_generator("administrate:routes", "--namespace", namespace)
