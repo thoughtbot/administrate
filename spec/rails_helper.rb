@@ -6,7 +6,6 @@ require File.expand_path("../../spec/example_app/config/environment", __FILE__)
 
 require "rspec/rails"
 require "shoulda/matchers"
-require "selenium/webdriver"
 
 Dir[Rails.root.join("../../spec/support/**/*.rb")].each { |file| require file }
 
@@ -31,22 +30,3 @@ RSpec.configure do |config|
 end
 
 ActiveRecord::Migration.maintain_test_schema!
-
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
-
-Capybara.register_driver :headless_chrome do |app|
-  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: {
-      args: %w[headless enable-features=NetworkService,NetworkServiceInProcess]
-    }
-  )
-  Capybara::Selenium::Driver.new app,
-    browser: :chrome,
-    desired_capabilities: capabilities
-end
-
-Capybara.javascript_driver = :selenium_chrome_headless
-
-Capybara.server = :webrick
