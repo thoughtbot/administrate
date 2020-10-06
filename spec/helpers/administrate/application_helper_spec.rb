@@ -8,6 +8,12 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(displayed).to eq("Customers")
     end
 
+    it "can return singular of the model name" do
+      displayed = display_resource_name(:customer, singular: true)
+
+      expect(displayed).to eq("Customer")
+    end
+
     it "handles string arguments" do
       displayed = display_resource_name("customer")
 
@@ -27,8 +33,8 @@ RSpec.describe Administrate::ApplicationHelper do
     end
 
     context "when translations are defined" do
-      it "uses the plural of the defined translation" do
-        translations = {
+      let(:translations) do
+        {
           activerecord: {
             models: {
               customer: {
@@ -38,11 +44,21 @@ RSpec.describe Administrate::ApplicationHelper do
             },
           },
         }
+      end
 
+      it "uses the plural of the defined translation as default" do
         with_translations(:en, translations) do
           displayed = display_resource_name(:customer)
 
           expect(displayed).to eq("Users")
+        end
+      end
+
+      it "uses the singular of the defined translation" do
+        with_translations(:en, translations) do
+          displayed = display_resource_name(:customer, singular: true)
+
+          expect(displayed).to eq("User")
         end
       end
     end
