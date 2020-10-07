@@ -24,9 +24,9 @@ module Administrate
       def warn_about_invalid_models
         invalid_dashboard_models.each do |model|
           puts "WARNING: Unable to generate a dashboard for #{model}."
-          if namespaced_models.include?(model)
-            puts "       - Administrate does not yet support namespaced models."
-          end
+          # if namespace_dir.include?(model)
+          #   puts "       - Administrate does not yet support namespaced models."
+          # end
           if models_without_tables.include?(model)
             puts "       - It is not connected to a database table."
             puts "         Make sure your database migrations are up to date."
@@ -59,16 +59,36 @@ module Administrate
       end
 
       def invalid_dashboard_models
-        (models_without_tables + namespaced_models + unnamed_constants).uniq
+        (models_without_tables + unnamed_constants).uniq
       end
 
       def models_without_tables
         database_models.reject(&:table_exists?)
       end
 
-      def namespaced_models
-        database_models.select { |model| model.to_s.include?("::") }
+      def generate_resource_routes(resource)
+        if resource.include?("/")
+          parts = resource.split("/")
+          generate_nested_resource_routes(parts, 0)
+        else
+          "resources :#{resource}"
+        end
       end
+
+      def generate_nested_resource_routes(items, index)
+        if index == items.size - 1
+          "resources :#{items[index]}"
+        else
+          leading_indentation = " " * ((index + 2) * 2)
+          end_indentation = " " * ((index + 1) * 2)
+          resource_routes = generate_nested_resource_routes(items, index + 1)
+          "namespace :#{items[index]} do\n#{leading_indentation}#{resource_routes}\n#{end_indentation}end"
+        end
+      end
+
+      # def namespaced_models
+      #   database_models.select { |model| model.to_s.include?("::") }
+      # end
 
       def unnamed_constants
         ActiveRecord::Base.descendants.reject { |d| d.name == d.to_s }
