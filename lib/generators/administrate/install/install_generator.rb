@@ -18,15 +18,9 @@ module Administrate
 
       def model_check
         if database_models.none?
-          puts "ERROR: Add models before installing Administrate."
-        else
-          run_routes_generator
-          create_dashboard_controller
-          run_dashboard_generators
+          raise Error, "Add models before installing Administrate."
         end
       end
-
-      private
 
       def run_routes_generator
         if dashboard_resources.none?
@@ -48,6 +42,9 @@ module Administrate
             "--namespace", namespace
         end
       end
+ 
+      private
+
 
       def namespace
         options[:namespace]
