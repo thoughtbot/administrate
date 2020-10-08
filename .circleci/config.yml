@@ -7,7 +7,7 @@ commands:
       - checkout
 
       # Install bundler
-      - run: gem install bundler:1.17.3
+      - run: gem install bundler:2.1.4
 
       # Restore Cached Dependencies
       - restore_cache:
@@ -53,6 +53,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
+          BUNDLER_VERSION: 2.1.4
       - image: postgres:10.1-alpine
         environment:
           POSTGRES_USER: administrate
