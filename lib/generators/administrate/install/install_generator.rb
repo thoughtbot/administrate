@@ -17,6 +17,7 @@ module Administrate
       class_option :namespace, type: :string, default: "admin"
 
       def model_check
+        puts database_models, database_models.none?
         if database_models.none?
           raise Error, "Add models before installing Administrate."
         end
