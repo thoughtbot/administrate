@@ -35,16 +35,16 @@ module Administrate
         template(
           "dashboard.rb.erb",
           Rails.root.join(
-            "app/dashboards#{class_path_filename_fragment}",
-            "#{file_name}_dashboard.rb",
+            "app/dashboards/#{class_path_filename_fragment}",
+            "/#{file_name}_dashboard.rb",
           ),
         )
       end
 
       def create_resource_controller
         destination = Rails.root.join(
-          "app/controllers/#{namespace}#{class_path_filename_fragment}",
-          "#{file_name.pluralize}_controller.rb",
+          "app/controllers/#{namespace}/#{class_path_filename_fragment}",
+          "/#{file_name.pluralize}_controller.rb",
         )
 
         template("controller.rb.erb", destination)
@@ -128,7 +128,7 @@ module Administrate
 
       def class_path_filename_fragment
         if @class_path.present?
-          "/#{@class_path.join('/')}"
+          "#{@class_path.join('/')}"
         end
       end
 
