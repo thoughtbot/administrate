@@ -62,7 +62,7 @@ module Administrate
       end
 
       def database_models
-        ActiveRecord::Base.descendants.reject(&:abstract_class?)
+        ActiveRecord::Base.descendants.reject(&:abstract_class?).reject { |d| d.name == d.to_s }
       end
 
       def unnamed_constants
