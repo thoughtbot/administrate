@@ -18,6 +18,8 @@ module Administrate
 
       def model_check
         puts database_models, database_models.none?
+        puts models_without_tables
+        puts unnamed_constants, "w/o table + unnamed"
         if database_models.none?
           raise Error, "Add models before installing Administrate."
         end
@@ -62,6 +64,15 @@ module Administrate
       def database_models
         ActiveRecord::Base.descendants.reject(&:abstract_class?)
       end
+
+      def unnamed_constants
+        ActiveRecord::Base.descendants.reject { |d| d.name == d.to_s }
+      end
+
+      def models_without_tables
+        database_models.reject(&:table_exists?)
+      end
+
     end
   end
 end
