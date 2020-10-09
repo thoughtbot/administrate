@@ -18,8 +18,8 @@ module Administrate
 
       def model_check
         puts database_models, database_models.none?
-        puts models_without_tables
-        puts unnamed_constants, "w/o table + unnamed"
+        puts models_without_tables, "w/o"
+        puts unnamed_constants, "unnamed"
         if database_models.none?
           raise Error, "Add models before installing Administrate."
         end
