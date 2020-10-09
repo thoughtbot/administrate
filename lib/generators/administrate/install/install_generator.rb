@@ -17,11 +17,8 @@ module Administrate
       class_option :namespace, type: :string, default: "admin"
 
       def model_check
-        puts database_models, database_models.none?
-        puts models_without_tables, "w/o"
-        puts unnamed_constants, "unnamed"
         if database_models.none?
-          raise Error, "Add models before installing Administrate."
+          raise IOError, "Add models before installing Administrate."
         end
       end
 
@@ -62,17 +59,9 @@ module Administrate
       end
 
       def database_models
-        ActiveRecord::Base.descendants.reject(&:abstract_class?).reject { |d| d.name == d.to_s }
+        all_models = ActiveRecord::Base.descendants
+        all_models.reject(&:abstract_class?).reject { |d| d.name == d.to_s }
       end
-
-      def unnamed_constants
-        ActiveRecord::Base.descendants.reject { |d| d.name == d.to_s }
-      end
-
-      def models_without_tables
-        database_models.reject(&:table_exists?)
-      end
-
     end
   end
 end
