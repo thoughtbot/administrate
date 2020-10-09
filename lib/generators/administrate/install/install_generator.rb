@@ -46,7 +46,6 @@ module Administrate
  
       private
 
-
       def namespace
         options[:namespace]
       end
@@ -64,8 +63,8 @@ module Administrate
         all_models.reject(&:abstract_class?).reject { |d| d.name == d.to_s }
       end
 
-      def say_status(status, color, message = relative_destination) # :doc:
-        base.shell.say_status(status, message, color) if config[:verbose]
+      def say_status(status, color, message) # :doc:
+        base.shell.say_status(status, message, color)
       end
     end
   end
