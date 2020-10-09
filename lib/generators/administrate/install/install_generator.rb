@@ -18,7 +18,7 @@ module Administrate
 
       def model_check
         if database_models.none?
-          say_status :conflict, :red
+          say_status(:conflict, :red, "Add models before installing Administrate.")
           raise Error, "Add models before installing Administrate."
         end
       end
