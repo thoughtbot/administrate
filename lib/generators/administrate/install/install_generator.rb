@@ -18,7 +18,8 @@ module Administrate
 
       def model_check
         if database_models.none?
-          raise IOError, "Add models before installing Administrate."
+          say_status :conflict, :red
+          raise Error, "Add models before installing Administrate."
         end
       end
 
@@ -61,6 +62,10 @@ module Administrate
       def database_models
         all_models = ActiveRecord::Base.descendants
         all_models.reject(&:abstract_class?).reject { |d| d.name == d.to_s }
+      end
+
+      def say_status(status, color, message = relative_destination) # :doc:
+        base.shell.say_status(status, message, color) if config[:verbose]
       end
     end
   end
