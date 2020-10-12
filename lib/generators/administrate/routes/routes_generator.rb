@@ -82,7 +82,7 @@ module Administrate
           leading_indentation = " " * ((index + 2) * 2)
           end_indentation = " " * ((index + 1) * 2)
           resource_routes = generate_nested_resource_routes(items, index + 1)
-          "namespace :#{items[index]} do\n#{leading_indentation}#{resource_routes}\n#{end_indentation}end"
+          "namespace :#{items[index]} do\n#{leading_indentation}#{resource_routes}\n#{end_indentation}end\n"
         end
       end
 
