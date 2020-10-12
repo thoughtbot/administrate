@@ -12,6 +12,7 @@ module Administrate
   module Generators
     class RoutesGenerator < Rails::Generators::Base
       include Administrate::GeneratorHelpers
+      DEFAULT_INDENT = 2
       source_root File.expand_path("../templates", __FILE__)
       class_option :namespace, type: :string, default: "admin"
 
@@ -24,9 +25,6 @@ module Administrate
       def warn_about_invalid_models
         invalid_dashboard_models.each do |model|
           puts "WARNING: Unable to generate a dashboard for #{model}."
-          # if namespace_dir.include?(model)
-          #   puts "       - Administrate does not yet support namespaced models."
-          # end
           if models_without_tables.include?(model)
             puts "       - It is not connected to a database table."
             puts "         Make sure your database migrations are up to date."
@@ -79,16 +77,13 @@ module Administrate
         if index == items.size - 1
           "resources :#{items[index]}"
         else
-          leading_indentation = " " * ((index + 2) * 2)
-          end_indentation = " " * ((index + 1) * 2)
-          resource_routes = generate_nested_resource_routes(items, index + 1)
-          "namespace :#{items[index]} do\n#{leading_indentation}#{resource_routes}\n#{end_indentation}end\n"
+          resource_indent = " " * ((index + 2) * DEFAULT_INDENT)
+          resource = generate_nested_resource_routes(items, index + 1)
+          indent_resource =  "#{resource_indent}#{resource}"
+          indent_end = " " * ((index + 1) * DEFAULT_INDENT) + "end"
+          "namespace :#{items[index]} do\n#{indent_resource}\n#{indent_end}"
         end
       end
-
-      # def namespaced_models
-      #   database_models.select { |model| model.to_s.include?("::") }
-      # end
 
       def unnamed_constants
         ActiveRecord::Base.descendants.reject { |d| d.name == d.to_s }
