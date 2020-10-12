@@ -1,3 +1,5 @@
+require "find"
+
 module Administrate
   module GeneratorHelpers
     def call_generator(generator, *args)
