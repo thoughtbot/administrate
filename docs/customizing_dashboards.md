@@ -158,6 +158,13 @@ more results than expected. Default is `false`.
 
 `:suffix` - Suffixes the number with a string. Defaults to `""`.
 
+`:format` - Specify a hash which defines a formatter. This uses ActiveSupport
+and works by  by passing a hash that includes the formatter (`formatter`) and
+the options for the formatter (`formatter_options`). Defaults to the locale's
+delimiter when `formatter_options` does not include a `delimiter`. See the
+example below. Note that currently only
+`ActiveSupport::NumberHelper.number_to_delimited` is supported.
+
 For example, you might use the following to display U.S. currency:
 
 ```ruby
@@ -165,15 +172,25 @@ For example, you might use the following to display U.S. currency:
     prefix: "$",
     decimals: 2,
   )
+
+  # "$5.99"
 ```
 
-Or, to display a distance in kilometers:
+Or, to display a distance in kilometers, using a space as the delimiter:
 
 ```ruby
-  unit_price: Field::Number.with_options(
+  distance: Field::Number.with_options(
     suffix: " km",
     decimals: 2,
+    format: { 
+        formatter: :number_to_delimited,
+        formatter_options: { 
+            delimiter: ' ',
+        },
+    },
   )
+
+  # "2 000.00 km"
 ```
 
 **Field::Polymorphic**
