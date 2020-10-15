@@ -17,7 +17,10 @@ module Administrate
       class_option :namespace, type: :string, default: "admin"
 
       def model_check
-        puts database_models
+        puts database_models, "used"
+        puts ActiveRecord::Base.descendants, "base".reject(&:abstract_class?)
+        puts ActiveRecord::Base.descendants.reject(&:abstract_class?), "reject abstract"
+
         if database_models.none?
           # say_status(:conflict, :red, "Add models before installing Administrate.")
           raise Error, "Add models before installing Administrate."
