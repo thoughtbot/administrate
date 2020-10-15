@@ -13,6 +13,8 @@ module Administrate
     class RoutesGenerator < Rails::Generators::Base
       include Administrate::GeneratorHelpers
       DEFAULT_INDENT = 2
+      ONE = 1
+      Two = 2
       source_root File.expand_path("../templates", __FILE__)
       class_option :namespace, type: :string, default: "admin"
 
@@ -67,20 +69,20 @@ module Administrate
       def generate_resource_routes(resource)
         if resource.include?("/")
           parts = resource.split("/")
-          generate_nested_resource_routes(parts, 0)
+          generate_nested_resource_routes(parts)
         else
           "resources :#{resource}"
         end
       end
 
-      def generate_nested_resource_routes(items, index)
-        if index == items.size - 1
+      def generate_nested_resource_routes(items, index = 0)
+        if index == items.size - ONE
           "resources :#{items[index]}"
         else
-          resource_indent = " " * ((index + 2) * DEFAULT_INDENT)
-          resource = generate_nested_resource_routes(items, index + 1)
+          resource_indent = " " * ((index + TWO) * DEFAULT_INDENT)
+          resource = generate_nested_resource_routes(items, index + ONE)
           indent_resource =  "#{resource_indent}#{resource}"
-          indent_end = " " * ((index + 1) * DEFAULT_INDENT) + "end"
+          indent_end = " " * ((index + ONE) * DEFAULT_INDENT) + "end"
           "namespace :#{items[index]} do\n#{indent_resource}\n#{indent_end}"
         end
       end
