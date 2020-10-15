@@ -18,7 +18,7 @@ module Administrate
 
       def model_check
         puts database_models, "used"
-        puts ActiveRecord::Base.descendants, "base".reject(&:abstract_class?)
+        puts ActiveRecord::Base.descendants, "base"
         puts ActiveRecord::Base.descendants.reject(&:abstract_class?), "reject abstract"
 
         if database_models.none?
@@ -65,12 +65,12 @@ module Administrate
       def database_models
         all_models = ActiveRecord::Base.descendants
         all_models.reject(&:abstract_class?).reject(&:table_exists?)
-        #.reject { |d| d.name == d.to_s }
+        # .reject { |d| d.name == d.to_s }
       end
 
-      def say_status(status, color, message) # :doc:
-        base.shell.say_status(status, message, color)
-      end
+      # def say_status(status, color, message) # :doc:
+      #   base.shell.say_status(status, message, color)
+      # end
     end
   end
 end
