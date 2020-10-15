@@ -17,8 +17,9 @@ module Administrate
       class_option :namespace, type: :string, default: "admin"
 
       def model_check
+        puts database_models
         if database_models.none?
-          say_status(:conflict, :red, "Add models before installing Administrate.")
+          # say_status(:conflict, :red, "Add models before installing Administrate.")
           raise Error, "Add models before installing Administrate."
         end
       end
@@ -60,7 +61,8 @@ module Administrate
 
       def database_models
         all_models = ActiveRecord::Base.descendants
-        all_models.reject(&:abstract_class?).reject { |d| d.name == d.to_s }
+        all_models.reject(&:abstract_class?).reject(&:table_exists?)
+        #.reject { |d| d.name == d.to_s }
       end
 
       def say_status(status, color, message) # :doc:
