@@ -128,7 +128,7 @@ module Administrate
 
       def class_path_filename_fragment
         if @class_path.present?
-          "#{@class_path.join('/')}"
+          "/#{@class_path.join('/')}"
         end
       end
 
