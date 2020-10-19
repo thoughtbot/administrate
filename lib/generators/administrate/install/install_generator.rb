@@ -16,17 +16,6 @@ module Administrate
 
       class_option :namespace, type: :string, default: "admin"
 
-      def model_check
-        puts valid_database_models, "used"
-        puts ActiveRecord::Base.descendants, "base"
-        puts ActiveRecord::Base.descendants.reject(&:abstract_class?), "reject abstract"
-
-        if valid_database_models.none?
-          puts "ERROR: Add models before installing Administrate."
-          puts "Consider removing 'app/controllers/admin'."
-        end
-      end
-
       def run_routes_generator
         if dashboard_resources.none?
           call_generator("administrate:routes", "--namespace", namespace)
@@ -47,6 +36,13 @@ module Administrate
             "--namespace", namespace
         end
       end
+
+      def model_check
+        if valid_dashboard_models.none?
+          puts "** ERROR: Add models before installing Administrate. **"
+          puts "**        Consider removing 'app/controllers/admin'. **"
+        end
+      end
  
       private
 
@@ -62,9 +58,28 @@ module Administrate
         Administrate::Namespace.new(namespace).resources
       end
 
-      def valid_database_models
-        all_models = ActiveRecord::Base.descendants
-        all_models.reject(&:abstract_class?).reject(&:table_exists?).reject { |d| d.name == d.to_s }
+      def valid_dashboard_models
+        database_models - invalid_dashboard_models
+      end
+
+      def database_models
+        ActiveRecord::Base.descendants.reject(&:abstract_class?)
+      end
+
+      def invalid_dashboard_models
+        (models_without_tables + namespaced_models + unnamed_constants).uniq
+      end
+
+      def models_without_tables
+        database_models.reject(&:table_exists?)
+      end
+
+      def namespaced_models
+        database_models.select { |model| model.to_s.include?("::") }
+      end
+
+      def unnamed_constants
+        ActiveRecord::Base.descendants.reject { |d| d.name == d.to_s }
       end
     end
   end
