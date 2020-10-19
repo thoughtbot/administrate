@@ -17,13 +17,13 @@ module Administrate
       class_option :namespace, type: :string, default: "admin"
 
       def model_check
-        puts database_models, "used"
+        puts valid_database_models, "used"
         puts ActiveRecord::Base.descendants, "base"
         puts ActiveRecord::Base.descendants.reject(&:abstract_class?), "reject abstract"
 
-        if database_models.none?
-          # say_status(:conflict, :red, "Add models before installing Administrate.")
-          raise Error, "Add models before installing Administrate."
+        if valid_database_models.none?
+          puts "ERROR: Add models before installing Administrate."
+          puts "Consider removing 'app/controllers/administrate'."
         end
       end
 
@@ -62,15 +62,11 @@ module Administrate
         Administrate::Namespace.new(namespace).resources
       end
 
-      def database_models
+      def valid_database_models
         all_models = ActiveRecord::Base.descendants
         all_models.reject(&:abstract_class?).reject(&:table_exists?)
         # .reject { |d| d.name == d.to_s }
       end
-
-      # def say_status(status, color, message) # :doc:
-      #   base.shell.say_status(status, message, color)
-      # end
     end
   end
 end
