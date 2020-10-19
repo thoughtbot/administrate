@@ -23,7 +23,7 @@ module Administrate
 
         if valid_database_models.none?
           puts "ERROR: Add models before installing Administrate."
-          puts "Consider removing 'app/controllers/administrate'."
+          puts "Consider removing 'app/controllers/admin'."
         end
       end
 
@@ -64,8 +64,7 @@ module Administrate
 
       def valid_database_models
         all_models = ActiveRecord::Base.descendants
-        all_models.reject(&:abstract_class?).reject(&:table_exists?)
-        # .reject { |d| d.name == d.to_s }
+        all_models.reject(&:abstract_class?).reject(&:table_exists?).reject { |d| d.name == d.to_s }
       end
     end
   end
