@@ -70,3 +70,16 @@ def default_sorting_direction
   :desc
 end
 ```
+
+## Customizing belongs_to Sorting Field
+
+To set which field to use when sorting by a `belongs_to` association, you could override
+`belongs_to_sorting_field` in your dashboard controller like this:
+
+```ruby
+def belongs_to_sorting_field
+  :name
+end
+```
+
+If the field doesn't exist, the collection will be sorted by the associations `id`.
