@@ -100,7 +100,7 @@ describe Administrate::Order do
       end
 
       it "orders_by_association_attribute" do
-        order = Administrate::Order.new('product', :asc, :name)
+        order = Administrate::Order.new("product", :asc, :name)
         relation = relation_with_association(
           :belongs_to,
           true,
@@ -220,7 +220,7 @@ describe Administrate::Order do
           "#{association}_reflection",
           macro: association,
           foreign_key: foreign_key,
-          klass: double(has_attribute?: has_attribute)
+          klass: double(has_attribute?: has_attribute),
         ),
       ),
     )

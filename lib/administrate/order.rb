@@ -1,6 +1,10 @@
 module Administrate
   class Order
-    def initialize(attribute = nil, direction = nil, association_attribute = nil)
+    def initialize(
+      attribute = nil,
+      direction = nil,
+      association_attribute = nil
+    )
       @attribute = attribute
       @direction = sanitize_direction(direction)
       @association_attribute = association_attribute
