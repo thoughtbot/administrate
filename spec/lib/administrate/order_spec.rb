@@ -98,6 +98,22 @@ describe Administrate::Order do
         expect(relation).to have_received(:reorder).with("some_foreign_key asc")
         expect(ordered).to eq(relation)
       end
+
+      it "orders_by_association_attribute" do
+        order = Administrate::Order.new('product', :asc, :name)
+        relation = relation_with_association(
+          :belongs_to,
+          true,
+          foreign_key: "some_foreign_key",
+        )
+        allow(relation).to receive(:includes).and_return(relation)
+        allow(relation).to receive(:reorder).and_return(relation)
+
+        ordered = order.apply(relation)
+
+        expect(relation).to have_received(:reorder).with("products.name asc")
+        expect(ordered).to eq(relation)
+      end
     end
   end
 
@@ -195,8 +211,8 @@ describe Administrate::Order do
 
   def relation_with_association(
     association,
-    foreign_key: "#{association}_id",
-    klass: nil
+    has_attribute = false,
+    foreign_key: "#{association}_id"
   )
     double(
       klass: double(
@@ -204,7 +220,7 @@ describe Administrate::Order do
           "#{association}_reflection",
           macro: association,
           foreign_key: foreign_key,
-          klass: klass,
+          klass: double(has_attribute?: has_attribute)
         ),
       ),
     )
