@@ -1,8 +1,9 @@
 module Administrate
   class Order
-    def initialize(attribute = nil, direction = nil)
+    def initialize(attribute = nil, direction = nil, association_attribute = nil)
       @attribute = attribute
       @direction = sanitize_direction(direction)
+      @association_attribute = association_attribute
     end
 
     def apply(relation)
@@ -32,7 +33,7 @@ module Administrate
 
     private
 
-    attr_reader :attribute
+    attr_reader :attribute, :association_attribute
 
     def sanitize_direction(direction)
       %w[asc desc].include?(direction.to_s) ? direction.to_sym : :asc
@@ -53,7 +54,7 @@ module Administrate
     def order_by_association(relation)
       return order_by_count(relation) if has_many_attribute?(relation)
 
-      return order_by_id(relation) if belongs_to_attribute?(relation)
+      return order_by_attribute(relation) if belongs_to_attribute?(relation)
 
       relation
     end
@@ -71,12 +72,29 @@ module Administrate
       relation.reorder("#{foreign_key(relation)} #{direction}")
     end
 
+    def order_by_association_attribute(relation)
+      relation.
+        includes(attribute.to_sym).
+        reorder("#{attribute.pluralize}.#{association_attribute} #{direction}")
+    end
+
+    def order_by_attribute(relation)
+      return order_by_association_attribute(relation) if
+        association_has_attribute?(relation)
+
+      order_by_id(relation)
+    end
+
     def has_many_attribute?(relation)
       reflect_association(relation).macro == :has_many
     end
 
     def belongs_to_attribute?(relation)
       reflect_association(relation).macro == :belongs_to
+    end
+
+    def association_has_attribute?(relation)
+      reflect_association(relation).klass.has_attribute?(association_attribute)
     end
 
     def reflect_association(relation)
