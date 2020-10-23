@@ -29,6 +29,19 @@ describe "edit form" do
     end
   end
 
+  it "marks required fields only" do
+    visit new_admin_product_path
+
+    required_field_translations = [
+      Product.human_attribute_name(:name),
+      Product.human_attribute_name(:image_url),
+    ]
+
+    required_field_labels = find_all(".field-unit--required").map(&:text)
+
+    expect(required_field_labels).to match_array(required_field_translations)
+  end
+
   context "include_blank option for belongs_to" do
     before { create_list(:country, 5) }
 
