@@ -48,6 +48,14 @@ module Administrate
         "/fields/#{self.class.field_type}/#{page}"
       end
 
+      def required?
+        return false unless resource.class.respond_to?(:validators_on)
+
+        resource.class.validators_on(attribute).any? do |v|
+          v.class == ActiveRecord::Validations::PresenceValidator
+        end
+      end
+
       attr_reader :attribute, :data, :options, :page, :resource
     end
   end
