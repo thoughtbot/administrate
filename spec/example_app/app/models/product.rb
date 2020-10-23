@@ -11,10 +11,10 @@ class Product < ApplicationRecord
   has_many :pages, dependent: :destroy
   has_one :product_meta_tag, dependent: :destroy
 
-  validates :description, presence: true
+  validates :description, presence: true, unless: -> { false }
   validates :image_url, presence: true
   validates :name, presence: true
-  validates :price, presence: true
+  validates :price, presence: true, if: -> { true }
   validates :release_year,
             numericality: {
               less_than_or_equal_to: ->(_product) { Time.current.year },

@@ -80,17 +80,27 @@ RSpec.describe Administrate::ApplicationHelper do
 
   describe "#requireness" do
     let(:page) do
-      Administrate::Page::Form.new(Blog::PostDashboard.new, Blog::Post.new)
+      Administrate::Page::Form.new(ProductDashboard.new, Product.new)
     end
 
     it "returns 'required' if field is required" do
-      title = page.attributes.detect { |i| i.attribute == :title }
-      expect(requireness(title)).to eq("required")
+      name = page.attributes.detect { |i| i.attribute == :name }
+      expect(requireness(name)).to eq("required")
     end
 
     it "returns 'optional' if field is not required" do
-      publish_at = page.attributes.detect { |i| i.attribute == :published_at }
-      expect(requireness(publish_at)).to eq("optional")
+      release_year = page.attributes.detect { |i| i.attribute == :release_year }
+      expect(requireness(release_year)).to eq("optional")
+    end
+
+    it "returns 'optional' if field is required if condition is met" do
+      description = page.attributes.detect { |i| i.attribute == :description }
+      expect(requireness(description)).to eq("optional")
+    end
+
+    it "returns 'optional' if field is required unless condition is met" do
+      price = page.attributes.detect { |i| i.attribute == :price }
+      expect(requireness(price)).to eq("optional")
     end
   end
 

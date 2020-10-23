@@ -52,7 +52,9 @@ module Administrate
         return false unless resource.class.respond_to?(:validators_on)
 
         resource.class.validators_on(attribute).any? do |v|
-          v.class == ActiveRecord::Validations::PresenceValidator
+          v.class == ActiveRecord::Validations::PresenceValidator &&
+            !v.options.include?(:if) &&
+            !v.options.include?(:unless)
         end
       end
 
