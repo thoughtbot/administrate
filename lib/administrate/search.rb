@@ -47,6 +47,22 @@ module Administrate
       end
     end
 
+    def self.define_search_mode(dashboard_class)
+      if dashboard_class.const_defined?(:FILTER_MODE)
+        dashboard_class.const_get(:FILTER_MODE)
+      else
+        :fuzzy
+      end
+    end
+
+    def self.run(scoped_resource, dashboard_class, term)
+      if define_search_mode(dashboard_class) == :strict
+        StrictSearch
+      else
+        FuzzySearch
+      end.new(scoped_resource, dashboard_class, term).run
+    end
+
     def initialize(scoped_resource, dashboard_class, term)
       @dashboard_class = dashboard_class
       @scoped_resource = scoped_resource
@@ -81,9 +97,10 @@ module Administrate
     def query_template
       search_attributes.map do |attr|
         table_name = query_table_name(attr)
+
         searchable_fields(attr).map do |field|
           attr_name = column_to_query(field)
-          "LOWER(CAST(#{table_name}.#{attr_name} AS CHAR(256))) LIKE ?"
+          query_string(table_name, attr_name)
         end.join(" OR ")
       end.join(" OR ")
     end
@@ -94,11 +111,10 @@ module Administrate
       attribute_types[attr].searchable_fields
     end
 
-    def query_values
-      fields_count = search_attributes.sum do |attr|
+    def fields_count
+      search_attributes.sum do |attr|
         searchable_fields(attr).count
       end
-      ["%#{term.mb_chars.downcase}%"] * fields_count
     end
 
     def search_attributes
@@ -158,5 +174,25 @@ module Administrate
     end
 
     attr_reader :resolver, :query
+  end
+
+  class StrictSearch < Search
+    def query_values
+      [term] * fields_count
+    end
+
+    def query_string(table_name, attr_name)
+      "#{table_name}.#{attr_name} = ?"
+    end
+  end
+
+  class FuzzySearch < Search
+    def query_values
+      ["%#{term.mb_chars.downcase}%"] * fields_count
+    end
+
+    def query_string(table_name, attr_name)
+      "LOWER(CAST(#{table_name}.#{attr_name} AS CHAR(256))) LIKE ?"
+    end
   end
 end
