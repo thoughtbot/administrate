@@ -10,10 +10,6 @@ to display a collection of resources in an HTML table.
   An instance of [Administrate::Page::Collection][1].
   The table presenter uses `ResourceDashboard::COLLECTION_ATTRIBUTES` to determine
   the columns displayed in the table
-- `resources`:
-  An ActiveModel::Relation collection of resources to be displayed in the table.
-  By default, the number of resources is limited by pagination
-  or by a hard limit to prevent excessive page load times
 
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Collection
 %>
@@ -28,7 +24,7 @@ to display a collection of resources in an HTML table.
         scope="col"
         role="columnheader"
         aria-sort="<%= sort_order(collection_presenter.ordered_html_class(attr_name)) %>">
-        <%= link_to(sanitized_order_params(page, collection_field_name).merge(
+        <%= link_to(sanitized_order_params(collection_names).merge(
           collection_presenter.order_params_for(attr_name, key: collection_field_name)
         )) do %>
         <%= t(
@@ -53,7 +49,7 @@ to display a collection of resources in an HTML table.
   </thead>
 
   <tbody>
-    <% resources.each do |resource| %>
+    <% collection_presenter.resources.each do |resource| %>
       <tr class="js-table-row"
           <% if show_action? :show, resource %>
             <%= %(tabindex=0 role=link data-url=#{polymorphic_path([namespace, resource])}) %>

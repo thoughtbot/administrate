@@ -3,6 +3,11 @@ require_relative "base"
 module Administrate
   module Page
     class Collection < Page::Base
+      def initialize(dashboard, resources, options = {})
+        super(dashboard, options)
+        @resources = resources
+      end
+
       def attribute_names
         dashboard.collection_attributes
       end
@@ -25,6 +30,14 @@ module Administrate
 
       def order_params_for(attr, key: resource_name)
         { key => order.order_params_for(attr) }
+      end
+
+      def resources
+        dashboard.decorate_resource_collection(@resources)
+      end
+
+      def resources_for_pagination
+        @resources
       end
 
       private

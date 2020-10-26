@@ -19,13 +19,23 @@ describe Administrate::Field::HasMany do
   describe "#associated_collection" do
     it "returns an index page for the dashboard of the associated attribute" do
       begin
-        WidgetDashboard = Class.new
-        widgets = []
-        field = Administrate::Field::HasMany.new(:widgets, widgets, :show)
+        WidgetDashboard = Class.new do
+          def collection_attributes
+            %i[coolness shininess]
+          end
 
-        page = field.associated_collection
+          def collection_includes
+            []
+          end
+        end
 
-        expect(page).to be_instance_of(Administrate::Page::Collection)
+        field = Administrate::Field::HasMany.new(:widgets, Product.none, :show)
+        order = Administrate::Order.new("coolness", "asc")
+
+        page = field.associated_collection(1, order)
+
+        expect(page.attribute_names).to eq(%i[coolness shininess])
+        expect(page.ordered_by?(:coolness)).to eq true
       ensure
         remove_constants :WidgetDashboard
       end
@@ -34,14 +44,19 @@ describe Administrate::Field::HasMany do
 
   describe "class_name option" do
     it "determines what dashboard is used to present the association" do
+      create_list(:customer, 2)
       begin
         FooDashboard = Class.new
-        dashboard_double = double(collection_attributes: [])
+        dashboard_double = double(
+          collection_attributes: [],
+          collection_includes: [],
+          decorate_resource_collection: [],
+        )
         allow(FooDashboard).to receive(:new).and_return(dashboard_double)
 
         association = Administrate::Field::HasMany.
           with_options(class_name: "Foo")
-        field = association.new(:customers, [], :show)
+        field = association.new(:customers, Customer.none, :show)
         collection = field.associated_collection
         attributes = collection.attribute_names
 
@@ -115,7 +130,7 @@ describe Administrate::Field::HasMany do
     end
   end
 
-  describe "#resources" do
+  describe "#associated_collection.resources" do
     it "limits the number of records shown" do
       limit = Administrate::Field::HasMany::DEFAULT_LIMIT
       customer = FactoryBot.create(:customer, :with_orders, order_count: 10)
@@ -124,7 +139,7 @@ describe Administrate::Field::HasMany do
       association = Administrate::Field::HasMany
       field = association.new(:orders, resources, :show)
 
-      expect(field.resources.size).to eq(limit)
+      expect(field.associated_collection.resources.size).to eq(limit)
     end
 
     context "when there are no records" do
@@ -134,7 +149,7 @@ describe Administrate::Field::HasMany do
         association = Administrate::Field::HasMany
         field = association.new(:customers, resources, :show)
 
-        expect(field.resources).to eq([])
+        expect(field.associated_collection.resources).to eq([])
       end
     end
 
@@ -146,7 +161,7 @@ describe Administrate::Field::HasMany do
         association = Administrate::Field::HasMany.with_options(limit: 1)
         field = association.new(:orders, resources, :show)
 
-        expect(field.resources).to be_one
+        expect(field.associated_collection.resources).to be_one
       end
     end
 
@@ -162,8 +177,9 @@ describe Administrate::Field::HasMany do
           b.address_line_two <=> a.address_line_two
         end
 
-        expect(field.resources.map(&:id)).to eq correct_order
-        expect(field.resources.map(&:id)).to_not eq reversed_order.map(&:id)
+        resources = field.associated_collection.resources
+        expect(resources.map(&:id)).to eq correct_order
+        expect(resources.map(&:id)).to_not eq reversed_order.map(&:id)
       end
     end
 
@@ -179,8 +195,25 @@ describe Administrate::Field::HasMany do
           b.address_line_two <=> a.address_line_two
         end
 
-        expect(field.resources.map(&:id)).to eq correct_order.map(&:id)
-        expect(field.resources.map(&:id)).to_not eq reversed_order
+        resources = field.associated_collection.resources
+        expect(resources.map(&:id)).to eq correct_order.map(&:id)
+        expect(resources.map(&:id)).to_not eq reversed_order
+      end
+    end
+
+    context "when dashboard of associated resource has decorator method" do
+      it "returns decorated resources" do
+        order = FactoryBot.create(:order,
+                                  address_city: "San Francisco",
+                                  address_state: "CA")
+        customer = FactoryBot.create(:customer, orders: [order])
+        resources = customer.orders
+
+        association = Administrate::Field::HasMany
+        field = association.new(:orders, resources, :show)
+
+        expect(field.associated_collection.resources.first.address).
+          to eq("San Francisco, California")
       end
     end
   end

@@ -10,10 +10,13 @@ module Administrate
       resources = apply_collection_includes(resources)
       resources = order.apply(resources)
       resources = resources.page(params[:_page]).per(records_per_page)
-      page = Administrate::Page::Collection.new(dashboard, order: order)
+      page = Administrate::Page::Collection.new(
+        dashboard,
+        resources,
+        order: order,
+      )
 
       render locals: {
-        resources: resources,
         search_term: search_term,
         page: page,
         show_search_bar: show_search_bar?,

@@ -6,7 +6,7 @@ describe Admin::Blog::PostsController, type: :controller do
       blog_post = create(:blog_post)
 
       locals = capture_view_locals { get :index }
-      expect(locals[:resources]).to eq([blog_post])
+      expect(locals[:page].resources).to eq([blog_post])
     end
 
     it "passes the search term to the view" do
