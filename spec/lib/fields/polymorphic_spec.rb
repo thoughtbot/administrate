@@ -1,3 +1,4 @@
+require "rails_helper"
 require "administrate/field/belongs_to"
 require "administrate/field/polymorphic"
 require "support/constant_helpers"
@@ -17,7 +18,13 @@ describe Administrate::Field::Polymorphic do
     end
   end
 
-  it { should_permit_param({ foo: %i{type value} }, for_attribute: :foo) }
+  it do
+    should_permit_param(
+      { foo: %i{type value} },
+      on_model: Customer,
+      for_attribute: :foo,
+    )
+  end
 
   describe "#display_associated_resource" do
     it "displays through the dashboard based on the polymorphic class name" do

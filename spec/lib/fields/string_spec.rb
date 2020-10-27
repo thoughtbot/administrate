@@ -1,3 +1,4 @@
+require "rails_helper"
 require "administrate/field/string"
 require "support/field_matchers"
 
@@ -15,7 +16,13 @@ describe Administrate::Field::String do
     end
   end
 
-  it { should_permit_param(:foo, for_attribute: :foo) }
+  it do
+    should_permit_param(
+      :foo,
+      on_model: Customer,
+      for_attribute: :foo,
+    )
+  end
 
   describe "#truncate" do
     it "renders an empty string for nil" do

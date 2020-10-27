@@ -82,8 +82,8 @@ module Administrate
       search_attributes.map do |attr|
         table_name = query_table_name(attr)
         searchable_fields(attr).map do |field|
-          attr_name = column_to_query(field)
-          "LOWER(CAST(#{table_name}.#{attr_name} AS CHAR(256))) LIKE ?"
+          column_name = column_to_query(field)
+          "LOWER(CAST(#{table_name}.#{column_name} AS CHAR(256))) LIKE ?"
         end.join(" OR ")
       end.join(" OR ")
     end
@@ -128,11 +128,14 @@ module Administrate
     def query_table_name(attr)
       if association_search?(attr)
         provided_class_name = attribute_types[attr].options[:class_name]
-        if provided_class_name
-          provided_class_name.constantize.table_name
-        else
-          ActiveRecord::Base.connection.quote_table_name(attr.to_s.pluralize)
-        end
+        unquoted_table_name =
+          if provided_class_name
+            Administrate.warn_of_deprecated_option(:class_name)
+            provided_class_name.constantize.table_name
+          else
+            @scoped_resource.reflect_on_association(attr).klass.table_name
+          end
+        ActiveRecord::Base.connection.quote_table_name(unquoted_table_name)
       else
         ActiveRecord::Base.connection.
           quote_table_name(@scoped_resource.table_name)

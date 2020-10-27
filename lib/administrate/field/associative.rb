@@ -3,12 +3,32 @@ require_relative "base"
 module Administrate
   module Field
     class Associative < Base
+      def self.foreign_key_for(resource_class, attr)
+        reflection(resource_class, attr).foreign_key
+      end
+
+      def self.associated_class(resource_class, attr)
+        reflection(resource_class, attr).klass
+      end
+
+      def self.associated_class_name(resource_class, attr)
+        reflection(resource_class, attr).class_name
+      end
+
+      def self.reflection(resource_class, attr)
+        resource_class.reflect_on_association(attr)
+      end
+
       def display_associated_resource
         associated_dashboard.display_resource(data)
       end
 
       def associated_class
-        associated_class_name.constantize
+        if option_given?(:class_name)
+          associated_class_name.constantize
+        else
+          self.class.associated_class(resource.class, attribute)
+        end
       end
 
       private
@@ -18,15 +38,39 @@ module Administrate
       end
 
       def associated_class_name
-        options.fetch(:class_name, attribute.to_s.singularize.camelcase)
+        if option_given?(:class_name)
+          deprecated_option(:class_name)
+        else
+          self.class.associated_class_name(
+            resource.class,
+            attribute,
+          )
+        end
       end
 
       def primary_key
-        options.fetch(:primary_key, :id)
+        if option_given?(:primary_key)
+          deprecated_option(:primary_key)
+        else
+          :id
+        end
       end
 
       def foreign_key
-        options.fetch(:foreign_key, :"#{attribute}_id")
+        if option_given?(:foreign_key)
+          deprecated_option(:foreign_key)
+        else
+          self.class.foreign_key_for(resource.class, attribute)
+        end
+      end
+
+      def option_given?(name)
+        options.key?(name)
+      end
+
+      def deprecated_option(name)
+        Administrate.warn_of_deprecated_option(name)
+        options.fetch(name)
       end
     end
   end

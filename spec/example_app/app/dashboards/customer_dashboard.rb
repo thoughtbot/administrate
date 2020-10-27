@@ -13,9 +13,6 @@ class CustomerDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime,
     kind: Field::Select.with_options(collection: Customer::KINDS),
     territory: Field::BelongsTo.with_options(
-      primary_key: :code,
-      foreign_key: :country_code,
-      class_name: "Country",
       searchable: true,
       searchable_fields: ["name"],
       include_blank: true,
