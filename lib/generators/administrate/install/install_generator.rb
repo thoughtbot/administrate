@@ -39,8 +39,7 @@ module Administrate
 
       def model_check
         if valid_dashboard_models.none?
-          puts "** ERROR: Add models before installing Administrate. **"
-          puts "**        Consider removing 'app/controllers/admin'. **"
+          puts "WARNING: Add models before installing Administrate."
         end
       end
  
