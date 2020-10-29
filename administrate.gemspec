@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version = Administrate::VERSION
   s.authors = ["Nick Charlton", "Grayson Wright"]
   s.email = ["nick@nickcharlton.net", "grayson@thoughtbot.com"]
-  s.homepage = "https://administrate-prototype.herokuapp.com/"
+  s.homepage = "https://administrate-demo.herokuapp.com/"
   s.summary = "A Rails engine for creating super-flexible admin dashboards"
   s.license = "MIT"
 

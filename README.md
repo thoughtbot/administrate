@@ -11,6 +11,8 @@ home: true
 A framework for creating flexible, powerful admin dashboards in Rails.
 [Try the demo][demo].
 
+[demo]: https://administrate-demo.herokuapp.com/admin
+
 ### Warning:
 
 Administrate is still pre-1.0,
@@ -64,7 +66,8 @@ $ rails generate administrate:install
 Restart your server, and visit http://localhost:3000/admin
 to see your new dashboard in action.
 
-For more detailed instructions or to make it work with Rails API-only applications, please go through the ['Getting Started' guide](https://administrate-prototype.herokuapp.com/getting_started).
+For more detailed instructions or to make it work with Rails API-only
+applications, please go through the ['Getting Started' guide][].
 
 If your apps uses Sprockets 4, you'll need to add Administrate's assets to your `manifest.js` file. To do this, add these two lines to the file:
 
@@ -82,6 +85,8 @@ Declare links to your assets in `app/assets/config/manifest.js`.
 
 For more information on why this is necessary, see https://www.schneems.com/2017/11/22/self-hosted-config-introducing-the-sprockets-manifestjs
 
+['Getting Started' guide]: https://administrate-demo.herokuapp.com/getting_started
+
 ## Create Additional Dashboards
 
 In order to create additional dashboards, pass in the resource name to
@@ -94,10 +99,16 @@ $ rails generate administrate:dashboard Foo
 ## Documentation
 
 To customize the appearance, behavior, and contents of the dashboard,
-see the guides at
-[https://administrate-prototype.herokuapp.com][prototype_heroku].
+we publish a set [of guides for the current release][released_docs].
+
 These guides are available as markdown files in the `docs` subdirectory of the
 git repository, too.
+
+We publish [docs for the upcoming release, which you can find at our prerelease
+app][prerelease_docs].
+
+[released_docs]: https://administrate-demo.herokuapp.com/docs
+[prerelease_docs]: https://administrate-demo-prerelease.herokuapp.com/docs
 
 ## Contributing
 
@@ -125,7 +136,5 @@ We love open source software!
 See [our other projects][community] or
 [hire us][hire] to design, develop, and grow your product.
 
-[demo]: https://administrate-prototype.herokuapp.com/admin
-[prototype_heroku]: https://administrate-prototype.herokuapp.com
 [community]: https://thoughtbot.com/community?utm_source=github
 [hire]: https://thoughtbot.com?utm_source=github
