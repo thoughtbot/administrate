@@ -46,56 +46,6 @@ To accomplish these goals, Administrate follows a few guiding principles:
 [Rails Admin]: https://github.com/sferik/rails_admin
 [ActiveAdmin]: http://activeadmin.info/
 
-## Getting Started
-
-Administrate supports Rails 5.0 onwards. We support Ruby 2.4 and up.
-
-Add Administrate to your Gemfile and re-bundle:
-
-```ruby
-gem "administrate"
-```
-
-The included installer will create dashboards for each model in your
-app, complete with routes:
-
-```bash
-$ rails generate administrate:install
-```
-
-Restart your server, and visit http://localhost:3000/admin
-to see your new dashboard in action.
-
-For more detailed instructions or to make it work with Rails API-only
-applications, please go through the ['Getting Started' guide][].
-
-If your apps uses Sprockets 4, you'll need to add Administrate's assets to your `manifest.js` file. To do this, add these two lines to the file:
-
-```
-//= link administrate/application.css
-//= link administrate/application.js
-```
-
-Otherwise, your app will show you this error:
-
-```
-Asset `administrate/application.css` was not declared to be precompiled in production.
-Declare links to your assets in `app/assets/config/manifest.js`.
-```
-
-For more information on why this is necessary, see https://www.schneems.com/2017/11/22/self-hosted-config-introducing-the-sprockets-manifestjs
-
-['Getting Started' guide]: https://administrate-demo.herokuapp.com/getting_started
-
-## Create Additional Dashboards
-
-In order to create additional dashboards, pass in the resource name to
-the dashboard generator. A dashboard and controller will be created.
-
-```bash
-$ rails generate administrate:dashboard Foo
-```
-
 ## Documentation
 
 To customize the appearance, behavior, and contents of the dashboard,
@@ -114,7 +64,7 @@ app][prerelease_docs].
 
 Please see [CONTRIBUTING.md](/CONTRIBUTING.md).
 
-administrate was originally written by Grace Youngblood and is now maintained by
+Administrate was originally written by Grace Youngblood and is now maintained by
 Nick Charlton. Many improvements and bugfixes were contributed by the [open
 source
 community](https://github.com/thoughtbot/administrate/graphs/contributors).
