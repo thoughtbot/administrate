@@ -3,16 +3,16 @@ title: Getting Started
 ---
 
 Administrate is released as a Ruby gem, and can be installed on Rails
-applications version 4.2 or greater.
+applications version 5.0 or greater. We support Ruby 2.4 and up.
 
-Add the following to your Gemfile:
+First, add the following to your Gemfile:
 
 ```ruby
 # Gemfile
 gem "administrate"
 ```
 
-Re-bundle, then run the installer:
+Re-bundle with `bundle install`, then run the installer:
 
 ```bash
 $ rails generate administrate:install
@@ -56,6 +56,24 @@ Each `Admin::FooController` can be overwritten to specify custom behavior.
 Once you have Administrate installed,
 visit <http://localhost:3000/admin> to see your new dashboard in action.
 
+### Errors about assets?
+
+If your apps uses Sprockets 4, you'll need to add Administrate's assets to your `manifest.js` file. To do this, add these two lines to the file:
+
+```
+//= link administrate/application.css
+//= link administrate/application.js
+```
+
+Otherwise, your app will show you this error:
+
+```
+Asset `administrate/application.css` was not declared to be precompiled in production.
+Declare links to your assets in `app/assets/config/manifest.js`.
+```
+
+For more information on why this is necessary, see https://www.schneems.com/2017/11/22/self-hosted-config-introducing-the-sprockets-manifestjs
+
 ## Create Additional Dashboards
 
 In order to create additional dashboards, pass in the resource name to
@@ -65,7 +83,7 @@ the dashboard generator. A dashboard and controller will be created.
 $ rails generate administrate:dashboard Foo
 ```
 
-Add a route for the new dashboard.
+Then add a route for the new dashboard.
 
 ```ruby
 # config/routes.rb
