@@ -58,7 +58,8 @@ visit <http://localhost:3000/admin> to see your new dashboard in action.
 
 ### Errors about assets?
 
-If your apps uses Sprockets 4, you'll need to add Administrate's assets to your `manifest.js` file. To do this, add these two lines to the file:
+If your apps uses Sprockets 4, you'll need to add Administrate's assets to
+your `manifest.js` file. To do this, add these two lines to the file:
 
 ```
 //= link administrate/application.css
