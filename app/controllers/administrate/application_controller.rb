@@ -102,7 +102,9 @@ module Administrate
 
     def order
       @order ||= Administrate::Order.new(
-        sorting_attribute, sorting_direction, belongs_to_sorting_attribute
+        sorting_attribute,
+        sorting_direction,
+        association_attribute: belongs_to_sorting_attribute,
       )
     end
 

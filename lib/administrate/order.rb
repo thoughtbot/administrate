@@ -3,7 +3,7 @@ module Administrate
     def initialize(
       attribute = nil,
       direction = nil,
-      association_attribute = nil
+      association_attribute: nil
     )
       @attribute = attribute
       @direction = sanitize_direction(direction)
@@ -77,9 +77,11 @@ module Administrate
     end
 
     def order_by_association_attribute(relation)
+      table_name = plural_name(relation)
+
       relation.
         includes(attribute.to_sym).
-        reorder("#{attribute.pluralize}.#{association_attribute} #{direction}")
+        reorder("#{table_name}.#{association_attribute} #{direction}")
     end
 
     def order_by_attribute(relation)
@@ -107,6 +109,10 @@ module Administrate
 
     def foreign_key(relation)
       reflect_association(relation).foreign_key
+    end
+
+    def plural_name(relation)
+      reflect_association(relation).plural_name
     end
   end
 end

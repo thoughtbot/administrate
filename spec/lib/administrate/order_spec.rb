@@ -100,11 +100,16 @@ describe Administrate::Order do
       end
 
       it "orders_by_association_attribute" do
-        order = Administrate::Order.new("product", :asc, :name)
+        order = Administrate::Order.new(
+          "product",
+          :asc,
+          association_attribute: :name,
+        )
         relation = relation_with_association(
           :belongs_to,
           true,
           foreign_key: "some_foreign_key",
+          plural_name: "products",
         )
         allow(relation).to receive(:includes).and_return(relation)
         allow(relation).to receive(:reorder).and_return(relation)
@@ -212,7 +217,8 @@ describe Administrate::Order do
   def relation_with_association(
     association,
     has_attribute = false,
-    foreign_key: "#{association}_id"
+    foreign_key: "#{association}_id",
+    plural_name: "names"
   )
     double(
       klass: double(
@@ -221,6 +227,7 @@ describe Administrate::Order do
           macro: association,
           foreign_key: foreign_key,
           klass: double(has_attribute?: has_attribute),
+          plural_name: plural_name,
         ),
       ),
     )
