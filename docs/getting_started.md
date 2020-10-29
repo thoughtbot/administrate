@@ -74,7 +74,9 @@ Declare links to your assets in `app/assets/config/manifest.js`.
 ```
 
 For more information on why this is necessary, see Richard Schneeman's article
-["Self Hosted Config: Introducing the Sprockets manifest.js"][https://www.schneems.com/2017/11/22/self-hosted-config-introducing-the-sprockets-manifestjs]
+["Self Hosted Config: Introducing the Sprockets manifest.js"][]
+
+[schneems]: https://www.schneems.com/2017/11/22/self-hosted-config-introducing-the-sprockets-manifestjs
 
 ## Create Additional Dashboards
 
