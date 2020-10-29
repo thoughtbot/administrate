@@ -72,7 +72,9 @@ Asset `administrate/application.css` was not declared to be precompiled in produ
 Declare links to your assets in `app/assets/config/manifest.js`.
 ```
 
-For more information on why this is necessary, see https://www.schneems.com/2017/11/22/self-hosted-config-introducing-the-sprockets-manifestjs
+For more information on why this is necessary, see [Richard Schneeman's article Self Hosted Config: Introducing the Sprockets manifest.js][sprockets_manifest]
+
+[sprockets_manifest]: https://www.schneems.com/2017/11/22/self-hosted-config-introducing-the-sprockets-manifestjs
 
 ## Create Additional Dashboards
 
