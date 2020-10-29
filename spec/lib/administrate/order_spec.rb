@@ -90,6 +90,7 @@ describe Administrate::Order do
         relation = relation_with_association(
           :belongs_to,
           foreign_key: "some_foreign_key",
+          klass: double(has_attribute?: false),
         )
         allow(relation).to receive(:reorder).and_return(relation)
 
@@ -107,7 +108,7 @@ describe Administrate::Order do
         )
         relation = relation_with_association(
           :belongs_to,
-          true,
+          klass: double(has_attribute?: true),
           foreign_key: "some_foreign_key",
           plural_name: "products",
         )
@@ -216,9 +217,9 @@ describe Administrate::Order do
 
   def relation_with_association(
     association,
-    has_attribute = false,
     foreign_key: "#{association}_id",
-    plural_name: "names"
+    klass: nil,
+    plural_name: nil
   )
     double(
       klass: double(
@@ -226,7 +227,7 @@ describe Administrate::Order do
           "#{association}_reflection",
           macro: association,
           foreign_key: foreign_key,
-          klass: double(has_attribute?: has_attribute),
+          klass: klass,
           plural_name: plural_name,
         ),
       ),
