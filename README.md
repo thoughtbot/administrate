@@ -57,8 +57,8 @@ git repository, too.
 We publish [docs for the upcoming release, which you can find at our prerelease
 app][prerelease_docs].
 
-[released_docs]: https://administrate-demo.herokuapp.com/docs
-[prerelease_docs]: https://administrate-demo-prerelease.herokuapp.com/docs
+[released_docs]: https://administrate-demo.herokuapp.com
+[prerelease_docs]: https://administrate-demo-prerelease.herokuapp.com
 
 ## Contributing
 
