@@ -14,7 +14,7 @@ module Administrate
       include Administrate::GeneratorHelpers
       DEFAULT_INDENT = 2
       ONE = 1
-      Two = 2
+      TWO = 2
       source_root File.expand_path("../templates", __FILE__)
       class_option :namespace, type: :string, default: "admin"
 
