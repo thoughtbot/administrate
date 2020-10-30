@@ -123,8 +123,11 @@ module Administrate
       end
 
       def klass
-        @klass ||= Object.const_get(class_name)
-        puts "#{class_name}, class_name" # 1 - which one is being used for our <namespace> dashboard? 
+        testing_name = class_name.split('::')[-1]
+        @klass ||= Object.const_get(testing_name)
+        puts "#{class_name}, class_name"
+        puts "#{testing_name}, tesing_name"
+                        # 1 - which one is being used for our <namespace> dashboard? 
                         # first time <namespace>dashboard is made it used the second one
       end
 
