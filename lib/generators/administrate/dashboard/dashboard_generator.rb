@@ -57,6 +57,8 @@ module Administrate
       end
 
       def attributes
+        puts "#{klass}, klass - no reflections??"
+        puts "#{klass.methods}, klass methods"
         klass.reflections.keys +
           klass.columns.map(&:name) -
           redundant_attributes
