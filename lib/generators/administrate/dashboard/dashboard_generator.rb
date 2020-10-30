@@ -125,8 +125,9 @@ module Administrate
       end
 
       def klass
+        puts "#{class_name}, class_name"
         @klass ||= Object.const_get(class_name)
-        puts "#{class_name}, class_name" # 1 - which one is being used for our <namespace> dashboard? 
+                         # 1 - which one is being used for our <namespace> dashboard? 
                         # first time <namespace>dashboard is made it used the second one
       end
 
