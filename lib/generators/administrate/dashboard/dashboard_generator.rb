@@ -57,8 +57,6 @@ module Administrate
       end
 
       def attributes
-        puts "#{klass}, klass - no reflections??"
-        puts "#{klass.methods}, klass methods"
         klass.reflections.keys +
           klass.columns.map(&:name) -
           redundant_attributes
@@ -125,10 +123,7 @@ module Administrate
       end
 
       def klass
-        puts "#{class_name}, class_name"
         @klass ||= Object.const_get(class_name)
-                         # 1 - which one is being used for our <namespace> dashboard? 
-                        # first time <namespace>dashboard is made it used the second one
       end
 
       def class_path_filename_fragment
