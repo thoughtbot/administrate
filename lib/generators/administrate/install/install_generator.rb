@@ -42,7 +42,7 @@ module Administrate
           puts "WARNING: Add models before installing Administrate."
         end
       end
- 
+
       private
 
       def namespace
