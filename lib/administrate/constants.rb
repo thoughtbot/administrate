@@ -1,0 +1,3 @@
+DEFAULT_INDENT = 2
+ONE = 1
+TWO = 2
