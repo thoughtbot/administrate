@@ -37,10 +37,10 @@ describe Administrate::Generators::RoutesGenerator, :generator do
     end
 
     it "generates routes for namespaced models" do
-      routes = file("config/routes.rb")	
+      routes = file("config/routes.rb")
 
-      run_generator 
-      
+      run_generator
+
       expect(routes).to contain("blog")
       expect(routes).to contain("post")
     end
@@ -115,6 +115,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
 
     run_generator
 
-    expect(routes).to contain('root to: "application#show"') # WHY? 
+    expect(routes).to contain('root to: "application#show"') 
+    # Why does the root get changed when namespace is included..
   end
 end

@@ -434,25 +434,23 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       end
     end
 
-    #!!!!!!!!!!!! run_genator ["foo/bar"]?????? !!!!!!!!!!!
+    it "uses the given namespace to create controllers" do
+      begin
+        ActiveRecord::Schema.define { create_table :foos }
+        class Foo < ApplicationRecord; end
+        module Manager
+          class ApplicationController < Administrate::ApplicationController; end
+        end
 
-    # it "uses the given namespace to create controllers" do
-    #   begin
-    #     ActiveRecord::Schema.define { create_table :foos }
-    #     class Foo < ApplicationRecord; end
-    #     module Manager
-    #       class ApplicationController < Administrate::ApplicationController; end
-    #     end
+        run_generator ["foo", "--namespace", "manager"]
+        load file("app/controllers/manager/foos_controller.rb")
 
-    #     run_generator ["foo", "--namespace", "manager"]
-    #     load file("app/controllers/manager/foos_controller.rb")
-
-    #     expect(Manager::FoosController.ancestors).
-    #       to include(Manager::ApplicationController)
-    #   ensure
-    #     remove_constants :Foo
-    #     Manager.send(:remove_const, :FoosController)
-    #   end
-    # end
+        expect(Manager::FoosController.ancestors).
+          to include(Manager::ApplicationController)
+      ensure
+        remove_constants :Foo
+        Manager.send(:remove_const, :FoosController)
+      end
+    end
   end
 end
