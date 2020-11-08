@@ -82,7 +82,7 @@ module Administrate
         else
           resource_indent = " " * ((index + TWO_INDENT) * DEFAULT_INDENT)
           resource = generate_nested_resource_routes(items, index + 1)
-          indent_resource =  "#{resource_indent}#{resource}"
+          indent_resource = "#{resource_indent}#{resource}"
           indent_end = " " * ((index + ONE_INDENT) * DEFAULT_INDENT) + "end"
           "namespace :#{items[index]} do\n#{indent_resource}\n#{indent_end}"
         end
