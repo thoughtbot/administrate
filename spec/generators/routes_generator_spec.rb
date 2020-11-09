@@ -116,7 +116,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
     run_generator
 
     expect(routes).to contain('root to: "customers#index"')
-    # Need to work out hoe to stop unneeded namespaced routes being made
+    # Need to work out how to stop unneeded namespaced routes being made
     # eg. ActiveRecord and Primary
   end
 end
