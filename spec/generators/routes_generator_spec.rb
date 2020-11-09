@@ -110,13 +110,11 @@ describe Administrate::Generators::RoutesGenerator, :generator do
     end
   end
 
-  it "creates a root route for the admin namespace" do
+  it "creates a root route for the admin namespace"  do
     routes = file("config/routes.rb")
 
     run_generator
 
     expect(routes).to contain('root to: "customers#index"')
-    # Need to work out how to stop unneeded namespaced routes being made
-    # eg. ActiveRecord and Primary
   end
 end
