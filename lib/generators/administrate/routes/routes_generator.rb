@@ -60,11 +60,29 @@ module Administrate
       end
 
       def invalid_dashboard_models
-        (models_without_tables + unnamed_constants).uniq
+        (models_without_tables + unnamed_constants + databse_internals).uniq
       end
 
       def models_without_tables
         database_models.reject(&:table_exists?)
+      end
+
+      def databse_internals
+        schema_migration_models + internal_metadata_models
+      end
+
+      def schema_migration_models
+        database_models.select {
+          |model| model.to_s.include?("SchemaMigration") }
+      end
+
+      def internal_metadata_models
+        database_models.select {
+          |model| model.to_s.include?("InternalMetadata") }
+      end
+
+      def unnamed_constants
+        ActiveRecord::Base.descendants.reject { |d| d.name == d.to_s }
       end
 
       def generate_resource_routes(resource)
@@ -86,10 +104,6 @@ module Administrate
           indent_end = " " * ((index + ONE_INDENT) * DEFAULT_INDENT) + "end"
           "namespace :#{items[index]} do\n#{indent_resource}\n#{indent_end}"
         end
-      end
-
-      def unnamed_constants
-        ActiveRecord::Base.descendants.reject { |d| d.name == d.to_s }
       end
 
       def dashboard_routes
