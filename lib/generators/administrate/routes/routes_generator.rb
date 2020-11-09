@@ -60,25 +60,18 @@ module Administrate
       end
 
       def invalid_dashboard_models
-        (models_without_tables + unnamed_constants + databse_internals).uniq
+        (models_without_tables + unnamed_constants + database_internals).uniq
       end
 
       def models_without_tables
         database_models.reject(&:table_exists?)
       end
 
-      def databse_internals
-        schema_migration_models + internal_metadata_models
-      end
-
-      def schema_migration_models
-        database_models.select {
-          |model| model.to_s.include?("SchemaMigration") }
-      end
-
-      def internal_metadata_models
-        database_models.select {
-          |model| model.to_s.include?("InternalMetadata") }
+      def database_internals
+        database_models.select do |model|
+          name = model.to_s
+          name.include?("SchemaMigration") || name.include?("InternalMetadata")
+        end
       end
 
       def unnamed_constants
