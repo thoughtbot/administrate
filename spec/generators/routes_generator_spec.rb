@@ -110,7 +110,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
     end
   end
 
-  it "creates a root route for the admin namespace"  do
+  it "creates a root route for the admin namespace" do
     routes = file("config/routes.rb")
 
     run_generator
