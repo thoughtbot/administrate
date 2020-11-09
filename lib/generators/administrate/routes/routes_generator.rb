@@ -15,6 +15,7 @@ module Administrate
       DEFAULT_INDENT = 2
       ONE_INDENT = 1
       TWO_INDENT = 2
+      ARRAY_OFFSET = 1
       include Administrate::GeneratorHelpers
       source_root File.expand_path("../templates", __FILE__)
       class_option :namespace, type: :string, default: "admin"
@@ -77,11 +78,11 @@ module Administrate
       end
 
       def generate_nested_resource_routes(items, index = 0)
-        if index == items.size - 1
+        if index == items.size - ARRAY_OFFSET
           "resources :#{items[index]}"
         else
           resource_indent = " " * ((index + TWO_INDENT) * DEFAULT_INDENT)
-          resource = generate_nested_resource_routes(items, index + 1)
+          resource = generate_nested_resource_routes(items, index + ARRAY_OFFSET)
           indent_resource = "#{resource_indent}#{resource}"
           indent_end = " " * ((index + ONE_INDENT) * DEFAULT_INDENT) + "end"
           "namespace :#{items[index]} do\n#{indent_resource}\n#{indent_end}"
