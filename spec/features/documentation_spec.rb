@@ -7,6 +7,31 @@ describe "documentation navigation" do
     expect(page).to have_http_status(:not_found)
   end
 
+  it "shows the README" do
+    visit(root_path)
+
+    expect(page).to have_css("div.main h1", text: "Administrate")
+    expect(page).to have_content(
+      "A framework for creating flexible, powerful admin dashboards in Rails",
+    )
+  end
+
+  it "shows the Contributing Guides" do
+    visit("/contributing")
+
+    expect(page).to have_css("div.main h1", text: "Contributing Guide")
+    expect(page).to have_content(
+      "We welcome pull requests from everyone.",
+    )
+  end
+
+  it "shows other docs pages" do
+    visit("/getting_started")
+
+    expect(page).to have_css("div.main h1", text: "Getting Started")
+    expect(page).to have_content("Administrate is released as a Ruby gem")
+  end
+
   it "links to each documentation page" do
     visit root_path
     links = internal_documentation_links
@@ -19,7 +44,7 @@ describe "documentation navigation" do
     end
   end
 
-  it "links to the Github repo" do
+  it "links to the GitHub repo" do
     visit root_path
 
     expect(github_link[:href]).
