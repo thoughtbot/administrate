@@ -7,6 +7,8 @@ class DocsController < ApplicationController
     case params[:page]
     when "contributing"
       render_page("CONTRIBUTING", "Contributing Guide")
+    when "license", "LICENSE"
+      render_page("LICENSE", "LICENSE")
     else
       render_page("docs/#{params[:page]}")
     end
