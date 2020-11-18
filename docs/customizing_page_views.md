@@ -28,6 +28,10 @@ rails generate administrate:views:index
  # -> app/views/admin/application/index.html.erb
  # -> app/views/admin/application/_collection.html.erb
 
+rails generate administrate:views:index:actions
+ # -> app/views/admin/application/_actions.html.erb
+ # -> app/views/admin/application/_action_headers.html.erb
+
 rails generate administrate:views:show
  # -> app/views/admin/application/show.html.erb
 
@@ -58,6 +62,10 @@ pass in the resource name to the view generators.
 rails generate administrate:views:index User
  # -> app/views/admin/users/index.html.erb
  # -> app/views/admin/users/_collection.html.erb
+
+rails generate administrate:views:index:actions User
+ # -> app/views/admin/users/_actions.html.erb
+ # -> app/views/admin/users/_action_headers.html.erb
 
 rails generate administrate:views:show User
  # -> app/views/admin/users/show.html.erb
