@@ -6,10 +6,10 @@ module Administrate
     ONE_INDENT = 1
     TWO_INDENT = 2
     OFFSET = 1
-    INVALID_DATABASE_MODELS_LIST =  [
+    INVALID_DATABASE_MODELS_LIST = [
       "ActiveRecord::SchemaMigration",
       "ActiveRecord::InternalMetadata",
-      "primary::SchemaMigration"
+      "primary::SchemaMigration",
     ]
 
     def call_generator(generator, *args)
