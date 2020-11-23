@@ -15,6 +15,12 @@ module Administrate
       ONE_INDENT = 1
       TWO_INDENT = 2
       OFFSET = 1
+      IVALID_DATABASE_MODELS_LIST =  [
+        "ActiveRecord::SchemaMigration",
+        "ActiveRecord::InternalMetadata",
+        "primary::SchemaMigration"
+      ]
+
       include Administrate::GeneratorHelpers
       source_root File.expand_path("../templates", __FILE__)
       class_option :namespace, type: :string, default: "admin"
@@ -52,7 +58,7 @@ module Administrate
       end
 
       def valid_dashboard_models
-        database_models - invalid_dashboard_models
+        database_models - (invalid_dashboard_models + excluded_models).uniq
       end
 
       def database_models
@@ -60,17 +66,17 @@ module Administrate
       end
 
       def invalid_dashboard_models
-        (models_without_tables + unnamed_constants + database_internals).uniq
+        (models_without_tables + unnamed_constants).uniq
       end
 
       def models_without_tables
         database_models.reject(&:table_exists?)
       end
 
-      def database_internals
+      def excluded_models
         database_models.select do |model|
           name = model.to_s
-          name.include?("SchemaMigration") || name.include?("InternalMetadata")
+          IVALID_DATABASE_MODELS_LIST.include?(name)
         end
       end
 
