@@ -11,16 +11,6 @@ require "administrate/namespace"
 module Administrate
   module Generators
     class RoutesGenerator < Rails::Generators::Base
-      DEFAULT_INDENT = 2
-      ONE_INDENT = 1
-      TWO_INDENT = 2
-      OFFSET = 1
-      IVALID_DATABASE_MODELS_LIST =  [
-        "ActiveRecord::SchemaMigration",
-        "ActiveRecord::InternalMetadata",
-        "primary::SchemaMigration"
-      ]
-
       include Administrate::GeneratorHelpers
       source_root File.expand_path("../templates", __FILE__)
       class_option :namespace, type: :string, default: "admin"
@@ -75,8 +65,7 @@ module Administrate
 
       def excluded_models
         database_models.select do |model|
-          name = model.to_s
-          IVALID_DATABASE_MODELS_LIST.include?(name)
+          INVALID_DATABASE_MODELS_LIST.include?(model.to_s)
         end
       end
 
