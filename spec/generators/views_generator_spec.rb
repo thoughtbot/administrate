@@ -13,7 +13,7 @@ describe Administrate::Generators::ViewsGenerator, :generator do
       %w[index show new edit].each do |generator|
         expect(Rails::Generators).
           to invoke_generator("administrate:views:#{generator}",
-          [resource, , "--namespace", "admin"])
+          [resource, "--namespace", "admin"])
       end
     end
 
@@ -25,7 +25,7 @@ describe Administrate::Generators::ViewsGenerator, :generator do
 
       expect(Rails::Generators).to invoke_generator(
         "administrate:views:index",
-        [resource, , "--namespace", "admin"],
+        [resource, "--namespace", "admin"],
         behavior: :revoke,
       )
     end
@@ -54,7 +54,7 @@ describe Administrate::Generators::ViewsGenerator, :generator do
         resource = "users"
         namespace = "console"
   
-        run_generator [resource]
+        run_generator [resource, "--namespace", namespace]
   
         %w[index show new edit].each do |generator|
           expect(Rails::Generators).
