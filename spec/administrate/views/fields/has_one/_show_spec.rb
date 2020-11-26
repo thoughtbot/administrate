@@ -23,6 +23,14 @@ describe "fields/has_one/_show", type: :view do
     it "renders a link to the record" do
       product = create(:product)
       product_path = polymorphic_path([:admin, product])
+      nested_show = instance_double(
+        "Administrate::Page::Show",
+        resource: double(
+          class: ProductMetaTag,
+        ),
+        attributes: [],
+        resource_name: "Product Tag",
+      )
       has_one = instance_double(
         "Administrate::Field::HasOne",
         display_associated_resource: product.name,
@@ -43,15 +51,54 @@ describe "fields/has_one/_show", type: :view do
       expect(rendered.strip).to include(link)
     end
 
-    def nested_show
-      instance_double(
+    it "renders nested attribute relationships" do
+      template.extend Administrate::ApplicationHelper
+
+      product = create(:product)
+      page = create(:page, product: product)
+
+      nested_has_many = instance_double(
+        "Administrate::Field::HasMany",
+        associated_collection: [page],
+        attribute: :page,
+        data: [page],
+        resources: [page],
+        html_class: "has-many",
+        name: "Page",
+        to_partial_path: "fields/has_many/index",
+        order_from_params: {},
+      )
+
+      nested_show = instance_double(
         "Administrate::Page::Show",
         resource: double(
           class: ProductMetaTag,
         ),
-        attributes: [],
+        attributes: [nested_has_many],
         resource_name: "Product Tag",
       )
+
+      has_one = instance_double(
+        "Administrate::Field::HasOne",
+        display_associated_resource: product.name,
+        data: product,
+        nested_show: nested_show,
+      )
+
+      page_double = instance_double("Administrate::Page::Show")
+
+      render(
+        partial: "fields/has_one/show.html.erb",
+        locals: {
+          field: has_one,
+          namespace: "admin",
+          page: page_double,
+          resource_name: "product_meta_tag",
+        },
+      )
+
+      has_many_count = "1 page"
+      expect(rendered.strip).to include(has_many_count)
     end
   end
 end

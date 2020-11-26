@@ -32,7 +32,7 @@ All show page attributes of has_one relationship would be rendered
         ) %>
       </dt>
       <dd class="attribute-data attribute-data--<%= attribute.html_class %>">
-        <%= render_field attribute %>
+        <%= render_field attribute, { page: page } %>
       </dd>
       </div>
     <% end -%>
