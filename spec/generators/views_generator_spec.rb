@@ -15,7 +15,7 @@ describe Administrate::Generators::ViewsGenerator, :generator do
           to invoke_generator(
             "administrate:views:#{generator}",
             [resource, "--namespace", "admin"],
-            )
+          )
       end
     end
 
