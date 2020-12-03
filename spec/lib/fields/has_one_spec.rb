@@ -100,7 +100,7 @@ describe Administrate::Field::HasOne do
           :show,
         )
 
-        expect(field.linkable?).to be_falsey
+        expect(field).not_to be_linkable
       end
     end
   end
