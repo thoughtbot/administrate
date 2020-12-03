@@ -1,9 +1,11 @@
 require "rails/generators/base"
 require "administrate/generator_helpers"
+require "administrate/namespace"
 
 module Administrate
   class ViewGenerator < Rails::Generators::Base
     include Administrate::GeneratorHelpers
+    class_option :namespace, type: :string, default: "admin"
 
     def self.template_source_path
       File.expand_path(
@@ -14,12 +16,16 @@ module Administrate
 
     private
 
+    def namespace
+      options[:namespace]
+    end
+
     def copy_resource_template(template_name)
       template_file = "#{template_name}.html.erb"
 
       copy_file(
         template_file,
-        "app/views/admin/#{resource_path}/#{template_file}",
+        "app/views/#{namespace}/#{resource_path}/#{template_file}",
       )
     end
 
