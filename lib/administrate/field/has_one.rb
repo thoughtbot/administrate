@@ -40,6 +40,10 @@ module Administrate
         )
       end
 
+      def linkable?
+        data.try(:persisted?)
+      end
+
       private
 
       def resolver

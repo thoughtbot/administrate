@@ -94,4 +94,45 @@ describe Administrate::Field::HasOne do
       expect(path).to eq("/fields/has_one/#{page}")
     end
   end
+
+  describe "#linkable?" do
+    context "when data is persisted" do
+      it "shows it" do
+        product_meta_tag = create(:product_meta_tag)
+        field = described_class.new(
+          :product_meta_tag,
+          product_meta_tag,
+          :show,
+        )
+
+        expect(field).to be_linkable
+      end
+    end
+
+    context "when data isn't persisted" do
+      it "doesn't shows it" do
+        product_meta_tag = build(:product_meta_tag)
+        field = described_class.new(
+          :product_meta_tag,
+          product_meta_tag,
+          :show,
+        )
+
+        expect(field).to_not be_linkable
+      end
+    end
+
+    context "when data doesn't respond to `persisted?`" do
+      it "doesn't show it" do
+        product_meta_tag = double(:product_meta_tag)
+        field = described_class.new(
+          :product_meta_tag,
+          product_meta_tag,
+          :show,
+        )
+
+        expect(field).not_to be_linkable
+      end
+    end
+  end
 end

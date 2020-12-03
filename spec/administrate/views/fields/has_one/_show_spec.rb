@@ -4,10 +4,10 @@ require "administrate/field/has_one"
 describe "fields/has_one/_show", type: :view do
   context "without an associated record" do
     it "displays nothing" do
-      has_one = instance_double(
-        "Administrate::Field::HasOne",
-        display_associated_resource: "",
-        data: nil,
+      has_one = Administrate::Field::HasOne.new(
+        :product_meta_tag,
+        build(:product_meta_tag),
+        :show,
       )
 
       render(
@@ -35,6 +35,7 @@ describe "fields/has_one/_show", type: :view do
         "Administrate::Field::HasOne",
         display_associated_resource: product.name,
         data: product,
+        linkable?: true,
         nested_show: nested_show,
       )
 
