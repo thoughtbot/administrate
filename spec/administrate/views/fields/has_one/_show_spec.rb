@@ -83,6 +83,7 @@ describe "fields/has_one/_show", type: :view do
         "Administrate::Field::HasOne",
         display_associated_resource: product.name,
         data: product,
+        linkable?: true,
         nested_show: nested_show,
       )
 
