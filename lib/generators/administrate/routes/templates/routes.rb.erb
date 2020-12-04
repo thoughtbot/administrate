@@ -1,5 +1,4 @@
 namespace :<%= namespace %> do
-  <% dashboard_resources.each do |resource| %><%= generate_resource_routes(resource) %>
-  <%end%>
+<%= generate_resource_routes(dashboard_resources_hash) %>
   root to: "<%= dashboard_resources.first %>#index"
 end
