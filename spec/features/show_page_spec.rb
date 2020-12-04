@@ -2,30 +2,50 @@ require "rails_helper"
 
 RSpec.describe "customer show page" do
   describe "paginates customers' orders" do
-    it "displays the first page by default, other pages when specified" do
-      customer = create(:customer)
-      orders = create_list(:order, 4, customer: customer)
-      order_ids = orders.map(&:id)
-      ids_in_page1 = ids_in_page2 = nil
+    context "when the total number of records exceeds the pagination limit" do
+      it "displays the first page by default, other pages on request" do
+        customer = create(:customer)
+        orders = create_list(:order, 4, customer: customer)
+        order_ids = orders.map(&:id)
+        ids_in_page1 = ids_in_page2 = nil
 
-      visit admin_customer_path(customer)
+        visit admin_customer_path(customer)
 
-      within(table_for_attribute(:orders)) do
-        ids_in_page1 = ids_in_table
-        expect(ids_in_page1.count).to eq 2
-        expect(order_ids).to include(*ids_in_page1)
+        within(table_for_attribute(:orders)) do
+          ids_in_page1 = ids_in_table
+          expect(ids_in_page1.count).to eq 2
+          expect(order_ids).to include(*ids_in_page1)
+        end
+
+        click_on("Next ›")
+
+        within(table_for_attribute(:orders)) do
+          ids_in_page2 = ids_in_table
+          expect(ids_in_page2.count).to eq 2
+          expect(order_ids).to include(*ids_in_page2)
+        end
+
+        ids_in_table = (ids_in_page1 + ids_in_page2).uniq
+        expect(ids_in_table).to match_array(order_ids)
       end
+    end
 
-      click_on("Next ›")
+    context "when the total number of records does not exceed \
+      the pagination limit" do
+      it "displays all records" do
+        customer = create(:customer)
+        orders = create_list(:order, 1, customer: customer)
+        order_ids = orders.map(&:id)
+        ids_in_page1 = nil
 
-      within(table_for_attribute(:orders)) do
-        ids_in_page2 = ids_in_table
-        expect(ids_in_page2.count).to eq 2
-        expect(order_ids).to include(*ids_in_page2)
+        visit admin_customer_path(customer)
+
+        within(table_for_attribute(:orders)) do
+          ids_in_page1 = ids_in_table
+          expect(ids_in_page1.count).to eq 1
+          expect(order_ids).to include(*ids_in_page1)
+        end
       end
-
-      ids_in_table = (ids_in_page1 + ids_in_page2).uniq
-      expect(ids_in_table).to match_array(order_ids)
     end
 
     describe(
