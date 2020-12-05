@@ -136,7 +136,7 @@ module Administrate
           output_string += "#{indentation}end\n"
         end
         output_string
-      end 
+      end
 
       def dashboard_routes
         ERB.new(File.read(routes_file_path)).result(binding)
