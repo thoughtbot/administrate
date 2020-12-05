@@ -55,8 +55,8 @@ module Administrate
 
       def dashboard_resources_hash
         output = [{}, []]
-        dashboard_resources.each do |resource_path| 
-          split_path = resource_path.split('/')
+        dashboard_resources.each do |resource_path|
+          split_path = resource_path.split("/")
           output = [
             add_namespace_to_hash(split_path, output[0]),
             add_resources_to_hash(split_path, output[1]),
@@ -68,9 +68,10 @@ module Administrate
       def add_namespace_to_hash(split_path, current_state)
         if split_path.length > 1
           current_state[split_path[0]] ||= [{}, []]
-          current_state[split_path[0]] = [
-            add_namespace_to_hash(split_path[1..], current_state[split_path[0]][0]),
-            add_resources_to_hash(split_path[1..], current_state[split_path[0]][1]),
+          current_namespace = current_state[split_path[0]]
+          current_namespace = [
+            add_namespace_to_hash(split_path[1..], current_namespace[0]),
+            add_resources_to_hash(split_path[1..], current_namespace[1]),
           ]
         end
         current_state
