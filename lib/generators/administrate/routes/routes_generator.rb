@@ -53,7 +53,7 @@ module Administrate
         end
       end
 
-      def dashboard_resources_hash()
+      def dashboard_resources_hash
         output = [{}, []]
         dashboard_resources.each do |resource_path| 
           split_path = resource_path.split('/')
@@ -118,7 +118,7 @@ module Administrate
         output_string
       end
 
-      def generate_namespace_routes(hash, indent = 1) 
+      def generate_namespace_routes(hash, indent = 1)
         output_string = ""
         indentation = DEFAULT_INDENT * indent
         hash.each do |namespace, namespace_resource|
@@ -129,14 +129,14 @@ module Administrate
             resource_string = "#{DEFAULT_INDENT}resources :#{resource}"
             output_string += "#{indentation}#{resource_string}\n"
           end
-          if (!nested_namespaces.empty?)
+          if !nested_namespaces.empty?
             namespaces_string = generate_namespace_routes(nested_namespaces, indent + 1)
             output_string += "\n#{namespaces_string}\n"
           end
           output_string += "#{indentation}end\n"
         end
         output_string
-      end
+      end 
 
       def dashboard_routes
         ERB.new(File.read(routes_file_path)).result(binding)
