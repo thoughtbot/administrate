@@ -209,6 +209,9 @@ objects to display as.
 `:timezone` - Specify which timezone `Date` and `DateTime` objects are based
 in.
 
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `false`.
+
 **Field::Date**
 
 `:format` - Specify what format, using `strftime` you would like `Date`
