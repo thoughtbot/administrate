@@ -19,7 +19,7 @@ describe Administrate::Field::Number do
 
   it do
     should_permit_param(
-      :foo,
+      "foo",
       on_model: Customer,
       for_attribute: :foo,
     )

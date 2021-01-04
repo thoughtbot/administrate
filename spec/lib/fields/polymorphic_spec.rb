@@ -20,7 +20,7 @@ describe Administrate::Field::Polymorphic do
 
   it do
     should_permit_param(
-      { foo: %i{type value} },
+      { "foo" => %i{type value} },
       on_model: Customer,
       for_attribute: :foo,
     )
