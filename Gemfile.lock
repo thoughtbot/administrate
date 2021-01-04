@@ -82,7 +82,7 @@ GEM
       bundler
       rake
       thor (>= 0.14.0)
-    ast (2.4.0)
+    ast (2.4.1)
     awesome_print (1.8.0)
     builder (3.2.4)
     bundler-audit (0.7.0.1)
@@ -110,7 +110,7 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
-    erubi (1.9.0)
+    erubi (1.10.0)
     execjs (2.7.0)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
@@ -133,7 +133,7 @@ GEM
     highline (2.0.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.31)
+    i18n-tasks (0.9.33)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -165,7 +165,7 @@ GEM
     kgio (2.11.3)
     launchy (2.5.0)
       addressable (~> 2.7)
-    loofah (2.7.0)
+    loofah (2.8.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -183,8 +183,8 @@ GEM
     nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
-    parser (2.7.0.4)
-      ast (~> 2.4.0)
+    parser (2.7.2.0)
+      ast (~> 2.4.1)
     pg (1.2.3)
     pry (0.12.2)
       coderay (~> 1.1.0)
@@ -229,7 +229,7 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rainbow (3.0.0)
     raindrops (0.19.1)
-    rake (13.0.1)
+    rake (13.0.3)
     redcarpet (3.5.1)
     regexp_parser (1.8.2)
     rspec-core (3.9.2)
@@ -273,17 +273,17 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    terminal-table (1.8.0)
+    terminal-table (2.0.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
     timecop (0.9.2)
-    tzinfo (1.2.7)
+    tzinfo (1.2.9)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.6.1)
+    unicode-display_width (1.7.0)
     unicorn (5.7.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
@@ -297,7 +297,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.25)
-    zeitwerk (2.4.0)
+    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
@@ -318,7 +318,7 @@ DEPENDENCIES
   formulaic
   front_matter_parser
   globalid
-  i18n-tasks (= 0.9.31)
+  i18n-tasks (= 0.9.33)
   kaminari-i18n
   launchy
   pg
