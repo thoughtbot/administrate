@@ -93,12 +93,12 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(requireness(release_year)).to eq("optional")
     end
 
-    it "returns 'optional' if field is required if condition is met" do
+    it "is 'optional' for fields required only conditionally (with :unless)" do
       description = page.attributes.detect { |i| i.attribute == :description }
       expect(requireness(description)).to eq("optional")
     end
 
-    it "returns 'optional' if field is required unless condition is met" do
+    it "is 'optional' for fields required only conditionally (with :if)" do
       price = page.attributes.detect { |i| i.attribute == :price }
       expect(requireness(price)).to eq("optional")
     end
