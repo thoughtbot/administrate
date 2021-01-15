@@ -14,6 +14,9 @@ ProductMetaTag.destroy_all
 Series.destroy_all
 Country.destroy_all
 LogEntry.destroy_all
+Blog::Post.destroy_all
+Page.destroy_all
+Payment.destroy_all
 
 countries = Country.create! [
   { code: "US", name: "USA" },
