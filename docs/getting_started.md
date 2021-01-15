@@ -37,7 +37,7 @@ You will also want to add a `root` route to show a dashboard when you go to `/ad
 Rails.application.routes.draw do
   namespace :admin do
     # Add dashboard for your models here
-    resources :customers,
+    resources :customers
     resources :orders
 
     root to: "customers#index" # <--- Root route
