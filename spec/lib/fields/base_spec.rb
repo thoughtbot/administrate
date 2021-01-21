@@ -73,7 +73,83 @@ describe Administrate::Field::Base do
       expect(field.required?).to eq(false)
     end
 
-    it "is false on a conditional requirement for a value (with :on)" do
+    it "is true for an unpersisted record in only required on create" do
+      validator = ActiveRecord::Validations::PresenceValidator.new(
+        attributes: [:foo],
+        on: :create,
+      )
+      resource_class = class_double(
+        "ActiveRecord::Base",
+        validators_on: [validator],
+      )
+      resource = instance_double(
+        "ActiveRecord::Base",
+        class: resource_class,
+        persisted?: false,
+      )
+      field = field_class.new(:attribute, :date, :page, resource: resource)
+
+      expect(field.required?).to eq(true)
+    end
+
+    it "is false for a persisted record if only required on create" do
+      validator = ActiveRecord::Validations::PresenceValidator.new(
+        attributes: [:foo],
+        on: :create,
+      )
+      resource_class = class_double(
+        "ActiveRecord::Base",
+        validators_on: [validator],
+      )
+      resource = instance_double(
+        "ActiveRecord::Base",
+        class: resource_class,
+        persisted?: true,
+      )
+      field = field_class.new(:attribute, :date, :page, resource: resource)
+
+      expect(field.required?).to eq(false)
+    end
+
+    it "is true for a persisted record in only required on update" do
+      validator = ActiveRecord::Validations::PresenceValidator.new(
+        attributes: [:foo],
+        on: :update,
+      )
+      resource_class = class_double(
+        "ActiveRecord::Base",
+        validators_on: [validator],
+      )
+      resource = instance_double(
+        "ActiveRecord::Base",
+        class: resource_class,
+        persisted?: true,
+      )
+      field = field_class.new(:attribute, :date, :page, resource: resource)
+
+      expect(field.required?).to eq(true)
+    end
+
+    it "is false for a persisted record in only required on update" do
+      validator = ActiveRecord::Validations::PresenceValidator.new(
+        attributes: [:foo],
+        on: :update,
+      )
+      resource_class = class_double(
+        "ActiveRecord::Base",
+        validators_on: [validator],
+      )
+      resource = instance_double(
+        "ActiveRecord::Base",
+        class: resource_class,
+        persisted?: false,
+      )
+      field = field_class.new(:attribute, :date, :page, resource: resource)
+
+      expect(field.required?).to eq(false)
+    end
+
+    it "is false when required only on unstandard situations" do
       validator = ActiveRecord::Validations::PresenceValidator.new(
         attributes: [:foo],
         on: :some_situation_or_the_other,
