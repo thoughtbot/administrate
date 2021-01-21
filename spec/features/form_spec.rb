@@ -34,6 +34,8 @@ describe "edit form" do
 
     required_field_translations = [
       Product.human_attribute_name(:name),
+      Product.human_attribute_name(:description),
+      Product.human_attribute_name(:price),
       Product.human_attribute_name(:image_url),
     ]
 
