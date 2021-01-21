@@ -102,6 +102,11 @@ RSpec.describe Administrate::ApplicationHelper do
       price = page.attributes.detect { |i| i.attribute == :price }
       expect(requireness(price)).to eq("optional")
     end
+
+    it "is 'optional' for fields required only conditionally (with :on)" do
+      price = page.attributes.detect { |i| i.attribute == :product_meta_tag }
+      expect(requireness(price)).to eq("optional")
+    end
   end
 
   describe "#sort_order" do

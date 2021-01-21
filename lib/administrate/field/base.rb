@@ -54,7 +54,8 @@ module Administrate
         resource.class.validators_on(attribute).any? do |v|
           v.class == ActiveRecord::Validations::PresenceValidator &&
             !v.options.include?(:if) &&
-            !v.options.include?(:unless)
+            !v.options.include?(:unless) &&
+            !v.options.include?(:on)
         end
       end
 

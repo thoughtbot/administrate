@@ -21,6 +21,7 @@ class Product < ApplicationRecord
             },
             allow_blank: true
   validates :slug, uniqueness: true
+  validates :product_meta_tag, presence: true, on: :some_unclear_situation
   validate :valid_slug
 
   accepts_nested_attributes_for :product_meta_tag
