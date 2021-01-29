@@ -36,6 +36,16 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  # Log disallowed deprecations.
+  config.active_support.disallowed_deprecation = :log
+
+  # Tell Active Support which deprecation messages to disallow.
+  config.active_support.disallowed_deprecation_warnings = []
+
   # Raises error for missing translations.
-  config.action_view.raise_on_missing_translations = true
+  if Rails::VERSION::MAJOR <= 6
+    config.action_view.raise_on_missing_translations = true
+  else
+    config.i18n.raise_on_missing_translations = true
+  end
 end

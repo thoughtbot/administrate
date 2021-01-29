@@ -8,7 +8,7 @@ describe Administrate::Field::BelongsTo do
 
   it do
     should_permit_param(
-      :country_code,
+      "country_code",
       on_model: Customer,
       for_attribute: :territory,
     )
