@@ -68,6 +68,20 @@ describe "customer index page" do
       expect(page).to have_table_header(custom_label)
     end
   end
+
+  it "sorts by count on a has_many association" do
+    create_list(:order, 2, customer: create(:customer, name: "Ade"))
+    create_list(:order, 3, customer: create(:customer, name: "Ben"))
+    create_list(:order, 1, customer: create(:customer, name: "Cam"))
+
+    visit admin_customers_path
+
+    click_on "Orders"
+    expect(page).to have_content(/Cam.*1 order.*Ade.*2 orders.*Ben.*3 orders/)
+
+    click_on "Orders"
+    expect(page).to have_content(/Ben.*3 orders.*Ade.*2 orders.*Cam.*1 order/)
+  end
 end
 
 describe "search input" do

@@ -1,14 +1,3 @@
-appraise "rails42" do
-  gem "actionpack", "~> 4.2.0"
-  gem "actionview", "~> 4.2.0"
-  gem "activerecord", "~> 4.2.0"
-  gem "pg", "0.21.0"
-
-  group :development, :test do
-    gem "rspec-rails"
-  end
-end
-
 appraise "rails50" do
   gem "actionpack", "~> 5.0.0"
   gem "actionview", "~> 5.0.0"
@@ -42,9 +31,9 @@ appraise "rails52" do
 end
 
 appraise "rails60" do
-  gem "rails", "~> 6.0.0.rc1"
+  gem "rails", "~> 6.0.3.4"
+end
 
-  group :development, :test do
-    gem "rspec-rails", "~> 4.0.0.beta2"
-  end
+appraise "rails61" do
+  gem "rails", "~> 6.1"
 end

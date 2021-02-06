@@ -12,21 +12,16 @@ describe Admin::OrdersController, type: :controller do
       end
     end
 
-    let!(:user) { create :customer }
+    let(:user) { create(:customer) }
 
-    before(:each) do
-      # Create a few orders for the user and a few for other customers
-      create_list :order, 4, customer: create(:customer)
-      create_list :order, 7, customer: user
-      create_list :order, 2, customer: create(:customer)
-      create_list :order, 2, customer: user
-    end
-
-    # Policies are defined in order_policy.rb
     describe "GET index" do
       it "shows only the records in the admin scope" do
+        order = create(:order, customer: user)
+        _missing_order = create(:order)
+
         locals = capture_view_locals { get :index }
-        expect(locals[:resources].count).to eq(9) # only my orders
+
+        expect(locals[:resources]).to contain_exactly(order)
       end
     end
 

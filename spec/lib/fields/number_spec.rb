@@ -1,3 +1,4 @@
+require "rails_helper"
 require "administrate/field/number"
 require "support/field_matchers"
 
@@ -16,7 +17,13 @@ describe Administrate::Field::Number do
     end
   end
 
-  it { should_permit_param(:foo, for_attribute: :foo) }
+  it do
+    should_permit_param(
+      "foo",
+      on_model: Customer,
+      for_attribute: :foo,
+    )
+  end
 
   describe "#to_s" do
     it "defaults to displaying no decimal points" do
@@ -73,6 +80,65 @@ describe Administrate::Field::Number do
 
         expect(hundredth.to_s).to eq("1")
         expect(ten.to_s).to eq("1000")
+      end
+    end
+
+    context "with `format` option" do
+      context "when `formatter: :number_to_delimited`" do
+        it "includes the delimiter for numbers greater than 999" do
+          ninety_nine = number_with_options(
+            999, format: { formatter: :number_to_delimited }
+          )
+          thousand_default = number_with_options(
+            1_000, format: { formatter: :number_to_delimited }
+          )
+          thousand_explicit_comma = number_with_options(
+            1_000, format: {
+              formatter: :number_to_delimited,
+              formatter_options: { delimiter: "," },
+            }
+          )
+          million_explicit_space = number_with_options(
+            1_000_000, format: {
+              formatter: :number_to_delimited,
+              formatter_options: { delimiter: " " },
+            }
+          )
+
+          expect(ninety_nine.to_s).to eq("999")
+          expect(thousand_default.to_s).to eq("1,000")
+          expect(thousand_explicit_comma.to_s).to eq("1,000")
+          expect(million_explicit_space.to_s).to eq("1 000 000")
+        end
+      end
+
+      context "when passed incorrect `formatter`" do
+        it "works" do
+          thousand = number_with_options(1_000, format: { formatter: :rubbish })
+
+          expect(thousand.to_s).to eq("1000")
+        end
+      end
+    end
+
+    context "with multiple options" do
+      it "correctly displays the number with all options applied" do
+        options = {
+          prefix: "$",
+          suffix: "/hour",
+          multiplier: 10,
+          decimals: 2,
+          format: {
+            formatter: :number_to_delimited,
+            formatter_options: {
+              delimiter: " ",
+              separator: ",",
+            },
+          },
+        }
+        number = number_with_options(100, **options)
+
+        expect(number.to_s).to eq("$1 000,00/hour")
       end
     end
 

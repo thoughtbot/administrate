@@ -6,6 +6,9 @@ commands:
     steps:
       - checkout
 
+      # Install bundler
+      - run: gem install bundler:2.1.4
+
       # Restore Cached Dependencies
       - restore_cache:
           name: Restore bundle cache
@@ -50,6 +53,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
+          BUNDLER_VERSION: 2.1.4
       - image: postgres:10.1-alpine
         environment:
           POSTGRES_USER: administrate
@@ -70,10 +74,24 @@ jobs:
           POSTGRES_DB: ruby26
           POSTGRES_PASSWORD: ""
 
+  ruby-27:
+    <<: *default_job
+    docker:
+      - image: circleci/ruby:2.7-node-browsers-legacy
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby27
+          POSTGRES_PASSWORD: ""
 
 workflows:
   version: 2
   multiple-rubies:
     jobs:
+      - ruby-27
       - ruby-26
       - ruby-25

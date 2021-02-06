@@ -59,10 +59,12 @@ module Administrate
     end
 
     def order_by_count(relation)
+      klass = reflect_association(relation).klass
+      query = "COUNT(#{klass.table_name}.#{klass.primary_key}) #{direction}"
       relation.
         left_joins(attribute.to_sym).
         group(:id).
-        reorder("COUNT(#{attribute}.id) #{direction}")
+        reorder(Arel.sql(query))
     end
 
     def order_by_id(relation)

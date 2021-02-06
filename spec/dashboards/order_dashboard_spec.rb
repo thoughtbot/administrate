@@ -11,7 +11,7 @@ describe CustomerDashboard do
     it "returns the attribute_id name for belongs_to relationships" do
       dashboard = OrderDashboard.new
 
-      expect(dashboard.permitted_attributes).to include(:customer_id)
+      expect(dashboard.permitted_attributes).to include("customer_id")
     end
   end
 end

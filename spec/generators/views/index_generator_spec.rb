@@ -42,4 +42,24 @@ describe Administrate::Generators::Views::IndexGenerator, :generator do
       expect(contents).to eq(expected_contents)
     end
   end
+
+  describe "administrate:views:index resource --namespace=<namespace>" do
+    it "copies the index view into the `namespace/resource` namespace" do
+      expected_contents = contents_for_application_template("index")
+
+      run_generator ["users", "--namespace", "console"]
+      contents = File.read(file("app/views/console/users/index.html.erb"))
+
+      expect(contents).to eq(expected_contents)
+    end
+
+    it "copies the collection partial into the `namespace/resource` namespace" do
+      expected_contents = contents_for_application_template("_collection")
+
+      run_generator ["users", "--namespace", "console"]
+      contents = File.read(file("app/views/console/users/_collection.html.erb"))
+
+      expect(contents).to eq(expected_contents)
+    end
+  end
 end

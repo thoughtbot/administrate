@@ -1,0 +1,13 @@
+-
+CHANGELOG.md
+docs/getting_started.md
+docs/rails_api.md
+docs/customizing_dashboards.md
+docs/customizing_page_views.md
+docs/customizing_attribute_partials.md
+docs/adding_controllers_without_related_model.md
+docs/adding_custom_field_types.md
+docs/authentication.md
+docs/authorization.md
+CODE_OF_CONDUCT.md
+LICENSE.md

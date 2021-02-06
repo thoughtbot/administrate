@@ -56,7 +56,10 @@ module Administrate
 
     def permitted_attributes
       form_attributes.map do |attr|
-        attribute_types[attr].permitted_attribute(attr)
+        attribute_types[attr].permitted_attribute(
+          attr,
+          resource_class: self.class.model,
+        )
       end.uniq
     end
 

@@ -5,11 +5,13 @@ else
 end
 
 require "rails/generators/base"
+require "administrate/generator_helpers"
 require "administrate/namespace"
 
 module Administrate
   module Generators
     class RoutesGenerator < Rails::Generators::Base
+      include Administrate::GeneratorHelpers
       source_root File.expand_path("../templates", __FILE__)
       class_option :namespace, type: :string, default: "admin"
 
@@ -81,7 +83,7 @@ module Administrate
       end
 
       def rails_routes_file_path
-        Rails.root.join("config/routes.rb")
+        find_routes_file
       end
 
       def routes_file_path

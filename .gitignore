@@ -25,3 +25,5 @@ pkg
 /.idea
 .byebug_history
 gemfiles/.bundle/
+.yardoc
+/doc

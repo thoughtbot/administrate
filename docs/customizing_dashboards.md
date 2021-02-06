@@ -79,16 +79,11 @@ which are specified through the `.with_options` class method:
 `:order` - Specifies the order of the dropdown menu, can be ordered by more
 than one column. e.g.: `"name, email DESC"`.
 
-`:primary_key` - Specifies object's primary_key. Defaults to `:id`.
-
-`:foreign_key` - Specifies the name of the foreign key directly.
-Defaults to `:#{attribute}_id`.
-
 `:scope` - Specifies a custom scope inside a callable. Useful for preloading.
 Example: `.with_options(scope: -> { MyModel.includes(:rel).limit(5) })`
 
-`:class_name` - Specifies the name of the associated class.
-Defaults to `:#{attribute}.to_s.singularize.camelcase`.
+`:include_blank` - Specifies if the select element to be rendered should include
+blank option. Default is `true`.
 
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `false`.
@@ -108,6 +103,12 @@ For example:
 with this, you will be able to search through the column `name` from the
 association `belongs_to :country`, from your model.
 
+`:primary_key` (deprecated) - Specifies the association's primary_key.
+
+`:foreign_key` (deprecated) - Specifies the name of the foreign key directly.
+
+`:class_name` (deprecated) - Specifies the name of the associated class.
+
 **Field::HasMany**
 
 `:limit` - Set the number of resources to display in the show view. Default is
@@ -117,17 +118,13 @@ association `belongs_to :country`, from your model.
 
 `:direction` - What direction the sort should be in, `:asc` (default) or `:desc`.
 
-`:primary_key` - Specifies object's primary_key. Defaults to `:id`.
+`:primary_key` (deprecated) - Specifies object's primary_key.
 
-`:foreign_key` - Specifies the name of the foreign key directly. Defaults to `:#{attribute}_id`
+`:foreign_key` (deprecated) - Specifies the name of the foreign key directly.
 
-`:class_name` - Specifies the name of the associated class.
-Defaults to `:#{attribute}.to_s.singularize.camelcase`.
+`:class_name` (deprecated) - Specifies the name of the associated class.
 
 **Field::HasOne**
-
-`:class_name` - Specifies the name of the associated class.
-Defaults to `:#{attribute}.to_s.singularize.camelcase`.
 
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `false`.
@@ -147,6 +144,8 @@ For example:
 with this, you will be able to search through the column `name` from the
 association `has_many :cities`, from your model.
 
+`:class_name` (deprecated) - Specifies the name of the associated class.
+
 **Field::Number**
 
 `:searchable` - Specify if the attribute should be considered when searching.
@@ -159,6 +158,13 @@ more results than expected. Default is `false`.
 
 `:suffix` - Suffixes the number with a string. Defaults to `""`.
 
+`:format` - Specify a hash which defines a formatter. This uses ActiveSupport
+and works by  by passing a hash that includes the formatter (`formatter`) and
+the options for the formatter (`formatter_options`). Defaults to the locale's
+delimiter when `formatter_options` does not include a `delimiter`. See the
+example below. Note that currently only
+`ActiveSupport::NumberHelper.number_to_delimited` is supported.
+
 For example, you might use the following to display U.S. currency:
 
 ```ruby
@@ -166,15 +172,25 @@ For example, you might use the following to display U.S. currency:
     prefix: "$",
     decimals: 2,
   )
+
+  # "$5.99"
 ```
 
-Or, to display a distance in kilometers:
+Or, to display a distance in kilometers, using a space as the delimiter:
 
 ```ruby
-  unit_price: Field::Number.with_options(
+  distance: Field::Number.with_options(
     suffix: " km",
     decimals: 2,
+    format: { 
+        formatter: :number_to_delimited,
+        formatter_options: { 
+            delimiter: ' ',
+        },
+    },
   )
+
+  # "2 000.00 km"
 ```
 
 **Field::Polymorphic**

@@ -3,6 +3,7 @@ module Administrate
     protect_from_forgery with: :exception
 
     def index
+      authorize_resource(resource_class)
       search_term = params[:search].to_s.strip
       resources = Administrate::Search.new(scoped_resource,
                                            dashboard_class,
@@ -172,6 +173,7 @@ module Administrate
       to: :resource_resolver
     helper_method :namespace
     helper_method :resource_name
+    helper_method :resource_class
 
     def resource_resolver
       @resource_resolver ||=

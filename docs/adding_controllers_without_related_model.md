@@ -1,3 +1,7 @@
+---
+title: Adding Controllers without a related Model
+---
+
 # Adding Controllers without a related Model
 
 Sometimes you may want to add a custom controller that has no resource
@@ -24,6 +28,20 @@ require "administrate/custom_dashboard"
 
 class StatDashboard < Administrate::CustomDashboard
   resource "Stats" # used by administrate in the views
+end
+```
+
+```ruby
+# app/controllers/admin/stats_controller.rb
+module Admin
+  class StatsController < Admin::ApplicationController
+    def index
+      @stats = {
+        customer_count: Customer.count,
+        order_count: Order.count,
+      }
+    end
+  end
 end
 ```
 
