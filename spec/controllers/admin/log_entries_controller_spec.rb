@@ -127,14 +127,17 @@ describe Admin::LogEntriesController, type: :controller do
         log_entry = create(:log_entry, logeable: customer)
         new_action = "cancel"
 
-        locals = capture_view_locals do
+        render_args = capture_render do
           put_update(log_entry, action: new_action, logeable: customer)
         end
 
-        page = locals[:page]
+        page = render_args.fetch(:locals).fetch(:page)
         expect(page).to be_instance_of(Administrate::Page::Form)
         expect(page.resource).to eq(log_entry)
         expect(page.resource.action).to eq(new_action)
+
+        status = render_args.fetch(:status)
+        expect(status).to eq(:unprocessable_entity)
       end
     end
   end

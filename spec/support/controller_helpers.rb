@@ -12,6 +12,27 @@ module ControllerHelpers
     locals
   end
 
+  def capture_render
+    allow(@controller).to receive(:render)
+    yield
+
+    arguments = {}
+    expect(@controller).to have_received(:render).at_least(1).times do |*args|
+      args.each do |arg|
+        locals = arg.try(:fetch, :locals, nil)
+        if locals
+          arguments[:locals] = locals
+        end
+
+        status = arg.try(:fetch, :status, nil)
+        if status
+          arguments[:status] = status
+        end
+      end
+    end
+    arguments
+  end
+
   def use_new_params_syntax?
     Rails::VERSION::STRING >= "5.2"
   end
