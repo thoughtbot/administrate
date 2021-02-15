@@ -19,7 +19,7 @@ module Administrate
       def run_routes_generator
         if dashboard_resources.none?
           call_generator("administrate:routes", "--namespace", namespace)
-          load find_routes_file
+          Rails.application.reload_routes!
         end
       end
 
