@@ -6,14 +6,14 @@ end
 
 require "rails/generators/base"
 require "administrate/generator_helpers"
-require "administrate/namespacing_helpers"
+require "administrate/namespacing_routes"
 require "administrate/namespace"
 
 module Administrate
   module Generators
     class RoutesGenerator < Rails::Generators::Base
       include Administrate::GeneratorHelpers
-      include Administrate::NamespacingHelpers
+      include Administrate::NamespacingRoutes
       INVALID_DATABASE_MODELS_LIST = [
         "ActiveRecord::SchemaMigration",
         "ActiveRecord::InternalMetadata",
