@@ -25,6 +25,16 @@ describe "documentation navigation" do
     )
   end
 
+  it "shows the LICENSE in both forms" do
+    visit("/license")
+
+    expect(page).to have_content("The MIT License (MIT)")
+
+    visit("/LICENSE.md")
+
+    expect(page).to have_content("The MIT License (MIT)")
+  end
+
   it "shows other docs pages" do
     visit("/getting_started")
 
