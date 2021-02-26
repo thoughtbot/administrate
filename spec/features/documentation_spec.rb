@@ -42,6 +42,13 @@ describe "documentation navigation" do
     expect(page).to have_content("Administrate is released as a Ruby gem")
   end
 
+  it "shows nested docs pages" do
+    visit("/guides/hiding_dashboards_from_sidebar")
+
+    expect(page).to have_css("div.main h1", text: "Hiding Dashboards from")
+    expect(page).to have_content("Resources can be removed form the sidebar")
+  end
+
   it "links to each documentation page" do
     visit root_path
     links = internal_documentation_links
