@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :line_items
     resources :log_entries
     resources :orders
+    resources :pages
     resources :products
     resources :product_meta_tags, except: [:index]
     resources :payments, only: [:index, :show]
@@ -18,6 +19,6 @@ Rails.application.routes.draw do
     root to: "customers#index"
   end
 
-  get "/:page", to: "docs#show"
+  get "/*page", to: "docs#show"
   root to: "docs#index"
 end

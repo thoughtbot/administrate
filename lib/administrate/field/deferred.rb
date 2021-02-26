@@ -44,9 +44,13 @@ module Administrate
         end
       end
 
-      def permitted_attribute(attr, _options = nil)
-        options.fetch(:foreign_key,
-          deferred_class.permitted_attribute(attr, options))
+      def permitted_attribute(attr, opts = {})
+        if options.key?(:foreign_key)
+          Administrate.warn_of_deprecated_option(:foreign_key)
+          options.fetch(:foreign_key)
+        else
+          deferred_class.permitted_attribute(attr, options.merge(opts))
+        end
       end
 
       delegate :html_class, to: :deferred_class

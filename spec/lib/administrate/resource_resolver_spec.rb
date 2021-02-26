@@ -1,7 +1,4 @@
-require "spec_helper"
-require "active_support/core_ext/string/inflections"
-require "support/constant_helpers"
-require "administrate/resource_resolver"
+require "rails_helper"
 
 describe Administrate::ResourceResolver do
   describe "#dashboard_class" do
@@ -62,15 +59,35 @@ describe Administrate::ResourceResolver do
 
   describe "#resource_title" do
     it "handles global-namepsace models" do
+      class User < ApplicationRecord; self.abstract_class = true; end
       resolver = Administrate::ResourceResolver.new("admin/users")
 
       expect(resolver.resource_title).to eq("User")
+    ensure
+      remove_constants :User
     end
 
     it "handles namespaced models" do
+      module Library
+        class Book < ApplicationRecord; self.abstract_class = true; end
+      end
       resolver = Administrate::ResourceResolver.new("admin/library/books")
 
-      expect(resolver.resource_title).to eq("Library Book")
+      expect(resolver.resource_title).to eq("Book")
+
+      translations = {
+        activerecord: {
+          models: {
+            "library/book": "Library Book",
+          },
+        },
+      }
+
+      with_translations(:en, translations) do
+        expect(resolver.resource_title).to eq("Library Book")
+      end
+    ensure
+      remove_constants :Library
     end
   end
 

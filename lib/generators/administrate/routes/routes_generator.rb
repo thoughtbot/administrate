@@ -5,16 +5,18 @@ else
 end
 
 require "rails/generators/base"
+require "administrate/generator_helpers"
 require "administrate/namespace"
 
 module Administrate
   module Generators
     class RoutesGenerator < Rails::Generators::Base
+      include Administrate::GeneratorHelpers
       source_root File.expand_path("../templates", __FILE__)
       class_option :namespace, type: :string, default: "admin"
 
       def insert_dashboard_routes
-        if should_route_dashboard?
+        if valid_dashboard_models.any?
           route(dashboard_routes)
         end
       end
@@ -76,20 +78,8 @@ module Administrate
         ERB.new(File.read(routes_file_path)).result(binding)
       end
 
-      def routes_includes_resources?
-        File.read(rails_routes_file_path).include?(dashboard_routes)
-      end
-
-      def rails_routes_file_path
-        Rails.root.join("config/routes.rb")
-      end
-
       def routes_file_path
         File.expand_path(find_in_source_paths("routes.rb.erb"))
-      end
-
-      def should_route_dashboard?
-        routes_includes_resources? || valid_dashboard_models.any?
       end
     end
   end

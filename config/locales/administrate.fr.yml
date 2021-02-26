@@ -2,7 +2,7 @@
 fr:
   administrate:
     actions:
-      confirm: Êtes-vous sûr ?
+      confirm: Êtes-vous sûr(e) ?
       destroy: Supprimer
       edit: Modifier
       edit_resource: Modifier %{name}
@@ -22,7 +22,7 @@ fr:
         none: Aucun
     form:
       error: erreur
-      errors: "%{pluralized_errors} ont empêchés %{resource_name} d'être sauvergardé :"
+      errors: "%{pluralized_errors} ont empêché %{resource_name} d'être sauvegardé(e) :"
     navigation:
       back_to_app: Retour à l'application
     search:

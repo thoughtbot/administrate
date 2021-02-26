@@ -69,70 +69,18 @@ describe "customer index page" do
     end
   end
 
-  it "paginates records based on a constant" do
-    customers = create_list(:customer, 2)
+  it "sorts by count on a has_many association" do
+    create_list(:order, 2, customer: create(:customer, name: "Ade"))
+    create_list(:order, 3, customer: create(:customer, name: "Ben"))
+    create_list(:order, 1, customer: create(:customer, name: "Cam"))
 
-    visit admin_customers_path(per_page: 1)
+    visit admin_customers_path
 
-    expect(page).not_to have_content(customers.last.name)
-    click_on "Next"
-    expect(page).to have_content(customers.last.name)
-  end
+    click_on "Orders"
+    expect(page).to have_content(/Cam.*1 order.*Ade.*2 orders.*Ben.*3 orders/)
 
-  describe "sorting" do
-    def expect_to_appear_in_order(*elements)
-      positions = elements.map { |e| page.body.index(e) }
-      expect(positions).to eq(positions.sort)
-    end
-
-    it "allows sorting by columns" do
-      create(:customer, name: "unique name two")
-      create(:customer, name: "unique name one")
-
-      visit admin_customers_path
-      click_on "Name"
-
-      expect_to_appear_in_order("unique name one", "unique name two")
-    end
-
-    it "allows clicking through after sorting", :js do
-      customer = create(:customer)
-      create(:order, customer: customer)
-
-      visit admin_customers_path
-      click_on "Name"
-      find("[data-url]").click
-      expect(page).to have_header("Show #{customer.name}")
-    end
-
-    it "allows reverse sorting" do
-      create(:customer, name: "unique name one")
-      create(:customer, name: "unique name two")
-
-      visit admin_customers_path
-      2.times { click_on "Name" }
-
-      expect_to_appear_in_order("unique name two", "unique name one")
-    end
-
-    it "toggles the order" do
-      create(:customer, name: "unique name one")
-      create(:customer, name: "unique name two")
-
-      visit admin_customers_path
-      3.times { click_on "Name" }
-
-      expect_to_appear_in_order("unique name one", "unique name two")
-    end
-
-    it "preserves search" do
-      query = "bar@baz.com"
-
-      visit admin_customers_path(search: query)
-      click_on "Name"
-
-      expect(find(search_input_selector).value).to eq(query)
-    end
+    click_on "Orders"
+    expect(page).to have_content(/Ben.*3 orders.*Ade.*2 orders.*Cam.*1 order/)
   end
 end
 

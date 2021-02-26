@@ -3,7 +3,7 @@ require_relative "associative"
 module Administrate
   module Field
     class Polymorphic < BelongsTo
-      def self.permitted_attribute(attr, _options = nil)
+      def self.permitted_attribute(attr, _options = {})
         { attr => %i{type value} }
       end
 

@@ -15,7 +15,7 @@ By default, the relationship is rendered as a link to the associated object.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/HasOne
 %>
 
-<% if field.data %>
+<% if field.linkable? %>
   <%= link_to(
     field.display_associated_resource,
     [namespace, field.data],

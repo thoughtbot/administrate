@@ -7,18 +7,17 @@ Gem::Specification.new do |s|
   s.version = Administrate::VERSION
   s.authors = ["Nick Charlton", "Grayson Wright"]
   s.email = ["nick@nickcharlton.net", "grayson@thoughtbot.com"]
-  s.homepage = "https://administrate-prototype.herokuapp.com/"
+  s.homepage = "https://administrate-demo.herokuapp.com/"
   s.summary = "A Rails engine for creating super-flexible admin dashboards"
   s.license = "MIT"
 
   s.files = Dir["{app,config,db,lib,docs}/**/*", "LICENSE", "Rakefile"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "actionpack", ">= 4.2"
-  s.add_dependency "actionview", ">= 4.2"
-  s.add_dependency "activerecord", ">= 4.2"
+  s.add_dependency "actionpack", ">= 5.0"
+  s.add_dependency "actionview", ">= 5.0"
+  s.add_dependency "activerecord", ">= 5.0"
 
-  s.add_dependency "autoprefixer-rails", ">= 6.0"
   s.add_dependency "datetime_picker_rails", "~> 0.0.7"
   s.add_dependency "jquery-rails", ">= 4.0"
   s.add_dependency "kaminari", ">= 1.0"

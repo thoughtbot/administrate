@@ -1,6 +1,7 @@
 module Administrate
   module ApplicationHelper
     PLURAL_MANY_COUNT = 2.1
+    SINGULAR_COUNT = 1
 
     def application_title
       if Rails::VERSION::MAJOR <= 5
@@ -16,22 +17,7 @@ module Administrate
     end
 
     def requireness(field)
-      required_field?(field) ? "required" : "optional"
-    end
-
-    def required_field?(field)
-      has_presence_validator?(field.resource.class, field.attribute)
-    end
-
-    def has_presence_validator?(resource_class, field_name)
-      validators_on(resource_class, field_name).
-        any? { |v| v.class == ActiveRecord::Validations::PresenceValidator }
-    end
-
-    def validators_on(resource_class, field_name)
-      return [] unless resource_class.respond_to?(:validators_on)
-
-      resource_class.validators_on(field_name)
+      field.required? ? "required" : "optional"
     end
 
     def dashboard_from_resource(resource_name)
@@ -43,10 +29,10 @@ module Administrate
       dashboard.try(:model) || resource_name.to_sym
     end
 
-    def display_resource_name(resource_name)
+    def display_resource_name(resource_name, opts = {})
       dashboard_from_resource(resource_name).resource_name(
-        count: PLURAL_MANY_COUNT,
-        default: default_resource_name(resource_name),
+        count: opts[:singular] ? SINGULAR_COUNT : PLURAL_MANY_COUNT,
+        default: default_resource_name(resource_name, opts),
       )
     end
 
@@ -70,19 +56,20 @@ module Administrate
       association_params = collection_names.map do |assoc_name|
         { assoc_name => %i[order direction page per_page] }
       end
-      params.permit(:search, :id, :page, :per_page, association_params)
+      params.permit(:search, :id, :_page, :per_page, association_params)
     end
 
     def clear_search_params
-      params.except(:search, :page).permit(
+      params.except(:search, :_page).permit(
         :per_page, resource_name => %i[order direction]
       )
     end
 
     private
 
-    def default_resource_name(resource_name)
-      resource_name.to_s.pluralize.gsub("/", "_").titleize
+    def default_resource_name(name, opts = {})
+      resource_name = (opts[:singular] ? name.to_s : name.to_s.pluralize)
+      resource_name.gsub("/", "_").titleize
     end
   end
 end

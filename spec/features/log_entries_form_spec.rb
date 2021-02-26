@@ -11,7 +11,7 @@ describe "log entry form" do
 
     expect(page).to have_link(customer.name)
     expect(page).to have_flash(
-      t("administrate.controller.create.success", resource: "LogEntry"),
+      t("administrate.controller.create.success", resource: "Log entry"),
     )
   end
 

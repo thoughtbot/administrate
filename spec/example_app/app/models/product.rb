@@ -8,6 +8,7 @@ class Product < ApplicationRecord
   end
 
   has_many :line_items, dependent: :destroy
+  has_many :pages, dependent: :destroy
   has_one :product_meta_tag, dependent: :destroy
 
   validates :description, presence: true
@@ -20,6 +21,7 @@ class Product < ApplicationRecord
             },
             allow_blank: true
   validates :slug, uniqueness: true
+  validates :product_meta_tag, presence: true, on: :some_unclear_situation
   validate :valid_slug
 
   accepts_nested_attributes_for :product_meta_tag

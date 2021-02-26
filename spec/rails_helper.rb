@@ -6,7 +6,6 @@ require File.expand_path("../../spec/example_app/config/environment", __FILE__)
 
 require "rspec/rails"
 require "shoulda/matchers"
-require "capybara/poltergeist"
 
 Dir[Rails.root.join("../../spec/support/**/*.rb")].each { |file| require file }
 
@@ -31,14 +30,3 @@ RSpec.configure do |config|
 end
 
 ActiveRecord::Migration.maintain_test_schema!
-Capybara.javascript_driver = :poltergeist
-Capybara.register_driver :poltergeist do |app|
-  options = { phantomjs_options: ["--load-images=no"] }
-  Capybara::Poltergeist::Driver.new(app, options)
-end
-
-Capybara.register_driver :rack_test do |app|
-  Capybara::RackTest::Driver.new(app, respect_data_method: false)
-end
-
-Capybara.server = :webrick

@@ -1,6 +1,4 @@
----
-title: Contributing Guide
----
+# Contributing Guide
 
 ## Code of Conduct
 
@@ -49,9 +47,8 @@ This will start the application defined in `spec/example_app`.
 
 * The gem's source code lives in the `app` and `lib` subdirectories.
 * The demo app is nested within `spec/example_app`.
-* The guides as seen at
-  [https://administrate-demo.herokuapp.com][docs] live as
-  Markdown files in the `docs` subdirectory.
+* The guides as seen at [https://administrate-demo.herokuapp.com][docs] live
+  as Markdown files in the `docs` subdirectory.
 
 Rails configuration files have been changed
 to recognize the app in the new location,
@@ -63,8 +60,7 @@ With this structure, developing a typical feature looks like:
 * Implement a feature in `administrate/`
 * Exercise the feature using the demo rails app (`spec/example_app/app/`)
 
-[demo]: https://administrate-prototype.herokuapp.com/admin
-[docs]: https://administrate-prototype.herokuapp.com
+[docs]: https://administrate-demo.herokuapp.com
 
 ## Front-end Architecture
 
@@ -125,7 +121,7 @@ there's significant enough changes.
 A new release involves cutting and pushing a new version to [Ruby Gems][] and
 then deploying that version of the example application and documentation. This
 means that [the demo application][demo] always matches the current release,
-whilst [the pre-release application][pre-release] can track current `master`.
+whilst [the pre-release application][pre-release] will track current `master`.
 
 [Ruby Gems]: https://rubygems.org/gems/administrate
 [demo]: https://administrate-demo.herokuapp.com/

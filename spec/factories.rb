@@ -69,4 +69,6 @@ FactoryBot.define do
     sequence(:name) { |n| "Country #{n}" }
     sequence(:code) { |n| "C#{n}" }
   end
+
+  factory :page
 end

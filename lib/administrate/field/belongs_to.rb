@@ -3,8 +3,14 @@ require_relative "associative"
 module Administrate
   module Field
     class BelongsTo < Associative
-      def self.permitted_attribute(attr, _options = nil)
-        :"#{attr}_id"
+      def self.permitted_attribute(attr, options = {})
+        resource_class = options[:resource_class]
+        if resource_class
+          foreign_key_for(resource_class, attr)
+        else
+          Administrate.warn_of_missing_resource_class
+          :"#{attr}_id"
+        end
       end
 
       def permitted_attribute
@@ -12,13 +18,17 @@ module Administrate
       end
 
       def associated_resource_options
-        [nil] + candidate_resources.map do |resource|
+        candidate_resources.map do |resource|
           [display_candidate_resource(resource), resource.send(primary_key)]
         end
       end
 
       def selected_option
         data && data.send(primary_key)
+      end
+
+      def include_blank_option
+        options.fetch(:include_blank, true)
       end
 
       private

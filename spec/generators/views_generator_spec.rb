@@ -12,7 +12,10 @@ describe Administrate::Generators::ViewsGenerator, :generator do
 
       %w[index show new edit].each do |generator|
         expect(Rails::Generators).
-          to invoke_generator("administrate:views:#{generator}", [resource])
+          to invoke_generator(
+            "administrate:views:#{generator}",
+            [resource, "--namespace", "admin"],
+          )
       end
     end
 
@@ -24,7 +27,7 @@ describe Administrate::Generators::ViewsGenerator, :generator do
 
       expect(Rails::Generators).to invoke_generator(
         "administrate:views:index",
-        [resource],
+        [resource, "--namespace", "admin"],
         behavior: :revoke,
       )
     end
@@ -41,8 +44,26 @@ describe Administrate::Generators::ViewsGenerator, :generator do
         %w[index show new edit].each do |generator|
           expect(Rails::Generators). to invoke_generator(
             "administrate:views:#{generator}",
-            [application_resource_path],
+            [application_resource_path, "--namespace", "admin"],
           )
+        end
+      end
+    end
+
+    context "when run with a namespace specified" do
+      it "runs all sub-generators with a namespace" do
+        allow(Rails::Generators).to receive(:invoke)
+        resource = "users"
+        namespace = "console"
+
+        run_generator [resource, "--namespace", namespace]
+
+        %w[index show new edit].each do |generator|
+          expect(Rails::Generators).
+            to invoke_generator(
+              "administrate:views:#{generator}",
+              [resource, "--namespace", namespace],
+            )
         end
       end
     end

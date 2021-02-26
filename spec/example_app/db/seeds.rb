@@ -14,6 +14,9 @@ ProductMetaTag.destroy_all
 Series.destroy_all
 Country.destroy_all
 LogEntry.destroy_all
+Blog::Post.destroy_all
+Page.destroy_all
+Payment.destroy_all
 
 countries = Country.create! [
   { code: "US", name: "USA" },
@@ -52,6 +55,24 @@ product_attributes.each do |attributes|
     meta_description: Faker::Movies::LordOfTheRings.location,
   }
   Product.create! attributes.merge(price: 20 + rand(50))
+end
+
+Product.find_each do |p|
+  Page.create!(
+    title: "Something about #{p.name}",
+    body: Faker::Lorem.paragraph,
+    product: p,
+  )
+  Page.create!(
+    title: "The secrets of the game #{p.name}",
+    body: Faker::Lorem.paragraph,
+    product: p,
+  )
+  Page.create!(
+    title: "If you liked #{p.name}, you will love these games",
+    body: Faker::Lorem.paragraph,
+    product: p,
+  )
 end
 
 customers.each do |customer|

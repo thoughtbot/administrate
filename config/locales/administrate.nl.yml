@@ -11,18 +11,18 @@ nl:
       back: Terug
     controller:
       create:
-        success: "%{resource} was succesvol aangemaakt."
+        success: "%{resource} is succesvol aangemaakt."
       destroy:
-        success: "%{resource} was succesvol verwijderd."
+        success: "%{resource} is succesvol verwijderd."
       update:
-        success: "%{resource} was succesvol geupdated."
+        success: "%{resource} is succesvol geupdated."
     fields:
       has_many:
         more: Resultaat %{count} van %{total_count}
         none: Geen
     form:
       error: error
-      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+      errors: "%{pluralized_errors} maakten het onmogelijk %{resource_name} op:"
     navigation:
       back_to_app: Terug naar app
     search:

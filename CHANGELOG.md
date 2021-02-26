@@ -17,6 +17,76 @@
 
 ## Changes
 
+### 0.15.0 (February 26, 2021)
+
+* [BUGFIX] [#1762] Better error message if key is not specified in ATTRIBUTE_TYPES (#1762).
+* [BUGFIX] [#1827] Correct "required" asterisk when using validation option `:on`,
+* [DOC] [#1839] Link "How to"^W^WGuides" section from navigation.
+* [DOC] [#1829] Show the LICENSE in the Docs.
+* [DOC] [#1899] Let readers know that plugins are available.
+* [COMPAT] [#1904] Add assets.precompile config to Engine.
+* [i18n] [#1916] Add Finnish locale.
+* [i18n] [#1905] Fix typos in administrate.fr.yml.
+* [FEATURE] [#1909] Rely on Rails' `route` method to be correct.
+* [BUGFIX] [#1910] Fix an issue where loading in routes blew up.
+* [BUGFIX] [#1880] Turbo compatibility: return status unprocessable_entity.
+* [COMPAT] [#1900] Update to Heroku's recommended Unicorn config.
+* [DOC] [#1870] Update getting_started.md.
+* [BUGFIX] [#1869] Ensure we regularly destroy all models.
+* [BUGFIX] [#1868] Correct text of misleading specs.
+* [FEATURE] [#1844] Select field selected value.
+* [BUGFIX] [#1794] Don't show unpersisted `has_one` associations.
+* [FEATURE] [#1832] Namespace option view generators.
+* [BUGFIX] [#1788] Pass page local when rendering field, as has_one's rely on page existing.
+* [DOC] [#1776] Improve how documentation pages are rendered.
+* [FEATURE] [#1234] Allow authorize_resource to be called on index.
+* [FEATURE] [#1782] Adding an error message during 'administrate' initialize when there are no models in db.
+* [FEATURE] [#1797] Add delimiter option for number fields.
+* [DOC] [#1811] Provide a single, unified source of documentation.
+* [DOC] [#1813] Document both demo apps consistently.
+* [FEATURE] [#1804] Enable Selectize for polymorphic fields.
+* [BUGFIX] [#1799] Conditionals mark fields as optional.
+* [BUGFIX] Move field requireness logic to Field::Base.
+* [FEATURE] [#1633] Add automatic associations.
+* [BUGFIX] [#1800] Use correct values when sorting by has_many associations.
+* [SECURITY] [#1786] Prevent dangerous query method on #order_by_id.
+* [COMPAT] [#1791] Upgrade bundler to 2.1.4.
+* [COMPAT] [#1602] Upgrade Ruby to 2.7.2.
+* [COMPAT] [#1548] Test against Ruby 2.7 on CircleCI.
+* [COMPAT] [#1785] Switch to using suspender's Capybara configuration.
+* [UI] [#1630] Add CSP tags to default layout.
+* [i18n] [#1626] Allow translating resource names in flashes.
+* [FEATURE] [#991] Add generator helper to find project's routes.rb.
+* [COMPAT] [#1784] Add kaminari-i18n to Appraisal's gemfiles.
+* [i18n] [#1777] Translate model name label on Dashboard index.
+* [DOC] [#1781] Document hiding Dashboards in a How To section.
+* [CHANGE] [#1404] UUID's should be rendered Field::String.
+* [FEATURE] [#1222] include_blank in Belongs to form.
+* [FEATURE] [#1259] Use show page attributes when rendering has_one.
+* [BUGFIX] [#1226] Fix Time fields bug which occurs when Time value is nil.
+* [BUGFIX] [#1063] Use number_field for Field::Number.
+* [DOC] [#1439] Fix collection filters example in dashboard template.
+* [UI] [#1064] human_attribute_name instead of raw attr_name.
+* [UI] [#1357] Add word-break to attribute-data.
+* [i18n] [#1769] Update nl translations.
+* [CHANGE] [#1581] Use left join instead of inner join when searching.
+* [COMPAT] [#1749] Remove autoprefixer.
+* [DOC] [#1751] Add example for adding controllers without a related model docs.
+* [BUGFIX] [#1744] Don't delete `/tmp` before generator tests.
+* [DOC] [#1742] Add missing title to Without Related Model doc.
+* [COMPAT] [#1740] Drop support for Rails 4.2.
+* [DOC] [#1634] Add YARD for inline documentation.
+* [UI] [#1737] Change the way polymorphic fields display links.
+* [BUGFIX] [#1738] Fix indentation on generated Dashboards.
+* [BUGFIX] [#1725] Fix pagination of "Page" models.
+* [COMPAT] [#1726] Use Rails defaults from v6.0.3.2 for gitignore.
+* [DOC] [#1698] Allow fetching special files in the documentation.
+* [COMPAT] [#1718] Replace phantomjs with Selenium/WebDrivers.
+* [UI] [#1702] Increase percentage for attribute label.
+* [UI] [#1701] Add min-width to main-content.
+* [i18n] [#1713] Add Turkish translations.
+* [i18n] [#1703] Update Portuguese translations.
+
 ### 0.14.0 (July 2, 2020)
 
 * [BUGFIX] [#1695] Fix local development by keeping tmp/pids around.
