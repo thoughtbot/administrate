@@ -92,16 +92,6 @@ RSpec.describe Administrate::ApplicationHelper do
       release_year = page.attributes.detect { |i| i.attribute == :release_year }
       expect(requireness(release_year)).to eq("optional")
     end
-
-    it "is 'optional' for fields required only conditionally (with :unless)" do
-      description = page.attributes.detect { |i| i.attribute == :description }
-      expect(requireness(description)).to eq("optional")
-    end
-
-    it "is 'optional' for fields required only conditionally (with :if)" do
-      price = page.attributes.detect { |i| i.attribute == :price }
-      expect(requireness(price)).to eq("optional")
-    end
   end
 
   describe "#sort_order" do
