@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    administrate (0.14.0)
+    administrate (0.15.0)
       actionpack (>= 5.0)
       actionview (>= 5.0)
       activerecord (>= 5.0)
