@@ -6,7 +6,12 @@ class LogEntryDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     action: Field::String,
-    logeable: Field::Polymorphic.with_options(classes: [Customer, ::Order]),
+    logeable: Field::Polymorphic.with_options(
+      classes: [
+        { klass: Customer, scope: :cn },
+        ::Order,
+      ],
+    ),
   }.freeze
 
   COLLECTION_ATTRIBUTES = [:id] + ATTRIBUTES
