@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "log entry form" do
   it "displays a select box for the logeable" do
-    customer = create(:customer)
+    customer = create(:customer, country_code: "CN")
 
     visit new_admin_log_entry_path
     fill_in "Action", with: "create"
@@ -16,7 +16,7 @@ describe "log entry form" do
   end
 
   it "shows the selected logeable value" do
-    customer = create(:customer)
+    customer = create(:customer, country_code: "CN")
     log_entry = create(:log_entry, logeable: customer)
 
     visit edit_admin_log_entry_path(log_entry)
