@@ -34,7 +34,7 @@ end
 ```ruby
 # app/controllers/admin/stats_controller.rb
 module Admin
-  class StatsController < Admin::ApplicationController
+  class StatsController < ActionController::Base
     def index
       @stats = {
         customer_count: Customer.count,
