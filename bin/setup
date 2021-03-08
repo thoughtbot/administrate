@@ -33,9 +33,9 @@ if ! command -v foreman > /dev/null; then
   printf 'See https://github.com/ddollar/foreman for install instructions.\n'
 fi
 
-if ! command -v phantomjs > /dev/null; then
-  printf 'Phantomjs is not installed.\n'
-  printf 'See http://phantomjs.org/download.html for install instructions.\n'
+if ! command -v chromedriver > /dev/null; then
+  printf 'chromedriver is not installed.\n'
+  printf 'See https://chromedriver.chromium.org for install instructions.\n'
 fi
 
 # Only if this isn't CI
