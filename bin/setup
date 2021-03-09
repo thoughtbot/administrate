@@ -23,34 +23,11 @@ bundle exec rake db:setup dev:prime
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
 mkdir -p .git/safe
 
-# Pick a port for Foreman
-if ! grep --quiet --no-messages --fixed-strings 'port' .foreman; then
-  printf 'port: 3000\n' >> .foreman
-fi
-
-if ! command -v foreman > /dev/null; then
-  printf 'Foreman is not installed.\n'
-  printf 'See https://github.com/ddollar/foreman for install instructions.\n'
-fi
-
-if ! command -v phantomjs > /dev/null; then
-  printf 'Phantomjs is not installed.\n'
-  printf 'See http://phantomjs.org/download.html for install instructions.\n'
+if ! command -v chromedriver > /dev/null; then
+  printf 'chromedriver is not installed.\n'
+  printf 'See https://chromedriver.chromium.org for install instructions.\n'
 fi
 
 # Only if this isn't CI
 # if [ -z "$CI" ]; then
 # fi
-
-if ! command -v heroku > /dev/null; then
-  printf 'Heroku is not installed.\n'
-  printf "You'l need it to contribute to the demo app\n"
-  printf 'https://devcenter.heroku.com/articles/heroku-cli for install instructions\n'
-else
-  if heroku join --app administrate-prototype > /dev/null 2>&1; then
-    git remote add staging git@heroku.com:administrate-prototype.git || true
-    printf 'You are a collaborator on the "administrate-prototype" Heroku app\n'
-  else
-    printf 'Ask for access to the "administrate-prototype" Heroku app\n'
-  fi
-fi
