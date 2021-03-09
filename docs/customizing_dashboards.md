@@ -65,6 +65,7 @@ specify, including:
 - `Field::Select`
 - `Field::String`
 - `Field::Text`
+- `Field::Url`
 - `Field::Password`
 
 ## Customizing Fields
@@ -234,6 +235,14 @@ Defaults to `50`.
 
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `false`.
+
+`:truncate` - Set the number of characters to display in the index view.
+Defaults to `50`.
+
+**Field::Url**
+
+`:searchable` - Specify if the attribute should be considered when searching.
+Default is `true`.
 
 `:truncate` - Set the number of characters to display in the index view.
 Defaults to `50`.
