@@ -15,5 +15,5 @@ By default, the attribute is rendered as a text tag.
 %>
 
 <% if field.data %>
-  <%= field.data.strftime("%I:%M%p").to_s %>
+  <%= field.time %>
 <% end %>
