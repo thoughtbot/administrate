@@ -43,7 +43,7 @@ Rails.application.configure do
   config.active_support.disallowed_deprecation_warnings = []
 
   # Raises error for missing translations.
-  if Rails::VERSION::MAJOR <= 6
+  if Gem::Version.new(Rails.version) <= Gem::Version.new("6.1")
     config.action_view.raise_on_missing_translations = true
   else
     config.i18n.raise_on_missing_translations = true
