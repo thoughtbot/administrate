@@ -12,7 +12,7 @@ describe "fields/polymorphic/_show", type: :view do
       )
 
       render(
-        partial: "fields/polymorphic/show.html.erb",
+        partial: "fields/polymorphic/show",
         locals: { field: polymorphic },
       )
 
@@ -34,7 +34,7 @@ describe "fields/polymorphic/_show", type: :view do
       allow(view).to receive(:valid_action?).and_return(true)
 
       render(
-        partial: "fields/polymorphic/show.html.erb",
+        partial: "fields/polymorphic/show",
         locals: { field: polymorphic, namespace: "admin" },
       )
 

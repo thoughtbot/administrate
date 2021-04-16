@@ -11,7 +11,7 @@ describe "fields/has_many/_index", type: :view do
       )
 
       render(
-        partial: "fields/has_many/index.html.erb",
+        partial: "fields/has_many/index",
         locals: { field: has_many },
       )
 
@@ -29,7 +29,7 @@ describe "fields/has_many/_index", type: :view do
       )
 
       render(
-        partial: "fields/has_many/index.html.erb",
+        partial: "fields/has_many/index",
         locals: { field: has_many },
       )
 
@@ -47,7 +47,7 @@ describe "fields/has_many/_index", type: :view do
       )
 
       render(
-        partial: "fields/has_many/index.html.erb",
+        partial: "fields/has_many/index",
         locals: { field: has_many },
       )
 

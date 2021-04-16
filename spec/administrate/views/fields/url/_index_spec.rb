@@ -10,7 +10,7 @@ describe "fields/url/_index", type: :view do
     )
 
     render(
-      partial: "fields/url/index.html.erb",
+      partial: "fields/url/index",
       locals: { field: url, namespace: "admin" },
     )
 

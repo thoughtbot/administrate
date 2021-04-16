@@ -12,7 +12,7 @@ describe "fields/select/_form", type: :view do
     )
 
     render(
-      partial: "fields/select/form.html.erb",
+      partial: "fields/select/form",
       locals: { field: select, f: form_builder(customer) },
     )
 

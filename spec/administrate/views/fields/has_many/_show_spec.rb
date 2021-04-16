@@ -6,7 +6,7 @@ describe "fields/has_many/_show", type: :view do
       has_many = double(resources: [])
 
       render(
-        partial: "fields/has_many/show.html.erb",
+        partial: "fields/has_many/show",
         locals: { field: has_many },
       )
 

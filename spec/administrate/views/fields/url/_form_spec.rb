@@ -11,7 +11,7 @@ describe "fields/url/_form", type: :view do
     )
 
     render(
-      partial: "fields/url/form.html.erb",
+      partial: "fields/url/form",
       locals: { field: url, f: form_builder(product) },
     )
 
