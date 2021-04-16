@@ -11,7 +11,7 @@ describe "fields/has_one/_show", type: :view do
       )
 
       render(
-        partial: "fields/has_one/show.html.erb",
+        partial: "fields/has_one/show",
         locals: { field: has_one },
       )
 
@@ -40,7 +40,7 @@ describe "fields/has_one/_show", type: :view do
       )
 
       render(
-        partial: "fields/has_one/show.html.erb",
+        partial: "fields/has_one/show",
         locals: {
           field: has_one,
           namespace: "admin",
@@ -90,7 +90,7 @@ describe "fields/has_one/_show", type: :view do
       page_double = instance_double("Administrate::Page::Show")
 
       render(
-        partial: "fields/has_one/show.html.erb",
+        partial: "fields/has_one/show",
         locals: {
           field: has_one,
           namespace: "admin",

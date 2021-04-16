@@ -10,7 +10,7 @@ describe "fields/url/_show", type: :view do
     )
 
     render(
-      partial: "fields/url/show.html.erb",
+      partial: "fields/url/show",
       locals: { field: url, namespace: "admin" },
     )
 

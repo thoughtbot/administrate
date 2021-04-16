@@ -11,7 +11,7 @@ describe "fields/has_one/_form", type: :view do
     )
 
     render(
-      partial: "fields/has_one/form.html.erb",
+      partial: "fields/has_one/form",
       locals: { field: has_one, f: form_builder },
     )
 

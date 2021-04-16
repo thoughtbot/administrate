@@ -6,13 +6,14 @@ describe "fields/time/_index", type: :view do
       time = double(data: nil)
 
       render(
-        partial: "fields/time/index.html.erb",
+        partial: "fields/time/index",
         locals: { field: time },
       )
 
       expect(rendered.strip).to eq("")
     end
   end
+
   context "time value is set" do
     it "renders time" do
       example_time = "12:34:00"
@@ -22,7 +23,7 @@ describe "fields/time/_index", type: :view do
         data: customer.example_time,
       )
       render(
-        partial: "fields/time/index.html.erb",
+        partial: "fields/time/index",
         locals: { field: time, namespace: "admin" },
       )
 

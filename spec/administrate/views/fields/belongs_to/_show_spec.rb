@@ -32,7 +32,7 @@ describe "fields/belongs_to/_show", type: :view do
 
   def render_belongs_to_show
     render(
-      partial: "fields/belongs_to/show.html.erb",
+      partial: "fields/belongs_to/show",
       locals: { field: belongs_to, namespace: "admin" },
     )
   end
