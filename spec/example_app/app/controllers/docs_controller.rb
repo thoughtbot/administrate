@@ -5,7 +5,7 @@ class DocsController < ApplicationController
 
   def show
     case params[:page]
-    when "contributing"
+    when "contributing", "CONTRIBUTING"
       render_page("CONTRIBUTING", "Contributing Guide")
     when "license", "LICENSE"
       render_page("LICENSE", "LICENSE")

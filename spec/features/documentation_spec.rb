@@ -16,13 +16,17 @@ describe "documentation navigation" do
     )
   end
 
-  it "shows the Contributing Guides" do
+  it "shows the Contributing Guide in both forms" do
     visit("/contributing")
 
     expect(page).to have_css("div.main h1", text: "Contributing Guide")
     expect(page).to have_content(
       "We welcome pull requests from everyone.",
     )
+
+    visit("/CONTRIBUTING.md")
+
+    expect(page).to have_css("div.main h1", text: "Contributing Guide")
   end
 
   it "shows the LICENSE in both forms" do
