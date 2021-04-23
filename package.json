@@ -2,8 +2,11 @@
   "name": "administrate",
   "private": true,
   "dependencies": {
+    "@rails/actiontext": "^6.0.1",
+    "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "4.2.2"
+    "@rails/webpacker": "4.2.2",
+    "trix": "^1.0.0"
   },
   "version": "0.1.0",
   "devDependencies": {

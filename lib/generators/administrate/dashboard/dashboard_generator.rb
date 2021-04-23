@@ -49,8 +49,22 @@ module Administrate
         options[:namespace]
       end
 
+      def action_text?(reflection)
+        reflection.klass == ActionText::RichText
+      end
+
+      def klass_reflections
+        klass.reflections.transform_keys do |key|
+          if action_text?(klass.reflections[key])
+            key.to_s.sub(/^rich_text_/, "")
+          else
+            key
+          end
+        end
+      end
+
       def attributes
-        klass.reflections.keys +
+        klass_reflections.keys +
           klass.columns.map(&:name) -
           redundant_attributes
       end
@@ -60,7 +74,7 @@ module Administrate
       end
 
       def redundant_attributes
-        klass.reflections.keys.flat_map do |relationship|
+        klass_reflections.keys.flat_map do |relationship|
           redundant_attributes_for(relationship)
         end.compact
       end
@@ -103,8 +117,10 @@ module Administrate
       end
 
       def association_type(attribute)
-        relationship = klass.reflections[attribute.to_s]
-        if relationship.has_one?
+        relationship = klass_reflections[attribute.to_s]
+        if action_text?(relationship)
+          "Field::ActionText"
+        elsif relationship.has_one?
           "Field::HasOne"
         elsif relationship.collection?
           "Field::HasMany" + relationship_options_string(relationship)
