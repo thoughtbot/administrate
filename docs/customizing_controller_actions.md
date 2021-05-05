@@ -70,3 +70,21 @@ def default_sorting_direction
   :desc
 end
 ```
+
+## Customizing Redirects after actions
+
+To set custom redirects after the actions `create`, `update` and `destroy` you can override `after_resource_created_path`, `after_resource_updated_path` or `after_resource_destroyed_path` like this:
+
+```ruby
+    def after_resource_destroyed_path(_requested_resource)
+      { action: :index, controller: :some_other_resource }
+    end
+
+    def after_resource_created_path(requested_resource)
+      [namespace, requested_resource.some_other_resource]
+    end
+
+    def after_resource_updated_path(requested_resource)
+      [namespace, requested_resource.some_other_resource]
+    end
+```

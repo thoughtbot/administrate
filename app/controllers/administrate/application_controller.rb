@@ -47,7 +47,7 @@ module Administrate
 
       if resource.save
         redirect_to(
-          [namespace, resource],
+          after_resource_created_path(resource),
           notice: translate_with_resource("create.success"),
         )
       else
@@ -60,7 +60,7 @@ module Administrate
     def update
       if requested_resource.update(resource_params)
         redirect_to(
-          [namespace, requested_resource],
+          after_resource_updated_path(requested_resource),
           notice: translate_with_resource("update.success"),
         )
       else
@@ -76,10 +76,22 @@ module Administrate
       else
         flash[:error] = requested_resource.errors.full_messages.join("<br/>")
       end
-      redirect_to action: :index
+      redirect_to after_resource_destroyed_path(requested_resource)
     end
 
     private
+
+    def after_resource_destroyed_path(_requested_resource)
+      { action: :index }
+    end
+
+    def after_resource_created_path(requested_resource)
+      [namespace, requested_resource]
+    end
+
+    def after_resource_updated_path(requested_resource)
+      [namespace, requested_resource]
+    end
 
     helper_method :nav_link_state
     def nav_link_state(resource)
