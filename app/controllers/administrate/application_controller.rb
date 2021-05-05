@@ -82,7 +82,7 @@ module Administrate
     private
     
     def after_resource_destroyed_path 
-      action: :index
+      { action: :index }
     end
     
     def after_resource_created_path
