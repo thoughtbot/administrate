@@ -17,13 +17,13 @@ module Administrate
         resources: resources,
         search_term: search_term,
         page: page,
-        show_search_bar: show_search_bar?,
+        show_search_bar: show_search_bar?
       }
     end
 
     def show
       render locals: {
-        page: Administrate::Page::Show.new(dashboard, requested_resource),
+        page: Administrate::Page::Show.new(dashboard, requested_resource)
       }
     end
 
@@ -31,13 +31,13 @@ module Administrate
       resource = new_resource
       authorize_resource(resource)
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, resource),
+        page: Administrate::Page::Form.new(dashboard, resource)
       }
     end
 
     def edit
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, requested_resource),
+        page: Administrate::Page::Form.new(dashboard, requested_resource)
       }
     end
 
@@ -48,11 +48,11 @@ module Administrate
       if resource.save
         redirect_to(
           after_resource_created_path,
-          notice: translate_with_resource("create.success"),
+          notice: translate_with_resource('create.success')
         )
       else
         render :new, locals: {
-          page: Administrate::Page::Form.new(dashboard, resource),
+          page: Administrate::Page::Form.new(dashboard, resource)
         }, status: :unprocessable_entity
       end
     end
@@ -61,38 +61,38 @@ module Administrate
       if requested_resource.update(resource_params)
         redirect_to(
           after_resource_updated_path,
-          notice: translate_with_resource("update.success"),
+          notice: translate_with_resource('update.success')
         )
       else
         render :edit, locals: {
-          page: Administrate::Page::Form.new(dashboard, requested_resource),
+          page: Administrate::Page::Form.new(dashboard, requested_resource)
         }, status: :unprocessable_entity
       end
     end
 
     def destroy
       if requested_resource.destroy
-        flash[:notice] = translate_with_resource("destroy.success")
+        flash[:notice] = translate_with_resource('destroy.success')
       else
-        flash[:error] = requested_resource.errors.full_messages.join("<br/>")
+        flash[:error] = requested_resource.errors.full_messages.join('<br/>')
       end
       redirect_to after_resource_destroyed_path
     end
 
     private
-    
-    def after_resource_destroyed_path 
+
+    def after_resource_destroyed_path
       { action: :index }
     end
-    
+
     def after_resource_created_path
       [namespace, resource]
     end
-    
+
     def after_resource_updated_path
-     [namespace, requested_resource]
+      [namespace, requested_resource]
     end
-    
+
     helper_method :nav_link_state
     def nav_link_state(resource)
       resource_name.to_s.pluralize == resource.to_s ? :active : :inactive
@@ -158,13 +158,14 @@ module Administrate
     def apply_collection_includes(relation)
       resource_includes = dashboard.collection_includes
       return relation if resource_includes.empty?
+
       relation.includes(*resource_includes)
     end
 
     def resource_params
-      params.require(resource_class.model_name.param_key).
-        permit(dashboard.permitted_attributes).
-        transform_values { |v| read_param_value(v) }
+      params.require(resource_class.model_name.param_key)
+            .permit(dashboard.permitted_attributes)
+            .transform_values { |v| read_param_value(v) }
     end
 
     def read_param_value(data)
@@ -182,7 +183,7 @@ module Administrate
     end
 
     delegate :dashboard_class, :resource_class, :resource_name, :namespace,
-      to: :resource_resolver
+             to: :resource_resolver
     helper_method :namespace
     helper_method :resource_name
     helper_method :resource_class
@@ -195,13 +196,13 @@ module Administrate
     def translate_with_resource(key)
       t(
         "administrate.controller.#{key}",
-        resource: resource_resolver.resource_title,
+        resource: resource_resolver.resource_title
       )
     end
 
     def show_search_bar?
       dashboard.attribute_types_for(
-        dashboard.all_attributes,
+        dashboard.all_attributes
       ).any? { |_name, attribute| attribute.searchable? }
     end
 
