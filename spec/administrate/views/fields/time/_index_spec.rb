@@ -24,7 +24,7 @@ describe "fields/time/_index", type: :view do
       )
       render(
         partial: "fields/time/index",
-        locals: { field: time, namespace: "admin" },
+        locals: { field: time, namespace: :admin },
       )
 
       expect(rendered.strip).to eq("12:34PM")

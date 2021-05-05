@@ -11,7 +11,7 @@ describe "fields/url/_index", type: :view do
 
     render(
       partial: "fields/url/index",
-      locals: { field: url, namespace: "admin" },
+      locals: { field: url, namespace: :admin },
     )
 
     expect(rendered).to have_css(

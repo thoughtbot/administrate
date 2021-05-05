@@ -43,7 +43,7 @@ describe "fields/has_one/_show", type: :view do
         partial: "fields/has_one/show",
         locals: {
           field: has_one,
-          namespace: "admin",
+          namespace: :admin,
           resource_name: "product_meta_tag",
         },
       )
@@ -93,7 +93,7 @@ describe "fields/has_one/_show", type: :view do
         partial: "fields/has_one/show",
         locals: {
           field: has_one,
-          namespace: "admin",
+          namespace: :admin,
           page: page_double,
           resource_name: "product_meta_tag",
         },
