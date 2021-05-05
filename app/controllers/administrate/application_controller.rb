@@ -81,7 +81,7 @@ module Administrate
 
     private
 
-    def after_resource_destroyed_path(requested_resource)
+    def after_resource_destroyed_path(_requested_resource)
       { action: :index }
     end
 
