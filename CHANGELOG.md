@@ -17,6 +17,29 @@
 
 ## Changes
 
+### 0.16.0 (May 6, 2021)
+
+This release incorporates a fix for breakages on Rails 6.1.3.2 and 6.0.3.7
+which were released to fix some security issues.
+
+The following templates have changed since v0.15.0:
+
+  app/views/administrate/application/_navigation.html.erb
+  app/views/administrate/application/index.html.erb
+  app/views/fields/url/_index.html.erb
+  app/views/fields/url/_show.html.erb
+
+If your application overrides any of them, make sure to review your
+custom templates to ensure that they remain compatible.
+
+* [COMPAT] [#1972] Support Rails 6.1.3.2 & 6.0.3.7.
+* [DOC] [#1962] Allow both /contributing and /CONTRIBUTING.md.
+* [UI] [#1956] Isolate spacing properties for 'button--alt' class.
+* [COMPAT] [#1961] Fix deprecation warning about i18n errors.
+* [COMPAT] [#1960] Fix deprecation warning about dots in paths.
+* [DOC] [#1937] Add guides for Fields::Url.
+* [DOC] [#1933] Update bin/setup.
+
 ### 0.15.0 (February 26, 2021)
 
 * [BUGFIX] [#1762] Better error message if key is not specified in ATTRIBUTE_TYPES (#1762).
