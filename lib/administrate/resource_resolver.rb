@@ -9,7 +9,7 @@ module Administrate
     end
 
     def namespace
-      controller_path.split("/").first
+      controller_path.split("/").first.to_sym
     end
 
     def resource_class

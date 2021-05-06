@@ -35,7 +35,7 @@ describe "fields/polymorphic/_show", type: :view do
 
       render(
         partial: "fields/polymorphic/show",
-        locals: { field: polymorphic, namespace: "admin" },
+        locals: { field: polymorphic, namespace: :admin },
       )
 
       expected = "<a href=\"#{product_path}\">#{product.name}</a>"

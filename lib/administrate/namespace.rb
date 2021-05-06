@@ -1,7 +1,7 @@
 module Administrate
   class Namespace
     def initialize(namespace)
-      @namespace = namespace
+      @namespace = namespace.to_sym
     end
 
     def resources

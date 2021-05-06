@@ -13,7 +13,7 @@ describe "fields/date_time/_index", type: :view do
 
     render(
       partial: "fields/date_time/index",
-      locals: { field: date_time, namespace: "admin" },
+      locals: { field: date_time, namespace: :admin },
     )
   end
 end

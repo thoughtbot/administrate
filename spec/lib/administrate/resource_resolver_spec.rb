@@ -29,7 +29,7 @@ describe Administrate::ResourceResolver do
     it "returns the top-level namespace" do
       resolver = Administrate::ResourceResolver.new("foobar/user")
 
-      expect(resolver.namespace).to eq("foobar")
+      expect(resolver.namespace).to eq(:foobar)
     end
   end
 

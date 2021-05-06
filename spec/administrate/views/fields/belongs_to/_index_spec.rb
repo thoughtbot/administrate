@@ -33,7 +33,7 @@ describe "fields/belongs_to/_index", type: :view do
   def render_belongs_to_index
     render(
       partial: "fields/belongs_to/index",
-      locals: { field: belongs_to, namespace: "admin" },
+      locals: { field: belongs_to, namespace: :admin },
     )
   end
 end
