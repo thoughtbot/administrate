@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :pages
     resources :products
     resources :product_meta_tags, except: [:index]
+    resources :meta_tag_groups, except: [:index]
     resources :payments, only: [:index, :show]
     resources :series
 

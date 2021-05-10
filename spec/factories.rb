@@ -52,6 +52,11 @@ FactoryBot.define do
     meta_description { "meta_description" }
   end
 
+  factory :meta_tag_group do
+    name { "meta_tag_group_title" }
+    product_meta_tags { build_list :product_meta_tag, 1 }
+  end
+
   factory :payment do
     order
   end

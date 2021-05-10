@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_14_081950) do
+ActiveRecord::Schema.define(version: 2021_05_11_042424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,12 @@ ActiveRecord::Schema.define(version: 2020_07_14_081950) do
     t.index ["logeable_type", "logeable_id"], name: "index_log_entries_on_logeable_type_and_logeable_id"
   end
 
+  create_table "meta_tag_groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "orders", id: :serial, force: :cascade do |t|
     t.integer "customer_id"
     t.string "address_line_one"
@@ -99,6 +105,8 @@ ActiveRecord::Schema.define(version: 2020_07_14_081950) do
     t.string "meta_description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "meta_tag_group_id"
+    t.index ["meta_tag_group_id"], name: "index_product_meta_tags_on_meta_tag_group_id"
   end
 
   create_table "products", id: :serial, force: :cascade do |t|

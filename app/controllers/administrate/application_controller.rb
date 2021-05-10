@@ -76,7 +76,12 @@ module Administrate
       else
         flash[:error] = requested_resource.errors.full_messages.join("<br/>")
       end
-      redirect_to action: :index
+
+      if valid_action?(:index, resource_class)
+        redirect_to action: :index
+      else
+        redirect_to params[:origin_url]
+      end
     end
 
     private
@@ -90,6 +95,13 @@ module Administrate
     def valid_action?(name, resource = resource_class)
       !!routes.detect do |controller, action|
         controller == resource.to_s.underscore.pluralize && action == name.to_s
+      end
+    end
+
+    helper_method :origin_url_params
+    def origin_url_params(page)
+      if page.class == Administrate::Page::Show
+        { origin_url: polymorphic_path([:admin, page.resource]) }
       end
     end
 
