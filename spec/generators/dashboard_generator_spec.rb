@@ -18,6 +18,16 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       expect(dashboard).to have_correct_syntax
     end
 
+    it "should not create file with uninitialized model" do
+      dashboard = file("app/dashboards/customer_dashboard.rb")
+
+      expect do
+        run_generator ["invalid_model"]
+      end.to raise_error(NameError)
+
+      expect(dashboard).not_to exist
+    end
+
     describe "#attribute_types" do
       it "includes standard model attributes" do
         begin

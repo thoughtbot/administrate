@@ -32,10 +32,12 @@ module Administrate
       source_root File.expand_path("../templates", __FILE__)
 
       def create_dashboard_definition
-        template(
-          "dashboard.rb.erb",
-          Rails.root.join("app/dashboards/#{file_name}_dashboard.rb"),
-        )
+        if klass
+          template(
+            "dashboard.rb.erb",
+            Rails.root.join("app/dashboards/#{file_name}_dashboard.rb"),
+          )
+        end
       end
 
       def create_resource_controller
