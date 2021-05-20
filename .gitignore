@@ -27,3 +27,6 @@ pkg
 gemfiles/.bundle/
 .yardoc
 /doc
+public/*packs
+node_modules
+yarn.lock

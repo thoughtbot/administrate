@@ -1,6 +1,8 @@
 require "administrate/engine"
 
 module Administrate
+  ROOT_PATH = Pathname.new(File.join(__dir__, ".."))
+
   def self.warn_of_missing_resource_class
     ActiveSupport::Deprecation.warn(
       "Calling Field::Base.permitted_attribute without the option " +
@@ -18,6 +20,13 @@ module Administrate
       "Please file an issue at " +
       "https://github.com/thoughtbot/administrate/issues " +
       "if you think otherwise.",
+    )
+  end
+
+  def self.webpacker
+    @webpacker ||= ::Webpacker::Instance.new(
+      root_path: ROOT_PATH,
+      config_path: ROOT_PATH.join("config/webpacker.yml"),
     )
   end
 end

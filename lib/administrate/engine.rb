@@ -47,5 +47,13 @@ module Administrate
 
     add_javascript "administrate/application"
     add_stylesheet "administrate/application"
+
+    initializer "webpacker.proxy" do |app|
+      app.config.middleware.use(
+        Rack::Static,
+        urls: ["/administrate-packs"],
+        root: File.expand_path(File.join(__dir__, "..", "..", "public")),
+      )
+    end
   end
 end
