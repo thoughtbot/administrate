@@ -17,6 +17,12 @@
 !/spec/example_app/tmp/.keep
 /spec/example_app/public/system
 /spec/example_app/public/assets
+/spec/example_app/public/packs
+/spec/example_app/public/packs-test
+/spec/example_app/node_modules
+/spec/example_app/yarn-error.log
+/spec/example_app/yarn-debug.log*
+/spec/example_app/.yarn-integrity
 /tags
 pkg
 *.ipr

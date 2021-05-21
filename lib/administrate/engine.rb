@@ -5,6 +5,7 @@ require "momentjs-rails"
 require "sassc-rails"
 require "selectize-rails"
 require "sprockets/railtie"
+require "webpacker"
 
 require "administrate/page/form"
 require "administrate/page/show"
