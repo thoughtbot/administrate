@@ -50,6 +50,6 @@ describe "navigation" do
   it "hides link to resources without index page" do
     visit admin_customers_path
     navigation = find(".navigation")
-    expect(navigation).not_to have_link("Product Meta Tags")
+    expect(navigation).not_to have_link("Line Items")
   end
 end
