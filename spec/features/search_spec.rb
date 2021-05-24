@@ -1,6 +1,30 @@
 require "rails_helper"
+require "administrate/field/email"
+require "administrate/field/string"
 
 feature "Search" do
+  describe "search bar" do
+    def have_a_search_bar
+      have_css("form[role=search]")
+    end
+
+    it "is visible when the current dashboard has searchable attributes" do
+      visit admin_customers_path
+      expect(page).to have_a_search_bar
+    end
+
+    it "is hidden when nothing is searchable in the current dashboard" do
+      CustomerDashboard::ATTRIBUTE_TYPES.each do |_name, field_class|
+        allow(field_class).to(
+          receive(:searchable?).and_return(false),
+        )
+      end
+
+      visit admin_customers_path
+      expect(page).not_to have_a_search_bar
+    end
+  end
+
   scenario "admin searches for customer by email", :js do
     query = "bar@baz.com"
     perfect_match = create(:customer, email: "bar@baz.com")
