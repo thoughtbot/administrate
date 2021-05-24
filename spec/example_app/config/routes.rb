@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :orders
     resources :pages
     resources :products
-    resources :product_meta_tags, except: [:index]
+    resources :product_meta_tags
     resources :payments, only: [:index, :show]
     resources :series
 
