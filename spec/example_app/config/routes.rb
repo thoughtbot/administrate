@@ -5,7 +5,7 @@ Rails.application.routes.draw do
         get :become
       end
     end
-    resources :line_items
+    resources :line_items, except: [:index]
     resources :log_entries
     resources :orders
     resources :pages
