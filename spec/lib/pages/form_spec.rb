@@ -16,36 +16,42 @@ describe Administrate::Page::Form do
     let(:attributes) { page.attributes(action).map(&:attribute) }
 
     context "for a new action" do
-      let(:action) { 'new' }
+      let(:action) { "new" }
 
       it "returns the attributes from FORM_ATTRIBUTES_NEW" do
-        expect(attributes).to match([
-          :order,
-          :product
-        ])
+        expect(attributes).to match(
+          %i[
+            order
+            product
+          ]
+        )
       end
     end
 
     context "for a create action" do
-      let(:action) { 'create' }
+      let(:action) { "create" }
 
       it "returns the attributes from FORM_ATTRIBUTES_NEW" do
-        expect(attributes).to match([
-          :order,
-          :product
-        ])
+        expect(attributes).to match(
+          %i[
+            order
+            product
+          ]
+        )
       end
     end
 
     context "for an update action" do
-      let(:action) { 'update' }
+      let(:action) { "update" }
 
       it "returns the attributes from FORM_ATTRIBUTES_EDIT" do
-        expect(attributes).to match([
-          :order,
-          :product,
-          :quantity
-        ])
+        expect(attributes).to match(
+          %i[
+            order
+            product
+            quantity
+          ]
+        )
       end
     end
   end

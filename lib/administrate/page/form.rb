@@ -12,10 +12,10 @@ module Administrate
 
       def attributes(action = nil)
         action = case action
-        when 'update' then 'edit'
-        when 'create' then 'new'
-        else action
-        end
+                 when "update" then "edit"
+                 when "create" then "new"
+                 else action
+                 end
         dashboard.form_attributes(action).map do |attribute|
           attribute_field(dashboard, resource, attribute, :form)
         end
