@@ -50,7 +50,12 @@ module Administrate
       attribute_types.keys
     end
 
-    def form_attributes
+    def form_attributes(action = nil)
+      if action
+        constant_name = "FORM_ATTRIBUTES_#{action.upcase}"
+        return self.class.const_get(constant_name) if self.class.const_defined?(constant_name)
+      end
+  
       self.class::FORM_ATTRIBUTES
     end
 
