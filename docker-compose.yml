@@ -1,0 +1,24 @@
+version: '3.1'
+services:
+  db:
+    image: postgres:13.3
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+  web:
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+    command: bash -c "rm -f tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/ruby_app:cached # cached for read performance
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    env_file: .env
+volumes:
+  db:
