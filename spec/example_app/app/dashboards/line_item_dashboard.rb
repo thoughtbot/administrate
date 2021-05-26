@@ -21,7 +21,7 @@ class LineItemDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = ATTRIBUTES + [:total_price]
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTES + [:total_price]
   FORM_ATTRIBUTES = ATTRIBUTES
-  FORM_ATTRIBUTES_NEW = ATTRIBUTES - [:quantity, :unit_price]
+  FORM_ATTRIBUTES_NEW = ATTRIBUTES - %i[quantity unit_price]
   FORM_ATTRIBUTES_EDIT = ATTRIBUTES - [:unit_price]
 
   def display_resource(line_item)

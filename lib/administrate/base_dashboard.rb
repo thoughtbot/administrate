@@ -52,10 +52,10 @@ module Administrate
 
     def form_attributes(action = nil)
       if action
-        constant_name = "FORM_ATTRIBUTES_#{action.upcase}"
-        return self.class.const_get(constant_name) if self.class.const_defined?(constant_name)
+        cname = "FORM_ATTRIBUTES_#{action.upcase}"
+        return self.class.const_get(cname) if self.class.const_defined?(cname)
       end
-  
+
       self.class::FORM_ATTRIBUTES
     end
 

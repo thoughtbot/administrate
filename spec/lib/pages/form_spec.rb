@@ -23,7 +23,7 @@ describe Administrate::Page::Form do
           %i[
             order
             product
-          ]
+          ],
         )
       end
     end
@@ -36,7 +36,7 @@ describe Administrate::Page::Form do
           %i[
             order
             product
-          ]
+          ],
         )
       end
     end
@@ -50,7 +50,7 @@ describe Administrate::Page::Form do
             order
             product
             quantity
-          ]
+          ],
         )
       end
     end
