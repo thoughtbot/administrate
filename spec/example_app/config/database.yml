@@ -5,10 +5,10 @@ development: &default
   min_messages: warning
   pool: 2
   timeout: 5000
-  username: <%= ENV.fetch('DB_USERNAME') { 'postgres' } %>
-  password: <%= ENV.fetch('DB_PASSWORD') { 'postgres' } %>
-  host: <%= ENV.fetch('DB_HOST') { 'db' } %>
-  port: <%= ENV.fetch('DB_PORT') { 5432 } %>
+  username: <%= ENV.fetch('PGUSER') { 'postgres' } %>
+  password: <%= ENV.fetch('PGPASSWORD') { 'postgres' } %>
+  host: <%= ENV.fetch('PGHOST') { 'db' } %>
+  port: <%= ENV.fetch('PGPORT') { 5432 } %>
 
 test:
   <<: *default
