@@ -1,6 +1,6 @@
 class PaymentPolicy < ApplicationPolicy
   def index?
-    false
+    user.admin?
   end
 
   def create?
