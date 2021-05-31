@@ -99,6 +99,13 @@ def create_order(customer:, shipped_at: nil)
       quantity: (1..3).to_a.sample,
     )
   end
+
+  if shipped_at
+    payment_count = [1, 1, 1, 2].sample
+    payment_count.times do
+      Payment.create(order: order)
+    end
+  end
 end
 
 customers.each do |customer|
