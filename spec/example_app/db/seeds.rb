@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Payment.destroy_all
 LineItem.destroy_all
 Order.destroy_all
 Customer.destroy_all
@@ -16,7 +17,6 @@ Country.destroy_all
 LogEntry.destroy_all
 Blog::Post.destroy_all
 Page.destroy_all
-Payment.destroy_all
 
 countries = Country.create! [
   { code: "US", name: "USA" },
