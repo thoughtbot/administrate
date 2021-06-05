@@ -101,4 +101,81 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(sort_order("for anything else")).to eq("none")
     end
   end
+
+  describe "#administrate_valid_action?" do
+    context "when given a string target" do
+      it "checks the class it names with `valid_action?` and `show_action?`" do
+        class TestCustomResource; end
+        ctx = double(valid_action?: true, show_action?: true)
+        ctx.extend(Administrate::ApplicationHelper)
+
+        result = ctx.administrate_valid_action?("test_custom_resource", "foo")
+
+        expect(ctx).to have_received(:valid_action?).with("foo", TestCustomResource)
+        expect(ctx).to have_received(:show_action?).with("foo", TestCustomResource)
+      ensure
+        remove_constants :TestCustomResource
+      end
+    end
+
+    context "when given a symbol target" do
+      it "checks the class it names with `valid_action?` and `show_action?`" do
+        class TestCustomResource; end
+        ctx = double(valid_action?: true, show_action?: true)
+        ctx.extend(Administrate::ApplicationHelper)
+
+        ctx.administrate_valid_action?(:test_custom_resource, "foo")
+
+        # Using a symbol instead of a class is allowed for both methods
+        expect(ctx).to have_received(:valid_action?).with("foo", :test_custom_resource)
+        expect(ctx).to have_received(:show_action?).with("foo", :test_custom_resource)
+      ensure
+        remove_constants :TestCustomResource
+      end
+    end
+
+    context "when given a class target" do
+      it "checks it with `valid_action?` and `show_action?`" do
+        class TestCustomResource; end
+        ctx = double(valid_action?: true, show_action?: true)
+        ctx.extend(Administrate::ApplicationHelper)
+
+        ctx.administrate_valid_action?(TestCustomResource, "foo")
+
+        expect(ctx).to have_received(:valid_action?).with("foo", TestCustomResource)
+        expect(ctx).to have_received(:show_action?).with("foo", TestCustomResource)
+      ensure
+        remove_constants :TestCustomResource
+      end
+    end
+
+    context "when given an ActiveRecord::Base target" do
+      it "checks its class with `valid_action?` and the object with `show_action?`" do
+        ctx = double(valid_action?: true, show_action?: true)
+        ctx.extend(Administrate::ApplicationHelper)
+
+        object = Product.new
+        ctx.administrate_valid_action?(object, "foo")
+
+        expect(ctx).to have_received(:valid_action?).with("foo", Product)
+        expect(ctx).to have_received(:show_action?).with("foo", object)
+      end
+    end
+
+    context "when given an object target" do
+      it "checks its class with `valid_action?` and the object with `show_action?`" do
+        class TestCustomResource; end
+        ctx = double(valid_action?: true, show_action?: true)
+        ctx.extend(Administrate::ApplicationHelper)
+
+        object = TestCustomResource.new
+        ctx.administrate_valid_action?(object, "foo")
+
+        expect(ctx).to have_received(:valid_action?).with("foo", TestCustomResource)
+        expect(ctx).to have_received(:show_action?).with("foo", object)
+      ensure
+        remove_constants :TestCustomResource
+      end
+    end
+  end
 end
