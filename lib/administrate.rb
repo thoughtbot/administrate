@@ -30,4 +30,12 @@ module Administrate
       "does not use a deprecated API",
     )
   end
+
+  def self.warn_of_deprecated_authorization_method(method)
+    ActiveSupport::Deprecation.warn(
+      "The method `#{method}` is deprecated. " +
+      "Please use `accessible_action?` instead, " +
+      "or see the documentation for other options.",
+    )
+  end
 end

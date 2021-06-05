@@ -49,23 +49,36 @@ end
 
 ## Authorization without Pundit
 
-If you use a different authorization library, or you want to roll your own,
-you just need to override a few methods in your controllers or
-`Admin::ApplicationController`. For example:
+Pundit is not necessary to implement authorization within Administrate. It is
+simply a common solution that many in the community use, and for this reason
+Administrate provides a plugin to work with it. However you can use a different
+solution or roll out your own.
+
+To integrate a different authorization solution, you will need to
+implement some methods in `Admin::ApplicationController`
+or its subclasses.
+
+These are the methods to override, with examples:
 
 ```ruby
-# Limit the scope of the given resource
+# Used in listings, such as the `index` actions. It
+# restricts the scope of records that a user can access.
+# Returns an ActiveRecord scope.
 def scoped_resource
   super.where(user: current_user)
 end
 
-# Raise an exception if the user is not permitted to access this resource
-def authorize_resource(resource)
-  raise "Erg!" unless show_action?(params[:action], resource)
-end
-
-# Hide links to actions if the user is not allowed to do them
-def show_action?(action, resource)
-  current_user.can? action, resource
+# Return true if the current user can access the given
+# resource, false otherwise.
+def authorized_action?(resource, action)
+  current_user.can?(resource, action)
 end
 ```
+
+Additionally, the method `authorize_resource(resource)`
+should throw an exception if the current user is not
+allowed to access the given resource. Normally
+you wouldn't need to override it, as the default
+implementation uses `authorized_action?` to produce the
+correct behaviour. However you may still want to override it
+if you want to raise a custom error type.

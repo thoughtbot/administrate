@@ -46,16 +46,21 @@ end
 
 ## Customizing Actions
 
-To enable or disable certain actions you could override `valid_action?` method in your dashboard controller like this:
+To disable certain actions globally, you can disable their
+routes in `config/routes.rb`, using the usual Rails
+facilities for this. For example:
 
 ```ruby
-# disable 'edit' and 'destroy' links
-def valid_action?(name, resource = resource_class)
-  %w[edit destroy].exclude?(name.to_s) && super
+Rails.application.routes.draw do
+  # ...
+  namespace :admin do
+    # ...
+
+    # Payments can only be listed or displayed
+    resources :payments, only: [:index, :show]
+  end
 end
 ```
-
-Action is one of `new`, `edit`, `show`, `destroy`.
 
 ## Customizing Default Sorting
 

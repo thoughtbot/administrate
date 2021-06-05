@@ -18,7 +18,8 @@ All show page attributes of has_one relationship would be rendered
 <% if field.linkable? %>
   <fieldset class="attribute--nested">
     <legend>
-      <%= link_to(
+      <%= link_to_if(
+        accessible_action?(field.data, :show),
         field.display_associated_resource,
         [namespace, field.data],
       ) %>

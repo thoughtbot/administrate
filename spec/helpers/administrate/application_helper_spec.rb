@@ -101,4 +101,90 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(sort_order("for anything else")).to eq("none")
     end
   end
+
+  describe "#accessible_action?" do
+    context "when given a string target" do
+      it "checks the class it names with `existing_action?` and `authorized_action?`" do
+        class MyResource; end
+        ctx = double(existing_action?: true, authorized_action?: true)
+        ctx.extend(Administrate::ApplicationHelper)
+
+        ctx.accessible_action?("my_resource", "foo")
+
+        expect(ctx).to(
+          have_received(:existing_action?).with(:my_resource, "foo"),
+        )
+        expect(ctx).to(
+          have_received(:authorized_action?).with(:my_resource, "foo"),
+        )
+      ensure
+        remove_constants :MyResource
+      end
+    end
+
+    context "when given a symbol target" do
+      it "checks the class it names with `existing_action?` and `authorized_action?`" do
+        class MyResource; end
+        ctx = double(existing_action?: true, authorized_action?: true)
+        ctx.extend(Administrate::ApplicationHelper)
+
+        ctx.accessible_action?(:my_resource, "foo")
+
+        expect(ctx).to(
+          have_received(:existing_action?).with(:my_resource, "foo"),
+        )
+        expect(ctx).to(
+          have_received(:authorized_action?).with(:my_resource, "foo"),
+        )
+      ensure
+        remove_constants :MyResource
+      end
+    end
+
+    context "when given a class target" do
+      it "checks it with `existing_action?` and `authorized_action?`" do
+        class MyResource; end
+        ctx = double(existing_action?: true, authorized_action?: true)
+        ctx.extend(Administrate::ApplicationHelper)
+
+        ctx.accessible_action?(MyResource, "foo")
+
+        expect(ctx).to have_received(:existing_action?).with(MyResource, "foo")
+        expect(ctx).to(
+          have_received(:authorized_action?).with(MyResource, "foo"),
+        )
+      ensure
+        remove_constants :MyResource
+      end
+    end
+
+    context "when given an ActiveRecord::Base target" do
+      it "tests its class with `existing_action?` and the object with `authorized_action?`" do
+        ctx = double(existing_action?: true, authorized_action?: true)
+        ctx.extend(Administrate::ApplicationHelper)
+
+        object = Product.new
+        ctx.accessible_action?(object, "foo")
+
+        expect(ctx).to have_received(:existing_action?).with(Product, "foo")
+        expect(ctx).to have_received(:authorized_action?).with(object, "foo")
+      end
+    end
+
+    context "when given an object target" do
+      it "checks its class with `existing_action?` and the object with `authorized_action?`" do
+        class MyResource; end
+        ctx = double(existing_action?: true, authorized_action?: true)
+        ctx.extend(Administrate::ApplicationHelper)
+
+        object = MyResource.new
+        ctx.accessible_action?(object, "foo")
+
+        expect(ctx).to have_received(:existing_action?).with(MyResource, "foo")
+        expect(ctx).to have_received(:authorized_action?).with(object, "foo")
+      ensure
+        remove_constants :MyResource
+      end
+    end
+  end
 end

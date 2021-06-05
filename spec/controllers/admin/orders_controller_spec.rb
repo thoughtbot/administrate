@@ -82,21 +82,21 @@ describe Admin::OrdersController, type: :controller do
       end
     end
 
-    describe "#show_action?" do
+    describe "#authorized_action?" do
       it "shows edit actions for records by the user" do
         o = create(:order, customer: user)
-        expect(controller.show_action?(:edit, o)).to be true
+        expect(controller.send(:authorized_action?, o, :edit)).to be true
       end
 
       it "does not show edit actions for records from other users" do
         someone = create(:customer)
         o = create(:order, customer: someone)
-        expect(controller.show_action?(:edit, o)).to be false
+        expect(controller.send(:authorized_action?, o, :edit)).to be false
       end
 
       it "never shows destroy actions" do
         o = create :order, customer: user, address_state: "AZ"
-        expect(controller.show_action?(:destroy, o)).to be false
+        expect(controller.send(:authorized_action?, o, :destroy)).to be false
       end
     end
   end

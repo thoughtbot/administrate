@@ -15,6 +15,6 @@ as defined by the routes in the `admin/` namespace
       display_resource_name(resource),
       resource_index_route(resource),
       class: "navigation__link navigation__link--#{nav_link_state(resource)}"
-    ) if valid_action?(:index, resource) && show_action?(:index, model_from_resource(resource)) %>
+    ) if accessible_action?(model_from_resource(resource), :index) %>
   <% end %>
 </nav>

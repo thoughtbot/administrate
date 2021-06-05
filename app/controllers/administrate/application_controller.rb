@@ -105,10 +105,27 @@ module Administrate
       resource_name.to_s.pluralize == underscore_resource ? :active : :inactive
     end
 
-    helper_method :valid_action?
-    def valid_action?(name, resource = resource_class)
-      routes.include?([resource.to_s.underscore.pluralize, name.to_s])
+    # Whether the named action route exists for the resource class.
+    #
+    # @param resource [Class, String, Symbol] A class of resources, or the name
+    #   of a class of resources.
+    # @param action_name [String, Symbol] The name of an action that might be
+    #   possible to perform on a resource or resource class.
+    # @return [Boolean] `true` if a route exists for the resource class and the
+    #   action. `false` otherwise.
+    def existing_action?(resource, action_name)
+      routes.include?([resource.to_s.underscore.pluralize, action_name.to_s])
     end
+    helper_method :existing_action?
+
+    # @deprecated Use {#existing_action} instead. Note that, in
+    #   {#existing_action}, the order of parameters is reversed and
+    #   there is no default value for the `resource` parameter.
+    def valid_action?(action_name, resource = resource_class)
+      Administrate.warn_of_deprecated_authorization_method(__method__)
+      existing_action?(resource, action_name)
+    end
+    helper_method :valid_action?
 
     def routes
       @routes ||= Namespace.new(namespace).routes.to_set
@@ -226,8 +243,25 @@ module Administrate
       ).any? { |_name, attribute| attribute.searchable? }
     end
 
-    def show_action?(_action, _resource)
+    # Whether the current user is authorized to perform the named action on the
+    # resource.
+    #
+    # @param _resource [ActiveRecord::Base, Class, String, Symbol] The
+    #   temptative target of the action, or the name of its class.
+    # @param _action_name [String, Symbol] The name of an action that might be
+    #   possible to perform on a resource or resource class.
+    # @return [Boolean] `true` if the current user is authorized to perform the
+    #   action on the resource. `false` otherwise.
+    def authorized_action?(_resource, _action_name)
       true
+    end
+    helper_method :authorized_action?
+
+    # @deprecated Use {#authorized_action} instead. Note that the order of
+    #   parameters is reversed in {#authorized_action}.
+    def show_action?(action, resource)
+      Administrate.warn_of_deprecated_authorization_method(__method__)
+      authorized_action?(resource, action)
     end
     helper_method :show_action?
 
@@ -237,7 +271,14 @@ module Administrate
     helper_method :new_resource
 
     def authorize_resource(resource)
-      resource
+      if authorized_action?(resource, action_name)
+        resource
+      else
+        raise Administrate::NotAuthorizedError.new(
+          action: action_name,
+          resource: resource,
+        )
+      end
     end
 
     def paginate_resources(resources)
