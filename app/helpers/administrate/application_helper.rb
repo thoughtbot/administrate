@@ -26,7 +26,7 @@ module Administrate
 
     def model_from_resource(resource_name)
       dashboard = dashboard_from_resource(resource_name)
-      dashboard.try(:model) || resource_name.to_sym
+      dashboard.try(:model) || resource_name.singularize.to_sym
     end
 
     def display_resource_name(resource_name, opts = {})

@@ -9,7 +9,7 @@ To do that, you must define an `index` route, as only controllers with index
 routes are displayed in the sidebar and then add a custom dashboard:
 
 ```erb
-# app/views/admin/stats/index.html.erb 
+# app/views/admin/stats/index.html.erb
 
 <div style="padding: 20px">
   <h1>Stats</h1>
@@ -25,7 +25,7 @@ routes are displayed in the sidebar and then add a custom dashboard:
 require "administrate/custom_dashboard"
 
 class StatDashboard < Administrate::CustomDashboard
-  resource "Stats" # used by administrate in the views
+  resource "Stat" # used by administrate in the views
 end
 ```
 
