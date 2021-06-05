@@ -29,6 +29,27 @@ module Administrate
       dashboard.try(:model) || resource_name.singularize.to_sym
     end
 
+    # Unification of valid_action? and show_action?
+    # Argument `target` can be of three types:
+    #   - String: name of a resource class, or name of custom route
+    #   - Symbol: name of the resource class
+    #   - Class: resource class
+    #   - ActiveRecord::Base: resource instance
+    def administrate_valid_action?(target, action_name)
+      begin
+        target = target.classify.constantize if [Symbol, String].include?(target.class)
+        target_class = target.is_a?(ActiveRecord::Base) ? target.class : target
+      rescue NameError
+        # If target is a string, Pundit.policy! will try
+        # to use `StringPolicy`, which doesn't exist.
+        # If target is a symbol, Pundit.policy! will try
+        # to use `StatPolicy`, which is correct.
+        target = target.to_sym
+      end
+
+      valid_action?(action_name, target_class) && show_action?(action_name, target)
+    end
+
     def display_resource_name(resource_name, opts = {})
       dashboard_from_resource(resource_name).resource_name(
         count: opts[:singular] ? SINGULAR_COUNT : PLURAL_MANY_COUNT,

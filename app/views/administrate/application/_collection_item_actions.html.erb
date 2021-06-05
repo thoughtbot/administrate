@@ -3,7 +3,7 @@
     t("administrate.actions.edit"),
     [:edit, namespace, resource],
     class: "action-edit",
-  ) if show_action?(:edit, resource) %></td>
+  ) if administrate_valid_action?(resource, :edit) %></td>
 <% end %>
 
 <% if valid_action?(:destroy, collection_presenter.resource_name) %>
@@ -13,5 +13,5 @@
     class: "text-color-red",
     method: :delete,
     data: { confirm: t("administrate.actions.confirm") }
-  ) if show_action?(:destroy, resource) %></td>
+  ) if administrate_valid_action?(resource, :destroy) %></td>
 <% end %>
