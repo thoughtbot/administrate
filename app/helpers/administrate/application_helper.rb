@@ -36,18 +36,11 @@ module Administrate
     #   - Class: resource class
     #   - ActiveRecord::Base: resource instance
     def administrate_valid_action?(target, action_name)
-      begin
-        target = target.to_s.classify.constantize if target.is_a?(String)
-        target_class = target.is_a?(ActiveRecord::Base) ? target.class : target
-      rescue NameError
-        # If target is a string, Pundit.policy! will try
-        # to use `StringPolicy`, which doesn't exist.
-        # If target is a symbol, Pundit.policy! will try
-        # to use `#{symbol}Policy`, which is correct.
-        target = target.to_sym
-      end
+      target = target.to_sym if target.is_a?(String)
+      target_class_or_class_name =
+        target.is_a?(ActiveRecord::Base) ? target.class : target
 
-      valid_action?(action_name, target_class) &&
+      valid_action?(action_name, target_class_or_class_name) &&
         show_action?(action_name, target)
     end
 

@@ -109,10 +109,10 @@ RSpec.describe Administrate::ApplicationHelper do
         ctx = double(valid_action?: true, show_action?: true)
         ctx.extend(Administrate::ApplicationHelper)
 
-        result = ctx.administrate_valid_action?("test_custom_resource", "foo")
+        ctx.administrate_valid_action?("test_custom_resource", "foo")
 
-        expect(ctx).to have_received(:valid_action?).with("foo", TestCustomResource)
-        expect(ctx).to have_received(:show_action?).with("foo", TestCustomResource)
+        expect(ctx).to have_received(:valid_action?).with("foo", :test_custom_resource)
+        expect(ctx).to have_received(:show_action?).with("foo", :test_custom_resource)
       ensure
         remove_constants :TestCustomResource
       end
@@ -126,7 +126,6 @@ RSpec.describe Administrate::ApplicationHelper do
 
         ctx.administrate_valid_action?(:test_custom_resource, "foo")
 
-        # Using a symbol instead of a class is allowed for both methods
         expect(ctx).to have_received(:valid_action?).with("foo", :test_custom_resource)
         expect(ctx).to have_received(:show_action?).with("foo", :test_custom_resource)
       ensure
