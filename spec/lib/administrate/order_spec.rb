@@ -90,12 +90,34 @@ describe Administrate::Order do
         relation = relation_with_association(
           :belongs_to,
           foreign_key: "some_foreign_key",
+          klass: double(has_attribute?: false),
         )
         allow(relation).to receive(:reorder).and_return(relation)
 
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:reorder).with("some_foreign_key asc")
+        expect(ordered).to eq(relation)
+      end
+
+      it "orders_by_association_attribute" do
+        order = Administrate::Order.new(
+          "product",
+          :asc,
+          association_attribute: :name,
+        )
+        relation = relation_with_association(
+          :belongs_to,
+          klass: double(has_attribute?: true),
+          foreign_key: "some_foreign_key",
+          plural_name: "products",
+        )
+        allow(relation).to receive(:includes).and_return(relation)
+        allow(relation).to receive(:reorder).and_return(relation)
+
+        ordered = order.apply(relation)
+
+        expect(relation).to have_received(:reorder).with("products.name asc")
         expect(ordered).to eq(relation)
       end
     end
@@ -196,7 +218,8 @@ describe Administrate::Order do
   def relation_with_association(
     association,
     foreign_key: "#{association}_id",
-    klass: nil
+    klass: nil,
+    plural_name: nil
   )
     double(
       klass: double(
@@ -205,6 +228,7 @@ describe Administrate::Order do
           macro: association,
           foreign_key: foreign_key,
           klass: klass,
+          plural_name: plural_name,
         ),
       ),
     )

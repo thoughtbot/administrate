@@ -102,11 +102,19 @@ module Administrate
     end
 
     def order
-      @order ||= Administrate::Order.new(sorting_attribute, sorting_direction)
+      @order ||= Administrate::Order.new(
+        sorting_attribute,
+        sorting_direction,
+        association_attribute: belongs_to_sorting_attribute,
+      )
     end
 
     def sorting_attribute
       sorting_params.fetch(:order) { default_sorting_attribute }
+    end
+
+    def belongs_to_sorting_attribute
+      nil
     end
 
     def default_sorting_attribute
