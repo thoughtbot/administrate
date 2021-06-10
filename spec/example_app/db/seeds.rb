@@ -75,31 +75,37 @@ Product.find_each do |p|
   )
 end
 
+def create_order(customer:, shipped_at: nil)
+  order = Order.create!(
+    customer: customer,
+    address_line_one: Faker::Address.street_address,
+    address_line_two: Faker::Address.secondary_address,
+    address_city: Faker::Address.city,
+    address_state: Faker::Address.state_abbr,
+    address_zip: Faker::Address.zip,
+    shipped_at: shipped_at,
+  )
+  LogEntry.create!(
+    action: "create",
+    logeable: order,
+  )
+
+  item_count = (1..3).to_a.sample
+  Product.all.sample(item_count).each do |product|
+    LineItem.create!(
+      order: order,
+      product: product,
+      unit_price: product.price,
+      quantity: (1..3).to_a.sample,
+    )
+  end
+end
+
 customers.each do |customer|
   (1..3).to_a.sample.times do
-    order = Order.create!(
-      customer: customer,
-      address_line_one: Faker::Address.street_address,
-      address_line_two: Faker::Address.secondary_address,
-      address_city: Faker::Address.city,
-      address_state: Faker::Address.state_abbr,
-      address_zip: Faker::Address.zip,
-    )
-    LogEntry.create!(
-      action: "create",
-      logeable: order,
-    )
-
-    item_count = (1..3).to_a.sample
-    Product.all.sample(item_count).each do |product|
-      LineItem.create!(
-        order: order,
-        product: product,
-        unit_price: product.price,
-        quantity: (1..3).to_a.sample,
-      )
-    end
+    create_order(customer: customer)
   end
+  create_order(customer: customer, shipped_at: Time.current)
 end
 
 Series.create!(name: "An example")

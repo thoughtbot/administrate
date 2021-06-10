@@ -8,20 +8,22 @@ describe Admin::OrdersController, type: :controller do
     controller(Admin::OrdersController) do
       include Administrate::Punditize
       def pundit_user
-        Customer.first # assume the user is the first Customer
+        Customer.find_by(name: "Current User")
       end
     end
 
-    let(:user) { create(:customer) }
+    let!(:user) { create(:customer, name: "Current User") }
 
     describe "GET index" do
-      it "shows only the records in the admin scope" do
-        order = create(:order, customer: user)
-        _missing_order = create(:order)
+      it "shows only your own orders" do
+        someone = create(:customer)
+        order1 = create(:order, customer: user)
+        _order2 = create(:order, customer: someone)
+        order3 = create(:order, customer: user)
 
         locals = capture_view_locals { get :index }
 
-        expect(locals[:resources]).to contain_exactly(order)
+        expect(locals[:resources]).to contain_exactly(order1, order3)
       end
     end
 
@@ -32,15 +34,43 @@ describe Admin::OrdersController, type: :controller do
     end
 
     describe "GET edit" do
-      it "allows me to edit records in Arizona" do
-        az = create :order, customer: user, address_state: "AZ"
-        expect { get :edit, params: { id: az.id } }.not_to raise_error
+      it "allows me to edit my records" do
+        order = create :order, customer: user
+        expect { get :edit, params: { id: order.id } }.not_to raise_error
       end
 
-      it "does not allow me to edit other records" do
-        ga = create :order, customer: user, address_state: "GA"
-        expect { get :edit, params: { id: ga.id } }.
-          to raise_error(Pundit::NotAuthorizedError)
+      it "does not allow me to see other users' records" do
+        other_user = create(:customer)
+        order = create(:order, customer: other_user)
+        expect { get :show, params: { id: order.id } }.
+          to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    describe "PUT update" do
+      def send_request(order:)
+        put(
+          :update,
+          params: {
+            id: order.id,
+            order: { address_line_one: "22 Acacia Avenue" },
+          },
+        )
+      end
+
+      it "allows me to update my records" do
+        order = create(:order, customer: user)
+        send_request(order: order)
+        expect(response).to redirect_to([:admin, order])
+        expect(order.reload.address_line_one).to eq("22 Acacia Avenue")
+      end
+
+      it "does not allow me to update other users' records" do
+        other_user = create(:customer)
+        order = create(:order, customer: other_user)
+        expect do
+          send_request(order: order)
+        end.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
@@ -53,13 +83,14 @@ describe Admin::OrdersController, type: :controller do
     end
 
     describe "#show_action?" do
-      it "shows edit actions for records in AZ" do
-        o = create :order, customer: user, address_state: "AZ"
+      it "shows edit actions for records by the user" do
+        o = create(:order, customer: user)
         expect(controller.show_action?(:edit, o)).to be true
       end
 
-      it "does not show edit actions for records elsewhere" do
-        o = create :order, customer: user, address_state: "GA"
+      it "does not show edit actions for records from other users" do
+        someone = create(:customer)
+        o = create(:order, customer: someone)
         expect(controller.show_action?(:edit, o)).to be false
       end
 

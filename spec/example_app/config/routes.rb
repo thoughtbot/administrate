@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :customers
+    resources :customers do
+      member do
+        get :become
+      end
+    end
     resources :line_items
     resources :log_entries
     resources :orders

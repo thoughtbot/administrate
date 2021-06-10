@@ -1,0 +1,8 @@
+<%
+  [
+    valid_action?(:edit, collection_presenter.resource_name),
+    valid_action?(:destroy, collection_presenter.resource_name),
+    true, # "Become" action
+  ].count(true).times do %>
+  <th scope="col"></th>
+<% end %>
