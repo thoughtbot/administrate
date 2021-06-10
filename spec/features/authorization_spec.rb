@@ -31,7 +31,7 @@ describe "authorization" do
   it "hides link to resource for which index? is not authorized" do
     visit admin_customers_path
     navigation = find(".navigation")
-    expect(navigation).not_to have_link("Orders")
+    expect(navigation).not_to have_link("Payments")
   end
 
   it "renders all results yielded by the scope" do

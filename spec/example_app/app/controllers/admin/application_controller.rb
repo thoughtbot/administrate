@@ -4,20 +4,33 @@
 #
 # If you want to add pagination or other controller-level concerns,
 # you're free to overwrite the RESTful controller actions.
-class Admin::ApplicationController < Administrate::ApplicationController
-  before_action :authenticate_admin
+module Admin
+  class ApplicationController < Administrate::ApplicationController
+    include Administrate::Punditize
 
-  def authenticate_admin
-    # TODO Add authentication logic here.
+    class AdminUser
+      def id
+        nil
+      end
+
+      def name
+        "Admin"
+      end
+
+      def admin?
+        true
+      end
+    end
+
+    before_action :authenticate_admin
+
+    def authenticate_admin
+      user_id = session[:user_id]
+      @current_user = user_id ? Customer.find(user_id) : AdminUser.new
+    end
+
+    def pundit_user
+      @current_user
+    end
   end
-
-  def show_action?(action, resource)
-    action != :index || resource != ::Order
-  end
-
-  # Override this value to specify the number of elements to display at a time
-  # on index pages. Defaults to 20.
-  # def records_per_page
-  #   params[:per_page] || 20
-  # end
 end
