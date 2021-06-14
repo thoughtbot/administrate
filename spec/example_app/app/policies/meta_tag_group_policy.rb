@@ -1,0 +1,2 @@
+class MetaTagGroupPolicy < ApplicationPolicy
+end
