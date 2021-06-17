@@ -11,7 +11,7 @@ describe Admin::Blog::PostsController, type: :controller do
 
     it "passes the search term to the view" do
       locals = capture_view_locals do
-        get :index, search: "foo"
+        get :index, params: { search: "foo" }
       end
 
       expect(locals[:search_term]).to eq("foo")
@@ -29,7 +29,7 @@ describe Admin::Blog::PostsController, type: :controller do
       blog_post = create(:blog_post)
 
       locals = capture_view_locals do
-        get :show, id: blog_post.to_param
+        get :show, params: { id: blog_post.to_param }
       end
 
       page = locals[:page]
@@ -51,7 +51,7 @@ describe Admin::Blog::PostsController, type: :controller do
       blog_post = create(:blog_post)
 
       locals = capture_view_locals do
-        get :edit, id: blog_post.to_param
+        get :edit, params: { id: blog_post.to_param }
       end
 
       page = locals[:page]
@@ -64,12 +64,12 @@ describe Admin::Blog::PostsController, type: :controller do
     context "with valid params" do
       it "creates a new blog post" do
         expect do
-          post :create, blog_post: attributes_for(:blog_post)
+          post :create, params: { blog_post: attributes_for(:blog_post) }
         end.to change(Blog::Post, :count).by(1)
       end
 
       it "redirects to the created blog post" do
-        post :create, blog_post: attributes_for(:blog_post)
+        post :create, params: { blog_post: attributes_for(:blog_post) }
 
         expect(response).to redirect_to([:admin, Blog::Post.last])
       end
@@ -82,7 +82,7 @@ describe Admin::Blog::PostsController, type: :controller do
         invalid_attributes = { title: "" }
 
         locals = capture_view_locals do
-          post :create, blog_post: invalid_attributes
+          post :create, params: { blog_post: invalid_attributes }
         end
 
         page = locals[:page]
@@ -93,7 +93,7 @@ describe Admin::Blog::PostsController, type: :controller do
       it "re-renders the 'new' template" do
         invalid_attributes = { title: "" }
 
-        post :create, blog_post: invalid_attributes
+        post :create, params: { blog_post: invalid_attributes }
 
         expect(page.find("h1")).to have_content "New Blog Post"
       end
@@ -106,7 +106,10 @@ describe Admin::Blog::PostsController, type: :controller do
         blog_post = create(:blog_post, title: "old title")
         new_attributes = { title: "new title" }
 
-        put :update, id: blog_post.to_param, blog_post: new_attributes
+        put(
+          :update,
+          params: { id: blog_post.to_param, blog_post: new_attributes },
+        )
 
         blog_post.reload
         expect(blog_post.title).to eq "new title"
@@ -116,7 +119,10 @@ describe Admin::Blog::PostsController, type: :controller do
         blog_post = create(:blog_post)
         valid_attributes = attributes_for(:blog_post)
 
-        put :update, id: blog_post.to_param, blog_post: valid_attributes
+        put(
+          :update,
+          params: { id: blog_post.to_param, blog_post: valid_attributes },
+        )
         blog_post.reload
 
         expect(response).to redirect_to([:admin, blog_post])
@@ -130,7 +136,13 @@ describe Admin::Blog::PostsController, type: :controller do
         blog_post = create(:blog_post)
         invalid_attributes = { title: "" }
 
-        put :update, id: blog_post.to_param, blog_post: invalid_attributes
+        put(
+          :update,
+          params: {
+            id: blog_post.to_param,
+            blog_post: invalid_attributes,
+          },
+        )
 
         expect(page.find("h1")).to have_content "Edit"
       end
@@ -140,7 +152,13 @@ describe Admin::Blog::PostsController, type: :controller do
         invalid_attributes = { title: "" }
 
         locals = capture_view_locals do
-          put :update, id: blog_post.to_param, blog_post: invalid_attributes
+          put(
+            :update,
+            params: {
+              id: blog_post.to_param,
+              blog_post: invalid_attributes,
+            },
+          )
         end
 
         page = locals[:page]
@@ -155,14 +173,14 @@ describe Admin::Blog::PostsController, type: :controller do
       blog_post = create(:blog_post)
 
       expect do
-        delete :destroy, id: blog_post.to_param
+        delete :destroy, params: { id: blog_post.to_param }
       end.to change(Blog::Post, :count).by(-1)
     end
 
     it "redirects to the blog posts list" do
       blog_post = create(:blog_post)
 
-      delete :destroy, id: blog_post.to_param
+      delete :destroy, params: { id: blog_post.to_param }
 
       expect(response).to redirect_to(admin_blog_posts_path)
     end

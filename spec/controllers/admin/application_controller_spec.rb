@@ -18,7 +18,7 @@ RSpec.describe Admin::OrdersController, type: :controller do
   it "redirect to custom route after destroy" do
     order = create(:order)
 
-    delete :destroy, id: order.to_param
+    delete :destroy, params: { id: order.to_param }
     expect(response).to redirect_to(admin_customers_path)
   end
 
@@ -27,7 +27,7 @@ RSpec.describe Admin::OrdersController, type: :controller do
     order_attributes = build(:order, customer: customer).attributes
     params = order_attributes.except("id", "created_at", "updated_at", "shipped_at")
 
-    post :create, order: params
+    post :create, params: { order: params }
     expect(response).to redirect_to(admin_customer_path(customer))
   end
 
@@ -35,7 +35,7 @@ RSpec.describe Admin::OrdersController, type: :controller do
     order = create(:order)
     order_params = { address_line_one: order.address_line_one }
 
-    put :update, id: order.to_param, order: order_params
+    put :update, params: { id: order.to_param, order: order_params }
     expect(response).to redirect_to(admin_customer_path(order.customer))
   end
 end
