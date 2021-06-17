@@ -5,19 +5,23 @@ class OrderPolicy < ApplicationPolicy
     end
 
     def resolve_admin
-      scope.where(customer: user)
+      if user.admin?
+        scope
+      else
+        scope.where(customer: user)
+      end
     end
   end
 
   def create?
-    false
+    user.admin?
   end
 
   def update?
-    record.address_state == "AZ"
+    user.admin? || user.id == record.customer_id
   end
 
   def destroy?
-    false
+    user.admin?
   end
 end

@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :customers
-    resources :line_items
+    resources :customers do
+      member do
+        get :become
+      end
+    end
+    resources :line_items, except: [:index]
     resources :log_entries
     resources :orders
     resources :pages
     resources :products
-    resources :product_meta_tags, except: [:index]
+    resources :product_meta_tags
     resources :payments, only: [:index, :show]
     resources :series
 

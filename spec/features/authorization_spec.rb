@@ -22,16 +22,25 @@ describe "authorization" do
     Product.policy_class = @original_product_policy
   end
 
-  it "shows link to resource for which index? is authorized" do
-    visit admin_customers_path
-    navigation = find(".navigation")
-    expect(navigation).to have_link("Products")
-  end
+  describe "navigation" do
+    def navigation
+      visit admin_customers_path
+      find(".navigation")
+    end
 
-  it "hides link to resource for which index? is not authorized" do
-    visit admin_customers_path
-    navigation = find(".navigation")
-    expect(navigation).not_to have_link("Orders")
+    def become_user(customer)
+      visit become_admin_customer_path(customer)
+    end
+
+    it "shows links to sections with authorized index" do
+      expect(navigation).to have_link("Payments")
+    end
+
+    it "hides links to sections without authorized index" do
+      customer = create(:customer, name: "Non Admin")
+      become_user(customer)
+      expect(navigation).not_to have_link("Payments")
+    end
   end
 
   it "renders all results yielded by the scope" do

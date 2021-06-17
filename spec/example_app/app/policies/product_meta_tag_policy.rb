@@ -1,0 +1,2 @@
+class ProductMetaTagPolicy < ApplicationPolicy
+end

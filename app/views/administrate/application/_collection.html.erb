@@ -45,10 +45,13 @@ to display a collection of resources in an HTML table.
           <% end %>
         </th>
       <% end %>
-      <% [valid_action?(:edit, collection_presenter.resource_name),
-          valid_action?(:destroy, collection_presenter.resource_name)].count(true).times do %>
-        <th scope="col"></th>
-      <% end %>
+      <%= render(
+        "collection_header_actions",
+        collection_presenter: collection_presenter,
+        page: page,
+        resources: resources,
+        table_title: "page-title"
+      ) %>
     </tr>
   </thead>
 
@@ -74,23 +77,15 @@ to display a collection of resources in an HTML table.
           </td>
         <% end %>
 
-        <% if valid_action? :edit, collection_presenter.resource_name %>
-          <td><%= link_to(
-            t("administrate.actions.edit"),
-            [:edit, namespace, resource],
-            class: "action-edit",
-          ) if show_action? :edit, resource%></td>
-        <% end %>
-
-        <% if valid_action? :destroy, collection_presenter.resource_name %>
-          <td><%= link_to(
-            t("administrate.actions.destroy"),
-            [namespace, resource],
-            class: "text-color-red",
-            method: :delete,
-            data: { confirm: t("administrate.actions.confirm") }
-          ) if show_action? :destroy, resource %></td>
-        <% end %>
+        <%= render(
+          "collection_item_actions",
+          collection_presenter: collection_presenter,
+          collection_field_name: collection_field_name,
+          page: page,
+          namespace: namespace,
+          resource: resource,
+          table_title: "page-title"
+        ) %>
       </tr>
     <% end %>
   </tbody>
