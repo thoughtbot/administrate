@@ -39,6 +39,18 @@ describe "documentation navigation" do
     expect(page).to have_content("The MIT License (MIT)")
   end
 
+  it "shows the Security Policy in both forms" do
+    visit("/security")
+
+    expect(page).to have_css("div.main h1", text: "Security Policy")
+    expect(page).to have_content("security inquiries")
+
+    visit("/SECURITY.md")
+
+    expect(page).to have_css("div.main h1", text: "Security Policy")
+    expect(page).to have_content("security inquiries")
+  end
+
   it "shows other docs pages" do
     visit("/getting_started")
 

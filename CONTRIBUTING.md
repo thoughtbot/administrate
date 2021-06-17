@@ -106,11 +106,7 @@ Issues and PRs are split into two levels of labels, at the higher level:
 
 ## Security
 
-For security inquiries or vulnerability reports, please email
-<security@thoughtbot.com>.
-If you'd like, you can use our [PGP key] when reporting vulnerabilities.
-
-[PGP key]: https://thoughtbot.com/thoughtbot.asc
+See the [security policy](./SECURITY.md).
 
 ## Releasing
 

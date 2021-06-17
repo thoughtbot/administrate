@@ -9,6 +9,8 @@ class DocsController < ApplicationController
       render_page("CONTRIBUTING", "Contributing Guide")
     when "license", "LICENSE"
       render_page("LICENSE", "LICENSE")
+    when "security", "SECURITY"
+      render_page("SECURITY", "Security Policy")
     else
       render_page("docs/#{params[:page]}")
     end
