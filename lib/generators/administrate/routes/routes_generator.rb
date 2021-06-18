@@ -55,7 +55,7 @@ module Administrate
 
       def generate_resource_routes
         resource_tree = RouteTreeConstructor.new(dashboard_resources)
-        resource_tree.organise_resource_routes()
+        resource_tree.organise_resource_routes
       end
 
       def valid_dashboard_models

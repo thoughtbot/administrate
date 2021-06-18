@@ -1,6 +1,5 @@
 module Administrate
   class RouteTreeConstructor
-
     def initialize(resources)
       output = [{}, []]
       resources.each do |resource_path|
@@ -15,7 +14,7 @@ module Administrate
 
     DEFAULT_INDENT = " " * 2
 
-    def organise_resource_routes()
+    def organise_resource_routes
       resource_hash = @resource_hash
       output_string = ""
       resource_hash[1].each do |resource|
@@ -64,6 +63,5 @@ module Administrate
       end
       current_state
     end
-
   end
 end
