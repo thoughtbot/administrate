@@ -6,14 +6,13 @@ end
 
 require "rails/generators/base"
 require "administrate/generator_helpers"
-require "administrate/namespacing_routes"
+require "administrate/route_tree_constructor"
 require "administrate/namespace"
 
 module Administrate
   module Generators
     class RoutesGenerator < Rails::Generators::Base
       include Administrate::GeneratorHelpers
-      include Administrate::NamespacingRoutes
       INVALID_DATABASE_MODELS_LIST = [
         "ActiveRecord::SchemaMigration",
         "ActiveRecord::InternalMetadata",
@@ -52,6 +51,11 @@ module Administrate
         valid_dashboard_models.map do |model|
           model.to_s.pluralize.underscore
         end
+      end
+
+      def generate_resource_routes
+        resource_tree = RouteTreeConstructor.new(dashboard_resources)
+        resource_tree.organise_resource_routes()
       end
 
       def valid_dashboard_models
