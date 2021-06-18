@@ -53,7 +53,7 @@ module Administrate
       app.config.middleware.use(
         Rack::Static,
         urls: ["/administrate-packs"],
-        root: File.expand_path(File.join(__dir__, "..", "..", "public")),
+        root: Administrate::Engine.root.join("public")
       )
     end
   end
