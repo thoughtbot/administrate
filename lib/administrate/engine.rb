@@ -5,6 +5,7 @@ require "momentjs-rails"
 require "sassc-rails"
 require "selectize-rails"
 require "sprockets/railtie"
+require "webpacker"
 
 require "administrate/page/form"
 require "administrate/page/show"
@@ -47,5 +48,13 @@ module Administrate
 
     add_javascript "administrate/application"
     add_stylesheet "administrate/application"
+
+    initializer "webpacker.proxy" do |app|
+      app.config.middleware.use(
+        Rack::Static,
+        urls: ["/administrate-packs"],
+        root: Administrate::Engine.root.join("public")
+      )
+    end
   end
 end

@@ -21,6 +21,7 @@ By default, it renders:
   <title>
     <%= content_for(:title) %> - <%= application_title %>
   </title>
+  <%= javascript_pack_tag 'administrate' %>
   <%= render "stylesheet" %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag if defined?(csp_meta_tag) %>
