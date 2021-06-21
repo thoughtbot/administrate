@@ -30,7 +30,7 @@ module Administrate
       private
 
       def filter?(word)
-        word.match?(/^\w+:$/)
+        word.match?(/^\w+:\w*$/)
       end
 
       def parse_query(query)
@@ -38,7 +38,7 @@ module Administrate
         terms = []
         query.to_s.split.each do |word|
           if filter?(word)
-            filters << word.split(":").first
+            filters << word
           else
             terms << word
           end
@@ -65,15 +65,20 @@ module Administrate
 
     private
 
-    def apply_filter(filter, resources)
+    def apply_filter(filter, filter_param, resources)
       return resources unless filter
-      filter.call(resources)
+      if filter.parameters.size == 1
+        filter.call(resources)
+      else
+        filter.call(resources, filter_param)
+      end
     end
 
     def filter_results(resources)
-      query.filters.each do |filter_name|
+      query.filters.each do |filter_query|
+        filter_name, filter_param = filter_query.split(":")
         filter = valid_filters[filter_name]
-        resources = apply_filter(filter, resources)
+        resources = apply_filter(filter, filter_param, resources)
       end
       resources
     end

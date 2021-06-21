@@ -1,5 +1,5 @@
-require "administrate/base_dashboard"
 require "administrate/field/has_many_variant"
+require "administrate/base_dashboard"
 
 class CustomerDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
@@ -33,6 +33,7 @@ class CustomerDashboard < Administrate::BaseDashboard
 
   COLLECTION_FILTERS = {
     vip: ->(resources) { resources.where(kind: :vip) },
+    kind: ->(resources, arg) { resources.where(kind: arg) },
   }.freeze
 
   def display_resource(customer)

@@ -36,7 +36,7 @@ describe Administrate::Search::Query do
     end
 
     it "parses filter syntax" do
-      expect(subject.filters).to eq(["vip", "active"])
+      expect(subject.filters).to eq(["vip:", "active:"])
     end
   end
 
@@ -44,7 +44,16 @@ describe Administrate::Search::Query do
     let(:query) { "vip: example.com" }
 
     it "splits filters and terms" do
-      expect(subject.filters).to eq(["vip"])
+      expect(subject.filters).to eq(["vip:"])
+      expect(subject.terms).to eq("example.com")
+    end
+  end
+
+  context "when query includes both filters with params and terms" do
+    let(:query) { "kind:standard example.com" }
+
+    it "splits filters and terms" do
+      expect(subject.filters).to eq(["kind:standard"])
       expect(subject.terms).to eq("example.com")
     end
   end
