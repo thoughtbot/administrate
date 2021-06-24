@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Payment.destroy_all
 LineItem.destroy_all
 Order.destroy_all
 Customer.destroy_all
@@ -16,7 +17,6 @@ Country.destroy_all
 LogEntry.destroy_all
 Blog::Post.destroy_all
 Page.destroy_all
-Payment.destroy_all
 
 countries = Country.create! [
   { code: "US", name: "USA" },
@@ -75,31 +75,44 @@ Product.find_each do |p|
   )
 end
 
-customers.each do |customer|
-  (1..3).to_a.sample.times do
-    order = Order.create!(
-      customer: customer,
-      address_line_one: Faker::Address.street_address,
-      address_line_two: Faker::Address.secondary_address,
-      address_city: Faker::Address.city,
-      address_state: Faker::Address.state_abbr,
-      address_zip: Faker::Address.zip,
-    )
-    LogEntry.create!(
-      action: "create",
-      logeable: order,
-    )
+def create_order(customer:, shipped_at: nil)
+  order = Order.create!(
+    customer: customer,
+    address_line_one: Faker::Address.street_address,
+    address_line_two: Faker::Address.secondary_address,
+    address_city: Faker::Address.city,
+    address_state: Faker::Address.state_abbr,
+    address_zip: Faker::Address.zip,
+    shipped_at: shipped_at,
+  )
+  LogEntry.create!(
+    action: "create",
+    logeable: order,
+  )
 
-    item_count = (1..3).to_a.sample
-    Product.all.sample(item_count).each do |product|
-      LineItem.create!(
-        order: order,
-        product: product,
-        unit_price: product.price,
-        quantity: (1..3).to_a.sample,
-      )
+  item_count = (1..3).to_a.sample
+  Product.all.sample(item_count).each do |product|
+    LineItem.create!(
+      order: order,
+      product: product,
+      unit_price: product.price,
+      quantity: (1..3).to_a.sample,
+    )
+  end
+
+  if shipped_at
+    payment_count = [1, 1, 1, 2].sample
+    payment_count.times do
+      Payment.create(order: order)
     end
   end
+end
+
+customers.each do |customer|
+  (1..3).to_a.sample.times do
+    create_order(customer: customer)
+  end
+  create_order(customer: customer, shipped_at: Time.current)
 end
 
 Series.create!(name: "An example")

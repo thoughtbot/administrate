@@ -16,6 +16,10 @@ class Customer < ApplicationRecord
     :vip,
   ].freeze
 
+  def admin?
+    false
+  end
+
   def lifetime_value
     orders.map(&:total_price).reduce(0, :+)
   end

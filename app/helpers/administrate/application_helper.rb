@@ -26,7 +26,22 @@ module Administrate
 
     def model_from_resource(resource_name)
       dashboard = dashboard_from_resource(resource_name)
-      dashboard.try(:model) || resource_name.to_sym
+      dashboard.try(:model) || resource_name.singularize.to_sym
+    end
+
+    # Unification of valid_action? and show_action?
+    # Argument `target` can be of three types:
+    #   - String: name of a resource class, or name of custom route
+    #   - Symbol: name of a resource class
+    #   - Class: resource class
+    #   - ActiveRecord::Base: resource instance
+    def administrate_valid_action?(target, action_name)
+      target = target.to_sym if target.is_a?(String)
+      target_class_or_class_name =
+        target.is_a?(ActiveRecord::Base) ? target.class : target
+
+      valid_action?(action_name, target_class_or_class_name) &&
+        show_action?(action_name, target)
     end
 
     def display_resource_name(resource_name, opts = {})
