@@ -53,7 +53,7 @@ describe "fields/has_one/_show", type: :view do
     end
 
     it "renders nested attribute relationships" do
-      template.extend Administrate::ApplicationHelper
+      view.extend Administrate::ApplicationHelper
 
       product = create(:product)
       page = create(:page, product: product)
