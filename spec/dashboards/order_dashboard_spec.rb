@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe CustomerDashboard do
+describe OrderDashboard do
   describe "#permitted_attributes" do
     it "returns the attribute name by default" do
       dashboard = OrderDashboard.new
