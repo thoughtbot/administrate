@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/excid3/appraisal.git
+  revision: 8bb003b273ae074356dc67b59ecc67c8ae2f3a27
+  branch: fix-bundle-env
+  specs:
+    appraisal (2.3.0)
+      bundler
+      rake
+      thor (>= 0.14.0)
+
 PATH
   remote: .
   specs:
@@ -82,10 +92,6 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec-rails (>= 2.2)
-    appraisal (2.4.0)
-      bundler
-      rake
-      thor (>= 0.14.0)
     ast (2.4.2)
     awesome_print (1.9.2)
     builder (3.2.4)
@@ -320,7 +326,7 @@ DEPENDENCIES
   administrate!
   administrate-field-image
   ammeter
-  appraisal
+  appraisal!
   awesome_print
   bundler-audit
   byebug
