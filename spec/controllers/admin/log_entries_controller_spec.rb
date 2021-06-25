@@ -10,7 +10,7 @@ describe Admin::LogEntriesController, type: :controller do
           value: logeable.to_global_id.to_s,
         },
       )
-      post :create, log_entry: resource_params
+      post :create, params: { log_entry: resource_params }
     end
 
     describe "with valid params" do
@@ -62,7 +62,7 @@ describe Admin::LogEntriesController, type: :controller do
 
         LogEntry.attr_accessor :arbitrarily
 
-        post :create, log_entry: resource_params
+        post :create, params: { log_entry: resource_params }
 
         logeable_in_params = subject.send(:resource_params).dig(
           :arbitrarily,
@@ -98,7 +98,7 @@ describe Admin::LogEntriesController, type: :controller do
           value: logeable.to_global_id.to_s,
         },
       )
-      put :update, id: original.to_param, log_entry: resource_params
+      put :update, params: { id: original.to_param, log_entry: resource_params }
     end
 
     describe "with valid params" do

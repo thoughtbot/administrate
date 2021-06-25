@@ -34,12 +34,12 @@ describe Admin::OrdersController, type: :controller do
     describe "GET edit" do
       it "allows me to edit records in Arizona" do
         az = create :order, customer: user, address_state: "AZ"
-        expect { get :edit, id: az.id }.not_to raise_error
+        expect { get :edit, params: { id: az.id } }.not_to raise_error
       end
 
       it "does not allow me to edit other records" do
         ga = create :order, customer: user, address_state: "GA"
-        expect { get :edit, id: ga.id }.
+        expect { get :edit, params: { id: ga.id } }.
           to raise_error(Pundit::NotAuthorizedError)
       end
     end
@@ -47,7 +47,7 @@ describe Admin::OrdersController, type: :controller do
     describe "DELETE destroy" do
       it "never allows me to delete a record" do
         o = create :order, customer: user, address_state: "AZ"
-        expect { delete :destroy, id: o.id }.
+        expect { delete :destroy, params: { id: o.id } }.
           to raise_error(Pundit::NotAuthorizedError)
       end
     end
