@@ -1,17 +1,19 @@
 require "active_support/core_ext/module/delegation"
 require "active_support/core_ext/object/blank"
+require 'byebug'
 
 module Administrate
   class Search
     class Query
-      attr_reader :filters
+      attr_reader :filters, :valid_filters
 
       def blank?
         terms.blank? && filters.empty?
       end
 
-      def initialize(original_query)
+      def initialize(original_query, valid_filters = nil)
         @original_query = original_query
+        @valid_filters = valid_filters
         @filters, @terms = parse_query(original_query)
       end
 
@@ -30,7 +32,7 @@ module Administrate
       private
 
       def filter?(word)
-        word.match?(/^\w+:\w*$/)
+        valid_filters && valid_filters.any?{|filter| word.match?(/^#{filter}:\w*$/) }
       end
 
       def parse_query(query)
@@ -50,7 +52,7 @@ module Administrate
     def initialize(scoped_resource, dashboard_class, term)
       @dashboard_class = dashboard_class
       @scoped_resource = scoped_resource
-      @query = Query.new(term)
+      @query = Query.new(term, valid_filters.keys)
     end
 
     def run
