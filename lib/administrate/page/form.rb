@@ -10,8 +10,15 @@ module Administrate
 
       attr_reader :resource
 
-      def attributes
-        dashboard.form_attributes.map do |attribute|
+      def attributes(action = nil)
+        action =
+          case action
+          when "update" then "edit"
+          when "create" then "new"
+          else action
+          end
+
+        dashboard.form_attributes(action).map do |attribute|
           attribute_field(dashboard, resource, attribute, :form)
         end
       end
