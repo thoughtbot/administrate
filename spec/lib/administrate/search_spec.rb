@@ -241,31 +241,5 @@ describe Administrate::Search do
     ensure
       remove_constants :User
     end
-
-    xit "searches using a filter with params" do
-      class User < ApplicationRecord
-        scope :kind, ->(kind) { where(kind: kind) }
-      end
-      #scoped_object = spy("User")
-      scoped_object = User
- #     allow(scoped_object).to receive(:where)
-
-      search = Administrate::Search.new(
-        scoped_object,
-        Administrate::SearchSpecMocks::UserDashboard,
-        "kind:standard",
-      )
-      expect(scoped_object).to \
-        receive(:where).
-        with(kind: "standard").
-        and_return(scoped_object)
-      expect(scoped_object).to receive(:where).and_return(scoped_object)
-
-      search.run
-      #expect(scoped_object).to have_received(:kind).with("standard")
-      byebug
-    ensure
-      remove_constants :User
-    end
   end
 end

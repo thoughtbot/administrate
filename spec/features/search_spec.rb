@@ -84,7 +84,7 @@ feature "Search" do
 
   scenario "admin searches with an a term similiar to a filter", :js do
     query = "whatevs:"
-    some_customer = create(:customer, name: 'whatevs:')
+    some_customer = create(:customer, name: "whatevs:")
     another_customer = create(:customer)
 
     visit admin_customers_path

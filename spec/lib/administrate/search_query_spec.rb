@@ -29,7 +29,7 @@ describe Administrate::Search::Query do
   end
 
   context "when query includes filters" do
-    subject { described_class.new(query, ['vip', 'active']) }
+    subject { described_class.new(query, ["vip", "active"]) }
     let(:query) { "vip: active:" }
 
     it "is not blank" do
@@ -42,7 +42,7 @@ describe Administrate::Search::Query do
   end
 
   context "when query includes both filters and terms" do
-    subject { described_class.new(query, ['vip']) }
+    subject { described_class.new(query, ["vip"]) }
     let(:query) { "vip: order:id order:11 order term" }
 
     it "splits filters and terms and does not confuse filters and terms" do
@@ -52,7 +52,7 @@ describe Administrate::Search::Query do
   end
 
   context "when query includes both filters with params and terms" do
-    subject { described_class.new(query, ['kind']) }
+    subject { described_class.new(query, ["kind"]) }
     let(:query) { "kind:standard example.com" }
 
     it "splits filters and terms" do

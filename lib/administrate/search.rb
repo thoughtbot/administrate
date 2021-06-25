@@ -1,6 +1,5 @@
 require "active_support/core_ext/module/delegation"
 require "active_support/core_ext/object/blank"
-require 'byebug'
 
 module Administrate
   class Search
@@ -32,7 +31,7 @@ module Administrate
       private
 
       def filter?(word)
-        valid_filters && valid_filters.any?{|filter| word.match?(/^#{filter}:\w*$/) }
+        valid_filters&.any?{|filter| word.match?(/^#{filter}:\w*$/) }
       end
 
       def parse_query(query)
