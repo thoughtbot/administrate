@@ -95,7 +95,8 @@ module Administrate
 
     helper_method :nav_link_state
     def nav_link_state(resource)
-      resource_name.to_s.pluralize == resource.to_s ? :active : :inactive
+      underscore_resource = resource.to_s.split("/").join("__")
+      resource_name.to_s.pluralize == underscore_resource ? :active : :inactive
     end
 
     helper_method :valid_action?
