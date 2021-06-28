@@ -34,13 +34,17 @@ module Administrate
       def create_dashboard_definition
         template(
           "dashboard.rb.erb",
-          Rails.root.join("app/dashboards/#{file_name}_dashboard.rb"),
+          Rails.root.join(
+            "app/dashboards#{class_path_filename_fragment}",
+            "#{file_name}_dashboard.rb",
+          ),
         )
       end
 
       def create_resource_controller
         destination = Rails.root.join(
-          "app/controllers/#{namespace}/#{file_name.pluralize}_controller.rb",
+          "app/controllers/#{namespace}#{class_path_filename_fragment}",
+          "#{file_name.pluralize}_controller.rb",
         )
 
         template("controller.rb.erb", destination)
@@ -120,6 +124,20 @@ module Administrate
 
       def klass
         @klass ||= Object.const_get(class_name)
+      end
+
+      def class_path_filename_fragment
+        if @class_path.present?
+          "/#{@class_path.join('/')}"
+        end
+      end
+
+      def relationship_options_string(relationship)
+        if relationship.class_name != relationship.name.to_s.classify
+          options_string(class_name: relationship.class_name)
+        else
+          ""
+        end
       end
 
       def options_string(options)

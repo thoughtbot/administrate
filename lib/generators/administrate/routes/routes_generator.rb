@@ -6,12 +6,18 @@ end
 
 require "rails/generators/base"
 require "administrate/generator_helpers"
+require "administrate/route_tree_constructor"
 require "administrate/namespace"
 
 module Administrate
   module Generators
     class RoutesGenerator < Rails::Generators::Base
       include Administrate::GeneratorHelpers
+      INVALID_DATABASE_MODELS_LIST = [
+        "ActiveRecord::SchemaMigration",
+        "ActiveRecord::InternalMetadata",
+        "primary::SchemaMigration",
+      ]
       source_root File.expand_path("../templates", __FILE__)
       class_option :namespace, type: :string, default: "admin"
 
@@ -24,9 +30,6 @@ module Administrate
       def warn_about_invalid_models
         invalid_dashboard_models.each do |model|
           puts "WARNING: Unable to generate a dashboard for #{model}."
-          if namespaced_models.include?(model)
-            puts "       - Administrate does not yet support namespaced models."
-          end
           if models_without_tables.include?(model)
             puts "       - It is not connected to a database table."
             puts "         Make sure your database migrations are up to date."
@@ -50,8 +53,13 @@ module Administrate
         end
       end
 
+      def generate_resource_routes
+        resource_tree = RouteTreeConstructor.new(dashboard_resources)
+        resource_tree.organise_resource_routes
+      end
+
       def valid_dashboard_models
-        database_models - invalid_dashboard_models
+        database_models - (invalid_dashboard_models + excluded_models).uniq
       end
 
       def database_models
@@ -59,15 +67,17 @@ module Administrate
       end
 
       def invalid_dashboard_models
-        (models_without_tables + namespaced_models + unnamed_constants).uniq
+        (models_without_tables + unnamed_constants).uniq
       end
 
       def models_without_tables
         database_models.reject(&:table_exists?)
       end
 
-      def namespaced_models
-        database_models.select { |model| model.to_s.include?("::") }
+      def excluded_models
+        database_models.select do |model|
+          INVALID_DATABASE_MODELS_LIST.include?(model.to_s)
+        end
       end
 
       def unnamed_constants
