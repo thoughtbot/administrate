@@ -16,6 +16,16 @@ describe "navigation" do
     expect(active_link.text).to eq "Customers"
   end
 
+  context "when the resource type is namespaced" do
+    it "highlights the link to the current page's resource type" do
+      visit admin_blog_posts_path
+
+      active_link = find(".navigation__link--active")
+
+      expect(active_link.text).to eq "Blog Posts"
+    end
+  end
+
   it "displays translated name of model" do
     translations = {
       activerecord: {
