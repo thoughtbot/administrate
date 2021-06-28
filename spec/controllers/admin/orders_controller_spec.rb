@@ -7,6 +7,9 @@ describe Admin::OrdersController, type: :controller do
   context "with Punditize concern" do
     controller(Admin::OrdersController) do
       include Administrate::Punditize
+      def pundit_namespaces
+        [:admin]
+      end
       def pundit_user
         Customer.first # assume the user is the first Customer
       end
