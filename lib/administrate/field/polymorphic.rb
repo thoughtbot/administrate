@@ -9,7 +9,9 @@ module Administrate
 
       def associated_resource_grouped_options
         classes.map do |klass|
-          [klass.to_s, candidate_resources_for(klass).map do |resource|
+          scope = klass.is_a?(Hash) ? klass[:scope] : :all
+          klass = klass.is_a?(Hash) ? klass[:klass] : klass
+          [klass.to_s, candidate_resources_for(klass, scope).map do |resource|
             [display_candidate_resource(resource), resource.to_global_id]
           end]
         end
@@ -39,8 +41,8 @@ module Administrate
         @_order ||= options.delete(:order)
       end
 
-      def candidate_resources_for(klass)
-        order ? klass.order(order) : klass.all
+      def candidate_resources_for(klass, scope = :all)
+        klass.send(scope).order(order)
       end
 
       def display_candidate_resource(resource)

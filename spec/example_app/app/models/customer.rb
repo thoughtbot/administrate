@@ -11,6 +11,8 @@ class Customer < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true
 
+  scope :cn, -> { where(country_code: "CN") }
+
   KINDS = [
     :standard,
     :vip,
