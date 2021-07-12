@@ -29,6 +29,7 @@ describe Administrate::Search::Query do
   end
 
   context "when query includes filters" do
+    subject { described_class.new(query, ["vip", "active"]) }
     let(:query) { "vip: active:" }
 
     it "is not blank" do
@@ -36,15 +37,26 @@ describe Administrate::Search::Query do
     end
 
     it "parses filter syntax" do
-      expect(subject.filters).to eq(["vip", "active"])
+      expect(subject.filters).to eq(["vip:", "active:"])
     end
   end
 
   context "when query includes both filters and terms" do
-    let(:query) { "vip: example.com" }
+    subject { described_class.new(query, ["vip"]) }
+    let(:query) { "vip: order:id order:11 order term" }
+
+    it "splits filters and terms and does not confuse filters and terms" do
+      expect(subject.filters).to eq(["vip:"])
+      expect(subject.terms).to eq("order:id order:11 order term")
+    end
+  end
+
+  context "when query includes both filters with params and terms" do
+    subject { described_class.new(query, ["kind"]) }
+    let(:query) { "kind:standard example.com" }
 
     it "splits filters and terms" do
-      expect(subject.filters).to eq(["vip"])
+      expect(subject.filters).to eq(["kind:standard"])
       expect(subject.terms).to eq("example.com")
     end
   end

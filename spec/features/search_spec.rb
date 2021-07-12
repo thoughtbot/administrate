@@ -61,9 +61,30 @@ feature "Search" do
     expect(page).not_to have_content(name_match_only.email)
   end
 
-  scenario "admin searches with an unknown filter", :js do
+  scenario "admin searches with a filter with arguments", :js do
+    kind_match = create(:customer, kind: "vip", email: "vip@kind.com")
+    standard_match = create(:customer, kind: "standard", email: "me@kind.com")
+    no_match = create(:customer, kind: "vip", email: "standard@kind.com")
+
+    visit admin_customers_path
+    fill_in :search, with: "kind:standard"
+    submit_search
+
+    expect(page).to have_content(standard_match.email)
+    expect(page).not_to have_content(kind_match.email)
+    expect(page).not_to have_content(no_match.email)
+
+    clear_search
+    fill_in :search, with: "kind:vip"
+    submit_search
+
+    expect(page).not_to have_content(standard_match.email)
+    expect(page).to have_content(kind_match.email)
+  end
+
+  scenario "admin searches with an a term similiar to a filter", :js do
     query = "whatevs:"
-    some_customer = create(:customer)
+    some_customer = create(:customer, name: "whatevs:")
     another_customer = create(:customer)
 
     visit admin_customers_path
@@ -71,7 +92,7 @@ feature "Search" do
     submit_search
 
     expect(page).to have_content(some_customer.email)
-    expect(page).to have_content(another_customer.email)
+    expect(page).not_to have_content(another_customer.email)
   end
 
   scenario "admin clears search" do

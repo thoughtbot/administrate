@@ -327,6 +327,17 @@ COLLECTION_FILTERS = {
 }
 ```
 
+You can also define a filter with parameters:
+
+```ruby
+COLLECTION_FILTERS = {
+  state: ->(resources, attr) { resources.where(state: attr) }
+}
+```
+
+You can now search your resource with 'state:open' and your
+collection filter Proc will be called with with attr = open.
+
 ## Form Attributes
 
 You can define different attributes for new/create or edit/update actions:
