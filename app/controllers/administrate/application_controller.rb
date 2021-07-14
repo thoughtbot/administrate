@@ -13,6 +13,9 @@ module Administrate
       resources = resources.page(params[:_page]).per(records_per_page)
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
+      col =  params[:extra_columns]&.split(",")&.map(&:to_sym) || []
+      page.attribute_names_append(col)
+
       render locals: {
         resources: resources,
         search_term: search_term,
