@@ -183,9 +183,9 @@ Or, to display a distance in kilometers, using a space as the delimiter:
   distance: Field::Number.with_options(
     suffix: " km",
     decimals: 2,
-    format: { 
+    format: {
         formatter: :number_to_delimited,
-        formatter_options: { 
+        formatter_options: {
             delimiter: ' ',
         },
     },
@@ -222,6 +222,9 @@ an array or an object responding to `:call`. Defaults to `[]`.
 
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `true`.
+
+`:include_blank` - Specifies if the select element to be rendered should include
+blank option. Default is `false`.
 
 **Field::String**
 

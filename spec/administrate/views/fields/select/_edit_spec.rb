@@ -9,6 +9,7 @@ describe "fields/select/_form", type: :view do
       attribute: :email_subscriber,
       data: false,
       selectable_options: [true, false, nil],
+      include_blank_option: false,
     )
 
     render(
