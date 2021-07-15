@@ -14,7 +14,7 @@ module Administrate
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
       col =  params[:extra_columns]&.split(",")&.map(&:to_sym) || []
-      page.attribute_names_append(col)
+      page.attribute_names_append(col) unless col.empty?
 
       render locals: {
         resources: resources,
