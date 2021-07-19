@@ -42,6 +42,7 @@ describe "product form has_one relationship" do
         ["Last Year", 2019],
         ["This Year", 2020],
       ],
+      include_blank: false,
     )
     ProductDashboard::ATTRIBUTE_TYPES[:release_year] = new_release_year
 

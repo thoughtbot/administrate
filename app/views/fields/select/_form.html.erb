@@ -27,7 +27,8 @@ to be displayed on a resource's edit form page.
         :last,
         :first,
         field.data,
-      )
+      ),
+      include_blank: field.include_blank_option
     ) %>
   <% else %>
     <%= f.select(
@@ -37,7 +38,8 @@ to be displayed on a resource's edit form page.
         :to_s,
         :to_s,
         field.data,
-      )
+      ),
+      include_blank: field.include_blank_option
     ) %>
   <% end %>
 </div>

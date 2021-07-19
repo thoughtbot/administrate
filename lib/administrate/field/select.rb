@@ -11,6 +11,10 @@ module Administrate
         collection
       end
 
+      def include_blank_option
+        options.fetch(:include_blank, true)
+      end
+
       private
 
       def collection

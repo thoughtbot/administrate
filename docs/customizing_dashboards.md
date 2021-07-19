@@ -223,6 +223,9 @@ an array or an object responding to `:call`. Defaults to `[]`.
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `true`.
 
+`:include_blank` - Specifies if the select element to be rendered should include
+blank option. Default is `true`.
+
 **Field::String**
 
 `:searchable` - Specify if the attribute should be considered when searching.
