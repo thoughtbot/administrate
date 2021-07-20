@@ -62,7 +62,7 @@ module Administrate
         :_page,
         :per_page,
         association_params,
-        :extra_columns
+        :extra_columns,
       )
     end
 
