@@ -13,7 +13,7 @@ gem "unicorn"
 
 # Version 1.0.1 invokes `YAML.safe_load` with arguments that are incompatible
 # with Ruby 2.5, causing an `ArgumentError: unknown keyword: permitted_classes`
-gem "front_matter_parser", "1.0.0"
+gem "front_matter_parser", "1.0.1"
 
 group :development, :test do
   gem "appraisal"
