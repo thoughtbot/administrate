@@ -4,13 +4,13 @@ source "https://rubygems.org"
 
 gem "administrate-field-image"
 gem "faker"
-gem "front_matter_parser"
 gem "globalid"
 gem "kaminari-i18n"
 gem "pg"
 gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
+gem "front_matter_parser", "1.0.0"
 gem "rails", "~> 6.1"
 
 group :development, :test do

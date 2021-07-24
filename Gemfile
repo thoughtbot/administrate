@@ -4,13 +4,16 @@ gemspec
 
 gem "administrate-field-image"
 gem "faker"
-gem "front_matter_parser"
 gem "globalid"
 gem "kaminari-i18n"
 gem "pg"
 gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
+
+# Version 1.0.1 invokes `YAML.safe_load` with arguments that are incompatible
+# with Ruby 2.5, causing an `ArgumentError: unknown keyword: permitted_classes`
+gem "front_matter_parser", "1.0.0"
 
 group :development, :test do
   gem "appraisal"
