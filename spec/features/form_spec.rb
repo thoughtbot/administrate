@@ -77,4 +77,36 @@ describe "edit form" do
       expect(element_selections.first("option").value).not_to eq("")
     end
   end
+
+  context "include_blank option for select" do
+    it "should have blank option if set to true" do
+      dashboard = CustomerDashboard.new
+      fields = dashboard.attribute_types
+      kind = fields[:kind]
+      kind.options[:include_blank] = true
+
+      expect(kind.deferred_class).to eq(Administrate::Field::Select)
+      expect(kind.options[:include_blank]).to eq(true)
+
+      visit new_admin_customer_path
+      element_selections = find("select[name=\"customer[kind]\"]")
+
+      expect(element_selections.first("option").value).to eq("")
+    end
+
+    it "should not have blank option if set to false" do
+      dashboard = CustomerDashboard.new
+      fields = dashboard.attribute_types
+      kind = fields[:kind]
+      kind.options[:include_blank] = false
+
+      expect(kind.deferred_class).to eq(Administrate::Field::Select)
+      expect(kind.options[:include_blank]).to eq(false)
+
+      visit new_admin_customer_path
+      element_selections = find("select[name=\"customer[kind]\"]")
+
+      expect(element_selections.first("option").value).not_to eq("")
+    end
+  end
 end
