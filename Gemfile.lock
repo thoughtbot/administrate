@@ -140,8 +140,8 @@ GEM
       capybara
       i18n
     front_matter_parser (1.0.0)
-    globalid (0.4.2)
-      activesupport (>= 4.2.0)
+    globalid (0.5.2)
+      activesupport (>= 5.0)
     hashdiff (1.0.1)
     highline (2.0.3)
     i18n (1.8.10)
