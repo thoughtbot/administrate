@@ -86,7 +86,7 @@ module Administrate
     end
 
     def after_resource_created_path(requested_resource)
-      [namespace, requested_resource]
+      [namespace.to_sym, requested_resource]
     end
 
     def after_resource_updated_path(requested_resource)
