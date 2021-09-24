@@ -21,6 +21,7 @@ describe "fields/time/_index", type: :view do
       time = instance_double(
         "Administrate::Field::Time",
         data: customer.example_time,
+        time: "12:34PM",
       )
       render(
         partial: "fields/time/index",
