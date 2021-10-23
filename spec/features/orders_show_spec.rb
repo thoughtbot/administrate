@@ -11,6 +11,23 @@ feature "order show page" do
     expect(page).to have_content(line_item.total_price)
   end
 
+  scenario "destroys line item", js: true do
+    line_item = create(:line_item)
+
+    visit admin_order_path(line_item.order)
+
+    accept_confirm do
+      click_on t("administrate.actions.destroy")
+    end
+
+    message_label = "administrate.controller.destroy.success"
+    expect(page).to have_flash(
+      t(message_label, resource: "Line item"),
+    )
+
+    expect(page.current_path).to eq(admin_order_path(line_item.order))
+  end
+
   scenario "links to line items", :js do
     line_item = create(:line_item)
 

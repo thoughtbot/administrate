@@ -76,7 +76,12 @@ module Administrate
       else
         flash[:error] = requested_resource.errors.full_messages.join("<br/>")
       end
-      redirect_to after_resource_destroyed_path(requested_resource)
+      after_action = after_resource_destroyed_path(requested_resource)[:action]
+      if valid_action?(after_action, resource_class)
+        redirect_to after_resource_destroyed_path(requested_resource)
+      else
+        redirect_to params[:origin_url]
+      end
     end
 
     private
@@ -104,6 +109,12 @@ module Administrate
       !!routes.detect do |controller, action|
         controller == resource.to_s.underscore.pluralize && action == name.to_s
       end
+    end
+
+    helper_method :origin_url_params
+    def origin_url_params(page)
+      is_show_page = page.instance_of?(Administrate::Page::Show)
+      { origin_url: polymorphic_path([:admin, page.resource]) } if is_show_page
     end
 
     def routes
