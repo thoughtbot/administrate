@@ -79,6 +79,12 @@ module Administrate
       self.class::COLLECTION_ATTRIBUTES
     end
 
+    def search_attributes
+      attribute_types.keys.select do |attribute|
+        attribute_types[attribute].searchable?
+      end
+    end
+
     def display_resource(resource)
       "#{resource.class} ##{resource.id}"
     end
