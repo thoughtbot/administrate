@@ -8,6 +8,7 @@ require "administrate/field/has_many"
 require "administrate/field/has_one"
 require "administrate/field/number"
 require "administrate/field/string"
+require "administrate/base_dashboard"
 require "administrate/search"
 
 describe Administrate::Search do
@@ -33,7 +34,7 @@ describe Administrate::Search do
           has_one :address
         end
 
-        class UserDashboard
+        class UserDashboard < Administrate::BaseDashboard
           ATTRIBUTE_TYPES = {
             id: Administrate::Field::Number.with_options(searchable: true),
             name: Administrate::Field::String,
@@ -47,7 +48,7 @@ describe Administrate::Search do
           }.freeze
         end
 
-        class FooDashboard
+        class FooDashboard < Administrate::BaseDashboard
           ATTRIBUTE_TYPES = {
             role: Administrate::Field::BelongsTo.with_options(
               searchable: true,
@@ -81,7 +82,7 @@ describe Administrate::Search do
       scoped_object = User.default_scoped
       search = Administrate::Search.new(
         scoped_object,
-        Administrate::SearchSpecMocks::UserDashboard,
+        Administrate::SearchSpecMocks::UserDashboard.new,
         nil,
       )
       expect(scoped_object).to receive(:all)
@@ -96,7 +97,7 @@ describe Administrate::Search do
       scoped_object = User.default_scoped
       search = Administrate::Search.new(
         scoped_object,
-        Administrate::SearchSpecMocks::UserDashboard,
+        Administrate::SearchSpecMocks::UserDashboard.new,
         "   ",
       )
       expect(scoped_object).to receive(:all)
@@ -111,7 +112,7 @@ describe Administrate::Search do
       scoped_object = User.default_scoped
       search = Administrate::Search.new(
         scoped_object,
-        Administrate::SearchSpecMocks::UserDashboard,
+        Administrate::SearchSpecMocks::UserDashboard.new,
         "test",
       )
       expected_query = [
@@ -136,7 +137,7 @@ describe Administrate::Search do
       scoped_object = User.default_scoped
       search = Administrate::Search.new(
         scoped_object,
-        Administrate::SearchSpecMocks::UserDashboard,
+        Administrate::SearchSpecMocks::UserDashboard.new,
         "Тест Test",
       )
       expected_query = [
@@ -166,7 +167,7 @@ describe Administrate::Search do
       let(:search) do
         Administrate::Search.new(
           scoped_object,
-          Administrate::SearchSpecMocks::FooDashboard,
+          Administrate::SearchSpecMocks::FooDashboard.new,
           "Тест Test",
         )
       end
@@ -228,7 +229,7 @@ describe Administrate::Search do
       scoped_object = User.default_scoped
       search = Administrate::Search.new(
         scoped_object,
-        Administrate::SearchSpecMocks::UserDashboard,
+        Administrate::SearchSpecMocks::UserDashboard.new,
         "vip:",
       )
       expect(scoped_object).to \
