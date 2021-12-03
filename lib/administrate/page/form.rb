@@ -11,7 +11,9 @@ module Administrate
       attr_reader :resource
 
       def attributes(action = nil)
-        dashboard.form_attributes(action).map do |attribute|
+        return @attributes if defined?(@attributes)
+
+        @attributes = dashboard.form_attributes(action).map do |attribute|
           attribute_field(dashboard, resource, attribute, :form)
         end
       end
