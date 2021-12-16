@@ -5,12 +5,13 @@ title: Extending Administrate
 Apart from the configuration described in these pages, it is possible to
 extend Administrate's capabilities with the use of plugins. There are a
 number of plugins available, many of which can be found at [RubyGems.org].
-At the time of writing, these appear to be the most popular ones:
+These are some popular examples:
 
 1. [ActiveStorage support](https://github.com/Dreamersoul/administrate-field-active_storage)
 2. [Enum field](https://github.com/Valiot/administrate-field-enum)
 3. [Nested has-many forms](https://github.com/nickcharlton/administrate-field-nested_has_many)
 4. [Belongs-to with Ajax search](https://github.com/fishbrain/administrate-field-belongs_to_search)
+5. [JSONb field plugin for Administrate](https://github.com/codica2/administrate-field-jsonb/)
 
 See many more at https://rubygems.org/gems/administrate/reverse_dependencies.
 
