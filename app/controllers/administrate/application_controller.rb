@@ -5,9 +5,7 @@ module Administrate
     def index
       authorize_resource(resource_class)
       search_term = params[:search].to_s.strip
-      resources = Administrate::Search.new(scoped_resource,
-                                           dashboard,
-                                           search_term).run
+      resources = filter_resources(scoped_resource, search_term: search_term)
       resources = apply_collection_includes(resources)
       resources = order.apply(resources)
       resources = resources.page(params[:_page]).per(records_per_page)
@@ -80,6 +78,14 @@ module Administrate
     end
 
     private
+
+    def filter_resources(resources, search_term:)
+      Administrate::Search.new(
+        resources,
+        dashboard,
+        search_term,
+      ).run
+    end
 
     def after_resource_destroyed_path(_requested_resource)
       { action: :index }
