@@ -23,11 +23,6 @@ bundle exec rake db:setup dev:prime
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
 mkdir -p .git/safe
 
-if ! command -v chromedriver > /dev/null; then
-  printf 'chromedriver is not installed.\n'
-  printf 'See https://chromedriver.chromium.org for install instructions.\n'
-fi
-
 # Only if this isn't CI
 # if [ -z "$CI" ]; then
 # fi
