@@ -8,7 +8,7 @@ PATH
       datetime_picker_rails (~> 0.0.7)
       jquery-rails (>= 4.0)
       kaminari (>= 1.0)
-      momentjs-rails (>= 2.8, <= 2.20.1)
+      momentjs-rails (>= 2.8, <= 2.29.2)
       sassc-rails (~> 2.1)
       selectize-rails (~> 0.6)
 
@@ -190,7 +190,7 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.6.1)
     minitest (5.15.0)
-    momentjs-rails (2.20.1)
+    momentjs-rails (2.29.1)
       railties (>= 3.1)
     multipart-post (2.1.1)
     nio4r (2.5.8)
@@ -316,7 +316,7 @@ GEM
       nokogiri (~> 1.8)
     yard (0.9.27)
       webrick (~> 1.7.0)
-    zeitwerk (2.5.1)
+    zeitwerk (2.5.2)
 
 PLATFORMS
   ruby
