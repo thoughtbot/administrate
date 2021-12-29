@@ -13,6 +13,12 @@ describe "customer index page" do
     expect(page).to have_content(customer.email)
   end
 
+  it "adds resource/attribute name to table headers" do
+    visit admin_customers_path
+
+    expect(page).to have_css("th.cell-label--customer_email")
+  end
+
   it "links to the customer show page", :js do
     customer = create(:customer)
 
