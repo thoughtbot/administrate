@@ -282,7 +282,7 @@ GEM
       rubyzip (>= 1.2.2)
     sentry-raven (3.1.2)
       faraday (>= 1.0)
-    shoulda-matchers (5.0.0)
+    shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -316,7 +316,7 @@ GEM
       nokogiri (~> 1.8)
     yard (0.9.27)
       webrick (~> 1.7.0)
-    zeitwerk (2.5.1)
+    zeitwerk (2.5.2)
 
 PLATFORMS
   ruby
