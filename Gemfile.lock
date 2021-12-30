@@ -176,7 +176,7 @@ GEM
     kaminari-i18n (0.5.0)
       kaminari
       rails
-    kgio (2.11.3)
+    kgio (2.11.4)
     launchy (2.5.0)
       addressable (~> 2.7)
     loofah (2.13.0)
@@ -243,7 +243,7 @@ GEM
       rake (>= 0.13)
       thor (~> 1.0)
     rainbow (3.0.0)
-    raindrops (0.19.1)
+    raindrops (0.20.0)
     rake (13.0.6)
     redcarpet (3.5.1)
     regexp_parser (2.1.1)
@@ -301,7 +301,7 @@ GEM
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (2.1.0)
-    unicorn (6.0.0)
+    unicorn (6.1.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
     webmock (3.14.0)
