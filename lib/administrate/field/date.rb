@@ -4,6 +4,8 @@ module Administrate
   module Field
     class Date < Base
       def date
+        return if data.blank?
+
         I18n.localize(
           data.in_time_zone(timezone).to_date,
           format: format,
@@ -11,6 +13,8 @@ module Administrate
       end
 
       def datetime
+        return if data.blank?
+
         I18n.localize(
           data.in_time_zone(timezone),
           format: format,
