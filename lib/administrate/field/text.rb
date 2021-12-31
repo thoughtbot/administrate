@@ -11,6 +11,10 @@ module Administrate
         data.to_s[0...truncation_length]
       end
 
+      def rows
+        options[:rows]
+      end
+
       private
 
       def truncation_length
