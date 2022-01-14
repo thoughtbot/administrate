@@ -6,7 +6,7 @@ module Administrate
       authorize_resource(resource_class)
       search_term = params[:search].to_s.strip
       resources = Administrate::Search.new(scoped_resource,
-                                           dashboard_class,
+                                           dashboard,
                                            search_term).run
       resources = apply_collection_includes(resources)
       resources = order.apply(resources)
