@@ -1,10 +1,4 @@
-require "datetime_picker_rails"
-require "jquery-rails"
 require "kaminari"
-require "momentjs-rails"
-require "sassc-rails"
-require "selectize-rails"
-require "sprockets/railtie"
 
 require "administrate/page/form"
 require "administrate/page/show"

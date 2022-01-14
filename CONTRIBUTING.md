@@ -21,6 +21,17 @@ To maintain compatibility with multiple dependency versions, we use
 [Rails Engine]: https://guides.rubyonrails.org/engines.html
 [Appraisal]: https://github.com/thoughtbot/appraisal
 
+## Compiling assets
+
+To compile assets, run:
+
+```
+$ npm run build
+$ npm run build:css
+```
+
+Remember to compile assets before committing.
+
 ### Opening a PR
 
 1. Fork the repo,

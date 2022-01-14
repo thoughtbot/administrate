@@ -13,8 +13,8 @@ $heading-line-height: 1.2 !default;
 
 // Other Sizes
 $base-border-radius: 4px !default;
-$base-spacing: $base-line-height * 1em !default;
-$small-spacing: $base-spacing / 2 !default;
+$base-spacing: calc($base-line-height * 1em) !default;
+$small-spacing: calc($base-spacing / 2) !default;
 
 // Colors
 $white: #fff !default;

@@ -1,0 +1,17 @@
+{
+  "name": "administrate",
+  "private": "true",
+  "dependencies": {
+    "@rails/ujs": "^7.0.1",
+    "bootstrap-datetimepicker-npm": "^4.17.37-npm",
+    "esbuild": "^0.14.11",
+    "jquery": "^3.6.0",
+    "moment": "^2.29.1",
+    "sass": "^1.48.0",
+    "selectize": "^0.12.6"
+  },
+  "scripts": {
+    "build": "esbuild lib/assets/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds/administrate",
+    "build:css": "sass ./lib/assets/stylesheets/application.scss ./app/assets/builds/administrate/application.css --no-source-map --load-path=node_modules"
+  }
+}
