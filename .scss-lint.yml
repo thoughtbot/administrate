@@ -1,6 +1,8 @@
 scss_files: "lib/assets/stylesheets/**/*.scss"
 
-exclude: "lib/assets/stylesheets/reset/**"
+exclude:
+  - "lib/assets/stylesheets/reset/**"
+  - "app/assets/builds/**/*"
 
 severity: warning
 
