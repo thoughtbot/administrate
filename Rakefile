@@ -20,7 +20,12 @@ Bundler::GemHelper.install_tasks
 
 Rails.application.load_tasks
 task(:default).clear
-task default: [:spec]
+task default: [:compile_assets, :spec]
+
+task :compile_assets do
+  sh('npm run build')
+  sh('npm run build:css')
+end
 
 if defined? RSpec
   task(:spec).clear
