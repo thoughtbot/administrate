@@ -13,9 +13,13 @@ commands:
       - restore_cache:
           name: Restore bundle cache
           key: administrate-{{ checksum "Gemfile.lock" }}
+      - restore_cache:
+          name: Restore npm cache
+          key: administrate-{{ checksum "package-lock.json" }}
 
-      # Bundle install dependencies
+      # Install dependencies
       - run: bundle install --path vendor/bundle
+      - run: npm install
 
       # Cache Dependencies
       - save_cache:
@@ -23,6 +27,11 @@ commands:
           key: administrate-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+      - save_cache:
+          name: Store npm cache
+          key: administrate-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
 
       # Wait for DB
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
