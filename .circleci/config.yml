@@ -88,10 +88,25 @@ jobs:
           POSTGRES_DB: ruby27
           POSTGRES_PASSWORD: ""
 
+  ruby-30:
+    <<: *default_job
+    docker:
+      - image: circleci/ruby:3.0-node-browsers-legacy
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby30
+          POSTGRES_PASSWORD: ""
+
 workflows:
   version: 2
   multiple-rubies:
     jobs:
+      - ruby-30
       - ruby-27
       - ruby-26
       - ruby-25
