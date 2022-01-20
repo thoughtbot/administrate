@@ -35,6 +35,7 @@ group :test do
   gem "shoulda-matchers"
   gem "timecop"
   gem "webmock"
+  gem "webrick"
   gem "xpath", "3.2.0"
 end
 
