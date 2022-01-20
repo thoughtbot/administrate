@@ -333,7 +333,7 @@ DEPENDENCIES
   awesome_print
   bundler-audit
   byebug
-  capybara (= 3.36.0)
+  capybara
   database_cleaner
   dotenv-rails
   factory_bot_rails
