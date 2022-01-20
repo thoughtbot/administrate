@@ -34,7 +34,7 @@ commands:
       - run: bundle exec rake db:setup
 
       # Run the tests
-      - run: bundle exec rake
+      - run: bundle exec rspec
 
 default_job: &default_job
   working_directory: ~/administrate
@@ -42,7 +42,7 @@ default_job: &default_job
     - shared_steps
     # Run the tests against multiple versions of Rails
     - run: bundle exec appraisal install
-    - run: bundle exec appraisal rake
+    - run: bundle exec appraisal rspec
 
 jobs:
   ruby-26:
