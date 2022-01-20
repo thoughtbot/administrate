@@ -353,6 +353,7 @@ DEPENDENCIES
   uglifier
   unicorn
   webmock
+  webrick
   xpath (= 3.2.0)
   yard
 
