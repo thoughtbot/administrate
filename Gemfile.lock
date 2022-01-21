@@ -140,7 +140,7 @@ GEM
       activesupport
       capybara
       i18n
-    front_matter_parser (1.0.0)
+    front_matter_parser (1.0.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
