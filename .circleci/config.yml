@@ -82,9 +82,30 @@ jobs:
           POSTGRES_DB: ruby27
           POSTGRES_PASSWORD: ""
 
+  ruby-30:
+    <<: *default_job
+    steps:
+      - shared_steps
+      # Run the tests against the versions of Rails that support Ruby 3
+      - run: bundle exec appraisal install
+      - run: bundle exec appraisal rails60 rspec
+      - run: bundle exec appraisal rails61 rspec
+    docker:
+      - image: circleci/ruby:3.0
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby30
+          POSTGRES_PASSWORD: ""
+
 workflows:
   version: 2
   multiple-rubies:
     jobs:
+      - ruby-30
       - ruby-27
       - ruby-26
