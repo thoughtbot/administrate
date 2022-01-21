@@ -11,7 +11,7 @@ gem "pg"
 gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
-gem "rails", "~> 6.1"
+gem "rails", "~> 6.1.4", ">= 6.1.4.4"
 
 group :development, :test do
   gem "appraisal"
