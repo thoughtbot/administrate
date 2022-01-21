@@ -2,7 +2,7 @@
 version: 2.1
 
 orbs:
-  browser-tools: circleci/browser-tools@1.2.3
+  browser-tools: circleci/browser-tools@1.2.4
 
 commands:
   shared_steps:
@@ -86,7 +86,7 @@ jobs:
     <<: *default_job
     steps:
       - shared_steps
-      # Run the tests against the versions of Rails that support Ruby 3
+      # Run the tests against the versions of Rails that support Ruby 3.0
       - run: bundle exec appraisal install
       - run: bundle exec appraisal rails60 rspec
       - run: bundle exec appraisal rails61 rspec
@@ -102,10 +102,30 @@ jobs:
           POSTGRES_DB: ruby30
           POSTGRES_PASSWORD: ""
 
+  ruby-31:
+    <<: *default_job
+    steps:
+      - shared_steps
+      # Run the tests against the versions of Rails that support Ruby 3.1
+      - run: bundle exec appraisal install
+      - run: bundle exec appraisal rails61 rspec
+    docker:
+      - image: cimg/ruby:3.1-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby31
+          POSTGRES_PASSWORD: ""
+
 workflows:
   version: 2
   multiple-rubies:
     jobs:
+      - ruby-31
       - ruby-30
       - ruby-27
       - ruby-26
