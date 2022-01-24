@@ -33,7 +33,7 @@ and renders all form fields for a resource's editable attributes.
     </div>
   <% end %>
 
-  <% page.attributes.each do |attribute| -%>
+  <% page.attributes(controller.action_name).each do |attribute| -%>
     <div class="field-unit field-unit--<%= attribute.html_class %> field-unit--<%= requireness(attribute) %>">
       <%= render_field attribute, f: f %>
     </div>
