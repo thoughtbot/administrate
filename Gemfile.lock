@@ -358,6 +358,7 @@ DEPENDENCIES
   unicorn
   webdrivers
   webmock
+  webrick
   xpath (= 3.2.0)
   yard
 

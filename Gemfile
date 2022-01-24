@@ -36,6 +36,7 @@ group :test do
   gem "timecop"
   gem "webdrivers"
   gem "webmock"
+  gem "webrick"
   gem "xpath", "3.2.0"
 end
 
