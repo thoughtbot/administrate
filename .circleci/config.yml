@@ -1,9 +1,15 @@
 ---
 version: 2.1
 
+orbs:
+  browser-tools: circleci/browser-tools@1.2.3
+
 commands:
   shared_steps:
     steps:
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+
       - checkout
 
       # Install bundler
@@ -51,7 +57,7 @@ jobs:
   ruby-26:
     <<: *default_job
     docker:
-      - image: circleci/ruby:2.6.3-node-browsers-legacy
+      - image: circleci/ruby:2.6.3
         environment:
           PGHOST: localhost
           PGUSER: administrate
@@ -65,7 +71,7 @@ jobs:
   ruby-27:
     <<: *default_job
     docker:
-      - image: circleci/ruby:2.7-node-browsers-legacy
+      - image: circleci/ruby:2.7
         environment:
           PGHOST: localhost
           PGUSER: administrate
