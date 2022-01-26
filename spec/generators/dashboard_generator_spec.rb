@@ -33,8 +33,8 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/foo_dashboard.rb")
           attrs = FooDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:id]).to eq(Administrate::Field::Number)
           expect(attrs[:created_at]).to eq(Administrate::Field::DateTime)
+          expect(attrs[:id]).to eq(Administrate::Field::Number)
           expect(attrs[:updated_at]).to eq(Administrate::Field::DateTime)
         ensure
           remove_constants :Foo, :FooDashboard
@@ -323,10 +323,13 @@ describe Administrate::Generators::DashboardGenerator, :generator do
 
           run_generator ["foo"]
           load file("app/dashboards/foo_dashboard.rb")
-          all_attrs = FooDashboard::ATTRIBUTE_TYPES.keys
+          all_attrs = FooDashboard::ATTRIBUTE_TYPES.keys.sort
           table_attrs = FooDashboard::COLLECTION_ATTRIBUTES
 
-          expect(table_attrs).to eq(all_attrs.first(table_attribute_limit))
+          expect(table_attrs).to contain_exactly(
+            :id,
+            *all_attrs.first(table_attribute_limit - 1),
+          )
           expect(table_attrs).not_to eq(all_attrs)
         ensure
           remove_constants :Foo, :FooDashboard
