@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    administrate (0.16.0)
+    administrate (0.17.0)
       actionpack (>= 5.0)
       actionview (>= 5.0)
       activerecord (>= 5.0)
@@ -135,7 +135,7 @@ GEM
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     faraday-net_http (1.0.1)
-    ffi (1.15.4)
+    ffi (1.15.5)
     formulaic (0.4.1)
       activesupport
       capybara
