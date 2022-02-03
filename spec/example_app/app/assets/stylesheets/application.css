@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+input[type=text] {
+  color: black;
+}
