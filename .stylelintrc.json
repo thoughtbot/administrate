@@ -1,3 +1,6 @@
 {
-  "extends": "@thoughtbot/stylelint-config"
+  "extends": "@thoughtbot/stylelint-config",
+  "ignoreFiles": [
+    "spec/example_app/app/assets/stylesheets/application.css"
+  ]
 }
