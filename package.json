@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "stylelint": "^14.3.0",
-    "stylelint-config-standard": "^24.0.0"
+    "@thoughtbot/stylelint-config": "^2.0.0",
+    "stylelint": "^13.13.1"
   }
 }
