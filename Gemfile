@@ -27,14 +27,16 @@ end
 
 group :test do
   gem "ammeter"
-  gem "capybara", "3.36.0"
+  gem "capybara"
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "timecop"
+  gem "webdrivers"
   gem "webmock"
+  gem "webrick"
   gem "xpath", "3.2.0"
 end
 

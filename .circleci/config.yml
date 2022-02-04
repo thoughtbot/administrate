@@ -1,13 +1,19 @@
 ---
 version: 2.1
 
+orbs:
+  browser-tools: circleci/browser-tools@1.2.4
+
 commands:
   shared_steps:
     steps:
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+
       - checkout
 
       # Install bundler
-      - run: gem install bundler:2.1.4
+      - run: gem install bundler:2.3.5
 
       # Restore Cached Dependencies
       - restore_cache:
@@ -43,21 +49,28 @@ commands:
       - run: bundle exec rake db:setup
 
       # Run the tests
-      - run: bundle exec rake
+      - run: bundle exec rspec
+
+      # Check vulnerabilities
+      - run: bundle exec rake bundler:audit
 
 default_job: &default_job
   working_directory: ~/administrate
-  steps:
-    - shared_steps
-    # Run the tests against multiple versions of Rails
-    - run: bundle exec appraisal install
-    - run: bundle exec appraisal rake
 
 jobs:
   ruby-26:
     <<: *default_job
+    steps:
+      - shared_steps
+      # Run the tests against the versions of Rails that support Ruby 2.6
+      - run: bundle exec appraisal install
+      - run: bundle exec appraisal rails50 rspec
+      - run: bundle exec appraisal rails51 rspec
+      - run: bundle exec appraisal rails52 rspec
+      - run: bundle exec appraisal rails60 rspec
+      - run: bundle exec appraisal rails61 rspec
     docker:
-      - image: circleci/ruby:2.6.3-node-browsers-legacy
+      - image: circleci/ruby:2.6.3
         environment:
           PGHOST: localhost
           PGUSER: administrate
@@ -70,8 +83,18 @@ jobs:
 
   ruby-27:
     <<: *default_job
+    steps:
+      - shared_steps
+      # Run the tests against the versions of Rails that support Ruby 2.7
+      - run: bundle exec appraisal install
+      - run: bundle exec appraisal rails50 rspec
+      - run: bundle exec appraisal rails51 rspec
+      - run: bundle exec appraisal rails52 rspec
+      - run: bundle exec appraisal rails60 rspec
+      - run: bundle exec appraisal rails61 rspec
+      - run: bundle exec appraisal rails70 rspec
     docker:
-      - image: circleci/ruby:2.7-node-browsers-legacy
+      - image: circleci/ruby:2.7
         environment:
           PGHOST: localhost
           PGUSER: administrate
@@ -82,9 +105,52 @@ jobs:
           POSTGRES_DB: ruby27
           POSTGRES_PASSWORD: ""
 
+  ruby-30:
+    <<: *default_job
+    steps:
+      - shared_steps
+      # Run the tests against the versions of Rails that support Ruby 3.0
+      - run: bundle exec appraisal install
+      - run: bundle exec appraisal rails60 rspec
+      - run: bundle exec appraisal rails61 rspec
+      - run: bundle exec appraisal rails70 rspec
+    docker:
+      - image: circleci/ruby:3.0
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby30
+          POSTGRES_PASSWORD: ""
+
+  ruby-31:
+    <<: *default_job
+    steps:
+      - shared_steps
+      # Run the tests against the versions of Rails that support Ruby 3.1
+      - run: bundle exec appraisal install
+      - run: bundle exec appraisal rails61 rspec
+      - run: bundle exec appraisal rails70 rspec
+    docker:
+      - image: cimg/ruby:3.1-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: administrate
+          RAILS_ENV: test
+      - image: postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: ruby31
+          POSTGRES_PASSWORD: ""
+
 workflows:
   version: 2
   multiple-rubies:
     jobs:
+      - ruby-31
+      - ruby-30
       - ruby-27
       - ruby-26
