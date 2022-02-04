@@ -3,7 +3,7 @@
   "private": "true",
   "dependencies": {
     "@rails/ujs": "^7.0.1",
-    "bootstrap-datetimepicker-npm": "^4.17.37-npm",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.49",
     "esbuild": "^0.14.11",
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
