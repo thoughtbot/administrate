@@ -877,7 +877,8 @@ template {
 .table-condensed > tbody > tr > th,
 .table-condensed > tbody > tr > td,
 .table-condensed > tfoot > tr > th,
-.table-condensed > tfoot > tr > td {
+.table-condensed > tfoot > tr > td, .table-condensed > tr > th,
+.table-condensed > tr > td {
   padding: 5px;
 }
 

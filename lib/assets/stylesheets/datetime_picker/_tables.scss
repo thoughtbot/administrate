@@ -7,7 +7,8 @@
 .table-condensed {
   > thead,
   > tbody,
-  > tfoot {
+  > tfoot,
+  & {
     > tr {
       > th,
       > td {
