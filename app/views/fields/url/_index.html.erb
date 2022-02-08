@@ -15,6 +15,6 @@ By default, the value is rendered as an `a` element.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Url
 %>
 
-<%= content_tag :a, href: field.data do %>
+<%= content_tag :a, href: field.data, **field.html_options do %>
   <%= field.data %>
 <% end %>
