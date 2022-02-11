@@ -8,9 +8,18 @@ class <%= class_name %>Dashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-<% attributes.sort.each do |attr| -%>
+<% if attributes.include?('id') %>
+    id: <%= field_type('id') %>,
+<% end %>
+<% attributes.sort.without(%w[id created_at updated_at]).each do |attr| -%>
     <%= attr %>: <%= field_type(attr) %>,
 <% end -%>
+<% if attributes.include?('created_at') %>
+    created_at: <%= field_type('created_at') %>,
+<% end %>
+<% if attributes.include?('updated_at') %>
+    updated_at: <%= field_type('updated_at') %>,
+<% end %>
   }.freeze
 
   # COLLECTION_ATTRIBUTES

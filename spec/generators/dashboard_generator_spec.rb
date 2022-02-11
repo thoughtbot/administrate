@@ -61,6 +61,31 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
       end
 
+      it "sorts the attributes" do
+        begin
+          ActiveRecord::Schema.define do
+            create_table(:foos) do |t|
+              t.string :col_2
+              t.string :col_1
+              t.string :col_3
+              t.timestamps
+            end
+          end
+
+          class Foo < ApplicationRecord
+            reset_column_information
+          end
+
+          run_generator ["foo"]
+          load file("app/dashboards/foo_dashboard.rb")
+          attrs = FooDashboard::ATTRIBUTE_TYPES.keys
+
+          expect(attrs).to eq(%i[id col_1 col_2 col_3 created_at updated_at])
+        ensure
+          remove_constants :Foo, :FooDashboard
+        end
+      end
+
       it "defaults to a string column that is not searchable" do
         begin
           ActiveRecord::Schema.define do
