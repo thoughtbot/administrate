@@ -1,5 +1,3 @@
-@use "sass:math";
-
 fieldset {
   background-color: transparent;
   border: 0;
@@ -87,7 +85,7 @@ textarea {
 [type="checkbox"],
 [type="radio"] {
   display: inline;
-  margin-right: math.div($small-spacing, 2);
+  margin-right: calc(#{$small-spacing} / 2);
 }
 
 [type="file"] {

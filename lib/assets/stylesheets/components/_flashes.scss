@@ -1,12 +1,10 @@
-@use "sass:math";
-
 @each $flash-type, $color in $flashes {
   .flash-#{$flash-type} {
     background-color: $color;
     color: mix($black, $color, 60%);
     display: block;
-    margin-bottom: math.div($base-spacing, 2);
-    padding: math.div($base-spacing, 2);
+    margin-bottom: calc(#{$base-spacing} / 2);
+    padding: calc(#{$base-spacing} / 2);
     text-align: center;
 
     a {
