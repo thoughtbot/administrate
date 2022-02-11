@@ -53,9 +53,16 @@ module Administrate
       end
 
       def attributes
-        klass.reflections.keys +
-          klass.columns.map(&:name) -
-          redundant_attributes
+        columns = klass.columns.map(&:name)
+
+        (klass.reflections.keys +
+          columns -
+          redundant_attributes -
+          %w[id created_at updated_at]).sort.tap do |result|
+            result.unshift(klass.primary_key) if klass.primary_key.present?
+            result.push("created_at") if columns.include?("created_at")
+            result.push("updated_at") if columns.include?("updated_at")
+          end
       end
 
       def form_attributes
