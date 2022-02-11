@@ -70,7 +70,7 @@ jobs:
       - run: bundle exec appraisal rails60 rspec
       - run: bundle exec appraisal rails61 rspec
     docker:
-      - image: circleci/ruby:2.6.3
+      - image: cimg/ruby:2.6-browsers
         environment:
           PGHOST: localhost
           PGUSER: administrate
@@ -94,7 +94,7 @@ jobs:
       - run: bundle exec appraisal rails61 rspec
       - run: bundle exec appraisal rails70 rspec
     docker:
-      - image: circleci/ruby:2.7
+      - image: cimg/ruby:2.7-browsers
         environment:
           PGHOST: localhost
           PGUSER: administrate
@@ -115,7 +115,7 @@ jobs:
       - run: bundle exec appraisal rails61 rspec
       - run: bundle exec appraisal rails70 rspec
     docker:
-      - image: circleci/ruby:3.0
+      - image: cimg/ruby:3.0-browsers
         environment:
           PGHOST: localhost
           PGUSER: administrate

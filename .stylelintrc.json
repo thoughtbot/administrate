@@ -1,9 +1,14 @@
 {
   "extends": "@thoughtbot/stylelint-config",
   "ignoreFiles": [
+    "app/assets/builds/**/*",
     "lib/assets/stylesheets/reset/**",
     "lib/assets/stylesheets/datetime_picker.scss",
-    "lib/assets/stylesheets/datetime_picker/**/*",
-    "app/assets/builds/**/*"
-  ]
+    "lib/assets/stylesheets/datetime_picker/*",
+    "lib/assets/stylesheets/datetime_picker/**/*"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module"
+  }
 }

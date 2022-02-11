@@ -20,7 +20,6 @@ module Administrate
       app.config.assets.precompile += [
         "administrate/application.js",
         "administrate/application.css",
-        "administrate_manifest.js",
       ]
     end
 

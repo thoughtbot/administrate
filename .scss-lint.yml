@@ -3,6 +3,7 @@ scss_files: "lib/assets/stylesheets/**/*.scss"
 exclude:
   - "lib/assets/stylesheets/reset/**"
   - "lib/assets/stylesheets/datetime_picker.scss"
+  - "lib/assets/stylesheets/datetime_picker/*"
   - "lib/assets/stylesheets/datetime_picker/**/*"
 
 severity: warning
