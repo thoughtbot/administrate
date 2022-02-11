@@ -2,7 +2,6 @@
 # DateTime Form Partial
 
 This partial renders an input element for a datetime attribute.
-By default, the input is a text field that is augmented with [DateTimePicker].
 
 ## Local variables:
 
@@ -13,12 +12,11 @@ By default, the input is a text field that is augmented with [DateTimePicker].
   A wrapper around the DateTime value pulled from the database.
 
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/DateTime
-[DateTimePicker]: https://github.com/Eonasdan/bootstrap-datetimepicker
 %>
 
 <div class="field-unit__label">
   <%= f.label field.attribute %>
 </div>
 <div class="field-unit__field">
-  <%= f.text_field field.attribute, data: { type: 'datetime' }  %>
+  <%= f.datetime_local_field field.attribute, step: 1 %>
 </div>

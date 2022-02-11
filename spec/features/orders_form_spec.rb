@@ -97,35 +97,4 @@ describe "order form" do
       field.find("option", text: displayed(associated_model))
     end
   end
-
-  describe "datetime field" do
-    it "responds to the date/time picker date format", :js do
-      order = create(:order)
-
-      visit edit_admin_order_path(order)
-      select_from_datepicker(Time.new(2015, 01, 02, 03, 04, 05))
-      click_on "Update Order"
-
-      expect(page).to have_content("Fri, Jan 2, 2015 at 03:04:05 AM")
-    end
-
-    it "populates and persists the existing value", :js do
-      time = Time.new(2015, 01, 02, 03, 04, 05)
-      order = create(:order, shipped_at: time)
-
-      visit edit_admin_order_path(order)
-      click_on "Update Order"
-
-      expect(order.reload.shipped_at).to eq(time)
-    end
-
-    def select_from_datepicker(time)
-      time_string = time.to_s[0..-7]
-
-      page.execute_script(<<-JS)
-        var date = moment("#{time_string}", "YYYY-MM-DD hh:mm:ss");
-        $('[data-type="datetime"]').data("DateTimePicker").date(date);
-      JS
-    end
-  end
 end
