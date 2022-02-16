@@ -99,6 +99,15 @@ RSpec.describe "customer show page" do
     end
   end
 
+  it "adds has_many resource/attribute name to table headers" do
+    customer = create(:customer)
+    create_list(:order, 2, customer: customer)
+
+    visit admin_customer_path(customer)
+
+    expect(page).to have_css("th.cell-label--order_total_price")
+  end
+
   it "sorts each of the customer's orders" do
     customer = create(:customer)
     orders = create_list(:order, 4, customer: customer)

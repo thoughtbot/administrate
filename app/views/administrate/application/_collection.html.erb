@@ -25,7 +25,7 @@ to display a collection of resources in an HTML table.
         <th class="cell-label
         cell-label--<%= attr_type.html_class %>
         cell-label--<%= collection_presenter.ordered_html_class(attr_name) %>
-        cell-label--<%= "#{resource_name}_#{attr_name}" %>"
+        cell-label--<%= "#{collection_presenter.resource_name}_#{attr_name}" %>"
         scope="col"
         role="columnheader"
         aria-sort="<%= sort_order(collection_presenter.ordered_html_class(attr_name)) %>">
