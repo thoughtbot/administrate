@@ -207,6 +207,14 @@ RSpec.describe "customer show page" do
     expect(page).to have_header("Edit #{displayed(customer)}")
   end
 
+  it "displays destroy link" do
+    customer = create(:customer)
+
+    visit admin_customer_path(customer)
+
+    expect { click_on "Destroy" }.to change(Customer, :count).from(1).to(0)
+  end
+
   it "displays translated labels" do
     custom_label = "Newsletter Subscriber"
     customer = create(:customer)
