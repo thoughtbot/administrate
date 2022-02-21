@@ -1,0 +1,34 @@
+:root {
+  --_navigation-link-padding: 0.6em;
+}
+
+.navigation {
+  flex: 1 0 10rem;
+  padding: var(--base-spacing);
+  padding-left: 0;
+}
+
+.navigation__link {
+  background-color: transparent;
+  color: var(--base-font-color);
+  display: block;
+  line-height: 1;
+  margin-left: -($_navigation-link-padding);
+  padding: var(--_navigation-link-padding);
+  transition: background-color var(--base-duration) var(--base-timing),
+    color var(--base-duration) var(--base-timing);
+
+  &:not(:last-of-type) {
+    margin-bottom: var(--small-spacing);
+  }
+
+  &:hover {
+    background-color: mix($black, var(--base-background-color), 5%);
+    border-radius: var(--base-border-radius);
+    color: var(--base-font-color);
+  }
+}
+
+.navigation__link--active {
+  font-weight: var(--bold-font-weight);
+}

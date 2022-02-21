@@ -1,0 +1,48 @@
+:root {
+  --_search-icon-size: 1rem;
+}
+
+.search {
+  margin-left: auto;
+  margin-right: 2rem;
+  max-width: 20rem;
+  position: relative;
+  width: 100%;
+}
+
+.search__input {
+  border-radius: 100rem;
+  padding-left: var(--_search-icon-size) * 2.5;
+  padding-right: var(--_search-icon-size) * 2.5;
+}
+
+.search__eyeglass-icon {
+  fill: var(--grey-7);
+  height: var(--_search-icon-size);
+  left: var(--_search-icon-size);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--_search-icon-size);
+}
+
+.search__clear-link {
+  height: var(--_search-icon-size);
+  position: absolute;
+  right: var(--_search-icon-size) * 0.75;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--_search-icon-size);
+}
+
+.search__clear-icon {
+  fill: var(--grey-5);
+  height: var(--_search-icon-size);
+  position: absolute;
+  transition: fill var(--base-duration) var(--base-timing);
+  width: var(--_search-icon-size);
+
+  &:hover {
+    fill: var(--action-color);
+  }
+}

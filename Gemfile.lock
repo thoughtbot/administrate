@@ -7,7 +7,7 @@ PATH
       activerecord (>= 5.0)
       jquery-rails (>= 4.0)
       kaminari (>= 1.0)
-      sassc-rails (~> 2.1)
+      momentjs-rails (>= 2.8, <= 2.20.1)
       selectize-rails (~> 0.6)
 
 GEM
@@ -139,12 +139,7 @@ GEM
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     faraday-net_http (1.0.1)
-    ffi (1.15.5)
     formulaic (0.4.1)
-      activesupport
-      capybara
-      i18n
-    front_matter_parser (1.0.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
@@ -271,14 +266,6 @@ GEM
     rspec-support (3.10.2)
     ruby2_keywords (0.0.4)
     rubyzip (2.3.2)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     selectize-rails (0.12.6)
     selenium-webdriver (4.3.0)
       childprocess (>= 0.5, < 5.0)

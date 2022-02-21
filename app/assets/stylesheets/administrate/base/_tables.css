@@ -11,24 +11,24 @@ table {
 }
 
 thead {
-  font-weight: $bold-font-weight;
+  font-weight: var(--bold-font-weight);
 }
 
 tr {
-  border-bottom: $base-border;
+  border-bottom: var(--base-border);
 }
 
 tbody tr {
   &:hover {
-    background-color: $base-background-color;
+    background-color: var(--base-background-color);
   }
 
-  [role=link] {
+  [role="link"] {
     cursor: pointer;
   }
 
   &:focus {
-    outline: $focus-outline;
+    outline: var(--focus-outline);
     outline-offset: -($focus-outline-width);
   }
 }

@@ -3,11 +3,11 @@
 
   &:hover {
     a {
-      color: $action-color;
+      color: var(--action-color);
     }
 
     svg {
-      fill: $action-color;
+      fill: var(--action-color);
       transform: rotate(180deg);
     }
   }
@@ -15,14 +15,14 @@
   a {
     color: inherit;
     display: inline-block;
-    transition: color $base-duration $base-timing;
+    transition: color var(--base-duration) var(--base-timing);
     width: 100%;
   }
 }
 
 .cell-label--asc,
 .cell-label--desc {
-  font-weight: $bold-font-weight;
+  font-weight: var(--bold-font-weight);
 }
 
 .cell-label__sort-indicator {
@@ -30,9 +30,9 @@
   margin-left: 5px;
 
   svg {
-    fill: $hint-grey;
+    fill: var(--hint-grey);
     height: 13px;
-    transition: transform $base-duration $base-timing;
+    transition: transform var(--base-duration) var(--base-timing);
     width: 13px;
   }
 }
