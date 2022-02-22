@@ -7,7 +7,6 @@ PATH
       activerecord (>= 5.0)
       jquery-rails (>= 4.0)
       kaminari (>= 1.0)
-      momentjs-rails (>= 2.8, <= 2.20.1)
       selectize-rails (~> 0.6)
 
 GEM
@@ -140,6 +139,10 @@ GEM
       ruby2_keywords
     faraday-net_http (1.0.1)
     formulaic (0.4.1)
+      activesupport
+      capybara
+      i18n
+    front_matter_parser (1.0.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
