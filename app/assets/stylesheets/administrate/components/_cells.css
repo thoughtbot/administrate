@@ -1,23 +1,18 @@
 .cell-label {
   padding-top: 0.15em;
-
-  &:hover {
-    a {
-      color: var(--action-color);
-    }
-
-    svg {
-      fill: var(--action-color);
-      transform: rotate(180deg);
-    }
-  }
-
-  a {
-    color: inherit;
-    display: inline-block;
-    transition: color var(--base-duration) var(--base-timing);
-    width: 100%;
-  }
+}
+.cell-label:hover a {
+  color: var(--action-color);
+}
+.cell-label:hover svg {
+  fill: var(--action-color);
+  transform: rotate(180deg);
+}
+.cell-label a {
+  color: inherit;
+  display: inline-block;
+  transition: color var(--base-duration) var(--base-timing);
+  width: 100%;
 }
 
 .cell-label--asc,
@@ -28,13 +23,12 @@
 .cell-label__sort-indicator {
   float: right;
   margin-left: 5px;
-
-  svg {
-    fill: var(--hint-grey);
-    height: 13px;
-    transition: transform var(--base-duration) var(--base-timing);
-    width: 13px;
-  }
+}
+.cell-label__sort-indicator svg {
+  fill: var(--hint-grey);
+  height: 13px;
+  transition: transform var(--base-duration) var(--base-timing);
+  width: 13px;
 }
 
 .cell-label__sort-indicator--desc {

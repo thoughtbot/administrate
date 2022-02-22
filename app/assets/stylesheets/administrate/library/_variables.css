@@ -1,8 +1,8 @@
 :root {
-  /* --base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+  --base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif; */
-  /* --heading-font-family: --base-font-family; */
+    sans-serif;
+  --heading-font-family: var(--base-font-family);
 
   --base-font-size: 1em;
 
@@ -33,25 +33,25 @@
 
   --hint-grey: #7b808c;
 
-  --base-font-color: --grey-7;
-  --action-color: --blue;
+  --base-font-color: var(--grey-7);
+  --action-color: var(--blue);
 
-  --base-background-color: --grey-0;
+  --base-background-color: var(--grey-0);
 
-  --focus-outline-color: transparentize(--action-color, 0.4);
+  --focus-outline-color: transparentize(var(--action-color), 0.4);
   --focus-outline-width: 3px;
-  --focus-outline: --focus-outline-width solid --focus-outline-color;
+  --focus-outline: --focus-outline-width solid var(--focus-outline-color);
   --focus-outline-offset: 1px;
 
   --flashes: (
-    "alert": --light-yellow,
-    "error": --light-red,
-    "notice": --light-blue,
-    "success": --light-green
+    "alert": var(--light-yellow),
+    "error": var(--light-red),
+    "notice": var(--light-blue),
+    "success": var(--light-green)
   );
 
-  --base-border-color: --grey-1;
-  --base-border: 1px solid --base-border-color;
+  --base-border-color: var(--grey-1);
+  --base-border: 1px solid var(--base-border-color);
 
   --base-duration: 250ms;
   --base-timing: ease-in-out;

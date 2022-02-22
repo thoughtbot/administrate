@@ -1,11 +1,9 @@
 @charset "utf-8";
 
-@import "reset/normalize.css";
+@import "reset/_normalize.css";
 
 @import "selectize.css";
 
-@import "library/_clearfix.css";
-@import "library/_data-label.css";
 @import "library/_variables.css";
 
 @import "base/_forms.css";

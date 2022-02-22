@@ -1,7 +1,7 @@
 .main-content {
-  background-color: var(--white);
-  border-radius: var(--base-border-radius);
-  box-shadow: 0 0 6px 0 rgba($black, 0.12), 0 2px 2px rgba($black, 0.2);
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
   flex: 1 1 100%;
   padding-bottom: 10vh;
   min-width: 800px;
@@ -19,7 +19,7 @@
 
 .main-content__header {
   align-items: center;
-  border-bottom: var(--base-border);
+  border-bottom: 1px solid #dfe0e1;
   display: flex;
 }
 

@@ -1,7 +1,3 @@
-:root {
-  --_search-icon-size: 1rem;
-}
-
 .search {
   margin-left: auto;
   margin-right: 2rem;
@@ -12,37 +8,36 @@
 
 .search__input {
   border-radius: 100rem;
-  padding-left: var(--_search-icon-size) * 2.5;
-  padding-right: var(--_search-icon-size) * 2.5;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 .search__eyeglass-icon {
-  fill: var(--grey-7);
-  height: var(--_search-icon-size);
-  left: var(--_search-icon-size);
+  fill: #293f54;
+  height: 1rem;
+  left: 1rem;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: var(--_search-icon-size);
+  width: 1rem;
 }
 
 .search__clear-link {
-  height: var(--_search-icon-size);
+  height: 1rem;
   position: absolute;
-  right: var(--_search-icon-size) * 0.75;
+  right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
-  width: var(--_search-icon-size);
+  width: 1rem;
 }
 
 .search__clear-icon {
-  fill: var(--grey-5);
-  height: var(--_search-icon-size);
+  fill: #adb5bd;
+  height: 1rem;
   position: absolute;
-  transition: fill var(--base-duration) var(--base-timing);
-  width: var(--_search-icon-size);
-
-  &:hover {
-    fill: var(--action-color);
-  }
+  transition: fill 250ms ease-in-out;
+  width: 1rem;
+}
+.search__clear-icon:hover {
+  fill: #1976d2;
 }

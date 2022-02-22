@@ -1,20 +1,67 @@
-@each var(--flash-type), var(--color) in var(--flashes) {
-  .flash-#{$flash-type} {
-    background-color: var(--color);
-    color: mix($black, var(--color), 60%);
-    display: block;
-    margin-bottom: var(--base-spacing) * 0.5;
-    padding: var(--base-spacing) * 0.5;
-    text-align: center;
+.flash-alert {
+  background-color: #fff6bf;
+  color: #66624c;
+  display: block;
+  margin-bottom: 0.75em;
+  padding: 0.75em;
+  text-align: center;
+}
+.flash-alert a {
+  color: #4d4a39;
+  text-decoration: underline;
+}
+.flash-alert a:focus,
+.flash-alert a:hover {
+  color: #1a1913;
+}
 
-    a {
-      color: mix($black, var(--color), 70%);
-      text-decoration: underline;
+.flash-error {
+  background-color: #fbe3e4;
+  color: #645b5b;
+  display: block;
+  margin-bottom: 0.75em;
+  padding: 0.75em;
+  text-align: center;
+}
+.flash-error a {
+  color: #4b4444;
+  text-decoration: underline;
+}
+.flash-error a:focus,
+.flash-error a:hover {
+  color: #191717;
+}
 
-      &:focus,
-      &:hover {
-        color: mix($black, var(--color), 90%);
-      }
-    }
-  }
+.flash-notice {
+  background-color: #e5edf8;
+  color: #5c5f63;
+  display: block;
+  margin-bottom: 0.75em;
+  padding: 0.75em;
+  text-align: center;
+}
+.flash-notice a {
+  color: #45474a;
+  text-decoration: underline;
+}
+.flash-notice a:focus,
+.flash-notice a:hover {
+  color: #171819;
+}
+
+.flash-success {
+  background-color: #e6efc2;
+  color: #5c604e;
+  display: block;
+  margin-bottom: 0.75em;
+  padding: 0.75em;
+  text-align: center;
+}
+.flash-success a {
+  color: #45483a;
+  text-decoration: underline;
+}
+.flash-success a:focus,
+.flash-success a:hover {
+  color: #171813;
 }

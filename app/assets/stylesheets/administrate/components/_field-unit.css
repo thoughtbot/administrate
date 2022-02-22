@@ -1,10 +1,14 @@
 .field-unit {
-  @include administrate-clearfix;
   align-items: center;
   display: flex;
   margin-bottom: var(--base-spacing);
   position: relative;
   width: 100%;
+}
+.field-unit::after {
+  clear: both;
+  content: "";
+  display: block;
 }
 
 .field-unit__label {
@@ -19,10 +23,9 @@
   margin-left: 2rem;
   max-width: 50rem;
   width: 100%;
-
-  .optgroup-header {
-    font-weight: var(--bold-font-weight);
-  }
+}
+.field-unit__field .optgroup-header {
+  font-weight: var(--bold-font-weight);
 }
 
 .field-unit--nested {
@@ -31,19 +34,15 @@
   max-width: 60rem;
   padding: var(--small-spacing);
   width: 100%;
-
-  .field-unit__field {
-    width: 100%;
-  }
-
-  .field-unit__label {
-    width: 10rem;
-  }
+}
+.field-unit--nested .field-unit__field {
+  width: 100%;
+}
+.field-unit--nested .field-unit__label {
+  width: 10rem;
 }
 
-.field-unit--required {
-  label::after {
-    color: var(--red);
-    content: " *";
-  }
+.field-unit--required label::after {
+  color: var(--#ff0000);
+  content: " *";
 }

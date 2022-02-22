@@ -1,5 +1,10 @@
 .attribute-label {
-  @include data-label;
+  color: var(--hint-grey);
+  font-size: 0.8em;
+  font-weight: 400;
+  letter-spacing: 0.0357em;
+  position: relative;
+  text-transform: uppercase;
   clear: left;
   float: left;
   margin-bottom: var(--base-spacing);
