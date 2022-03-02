@@ -14,9 +14,9 @@ routes are displayed in the sidebar and then add a custom dashboard:
 <div style="padding: 20px">
   <h1>Stats</h1>
   <br>
-  <p><b>Total Customers:</b> <%= @stats[:customer_count] %></h1>
+  <p><b>Total Customers:</b> <%= @stats[:customer_count] %></p>
   <br>
-  <p><b>Total Orders:</b> <%= @stats[:order_count] %></h1>
+  <p><b>Total Orders:</b> <%= @stats[:order_count] %></p>
 </div>
 ```
 
