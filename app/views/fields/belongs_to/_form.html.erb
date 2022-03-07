@@ -17,7 +17,11 @@ that displays all possible records to associate with.
 %>
 
 <div class="field-unit__label">
-  <%= f.label field.permitted_attribute %>
+  <%= f.label field.permitted_attribute,
+              t("helpers.label.#{resource_name}.#{field.attribute}",
+                default: field.resource.class.human_attribute_name(field.attribute)
+              ) %>
+
 </div>
 <div class="field-unit__field">
   <%= f.select(field.permitted_attribute,
