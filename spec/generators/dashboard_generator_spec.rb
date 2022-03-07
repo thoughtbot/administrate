@@ -33,8 +33,8 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/foo_dashboard.rb")
           attrs = FooDashboard::ATTRIBUTE_TYPES
 
-          expect(attrs[:created_at]).to eq(Administrate::Field::DateTime)
           expect(attrs[:id]).to eq(Administrate::Field::Number)
+          expect(attrs[:created_at]).to eq(Administrate::Field::DateTime)
           expect(attrs[:updated_at]).to eq(Administrate::Field::DateTime)
         ensure
           remove_constants :Foo, :FooDashboard
@@ -64,7 +64,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       it "sorts the attributes" do
         begin
           ActiveRecord::Schema.define do
-            create_table(:foos) do |t|
+            create_table(:foos, primary_key: :code) do |t|
               t.string :col_2
               t.string :col_1
               t.string :col_3
@@ -80,7 +80,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           load file("app/dashboards/foo_dashboard.rb")
           attrs = FooDashboard::ATTRIBUTE_TYPES.keys
 
-          expect(attrs).to eq(%i[id col_1 col_2 col_3 created_at updated_at])
+          expect(attrs).to eq(%i[code col_1 col_2 col_3 created_at updated_at])
         ensure
           remove_constants :Foo, :FooDashboard
         end
