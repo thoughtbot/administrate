@@ -99,6 +99,15 @@ RSpec.describe "customer show page" do
     end
   end
 
+  it "adds has_many resource/attribute name to table headers" do
+    customer = create(:customer)
+    create_list(:order, 2, customer: customer)
+
+    visit admin_customer_path(customer)
+
+    expect(page).to have_css("th.cell-label--order_total_price")
+  end
+
   it "sorts each of the customer's orders" do
     customer = create(:customer)
     orders = create_list(:order, 4, customer: customer)
@@ -196,6 +205,14 @@ RSpec.describe "customer show page" do
     click_on "Edit"
 
     expect(page).to have_header("Edit #{displayed(customer)}")
+  end
+
+  it "displays destroy link" do
+    customer = create(:customer)
+
+    visit admin_customer_path(customer)
+
+    expect { click_on "Destroy" }.to change(Customer, :count).from(1).to(0)
   end
 
   it "displays translated labels" do

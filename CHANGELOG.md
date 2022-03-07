@@ -17,6 +17,72 @@
 
 ## Changes
 
+### 0.17.0 (January 31, 2022)
+
+This release incorporates nearly a year of minor changes, starts testing
+against Ruby 3 and up, plus Rails 7. We've not heard of any incompatibilities
+yet, but there are known issues around asset handling ([notably with
+sassc][#2091]) that we're working on.
+
+[#2091]: https://github.com/thoughtbot/administrate/issues/2091
+
+The following templates have changed since v0.16.0:
+
+  app/views/administrate/application/_collection.html.erb
+  app/views/administrate/application/_collection_header_actions.html.erb
+  app/views/administrate/application/_collection_item_actions.html.erb
+  app/views/administrate/application/_flashes.html.erb
+  app/views/administrate/application/_form.html.erb
+  app/views/administrate/application/_icons.html.erb
+  app/views/administrate/application/_index_header.html.erb
+  app/views/administrate/application/index.html.erb
+  app/views/fields/belongs_to/_index.html.erb
+  app/views/fields/belongs_to/_show.html.erb
+  app/views/fields/select/_form.html.erb
+  app/views/fields/time/_index.html.erb
+  app/views/fields/time/_show.html.erb
+
+If your application overrides any of them, make sure to review your
+custom templates to ensure that they remain compatible.
+
+* [BUGFIX] [#2117] Use `camelize` rather than `classify` for the namespace
+* [COMPAT] [#2132] Add Rails 7 to tests
+* [COMPAT] [#2120] Add Ruby 3.1 to Circle tests
+* [COMPAT] [#2118] Handle Selenium "options" deprecation
+* [COMPAT] [#2127] Add Ruby 3 to Circle tests
+* [COMPAT] [#2126] Drop patch for Rails 4
+* [COMPAT] [#2123] Update Bundler to 2.3.5
+* [COMPAT] [#2122] Update Ruby version in ".ruby-version"
+* [COMPAT] [#2121] Remove "rspec-rails" from gemspec
+* [COMPAT] [#2120] Add "webrick" to Gemfile
+* [UI] [#2115] Remove inline style from icon svg
+* [COMPAT] [#2102] Update browsers used in CI
+* [COMPAT] [#2097] Manage Selenium drivers automatically
+* [BUGFIX] [#2125] Fix rspec invocation in CircleCI
+* [BUGFIX] Typo navigation:back_to_app
+* [BUGFIX] [#2108] Hide link if user is not authorized to access resource
+* [COMPAT] [#2107] Relax momentjs-rails version constraint
+* [UI] [#2105] Add resource/attribute name to table headers
+* [COMPAT] [#2074] gemspec: Drop unused directive test_files
+* [COMPAT] [#2101] Limit the highest momentjs-rails version to 2.20.1
+* [DOCS] [#2046] Remove password field from Extending Administrate
+* [FEATURE] [#2029] Add format option to time field
+* [FEATURE] [#1998] Reformulate authorization in example app
+* [COMPAT] [#2027] Drop support for Ruby `< 2.6`
+* [FEATURE] [#2018] Add :include_blank option to Field::Select
+* [COMPAT] [#2023] Avoid version not compatible with Ruby 2.5
+* [BUGFIX] [#2015] Only call html_safe on flash message that responds to it
+* [FEATURE] [#2005] Add params to collection filter
+* [UI] [#2013] Fix nav styles for namespaced resources
+* [COMPAT] [#2001] Remove shims that force deprecated form of methods
+* [COMPAT] [#2008] Fix deprecation warning
+* [FEATURE] [#1991] Allow different form attributes for new/update actions
+* [BUGFIX] [#2003] Only allow HTTP(S) URLs in example app
+* [DOC] [#2002] Create SECURITY.md
+* [FEATURE] [#1995] Allow customising redirects after actions
+* [UI] [#1996] Opt-out of FLoC: https://amifloced.org/
+* [DOC] [#1968] Add a script to list recent changes to templates
+
 ### 0.16.0 (May 6, 2021)
 
 This release incorporates a fix for breakages on Rails 6.1.3.2 and 6.0.3.7

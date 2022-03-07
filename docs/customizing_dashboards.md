@@ -250,6 +250,9 @@ Default is `true`.
 `:truncate` - Set the number of characters to display in the index view.
 Defaults to `50`.
 
+`:html_options` - Specify anchor tag attributes (e.g., `target="_blank"`).
+Defaults is `{}`.
+
 **Field::Password**
 
 `:searchable` - Specify if the attribute should be considered when searching.

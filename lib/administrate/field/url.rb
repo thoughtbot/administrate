@@ -11,6 +11,10 @@ module Administrate
         data.to_s[0...truncation_length]
       end
 
+      def html_options
+        @options[:html_options] || {}
+      end
+
       private
 
       def truncation_length

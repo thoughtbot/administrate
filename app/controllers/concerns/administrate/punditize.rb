@@ -2,7 +2,7 @@ module Administrate
   module Punditize
     if Object.const_defined?("Pundit")
       extend ActiveSupport::Concern
-      include Pundit
+      include Pundit::Authorization
 
       included do
         def scoped_resource
