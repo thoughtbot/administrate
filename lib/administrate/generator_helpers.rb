@@ -1,4 +1,3 @@
-require "find"
 
 module Administrate
   module GeneratorHelpers

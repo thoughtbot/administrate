@@ -18,6 +18,15 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       expect(dashboard).to have_correct_syntax
     end
 
+    it "has valid syntax with namespaces" do
+      dashboard = file("app/dashboards/blog/post_dashboard.rb")
+
+      run_generator ["blog/post"]
+
+      expect(dashboard).to exist
+      expect(dashboard).to have_correct_syntax
+    end
+
     describe "#attribute_types" do
       it "includes standard model attributes" do
         begin
@@ -394,6 +403,15 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       controller = file("app/controllers/admin/customers_controller.rb")
 
       run_generator ["customer"]
+
+      expect(controller).to exist
+      expect(controller).to have_correct_syntax
+    end
+
+    it "has valid syntax for namespaces" do
+      controller = file("app/controllers/admin/blog/posts_controller.rb")
+
+      run_generator ["blog/post"]
 
       expect(controller).to exist
       expect(controller).to have_correct_syntax
