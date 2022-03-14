@@ -21,7 +21,6 @@ module Administrate
         output_string += "#{DEFAULT_INDENT}resources :#{resource}\n"
       end
       output_string += "\n#{organise_namespace_routes(resource_hash[0])}"
-      binding.pry
       output_string
     end
 
