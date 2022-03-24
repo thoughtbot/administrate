@@ -8,6 +8,7 @@ describe "fields/has_one/_form", type: :view do
       attribute: "Meta",
       data: nil,
       nested_form: nested_form,
+      name: "product_tag"
     )
 
     render(
