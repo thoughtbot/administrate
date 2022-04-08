@@ -20,7 +20,7 @@ group :development, :test do
   gem "byebug"
   gem "dotenv-rails"
   gem "factory_bot_rails"
-  gem "i18n-tasks", "1.0.7"
+  gem "i18n-tasks", "1.0.8"
   gem "pry-rails"
   gem "yard"
 end
