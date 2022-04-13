@@ -40,7 +40,8 @@ describe "customer edit page" do
     customer = create(:customer, kind: :standard)
 
     visit edit_admin_customer_path(customer)
-    select "vip", from: "Kind"
+    find("#customer_kind-selectized").click
+    find(".option", text: "vip").click
     click_on "Update Customer"
 
     expect(page).to have_text("KIND")
