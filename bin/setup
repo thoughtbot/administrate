@@ -12,6 +12,11 @@ bundle check || bundle install
 
 bundle exec appraisal install
 
+EXAMPLE_APP_PATH="spec/example_app"
+if [ ! -e "$EXAMPLE_APP_PATH/config/database.yml" ]; then
+  cp "$EXAMPLE_APP_PATH/config/database.yml.sample" "$EXAMPLE_APP_PATH/config/database.yml"
+fi
+
 # Set up configurable environment variables
 if [ ! -f .env ]; then
   cp .sample.env .env
