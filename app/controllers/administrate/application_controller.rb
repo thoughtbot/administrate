@@ -107,13 +107,11 @@ module Administrate
 
     helper_method :valid_action?
     def valid_action?(name, resource = resource_class)
-      !!routes.detect do |controller, action|
-        controller == resource.to_s.underscore.pluralize && action == name.to_s
-      end
+      routes.include?([resource.to_s.underscore.pluralize, name.to_s])
     end
 
     def routes
-      @routes ||= Namespace.new(namespace).routes
+      @routes ||= Namespace.new(namespace).routes.to_set
     end
 
     def records_per_page
