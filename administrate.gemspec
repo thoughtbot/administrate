@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary = "A Rails engine for creating super-flexible admin dashboards"
   s.license = "MIT"
 
-  s.files = Dir["{app,config,db,lib,docs}/**/*", "LICENSE", "Rakefile"]
+  s.files = Dir["{app,lib,docs}/**/*", "config/locales/**/*", "LICENSE", "Rakefile"]
 
   s.add_dependency "actionpack", ">= 5.0"
   s.add_dependency "actionview", ">= 5.0"
