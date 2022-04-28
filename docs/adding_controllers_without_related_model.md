@@ -11,11 +11,10 @@ routes are displayed in the sidebar and then add a custom dashboard:
 ```erb
 # app/views/admin/stats/index.html.erb
 
-<div style="padding: 20px">
+<div>
   <h1>Stats</h1>
   <br>
   <p><b>Total Customers:</b> <%= @stats[:customer_count] %></p>
-  <br>
   <p><b>Total Orders:</b> <%= @stats[:order_count] %></p>
 </div>
 ```
