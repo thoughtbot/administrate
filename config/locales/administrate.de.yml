@@ -21,8 +21,8 @@ de:
         more: "%{count} von %{total_count}"
         none: Keine
     form:
-      error: error
-      errors: "%{pluralized_errors} haben das Speichern dieses %{resource_name} verhindert:"
+      error: Fehler
+      errors: "%{resource_name} konnte nicht gespeichert werden, es gab %{pluralized_errors}."
     navigation:
       back_to_app: Zurück zur App
     search:
