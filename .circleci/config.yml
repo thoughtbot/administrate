@@ -49,29 +49,6 @@ default_job: &default_job
   working_directory: ~/administrate
 
 jobs:
-  ruby-26:
-    <<: *default_job
-    steps:
-      - shared_steps
-      # Run the tests against the versions of Rails that support Ruby 2.6
-      - run: bundle exec appraisal install
-      - run: bundle exec appraisal rails50 rspec
-      - run: bundle exec appraisal rails51 rspec
-      - run: bundle exec appraisal rails52 rspec
-      - run: bundle exec appraisal rails60 rspec
-      - run: bundle exec appraisal rails61 rspec
-    docker:
-      - image: circleci/ruby:2.6.3
-        environment:
-          PGHOST: localhost
-          PGUSER: administrate
-          RAILS_ENV: test
-      - image: postgres:10.1-alpine
-        environment:
-          POSTGRES_USER: administrate
-          POSTGRES_DB: ruby26
-          POSTGRES_PASSWORD: ""
-
   ruby-27:
     <<: *default_job
     steps:
