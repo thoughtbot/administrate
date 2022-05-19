@@ -121,4 +121,3 @@ workflows:
       - ruby-31
       - ruby-30
       - ruby-27
-      - ruby-26
