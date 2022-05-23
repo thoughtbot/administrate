@@ -3,8 +3,8 @@
     background-color: $color;
     color: mix($black, $color, 60%);
     display: block;
-    margin-bottom: $base-spacing / 2;
-    padding: $base-spacing / 2;
+    margin-bottom: $base-spacing * 0.5;
+    padding: $base-spacing * 0.5;
     text-align: center;
 
     a {
