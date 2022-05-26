@@ -55,9 +55,6 @@ jobs:
       - shared_steps
       # Run the tests against the versions of Rails that support Ruby 2.7
       - run: bundle exec appraisal install
-      - run: bundle exec appraisal rails50 rspec
-      - run: bundle exec appraisal rails51 rspec
-      - run: bundle exec appraisal rails52 rspec
       - run: bundle exec appraisal rails60 rspec
       - run: bundle exec appraisal rails61 rspec
       - run: bundle exec appraisal rails70 rspec
