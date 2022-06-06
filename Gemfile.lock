@@ -216,7 +216,7 @@ GEM
     rack (2.2.3.1)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
-    rack-timeout (0.6.0)
+    rack-timeout (0.6.1)
     rails (6.1.6)
       actioncable (= 6.1.6)
       actionmailbox (= 6.1.6)
