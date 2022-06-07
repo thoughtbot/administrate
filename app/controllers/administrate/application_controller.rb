@@ -119,7 +119,21 @@ module Administrate
     end
 
     def order
-      @order ||= Administrate::Order.new(sorting_attribute, sorting_direction)
+      @order ||= Administrate::Order.new(
+        sorting_attribute,
+        sorting_direction,
+        order_by_field(dashboard_attribute(sorting_attribute)),
+      )
+    end
+
+    def order_by_field(dashboard)
+      return unless dashboard.try(:options)
+
+      dashboard.options.fetch(:order, nil)
+    end
+
+    def dashboard_attribute(attribute)
+      dashboard.attribute_types[attribute.to_sym] if attribute
     end
 
     def sorting_attribute

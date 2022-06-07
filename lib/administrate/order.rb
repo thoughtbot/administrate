@@ -1,8 +1,9 @@
 module Administrate
   class Order
-    def initialize(attribute = nil, direction = nil)
+    def initialize(attribute = nil, direction = nil, field = nil)
       @attribute = attribute
       @direction = sanitize_direction(direction)
+      @field = field
     end
 
     def apply(relation)
@@ -12,9 +13,13 @@ module Administrate
       order = "#{relation.table_name}.#{attribute} #{direction}"
 
       return relation.reorder(Arel.sql(order)) if
-        relation.columns_hash.keys.include?(attribute.to_s)
+        column_exist?(relation, attribute)
 
       relation
+    end
+
+    def column_exist?(table, column_name)
+      table.columns_hash.key?(column_name.to_s)
     end
 
     def ordered_by?(attr)
@@ -32,7 +37,7 @@ module Administrate
 
     private
 
-    attr_reader :attribute
+    attr_reader :attribute, :field
 
     def sanitize_direction(direction)
       %w[asc desc].include?(direction.to_s) ? direction.to_sym : :asc
@@ -53,7 +58,7 @@ module Administrate
     def order_by_association(relation)
       return order_by_count(relation) if has_many_attribute?(relation)
 
-      return order_by_id(relation) if belongs_to_attribute?(relation)
+      return order_by_attribute(relation) if belongs_to_attribute?(relation)
 
       relation
     end
@@ -68,7 +73,30 @@ module Administrate
     end
 
     def order_by_id(relation)
-      relation.reorder("#{foreign_key(relation)} #{direction}")
+      relation.reorder(Arel.sql(order_by_id_query(relation)))
+    end
+
+    def order_by_attribute(relation)
+      return order_by_id(relation) unless field
+
+      relation.joins(
+        attribute.to_sym,
+      ).reorder(Arel.sql(form_query(relation)))
+    end
+
+    def form_query(relation)
+      return order_by_attribute_query if
+        column_exist?(reflect_association(relation).klass, field.to_sym)
+
+      order_by_id_query(relation)
+    end
+
+    def order_by_id_query(relation)
+      "#{relation.table_name}.#{foreign_key(relation)} #{direction}"
+    end
+
+    def order_by_attribute_query
+      "#{attribute.tableize}.#{field} #{direction}"
     end
 
     def has_many_attribute?(relation)
