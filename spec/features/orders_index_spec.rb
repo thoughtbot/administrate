@@ -68,4 +68,18 @@ feature "order index page" do
       "Cannot delete record because dependent payments exist", type: :error
     )
   end
+
+  scenario "user sorts by belongs_to field" do
+    create(:order, customer: create(:customer, name: "Alpha"))
+    create(:order, customer: create(:customer, name: "Charlie"))
+    create(:order, customer: create(:customer, name: "Bravo"))
+
+    visit admin_orders_path
+
+    click_on "Customer"
+    expect(page).to have_content(/Alpha.*Bravo.*Charlie/)
+
+    click_on "Customer"
+    expect(page).to have_content(/Charlie.*Bravo.*Alpha/)
+  end
 end
