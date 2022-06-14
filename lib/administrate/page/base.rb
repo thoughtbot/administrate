@@ -23,6 +23,10 @@ module Administrate
         dashboard.try(:item_includes) || []
       end
 
+      def item_associations
+        dashboard.try(:item_associations) || []
+      end
+
       private
 
       def attribute_field(dashboard, resource, attribute_name, page)

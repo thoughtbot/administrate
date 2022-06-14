@@ -25,6 +25,10 @@ module Administrate
         deferred_class.associative?
       end
 
+      def eager_load?
+        deferred_class.eager_load?
+      end
+
       def searchable?
         options.fetch(:searchable, deferred_class.searchable?)
       end
