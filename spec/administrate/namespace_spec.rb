@@ -2,6 +2,29 @@ require "rails_helper"
 require "administrate/namespace"
 
 describe Administrate::Namespace do
+  describe "#routes" do
+    it "returns the list of routes as a hash" do
+      namespace = Administrate::Namespace.new(:admin)
+
+      Rails.application.routes.draw do
+        namespace(:admin) do
+          resources :customers do
+            resources :orders, only: %i[show edit]
+          end
+        end
+      end
+
+      routes = namespace.routes.select { |route| route.first == "orders" }
+      expected_routes = {
+        ["orders", "edit"] => ["customer_id", "id"],
+        ["orders", "show"] => ["customer_id", "id"],
+      }
+      expect(routes).to eq(expected_routes)
+    ensure
+      reset_routes
+    end
+  end
+
   describe "#resources" do
     it "searches the routes for resources in the namespace" do
       namespace = Administrate::Namespace.new(:admin)
