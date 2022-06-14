@@ -154,26 +154,6 @@ describe Administrate::Order do
     end
   end
 
-  describe "#column_exist?" do
-    context "when the table has the column defined" do
-      let(:table) { double(columns_hash: { "name" => :value }) }
-      let(:column) { :name }
-
-      it "returns true" do
-        expect(described_class.new.column_exist?(table, column)).to eql(true)
-      end
-    end
-
-    context "when the table has not the column defined" do
-      let(:table) { double(columns_hash: { "name" => :value }) }
-      let(:column) { :invalid_column_name }
-
-      it "returns false" do
-        expect(described_class.new.column_exist?(table, column)).to eql(false)
-      end
-    end
-  end
-
   describe "#ordered_by?" do
     it "returns true if the order is by the given attribute" do
       order = Administrate::Order.new(:name, :desc)
