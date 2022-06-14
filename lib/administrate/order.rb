@@ -18,10 +18,6 @@ module Administrate
       relation
     end
 
-    def column_exist?(table, column_name)
-      table.columns_hash.key?(column_name.to_s)
-    end
-
     def ordered_by?(attr)
       attr.to_s == attribute.to_s
     end
@@ -89,6 +85,10 @@ module Administrate
         column_exist?(reflect_association(relation).klass, field.to_sym)
 
       order_by_id_query(relation)
+    end
+
+    def column_exist?(table, column_name)
+      table.columns_hash.key?(column_name.to_s)
     end
 
     def order_by_id_query(relation)
