@@ -59,13 +59,22 @@ to display a collection of resources in an HTML table.
   <tbody>
     <% resources.each do |resource| %>
       <tr class="js-table-row"
-          <% if valid_action?(:show, resource.class) && show_action?(:show, resource) %>
-            <%= %(tabindex=0 role=link data-url=#{polymorphic_path([namespace, resource])}) %>
+          <% if page.try(:resource).present? && valid_action?(:show, resource.class, page.resource.class) && show_action?(:show, resource) %>
+          <%= %(tabindex=0 role=link data-url=#{polymorphic_path([namespace, page.resource, resource])}) %>
+          <% elsif valid_action?(:show, resource.class, resource_name) && show_action?(:show, resource) %>
+          <%= %(tabindex=0 role=link data-url=#{polymorphic_path([namespace, resource])}) %>
           <% end %>
           >
         <% collection_presenter.attributes_for(resource).each do |attribute| %>
           <td class="cell-data cell-data--<%= attribute.html_class %>">
-            <% if valid_action?(:show, resource.class) && show_action?(:show, resource) -%>
+            <% if page.try(:resource).present? && valid_action?(:show, resource.class, page.resource.class) && show_action?(:show, resource) %>
+              <a href="<%= polymorphic_path([namespace, page.resource, resource]) -%>"
+                 tabindex="-1"
+                 class="action-show"
+              >
+                <%= render_field attribute %>
+              </a>
+            <% elsif valid_action?(:show, resource.class) && show_action?(:show, resource) -%>
               <a href="<%= polymorphic_path([namespace, resource]) -%>"
                  tabindex="-1"
                  class="action-show"

@@ -1,4 +1,10 @@
-<% if valid_action?(:edit, collection_presenter.resource_name) %>
+<% if page.try(:resource).present? && valid_action?(:edit, collection_presenter.resource_name, page.resource) %>
+  <td><%= link_to(
+    t("administrate.actions.edit"),
+    [:edit, namespace, page.resource, resource],
+    class: "action-edit",
+  ) if show_action?(:edit, resource) %></td>
+<% elsif valid_action?(:edit, collection_presenter.resource_name) %>
   <td><%= link_to(
     t("administrate.actions.edit"),
     [:edit, namespace, resource],
@@ -6,7 +12,15 @@
   ) if show_action?(:edit, resource) %></td>
 <% end %>
 
-<% if valid_action?(:destroy, collection_presenter.resource_name) %>
+<% if page.try(:resource).present? && valid_action?(:destroy, collection_presenter.resource_name, page.resource) %>
+  <td><%= link_to(
+    t("administrate.actions.destroy"),
+    [namespace, page.resource, resource],
+    class: "text-color-red",
+    method: :delete,
+    data: { confirm: t("administrate.actions.confirm") }
+  ) if show_action?(:destroy, resource) %></td>
+<% elsif valid_action?(:destroy, collection_presenter.resource_name) %>
   <td><%= link_to(
     t("administrate.actions.destroy"),
     [namespace, resource],
