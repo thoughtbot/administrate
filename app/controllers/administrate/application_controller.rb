@@ -106,12 +106,20 @@ module Administrate
     end
 
     helper_method :valid_action?
-    def valid_action?(name, resource = resource_class)
-      routes.include?([resource.to_s.underscore.pluralize, name.to_s])
+    def valid_action?(name, resource = resource_class, parent_resource = nil)
+      required_parts = routes[[resource.to_s.underscore.pluralize, name.to_s]]
+
+      return false if required_parts.nil?
+
+      if parent_resource.nil?
+        required_parts.difference(["id"]).empty?
+      else
+        required_parts.include?("#{parent_resource.to_s.underscore}_id")
+      end
     end
 
     def routes
-      @routes ||= Namespace.new(namespace).routes.to_set
+      @routes ||= Namespace.new(namespace).routes
     end
 
     def records_per_page
