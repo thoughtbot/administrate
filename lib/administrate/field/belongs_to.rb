@@ -13,6 +13,10 @@ module Administrate
         end
       end
 
+      def self.eager_load?
+        true
+      end
+
       def permitted_attribute
         foreign_key
       end
