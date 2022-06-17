@@ -17,7 +17,7 @@ module Administrate
       end
 
       def self.eager_load?
-        self <= BelongsTo || self <= HasOne
+        false
       end
 
       def self.searchable?

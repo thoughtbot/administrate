@@ -26,6 +26,10 @@ module Administrate
         { "#{attr}_attributes": related_dashboard_attributes }
       end
 
+      def self.eager_load?
+        true
+      end
+
       def nested_form
         @nested_form ||= Administrate::Page::Form.new(
           resolver.dashboard_class.new,
