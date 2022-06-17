@@ -94,6 +94,8 @@ module Administrate
     end
 
     def item_includes
+      # Deprecated, internal usage has moved to #item_associations
+      Administrate.warn_of_deprecated_method(self.class, :item_includes)
       attribute_includes(show_page_attributes)
     end
 
