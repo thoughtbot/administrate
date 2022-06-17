@@ -27,7 +27,7 @@ module Administrate
       "If you are seeing this message you are probably " +
       "using a dashboard that depends explicitly on it. " +
       "Please make sure you update it to a version that " +
-      "does not use a deprecated API"
+      "does not use a deprecated API",
     )
   end
 end
