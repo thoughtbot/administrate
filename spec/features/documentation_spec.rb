@@ -62,7 +62,7 @@ describe "documentation navigation" do
     visit("/guides/hiding_dashboards_from_sidebar")
 
     expect(page).to have_css("div.main h1", text: "Hiding Dashboards from")
-    expect(page).to have_content("Resources can be removed form the sidebar")
+    expect(page).to have_content("Resources can be removed from the sidebar")
   end
 
   it "links to each documentation page" do
