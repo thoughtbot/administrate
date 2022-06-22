@@ -8,7 +8,7 @@ module Administrate
       resources = filter_resources(scoped_resource, search_term: search_term)
       resources = apply_collection_includes(resources)
       resources = order.apply(resources)
-      resources = resources.page(params[:_page]).per(records_per_page)
+      resources = paginate_resources(resources)
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
       render locals: {
@@ -238,6 +238,10 @@ module Administrate
 
     def authorize_resource(resource)
       resource
+    end
+
+    def paginate_resources(resources)
+      resources.page(params[:_page]).per(records_per_page)
     end
   end
 end
