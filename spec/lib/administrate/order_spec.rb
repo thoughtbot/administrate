@@ -106,7 +106,7 @@ describe Administrate::Order do
           order = Administrate::Order.new(
             double(to_sym: :user, tableize: "users"),
             nil,
-            "name",
+            association_attribute: "name",
           )
           relation = relation_with_association(
             :belongs_to,
@@ -131,7 +131,7 @@ describe Administrate::Order do
           order = Administrate::Order.new(
             double(table_name: "users", to_sym: :user),
             nil,
-            "invalid_column_name",
+            association_attribute: "invalid_column_name",
           )
           relation = relation_with_association(
             :belongs_to,
