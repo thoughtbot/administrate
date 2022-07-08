@@ -1,9 +1,9 @@
 module Administrate
   class Order
-    def initialize(attribute = nil, direction = nil, field = nil)
+    def initialize(attribute = nil, direction = nil, association_attribute: nil)
       @attribute = attribute
       @direction = sanitize_direction(direction)
-      @field = field
+      @association_attribute = association_attribute
     end
 
     def apply(relation)
@@ -33,7 +33,7 @@ module Administrate
 
     private
 
-    attr_reader :attribute, :field
+    attr_reader :attribute, :association_attribute
 
     def sanitize_direction(direction)
       %w[asc desc].include?(direction.to_s) ? direction.to_sym : :asc
@@ -96,7 +96,7 @@ module Administrate
     end
 
     def order_by_attribute_query
-      "#{attribute.tableize}.#{field} #{direction}"
+      "#{attribute.tableize}.#{association_attribute} #{direction}"
     end
 
     def has_many_attribute?(relation)

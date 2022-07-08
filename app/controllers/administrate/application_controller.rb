@@ -122,7 +122,7 @@ module Administrate
       @order ||= Administrate::Order.new(
         sorting_attribute,
         sorting_direction,
-        order_by_field(dashboard_attribute(sorting_attribute)),
+        association_attribute: order_by_field(dashboard_attribute(sorting_attribute)),
       )
     end
 
