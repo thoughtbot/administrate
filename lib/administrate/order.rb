@@ -75,7 +75,7 @@ module Administrate
     def order_by_attribute(relation)
       if ordering_by_association_column?(relation)
         relation.joins(
-          attribute.to_sym
+          attribute.to_sym,
         ).reorder(Arel.sql(order_by_attribute_query))
       else
         order_by_id(relation)
@@ -83,7 +83,10 @@ module Administrate
     end
 
     def ordering_by_association_column?(relation)
-      association_attribute && column_exist?(reflect_association(relation).klass, association_attribute.to_sym)
+      association_attribute &&
+        column_exist?(
+          reflect_association(relation).klass, association_attribute.to_sym
+        )
     end
 
     def column_exist?(table, column_name)
