@@ -73,18 +73,17 @@ module Administrate
     end
 
     def order_by_attribute(relation)
-      return order_by_id(relation) unless field
-
-      relation.joins(
-        attribute.to_sym,
-      ).reorder(Arel.sql(form_query(relation)))
+      if ordering_by_association_column?(relation)
+        relation.joins(
+          attribute.to_sym
+        ).reorder(Arel.sql(order_by_attribute_query))
+      else
+        order_by_id(relation)
+      end
     end
 
-    def form_query(relation)
-      return order_by_attribute_query if
-        column_exist?(reflect_association(relation).klass, field.to_sym)
-
-      order_by_id_query(relation)
+    def ordering_by_association_column?(relation)
+      association_attribute && column_exist?(reflect_association(relation).klass, association_attribute.to_sym)
     end
 
     def column_exist?(table, column_name)
