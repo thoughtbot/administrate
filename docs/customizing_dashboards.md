@@ -77,8 +77,9 @@ which are specified through the `.with_options` class method:
 
 **Field::BelongsTo**
 
-`:order` - Specifies the order of the dropdown menu, can be ordered by more
-than one column. e.g.: `"name, email DESC"`.
+`:order` - Specifies the column used to order the records. It will apply both in
+the table views and in the dropdown menu on the record forms.
+You can set multiple columns as well with direction. E.g.: `"name, email DESC"`.
 
 `:scope` - Specifies a custom scope inside a callable. Useful for preloading.
 Example: `.with_options(scope: -> { MyModel.includes(:rel).limit(5) })`
