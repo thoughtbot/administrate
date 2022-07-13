@@ -12,8 +12,8 @@
   --heading-line-height: 1.2;
 
   --base-border-radius: 4px;
-  --base-spacing: --base-line-height * 1em;
-  --small-spacing: --base-spacing * 0.5;
+  --base-spacing: var(--base-line-height) * 1em;
+  --small-spacing: var(--base-spacing) * 0.5;
 
   --white: #fff;
   --black: #000;
@@ -40,7 +40,7 @@
 
   --focus-outline-color: transparentize(var(--action-color), 0.4);
   --focus-outline-width: 3px;
-  --focus-outline: --focus-outline-width solid var(--focus-outline-color);
+  --focus-outline: var(--focus-outline-width) solid var(--focus-outline-color);
   --focus-outline-offset: 1px;
 
   --flashes: (
