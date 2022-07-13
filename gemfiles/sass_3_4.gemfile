@@ -10,7 +10,6 @@ gem "pg"
 gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
-gem "sass", "~> 3.4"
 
 group :development, :test do
   gem "appraisal"

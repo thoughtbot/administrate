@@ -66,7 +66,6 @@ With this structure, developing a typical feature looks like:
 
 This project uses:
 
-* Sass
 * [BEM]-style CSS selectors, with [namespaces]
 * Autoprefixer
 * SCSS-Lint, with [Hound] ([configuration](.scss-lint.yml))
