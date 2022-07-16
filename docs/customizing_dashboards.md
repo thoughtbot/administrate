@@ -221,6 +221,17 @@ objects to display as.
 `:collection` - Specify the options shown on the select field. It accept either
 an array or an object responding to `:call`. Defaults to `[]`.
 
+To customize option labels, pass an array of pairs where the first element is the value submitted with the form and the second element is the label shown to the user.
+
+For example:
+
+```ruby
+  currency = Field::Select.with_options(
+    collection: [ ['usd', 'Dollar'], ['eur', 'Euro'], ['yen', 'Yen'] ]
+  )
+
+```
+
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `true`.
 
