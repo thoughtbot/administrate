@@ -355,7 +355,6 @@ DEPENDENCIES
   pry-rails
   pundit
   rack-timeout
-  rails (~> 6.1.0)
   redcarpet
   selenium-webdriver
   sentry-raven
