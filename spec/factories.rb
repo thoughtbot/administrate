@@ -61,6 +61,10 @@ FactoryBot.define do
     body { "Empty" }
   end
 
+  factory :blog_tag, class: "Blog::Tag" do
+    name { Faker::NatoPhoneticAlphabet.code_word.downcase }
+  end
+
   factory :series do
     sequence(:name) { |n| "Series #{n}" }
   end

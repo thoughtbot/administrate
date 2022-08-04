@@ -12,7 +12,7 @@ module Administrate
       end
 
       def self.associated_class_name(resource_class, attr)
-        reflection(resource_class, attr).class_name
+        associated_class(resource_class, attr).name
       end
 
       def self.reflection(resource_class, attr)

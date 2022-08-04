@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
     namespace :blog do
       resources :posts
+      resources :tags
     end
 
     resources :stats, only: [:index]
