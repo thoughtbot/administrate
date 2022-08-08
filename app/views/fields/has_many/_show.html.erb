@@ -28,6 +28,7 @@ from the associated resource class's dashboard.
     page: page,
     resources: field.resources(page_number, order),
     table_title: field.name,
+    resource_class: field.associated_class,
   ) %>
   <% if field.more_than_limit? %>
     <%= paginate field.resources(page_number), param_name: "#{field.name}[page]" %>
