@@ -4,11 +4,7 @@ module Administrate
     SINGULAR_COUNT = 1
 
     def application_title
-      if Rails::VERSION::MAJOR <= 5
-        Rails.application.class.parent_name.titlecase
-      else
-        Rails.application.class.module_parent_name.titlecase
-      end
+      Rails.application.class.module_parent_name.titlecase
     end
 
     def render_field(field, locals = {})
