@@ -2,7 +2,8 @@
 title: Hiding Dashboards from the Sidebar
 ---
 
-Resources can be removed form the sidebar by removing their index action from the routes. For example:
+Resources can be removed from the sidebar by removing their `index` action
+from the routes. For example:
 
 ```ruby
 # config/routes.rb
@@ -16,4 +17,5 @@ Rails.application.routes.draw do
 end
 ```
 
-In this case, only Orders and Products will appear in the sidebar, while Line Items can still appear as an association.
+In this case, only Orders and Products will appear in the sidebar, while
+Line Items can still appear as an association.
