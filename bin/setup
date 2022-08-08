@@ -6,6 +6,16 @@
 # Exit if any subcommand fails
 set -e
 
+EXAMPLE_APP_PATH="spec/example_app"
+SAMPLE_DB_CONFIG_PATH="$EXAMPLE_APP_PATH/config/database.yml.sample"
+DB_CONFIG_PATH="$EXAMPLE_APP_PATH/config/database.yml"
+if [ ! -e "$DB_CONFIG_PATH" ]; then
+  cp "$SAMPLE_DB_CONFIG_PATH" "$DB_CONFIG_PATH"
+  echo "A new database config file was created at $DB_CONFIG_PATH."
+  echo "Please edit it to match your DB settings and then run this script again."
+  exit 0
+fi
+
 # Set up Ruby dependencies via Bundler
 gem install bundler --conservative
 bundle check || bundle install

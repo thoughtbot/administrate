@@ -17,6 +17,7 @@
 !/spec/example_app/tmp/.keep
 /spec/example_app/public/system
 /spec/example_app/public/assets
+/spec/example_app/config/database.yml
 /tags
 pkg
 *.ipr
