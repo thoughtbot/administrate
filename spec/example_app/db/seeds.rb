@@ -59,19 +59,25 @@ end
 
 Product.find_each do |p|
   Page.create!(
-    title: "Something about #{p.name}",
+    title: "Rules of #{p.name}",
     body: Faker::Lorem.paragraph,
     product: p,
   )
-  Page.create!(
-    title: "The secrets of the game #{p.name}",
+end
+
+tag_secrets = Blog::Tag.create!(name: "secrets")
+tag_recommendations = Blog::Tag.create!(name: "recommendations")
+
+Product.find_each do |p|
+  Blog::Post.create!(
+    title: "The secrets of #{p.name}",
     body: Faker::Lorem.paragraph,
-    product: p,
+    tags: [tag_secrets],
   )
-  Page.create!(
-    title: "If you liked #{p.name}, you will love these games",
+  Blog::Post.create!(
+    title: "If you liked #{p.name}, you will love these products",
     body: Faker::Lorem.paragraph,
-    product: p,
+    tags: [tag_recommendations],
   )
 end
 

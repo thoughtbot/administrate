@@ -9,6 +9,7 @@ module Blog
       title: Field::String,
       published_at: Field::DateTime,
       body: Field::Text,
+      tags: Field::HasMany,
     }
 
     READ_ONLY_ATTRIBUTES = [
@@ -20,6 +21,7 @@ module Blog
     COLLECTION_ATTRIBUTES = [
       :id,
       :title,
+      :tags,
       :published_at,
     ]
 
