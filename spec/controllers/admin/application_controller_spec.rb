@@ -7,11 +7,11 @@ RSpec.describe Admin::OrdersController, type: :controller do
     end
 
     def after_resource_created_path(requested_resource)
-      [namespace, requested_resource.customer]
+      [namespace.to_sym, requested_resource.customer]
     end
 
     def after_resource_updated_path(requested_resource)
-      [namespace, requested_resource.customer]
+      [namespace.to_sym, requested_resource.customer]
     end
   end
 
