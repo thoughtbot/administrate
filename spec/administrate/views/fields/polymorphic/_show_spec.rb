@@ -31,7 +31,7 @@ describe "fields/polymorphic/_show", type: :view do
         attribute: "product",
       )
 
-      allow(view).to receive(:valid_action?).and_return(true)
+      allow(view).to receive(:accessible_action?).and_return(true)
 
       render(
         partial: "fields/polymorphic/show",

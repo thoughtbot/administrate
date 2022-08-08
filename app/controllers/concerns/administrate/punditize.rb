@@ -5,6 +5,8 @@ module Administrate
       include Pundit::Authorization
 
       included do
+        private
+
         def scoped_resource
           policy_scope_admin super
         end
@@ -13,7 +15,7 @@ module Administrate
           authorize resource
         end
 
-        def show_action?(action, resource)
+        def authorized_action?(resource, action)
           Pundit.policy!(pundit_user, resource).send("#{action}?".to_sym)
         end
       end

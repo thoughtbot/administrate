@@ -4,6 +4,8 @@ require "sassc-rails"
 require "selectize-rails"
 require "sprockets/railtie"
 
+require "administrate/namespace/resource"
+require "administrate/not_authorized_error"
 require "administrate/page/form"
 require "administrate/page/show"
 require "administrate/page/collection"

@@ -14,11 +14,25 @@ describe "fields/belongs_to/_index", type: :view do
     )
   end
 
+  context "without an associated record" do
+    let(:belongs_to) do
+      instance_double(
+        "Administrate::Field::BelongsTo",
+        associated_class: associated_class,
+        data: nil,
+      )
+    end
+
+    it "displays nothing" do
+      render_belongs_to_index
+      expect(rendered.strip).to eq("")
+    end
+  end
+
   context "if associated resource has a show route" do
     context "and the user has permission to access it" do
       it "displays link" do
-        allow(view).to receive(:valid_action?).and_return(true)
-        allow(view).to receive(:show_action?).and_return(true)
+        allow(view).to receive(:accessible_action?).and_return(true)
         render_belongs_to_index
         expect(rendered.strip).to include(link)
       end
@@ -26,8 +40,7 @@ describe "fields/belongs_to/_index", type: :view do
 
     context "and the user does not have permission to access it" do
       it "hides link" do
-        allow(view).to receive(:valid_action?).and_return(true)
-        allow(view).to receive(:show_action?).and_return(false)
+        allow(view).to receive(:accessible_action?).and_return(false)
         render_belongs_to_index
         expect(rendered.strip).to_not include(link)
       end
@@ -36,7 +49,7 @@ describe "fields/belongs_to/_index", type: :view do
 
   context "if associated resource has no show route" do
     it "hides link" do
-      allow(view).to receive(:valid_action?).and_return(false)
+      allow(view).to receive(:accessible_action?).and_return(false)
       render_belongs_to_index
       expect(rendered.strip).to_not include(link)
     end
