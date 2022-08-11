@@ -43,9 +43,6 @@ commands:
       # Run the tests
       - run: bundle exec rspec
 
-      # Check vulnerabilities
-      - run: bundle exec rake bundler:audit
-
 default_job: &default_job
   working_directory: ~/administrate
 
