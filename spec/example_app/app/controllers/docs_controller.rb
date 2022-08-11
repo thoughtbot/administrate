@@ -21,16 +21,16 @@ class DocsController < ApplicationController
   def render_page(name, title = nil)
     page = DocPage.find(name)
 
-    if page
-      title = title || page.title
-      @page_title = [title, "Administrate"].compact.join(" - ")
-      # rubocop:disable Rails/OutputSafety
-      render layout: "docs", html: page.body.html_safe
-      # rubocop:enable Rails/OutputSafety
-    else
-      render file: Rails.root.join("public", "404.html"),
-             layout: false,
-             status: :not_found
-    end
+    title = title || page.title
+    @page_title = [title, "Administrate"].compact.join(" - ")
+    # rubocop:disable Rails/OutputSafety
+    render layout: "docs", html: page.body.html_safe
+    # rubocop:enable Rails/OutputSafety
+  rescue DocPage::PageNotAllowed, DocPage::PageNotFound
+    render(
+      file: Rails.root.join("public", "404.html"),
+      layout: false,
+      status: :not_found,
+    )
   end
 end

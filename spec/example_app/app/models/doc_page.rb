@@ -1,12 +1,43 @@
 class DocPage
+  class PageNotFound < StandardError
+    def initialize(page)
+      "Could not find page #{page.inspect}"
+    end
+  end
+
+  class PageNotAllowed < StandardError
+    def initialize(page)
+      "Page #{page.inspect} is not allowed"
+    end
+  end
+
   class << self
     def find(page)
       full_path = Rails.root + "../../#{page}.md"
+      raise PageNotFound.new(page) unless path_exists?(full_path)
 
-      if File.exist?(full_path)
-        text = File.read(full_path)
-        new(text)
-      end
+      safe_path = filter_unsafe_paths(full_path)
+      raise PageNotAllowed.new(page) unless safe_path
+
+      text = File.read(safe_path)
+      new(text)
+    end
+
+    private
+
+    def path_exists?(full_path)
+      File.exist?(full_path)
+    end
+
+    def doc_paths
+      [
+        Dir.glob(Rails.root + "../../**/*.md"),
+        Dir.glob(Rails.root + "../../*.md"),
+      ].join
+    end
+
+    def filter_unsafe_paths(full_path)
+      doc_paths[full_path.to_s]
     end
   end
 
