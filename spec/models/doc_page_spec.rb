@@ -2,10 +2,16 @@ require "rails_helper"
 
 RSpec.describe DocPage do
   describe ".find" do
-    it "is nil if the page doesn't exist" do
-      page = DocPage.find("not_a_page")
+    it "raises an error if the page doesn't exist" do
+      expect do
+        DocPage.find("not_a_page")
+      end.to raise_error(DocPage::PageNotFound)
+    end
 
-      expect(page).to be_nil
+    it "raises an error on cheeky paths" do
+      expect do
+        DocPage.find("docs/../spec/example_app/README")
+      end.to raise_error(DocPage::PageNotAllowed)
     end
 
     it "renders pages without metadata" do
