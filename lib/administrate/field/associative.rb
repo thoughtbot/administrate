@@ -31,12 +31,6 @@ module Administrate
         end
       end
 
-      private
-
-      def associated_dashboard
-        "#{associated_class_name}Dashboard".constantize.new
-      end
-
       def associated_class_name
         if option_given?(:class_name)
           deprecated_option(:class_name)
@@ -46,6 +40,12 @@ module Administrate
             attribute,
           )
         end
+      end
+
+      private
+
+      def associated_dashboard
+        "#{associated_class_name}Dashboard".constantize.new
       end
 
       def primary_key

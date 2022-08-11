@@ -28,7 +28,7 @@ All show page attributes of has_one relationship would be rendered
       <div>
       <dt class="attribute-label">
         <%= t(
-          "helpers.label.#{resource_name}.#{attribute.name}",
+          "helpers.label.#{field.associated_class_name.underscore}.#{attribute.name}",
           default: attribute.name.titleize,
         ) %>
       </dt>
