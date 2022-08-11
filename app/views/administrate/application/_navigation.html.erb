@@ -7,7 +7,7 @@ for all resources in the admin dashboard,
 as defined by the routes in the `admin/` namespace
 %>
 
-<nav class="navigation" role="navigation">
+<nav class="navigation">
   <%= link_to(t("administrate.navigation.back_to_app"), root_url, class: "button button--alt button--nav") if defined?(root_url) %>
 
   <% Administrate::Namespace.new(namespace).resources_with_index_route.each do |resource| %>
