@@ -17,6 +17,79 @@
 
 ## Changes
 
+### 0.18.0 (August 12, 2022)
+
+This is a general catchup release. We've added `dart-sass` compatibility,
+improved a i18n handling, dropped support for Rails 5.x and Ruby 2.6, dropped
+`datetime_picker_rails` because now browser support is good enough, plus many
+others.
+
+The following templates have changed since v0.17.0:
+
+  app/views/administrate/application/_collection.html.erb
+  app/views/administrate/application/_collection_header_actions.html.erb
+  app/views/administrate/application/_collection_item_actions.html.erb
+  app/views/administrate/application/_index_header.html.erb
+  app/views/administrate/application/_navigation.html.erb
+  app/views/administrate/application/_pagination.html.erb
+  app/views/administrate/application/edit.html.erb
+  app/views/administrate/application/index.html.erb
+  app/views/administrate/application/show.html.erb
+  app/views/fields/belongs_to/_index.html.erb
+  app/views/fields/belongs_to/_show.html.erb
+  app/views/fields/date/_form.html.erb
+  app/views/fields/date_time/_form.html.erb
+  app/views/fields/has_many/_index.html.erb
+  app/views/fields/has_one/_form.html.erb
+  app/views/fields/has_one/_index.html.erb
+  app/views/fields/has_one/_show.html.erb
+  app/views/fields/polymorphic/_index.html.erb
+  app/views/fields/polymorphic/_show.html.erb
+  app/views/fields/time/_form.html.erb
+  app/views/fields/url/_index.html.erb
+  app/views/fields/url/_show.html.erb
+
+If your application overrides any of them, make sure to review your
+custom templates to ensure that they remain compatible.
+
+* [DOC] [#2154] Ensure we read from sanitised paths
+* [FEATURE] [#2154] Try out GitHub's code scanning tool
+* [DOC] [#2243] Add guide on how to scope has_many relations
+* [UI] [#2239] Move pagination into partial
+* [FEATURE] [#2237] Move bundle-audit to GitHub Actions
+* [i18n] [#2200] Fix HasOne association translations
+* BUGFIX] [#2235] Guess correct name for namespaced associations
+* [BUGFIX] [#2215] Fix typos and formatting in hiding dashboard docs
+* [FEATURE] [#1941] Unify Action Checks
+* [FEATURE] [#2181] Allow overriding the sample app database config
+* [COMPAT] [#2201] Drop support for Rails 5.x
+* [DOC] [#2225] Document how to customize Field::Select option labels
+* [SECURITY] [#2227] Update Rails out of CVE-2022-32224
+* [FEATURE] [#2216] Move pagination into private method for overriding
+* [FEATURE] [#2208] Enable ordering the BelongsTo fields by using `order` option.
+* [i18n] [#2219] Add Slovenian translations
+* [FEATURE] [#2211] Improve index eager load performance
+* [COMPAT] [#2198] Dart-sass compatibility
+* [COMPAT] [#2194] Drop support for Ruby 2.6, which reached EOL
+* [i18n] [#2186] Correct grammar on German error messages
+* [i18n] [#2183] Only include locales when bundling
+* [OPTIM] [#2182] Change ApplicationController's routes's class to Set to speed up "valid_action?"
+* [DOC] [#2153] How to customise the search
+* [BUGFIX] [#2164] Use field.name rather than resource_name for has_one relationships
+* [BUGFIX] [#2163] Check the routes before render link in collection.html
+* [COMPAT] [#2161] Bump Rails dependencies from 6.1.4.6 to 6.1.5
+* [FEATURE] [#2133] Sort dashboard attributes
+* [BUGFIX] [#2152] Fix typos in example view for Adding Controllers
+* [UI] [#2146] Add destroy link in the show template
+* [BUGFIX] [#2145] Fix table header classes of has_many field
+* [COMPAT] [#2141] Fix Pundit >2.2.0 include
+* [UI] [#2139] Add HTML options to the URL field
+* [COMPAT] [#2144] Update Rails to 6.1.4.6
+* [UI] [#2136] Drop datetime_picker_rails and use browser fields
+* [CHANGE] [#2138] Provide a stylelint config that we can tweak
+* [CHANGE] [#2096] Make search easier to override and adapt to custom use cases
+* [i18n] [#2114] Add i18n support for Field::HasMany
+
 ### 0.17.0 (January 31, 2022)
 
 This release incorporates nearly a year of minor changes, starts testing
