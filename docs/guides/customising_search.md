@@ -135,7 +135,7 @@ records.
 
 ## A working example
 
-The [Administrate demo app](/spec/)
+The [Administrate demo app](/spec/example_app)
 includes an example of custom search in the "Log Entries" dashboard.
 In this app, each `LogEntry` instance has a polymorphic `belongs_to`
 association to a `:logeable`. Logeables are other models for which logs can be
