@@ -40,7 +40,10 @@ describe "customer edit page" do
     customer = create(:customer, kind: :standard)
 
     visit edit_admin_customer_path(customer)
-    select "vip", from: "Kind"
+
+    find(".selectize-input #customer_kind-selectized").click
+    find(:xpath, "//div[@data-selectable and contains(., 'vip')]").click
+
     click_on "Update Customer"
 
     expect(page).to have_text("KIND")
