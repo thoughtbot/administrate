@@ -1,12 +1,12 @@
 ---
-title: Authenticating admin users
+title: Sessions
 ---
 
-Authentication is left for you to implement after you install Administrate into
-your app. It's expected that you can plugin your existing authentication
-system.
+Super-user session logic is open-ended,
+meaning you can choose any approach you like
+in a common Rails manner.
 
-The base `Admin::ApplicationController` has a `TODO` to be completed:
+See our `TODO` remark, in `Admin::ApplicationController`.
 
 ```ruby
 class Admin::ApplicationController < Administrate::ApplicationController
@@ -18,9 +18,11 @@ class Admin::ApplicationController < Administrate::ApplicationController
 end
 ```
 
+Here are some common approaches based on popular gems.
+
 ## Using Clearance
 
-[Clearance][clearance] provides Rails authentication with email & password.
+[Clearance][clearance] enables email-and-passcode login.
 
 ```ruby
 class Admin::ApplicationController < Administrate::ApplicationController
@@ -31,8 +33,7 @@ end
 
 ## Using Devise
 
-[Devise][devise] is an authentication solution for Rails with Warden. Include
-the authentication method for your model as a `before_action`:
+[Devise][devise] is based on a gem called `warden`.
 
 ```ruby
 class Admin::ApplicationController < Administrate::ApplicationController
@@ -42,8 +43,8 @@ end
 
 ## Using HTTP Basic authentication
 
-Rails includes the [`http_basic_authenticate_with`][rails-http-basic-auth]
-method which can be added to your base admin controller:
+Rails includes [`http_basic_authenticate_with`][rails-http-basic-auth],
+and such can be added in your base admin controller:
 
 ```ruby
 class Admin::ApplicationController < Administrate::ApplicationController
@@ -54,8 +55,9 @@ class Admin::ApplicationController < Administrate::ApplicationController
 end
 ```
 
-With this approach consider using [dotenv][dotenv] to setup your environment and
-avoid committing secrets in your repository.
+Should you choose Basic Auth,
+consider using [dotenv][dotenv] locally;
+placing passcodes inside your code is a messy recipe.
 
 [clearance]: https://github.com/thoughtbot/clearance
 [devise]: https://github.com/plataformatec/devise
