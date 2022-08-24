@@ -1,26 +1,23 @@
 ---
-title: Customizing controller actions
+title: Specialized actions
 ---
 
-When you install Administrate into your app,
-we generate empty controllers for each of your resources.
-If you want to create more complex application behavior for a dashboard,
-you can overwrite controller actions.
-
-The generated controller will look something like:
+Once you add Administrate dashboards in your program,
+you should see a bare controller per each of your program's resources.
+Each controller on generation looks like:
 
 ```ruby
-# app/controllers/admin/foos_controller.rb
+# app/controllers/admin/records_controller.rb
 
-class Admin::FoosController < Admin::ApplicationController
+class Admin::RecordsController < Admin::ApplicationController
 
   # Overwrite any of the RESTful controller actions to implement custom behavior
-  # For example, you may want to send an email after a foo is updated.
+  # For example, you may want to send an email after a record is updated.
   #
   # def update
-  #   foo = Foo.find(params[:id])
-  #   foo.update(params[:foo])
-  #   send_foo_updated_email
+  #   record = Record.find(params[:id])
+  #   record.update(params[:record])
+  #   send_record_updated_email
   # end
 
   # Override this method to specify custom lookup behavior.
@@ -28,7 +25,7 @@ class Admin::FoosController < Admin::ApplicationController
   # actions.
   #
   # def find_resource(param)
-  #   Foo.find_by!(slug: param)
+  #   Record.find_by!(slug: param)
   # end
 
   # Override this if you have certain roles that require a subset
@@ -46,9 +43,10 @@ end
 
 ## Customizing Actions
 
-To disable certain actions globally, you can disable their
-routes in `config/routes.rb`, using the usual Rails
-facilities for this. For example:
+You can globally disable an action,
+by dropping corresponding routes in `config/routes.rb`,
+as is normal in Rails.
+For example:
 
 ```ruby
 Rails.application.routes.draw do
@@ -62,9 +60,11 @@ Rails.application.routes.draw do
 end
 ```
 
-## Customizing Default Sorting
+## Specialized ordering
 
-To set the default sorting on the index action you could override `default_sorting_attribute` or `default_sorting_direction` in your dashboard controller like this:
+You can order records on index actions
+by changing `default_sorting_attribute` or `default_sorting_direction`,
+in your dashboard controller:
 
 ```ruby
 def default_sorting_attribute
@@ -76,9 +76,12 @@ def default_sorting_direction
 end
 ```
 
-## Customizing Redirects after actions
+## Redirect once action is done
 
-To set custom redirects after the actions `create`, `update` and `destroy` you can override `after_resource_created_path`, `after_resource_updated_path` or `after_resource_destroyed_path` like this:
+You can redirect after the actions `create`, `update` and `destroy` by changing
+`after_resource_created_path`,
+`after_resource_updated_path`,
+or `after_resource_destroyed_path`:
 
 ```ruby
     def after_resource_destroyed_path(_requested_resource)
