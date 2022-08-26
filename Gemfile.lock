@@ -5,9 +5,9 @@ PATH
       actionpack (>= 5.0)
       actionview (>= 5.0)
       activerecord (>= 5.0)
+      dartsass-rails (~> 0.4.0)
       jquery-rails (>= 4.0)
       kaminari (>= 1.0)
-      sassc-rails (~> 2.1)
       selectize-rails (~> 0.6)
 
 GEM
@@ -111,6 +111,8 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
+    dartsass-rails (0.4.0)
+      railties (>= 6.0.0)
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.1)
@@ -136,7 +138,6 @@ GEM
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     faraday-net_http (1.0.1)
-    ffi (1.15.5)
     formulaic (0.4.1)
       activesupport
       capybara
@@ -268,14 +269,6 @@ GEM
     rspec-support (3.10.2)
     ruby2_keywords (0.0.4)
     rubyzip (2.3.2)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     selectize-rails (0.12.6)
     selenium-webdriver (4.4.0)
       childprocess (>= 0.5, < 5.0)
@@ -297,7 +290,6 @@ GEM
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
     thor (1.2.1)
-    tilt (2.0.11)
     timecop (0.9.5)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
@@ -337,6 +329,7 @@ DEPENDENCIES
   awesome_print
   byebug
   capybara
+  dartsass-rails
   database_cleaner
   dotenv-rails
   factory_bot_rails

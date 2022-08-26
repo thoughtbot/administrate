@@ -13,7 +13,7 @@ gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
 gem "rails", "~> 6.1"
-
+gem "dartsass-rails"
 group :development, :test do
   gem "appraisal"
   gem "awesome_print"
