@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 gem "administrate-field-image"
+gem "dartsass-rails"
 gem "faker"
 gem "front_matter_parser"
 gem "globalid"
@@ -13,7 +14,7 @@ gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
 gem "rails", "~> 6.1"
-gem "dartsass-rails"
+
 group :development, :test do
   gem "appraisal"
   gem "awesome_print"
