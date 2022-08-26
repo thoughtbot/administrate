@@ -1,6 +1,6 @@
 require "jquery-rails"
 require "kaminari"
-require "dartsass-rails"
+require "sassc-rails"
 require "selectize-rails"
 require "sprockets/railtie"
 
@@ -23,10 +23,10 @@ module Administrate
     @@stylesheets = []
 
     initializer "administrate.assets.precompile" do |app|
-      app.config.assets.precompile += [
-        "administrate/application.js",
-        "administrate/application.css",
-      ]
+      app.config.dartsass.builds = {
+        "administrate/application.js" => "administrate/application.js",
+        "administrate/application.scss" =>  "administrate/application.css",
+      }
     end
 
     def self.add_javascript(script)
