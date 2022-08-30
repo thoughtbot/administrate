@@ -31,7 +31,7 @@ from the associated resource class's dashboard.
     resource_class: field.associated_class,
   ) %>
   <% if field.more_than_limit? %>
-    <%= paginate field.resources(page_number), param_name: "#{field.name}[page]" %>
+    <%= render("pagination", resources: field.resources(page_number), param_name: "#{field.name}[page]") %>
   <% end %>
 
 <% else %>
