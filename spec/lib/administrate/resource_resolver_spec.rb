@@ -23,6 +23,17 @@ describe Administrate::ResourceResolver do
         remove_constants :Library
       end
     end
+
+    it "handles plural namespaced models" do
+      begin
+        module Libraries; class BookDashboard; end; end
+        resolver = Administrate::ResourceResolver.new("admin/libraries/books")
+
+        expect(resolver.dashboard_class).to eq(Libraries::BookDashboard)
+      ensure
+        remove_constants :Libraries
+      end
+    end
   end
 
   describe "#namespace" do

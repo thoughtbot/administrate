@@ -35,7 +35,8 @@ module Administrate
     end
 
     def controller_path_parts
-      controller_path.split("/")[1..-1].map(&:singularize)
+      path_parts = controller_path.split("/")[1..-1]
+      path_parts << path_parts.pop.singularize
     end
 
     attr_reader :controller_path
