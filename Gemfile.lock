@@ -117,6 +117,7 @@ GEM
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
     diff-lcs (1.4.4)
+    docile (1.4.0)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -284,6 +285,12 @@ GEM
       faraday (>= 1.0)
     shoulda-matchers (5.2.0)
       activesupport (>= 5.2.0)
+    simplecov (0.21.2)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     smart_properties (1.17.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
@@ -353,6 +360,7 @@ DEPENDENCIES
   selenium-webdriver
   sentry-raven
   shoulda-matchers
+  simplecov
   timecop
   uglifier
   unicorn
