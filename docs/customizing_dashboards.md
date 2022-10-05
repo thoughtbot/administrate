@@ -120,6 +120,8 @@ association `belongs_to :country`, from your model.
 
 `:direction` - What direction the sort should be in, `:asc` (default) or `:desc`.
 
+`:paginate` - Specifies if the paginate is enable in show page. Default is `true`.
+
 `:primary_key` (deprecated) - Specifies object's primary_key.
 
 `:foreign_key` (deprecated) - Specifies the name of the foreign key directly.
