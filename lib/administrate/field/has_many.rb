@@ -46,7 +46,7 @@ module Administrate
       end
       
       def paginate?
-        options.fetch(:paginate, true)
+        !(limit == false || limit == 0)
       end
 
       def permitted_attribute
