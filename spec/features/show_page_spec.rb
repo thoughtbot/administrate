@@ -237,7 +237,7 @@ RSpec.describe "customer show page" do
   end
 
   it "displays translated labels in has_many collection partials" do
-    custom_label = "Time Shipped"
+    custom_label = "Time shipped"
     customer = create(:customer)
     create(:order, customer: customer)
 
