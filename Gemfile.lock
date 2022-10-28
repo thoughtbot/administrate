@@ -193,7 +193,7 @@ GEM
     minitest (5.16.3)
     multipart-post (2.1.1)
     nio4r (2.5.8)
-    nokogiri (1.13.8)
+    nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     parser (3.1.2.1)
