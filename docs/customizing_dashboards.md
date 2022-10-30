@@ -113,14 +113,12 @@ association `belongs_to :country`, from your model.
 
 **Field::HasMany**
 
-`:limit` - Set the number of resources to display in the show view. Default is
-`5`.
+`:limit` - Set the number of resources to display in the show view. If not want 
+use paginate in show page, you can set as `0` or `false`. Default is `5`.
 
 `:sort_by` - What to sort the association by in the show view.
 
 `:direction` - What direction the sort should be in, `:asc` (default) or `:desc`.
-
-`:paginate` - Specifies if the paginate is enable in show page. Default is `true`.
 
 `:primary_key` (deprecated) - Specifies object's primary_key.
 
