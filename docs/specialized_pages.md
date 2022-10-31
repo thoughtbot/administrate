@@ -1,5 +1,5 @@
 ---
-title: Customizing page views
+title: Specialized pages
 ---
 
 You can provide replacements for any of Administrate's templates.
