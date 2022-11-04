@@ -44,7 +44,7 @@ module Administrate
       def limit
         options.fetch(:limit, DEFAULT_LIMIT)
       end
-      
+
       def paginate?
         limit.respond_to?(:zero?) ? limit.zero? : limit.present?
       end
