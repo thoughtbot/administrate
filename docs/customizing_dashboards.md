@@ -113,8 +113,8 @@ association `belongs_to :country`, from your model.
 
 **Field::HasMany**
 
-`:limit` - Set the number of resources to display in the show view. If not want 
-use paginate in show page, you can set as `0` or `false`. Default is `5`.
+`:limit` - The number of resources (paginated) to display in the show view. To disable pagination,
+set this to `0` or `false`. Default is `5`.
 
 `:sort_by` - What to sort the association by in the show view.
 
