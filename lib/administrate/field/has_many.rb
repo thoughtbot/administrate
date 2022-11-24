@@ -30,15 +30,18 @@ module Administrate
       end
 
       def associated_resource_options
-        candidate_resources.map do |resource|
-          [display_candidate_resource(resource), resource.send(primary_key)]
+        candidate_resources.map do |associated_resource|
+          [
+            display_candidate_resource(associated_resource),
+            associated_resource.send(association_primary_key),
+          ]
         end
       end
 
       def selected_options
         return if data.empty?
 
-        data.map { |object| object.send(primary_key) }
+        data.map { |object| object.send(association_primary_key) }
       end
 
       def limit
