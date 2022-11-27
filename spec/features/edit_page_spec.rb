@@ -87,4 +87,15 @@ describe "customer edit page" do
     expect(page).to have_text(new_email)
     expect(page).to have_flash("Custom name was successfully updated.")
   end
+
+  it "handles complex associations" do
+    country = create(:country, code: "CO")
+    customer = create(:customer, territory: country)
+
+    visit edit_admin_customer_path(customer)
+    click_on "Update Customer"
+
+    customer.reload
+    expect(customer.territory).to eq(country)
+  end
 end
