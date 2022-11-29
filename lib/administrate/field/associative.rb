@@ -52,6 +52,12 @@ module Administrate
         "#{associated_class_name}Dashboard".constantize.new
       end
 
+      def primary_key
+        # Deprecated, renamed `association_primary_key`
+        Administrate.warn_of_deprecated_method(self.class, :primary_key)
+        association_primary_key
+      end
+
       def association_primary_key
         if option_given?(:primary_key)
           deprecated_option(:primary_key)
