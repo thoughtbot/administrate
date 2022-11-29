@@ -87,7 +87,7 @@ describe Administrate::Field::HasMany do
       remove_constants :Foo, :FooDashboard
     end
 
-    it "determines what primary key is used on the relationship for the form" do
+    it "is the key matching the associated foreign key" do
       association =
         Administrate::Field::HasMany.with_options(
           primary_key: "uuid", class_name: "Foo",
