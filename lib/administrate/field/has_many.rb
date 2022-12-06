@@ -45,6 +45,10 @@ module Administrate
         options.fetch(:limit, DEFAULT_LIMIT)
       end
 
+      def paginate?
+        limit.respond_to?(:zero?) ? limit.zero? : limit.present?
+      end
+
       def permitted_attribute
         self.class.permitted_attribute(
           attribute,
@@ -53,12 +57,15 @@ module Administrate
       end
 
       def resources(page = 1, order = self.order)
-        resources = order.apply(data).page(page).per(limit)
+        resources = order.apply(data)
+        if paginate?
+          resources = resources.page(page).per(limit)
+        end
         includes.any? ? resources.includes(*includes) : resources
       end
 
       def more_than_limit?
-        data.count(:all) > limit
+        paginate? && data.count(:all) > limit
       end
 
       def data
