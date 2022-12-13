@@ -46,7 +46,7 @@ module Administrate
       end
 
       def paginate?
-        limit.respond_to?(:zero?) ? limit.zero? : limit.present?
+        limit.respond_to?(:positive?) ? limit.positive? : limit.present?
       end
 
       def permitted_attribute
