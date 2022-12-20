@@ -214,6 +214,8 @@ module Administrate
         end
       elsif data.is_a?(ActionController::Parameters)
         data.transform_values { |v| read_param_value(v) }
+      elsif data.is_a?(String) && data.blank?
+        nil
       else
         data
       end
