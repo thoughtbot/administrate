@@ -132,6 +132,19 @@ describe Admin::CustomersController, type: :controller do
         expect(page.resource).to be_a_new(Customer)
       end
     end
+
+    describe "with empty string param" do
+      it "sets empty string value to nil" do
+        empty_string_attributes = { country_code: "" }
+
+        locals = capture_view_locals do
+          post :create, params: { customer: empty_string_attributes }
+        end
+
+        page = locals[:page]
+        expect(page.resource.country_code).to be_nil
+      end
+    end
   end
 
   describe "PUT update" do
