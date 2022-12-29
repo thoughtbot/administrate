@@ -1,3 +1,10 @@
+if ENV["COVERAGE"] == "true"
+  puts "Calculating Code Coverage with SimpleCov"
+
+  require "simplecov"
+  SimpleCov.start "rails"
+end
+
 # http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
