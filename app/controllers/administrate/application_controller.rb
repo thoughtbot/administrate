@@ -267,7 +267,7 @@ module Administrate
     end
     helper_method :show_action?
 
-    def new_resource(params={})
+    def new_resource(params = {})
       resource_class.new(params)
     end
     helper_method :new_resource
