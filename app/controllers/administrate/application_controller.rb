@@ -40,7 +40,7 @@ module Administrate
     end
 
     def create
-      resource = resource_class.new(resource_params)
+      resource = new_resource(resource_params)
       authorize_resource(resource)
 
       if resource.save
@@ -267,8 +267,8 @@ module Administrate
     end
     helper_method :show_action?
 
-    def new_resource
-      resource_class.new
+    def new_resource(params = {})
+      resource_class.new(params)
     end
     helper_method :new_resource
 
