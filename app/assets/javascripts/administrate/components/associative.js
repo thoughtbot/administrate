@@ -1,3 +1,3 @@
 $(function() {
-  $('.field-unit select').selectize({});
+  $('.field-unit select').not(".non-selectizable").selectize({});
 });
