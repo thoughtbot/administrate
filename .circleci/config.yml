@@ -7,12 +7,10 @@ orbs:
 commands:
   shared_steps:
     steps:
+      - checkout
+
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
-
-      - run: ls -l ~/administrate
-      - run: for i in ~/administrate/*; do echo "=== $i"; cat $i; done
-      - checkout
 
       # Install bundler
       - run: gem install bundler:2.3.5
