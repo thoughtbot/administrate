@@ -7,10 +7,10 @@ orbs:
 commands:
   shared_steps:
     steps:
+      - checkout
+
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
-
-      - checkout
 
       # Install bundler
       - run: gem install bundler:2.3.5
