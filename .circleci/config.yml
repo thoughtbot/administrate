@@ -11,6 +11,7 @@ commands:
       - browser-tools/install-chromedriver
 
       - run: ls -l ~/administrate
+      - run: for i in ~/administrate/*; do echo "=== $i"; cat $i; done
       - checkout
 
       # Install bundler
