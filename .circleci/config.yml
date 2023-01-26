@@ -10,6 +10,7 @@ commands:
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
 
+      - run: ls -l ~/administrate
       - checkout
 
       # Install bundler
