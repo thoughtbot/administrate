@@ -62,7 +62,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
-      - image: postgres:10.1-alpine
+      - image: cimg/postgres:15.1
         environment:
           POSTGRES_USER: administrate
           POSTGRES_DB: ruby27
@@ -83,7 +83,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
-      - image: postgres:10.1-alpine
+      - image: cimg/postgres:15.1
         environment:
           POSTGRES_USER: administrate
           POSTGRES_DB: ruby30
@@ -103,7 +103,7 @@ jobs:
           PGHOST: localhost
           PGUSER: administrate
           RAILS_ENV: test
-      - image: postgres:10.1-alpine
+      - image: cimg/postgres:15.1
         environment:
           POSTGRES_USER: administrate
           POSTGRES_DB: ruby31
