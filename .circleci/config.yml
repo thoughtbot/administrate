@@ -2,7 +2,7 @@
 version: 2.1
 
 orbs:
-  browser-tools: circleci/browser-tools@1.2.4
+  browser-tools: circleci/browser-tools@1.4.1
 
 commands:
   shared_steps:
@@ -57,7 +57,7 @@ jobs:
       - run: bundle exec appraisal rails61 rspec
       - run: bundle exec appraisal rails70 rspec
     docker:
-      - image: circleci/ruby:2.7
+      - image: cimg/ruby:2.7-browsers
         environment:
           PGHOST: localhost
           PGUSER: administrate
@@ -78,7 +78,7 @@ jobs:
       - run: bundle exec appraisal rails61 rspec
       - run: bundle exec appraisal rails70 rspec
     docker:
-      - image: circleci/ruby:3.0
+      - image: cimg/ruby:3.0-browsers
         environment:
           PGHOST: localhost
           PGUSER: administrate
