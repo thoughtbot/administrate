@@ -156,7 +156,7 @@ describe Administrate::Order do
     context "when relation has has_one association" do
       it "orders by id" do
         order = Administrate::Order.new(
-          double(to_sym: :user, tableize: "users")
+          double(to_sym: :user, tableize: "users"),
         )
         relation = relation_with_association(:has_one)
         allow(relation).to receive(:reorder).and_return(relation)
