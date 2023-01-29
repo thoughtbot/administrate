@@ -16,4 +16,8 @@ class ProductMetaTagDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = ATTRIBUTES
   FORM_ATTRIBUTES = ATTRIBUTES
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTES
+
+  def display_resource(tag)
+    tag.meta_title
+  end
 end
