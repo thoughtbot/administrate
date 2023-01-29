@@ -74,15 +74,19 @@ module Administrate
     end
 
     def order_by_belongs_to(relation)
-      return order_by_attribute(relation) if ordering_by_association_column?(relation)
-
-      order_by_id(relation)
+      if ordering_by_association_column?(relation)
+        order_by_attribute(relation)
+      else
+        order_by_id(relation)
+      end
     end
 
     def order_by_has_one(relation)
-      return order_by_attribute(relation) if ordering_by_association_column?(relation)
-
-      order_by_association_id(relation)
+      if ordering_by_association_column?(relation)
+        order_by_attribute(relation)
+      else
+        order_by_association_id(relation)
+      end
     end
 
     def order_by_attribute(relation)
@@ -96,7 +100,7 @@ module Administrate
     end
 
     def order_by_association_id(relation)
-      relation.reorder(Arel.sql(order_by_association_id_query(relation)))
+      relation.reorder(Arel.sql(order_by_association_id_query))
     end
 
     def ordering_by_association_column?(relation)
@@ -114,7 +118,7 @@ module Administrate
       "#{relation.table_name}.#{foreign_key(relation)} #{direction}"
     end
 
-    def order_by_association_id_query(relation)
+    def order_by_association_id_query
       "#{association_table_name}.id #{direction}"
     end
 
