@@ -24,7 +24,6 @@ module Administrate
 
     initializer "administrate.assets.precompile" do |app|
       app.config.dartsass.builds = {
-        File.join(File.dirname(__FILE__), "../administrate/application.scss")  =>  "../administrate/application.css",
         File.join(File.dirname(__FILE__), "../../app/assets/stylesheets/administrate/application.scss")  =>  File.join(File.dirname(__FILE__), "../../app/assets/stylesheets/administrate/application.css")
       }
     end

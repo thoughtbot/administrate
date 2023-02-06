@@ -334,6 +334,7 @@ DEPENDENCIES
   awesome_print
   byebug
   capybara
+  dartsass-rails
   database_cleaner
   dotenv-rails
   factory_bot_rails

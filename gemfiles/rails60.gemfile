@@ -15,6 +15,7 @@ gem "redcarpet"
 gem "sentry-rails"
 gem "sentry-ruby"
 gem "unicorn"
+gem "dartsass-rails"
 gem "rails", "~> 6.0.3.4"
 
 group :development, :test do

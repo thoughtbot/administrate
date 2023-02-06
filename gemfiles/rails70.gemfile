@@ -16,6 +16,7 @@ gem "sentry-rails"
 gem "sentry-ruby"
 gem "unicorn"
 gem "rails", "~> 7.0"
+gem "dartsass-rails"
 
 group :development, :test do
   gem "appraisal"
