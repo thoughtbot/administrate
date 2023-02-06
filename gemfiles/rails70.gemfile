@@ -12,6 +12,7 @@ gem "pundit"
 gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
+gem "dartsass-rails"
 gem "rails", "~> 6.1"
 
 group :development, :test do
