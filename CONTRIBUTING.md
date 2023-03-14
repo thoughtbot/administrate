@@ -38,7 +38,7 @@ coverage and (where necessary) have internationalisation support.
 Administrate's demo application can be run like any Rails application:
 
 ```sh
-bundle exec rails s
+bundle exec rails server
 ```
 
 This will start the application defined in `spec/example_app`.
