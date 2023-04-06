@@ -196,7 +196,7 @@ describe Administrate::Field::BelongsTo do
       remove_constants :Foo, :FooDashboard
     end
 
-    it "determines what primary key is used on the relationship for the form" do
+    it "is the associated table key that matches our foreign key" do
       association =
         Administrate::Field::BelongsTo.with_options(
           primary_key: "uuid", class_name: "Foo",
