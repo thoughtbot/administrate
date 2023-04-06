@@ -27,7 +27,12 @@ module Administrate
       COLLECTION_ATTRIBUTE_LIMIT = 4
       READ_ONLY_ATTRIBUTES = %w[id created_at updated_at]
 
-      class_option :namespace, type: :string, default: :admin
+      class_option(
+        :namespace,
+        type: :string,
+        desc: "Namespace where the admin dashboards live",
+        default: "admin",
+      )
 
       source_root File.expand_path("../templates", __FILE__)
 

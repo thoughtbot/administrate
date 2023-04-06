@@ -13,7 +13,12 @@ module Administrate
     class RoutesGenerator < Rails::Generators::Base
       include Administrate::GeneratorHelpers
       source_root File.expand_path("../templates", __FILE__)
-      class_option :namespace, type: :string, default: "admin"
+      class_option(
+        :namespace,
+        type: :string,
+        desc: "Namespace where the admin dashboards live",
+        default: "admin",
+      )
 
       def insert_dashboard_routes
         if valid_dashboard_models.any?
