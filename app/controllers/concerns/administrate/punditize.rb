@@ -24,6 +24,7 @@ module Administrate
       # to be overridden by 'resolve_admin' for a different index scope in Admin
       # controllers.
       def policy_scope_admin(scope)
+        @_pundit_policy_scoped = true
         ps = Pundit::PolicyFinder.new(scope).scope!.new(pundit_user, scope)
         if ps.respond_to? :resolve_admin
           ps.resolve_admin
