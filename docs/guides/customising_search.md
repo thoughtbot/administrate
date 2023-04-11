@@ -135,7 +135,7 @@ records.
 
 ## A working example
 
-The [Administrate demo app](/admin)
+The [Administrate demo app](https://administrate-demo.herokuapp.com/admin)
 includes an example of custom search in the "Log Entries" dashboard.
 In this app, each `LogEntry` instance has a polymorphic `belongs_to`
 association to a `:logeable`. Logeables are other models for which logs can be
