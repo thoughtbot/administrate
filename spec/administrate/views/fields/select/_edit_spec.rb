@@ -144,6 +144,30 @@ describe "fields/select/_form", type: :view do
     )
   end
 
+  it "prioritises given collections over enums" do
+    customer = create(:customer, name: "Dave")
+    field = Administrate::Field::Select.new(
+      :kind,
+      "platinum",
+      :_page_,
+      resource: customer,
+      collection: ["gold", "platinum"]
+    )
+
+    render(
+      partial: "fields/select/form",
+      locals: { field: field, f: form_builder(customer) },
+    )
+    expect(rendered).to have_css(
+      %{select[name="customer[kind]"]
+        option[value="platinum"][selected="selected"]},
+      text: "platinum",
+    )
+    expect(rendered).not_to have_css(
+      %{select[name="customer[kind]"] option[value="vip"]},
+    )
+  end
+
   it "defaults to an empty list when there are no options" do
     customer = create(:customer, name: "Dave")
     field = Administrate::Field::Select.new(
