@@ -26,7 +26,7 @@ describe "fields/select/_form", type: :view do
   it "works when :collection is an array" do
     customer = create(:customer)
     field = Administrate::Field::Select.new(
-      :kind,
+      :email_subscriber,
       "yes",
       :_page_,
       resource: customer,
@@ -38,7 +38,7 @@ describe "fields/select/_form", type: :view do
       locals: { field: field, f: form_builder(customer) },
     )
     expect(rendered).to have_css(
-      %{select[name="customer[kind]"]
+      %{select[name="customer[email_subscriber]"]
         option[value="yes"][selected="selected"]},
       text: "yes",
     )
@@ -47,7 +47,7 @@ describe "fields/select/_form", type: :view do
   it "works when :collection is a hash" do
     customer = create(:customer)
     field = Administrate::Field::Select.new(
-      :kind,
+      :email_subscriber,
       "opt1",
       :_page_,
       resource: customer,
@@ -63,7 +63,7 @@ describe "fields/select/_form", type: :view do
       locals: { field: field, f: form_builder(customer) },
     )
     expect(rendered).to have_css(
-      %{select[name="customer[kind]"]
+      %{select[name="customer[email_subscriber]"]
         option[value="opt1"][selected="selected"]},
       text: "yes",
     )
@@ -72,7 +72,7 @@ describe "fields/select/_form", type: :view do
   it "works when :collection is a call-able" do
     customer = create(:customer)
     field = Administrate::Field::Select.new(
-      :kind,
+      :email_subscriber,
       "opt1",
       :_page_,
       resource: customer,
@@ -90,7 +90,7 @@ describe "fields/select/_form", type: :view do
       locals: { field: field, f: form_builder(customer) },
     )
     expect(rendered).to have_css(
-      %{select[name="customer[kind]"]
+      %{select[name="customer[email_subscriber]"]
         option[value="opt1"][selected="selected"]},
       text: "yes",
     )
@@ -99,7 +99,7 @@ describe "fields/select/_form", type: :view do
   it "provides some context to that call-able" do
     customer = create(:customer, name: "Dave")
     field = Administrate::Field::Select.new(
-      :kind,
+      :email_subscriber,
       "opt1",
       :_page_,
       resource: customer,
@@ -118,16 +118,36 @@ describe "fields/select/_form", type: :view do
       locals: { field: field, f: form_builder(customer) },
     )
     expect(rendered).to have_css(
-      %{select[name="customer[kind]"]
+      %{select[name="customer[email_subscriber]"]
         option[value="opt1"][selected="selected"]},
       text: "yes, Dave",
     )
   end
 
-  it "is an empty list when not set" do
+  it "detects the values of an ActiveRecord::Enum" do
     customer = create(:customer, name: "Dave")
     field = Administrate::Field::Select.new(
       :kind,
+      "vip",
+      :_page_,
+      resource: customer,
+    )
+
+    render(
+      partial: "fields/select/form",
+      locals: { field: field, f: form_builder(customer) },
+    )
+    expect(rendered).to have_css(
+      %{select[name="customer[kind]"]
+        option[value="vip"][selected="selected"]},
+      text: "vip",
+    )
+  end
+
+  it "defaults to an empty list when there are no options" do
+    customer = create(:customer, name: "Dave")
+    field = Administrate::Field::Select.new(
+      :email_subscriber,
       "opt1",
       :_page_,
       resource: customer,
@@ -138,7 +158,7 @@ describe "fields/select/_form", type: :view do
       locals: { field: field, f: form_builder(customer) },
     )
     expect(rendered).not_to have_css(
-      %{select[name="customer[kind]"] option}
+      %{select[name="customer[email_subscriber]"] option}
     )
   end
 
@@ -146,7 +166,7 @@ describe "fields/select/_form", type: :view do
     it "adds a blank option" do
       customer = create(:customer, name: "Dave")
       field = Administrate::Field::Select.new(
-        :kind,
+        :email_subscriber,
         "opt1",
         :_page_,
         resource: customer,
@@ -157,13 +177,13 @@ describe "fields/select/_form", type: :view do
         partial: "fields/select/form",
         locals: { field: field, f: form_builder(customer) },
       )
-      expect(rendered).to have_css(%{select[name="customer[kind]"] option}, text: "No answer")
+      expect(rendered).to have_css(%{select[name="customer[email_subscriber]"] option}, text: "No answer")
     end
 
     it "works with a call-able collection" do
       customer = create(:customer, name: "Dave")
       field = Administrate::Field::Select.new(
-        :kind,
+        :email_subscriber,
         "opt1",
         :_page_,
         resource: customer,
@@ -181,7 +201,7 @@ describe "fields/select/_form", type: :view do
         partial: "fields/select/form",
         locals: { field: field, f: form_builder(customer) },
       )
-      expect(rendered).to have_css(%{select[name="customer[kind]"] option}, text: "No answer")
+      expect(rendered).to have_css(%{select[name="customer[email_subscriber]"] option}, text: "No answer")
     end
   end
 
