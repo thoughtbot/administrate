@@ -5,6 +5,7 @@ module Administrate
     class HasOne < Associative
       def self.permitted_attribute(attr, options = {})
         resource_class = options[:resource_class]
+        action = options[:action]
         final_associated_class_name =
           if options.key?(:class_name)
             Administrate.warn_of_deprecated_option(:class_name)
@@ -22,7 +23,7 @@ module Administrate
         related_dashboard_attributes =
           Administrate::ResourceResolver.
             new("admin/#{final_associated_class_name}").
-            dashboard_class.new.permitted_attributes + [:id]
+            dashboard_class.new.permitted_attributes(action) + [:id]
         { "#{attr}_attributes": related_dashboard_attributes }
       end
 
