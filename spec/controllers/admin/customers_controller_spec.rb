@@ -66,6 +66,11 @@ describe Admin::CustomersController, type: :controller do
         expect(locals[:resources].map(&:name)).to eq sorted_customer_names
       end
     end
+
+    it "assigns the action name as a string" do
+      get :index
+      expect(controller.action_name).to be_a(String)
+    end
   end
 
   describe "GET show" do

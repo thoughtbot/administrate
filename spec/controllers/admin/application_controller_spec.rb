@@ -107,11 +107,4 @@ RSpec.describe Admin::ApplicationController, type: :controller do
       )
     end
   end
-
-  describe "GET #index" do
-    it "assigns the action name as a string" do
-      get :index
-      expect(controller.action_name).to be_a(String)
-    end
-  end
 end
