@@ -51,6 +51,12 @@ module Administrate
     end
 
     def form_attributes(action = nil)
+      action =
+        case action
+        when "update" then "edit"
+        when "create" then "new"
+        else action
+        end
       specific_form_attributes_for(action) || self.class::FORM_ATTRIBUTES
     end
 
@@ -63,12 +69,6 @@ module Administrate
     end
 
     def permitted_attributes(action = nil)
-      action =
-        case action
-        when "update" then "edit"
-        when "create" then "new"
-        else action
-        end
       form_attributes(action).map do |attr|
         attribute_types[attr].permitted_attribute(
           attr,
