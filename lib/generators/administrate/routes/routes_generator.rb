@@ -7,6 +7,7 @@ end
 require "rails/generators/base"
 require "administrate/generator_helpers"
 require "administrate/namespace"
+require "generators/administrate/test_record"
 
 module Administrate
   module Generators
@@ -60,7 +61,10 @@ module Administrate
       end
 
       def database_models
-        ActiveRecord::Base.descendants.reject(&:abstract_class?)
+        ActiveRecord::Base.descendants.
+          reject(&:abstract_class?).
+          reject { |k| k < Administrate::Generators::TestRecord }.
+          sort_by(&:to_s)
       end
 
       def invalid_dashboard_models
