@@ -235,7 +235,7 @@ If the given value responds to `call`, this will be called and the result used i
   )
 ```
 
-Administrate will detect if the attribute is an `ActiveRecord::Enum` and extract the available options. Note that if a `collection` is provided it will take preference.
+Administrate will detect if the attribute is an `ActiveRecord::Enum` and extract the available options. Note that if a `collection` is provided it will take precedence.
 
 If no collection is provided and no enum can be detected, the list of options will be empty.
 
