@@ -223,7 +223,7 @@ objects to display as.
 If the given value responds to `call`, this will be called and the result used instead. The call will receive an instance of the field as argument. For example:
 
 ```ruby
-  confirmation = Field::Select.with_options(
+  confirmation: Field::Select.with_options(
     collection: ->(field) {
       person = field.resource
       {
