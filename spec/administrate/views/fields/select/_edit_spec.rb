@@ -36,6 +36,7 @@ describe "fields/select/_form", type: :view do
     Object.new.tap do |template|
       template.extend ActionView::Helpers::FormHelper
       template.extend ActionView::Helpers::FormOptionsHelper
+      template.extend ActionView::Helpers::FormTagHelper
     end
   end
 end

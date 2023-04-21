@@ -1,5 +1,6 @@
 require "rails_helper"
 require "generators/administrate/dashboard/dashboard_generator"
+require "generators/administrate/test_record"
 
 describe Administrate::Generators::DashboardGenerator, :generator do
   around do |example|
@@ -25,7 +26,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             create_table(:foos) { |t| t.timestamps null: false }
           end
 
-          class Foo < ApplicationRecord
+          class Foo < Administrate::Generators::TestRecord
             reset_column_information
           end
 
@@ -47,7 +48,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             create_table(:foos) { |t| t.string :name }
           end
 
-          class Foo < ApplicationRecord
+          class Foo < Administrate::Generators::TestRecord
             reset_column_information
           end
 
@@ -72,7 +73,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             end
           end
 
-          class Foo < ApplicationRecord
+          class Foo < Administrate::Generators::TestRecord
             reset_column_information
           end
 
@@ -92,7 +93,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             create_table(:foos) { |t| t.inet :ip_address }
           end
 
-          class Foo < ApplicationRecord
+          class Foo < Administrate::Generators::TestRecord
             reset_column_information
           end
 
@@ -124,7 +125,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             end
           end
 
-          class InventoryItem < ApplicationRecord
+          class InventoryItem < Administrate::Generators::TestRecord
             reset_column_information
           end
 
@@ -148,7 +149,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           end
         end
 
-        class Shipment < ApplicationRecord
+        class Shipment < Administrate::Generators::TestRecord
           enum status: %i[ready processing shipped]
           reset_column_information
         end
@@ -169,7 +170,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           end
         end
 
-        class Shipment < ApplicationRecord
+        class Shipment < Administrate::Generators::TestRecord
           enum status: %i[ready processing shipped]
           reset_column_information
         end
@@ -195,7 +196,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             create_table(:users) { |t| t.boolean :active }
           end
 
-          class User < ApplicationRecord
+          class User < Administrate::Generators::TestRecord
             reset_column_information
           end
 
@@ -220,7 +221,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             end
           end
 
-          class Event < ApplicationRecord
+          class Event < Administrate::Generators::TestRecord
             reset_column_information
           end
 
@@ -241,7 +242,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           ActiveRecord::Schema.define do
             create_table(:comments) { |t| t.references :post }
           end
-          class Comment < ApplicationRecord
+          class Comment < Administrate::Generators::TestRecord
             belongs_to :post
           end
 
@@ -263,7 +264,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
               t.references :commentable, polymorphic: true
             end
           end
-          class Comment < ApplicationRecord
+          class Comment < Administrate::Generators::TestRecord
             belongs_to :commentable, polymorphic: true
           end
 
@@ -289,12 +290,12 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             end
           end
 
-          class Account < ApplicationRecord
+          class Account < Administrate::Generators::TestRecord
             reset_column_information
             has_one :profile
           end
 
-          class Ticket < ApplicationRecord
+          class Ticket < Administrate::Generators::TestRecord
             reset_column_information
             belongs_to :account
           end
@@ -316,7 +317,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
               create_table :accounts
             end
 
-            class Account < ApplicationRecord
+            class Account < Administrate::Generators::TestRecord
               reset_column_information
               attribute :tmp_attribute, :boolean
             end
@@ -342,7 +343,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             end
           end
 
-          class Foo < ApplicationRecord
+          class Foo < Administrate::Generators::TestRecord
             reset_column_information
           end
 
@@ -376,7 +377,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
             end
           end
 
-          class Foo < ApplicationRecord
+          class Foo < Administrate::Generators::TestRecord
             reset_column_information
           end
 
@@ -402,7 +403,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
           end
         end
 
-        class Foo < ApplicationRecord
+        class Foo < Administrate::Generators::TestRecord
           reset_column_information
         end
 
@@ -430,7 +431,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
     it "subclasses Admin::ApplicationController by default" do
       begin
         ActiveRecord::Schema.define { create_table :foos }
-        class Foo < ApplicationRecord; end
+        class Foo < Administrate::Generators::TestRecord; end
 
         run_generator ["foo"]
         load file("app/controllers/admin/foos_controller.rb")
@@ -446,7 +447,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
     it "uses the given namespace to create controllers" do
       begin
         ActiveRecord::Schema.define { create_table :foos }
-        class Foo < ApplicationRecord; end
+        class Foo < Administrate::Generators::TestRecord; end
         module Manager
           class ApplicationController < Administrate::ApplicationController; end
         end
