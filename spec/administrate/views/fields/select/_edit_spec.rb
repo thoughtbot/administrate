@@ -2,7 +2,7 @@ require "rails_helper"
 require "administrate/field/select"
 
 describe "fields/select/_form", type: :view do
-  it "displays the selected option" do
+  it "displays the field with correct name and selection" do
     customer = build(:customer)
     select = instance_double(
       "Administrate::Field::Select",
@@ -20,6 +20,27 @@ describe "fields/select/_form", type: :view do
     expect(rendered).to have_css(
       %{select[name="customer[email_subscriber]"]
         option[value="false"][selected="selected"]},
+    )
+  end
+
+  it "can include a blank option" do
+    customer = build(:customer)
+    select = instance_double(
+      "Administrate::Field::Select",
+      attribute: :email_subscriber,
+      data: "Yes",
+      selectable_options: ["Yes", "No"],
+      include_blank_option: "Unknown",
+    )
+
+    render(
+      partial: "fields/select/form",
+      locals: { field: select, f: form_builder(customer) },
+    )
+
+    expect(rendered).to have_css(
+      %{select[name="customer[email_subscriber]"] option[value=""]},
+      text: "Unknown",
     )
   end
 

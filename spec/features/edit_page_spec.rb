@@ -48,6 +48,12 @@ describe "customer edit page" do
 
     expect(page).to have_text("KIND")
     expect(page).to have_text("vip")
+
+    visit edit_admin_customer_path(customer)
+    expect(page).to have_css(
+      ".selectize-input.items > [data-value]",
+      text: "vip",
+    )
   end
 
   it "displays an error when the submitted form is invalid" do

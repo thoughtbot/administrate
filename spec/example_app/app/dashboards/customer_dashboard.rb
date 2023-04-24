@@ -11,7 +11,7 @@ class CustomerDashboard < Administrate::BaseDashboard
     orders: Field::HasMany.with_options(limit: 2, sort_by: :id),
     log_entries: Field::HasManyVariant.with_options(limit: 2, sort_by: :id),
     updated_at: Field::DateTime,
-    kind: Field::Select.with_options(collection: Customer::KINDS),
+    kind: Field::Select,
     territory: Field::BelongsTo.with_options(
       searchable: true,
       searchable_fields: ["name"],
