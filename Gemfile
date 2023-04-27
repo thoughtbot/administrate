@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "3.2.2" unless ENV["CI"]
 
 gemspec
 
