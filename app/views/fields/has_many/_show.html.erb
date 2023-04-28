@@ -22,7 +22,7 @@ from the associated resource class's dashboard.
   <% order = field.order_from_params(params.fetch(field.name, {})) %>
   <% page_number = params.fetch(field.name, {}).fetch(:page, nil) %>
   <%= render(
-    "collection",
+    "administrate/application/collection",
     collection_presenter: field.associated_collection(order),
     collection_field_name: field.name,
     page: page,
