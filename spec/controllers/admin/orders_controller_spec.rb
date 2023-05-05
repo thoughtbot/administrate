@@ -4,9 +4,12 @@ require "rails_helper"
 # which will test all the authorization functionality.
 
 describe Admin::OrdersController, type: :controller do
-  context "with Punditize concern" do
+  context "with namespaced Punditize concern" do
     controller(Admin::OrdersController) do
       include Administrate::Punditize
+      def policy_namespaces
+        [:own]
+      end
       def pundit_user
         Customer.find_by(name: "Current User")
       end

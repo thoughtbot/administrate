@@ -3,14 +3,6 @@ class OrderPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
-
-    def resolve_admin
-      if user.admin?
-        scope
-      else
-        scope.where(customer: user)
-      end
-    end
   end
 
   def create?
@@ -18,7 +10,7 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? || user.id == record.customer_id
+    user.admin?
   end
 
   def destroy?
