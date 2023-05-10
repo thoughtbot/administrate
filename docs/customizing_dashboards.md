@@ -128,6 +128,10 @@ set this to `0` or `false`. Default is `5`.
 
 **Field::HasOne**
 
+`:order` - Specifies the column used to order the records. It will apply both in
+the table views and in the dropdown menu on the record forms.
+You can set multiple columns as well with direction. E.g.: `"name, email DESC"`.
+
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `false`.
 
