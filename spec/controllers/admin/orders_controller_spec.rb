@@ -7,9 +7,11 @@ describe Admin::OrdersController, type: :controller do
   context "with namespaced Punditize concern" do
     controller(Admin::OrdersController) do
       include Administrate::Punditize
+
       def policy_namespaces
         [:own]
       end
+
       def pundit_user
         Customer.find_by(name: "Current User")
       end
@@ -129,7 +131,7 @@ describe Admin::OrdersController, type: :controller do
 
         expect(locals[:resources]).to contain_exactly(order1, order3)
         expect(ActiveSupport::Deprecation).to have_received(:warn).
-          with(/`resolve_admin` on pundit policy scope is deprecated/)
+          with(/`resolve_admin` method is deprecated/)
       end
     end
 
@@ -144,7 +146,7 @@ describe Admin::OrdersController, type: :controller do
         order = create :order, customer: user
         expect { get :edit, params: { id: order.id } }.not_to raise_error
         expect(ActiveSupport::Deprecation).to have_received(:warn).
-          with(/`resolve_admin` on pundit policy scope is deprecated/)
+          with(/`resolve_admin` method is deprecated/)
       end
 
       it "does not allow me to see other users' records" do
@@ -153,7 +155,7 @@ describe Admin::OrdersController, type: :controller do
         expect { get :show, params: { id: order.id } }.
           to raise_error(ActiveRecord::RecordNotFound)
         expect(ActiveSupport::Deprecation).to have_received(:warn).
-          with(/`resolve_admin` on pundit policy scope is deprecated/)
+          with(/`resolve_admin` method is deprecated/)
       end
     end
 
@@ -174,7 +176,7 @@ describe Admin::OrdersController, type: :controller do
         expect(response).to redirect_to([:admin, order])
         expect(order.reload.address_line_one).to eq("22 Acacia Avenue")
         expect(ActiveSupport::Deprecation).to have_received(:warn).
-          with(/`resolve_admin` on pundit policy scope is deprecated/)
+          with(/`resolve_admin` method is deprecated/)
       end
 
       it "does not allow me to update other users' records" do
@@ -184,7 +186,7 @@ describe Admin::OrdersController, type: :controller do
           send_request(order: order)
         end.to raise_error(ActiveRecord::RecordNotFound)
         expect(ActiveSupport::Deprecation).to have_received(:warn).
-          with(/`resolve_admin` on pundit policy scope is deprecated/)
+          with(/`resolve_admin` method is deprecated/)
       end
     end
 

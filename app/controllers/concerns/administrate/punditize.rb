@@ -46,12 +46,13 @@ module Administrate
         begin
           policy_scope = policy_scope_class.new(user, pundit_model(scope))
         rescue ArgumentError
-          raise Pundit::InvalidConstructorError, "Invalid #<#{policy_scope_class}> constructor is called"
+          raise(Pundit::InvalidConstructorError,
+                "Invalid #<#{policy_scope_class}> constructor is called")
         end
 
         if policy_scope.respond_to? :resolve_admin
           ActiveSupport::Deprecation.warn(
-            "The method `resolve_admin` on pundit policy scope is deprecated. " +
+            "Pundit policy scope `resolve_admin` method is deprecated. " +
             "Please use a namespaced pundit policy instead.",
           )
           policy_scope.resolve_admin
