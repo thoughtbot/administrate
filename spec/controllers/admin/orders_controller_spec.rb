@@ -7,10 +7,7 @@ describe Admin::OrdersController, type: :controller do
   context "with namespaced Punditize concern" do
     controller(Admin::OrdersController) do
       include Administrate::Punditize
-
-      def policy_namespaces
-        [:own]
-      end
+      pundit_policy_namespace Own
 
       def pundit_user
         Customer.find_by(name: "Current User")
@@ -109,10 +106,27 @@ describe Admin::OrdersController, type: :controller do
   context "with deprecated Punditize concern" do
     before do
       allow(ActiveSupport::Deprecation).to receive(:warn)
+
+      class OrderPolicy
+        class Scope
+          def resolve_admin
+            scope.where(customer: user)
+          end
+        end
+      end
+    end
+
+    after do
+      class OrderPolicy
+        class Scope
+          undef resolve_admin
+        end
+      end
     end
 
     controller(Admin::OrdersController) do
       include Administrate::Punditize
+
       def pundit_user
         Customer.find_by(name: "Current User")
       end

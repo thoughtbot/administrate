@@ -5,9 +5,5 @@ module Own
         scope.where(customer: user)
       end
     end
-
-    def update?
-      user.id == record.customer_id
-    end
   end
 end

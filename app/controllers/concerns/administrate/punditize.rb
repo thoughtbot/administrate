@@ -9,24 +9,34 @@ module Administrate
         include Pundit
       end
 
+      class_methods do
+        def pundit_policy_namespace(namespace)
+          @policy_namespaces = namespace.to_s.split("::").map(&:to_sym)
+        end
+
+        private
+
+        attr_reader :policy_namespaces
+      end
+
       included do
         private
 
-        def policy_namespaces
-          []
-        end
-
         def scoped_resource
-          namespaced_policy_scope super
+          policy_namespaces = Array(self.class.send(:policy_namespaces))
+          namespaced_scope = policy_namespaces + [super]
+          policy_scope!(pundit_user, namespaced_scope)
         end
 
         def authorize_resource(resource)
-          namespaced_resource = policy_namespaces << resource
+          policy_namespaces = Array(self.class.send(:policy_namespaces))
+          namespaced_resource = policy_namespaces + [resource]
           authorize namespaced_resource
         end
 
         def authorized_action?(resource, action)
-          namespaced_resource = policy_namespaces << resource
+          policy_namespaces = Array(self.class.send(:policy_namespaces))
+          namespaced_resource = policy_namespaces + [resource]
           policy = Pundit.policy!(pundit_user, namespaced_resource)
           policy.send("#{action}?".to_sym)
         end
@@ -34,14 +44,8 @@ module Administrate
 
       private
 
-      def namespaced_policy_scope(scope)
-        namespaced_scope = policy_namespaces << scope
-        policy_scope!(pundit_user, namespaced_scope)
-      end
-
       def policy_scope!(user, scope)
         policy_scope_class = Pundit::PolicyFinder.new(scope).scope!
-        return unless policy_scope_class
 
         begin
           policy_scope = policy_scope_class.new(user, pundit_model(scope))

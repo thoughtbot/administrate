@@ -28,7 +28,7 @@ technically have access to see in the main app. For example, a user may
 have all public records in their scope, but you want to only show *their*
 records in the admin interface to reduce confusion.
 
-In this case, you can add additional `policy_namespaces` in your controller
+In this case, you can add additional `pundit_policy_namespace` in your controller
 and Administrate will use the namespaced pundit policy instead.
 
 For example:
@@ -38,10 +38,7 @@ For example:
 module Admin
   class PostsController < ApplicationController
     include Administrate::Punditize
-
-    def policy_namespaces
-      [:admin]
-    end
+    pundit_policy_namespace Admin
   end
 end
 
