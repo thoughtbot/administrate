@@ -11,31 +11,30 @@ module Administrate
 
       class_methods do
         def pundit_policy_namespace(namespace)
-          @policy_namespaces = namespace.to_s.split("::").map(&:to_sym)
+          self._policy_namespaces = namespace.to_s.split("::").map(&:to_sym)
         end
-
-        private
-
-        attr_reader :policy_namespaces
       end
 
       included do
+        class_attribute :_policy_namespaces, instance_predicate: false, default: []
+
         private
 
+        def policy_namespaces
+          self.class._policy_namespaces
+        end
+
         def scoped_resource
-          policy_namespaces = Array(self.class.send(:policy_namespaces))
           namespaced_scope = policy_namespaces + [super]
           policy_scope!(pundit_user, namespaced_scope)
         end
 
         def authorize_resource(resource)
-          policy_namespaces = Array(self.class.send(:policy_namespaces))
           namespaced_resource = policy_namespaces + [resource]
           authorize namespaced_resource
         end
 
         def authorized_action?(resource, action)
-          policy_namespaces = Array(self.class.send(:policy_namespaces))
           namespaced_resource = policy_namespaces + [resource]
           policy = Pundit.policy!(pundit_user, namespaced_resource)
           policy.send("#{action}?".to_sym)
