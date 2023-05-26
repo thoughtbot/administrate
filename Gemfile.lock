@@ -289,7 +289,7 @@ GEM
       sprockets-rails
       tilt
     selectize-rails (0.12.6)
-    selenium-webdriver (4.9.1)
+    selenium-webdriver (4.9.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -363,7 +363,7 @@ DEPENDENCIES
   pundit
   rack-timeout
   redcarpet
-  selenium-webdriver
+  selenium-webdriver (= 4.9.0)
   sentry-raven
   shoulda-matchers
   timecop
