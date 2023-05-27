@@ -2,7 +2,12 @@ module Administrate
   module Punditize
     if Object.const_defined?("Pundit")
       extend ActiveSupport::Concern
-      include Pundit::Authorization
+
+      if Pundit.const_defined?(:Authorization)
+        include Pundit::Authorization
+      else
+        include Pundit
+      end
 
       included do
         private
