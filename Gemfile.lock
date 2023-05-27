@@ -5,9 +5,9 @@ PATH
       actionpack (>= 5.0)
       actionview (>= 5.0)
       activerecord (>= 5.0)
+      dartsass-sprockets (~> 3.0)
       jquery-rails (>= 4.0)
       kaminari (>= 1.0)
-      sassc-rails (~> 2.1)
       selectize-rails (~> 0.6)
 
 GEM
@@ -115,6 +115,14 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
+    dartsass-ruby (3.0.1)
+      sass-embedded (~> 1.54)
+    dartsass-sprockets (3.0.0)
+      dartsass-ruby (~> 3.0)
+      railties (>= 4.0.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.1.0)
@@ -140,7 +148,6 @@ GEM
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
-    ffi (1.15.5)
     formulaic (0.4.1)
       activesupport
       capybara
@@ -148,6 +155,7 @@ GEM
     front_matter_parser (1.0.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    google-protobuf (3.23.2)
     hashdiff (1.0.1)
     highline (2.1.0)
     i18n (1.12.0)
@@ -280,14 +288,9 @@ GEM
     rspec-support (3.12.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
+    sass-embedded (1.62.1)
+      google-protobuf (~> 3.21)
+      rake (>= 10.0.0)
     selectize-rails (0.12.6)
     selenium-webdriver (4.9.0)
       rexml (~> 3.2, >= 3.2.5)
