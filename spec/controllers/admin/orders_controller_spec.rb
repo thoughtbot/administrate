@@ -7,7 +7,10 @@ describe Admin::OrdersController, type: :controller do
   context "with namespaced Punditize concern" do
     controller(Admin::OrdersController) do
       include Administrate::Punditize
-      pundit_policy_namespace Own
+
+      def policy_namespace
+        [:own]
+      end
 
       def pundit_user
         Customer.find_by(name: "Current User")
