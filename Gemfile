@@ -31,7 +31,7 @@ group :test do
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
-  gem "selenium-webdriver", "= 4.9.0"
+  gem "selenium-webdriver", "4.10.0"
   gem "shoulda-matchers"
   gem "timecop"
   gem "webdrivers"
