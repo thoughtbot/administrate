@@ -2,6 +2,8 @@
 
 source "https://rubygems.org"
 
+ruby "3.2.2"
+
 gem "administrate-field-image"
 gem "faker"
 gem "front_matter_parser"
@@ -12,7 +14,7 @@ gem "pundit"
 gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
-gem "rails", "~> 7.0"
+gem "rails", "~> 6.1"
 
 group :development, :test do
   gem "appraisal"
@@ -31,7 +33,7 @@ group :test do
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
-  gem "selenium-webdriver"
+  gem "selenium-webdriver", "= 4.9.0"
   gem "shoulda-matchers"
   gem "timecop"
   gem "webdrivers"
