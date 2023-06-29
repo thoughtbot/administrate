@@ -7,7 +7,7 @@ things won't break if the app adds new types of association fields
   <% order = field.order_from_params(params.fetch(field.name, {})) %>
   <% page_number = params.fetch(field.name, {}).fetch(:page, nil) %>
   <%= render(
-    "has_many_collection",
+    "show_collection",
     collection_presenter: field.associated_collection(order),
     collection_field_name: field.name,
     page: page,

@@ -46,7 +46,7 @@ to display a collection of resources in an HTML table.
         </th>
       <% end %>
       <%= render(
-        "has_many_collection_header_actions",
+        "show_collection_header_actions",
         collection_presenter: collection_presenter,
         page: page,
         resources: resources,
@@ -78,7 +78,7 @@ to display a collection of resources in an HTML table.
         <% end %>
 
         <%= render(
-          "has_many_collection_item_actions",
+          "show_collection_item_actions",
           collection_presenter: collection_presenter,
           collection_field_name: collection_field_name,
           page: page,
