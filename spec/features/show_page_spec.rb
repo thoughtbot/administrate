@@ -108,6 +108,17 @@ RSpec.describe "customer show page" do
     expect(page).to have_css("th.cell-label--order_total_price")
   end
 
+  it "Parent templates should not be used with has_many" do
+    customer = create(:customer)
+    orders = create_list(:order, 2, customer: customer)
+
+    visit admin_customer_path(customer)
+    
+    orders.each do |order|
+      expect(page).to_not have_link("Become", href: become_admin_customer_path(order))
+    end
+  end
+
   it "sorts each of the customer's orders" do
     customer = create(:customer)
     orders = create_list(:order, 4, customer: customer)

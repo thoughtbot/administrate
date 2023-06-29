@@ -3,14 +3,6 @@ class OrderPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
-
-    def resolve_admin
-      if user.admin?
-        scope
-      else
-        scope.where(customer: user)
-      end
-    end
   end
 
   def create?
