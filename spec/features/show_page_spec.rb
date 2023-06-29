@@ -110,15 +110,12 @@ RSpec.describe "customer show page" do
 
   it "Parent templates should not be used with has_many" do
     customer = create(:customer)
-    orders = create_list(:order, 2, customer: customer)
+    create_list(:order, 2, customer: customer)
+    create_list(:log_entry, 2, logeable: customer)
 
     visit admin_customer_path(customer)
 
-    orders.each do |order|
-      expect(page).to_not(have_link("Become",
-                                      href: become_admin_customer_path(order),
-                                    ))
-    end
+    expect(page).to_not have_link("Become")
   end
 
   it "sorts each of the customer's orders" do
