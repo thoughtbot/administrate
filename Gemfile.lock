@@ -86,7 +86,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec-rails (>= 2.2)
-    appraisal (2.4.1)
+    appraisal (2.5.0)
       bundler
       rake
       thor (>= 0.14.0)
