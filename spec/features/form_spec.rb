@@ -80,13 +80,11 @@ describe "edit form" do
 
   context "include_blank option for select" do
     it "should have blank option if set to true" do
-      dashboard = CustomerDashboard.new
-      fields = dashboard.attribute_types
-      kind = fields[:kind]
-      kind.options[:include_blank] = true
-
-      expect(kind.deferred_class).to eq(Administrate::Field::Select)
-      expect(kind.options[:include_blank]).to eq(true)
+      fields = CustomerDashboard::ATTRIBUTE_TYPES
+      fake_kind = fields[:kind].with_options(include_blank: true)
+      fake_fields = fields.dup
+      fake_fields[:kind] = fake_kind
+      stub_const("CustomerDashboard::ATTRIBUTE_TYPES", fake_fields)
 
       visit new_admin_customer_path
       element_selections = find("select[name=\"customer[kind]\"]")
@@ -95,13 +93,11 @@ describe "edit form" do
     end
 
     it "should not have blank option if set to false" do
-      dashboard = CustomerDashboard.new
-      fields = dashboard.attribute_types
-      kind = fields[:kind]
-      kind.options[:include_blank] = false
-
-      expect(kind.deferred_class).to eq(Administrate::Field::Select)
-      expect(kind.options[:include_blank]).to eq(false)
+      fields = CustomerDashboard::ATTRIBUTE_TYPES
+      fake_kind = fields[:kind].with_options(include_blank: false)
+      fake_fields = fields.dup
+      fake_fields[:kind] = fake_kind
+      stub_const("CustomerDashboard::ATTRIBUTE_TYPES", fake_fields)
 
       visit new_admin_customer_path
       element_selections = find("select[name=\"customer[kind]\"]")

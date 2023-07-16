@@ -8,22 +8,32 @@ module Administrate
       end
 
       def selectable_options
-        collection
+        values =
+          if options.key?(:collection)
+            options.fetch(:collection)
+          elsif active_record_enum?
+            active_record_enum_values
+          else
+            []
+          end
+
+        if values.respond_to? :call
+          values = values.arity.positive? ? values.call(self) : values.call
+        end
+
+        values
       end
 
       def include_blank_option
         options.fetch(:include_blank, false)
       end
 
-      private
+      def active_record_enum?
+        resource.class.defined_enums.key?(attribute.to_s)
+      end
 
-      def collection
-        values = options.fetch(:collection, [])
-        if values.respond_to? :call
-          return values.arity.positive? ? values.call(self) : values.call
-        end
-
-        @collection ||= values
+      def active_record_enum_values
+        resource.class.defined_enums[attribute.to_s].map(&:first)
       end
     end
   end

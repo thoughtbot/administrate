@@ -48,6 +48,12 @@ describe "customer edit page" do
 
     expect(page).to have_text("KIND")
     expect(page).to have_text("vip")
+
+    visit edit_admin_customer_path(customer)
+    expect(page).to have_css(
+      ".selectize-input.items > [data-value]",
+      text: "vip",
+    )
   end
 
   it "displays an error when the submitted form is invalid" do
@@ -86,5 +92,16 @@ describe "customer edit page" do
     expect(page).to have_text(new_name)
     expect(page).to have_text(new_email)
     expect(page).to have_flash("Custom name was successfully updated.")
+  end
+
+  it "handles complex associations" do
+    country = create(:country, code: "CO")
+    customer = create(:customer, territory: country)
+
+    visit edit_admin_customer_path(customer)
+    click_on "Update Customer"
+
+    customer.reload
+    expect(customer.territory).to eq(country)
   end
 end

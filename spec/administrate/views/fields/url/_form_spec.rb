@@ -2,7 +2,7 @@ require "rails_helper"
 require "administrate/field/url"
 
 describe "fields/url/_form", type: :view do
-  it "displays the resource name" do
+  it "provides the correct name for the field" do
     product = build(:product, image_url: nil)
     url = instance_double(
       "Administrate::Field::Url",
@@ -31,6 +31,7 @@ describe "fields/url/_form", type: :view do
     Object.new.tap do |template|
       template.extend ActionView::Helpers::FormHelper
       template.extend ActionView::Helpers::FormOptionsHelper
+      template.extend ActionView::Helpers::FormTagHelper
     end
   end
 end

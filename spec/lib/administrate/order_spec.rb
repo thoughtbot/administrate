@@ -152,6 +152,74 @@ describe Administrate::Order do
         end
       end
     end
+
+    context "when relation has has_one association" do
+      it "orders by id" do
+        order = Administrate::Order.new(
+          double(to_sym: :user, tableize: "users"),
+        )
+        relation = relation_with_association(:has_one)
+        allow(relation).to receive(:reorder).and_return(relation)
+
+        ordered = order.apply(relation)
+
+        expect(relation).to have_received(:reorder).with(
+          "users.id asc",
+        )
+        expect(ordered).to eq(relation)
+      end
+
+      context "when `order` argument valid" do
+        it "orders by the column" do
+          order = Administrate::Order.new(
+            double(to_sym: :user, tableize: "users"),
+            nil,
+            association_attribute: "name",
+          )
+          relation = relation_with_association(
+            :has_one,
+            klass: double(
+              table_name: "users",
+              columns_hash: { "name" => :value },
+            ),
+          )
+          allow(relation).to receive(:joins).and_return(relation)
+          allow(relation).to receive(:reorder).and_return(relation)
+
+          ordered = order.apply(relation)
+          expect(relation).to have_received(:reorder).with(
+            "users.name asc",
+          )
+          expect(ordered).to eq(relation)
+        end
+      end
+
+      context "when `order` argument invalid" do
+        it "orders by id" do
+          order = Administrate::Order.new(
+            double(to_sym: :user, tableize: "users"),
+            nil,
+            association_attribute: "invalid_column_name",
+          )
+          relation = relation_with_association(
+            :has_one,
+            klass: double(
+              table_name: "users",
+              columns_hash: { name: :value },
+            ),
+          )
+          allow(relation).to receive(:joins).and_return(relation)
+          allow(relation).to receive(:reorder).and_return(relation)
+
+          ordered = order.apply(relation)
+
+          expect(relation).to have_received(:reorder).with(
+            "users.id asc",
+          )
+          expect(ordered).to eq(relation)
+        end
+      end
+    end
   end
 
   describe "#ordered_by?" do
