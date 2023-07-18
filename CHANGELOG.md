@@ -17,6 +17,72 @@
 
 ## Changes
 
+### 0.19.0 (July 18, 2023)
+
+Once again, a big catchup release with lots of miscellaneous compatibility
+improvements, bug fixes and some nice new feature improvements. Thanks to
+everyone who contributed the PRs below!
+
+The following templates have changed since v0.18.0:
+
+  app/views/administrate/application/_collection.html.erb
+  app/views/administrate/application/_index_header.html.erb
+  app/views/administrate/application/_navigation.html.erb
+  app/views/administrate/application/_pagination.html.erb
+  app/views/administrate/application/edit.html.erb
+  app/views/administrate/application/new.html.erb
+  app/views/administrate/application/show.html.erb
+  app/views/fields/has_many/_show.html.erb
+  app/views/fields/select/_form.html.erb
+  app/views/layouts/administrate/application.html.erb
+
+If your application overrides any of them, make sure to review your
+custom templates to ensure that they remain compatible.
+
+* [COMPAT] [#2399] Fix Rails 6.0 `load_server` incompatibility
+* [DOC] [#2377] Add a script to generate a draft CHANGELOG update
+* [COMPAT] [#2395] Upgrade Rails from 7.0.4.3 to 7.0.5.1
+* [FEATURE] [#2391] Field::Polymorphic accepts a call-able for the classes
+  option
+* [BUGFIX] [#2379] Use pundit policy_namespace in controllers
+* [DOC] [#2390] Update documentation URL to correct Heroku URL
+* [BUGFIX] [#2383] Fix backward compatible Pundit include
+* [FEATURE] [#2375] Add order option to Field::HasOne documentation
+* [COMPAT] [#2367] Update to Ruby 3.2.2
+* [COMPAT] [#2371] Adapt to deprecations in the Faker API
+* [BUGFIX] [#2348] Field::Select to handle ActiveRecord enums correctly
+* [COMPAT] [#2324] Update to Rails 7
+* [FEATURE] [#2356] make permitted_attributes support action
+* [FEATURE] [#2325] Enable ordering by HasOne fields
+* [DOC] [#2350] Fix link to demo app on customise_search.md
+* [BUGFIX] [#2292] Use correct key in unconventional associations
+* [DOC] [#2346] Better description for option
+* [COMPAT] [#2341] Bump Rails dependencies to 6.1.7.3
+* [I18n] [#2327] Make Japanese translations more natural
+* [COMPAT] [#2323] Start testing Ruby 3.2 on CircleCI
+* [COMPAT] [#2322] Switch from pry-rails to pry
+* [COMPAT] [#2318] Bump Rails dependencies to 6.1.7.2
+* [COMPAT] [#2319] Fix Selenium deprecation warnings on headless/opts
+* [COMPAT] [#2321] Switch to testing against Postgres 15
+* [COMPAT] [#2316] Checkout first to avoid failure due to ChromeDriver file in
+  target dir
+* [FEATURE] [#2308] Make overriding create resource easier
+* [BUGFIX] [#2304] Set empty string param values to nil
+* [COMPAT] [#2299] Update minimum supported Rails version on
+  docs/getting_started.md
+* [BUGFIX] [#2289] Fix behaviour of has_many pagination
+* [I18n] [#2280] Titleize the column not the user defined locale
+* [FEATURE] [#2274] Allow disabling pagination for has_many
+* [FEATURE] [#2260] Allow search filters with special characters
+* [BUGFIX] [#2275] Provide a better error message for NotAuthorizedErrors with
+  Modules
+* [BUGFIX] [#2261] Avoid singularizing namespace in
+  Administrate::ResourceResolver
+* [BUGFIX] [#2258] Handle custom pagination for has_many
+* [UI] [#2250] Make the select box has same style as has_many box
+* [FEATURE] [#2238] pass associated_class to collection from show
+* [I18n] [#2245] remove redundant ARIA roles from elements with implicit role
+
 ### 0.18.0 (August 12, 2022)
 
 This is a general catchup release. We've added `dart-sass` compatibility,
