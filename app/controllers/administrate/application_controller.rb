@@ -84,7 +84,7 @@ module Administrate
         resources,
         dashboard,
         search_term,
-      ).run
+      ).run.distinct
     end
 
     def after_resource_destroyed_path(_requested_resource)
