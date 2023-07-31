@@ -261,7 +261,7 @@ GEM
     rake (13.0.6)
     redcarpet (3.6.0)
     regexp_parser (2.8.1)
-    rexml (3.2.5)
+    rexml (3.2.6)
     rspec-core (3.12.1)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.2)
@@ -290,7 +290,7 @@ GEM
       sprockets-rails
       tilt
     selectize-rails (0.12.6)
-    selenium-webdriver (4.9.0)
+    selenium-webdriver (4.11.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -364,7 +364,7 @@ DEPENDENCIES
   pundit
   rack-timeout
   redcarpet
-  selenium-webdriver (= 4.9.0)
+  selenium-webdriver (= 4.11.0)
   sentry-raven
   shoulda-matchers
   timecop
