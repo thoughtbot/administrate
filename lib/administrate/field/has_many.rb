@@ -22,7 +22,11 @@ module Administrate
       end
 
       def associated_collection(order = self.order)
-        Administrate::Page::Collection.new(associated_dashboard, order: order)
+        if options[:collection_attributes]
+          Administrate::Page::Collection.new(associated_dashboard, order: order,  collection_attributes: options[:collection_attributes])
+        else
+          Administrate::Page::Collection.new(associated_dashboard, order: order)
+        end
       end
 
       def attribute_key

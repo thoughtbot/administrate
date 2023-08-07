@@ -4,7 +4,7 @@ module Administrate
   module Page
     class Collection < Page::Base
       def attribute_names
-        dashboard.collection_attributes
+        options.fetch(:collection_attributes) { dashboard.collection_attributes }
       end
 
       def attributes_for(resource)
