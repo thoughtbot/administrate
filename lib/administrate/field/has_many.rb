@@ -24,8 +24,10 @@ module Administrate
       def associated_collection(order = self.order)
         Administrate::Page::Collection.new(
           associated_dashboard, 
-          order: order,
-          collection_attributes: options[:collection_attributes]
+          {
+            order: order,
+            collection_attributes: options[:collection_attributes],
+          }
         )
       end
 
