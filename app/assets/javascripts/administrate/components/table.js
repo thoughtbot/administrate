@@ -6,7 +6,10 @@ $(function() {
         event.keyCode == keycodes.space ||
         event.keyCode == keycodes.enter) {
 
-      if (event.target.href) {
+      if (event.target.href ||
+            // Clicking on or around the bulk select checkbox should not redirect the page
+            event.target.classList.contains("bulk-selectable") ||
+            event.target.classList.contains("bulk-selectable-select")) {
         return;
       }
 
