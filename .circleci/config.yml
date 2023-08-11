@@ -9,10 +9,10 @@ commands:
     steps:
       - checkout
 
-      - browser-tools/install-browser-tools:
+      - browser-tools/install-chrome:
           chrome-version: 114.0.5735.90
-          install-chromedriver: true
-          replace-existing-chrome: true
+          replace-existing: true
+      - browser-tools/install-chromedriver
 
       - run: google-chrome --version
 
