@@ -1,4 +1,4 @@
-require "active_record"
+require "rails_helper"
 require "administrate/order"
 
 describe Administrate::Order do
@@ -37,7 +37,9 @@ describe Administrate::Order do
 
         ordered = order.apply(relation)
 
-        expect(relation).to have_received(:reorder).with("table_name.name asc")
+        expect(relation).to have_received(:reorder).with(
+          to_sql('"table_name"."name" ASC'),
+        )
         expect(ordered).to eq(relation)
       end
 
@@ -48,7 +50,9 @@ describe Administrate::Order do
 
         ordered = order.apply(relation)
 
-        expect(relation).to have_received(:reorder).with("table_name.name desc")
+        expect(relation).to have_received(:reorder).with(
+          to_sql('"table_name"."name" DESC'),
+        )
         expect(ordered).to eq(relation)
       end
 
@@ -59,7 +63,9 @@ describe Administrate::Order do
 
         ordered = order.apply(relation)
 
-        expect(relation).to have_received(:reorder).with("table_name.name asc")
+        expect(relation).to have_received(:reorder).with(
+          to_sql('"table_name"."name" ASC'),
+        )
         expect(ordered).to eq(relation)
       end
     end
@@ -69,7 +75,11 @@ describe Administrate::Order do
         order = Administrate::Order.new(:name)
         relation = relation_with_association(
           :has_many,
-          klass: double(table_name: "users", primary_key: "uid"),
+          klass: double(
+            table_name: "users",
+            arel_table: Arel::Table.new("users"),
+            primary_key: "uid",
+          ),
         )
         allow(relation).to receive(:reorder).and_return(relation)
         allow(relation).to receive(:left_joins).and_return(relation)
@@ -79,7 +89,9 @@ describe Administrate::Order do
 
         expect(relation).to have_received(:left_joins).with(:name)
         expect(relation).to have_received(:group).with(:id)
-        expect(relation).to have_received(:reorder).with("COUNT(users.uid) asc")
+        expect(relation).to have_received(:reorder).with(
+          to_sql('COUNT("users"."uid") ASC'),
+        )
         expect(ordered).to eq(relation)
       end
     end
@@ -96,7 +108,7 @@ describe Administrate::Order do
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:reorder).with(
-          "table_name.some_foreign_key asc",
+          to_sql('"table_name"."some_foreign_key" ASC'),
         )
         expect(ordered).to eq(relation)
       end
@@ -120,7 +132,7 @@ describe Administrate::Order do
 
           ordered = order.apply(relation)
           expect(relation).to have_received(:reorder).with(
-            "users.name asc",
+            to_sql('"users"."name" ASC'),
           )
           expect(ordered).to eq(relation)
         end
@@ -146,7 +158,7 @@ describe Administrate::Order do
           ordered = order.apply(relation)
 
           expect(relation).to have_received(:reorder).with(
-            "table_name.belongs_to_id asc",
+            to_sql('"table_name"."belongs_to_id" ASC'),
           )
           expect(ordered).to eq(relation)
         end
@@ -164,7 +176,7 @@ describe Administrate::Order do
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:reorder).with(
-          "users.id asc",
+          to_sql('"users"."id" ASC'),
         )
         expect(ordered).to eq(relation)
       end
@@ -188,7 +200,7 @@ describe Administrate::Order do
 
           ordered = order.apply(relation)
           expect(relation).to have_received(:reorder).with(
-            "users.name asc",
+            to_sql('"users"."name" ASC'),
           )
           expect(ordered).to eq(relation)
         end
@@ -214,7 +226,7 @@ describe Administrate::Order do
           ordered = order.apply(relation)
 
           expect(relation).to have_received(:reorder).with(
-            "users.id asc",
+            to_sql('"users"."id" ASC'),
           )
           expect(ordered).to eq(relation)
         end
@@ -311,6 +323,7 @@ describe Administrate::Order do
       klass: double(reflect_on_association: nil),
       columns_hash: { column.to_s => :column_info },
       table_name: "table_name",
+      arel_table: Arel::Table.new("table_name"),
     )
   end
 
@@ -329,6 +342,7 @@ describe Administrate::Order do
         ),
       ),
       table_name: "table_name",
+      arel_table: Arel::Table.new("table_name"),
     )
   end
 end
