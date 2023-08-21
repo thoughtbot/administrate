@@ -385,3 +385,21 @@ FORM_ATTRIBUTES_EDIT = [
 ```
 
 Or for custom action with constant name `"FORM_ATTRIBUTES_#{action.upcase}"`
+
+### Form Fields' Hints
+
+You can show a brief text element below an input field by setting the
+corresponding translation key using the path:
+
+`administrate.field_hints.#{model_name}.#{field_name}`
+
+For example, with a Customer dashboard with an email field you can add a
+string value that will be used as text hint:
+
+```yml
+en:
+  administrate:
+    field_hints:
+      customer:
+        email: field_hint
+```
