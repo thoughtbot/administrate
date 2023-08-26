@@ -15,8 +15,8 @@ describe Administrate::Page::Show do
       customer = double(name: "Worf").as_null_object
       page = Administrate::Page::Show.new(CustomerDashboard.new, customer)
 
-      expect(page.attributes.first.resource).to eq(customer)
-      expect(page.attributes.first.resource.name).to eq("Worf")
+      expect(page.attributes[""].first.resource).to eq(customer)
+      expect(page.attributes[""].first.resource.name).to eq("Worf")
     end
   end
 end

@@ -11,8 +11,16 @@ module Administrate
       attr_reader :resource
 
       def attributes(action = nil)
-        dashboard.form_attributes(action).map do |attribute|
-          attribute_field(dashboard, resource, attribute, :form)
+        attributes = dashboard.form_attributes(action)
+
+        if attributes.is_a? Array
+          attributes = { "" => attributes }
+        end
+
+        attributes.transform_values do |attrs|
+          attrs.map do |attribute|
+            attribute_field(dashboard, resource, attribute, :form)
+          end
         end
       end
 

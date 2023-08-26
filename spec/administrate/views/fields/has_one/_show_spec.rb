@@ -43,9 +43,9 @@ describe "fields/has_one/_show", type: :view do
         resource: double(
           class: ProductMetaTag,
         ),
-        attributes: [
+        attributes: { "" => [
           nested_simple_field,
-        ],
+        ] },
       )
 
       @has_one_field = instance_double(
@@ -131,7 +131,7 @@ describe "fields/has_one/_show", type: :view do
         resource: double(
           class: ProductMetaTag,
         ),
-        attributes: [],
+        attributes: { "" => [] },
       )
 
       nested_has_one = instance_double(
@@ -148,7 +148,7 @@ describe "fields/has_one/_show", type: :view do
 
       nested_show_page_for_top_has_one = instance_double(
         "Administrate::Page::Show",
-        attributes: [nested_has_one, nested_has_many],
+        attributes: { "" => [nested_has_one, nested_has_many] },
       )
 
       has_one_field = instance_double(

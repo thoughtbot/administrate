@@ -6,6 +6,12 @@ en:
       with_weekday:
         "%a %m/%d/%y"
 
+  helpers:
+    label:
+      order:
+        address: Address
+        details: Details
+
   time:
     formats:
       default:

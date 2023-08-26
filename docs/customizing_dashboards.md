@@ -403,3 +403,36 @@ en:
       customer:
         email: field_hint
 ```
+
+## Grouped Attributes
+
+You may have models with a large number of fields and therefore you might want to group them in a meaningul way:
+
+```ruby
+class UserDashboard < Administrate::BaseDashboard
+  SHOW_PAGE_ATTRIBUTES = {
+    "" => [:username],
+    "Personal Information" => [:first_name, :last_name, :email],
+    "Address" => [:address_line_one, :address_line_two, :address_city, :address_state, :address_country]
+  }
+
+  FORM_ATTRIBUTES = {
+    "" => [:username, :password, :password_confirmation],
+    "personal_information" => [:first_name, :last_name, :email],
+    "address" => [:address_line_one, :address_line_two, :address_city, :address_state, :address_country]
+  }
+end
+```
+
+You can optionally translate your group labels:
+
+```yaml
+en:
+  helpers:
+    label:
+      user:
+        address: Address
+        personal_information: Personal Information
+```
+
+If not defined (see `SHOW_PAGE_ATTRIBUTES` above), Administrate will default to the given strings.
