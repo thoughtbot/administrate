@@ -14,7 +14,7 @@ gem "pundit"
 gem "redcarpet"
 gem "sentry-raven"
 gem "unicorn"
-gem "rails", "~> 6.1"
+gem "rails", "~> 7.0"
 
 group :development, :test do
   gem "appraisal"
