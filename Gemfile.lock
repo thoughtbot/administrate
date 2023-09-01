@@ -214,7 +214,7 @@ GEM
       racc (~> 1.4)
     parser (3.2.1.1)
       ast (~> 2.4.1)
-    pg (1.5.3)
+    pg (1.5.4)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
