@@ -42,6 +42,7 @@ bundle exec rails s
 ```
 
 This will start the application defined in `spec/example_app`.
+You can view the `example_app` in the browser by navigating to `/admin`
 
 ## Repository Structure
 
