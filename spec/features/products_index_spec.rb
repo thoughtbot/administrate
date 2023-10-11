@@ -17,9 +17,9 @@ RSpec.describe "product index page" do
     visit admin_products_path
     click_row_for(product)
 
-    expect(current_path).to eq(admin_product_path(product))
     expect(page).to have_content(product.name)
     expect(page).to have_content(product.description)
+    expect(current_path).to eq(admin_product_path(product))
   end
 
   it "links to the edit page" do

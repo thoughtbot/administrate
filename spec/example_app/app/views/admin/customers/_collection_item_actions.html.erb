@@ -12,7 +12,7 @@
     [namespace, resource],
     class: "text-color-red",
     method: :delete,
-    data: { confirm: t("administrate.actions.confirm") }
+    data: { turbo_confirm: t("administrate.actions.confirm") }
   ) if authorized_action?(resource, :destroy) %></td>
 <% end %>
 

@@ -16,7 +16,7 @@ export default class extends Controller {
       var dataUrl = $(event.target).closest("tr").data("url");
       var selection = window.getSelection().toString();
       if (selection.length === 0 && dataUrl) {
-        window.location = window.location.protocol + '//' + window.location.host + dataUrl;
+        Turbo.visit(dataUrl);
       }
     }
   }

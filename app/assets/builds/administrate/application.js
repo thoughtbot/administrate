@@ -5,8 +5,15 @@
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __esm = (fn, res) => function __init() {
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+  };
   var __commonJS = (cb, mod) => function __require() {
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
   };
   var __copyProps = (to, from, except, desc) => {
     if (from && typeof from === "object" || typeof from === "function") {
@@ -51,7 +58,7 @@
           return arr.concat.apply([], array);
         };
         var push = arr.push;
-        var indexOf = arr.indexOf;
+        var indexOf2 = arr.indexOf;
         var class2type = {};
         var toString = class2type.toString;
         var hasOwn = class2type.hasOwnProperty;
@@ -91,13 +98,13 @@
           }
           return typeof obj === "object" || typeof obj === "function" ? class2type[toString.call(obj)] || "object" : typeof obj;
         }
-        var version = "3.7.0", rhtmlSuffix = /HTML$/i, jQuery2 = function(selector, context) {
-          return new jQuery2.fn.init(selector, context);
+        var version = "3.7.0", rhtmlSuffix = /HTML$/i, jQuery = function(selector, context) {
+          return new jQuery.fn.init(selector, context);
         };
-        jQuery2.fn = jQuery2.prototype = {
+        jQuery.fn = jQuery.prototype = {
           // The current version of jQuery being used
           jquery: version,
-          constructor: jQuery2,
+          constructor: jQuery,
           // The default length of a jQuery object is 0
           length: 0,
           toArray: function() {
@@ -114,16 +121,16 @@
           // Take an array of elements and push it onto the stack
           // (returning the new matched element set)
           pushStack: function(elems) {
-            var ret = jQuery2.merge(this.constructor(), elems);
+            var ret = jQuery.merge(this.constructor(), elems);
             ret.prevObject = this;
             return ret;
           },
           // Execute a callback for every element in the matched set.
           each: function(callback) {
-            return jQuery2.each(this, callback);
+            return jQuery.each(this, callback);
           },
           map: function(callback) {
-            return this.pushStack(jQuery2.map(this, function(elem, i) {
+            return this.pushStack(jQuery.map(this, function(elem, i) {
               return callback.call(elem, i, elem);
             }));
           },
@@ -137,12 +144,12 @@
             return this.eq(-1);
           },
           even: function() {
-            return this.pushStack(jQuery2.grep(this, function(_elem, i) {
+            return this.pushStack(jQuery.grep(this, function(_elem, i) {
               return (i + 1) % 2;
             }));
           },
           odd: function() {
-            return this.pushStack(jQuery2.grep(this, function(_elem, i) {
+            return this.pushStack(jQuery.grep(this, function(_elem, i) {
               return i % 2;
             }));
           },
@@ -159,7 +166,7 @@
           sort: arr.sort,
           splice: arr.splice
         };
-        jQuery2.extend = jQuery2.fn.extend = function() {
+        jQuery.extend = jQuery.fn.extend = function() {
           var options, name, src, copy, copyIsArray, clone, target = arguments[0] || {}, i = 1, length = arguments.length, deep = false;
           if (typeof target === "boolean") {
             deep = target;
@@ -180,17 +187,17 @@
                 if (name === "__proto__" || target === copy) {
                   continue;
                 }
-                if (deep && copy && (jQuery2.isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
+                if (deep && copy && (jQuery.isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
                   src = target[name];
                   if (copyIsArray && !Array.isArray(src)) {
                     clone = [];
-                  } else if (!copyIsArray && !jQuery2.isPlainObject(src)) {
+                  } else if (!copyIsArray && !jQuery.isPlainObject(src)) {
                     clone = {};
                   } else {
                     clone = src;
                   }
                   copyIsArray = false;
-                  target[name] = jQuery2.extend(deep, clone, copy);
+                  target[name] = jQuery.extend(deep, clone, copy);
                 } else if (copy !== void 0) {
                   target[name] = copy;
                 }
@@ -199,7 +206,7 @@
           }
           return target;
         };
-        jQuery2.extend({
+        jQuery.extend({
           // Unique for each copy of jQuery on the page
           expando: "jQuery" + (version + Math.random()).replace(/\D/g, ""),
           // Assume jQuery is ready without the ready module
@@ -256,7 +263,7 @@
             var node, ret = "", i = 0, nodeType = elem.nodeType;
             if (!nodeType) {
               while (node = elem[i++]) {
-                ret += jQuery2.text(node);
+                ret += jQuery.text(node);
               }
             } else if (nodeType === 1 || nodeType === 9 || nodeType === 11) {
               return elem.textContent;
@@ -270,7 +277,7 @@
             var ret = results || [];
             if (arr2 != null) {
               if (isArrayLike(Object(arr2))) {
-                jQuery2.merge(
+                jQuery.merge(
                   ret,
                   typeof arr2 === "string" ? [arr2] : arr2
                 );
@@ -281,7 +288,7 @@
             return ret;
           },
           inArray: function(elem, arr2, i) {
-            return arr2 == null ? -1 : indexOf.call(arr2, elem, i);
+            return arr2 == null ? -1 : indexOf2.call(arr2, elem, i);
           },
           isXMLDoc: function(elem) {
             var namespace = elem && elem.namespaceURI, docElem = elem && (elem.ownerDocument || elem).documentElement;
@@ -335,9 +342,9 @@
           support
         });
         if (typeof Symbol === "function") {
-          jQuery2.fn[Symbol.iterator] = arr[Symbol.iterator];
+          jQuery.fn[Symbol.iterator] = arr[Symbol.iterator];
         }
-        jQuery2.each(
+        jQuery.each(
           "Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "),
           function(_i, name) {
             class2type["[object " + name + "]"] = name.toLowerCase();
@@ -361,7 +368,7 @@
           "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$",
           "g"
         );
-        jQuery2.contains = function(a, b) {
+        jQuery.contains = function(a, b) {
           var bup = b && b.parentNode;
           return a === bup || !!(bup && bup.nodeType === 1 && // Support: IE 9 - 11+
           // IE doesn't have `contains` on SVG.
@@ -377,12 +384,12 @@
           }
           return "\\" + ch;
         }
-        jQuery2.escapeSelector = function(sel) {
+        jQuery.escapeSelector = function(sel) {
           return (sel + "").replace(rcssescape, fcssescape);
         };
         var preferredDoc = document2, pushNative = push;
         (function() {
-          var i, Expr, outermostContext, sortInput, hasDuplicate, push2 = pushNative, document3, documentElement2, documentIsHTML, rbuggyQSA, matches, expando = jQuery2.expando, dirruns = 0, done = 0, classCache = createCache(), tokenCache = createCache(), compilerCache = createCache(), nonnativeSelectorCache = createCache(), sortOrder = function(a, b) {
+          var i, Expr, outermostContext, sortInput, hasDuplicate, push2 = pushNative, document3, documentElement2, documentIsHTML, rbuggyQSA, matches, expando = jQuery.expando, dirruns = 0, done = 0, classCache = createCache(), tokenCache = createCache(), compilerCache = createCache(), nonnativeSelectorCache = createCache(), sortOrder = function(a, b) {
             if (a === b) {
               hasDuplicate = true;
             }
@@ -481,7 +488,7 @@
                     newContext = rsibling.test(selector) && testContext(context.parentNode) || context;
                     if (newContext != context || !support.scope) {
                       if (nid = context.getAttribute("id")) {
-                        nid = jQuery2.escapeSelector(nid);
+                        nid = jQuery.escapeSelector(nid);
                       } else {
                         context.setAttribute("id", nid = expando);
                       }
@@ -513,13 +520,13 @@
           }
           function createCache() {
             var keys = [];
-            function cache(key, value) {
+            function cache2(key, value) {
               if (keys.push(key + " ") > Expr.cacheLength) {
-                delete cache[keys.shift()];
+                delete cache2[keys.shift()];
               }
-              return cache[key + " "] = value;
+              return cache2[key + " "] = value;
             }
-            return cache;
+            return cache2;
           }
           function markFunction(fn) {
             fn[expando] = true;
@@ -592,14 +599,14 @@
             }
             document3 = doc;
             documentElement2 = document3.documentElement;
-            documentIsHTML = !jQuery2.isXMLDoc(document3);
+            documentIsHTML = !jQuery.isXMLDoc(document3);
             matches = documentElement2.matches || documentElement2.webkitMatchesSelector || documentElement2.msMatchesSelector;
             if (preferredDoc != document3 && (subWindow = document3.defaultView) && subWindow.top !== subWindow) {
               subWindow.addEventListener("unload", unloadHandler);
             }
             support.getById = assert(function(el) {
-              documentElement2.appendChild(el).id = jQuery2.expando;
-              return !document3.getElementsByName || !document3.getElementsByName(jQuery2.expando).length;
+              documentElement2.appendChild(el).id = jQuery.expando;
+              return !document3.getElementsByName || !document3.getElementsByName(jQuery.expando).length;
             });
             support.disconnectedMatch = assert(function(el) {
               return matches.call(el, "*");
@@ -723,7 +730,7 @@
                 if (b === document3 || b.ownerDocument == preferredDoc && find.contains(preferredDoc, b)) {
                   return 1;
                 }
-                return sortInput ? indexOf.call(sortInput, a) - indexOf.call(sortInput, b) : 0;
+                return sortInput ? indexOf2.call(sortInput, a) - indexOf2.call(sortInput, b) : 0;
               }
               return compare & 4 ? -1 : 1;
             };
@@ -752,7 +759,7 @@
             if ((context.ownerDocument || context) != document3) {
               setDocument(context);
             }
-            return jQuery2.contains(context, elem);
+            return jQuery.contains(context, elem);
           };
           find.attr = function(elem, name) {
             if ((elem.ownerDocument || elem) != document3) {
@@ -767,7 +774,7 @@
           find.error = function(msg) {
             throw new Error("Syntax error, unrecognized expression: " + msg);
           };
-          jQuery2.uniqueSort = function(results) {
+          jQuery.uniqueSort = function(results) {
             var elem, duplicates = [], j = 0, i2 = 0;
             hasDuplicate = !support.sortStable;
             sortInput = !support.sortStable && slice.call(results, 0);
@@ -785,10 +792,10 @@
             sortInput = null;
             return results;
           };
-          jQuery2.fn.uniqueSort = function() {
-            return this.pushStack(jQuery2.uniqueSort(slice.apply(this)));
+          jQuery.fn.uniqueSort = function() {
+            return this.pushStack(jQuery.uniqueSort(slice.apply(this)));
           };
-          Expr = jQuery2.expr = {
+          Expr = jQuery.expr = {
             // Can be adjusted by the user
             cacheLength: 50,
             createPseudo: markFunction,
@@ -898,7 +905,7 @@
                     return !!elem.parentNode;
                   }
                 ) : function(elem, _context, xml) {
-                  var cache, outerCache, node, nodeIndex, start, dir2 = simple !== forward ? "nextSibling" : "previousSibling", parent = elem.parentNode, name = ofType && elem.nodeName.toLowerCase(), useCache = !xml && !ofType, diff = false;
+                  var cache2, outerCache, node, nodeIndex, start2, dir2 = simple !== forward ? "nextSibling" : "previousSibling", parent = elem.parentNode, name = ofType && elem.nodeName.toLowerCase(), useCache = !xml && !ofType, diff = false;
                   if (parent) {
                     if (simple) {
                       while (dir2) {
@@ -908,19 +915,19 @@
                             return false;
                           }
                         }
-                        start = dir2 = type === "only" && !start && "nextSibling";
+                        start2 = dir2 = type === "only" && !start2 && "nextSibling";
                       }
                       return true;
                     }
-                    start = [forward ? parent.firstChild : parent.lastChild];
+                    start2 = [forward ? parent.firstChild : parent.lastChild];
                     if (forward && useCache) {
                       outerCache = parent[expando] || (parent[expando] = {});
-                      cache = outerCache[type] || [];
-                      nodeIndex = cache[0] === dirruns && cache[1];
-                      diff = nodeIndex && cache[2];
+                      cache2 = outerCache[type] || [];
+                      nodeIndex = cache2[0] === dirruns && cache2[1];
+                      diff = nodeIndex && cache2[2];
                       node = nodeIndex && parent.childNodes[nodeIndex];
                       while (node = ++nodeIndex && node && node[dir2] || // Fallback to seeking `elem` from the start
-                      (diff = nodeIndex = 0) || start.pop()) {
+                      (diff = nodeIndex = 0) || start2.pop()) {
                         if (node.nodeType === 1 && ++diff && node === elem) {
                           outerCache[type] = [dirruns, nodeIndex, diff];
                           break;
@@ -929,12 +936,12 @@
                     } else {
                       if (useCache) {
                         outerCache = elem[expando] || (elem[expando] = {});
-                        cache = outerCache[type] || [];
-                        nodeIndex = cache[0] === dirruns && cache[1];
+                        cache2 = outerCache[type] || [];
+                        nodeIndex = cache2[0] === dirruns && cache2[1];
                         diff = nodeIndex;
                       }
                       if (diff === false) {
-                        while (node = ++nodeIndex && node && node[dir2] || (diff = nodeIndex = 0) || start.pop()) {
+                        while (node = ++nodeIndex && node && node[dir2] || (diff = nodeIndex = 0) || start2.pop()) {
                           if ((ofType ? nodeName(node, name) : node.nodeType === 1) && ++diff) {
                             if (useCache) {
                               outerCache = node[expando] || (node[expando] = {});
@@ -962,7 +969,7 @@
                   return Expr.setFilters.hasOwnProperty(pseudo.toLowerCase()) ? markFunction(function(seed, matches2) {
                     var idx, matched = fn(seed, argument), i2 = matched.length;
                     while (i2--) {
-                      idx = indexOf.call(seed, matched[i2]);
+                      idx = indexOf2.call(seed, matched[i2]);
                       seed[idx] = !(matches2[idx] = matched[i2]);
                     }
                   }) : function(elem) {
@@ -998,7 +1005,7 @@
               contains: markFunction(function(text) {
                 text = text.replace(runescape, funescape);
                 return function(elem) {
-                  return (elem.textContent || jQuery2.text(elem)).indexOf(text) > -1;
+                  return (elem.textContent || jQuery.text(elem)).indexOf(text) > -1;
                 };
               }),
               // "Whether an element is represented by a :lang() selector
@@ -1315,7 +1322,7 @@
                   }
                   i2 = matcherOut.length;
                   while (i2--) {
-                    if ((elem = matcherOut[i2]) && (temp = postFinder ? indexOf.call(seed, elem) : preMap[i2]) > -1) {
+                    if ((elem = matcherOut[i2]) && (temp = postFinder ? indexOf2.call(seed, elem) : preMap[i2]) > -1) {
                       seed[temp] = !(results[temp] = elem);
                     }
                   }
@@ -1336,7 +1343,7 @@
             var checkContext, matcher, j, len = tokens.length, leadingRelative = Expr.relative[tokens[0].type], implicitRelative = leadingRelative || Expr.relative[" "], i2 = leadingRelative ? 1 : 0, matchContext = addCombinator(function(elem) {
               return elem === checkContext;
             }, implicitRelative, true), matchAnyContext = addCombinator(function(elem) {
-              return indexOf.call(checkContext, elem) > -1;
+              return indexOf2.call(checkContext, elem) > -1;
             }, implicitRelative, true), matchers = [function(elem, context, xml) {
               var ret = !leadingRelative && (xml || context != outermostContext) || ((checkContext = context).nodeType ? matchContext(elem, context, xml) : matchAnyContext(elem, context, xml));
               checkContext = null;
@@ -1421,7 +1428,7 @@
                 }
                 push2.apply(results, setMatched);
                 if (outermost && !seed && setMatched.length > 0 && matchedCount + setMatchers.length > 1) {
-                  jQuery2.uniqueSort(results);
+                  jQuery.uniqueSort(results);
                 }
               }
               if (outermost) {
@@ -1508,24 +1515,24 @@
           support.sortDetached = assert(function(el) {
             return el.compareDocumentPosition(document3.createElement("fieldset")) & 1;
           });
-          jQuery2.find = find;
-          jQuery2.expr[":"] = jQuery2.expr.pseudos;
-          jQuery2.unique = jQuery2.uniqueSort;
+          jQuery.find = find;
+          jQuery.expr[":"] = jQuery.expr.pseudos;
+          jQuery.unique = jQuery.uniqueSort;
           find.compile = compile;
           find.select = select;
           find.setDocument = setDocument;
-          find.escape = jQuery2.escapeSelector;
-          find.getText = jQuery2.text;
-          find.isXML = jQuery2.isXMLDoc;
-          find.selectors = jQuery2.expr;
-          find.support = jQuery2.support;
-          find.uniqueSort = jQuery2.uniqueSort;
+          find.escape = jQuery.escapeSelector;
+          find.getText = jQuery.text;
+          find.isXML = jQuery.isXMLDoc;
+          find.selectors = jQuery.expr;
+          find.support = jQuery.support;
+          find.uniqueSort = jQuery.uniqueSort;
         })();
         var dir = function(elem, dir2, until) {
           var matched = [], truncate = until !== void 0;
           while ((elem = elem[dir2]) && elem.nodeType !== 9) {
             if (elem.nodeType === 1) {
-              if (truncate && jQuery2(elem).is(until)) {
+              if (truncate && jQuery(elem).is(until)) {
                 break;
               }
               matched.push(elem);
@@ -1542,45 +1549,45 @@
           }
           return matched;
         };
-        var rneedsContext = jQuery2.expr.match.needsContext;
+        var rneedsContext = jQuery.expr.match.needsContext;
         var rsingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
         function winnow(elements, qualifier, not) {
           if (isFunction(qualifier)) {
-            return jQuery2.grep(elements, function(elem, i) {
+            return jQuery.grep(elements, function(elem, i) {
               return !!qualifier.call(elem, i, elem) !== not;
             });
           }
           if (qualifier.nodeType) {
-            return jQuery2.grep(elements, function(elem) {
+            return jQuery.grep(elements, function(elem) {
               return elem === qualifier !== not;
             });
           }
           if (typeof qualifier !== "string") {
-            return jQuery2.grep(elements, function(elem) {
-              return indexOf.call(qualifier, elem) > -1 !== not;
+            return jQuery.grep(elements, function(elem) {
+              return indexOf2.call(qualifier, elem) > -1 !== not;
             });
           }
-          return jQuery2.filter(qualifier, elements, not);
+          return jQuery.filter(qualifier, elements, not);
         }
-        jQuery2.filter = function(expr, elems, not) {
+        jQuery.filter = function(expr, elems, not) {
           var elem = elems[0];
           if (not) {
             expr = ":not(" + expr + ")";
           }
           if (elems.length === 1 && elem.nodeType === 1) {
-            return jQuery2.find.matchesSelector(elem, expr) ? [elem] : [];
+            return jQuery.find.matchesSelector(elem, expr) ? [elem] : [];
           }
-          return jQuery2.find.matches(expr, jQuery2.grep(elems, function(elem2) {
+          return jQuery.find.matches(expr, jQuery.grep(elems, function(elem2) {
             return elem2.nodeType === 1;
           }));
         };
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           find: function(selector) {
             var i, ret, len = this.length, self = this;
             if (typeof selector !== "string") {
-              return this.pushStack(jQuery2(selector).filter(function() {
+              return this.pushStack(jQuery(selector).filter(function() {
                 for (i = 0; i < len; i++) {
-                  if (jQuery2.contains(self[i], this)) {
+                  if (jQuery.contains(self[i], this)) {
                     return true;
                   }
                 }
@@ -1588,9 +1595,9 @@
             }
             ret = this.pushStack([]);
             for (i = 0; i < len; i++) {
-              jQuery2.find(selector, self[i], ret);
+              jQuery.find(selector, self[i], ret);
             }
-            return len > 1 ? jQuery2.uniqueSort(ret) : ret;
+            return len > 1 ? jQuery.uniqueSort(ret) : ret;
           },
           filter: function(selector) {
             return this.pushStack(winnow(this, selector || [], false));
@@ -1603,12 +1610,12 @@
               this,
               // If this is a positional/relative selector, check membership in the returned set
               // so $("p:first").is("p:last") won't return true for a doc with two "p".
-              typeof selector === "string" && rneedsContext.test(selector) ? jQuery2(selector) : selector || [],
+              typeof selector === "string" && rneedsContext.test(selector) ? jQuery(selector) : selector || [],
               false
             ).length;
           }
         });
-        var rootjQuery, rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/, init = jQuery2.fn.init = function(selector, context, root) {
+        var rootjQuery, rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/, init = jQuery.fn.init = function(selector, context, root) {
           var match, elem;
           if (!selector) {
             return this;
@@ -1622,13 +1629,13 @@
             }
             if (match && (match[1] || !context)) {
               if (match[1]) {
-                context = context instanceof jQuery2 ? context[0] : context;
-                jQuery2.merge(this, jQuery2.parseHTML(
+                context = context instanceof jQuery ? context[0] : context;
+                jQuery.merge(this, jQuery.parseHTML(
                   match[1],
                   context && context.nodeType ? context.ownerDocument || context : document2,
                   true
                 ));
-                if (rsingleTag.test(match[1]) && jQuery2.isPlainObject(context)) {
+                if (rsingleTag.test(match[1]) && jQuery.isPlainObject(context)) {
                   for (match in context) {
                     if (isFunction(this[match])) {
                       this[match](context[match]);
@@ -1658,39 +1665,39 @@
           } else if (isFunction(selector)) {
             return root.ready !== void 0 ? root.ready(selector) : (
               // Execute immediately if ready is not present
-              selector(jQuery2)
+              selector(jQuery)
             );
           }
-          return jQuery2.makeArray(selector, this);
+          return jQuery.makeArray(selector, this);
         };
-        init.prototype = jQuery2.fn;
-        rootjQuery = jQuery2(document2);
+        init.prototype = jQuery.fn;
+        rootjQuery = jQuery(document2);
         var rparentsprev = /^(?:parents|prev(?:Until|All))/, guaranteedUnique = {
           children: true,
           contents: true,
           next: true,
           prev: true
         };
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           has: function(target) {
-            var targets = jQuery2(target, this), l = targets.length;
+            var targets = jQuery(target, this), l = targets.length;
             return this.filter(function() {
               var i = 0;
               for (; i < l; i++) {
-                if (jQuery2.contains(this, targets[i])) {
+                if (jQuery.contains(this, targets[i])) {
                   return true;
                 }
               }
             });
           },
           closest: function(selectors, context) {
-            var cur, i = 0, l = this.length, matched = [], targets = typeof selectors !== "string" && jQuery2(selectors);
+            var cur, i = 0, l = this.length, matched = [], targets = typeof selectors !== "string" && jQuery(selectors);
             if (!rneedsContext.test(selectors)) {
               for (; i < l; i++) {
                 for (cur = this[i]; cur && cur !== context; cur = cur.parentNode) {
                   if (cur.nodeType < 11 && (targets ? targets.index(cur) > -1 : (
                     // Don't pass non-elements to jQuery#find
-                    cur.nodeType === 1 && jQuery2.find.matchesSelector(cur, selectors)
+                    cur.nodeType === 1 && jQuery.find.matchesSelector(cur, selectors)
                   ))) {
                     matched.push(cur);
                     break;
@@ -1698,7 +1705,7 @@
                 }
               }
             }
-            return this.pushStack(matched.length > 1 ? jQuery2.uniqueSort(matched) : matched);
+            return this.pushStack(matched.length > 1 ? jQuery.uniqueSort(matched) : matched);
           },
           // Determine the position of an element within the set
           index: function(elem) {
@@ -1706,9 +1713,9 @@
               return this[0] && this[0].parentNode ? this.first().prevAll().length : -1;
             }
             if (typeof elem === "string") {
-              return indexOf.call(jQuery2(elem), this[0]);
+              return indexOf2.call(jQuery(elem), this[0]);
             }
-            return indexOf.call(
+            return indexOf2.call(
               this,
               // If it receives a jQuery object, the first element is used
               elem.jquery ? elem[0] : elem
@@ -1716,8 +1723,8 @@
           },
           add: function(selector, context) {
             return this.pushStack(
-              jQuery2.uniqueSort(
-                jQuery2.merge(this.get(), jQuery2(selector, context))
+              jQuery.uniqueSort(
+                jQuery.merge(this.get(), jQuery(selector, context))
               )
             );
           },
@@ -1732,7 +1739,7 @@
           }
           return cur;
         }
-        jQuery2.each({
+        jQuery.each({
           parent: function(elem) {
             var parent = elem.parentNode;
             return parent && parent.nodeType !== 11 ? parent : null;
@@ -1777,20 +1784,20 @@
             if (nodeName(elem, "template")) {
               elem = elem.content || elem;
             }
-            return jQuery2.merge([], elem.childNodes);
+            return jQuery.merge([], elem.childNodes);
           }
         }, function(name, fn) {
-          jQuery2.fn[name] = function(until, selector) {
-            var matched = jQuery2.map(this, fn, until);
+          jQuery.fn[name] = function(until, selector) {
+            var matched = jQuery.map(this, fn, until);
             if (name.slice(-5) !== "Until") {
               selector = until;
             }
             if (selector && typeof selector === "string") {
-              matched = jQuery2.filter(selector, matched);
+              matched = jQuery.filter(selector, matched);
             }
             if (this.length > 1) {
               if (!guaranteedUnique[name]) {
-                jQuery2.uniqueSort(matched);
+                jQuery.uniqueSort(matched);
               }
               if (rparentsprev.test(name)) {
                 matched.reverse();
@@ -1802,13 +1809,13 @@
         var rnothtmlwhite = /[^\x20\t\r\n\f]+/g;
         function createOptions(options) {
           var object = {};
-          jQuery2.each(options.match(rnothtmlwhite) || [], function(_, flag) {
+          jQuery.each(options.match(rnothtmlwhite) || [], function(_, flag) {
             object[flag] = true;
           });
           return object;
         }
-        jQuery2.Callbacks = function(options) {
-          options = typeof options === "string" ? createOptions(options) : jQuery2.extend({}, options);
+        jQuery.Callbacks = function(options) {
+          options = typeof options === "string" ? createOptions(options) : jQuery.extend({}, options);
           var firing, memory, fired, locked, list = [], queue = [], firingIndex = -1, fire = function() {
             locked = locked || options.once;
             fired = firing = true;
@@ -1841,7 +1848,7 @@
                   queue.push(memory);
                 }
                 (function add2(args) {
-                  jQuery2.each(args, function(_, arg) {
+                  jQuery.each(args, function(_, arg) {
                     if (isFunction(arg)) {
                       if (!options.unique || !self.has(arg)) {
                         list.push(arg);
@@ -1859,9 +1866,9 @@
             },
             // Remove a callback from the list
             remove: function() {
-              jQuery2.each(arguments, function(_, arg) {
+              jQuery.each(arguments, function(_, arg) {
                 var index;
-                while ((index = jQuery2.inArray(arg, list, index)) > -1) {
+                while ((index = jQuery.inArray(arg, list, index)) > -1) {
                   list.splice(index, 1);
                   if (index <= firingIndex) {
                     firingIndex--;
@@ -1873,7 +1880,7 @@
             // Check if a given callback is in the list.
             // If no argument is given, return whether or not list has callbacks attached.
             has: function(fn) {
-              return fn ? jQuery2.inArray(fn, list) > -1 : list.length > 0;
+              return fn ? jQuery.inArray(fn, list) > -1 : list.length > 0;
             },
             // Remove all callbacks from the list
             empty: function() {
@@ -1950,7 +1957,7 @@
             reject.apply(void 0, [value2]);
           }
         }
-        jQuery2.extend({
+        jQuery.extend({
           Deferred: function(func) {
             var tuples = [
               // action, add listener, callbacks,
@@ -1958,23 +1965,23 @@
               [
                 "notify",
                 "progress",
-                jQuery2.Callbacks("memory"),
-                jQuery2.Callbacks("memory"),
+                jQuery.Callbacks("memory"),
+                jQuery.Callbacks("memory"),
                 2
               ],
               [
                 "resolve",
                 "done",
-                jQuery2.Callbacks("once memory"),
-                jQuery2.Callbacks("once memory"),
+                jQuery.Callbacks("once memory"),
+                jQuery.Callbacks("once memory"),
                 0,
                 "resolved"
               ],
               [
                 "reject",
                 "fail",
-                jQuery2.Callbacks("once memory"),
-                jQuery2.Callbacks("once memory"),
+                jQuery.Callbacks("once memory"),
+                jQuery.Callbacks("once memory"),
                 1,
                 "rejected"
               ]
@@ -1992,8 +1999,8 @@
               // Keep pipe for back-compat
               pipe: function() {
                 var fns = arguments;
-                return jQuery2.Deferred(function(newDefer) {
-                  jQuery2.each(tuples, function(_i, tuple) {
+                return jQuery.Deferred(function(newDefer) {
+                  jQuery.each(tuples, function(_i, tuple) {
                     var fn = isFunction(fns[tuple[4]]) && fns[tuple[4]];
                     deferred[tuple[1]](function() {
                       var returned = fn && fn.apply(this, arguments);
@@ -2059,8 +2066,8 @@
                       try {
                         mightThrow();
                       } catch (e) {
-                        if (jQuery2.Deferred.exceptionHook) {
-                          jQuery2.Deferred.exceptionHook(
+                        if (jQuery.Deferred.exceptionHook) {
+                          jQuery.Deferred.exceptionHook(
                             e,
                             process.error
                           );
@@ -2077,16 +2084,16 @@
                     if (depth) {
                       process();
                     } else {
-                      if (jQuery2.Deferred.getErrorHook) {
-                        process.error = jQuery2.Deferred.getErrorHook();
-                      } else if (jQuery2.Deferred.getStackHook) {
-                        process.error = jQuery2.Deferred.getStackHook();
+                      if (jQuery.Deferred.getErrorHook) {
+                        process.error = jQuery.Deferred.getErrorHook();
+                      } else if (jQuery.Deferred.getStackHook) {
+                        process.error = jQuery.Deferred.getStackHook();
                       }
                       window2.setTimeout(process);
                     }
                   };
                 }
-                return jQuery2.Deferred(function(newDefer) {
+                return jQuery.Deferred(function(newDefer) {
                   tuples[0][3].add(
                     resolve(
                       0,
@@ -2114,10 +2121,10 @@
               // Get a promise for this deferred
               // If obj is provided, the promise aspect is added to the object
               promise: function(obj) {
-                return obj != null ? jQuery2.extend(obj, promise) : promise;
+                return obj != null ? jQuery.extend(obj, promise) : promise;
               }
             }, deferred = {};
-            jQuery2.each(tuples, function(i, tuple) {
+            jQuery.each(tuples, function(i, tuple) {
               var list = tuple[2], stateString = tuple[5];
               promise[tuple[1]] = list.add;
               if (stateString) {
@@ -2152,7 +2159,7 @@
           },
           // Deferred helper
           when: function(singleValue) {
-            var remaining = arguments.length, i = remaining, resolveContexts = Array(i), resolveValues = slice.call(arguments), primary = jQuery2.Deferred(), updateFunc = function(i2) {
+            var remaining = arguments.length, i = remaining, resolveContexts = Array(i), resolveValues = slice.call(arguments), primary = jQuery.Deferred(), updateFunc = function(i2) {
               return function(value) {
                 resolveContexts[i2] = this;
                 resolveValues[i2] = arguments.length > 1 ? slice.call(arguments) : value;
@@ -2179,7 +2186,7 @@
           }
         });
         var rerrorNames = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
-        jQuery2.Deferred.exceptionHook = function(error2, asyncError) {
+        jQuery.Deferred.exceptionHook = function(error2, asyncError) {
           if (window2.console && window2.console.warn && error2 && rerrorNames.test(error2.name)) {
             window2.console.warn(
               "jQuery.Deferred exception: " + error2.message,
@@ -2188,19 +2195,19 @@
             );
           }
         };
-        jQuery2.readyException = function(error2) {
+        jQuery.readyException = function(error2) {
           window2.setTimeout(function() {
             throw error2;
           });
         };
-        var readyList = jQuery2.Deferred();
-        jQuery2.fn.ready = function(fn) {
+        var readyList = jQuery.Deferred();
+        jQuery.fn.ready = function(fn) {
           readyList.then(fn).catch(function(error2) {
-            jQuery2.readyException(error2);
+            jQuery.readyException(error2);
           });
           return this;
         };
-        jQuery2.extend({
+        jQuery.extend({
           // Is the DOM ready to be used? Set to true once it occurs.
           isReady: false,
           // A counter to track how many items to wait for before
@@ -2208,24 +2215,24 @@
           readyWait: 1,
           // Handle when the DOM is ready
           ready: function(wait) {
-            if (wait === true ? --jQuery2.readyWait : jQuery2.isReady) {
+            if (wait === true ? --jQuery.readyWait : jQuery.isReady) {
               return;
             }
-            jQuery2.isReady = true;
-            if (wait !== true && --jQuery2.readyWait > 0) {
+            jQuery.isReady = true;
+            if (wait !== true && --jQuery.readyWait > 0) {
               return;
             }
-            readyList.resolveWith(document2, [jQuery2]);
+            readyList.resolveWith(document2, [jQuery]);
           }
         });
-        jQuery2.ready.then = readyList.then;
+        jQuery.ready.then = readyList.then;
         function completed() {
           document2.removeEventListener("DOMContentLoaded", completed);
           window2.removeEventListener("load", completed);
-          jQuery2.ready();
+          jQuery.ready();
         }
         if (document2.readyState === "complete" || document2.readyState !== "loading" && !document2.documentElement.doScroll) {
-          window2.setTimeout(jQuery2.ready);
+          window2.setTimeout(jQuery.ready);
         } else {
           document2.addEventListener("DOMContentLoaded", completed);
           window2.addEventListener("load", completed);
@@ -2249,7 +2256,7 @@
               } else {
                 bulk = fn;
                 fn = function(elem, _key, value2) {
-                  return bulk.call(jQuery2(elem), value2);
+                  return bulk.call(jQuery(elem), value2);
                 };
               }
             }
@@ -2282,7 +2289,7 @@
           return owner.nodeType === 1 || owner.nodeType === 9 || !+owner.nodeType;
         };
         function Data() {
-          this.expando = jQuery2.expando + Data.uid++;
+          this.expando = jQuery.expando + Data.uid++;
         }
         Data.uid = 1;
         Data.prototype = {
@@ -2304,15 +2311,15 @@
             return value;
           },
           set: function(owner, data, value) {
-            var prop, cache = this.cache(owner);
+            var prop, cache2 = this.cache(owner);
             if (typeof data === "string") {
-              cache[camelCase(data)] = value;
+              cache2[camelCase(data)] = value;
             } else {
               for (prop in data) {
-                cache[camelCase(prop)] = data[prop];
+                cache2[camelCase(prop)] = data[prop];
               }
             }
-            return cache;
+            return cache2;
           },
           get: function(owner, key) {
             return key === void 0 ? this.cache(owner) : (
@@ -2328,8 +2335,8 @@
             return value !== void 0 ? value : key;
           },
           remove: function(owner, key) {
-            var i, cache = owner[this.expando];
-            if (cache === void 0) {
+            var i, cache2 = owner[this.expando];
+            if (cache2 === void 0) {
               return;
             }
             if (key !== void 0) {
@@ -2337,14 +2344,14 @@
                 key = key.map(camelCase);
               } else {
                 key = camelCase(key);
-                key = key in cache ? [key] : key.match(rnothtmlwhite) || [];
+                key = key in cache2 ? [key] : key.match(rnothtmlwhite) || [];
               }
               i = key.length;
               while (i--) {
-                delete cache[key[i]];
+                delete cache2[key[i]];
               }
             }
-            if (key === void 0 || jQuery2.isEmptyObject(cache)) {
+            if (key === void 0 || jQuery.isEmptyObject(cache2)) {
               if (owner.nodeType) {
                 owner[this.expando] = void 0;
               } else {
@@ -2353,8 +2360,8 @@
             }
           },
           hasData: function(owner) {
-            var cache = owner[this.expando];
-            return cache !== void 0 && !jQuery2.isEmptyObject(cache);
+            var cache2 = owner[this.expando];
+            return cache2 !== void 0 && !jQuery.isEmptyObject(cache2);
           }
         };
         var dataPriv = new Data();
@@ -2395,7 +2402,7 @@
           }
           return data;
         }
-        jQuery2.extend({
+        jQuery.extend({
           hasData: function(elem) {
             return dataUser.hasData(elem) || dataPriv.hasData(elem);
           },
@@ -2414,7 +2421,7 @@
             dataPriv.remove(elem, name);
           }
         });
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           data: function(key, value) {
             var i, name, data, elem = this[0], attrs = elem && elem.attributes;
             if (key === void 0) {
@@ -2465,7 +2472,7 @@
             });
           }
         });
-        jQuery2.extend({
+        jQuery.extend({
           queue: function(elem, type, data) {
             var queue;
             if (elem) {
@@ -2473,7 +2480,7 @@
               queue = dataPriv.get(elem, type);
               if (data) {
                 if (!queue || Array.isArray(data)) {
-                  queue = dataPriv.access(elem, type, jQuery2.makeArray(data));
+                  queue = dataPriv.access(elem, type, jQuery.makeArray(data));
                 } else {
                   queue.push(data);
                 }
@@ -2483,8 +2490,8 @@
           },
           dequeue: function(elem, type) {
             type = type || "fx";
-            var queue = jQuery2.queue(elem, type), startLength = queue.length, fn = queue.shift(), hooks = jQuery2._queueHooks(elem, type), next = function() {
-              jQuery2.dequeue(elem, type);
+            var queue = jQuery.queue(elem, type), startLength = queue.length, fn = queue.shift(), hooks = jQuery._queueHooks(elem, type), next = function() {
+              jQuery.dequeue(elem, type);
             };
             if (fn === "inprogress") {
               fn = queue.shift();
@@ -2505,13 +2512,13 @@
           _queueHooks: function(elem, type) {
             var key = type + "queueHooks";
             return dataPriv.get(elem, key) || dataPriv.access(elem, key, {
-              empty: jQuery2.Callbacks("once memory").add(function() {
+              empty: jQuery.Callbacks("once memory").add(function() {
                 dataPriv.remove(elem, [type + "queue", key]);
               })
             });
           }
         });
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           queue: function(type, data) {
             var setter = 2;
             if (typeof type !== "string") {
@@ -2520,19 +2527,19 @@
               setter--;
             }
             if (arguments.length < setter) {
-              return jQuery2.queue(this[0], type);
+              return jQuery.queue(this[0], type);
             }
             return data === void 0 ? this : this.each(function() {
-              var queue = jQuery2.queue(this, type, data);
-              jQuery2._queueHooks(this, type);
+              var queue = jQuery.queue(this, type, data);
+              jQuery._queueHooks(this, type);
               if (type === "fx" && queue[0] !== "inprogress") {
-                jQuery2.dequeue(this, type);
+                jQuery.dequeue(this, type);
               }
             });
           },
           dequeue: function(type) {
             return this.each(function() {
-              jQuery2.dequeue(this, type);
+              jQuery.dequeue(this, type);
             });
           },
           clearQueue: function(type) {
@@ -2541,7 +2548,7 @@
           // Get a promise resolved when queues of a certain type
           // are emptied (fx is the type by default)
           promise: function(type, obj) {
-            var tmp, count = 1, defer = jQuery2.Deferred(), elements = this, i = this.length, resolve = function() {
+            var tmp, count = 1, defer = jQuery.Deferred(), elements = this, i = this.length, resolve = function() {
               if (!--count) {
                 defer.resolveWith(elements, [elements]);
               }
@@ -2567,11 +2574,11 @@
         var cssExpand = ["Top", "Right", "Bottom", "Left"];
         var documentElement = document2.documentElement;
         var isAttached = function(elem) {
-          return jQuery2.contains(elem.ownerDocument, elem);
+          return jQuery.contains(elem.ownerDocument, elem);
         }, composed = { composed: true };
         if (documentElement.getRootNode) {
           isAttached = function(elem) {
-            return jQuery2.contains(elem.ownerDocument, elem) || elem.getRootNode(composed) === elem.ownerDocument;
+            return jQuery.contains(elem.ownerDocument, elem) || elem.getRootNode(composed) === elem.ownerDocument;
           };
         }
         var isHiddenWithinTree = function(elem, el) {
@@ -2580,27 +2587,27 @@
           // Support: Firefox <=43 - 45
           // Disconnected elements can have computed display: none, so first confirm that elem is
           // in the document.
-          isAttached(elem) && jQuery2.css(elem, "display") === "none";
+          isAttached(elem) && jQuery.css(elem, "display") === "none";
         };
         function adjustCSS(elem, prop, valueParts, tween) {
           var adjusted, scale, maxIterations = 20, currentValue = tween ? function() {
             return tween.cur();
           } : function() {
-            return jQuery2.css(elem, prop, "");
-          }, initial = currentValue(), unit = valueParts && valueParts[3] || (jQuery2.cssNumber[prop] ? "" : "px"), initialInUnit = elem.nodeType && (jQuery2.cssNumber[prop] || unit !== "px" && +initial) && rcssNum.exec(jQuery2.css(elem, prop));
+            return jQuery.css(elem, prop, "");
+          }, initial = currentValue(), unit = valueParts && valueParts[3] || (jQuery.cssNumber[prop] ? "" : "px"), initialInUnit = elem.nodeType && (jQuery.cssNumber[prop] || unit !== "px" && +initial) && rcssNum.exec(jQuery.css(elem, prop));
           if (initialInUnit && initialInUnit[3] !== unit) {
             initial = initial / 2;
             unit = unit || initialInUnit[3];
             initialInUnit = +initial || 1;
             while (maxIterations--) {
-              jQuery2.style(elem, prop, initialInUnit + unit);
+              jQuery.style(elem, prop, initialInUnit + unit);
               if ((1 - scale) * (1 - (scale = currentValue() / initial || 0.5)) <= 0) {
                 maxIterations = 0;
               }
               initialInUnit = initialInUnit / scale;
             }
             initialInUnit = initialInUnit * 2;
-            jQuery2.style(elem, prop, initialInUnit + unit);
+            jQuery.style(elem, prop, initialInUnit + unit);
             valueParts = valueParts || [];
           }
           if (valueParts) {
@@ -2621,7 +2628,7 @@
             return display;
           }
           temp = doc.body.appendChild(doc.createElement(nodeName2));
-          display = jQuery2.css(temp, "display");
+          display = jQuery.css(temp, "display");
           temp.parentNode.removeChild(temp);
           if (display === "none") {
             display = "block";
@@ -2661,7 +2668,7 @@
           }
           return elements;
         }
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           show: function() {
             return showHide(this, true);
           },
@@ -2674,9 +2681,9 @@
             }
             return this.each(function() {
               if (isHiddenWithinTree(this)) {
-                jQuery2(this).show();
+                jQuery(this).show();
               } else {
-                jQuery2(this).hide();
+                jQuery(this).hide();
               }
             });
           }
@@ -2721,7 +2728,7 @@
             ret = [];
           }
           if (tag === void 0 || tag && nodeName(context, tag)) {
-            return jQuery2.merge([context], ret);
+            return jQuery.merge([context], ret);
           }
           return ret;
         }
@@ -2742,19 +2749,19 @@
             elem = elems[i];
             if (elem || elem === 0) {
               if (toType(elem) === "object") {
-                jQuery2.merge(nodes, elem.nodeType ? [elem] : elem);
+                jQuery.merge(nodes, elem.nodeType ? [elem] : elem);
               } else if (!rhtml.test(elem)) {
                 nodes.push(context.createTextNode(elem));
               } else {
                 tmp = tmp || fragment.appendChild(context.createElement("div"));
                 tag = (rtagName.exec(elem) || ["", ""])[1].toLowerCase();
                 wrap = wrapMap[tag] || wrapMap._default;
-                tmp.innerHTML = wrap[1] + jQuery2.htmlPrefilter(elem) + wrap[2];
+                tmp.innerHTML = wrap[1] + jQuery.htmlPrefilter(elem) + wrap[2];
                 j = wrap[0];
                 while (j--) {
                   tmp = tmp.lastChild;
                 }
-                jQuery2.merge(nodes, tmp.childNodes);
+                jQuery.merge(nodes, tmp.childNodes);
                 tmp = fragment.firstChild;
                 tmp.textContent = "";
               }
@@ -2763,7 +2770,7 @@
           fragment.textContent = "";
           i = 0;
           while (elem = nodes[i++]) {
-            if (selection && jQuery2.inArray(elem, selection) > -1) {
+            if (selection && jQuery.inArray(elem, selection) > -1) {
               if (ignored) {
                 ignored.push(elem);
               }
@@ -2825,16 +2832,16 @@
           if (one === 1) {
             origFn = fn;
             fn = function(event) {
-              jQuery2().off(event);
+              jQuery().off(event);
               return origFn.apply(this, arguments);
             };
-            fn.guid = origFn.guid || (origFn.guid = jQuery2.guid++);
+            fn.guid = origFn.guid || (origFn.guid = jQuery.guid++);
           }
           return elem.each(function() {
-            jQuery2.event.add(this, types, fn, data, selector);
+            jQuery.event.add(this, types, fn, data, selector);
           });
         }
-        jQuery2.event = {
+        jQuery.event = {
           global: {},
           add: function(elem, types, handler, data, selector) {
             var handleObjIn, eventHandle, tmp, events, t, handleObj, special, handlers, type, namespaces, origType, elemData = dataPriv.get(elem);
@@ -2847,17 +2854,17 @@
               selector = handleObjIn.selector;
             }
             if (selector) {
-              jQuery2.find.matchesSelector(documentElement, selector);
+              jQuery.find.matchesSelector(documentElement, selector);
             }
             if (!handler.guid) {
-              handler.guid = jQuery2.guid++;
+              handler.guid = jQuery.guid++;
             }
             if (!(events = elemData.events)) {
               events = elemData.events = /* @__PURE__ */ Object.create(null);
             }
             if (!(eventHandle = elemData.handle)) {
               eventHandle = elemData.handle = function(e) {
-                return typeof jQuery2 !== "undefined" && jQuery2.event.triggered !== e.type ? jQuery2.event.dispatch.apply(elem, arguments) : void 0;
+                return typeof jQuery !== "undefined" && jQuery.event.triggered !== e.type ? jQuery.event.dispatch.apply(elem, arguments) : void 0;
               };
             }
             types = (types || "").match(rnothtmlwhite) || [""];
@@ -2869,17 +2876,17 @@
               if (!type) {
                 continue;
               }
-              special = jQuery2.event.special[type] || {};
+              special = jQuery.event.special[type] || {};
               type = (selector ? special.delegateType : special.bindType) || type;
-              special = jQuery2.event.special[type] || {};
-              handleObj = jQuery2.extend({
+              special = jQuery.event.special[type] || {};
+              handleObj = jQuery.extend({
                 type,
                 origType,
                 data,
                 handler,
                 guid: handler.guid,
                 selector,
-                needsContext: selector && jQuery2.expr.match.needsContext.test(selector),
+                needsContext: selector && jQuery.expr.match.needsContext.test(selector),
                 namespace: namespaces.join(".")
               }, handleObjIn);
               if (!(handlers = events[type])) {
@@ -2902,7 +2909,7 @@
               } else {
                 handlers.push(handleObj);
               }
-              jQuery2.event.global[type] = true;
+              jQuery.event.global[type] = true;
             }
           },
           // Detach an event or set of events from an element
@@ -2919,11 +2926,11 @@
               namespaces = (tmp[2] || "").split(".").sort();
               if (!type) {
                 for (type in events) {
-                  jQuery2.event.remove(elem, type + types[t], handler, selector, true);
+                  jQuery.event.remove(elem, type + types[t], handler, selector, true);
                 }
                 continue;
               }
-              special = jQuery2.event.special[type] || {};
+              special = jQuery.event.special[type] || {};
               type = (selector ? special.delegateType : special.bindType) || type;
               handlers = events[type] || [];
               tmp = tmp[2] && new RegExp("(^|\\.)" + namespaces.join("\\.(?:.*\\.|)") + "(\\.|$)");
@@ -2942,17 +2949,17 @@
               }
               if (origCount && !handlers.length) {
                 if (!special.teardown || special.teardown.call(elem, namespaces, elemData.handle) === false) {
-                  jQuery2.removeEvent(elem, type, elemData.handle);
+                  jQuery.removeEvent(elem, type, elemData.handle);
                 }
                 delete events[type];
               }
             }
-            if (jQuery2.isEmptyObject(events)) {
+            if (jQuery.isEmptyObject(events)) {
               dataPriv.remove(elem, "handle events");
             }
           },
           dispatch: function(nativeEvent) {
-            var i, j, ret, matched, handleObj, handlerQueue, args = new Array(arguments.length), event = jQuery2.event.fix(nativeEvent), handlers = (dataPriv.get(this, "events") || /* @__PURE__ */ Object.create(null))[event.type] || [], special = jQuery2.event.special[event.type] || {};
+            var i, j, ret, matched, handleObj, handlerQueue, args = new Array(arguments.length), event = jQuery.event.fix(nativeEvent), handlers = (dataPriv.get(this, "events") || /* @__PURE__ */ Object.create(null))[event.type] || [], special = jQuery.event.special[event.type] || {};
             args[0] = event;
             for (i = 1; i < arguments.length; i++) {
               args[i] = arguments[i];
@@ -2961,7 +2968,7 @@
             if (special.preDispatch && special.preDispatch.call(this, event) === false) {
               return;
             }
-            handlerQueue = jQuery2.event.handlers.call(this, event, handlers);
+            handlerQueue = jQuery.event.handlers.call(this, event, handlers);
             i = 0;
             while ((matched = handlerQueue[i++]) && !event.isPropagationStopped()) {
               event.currentTarget = matched.elem;
@@ -2970,7 +2977,7 @@
                 if (!event.rnamespace || handleObj.namespace === false || event.rnamespace.test(handleObj.namespace)) {
                   event.handleObj = handleObj;
                   event.data = handleObj.data;
-                  ret = ((jQuery2.event.special[handleObj.origType] || {}).handle || handleObj.handler).apply(matched.elem, args);
+                  ret = ((jQuery.event.special[handleObj.origType] || {}).handle || handleObj.handler).apply(matched.elem, args);
                   if (ret !== void 0) {
                     if ((event.result = ret) === false) {
                       event.preventDefault();
@@ -3003,7 +3010,7 @@
                     handleObj = handlers[i];
                     sel = handleObj.selector + " ";
                     if (matchedSelectors[sel] === void 0) {
-                      matchedSelectors[sel] = handleObj.needsContext ? jQuery2(sel, this).index(cur) > -1 : jQuery2.find(sel, this, null, [cur]).length;
+                      matchedSelectors[sel] = handleObj.needsContext ? jQuery(sel, this).index(cur) > -1 : jQuery.find(sel, this, null, [cur]).length;
                     }
                     if (matchedSelectors[sel]) {
                       matchedHandlers.push(handleObj);
@@ -3022,7 +3029,7 @@
             return handlerQueue;
           },
           addProp: function(name, hook) {
-            Object.defineProperty(jQuery2.Event.prototype, name, {
+            Object.defineProperty(jQuery.Event.prototype, name, {
               enumerable: true,
               configurable: true,
               get: isFunction(hook) ? function() {
@@ -3045,7 +3052,7 @@
             });
           },
           fix: function(originalEvent) {
-            return originalEvent[jQuery2.expando] ? originalEvent : new jQuery2.Event(originalEvent);
+            return originalEvent[jQuery.expando] ? originalEvent : new jQuery.Event(originalEvent);
           },
           special: {
             load: {
@@ -3087,12 +3094,12 @@
         function leverageNative(el, type, isSetup) {
           if (!isSetup) {
             if (dataPriv.get(el, type) === void 0) {
-              jQuery2.event.add(el, type, returnTrue);
+              jQuery.event.add(el, type, returnTrue);
             }
             return;
           }
           dataPriv.set(el, type, false);
-          jQuery2.event.add(el, type, {
+          jQuery.event.add(el, type, {
             namespace: false,
             handler: function(event) {
               var result, saved = dataPriv.get(this, type);
@@ -3108,11 +3115,11 @@
                     event.preventDefault();
                     return result;
                   }
-                } else if ((jQuery2.event.special[type] || {}).delegateType) {
+                } else if ((jQuery.event.special[type] || {}).delegateType) {
                   event.stopPropagation();
                 }
               } else if (saved) {
-                dataPriv.set(this, type, jQuery2.event.trigger(
+                dataPriv.set(this, type, jQuery.event.trigger(
                   saved[0],
                   saved.slice(1),
                   this
@@ -3123,14 +3130,14 @@
             }
           });
         }
-        jQuery2.removeEvent = function(elem, type, handle) {
+        jQuery.removeEvent = function(elem, type, handle) {
           if (elem.removeEventListener) {
             elem.removeEventListener(type, handle);
           }
         };
-        jQuery2.Event = function(src, props) {
-          if (!(this instanceof jQuery2.Event)) {
-            return new jQuery2.Event(src, props);
+        jQuery.Event = function(src, props) {
+          if (!(this instanceof jQuery.Event)) {
+            return new jQuery.Event(src, props);
           }
           if (src && src.type) {
             this.originalEvent = src;
@@ -3144,13 +3151,13 @@
             this.type = src;
           }
           if (props) {
-            jQuery2.extend(this, props);
+            jQuery.extend(this, props);
           }
           this.timeStamp = src && src.timeStamp || Date.now();
-          this[jQuery2.expando] = true;
+          this[jQuery.expando] = true;
         };
-        jQuery2.Event.prototype = {
-          constructor: jQuery2.Event,
+        jQuery.Event.prototype = {
+          constructor: jQuery.Event,
           isDefaultPrevented: returnFalse,
           isPropagationStopped: returnFalse,
           isImmediatePropagationStopped: returnFalse,
@@ -3178,7 +3185,7 @@
             this.stopPropagation();
           }
         };
-        jQuery2.each({
+        jQuery.each({
           altKey: true,
           bubbles: true,
           cancelable: true,
@@ -3210,11 +3217,11 @@
           toElement: true,
           touches: true,
           which: true
-        }, jQuery2.event.addProp);
-        jQuery2.each({ focus: "focusin", blur: "focusout" }, function(type, delegateType) {
+        }, jQuery.event.addProp);
+        jQuery.each({ focus: "focusin", blur: "focusout" }, function(type, delegateType) {
           function focusMappedHandler(nativeEvent) {
             if (document2.documentMode) {
-              var handle = dataPriv.get(this, "handle"), event = jQuery2.event.fix(nativeEvent);
+              var handle = dataPriv.get(this, "handle"), event = jQuery.event.fix(nativeEvent);
               event.type = nativeEvent.type === "focusin" ? "focus" : "blur";
               event.isSimulated = true;
               handle(nativeEvent);
@@ -3222,14 +3229,14 @@
                 handle(event);
               }
             } else {
-              jQuery2.event.simulate(
+              jQuery.event.simulate(
                 delegateType,
                 nativeEvent.target,
-                jQuery2.event.fix(nativeEvent)
+                jQuery.event.fix(nativeEvent)
               );
             }
           }
-          jQuery2.event.special[type] = {
+          jQuery.event.special[type] = {
             // Utilize native event if possible so blur/focus sequence is correct
             setup: function() {
               var attaches;
@@ -3269,7 +3276,7 @@
             },
             delegateType
           };
-          jQuery2.event.special[delegateType] = {
+          jQuery.event.special[delegateType] = {
             setup: function() {
               var doc = this.ownerDocument || this.document || this, dataHolder = document2.documentMode ? this : doc, attaches = dataPriv.get(dataHolder, delegateType);
               if (!attaches) {
@@ -3296,18 +3303,18 @@
             }
           };
         });
-        jQuery2.each({
+        jQuery.each({
           mouseenter: "mouseover",
           mouseleave: "mouseout",
           pointerenter: "pointerover",
           pointerleave: "pointerout"
         }, function(orig, fix) {
-          jQuery2.event.special[orig] = {
+          jQuery.event.special[orig] = {
             delegateType: fix,
             bindType: fix,
             handle: function(event) {
               var ret, target = this, related = event.relatedTarget, handleObj = event.handleObj;
-              if (!related || related !== target && !jQuery2.contains(target, related)) {
+              if (!related || related !== target && !jQuery.contains(target, related)) {
                 event.type = handleObj.origType;
                 ret = handleObj.handler.apply(this, arguments);
                 event.type = fix;
@@ -3316,7 +3323,7 @@
             }
           };
         });
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           on: function(types, selector, data, fn) {
             return on(this, types, selector, data, fn);
           },
@@ -3327,7 +3334,7 @@
             var handleObj, type;
             if (types && types.preventDefault && types.handleObj) {
               handleObj = types.handleObj;
-              jQuery2(types.delegateTarget).off(
+              jQuery(types.delegateTarget).off(
                 handleObj.namespace ? handleObj.origType + "." + handleObj.namespace : handleObj.origType,
                 handleObj.selector,
                 handleObj.handler
@@ -3348,14 +3355,14 @@
               fn = returnFalse;
             }
             return this.each(function() {
-              jQuery2.event.remove(this, types, fn, selector);
+              jQuery.event.remove(this, types, fn, selector);
             });
           }
         });
         var rnoInnerhtml = /<script|<style|<link/i, rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i, rcleanScript = /^\s*<!\[CDATA\[|\]\]>\s*$/g;
         function manipulationTarget(elem, content) {
           if (nodeName(elem, "table") && nodeName(content.nodeType !== 11 ? content : content.firstChild, "tr")) {
-            return jQuery2(elem).children("tbody")[0] || elem;
+            return jQuery(elem).children("tbody")[0] || elem;
           }
           return elem;
         }
@@ -3383,14 +3390,14 @@
               dataPriv.remove(dest, "handle events");
               for (type in events) {
                 for (i = 0, l = events[type].length; i < l; i++) {
-                  jQuery2.event.add(dest, type, events[type][i]);
+                  jQuery.event.add(dest, type, events[type][i]);
                 }
               }
             }
           }
           if (dataUser.hasData(src)) {
             udataOld = dataUser.access(src);
-            udataCur = jQuery2.extend({}, udataOld);
+            udataCur = jQuery.extend({}, udataOld);
             dataUser.set(dest, udataCur);
           }
         }
@@ -3421,27 +3428,27 @@
               fragment = first;
             }
             if (first || ignored) {
-              scripts = jQuery2.map(getAll(fragment, "script"), disableScript);
+              scripts = jQuery.map(getAll(fragment, "script"), disableScript);
               hasScripts = scripts.length;
               for (; i < l; i++) {
                 node = fragment;
                 if (i !== iNoClone) {
-                  node = jQuery2.clone(node, true, true);
+                  node = jQuery.clone(node, true, true);
                   if (hasScripts) {
-                    jQuery2.merge(scripts, getAll(node, "script"));
+                    jQuery.merge(scripts, getAll(node, "script"));
                   }
                 }
                 callback.call(collection[i], node, i);
               }
               if (hasScripts) {
                 doc = scripts[scripts.length - 1].ownerDocument;
-                jQuery2.map(scripts, restoreScript);
+                jQuery.map(scripts, restoreScript);
                 for (i = 0; i < hasScripts; i++) {
                   node = scripts[i];
-                  if (rscriptType.test(node.type || "") && !dataPriv.access(node, "globalEval") && jQuery2.contains(doc, node)) {
+                  if (rscriptType.test(node.type || "") && !dataPriv.access(node, "globalEval") && jQuery.contains(doc, node)) {
                     if (node.src && (node.type || "").toLowerCase() !== "module") {
-                      if (jQuery2._evalUrl && !node.noModule) {
-                        jQuery2._evalUrl(node.src, {
+                      if (jQuery._evalUrl && !node.noModule) {
+                        jQuery._evalUrl(node.src, {
                           nonce: node.nonce || node.getAttribute("nonce")
                         }, doc);
                       }
@@ -3456,10 +3463,10 @@
           return collection;
         }
         function remove(elem, selector, keepData) {
-          var node, nodes = selector ? jQuery2.filter(selector, elem) : elem, i = 0;
+          var node, nodes = selector ? jQuery.filter(selector, elem) : elem, i = 0;
           for (; (node = nodes[i]) != null; i++) {
             if (!keepData && node.nodeType === 1) {
-              jQuery2.cleanData(getAll(node));
+              jQuery.cleanData(getAll(node));
             }
             if (node.parentNode) {
               if (keepData && isAttached(node)) {
@@ -3470,13 +3477,13 @@
           }
           return elem;
         }
-        jQuery2.extend({
+        jQuery.extend({
           htmlPrefilter: function(html) {
             return html;
           },
           clone: function(elem, dataAndEvents, deepDataAndEvents) {
             var i, l, srcElements, destElements, clone = elem.cloneNode(true), inPage = isAttached(elem);
-            if (!support.noCloneChecked && (elem.nodeType === 1 || elem.nodeType === 11) && !jQuery2.isXMLDoc(elem)) {
+            if (!support.noCloneChecked && (elem.nodeType === 1 || elem.nodeType === 11) && !jQuery.isXMLDoc(elem)) {
               destElements = getAll(clone);
               srcElements = getAll(elem);
               for (i = 0, l = srcElements.length; i < l; i++) {
@@ -3501,16 +3508,16 @@
             return clone;
           },
           cleanData: function(elems) {
-            var data, elem, type, special = jQuery2.event.special, i = 0;
+            var data, elem, type, special = jQuery.event.special, i = 0;
             for (; (elem = elems[i]) !== void 0; i++) {
               if (acceptData(elem)) {
                 if (data = elem[dataPriv.expando]) {
                   if (data.events) {
                     for (type in data.events) {
                       if (special[type]) {
-                        jQuery2.event.remove(elem, type);
+                        jQuery.event.remove(elem, type);
                       } else {
-                        jQuery2.removeEvent(elem, type, data.handle);
+                        jQuery.removeEvent(elem, type, data.handle);
                       }
                     }
                   }
@@ -3523,7 +3530,7 @@
             }
           }
         });
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           detach: function(selector) {
             return remove(this, selector, true);
           },
@@ -3532,7 +3539,7 @@
           },
           text: function(value) {
             return access(this, function(value2) {
-              return value2 === void 0 ? jQuery2.text(this) : this.empty().each(function() {
+              return value2 === void 0 ? jQuery.text(this) : this.empty().each(function() {
                 if (this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9) {
                   this.textContent = value2;
                 }
@@ -3573,7 +3580,7 @@
             var elem, i = 0;
             for (; (elem = this[i]) != null; i++) {
               if (elem.nodeType === 1) {
-                jQuery2.cleanData(getAll(elem, false));
+                jQuery.cleanData(getAll(elem, false));
                 elem.textContent = "";
               }
             }
@@ -3583,7 +3590,7 @@
             dataAndEvents = dataAndEvents == null ? false : dataAndEvents;
             deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
             return this.map(function() {
-              return jQuery2.clone(this, dataAndEvents, deepDataAndEvents);
+              return jQuery.clone(this, dataAndEvents, deepDataAndEvents);
             });
           },
           html: function(value) {
@@ -3593,12 +3600,12 @@
                 return elem.innerHTML;
               }
               if (typeof value2 === "string" && !rnoInnerhtml.test(value2) && !wrapMap[(rtagName.exec(value2) || ["", ""])[1].toLowerCase()]) {
-                value2 = jQuery2.htmlPrefilter(value2);
+                value2 = jQuery.htmlPrefilter(value2);
                 try {
                   for (; i < l; i++) {
                     elem = this[i] || {};
                     if (elem.nodeType === 1) {
-                      jQuery2.cleanData(getAll(elem, false));
+                      jQuery.cleanData(getAll(elem, false));
                       elem.innerHTML = value2;
                     }
                   }
@@ -3615,8 +3622,8 @@
             var ignored = [];
             return domManip(this, arguments, function(elem) {
               var parent = this.parentNode;
-              if (jQuery2.inArray(this, ignored) < 0) {
-                jQuery2.cleanData(getAll(this));
+              if (jQuery.inArray(this, ignored) < 0) {
+                jQuery.cleanData(getAll(this));
                 if (parent) {
                   parent.replaceChild(elem, this);
                 }
@@ -3624,18 +3631,18 @@
             }, ignored);
           }
         });
-        jQuery2.each({
+        jQuery.each({
           appendTo: "append",
           prependTo: "prepend",
           insertBefore: "before",
           insertAfter: "after",
           replaceAll: "replaceWith"
         }, function(name, original) {
-          jQuery2.fn[name] = function(selector) {
-            var elems, ret = [], insert = jQuery2(selector), last = insert.length - 1, i = 0;
+          jQuery.fn[name] = function(selector) {
+            var elems, ret = [], insert = jQuery(selector), last = insert.length - 1, i = 0;
             for (; i <= last; i++) {
               elems = i === last ? this : this.clone(true);
-              jQuery2(insert[i])[original](elems);
+              jQuery(insert[i])[original](elems);
               push.apply(ret, elems.get());
             }
             return this.pushStack(ret);
@@ -3692,7 +3699,7 @@
           div.style.backgroundClip = "content-box";
           div.cloneNode(true).style.backgroundClip = "";
           support.clearCloneStyle = div.style.backgroundClip === "content-box";
-          jQuery2.extend(support, {
+          jQuery.extend(support, {
             boxSizingReliable: function() {
               computeStyleTests();
               return boxSizingReliableVal;
@@ -3751,7 +3758,7 @@
               ret = ret.replace(rtrimCSS, "$1") || void 0;
             }
             if (ret === "" && !isAttached(elem)) {
-              ret = jQuery2.style(elem, name);
+              ret = jQuery.style(elem, name);
             }
             if (!support.pixelBoxStyles() && rnumnonpx.test(ret) && rboxStyle.test(name)) {
               width = style.width;
@@ -3792,7 +3799,7 @@
           }
         }
         function finalPropName(name) {
-          var final = jQuery2.cssProps[name] || vendorProps[name];
+          var final = jQuery.cssProps[name] || vendorProps[name];
           if (final) {
             return final;
           }
@@ -3819,21 +3826,21 @@
           }
           for (; i < 4; i += 2) {
             if (box === "margin") {
-              marginDelta += jQuery2.css(elem, box + cssExpand[i], true, styles);
+              marginDelta += jQuery.css(elem, box + cssExpand[i], true, styles);
             }
             if (!isBorderBox) {
-              delta += jQuery2.css(elem, "padding" + cssExpand[i], true, styles);
+              delta += jQuery.css(elem, "padding" + cssExpand[i], true, styles);
               if (box !== "padding") {
-                delta += jQuery2.css(elem, "border" + cssExpand[i] + "Width", true, styles);
+                delta += jQuery.css(elem, "border" + cssExpand[i] + "Width", true, styles);
               } else {
-                extra += jQuery2.css(elem, "border" + cssExpand[i] + "Width", true, styles);
+                extra += jQuery.css(elem, "border" + cssExpand[i] + "Width", true, styles);
               }
             } else {
               if (box === "content") {
-                delta -= jQuery2.css(elem, "padding" + cssExpand[i], true, styles);
+                delta -= jQuery.css(elem, "padding" + cssExpand[i], true, styles);
               }
               if (box !== "margin") {
-                delta -= jQuery2.css(elem, "border" + cssExpand[i] + "Width", true, styles);
+                delta -= jQuery.css(elem, "border" + cssExpand[i] + "Width", true, styles);
               }
             }
           }
@@ -3847,7 +3854,7 @@
           return delta + marginDelta;
         }
         function getWidthOrHeight(elem, dimension, extra) {
-          var styles = getStyles(elem), boxSizingNeeded = !support.boxSizingReliable() || extra, isBorderBox = boxSizingNeeded && jQuery2.css(elem, "boxSizing", false, styles) === "border-box", valueIsBorderBox = isBorderBox, val = curCSS(elem, dimension, styles), offsetProp = "offset" + dimension[0].toUpperCase() + dimension.slice(1);
+          var styles = getStyles(elem), boxSizingNeeded = !support.boxSizingReliable() || extra, isBorderBox = boxSizingNeeded && jQuery.css(elem, "boxSizing", false, styles) === "border-box", valueIsBorderBox = isBorderBox, val = curCSS(elem, dimension, styles), offsetProp = "offset" + dimension[0].toUpperCase() + dimension.slice(1);
           if (rnumnonpx.test(val)) {
             if (!extra) {
               return val;
@@ -3862,9 +3869,9 @@
           // This happens for inline elements with no explicit setting (gh-3571)
           val === "auto" || // Support: Android <=4.1 - 4.3 only
           // Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
-          !parseFloat(val) && jQuery2.css(elem, "display", false, styles) === "inline") && // Make sure the element is visible & connected
+          !parseFloat(val) && jQuery.css(elem, "display", false, styles) === "inline") && // Make sure the element is visible & connected
           elem.getClientRects().length) {
-            isBorderBox = jQuery2.css(elem, "boxSizing", false, styles) === "border-box";
+            isBorderBox = jQuery.css(elem, "boxSizing", false, styles) === "border-box";
             valueIsBorderBox = offsetProp in elem;
             if (valueIsBorderBox) {
               val = elem[offsetProp];
@@ -3881,7 +3888,7 @@
             val
           ) + "px";
         }
-        jQuery2.extend({
+        jQuery.extend({
           // Add in style property hooks for overriding the default
           // behavior of getting and setting a style property
           cssHooks: {
@@ -3937,7 +3944,7 @@
             if (!isCustomProp) {
               name = finalPropName(origName);
             }
-            hooks = jQuery2.cssHooks[name] || jQuery2.cssHooks[origName];
+            hooks = jQuery.cssHooks[name] || jQuery.cssHooks[origName];
             if (value !== void 0) {
               type = typeof value;
               if (type === "string" && (ret = rcssNum.exec(value)) && ret[1]) {
@@ -3948,7 +3955,7 @@
                 return;
               }
               if (type === "number" && !isCustomProp) {
-                value += ret && ret[3] || (jQuery2.cssNumber[origName] ? "" : "px");
+                value += ret && ret[3] || (jQuery.cssNumber[origName] ? "" : "px");
               }
               if (!support.clearCloneStyle && value === "" && name.indexOf("background") === 0) {
                 style[name] = "inherit";
@@ -3972,7 +3979,7 @@
             if (!isCustomProp) {
               name = finalPropName(origName);
             }
-            hooks = jQuery2.cssHooks[name] || jQuery2.cssHooks[origName];
+            hooks = jQuery.cssHooks[name] || jQuery.cssHooks[origName];
             if (hooks && "get" in hooks) {
               val = hooks.get(elem, true, extra);
             }
@@ -3989,11 +3996,11 @@
             return val;
           }
         });
-        jQuery2.each(["height", "width"], function(_i, dimension) {
-          jQuery2.cssHooks[dimension] = {
+        jQuery.each(["height", "width"], function(_i, dimension) {
+          jQuery.cssHooks[dimension] = {
             get: function(elem, computed, extra) {
               if (computed) {
-                return rdisplayswap.test(jQuery2.css(elem, "display")) && // Support: Safari 8+
+                return rdisplayswap.test(jQuery.css(elem, "display")) && // Support: Safari 8+
                 // Table columns in Safari have non-zero offsetWidth & zero
                 // getBoundingClientRect().width unless display is changed.
                 // Support: IE <=11 only
@@ -4005,7 +4012,7 @@
               }
             },
             set: function(elem, value, extra) {
-              var matches, styles = getStyles(elem), scrollboxSizeBuggy = !support.scrollboxSize() && styles.position === "absolute", boxSizingNeeded = scrollboxSizeBuggy || extra, isBorderBox = boxSizingNeeded && jQuery2.css(elem, "boxSizing", false, styles) === "border-box", subtract = extra ? boxModelAdjustment(
+              var matches, styles = getStyles(elem), scrollboxSizeBuggy = !support.scrollboxSize() && styles.position === "absolute", boxSizingNeeded = scrollboxSizeBuggy || extra, isBorderBox = boxSizingNeeded && jQuery.css(elem, "boxSizing", false, styles) === "border-box", subtract = extra ? boxModelAdjustment(
                 elem,
                 dimension,
                 extra,
@@ -4019,13 +4026,13 @@
               }
               if (subtract && (matches = rcssNum.exec(value)) && (matches[3] || "px") !== "px") {
                 elem.style[dimension] = value;
-                value = jQuery2.css(elem, dimension);
+                value = jQuery.css(elem, dimension);
               }
               return setPositiveNumber(elem, value, subtract);
             }
           };
         });
-        jQuery2.cssHooks.marginLeft = addGetHookIf(
+        jQuery.cssHooks.marginLeft = addGetHookIf(
           support.reliableMarginLeft,
           function(elem, computed) {
             if (computed) {
@@ -4035,12 +4042,12 @@
             }
           }
         );
-        jQuery2.each({
+        jQuery.each({
           margin: "",
           padding: "",
           border: "Width"
         }, function(prefix, suffix) {
-          jQuery2.cssHooks[prefix + suffix] = {
+          jQuery.cssHooks[prefix + suffix] = {
             expand: function(value) {
               var i = 0, expanded = {}, parts = typeof value === "string" ? value.split(" ") : [value];
               for (; i < 4; i++) {
@@ -4050,10 +4057,10 @@
             }
           };
           if (prefix !== "margin") {
-            jQuery2.cssHooks[prefix + suffix].set = setPositiveNumber;
+            jQuery.cssHooks[prefix + suffix].set = setPositiveNumber;
           }
         });
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           css: function(name, value) {
             return access(this, function(elem, name2, value2) {
               var styles, len, map = {}, i = 0;
@@ -4061,28 +4068,28 @@
                 styles = getStyles(elem);
                 len = name2.length;
                 for (; i < len; i++) {
-                  map[name2[i]] = jQuery2.css(elem, name2[i], false, styles);
+                  map[name2[i]] = jQuery.css(elem, name2[i], false, styles);
                 }
                 return map;
               }
-              return value2 !== void 0 ? jQuery2.style(elem, name2, value2) : jQuery2.css(elem, name2);
+              return value2 !== void 0 ? jQuery.style(elem, name2, value2) : jQuery.css(elem, name2);
             }, name, value, arguments.length > 1);
           }
         });
         function Tween(elem, options, prop, end, easing) {
           return new Tween.prototype.init(elem, options, prop, end, easing);
         }
-        jQuery2.Tween = Tween;
+        jQuery.Tween = Tween;
         Tween.prototype = {
           constructor: Tween,
           init: function(elem, options, prop, end, easing, unit) {
             this.elem = elem;
             this.prop = prop;
-            this.easing = easing || jQuery2.easing._default;
+            this.easing = easing || jQuery.easing._default;
             this.options = options;
             this.start = this.now = this.cur();
             this.end = end;
-            this.unit = unit || (jQuery2.cssNumber[prop] ? "" : "px");
+            this.unit = unit || (jQuery.cssNumber[prop] ? "" : "px");
           },
           cur: function() {
             var hooks = Tween.propHooks[this.prop];
@@ -4091,7 +4098,7 @@
           run: function(percent) {
             var eased, hooks = Tween.propHooks[this.prop];
             if (this.options.duration) {
-              this.pos = eased = jQuery2.easing[this.easing](
+              this.pos = eased = jQuery.easing[this.easing](
                 percent,
                 this.options.duration * percent,
                 0,
@@ -4121,14 +4128,14 @@
               if (tween.elem.nodeType !== 1 || tween.elem[tween.prop] != null && tween.elem.style[tween.prop] == null) {
                 return tween.elem[tween.prop];
               }
-              result = jQuery2.css(tween.elem, tween.prop, "");
+              result = jQuery.css(tween.elem, tween.prop, "");
               return !result || result === "auto" ? 0 : result;
             },
             set: function(tween) {
-              if (jQuery2.fx.step[tween.prop]) {
-                jQuery2.fx.step[tween.prop](tween);
-              } else if (tween.elem.nodeType === 1 && (jQuery2.cssHooks[tween.prop] || tween.elem.style[finalPropName(tween.prop)] != null)) {
-                jQuery2.style(tween.elem, tween.prop, tween.now + tween.unit);
+              if (jQuery.fx.step[tween.prop]) {
+                jQuery.fx.step[tween.prop](tween);
+              } else if (tween.elem.nodeType === 1 && (jQuery.cssHooks[tween.prop] || tween.elem.style[finalPropName(tween.prop)] != null)) {
+                jQuery.style(tween.elem, tween.prop, tween.now + tween.unit);
               } else {
                 tween.elem[tween.prop] = tween.now;
               }
@@ -4142,7 +4149,7 @@
             }
           }
         };
-        jQuery2.easing = {
+        jQuery.easing = {
           linear: function(p) {
             return p;
           },
@@ -4151,17 +4158,17 @@
           },
           _default: "swing"
         };
-        jQuery2.fx = Tween.prototype.init;
-        jQuery2.fx.step = {};
+        jQuery.fx = Tween.prototype.init;
+        jQuery.fx.step = {};
         var fxNow, inProgress, rfxtypes = /^(?:toggle|show|hide)$/, rrun = /queueHooks$/;
         function schedule() {
           if (inProgress) {
             if (document2.hidden === false && window2.requestAnimationFrame) {
               window2.requestAnimationFrame(schedule);
             } else {
-              window2.setTimeout(schedule, jQuery2.fx.interval);
+              window2.setTimeout(schedule, jQuery.fx.interval);
             }
-            jQuery2.fx.tick();
+            jQuery.fx.tick();
           }
         }
         function createFxNow() {
@@ -4193,7 +4200,7 @@
         function defaultPrefilter(elem, props, opts) {
           var prop, value, toggle, hooks, oldfire, propTween, restoreDisplay, display, isBox = "width" in props || "height" in props, anim = this, orig = {}, style = elem.style, hidden = elem.nodeType && isHiddenWithinTree(elem), dataShow = dataPriv.get(elem, "fxshow");
           if (!opts.queue) {
-            hooks = jQuery2._queueHooks(elem, "fx");
+            hooks = jQuery._queueHooks(elem, "fx");
             if (hooks.unqueued == null) {
               hooks.unqueued = 0;
               oldfire = hooks.empty.fire;
@@ -4207,7 +4214,7 @@
             anim.always(function() {
               anim.always(function() {
                 hooks.unqueued--;
-                if (!jQuery2.queue(elem, "fx").length) {
+                if (!jQuery.queue(elem, "fx").length) {
                   hooks.empty.fire();
                 }
               });
@@ -4225,11 +4232,11 @@
                   continue;
                 }
               }
-              orig[prop] = dataShow && dataShow[prop] || jQuery2.style(elem, prop);
+              orig[prop] = dataShow && dataShow[prop] || jQuery.style(elem, prop);
             }
           }
-          propTween = !jQuery2.isEmptyObject(props);
-          if (!propTween && jQuery2.isEmptyObject(orig)) {
+          propTween = !jQuery.isEmptyObject(props);
+          if (!propTween && jQuery.isEmptyObject(orig)) {
             return;
           }
           if (isBox && elem.nodeType === 1) {
@@ -4238,19 +4245,19 @@
             if (restoreDisplay == null) {
               restoreDisplay = dataPriv.get(elem, "display");
             }
-            display = jQuery2.css(elem, "display");
+            display = jQuery.css(elem, "display");
             if (display === "none") {
               if (restoreDisplay) {
                 display = restoreDisplay;
               } else {
                 showHide([elem], true);
                 restoreDisplay = elem.style.display || restoreDisplay;
-                display = jQuery2.css(elem, "display");
+                display = jQuery.css(elem, "display");
                 showHide([elem]);
               }
             }
             if (display === "inline" || display === "inline-block" && restoreDisplay != null) {
-              if (jQuery2.css(elem, "float") === "none") {
+              if (jQuery.css(elem, "float") === "none") {
                 if (!propTween) {
                   anim.done(function() {
                     style.display = restoreDisplay;
@@ -4294,7 +4301,7 @@
                 }
                 dataPriv.remove(elem, "fxshow");
                 for (prop in orig) {
-                  jQuery2.style(elem, prop, orig[prop]);
+                  jQuery.style(elem, prop, orig[prop]);
                 }
               });
             }
@@ -4322,7 +4329,7 @@
               props[name] = value;
               delete props[index];
             }
-            hooks = jQuery2.cssHooks[name];
+            hooks = jQuery.cssHooks[name];
             if (hooks && "expand" in hooks) {
               value = hooks.expand(value);
               delete props[name];
@@ -4338,7 +4345,7 @@
           }
         }
         function Animation(elem, properties, options) {
-          var result, stopped, index = 0, length = Animation.prefilters.length, deferred = jQuery2.Deferred().always(function() {
+          var result, stopped, index = 0, length = Animation.prefilters.length, deferred = jQuery.Deferred().always(function() {
             delete tick.elem;
           }), tick = function() {
             if (stopped) {
@@ -4359,10 +4366,10 @@
             return false;
           }, animation = deferred.promise({
             elem,
-            props: jQuery2.extend({}, properties),
-            opts: jQuery2.extend(true, {
+            props: jQuery.extend({}, properties),
+            opts: jQuery.extend(true, {
               specialEasing: {},
-              easing: jQuery2.easing._default
+              easing: jQuery.easing._default
             }, options),
             originalProperties: properties,
             originalOptions: options,
@@ -4370,7 +4377,7 @@
             duration: options.duration,
             tweens: [],
             createTween: function(prop, end) {
-              var tween = jQuery2.Tween(
+              var tween = jQuery.Tween(
                 elem,
                 animation.opts,
                 prop,
@@ -4403,18 +4410,18 @@
             result = Animation.prefilters[index].call(animation, elem, props, animation.opts);
             if (result) {
               if (isFunction(result.stop)) {
-                jQuery2._queueHooks(animation.elem, animation.opts.queue).stop = result.stop.bind(result);
+                jQuery._queueHooks(animation.elem, animation.opts.queue).stop = result.stop.bind(result);
               }
               return result;
             }
           }
-          jQuery2.map(props, createTween, animation);
+          jQuery.map(props, createTween, animation);
           if (isFunction(animation.opts.start)) {
             animation.opts.start.call(elem, animation);
           }
           animation.progress(animation.opts.progress).done(animation.opts.done, animation.opts.complete).fail(animation.opts.fail).always(animation.opts.always);
-          jQuery2.fx.timer(
-            jQuery2.extend(tick, {
+          jQuery.fx.timer(
+            jQuery.extend(tick, {
               elem,
               anim: animation,
               queue: animation.opts.queue
@@ -4422,7 +4429,7 @@
           );
           return animation;
         }
-        jQuery2.Animation = jQuery2.extend(Animation, {
+        jQuery.Animation = jQuery.extend(Animation, {
           tweeners: {
             "*": [function(prop, value) {
               var tween = this.createTween(prop, value);
@@ -4453,20 +4460,20 @@
             }
           }
         });
-        jQuery2.speed = function(speed, easing, fn) {
-          var opt = speed && typeof speed === "object" ? jQuery2.extend({}, speed) : {
+        jQuery.speed = function(speed, easing, fn) {
+          var opt = speed && typeof speed === "object" ? jQuery.extend({}, speed) : {
             complete: fn || !fn && easing || isFunction(speed) && speed,
             duration: speed,
             easing: fn && easing || easing && !isFunction(easing) && easing
           };
-          if (jQuery2.fx.off) {
+          if (jQuery.fx.off) {
             opt.duration = 0;
           } else {
             if (typeof opt.duration !== "number") {
-              if (opt.duration in jQuery2.fx.speeds) {
-                opt.duration = jQuery2.fx.speeds[opt.duration];
+              if (opt.duration in jQuery.fx.speeds) {
+                opt.duration = jQuery.fx.speeds[opt.duration];
               } else {
-                opt.duration = jQuery2.fx.speeds._default;
+                opt.duration = jQuery.fx.speeds._default;
               }
             }
           }
@@ -4479,18 +4486,18 @@
               opt.old.call(this);
             }
             if (opt.queue) {
-              jQuery2.dequeue(this, opt.queue);
+              jQuery.dequeue(this, opt.queue);
             }
           };
           return opt;
         };
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           fadeTo: function(speed, to, easing, callback) {
             return this.filter(isHiddenWithinTree).css("opacity", 0).show().end().animate({ opacity: to }, speed, easing, callback);
           },
           animate: function(prop, speed, easing, callback) {
-            var empty = jQuery2.isEmptyObject(prop), optall = jQuery2.speed(speed, easing, callback), doAnimation = function() {
-              var anim = Animation(this, jQuery2.extend({}, prop), optall);
+            var empty = jQuery.isEmptyObject(prop), optall = jQuery.speed(speed, easing, callback), doAnimation = function() {
+              var anim = Animation(this, jQuery.extend({}, prop), optall);
               if (empty || dataPriv.get(this, "finish")) {
                 anim.stop(true);
               }
@@ -4513,7 +4520,7 @@
               this.queue(type || "fx", []);
             }
             return this.each(function() {
-              var dequeue = true, index = type != null && type + "queueHooks", timers = jQuery2.timers, data = dataPriv.get(this);
+              var dequeue = true, index = type != null && type + "queueHooks", timers = jQuery.timers, data = dataPriv.get(this);
               if (index) {
                 if (data[index] && data[index].stop) {
                   stopQueue(data[index]);
@@ -4533,7 +4540,7 @@
                 }
               }
               if (dequeue || !gotoEnd) {
-                jQuery2.dequeue(this, type);
+                jQuery.dequeue(this, type);
               }
             });
           },
@@ -4542,9 +4549,9 @@
               type = type || "fx";
             }
             return this.each(function() {
-              var index, data = dataPriv.get(this), queue = data[type + "queue"], hooks = data[type + "queueHooks"], timers = jQuery2.timers, length = queue ? queue.length : 0;
+              var index, data = dataPriv.get(this), queue = data[type + "queue"], hooks = data[type + "queueHooks"], timers = jQuery.timers, length = queue ? queue.length : 0;
               data.finish = true;
-              jQuery2.queue(this, type, []);
+              jQuery.queue(this, type, []);
               if (hooks && hooks.stop) {
                 hooks.stop.call(this, true);
               }
@@ -4563,13 +4570,13 @@
             });
           }
         });
-        jQuery2.each(["toggle", "show", "hide"], function(_i, name) {
-          var cssFn = jQuery2.fn[name];
-          jQuery2.fn[name] = function(speed, easing, callback) {
+        jQuery.each(["toggle", "show", "hide"], function(_i, name) {
+          var cssFn = jQuery.fn[name];
+          jQuery.fn[name] = function(speed, easing, callback) {
             return speed == null || typeof speed === "boolean" ? cssFn.apply(this, arguments) : this.animate(genFx(name, true), speed, easing, callback);
           };
         });
-        jQuery2.each({
+        jQuery.each({
           slideDown: genFx("show"),
           slideUp: genFx("hide"),
           slideToggle: genFx("toggle"),
@@ -4577,13 +4584,13 @@
           fadeOut: { opacity: "hide" },
           fadeToggle: { opacity: "toggle" }
         }, function(name, props) {
-          jQuery2.fn[name] = function(speed, easing, callback) {
+          jQuery.fn[name] = function(speed, easing, callback) {
             return this.animate(props, speed, easing, callback);
           };
         });
-        jQuery2.timers = [];
-        jQuery2.fx.tick = function() {
-          var timer, i = 0, timers = jQuery2.timers;
+        jQuery.timers = [];
+        jQuery.fx.tick = function() {
+          var timer, i = 0, timers = jQuery.timers;
           fxNow = Date.now();
           for (; i < timers.length; i++) {
             timer = timers[i];
@@ -4592,33 +4599,33 @@
             }
           }
           if (!timers.length) {
-            jQuery2.fx.stop();
+            jQuery.fx.stop();
           }
           fxNow = void 0;
         };
-        jQuery2.fx.timer = function(timer) {
-          jQuery2.timers.push(timer);
-          jQuery2.fx.start();
+        jQuery.fx.timer = function(timer) {
+          jQuery.timers.push(timer);
+          jQuery.fx.start();
         };
-        jQuery2.fx.interval = 13;
-        jQuery2.fx.start = function() {
+        jQuery.fx.interval = 13;
+        jQuery.fx.start = function() {
           if (inProgress) {
             return;
           }
           inProgress = true;
           schedule();
         };
-        jQuery2.fx.stop = function() {
+        jQuery.fx.stop = function() {
           inProgress = null;
         };
-        jQuery2.fx.speeds = {
+        jQuery.fx.speeds = {
           slow: 600,
           fast: 200,
           // Default speed
           _default: 400
         };
-        jQuery2.fn.delay = function(time, type) {
-          time = jQuery2.fx ? jQuery2.fx.speeds[time] || time : time;
+        jQuery.fn.delay = function(time, type) {
+          time = jQuery.fx ? jQuery.fx.speeds[time] || time : time;
           type = type || "fx";
           return this.queue(type, function(next, hooks) {
             var timeout = window2.setTimeout(next, time);
@@ -4637,32 +4644,32 @@
           input.type = "radio";
           support.radioValue = input.value === "t";
         })();
-        var boolHook, attrHandle = jQuery2.expr.attrHandle;
-        jQuery2.fn.extend({
+        var boolHook, attrHandle = jQuery.expr.attrHandle;
+        jQuery.fn.extend({
           attr: function(name, value) {
-            return access(this, jQuery2.attr, name, value, arguments.length > 1);
+            return access(this, jQuery.attr, name, value, arguments.length > 1);
           },
           removeAttr: function(name) {
             return this.each(function() {
-              jQuery2.removeAttr(this, name);
+              jQuery.removeAttr(this, name);
             });
           }
         });
-        jQuery2.extend({
+        jQuery.extend({
           attr: function(elem, name, value) {
             var ret, hooks, nType = elem.nodeType;
             if (nType === 3 || nType === 8 || nType === 2) {
               return;
             }
             if (typeof elem.getAttribute === "undefined") {
-              return jQuery2.prop(elem, name, value);
+              return jQuery.prop(elem, name, value);
             }
-            if (nType !== 1 || !jQuery2.isXMLDoc(elem)) {
-              hooks = jQuery2.attrHooks[name.toLowerCase()] || (jQuery2.expr.match.bool.test(name) ? boolHook : void 0);
+            if (nType !== 1 || !jQuery.isXMLDoc(elem)) {
+              hooks = jQuery.attrHooks[name.toLowerCase()] || (jQuery.expr.match.bool.test(name) ? boolHook : void 0);
             }
             if (value !== void 0) {
               if (value === null) {
-                jQuery2.removeAttr(elem, name);
+                jQuery.removeAttr(elem, name);
                 return;
               }
               if (hooks && "set" in hooks && (ret = hooks.set(elem, value, name)) !== void 0) {
@@ -4674,7 +4681,7 @@
             if (hooks && "get" in hooks && (ret = hooks.get(elem, name)) !== null) {
               return ret;
             }
-            ret = jQuery2.find.attr(elem, name);
+            ret = jQuery.find.attr(elem, name);
             return ret == null ? void 0 : ret;
           },
           attrHooks: {
@@ -4703,15 +4710,15 @@
         boolHook = {
           set: function(elem, value, name) {
             if (value === false) {
-              jQuery2.removeAttr(elem, name);
+              jQuery.removeAttr(elem, name);
             } else {
               elem.setAttribute(name, name);
             }
             return name;
           }
         };
-        jQuery2.each(jQuery2.expr.match.bool.source.match(/\w+/g), function(_i, name) {
-          var getter = attrHandle[name] || jQuery2.find.attr;
+        jQuery.each(jQuery.expr.match.bool.source.match(/\w+/g), function(_i, name) {
+          var getter = attrHandle[name] || jQuery.find.attr;
           attrHandle[name] = function(elem, name2, isXML) {
             var ret, handle, lowercaseName = name2.toLowerCase();
             if (!isXML) {
@@ -4724,25 +4731,25 @@
           };
         });
         var rfocusable = /^(?:input|select|textarea|button)$/i, rclickable = /^(?:a|area)$/i;
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           prop: function(name, value) {
-            return access(this, jQuery2.prop, name, value, arguments.length > 1);
+            return access(this, jQuery.prop, name, value, arguments.length > 1);
           },
           removeProp: function(name) {
             return this.each(function() {
-              delete this[jQuery2.propFix[name] || name];
+              delete this[jQuery.propFix[name] || name];
             });
           }
         });
-        jQuery2.extend({
+        jQuery.extend({
           prop: function(elem, name, value) {
             var ret, hooks, nType = elem.nodeType;
             if (nType === 3 || nType === 8 || nType === 2) {
               return;
             }
-            if (nType !== 1 || !jQuery2.isXMLDoc(elem)) {
-              name = jQuery2.propFix[name] || name;
-              hooks = jQuery2.propHooks[name];
+            if (nType !== 1 || !jQuery.isXMLDoc(elem)) {
+              name = jQuery.propFix[name] || name;
+              hooks = jQuery.propHooks[name];
             }
             if (value !== void 0) {
               if (hooks && "set" in hooks && (ret = hooks.set(elem, value, name)) !== void 0) {
@@ -4758,7 +4765,7 @@
           propHooks: {
             tabIndex: {
               get: function(elem) {
-                var tabindex = jQuery2.find.attr(elem, "tabindex");
+                var tabindex = jQuery.find.attr(elem, "tabindex");
                 if (tabindex) {
                   return parseInt(tabindex, 10);
                 }
@@ -4775,7 +4782,7 @@
           }
         });
         if (!support.optSelected) {
-          jQuery2.propHooks.selected = {
+          jQuery.propHooks.selected = {
             get: function(elem) {
               var parent = elem.parentNode;
               if (parent && parent.parentNode) {
@@ -4794,7 +4801,7 @@
             }
           };
         }
-        jQuery2.each([
+        jQuery.each([
           "tabIndex",
           "readOnly",
           "maxLength",
@@ -4806,7 +4813,7 @@
           "frameBorder",
           "contentEditable"
         ], function() {
-          jQuery2.propFix[this.toLowerCase()] = this;
+          jQuery.propFix[this.toLowerCase()] = this;
         });
         function stripAndCollapse(value) {
           var tokens = value.match(rnothtmlwhite) || [];
@@ -4824,12 +4831,12 @@
           }
           return [];
         }
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           addClass: function(value) {
             var classNames, cur, curValue, className, i, finalValue;
             if (isFunction(value)) {
               return this.each(function(j) {
-                jQuery2(this).addClass(value.call(this, j, getClass(this)));
+                jQuery(this).addClass(value.call(this, j, getClass(this)));
               });
             }
             classNames = classesToArray(value);
@@ -4857,7 +4864,7 @@
             var classNames, cur, curValue, className, i, finalValue;
             if (isFunction(value)) {
               return this.each(function(j) {
-                jQuery2(this).removeClass(value.call(this, j, getClass(this)));
+                jQuery(this).removeClass(value.call(this, j, getClass(this)));
               });
             }
             if (!arguments.length) {
@@ -4888,7 +4895,7 @@
             var classNames, className, i, self, type = typeof value, isValidValue = type === "string" || Array.isArray(value);
             if (isFunction(value)) {
               return this.each(function(i2) {
-                jQuery2(this).toggleClass(
+                jQuery(this).toggleClass(
                   value.call(this, i2, getClass(this), stateVal),
                   stateVal
                 );
@@ -4900,7 +4907,7 @@
             classNames = classesToArray(value);
             return this.each(function() {
               if (isValidValue) {
-                self = jQuery2(this);
+                self = jQuery(this);
                 for (i = 0; i < classNames.length; i++) {
                   className = classNames[i];
                   if (self.hasClass(className)) {
@@ -4935,12 +4942,12 @@
           }
         });
         var rreturn = /\r/g;
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           val: function(value) {
             var hooks, ret, valueIsFunction, elem = this[0];
             if (!arguments.length) {
               if (elem) {
-                hooks = jQuery2.valHooks[elem.type] || jQuery2.valHooks[elem.nodeName.toLowerCase()];
+                hooks = jQuery.valHooks[elem.type] || jQuery.valHooks[elem.nodeName.toLowerCase()];
                 if (hooks && "get" in hooks && (ret = hooks.get(elem, "value")) !== void 0) {
                   return ret;
                 }
@@ -4959,7 +4966,7 @@
                 return;
               }
               if (valueIsFunction) {
-                val = value.call(this, i, jQuery2(this).val());
+                val = value.call(this, i, jQuery(this).val());
               } else {
                 val = value;
               }
@@ -4968,28 +4975,28 @@
               } else if (typeof val === "number") {
                 val += "";
               } else if (Array.isArray(val)) {
-                val = jQuery2.map(val, function(value2) {
+                val = jQuery.map(val, function(value2) {
                   return value2 == null ? "" : value2 + "";
                 });
               }
-              hooks = jQuery2.valHooks[this.type] || jQuery2.valHooks[this.nodeName.toLowerCase()];
+              hooks = jQuery.valHooks[this.type] || jQuery.valHooks[this.nodeName.toLowerCase()];
               if (!hooks || !("set" in hooks) || hooks.set(this, val, "value") === void 0) {
                 this.value = val;
               }
             });
           }
         });
-        jQuery2.extend({
+        jQuery.extend({
           valHooks: {
             option: {
               get: function(elem) {
-                var val = jQuery2.find.attr(elem, "value");
+                var val = jQuery.find.attr(elem, "value");
                 return val != null ? val : (
                   // Support: IE <=10 - 11 only
                   // option.text throws exceptions (trac-14686, trac-14858)
                   // Strip and collapse whitespace
                   // https://html.spec.whatwg.org/#strip-and-collapse-whitespace
-                  stripAndCollapse(jQuery2.text(elem))
+                  stripAndCollapse(jQuery.text(elem))
                 );
               }
             },
@@ -5005,7 +5012,7 @@
                   option = options[i];
                   if ((option.selected || i === index) && // Don't return options that are disabled or in a disabled optgroup
                   !option.disabled && (!option.parentNode.disabled || !nodeName(option.parentNode, "optgroup"))) {
-                    value = jQuery2(option).val();
+                    value = jQuery(option).val();
                     if (one) {
                       return value;
                     }
@@ -5015,10 +5022,10 @@
                 return values;
               },
               set: function(elem, value) {
-                var optionSet, option, options = elem.options, values = jQuery2.makeArray(value), i = options.length;
+                var optionSet, option, options = elem.options, values = jQuery.makeArray(value), i = options.length;
                 while (i--) {
                   option = options[i];
-                  if (option.selected = jQuery2.inArray(jQuery2.valHooks.option.get(option), values) > -1) {
+                  if (option.selected = jQuery.inArray(jQuery.valHooks.option.get(option), values) > -1) {
                     optionSet = true;
                   }
                 }
@@ -5030,16 +5037,16 @@
             }
           }
         });
-        jQuery2.each(["radio", "checkbox"], function() {
-          jQuery2.valHooks[this] = {
+        jQuery.each(["radio", "checkbox"], function() {
+          jQuery.valHooks[this] = {
             set: function(elem, value) {
               if (Array.isArray(value)) {
-                return elem.checked = jQuery2.inArray(jQuery2(elem).val(), value) > -1;
+                return elem.checked = jQuery.inArray(jQuery(elem).val(), value) > -1;
               }
             }
           };
           if (!support.checkOn) {
-            jQuery2.valHooks[this].get = function(elem) {
+            jQuery.valHooks[this].get = function(elem) {
               return elem.getAttribute("value") === null ? "on" : elem.value;
             };
           }
@@ -5047,7 +5054,7 @@
         var location2 = window2.location;
         var nonce = { guid: Date.now() };
         var rquery = /\?/;
-        jQuery2.parseXML = function(data) {
+        jQuery.parseXML = function(data) {
           var xml, parserErrorElem;
           if (!data || typeof data !== "string") {
             return null;
@@ -5058,7 +5065,7 @@
           }
           parserErrorElem = xml && xml.getElementsByTagName("parsererror")[0];
           if (!xml || parserErrorElem) {
-            jQuery2.error("Invalid XML: " + (parserErrorElem ? jQuery2.map(parserErrorElem.childNodes, function(el) {
+            jQuery.error("Invalid XML: " + (parserErrorElem ? jQuery.map(parserErrorElem.childNodes, function(el) {
               return el.textContent;
             }).join("\n") : data));
           }
@@ -5067,14 +5074,14 @@
         var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/, stopPropagationCallback = function(e) {
           e.stopPropagation();
         };
-        jQuery2.extend(jQuery2.event, {
+        jQuery.extend(jQuery.event, {
           trigger: function(event, data, elem, onlyHandlers) {
             var i, cur, tmp, bubbleType, ontype, handle, special, lastElement, eventPath = [elem || document2], type = hasOwn.call(event, "type") ? event.type : event, namespaces = hasOwn.call(event, "namespace") ? event.namespace.split(".") : [];
             cur = lastElement = tmp = elem = elem || document2;
             if (elem.nodeType === 3 || elem.nodeType === 8) {
               return;
             }
-            if (rfocusMorph.test(type + jQuery2.event.triggered)) {
+            if (rfocusMorph.test(type + jQuery.event.triggered)) {
               return;
             }
             if (type.indexOf(".") > -1) {
@@ -5083,7 +5090,7 @@
               namespaces.sort();
             }
             ontype = type.indexOf(":") < 0 && "on" + type;
-            event = event[jQuery2.expando] ? event : new jQuery2.Event(type, typeof event === "object" && event);
+            event = event[jQuery.expando] ? event : new jQuery.Event(type, typeof event === "object" && event);
             event.isTrigger = onlyHandlers ? 2 : 3;
             event.namespace = namespaces.join(".");
             event.rnamespace = event.namespace ? new RegExp("(^|\\.)" + namespaces.join("\\.(?:.*\\.|)") + "(\\.|$)") : null;
@@ -5091,8 +5098,8 @@
             if (!event.target) {
               event.target = elem;
             }
-            data = data == null ? [event] : jQuery2.makeArray(data, [event]);
-            special = jQuery2.event.special[type] || {};
+            data = data == null ? [event] : jQuery.makeArray(data, [event]);
+            special = jQuery.event.special[type] || {};
             if (!onlyHandlers && special.trigger && special.trigger.apply(elem, data) === false) {
               return;
             }
@@ -5133,7 +5140,7 @@
                   if (tmp) {
                     elem[ontype] = null;
                   }
-                  jQuery2.event.triggered = type;
+                  jQuery.event.triggered = type;
                   if (event.isPropagationStopped()) {
                     lastElement.addEventListener(type, stopPropagationCallback);
                   }
@@ -5141,7 +5148,7 @@
                   if (event.isPropagationStopped()) {
                     lastElement.removeEventListener(type, stopPropagationCallback);
                   }
-                  jQuery2.event.triggered = void 0;
+                  jQuery.event.triggered = void 0;
                   if (tmp) {
                     elem[ontype] = tmp;
                   }
@@ -5153,27 +5160,27 @@
           // Piggyback on a donor event to simulate a different one
           // Used only for `focus(in | out)` events
           simulate: function(type, elem, event) {
-            var e = jQuery2.extend(
-              new jQuery2.Event(),
+            var e = jQuery.extend(
+              new jQuery.Event(),
               event,
               {
                 type,
                 isSimulated: true
               }
             );
-            jQuery2.event.trigger(e, null, elem);
+            jQuery.event.trigger(e, null, elem);
           }
         });
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           trigger: function(type, data) {
             return this.each(function() {
-              jQuery2.event.trigger(type, data, this);
+              jQuery.event.trigger(type, data, this);
             });
           },
           triggerHandler: function(type, data) {
             var elem = this[0];
             if (elem) {
-              return jQuery2.event.trigger(type, data, elem, true);
+              return jQuery.event.trigger(type, data, elem, true);
             }
           }
         });
@@ -5181,7 +5188,7 @@
         function buildParams(prefix, obj, traditional, add2) {
           var name;
           if (Array.isArray(obj)) {
-            jQuery2.each(obj, function(i, v) {
+            jQuery.each(obj, function(i, v) {
               if (traditional || rbracket.test(prefix)) {
                 add2(prefix, v);
               } else {
@@ -5201,7 +5208,7 @@
             add2(prefix, obj);
           }
         }
-        jQuery2.param = function(a, traditional) {
+        jQuery.param = function(a, traditional) {
           var prefix, s = [], add2 = function(key, valueOrFunction) {
             var value = isFunction(valueOrFunction) ? valueOrFunction() : valueOrFunction;
             s[s.length] = encodeURIComponent(key) + "=" + encodeURIComponent(value == null ? "" : value);
@@ -5209,8 +5216,8 @@
           if (a == null) {
             return "";
           }
-          if (Array.isArray(a) || a.jquery && !jQuery2.isPlainObject(a)) {
-            jQuery2.each(a, function() {
+          if (Array.isArray(a) || a.jquery && !jQuery.isPlainObject(a)) {
+            jQuery.each(a, function() {
               add2(this.name, this.value);
             });
           } else {
@@ -5220,24 +5227,24 @@
           }
           return s.join("&");
         };
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           serialize: function() {
-            return jQuery2.param(this.serializeArray());
+            return jQuery.param(this.serializeArray());
           },
           serializeArray: function() {
             return this.map(function() {
-              var elements = jQuery2.prop(this, "elements");
-              return elements ? jQuery2.makeArray(elements) : this;
+              var elements = jQuery.prop(this, "elements");
+              return elements ? jQuery.makeArray(elements) : this;
             }).filter(function() {
               var type = this.type;
-              return this.name && !jQuery2(this).is(":disabled") && rsubmittable.test(this.nodeName) && !rsubmitterTypes.test(type) && (this.checked || !rcheckableType.test(type));
+              return this.name && !jQuery(this).is(":disabled") && rsubmittable.test(this.nodeName) && !rsubmitterTypes.test(type) && (this.checked || !rcheckableType.test(type));
             }).map(function(_i, elem) {
-              var val = jQuery2(this).val();
+              var val = jQuery(this).val();
               if (val == null) {
                 return null;
               }
               if (Array.isArray(val)) {
-                return jQuery2.map(val, function(val2) {
+                return jQuery.map(val, function(val2) {
                   return { name: elem.name, value: val2.replace(rCRLF, "\r\n") };
                 });
               }
@@ -5271,7 +5278,7 @@
           function inspect(dataType) {
             var selected;
             inspected[dataType] = true;
-            jQuery2.each(structure[dataType] || [], function(_, prefilterOrFactory) {
+            jQuery.each(structure[dataType] || [], function(_, prefilterOrFactory) {
               var dataTypeOrTransport = prefilterOrFactory(options, originalOptions, jqXHR);
               if (typeof dataTypeOrTransport === "string" && !seekingTransport && !inspected[dataTypeOrTransport]) {
                 options.dataTypes.unshift(dataTypeOrTransport);
@@ -5286,14 +5293,14 @@
           return inspect(options.dataTypes[0]) || !inspected["*"] && inspect("*");
         }
         function ajaxExtend(target, src) {
-          var key, deep, flatOptions = jQuery2.ajaxSettings.flatOptions || {};
+          var key, deep, flatOptions = jQuery.ajaxSettings.flatOptions || {};
           for (key in src) {
             if (src[key] !== void 0) {
               (flatOptions[key] ? target : deep || (deep = {}))[key] = src[key];
             }
           }
           if (deep) {
-            jQuery2.extend(true, target, deep);
+            jQuery.extend(true, target, deep);
           }
           return target;
         }
@@ -5392,7 +5399,7 @@
           }
           return { state: "success", data: response };
         }
-        jQuery2.extend({
+        jQuery.extend({
           // Counter for holding the number of active queries
           active: 0,
           // Last-Modified header cache for next request
@@ -5444,7 +5451,7 @@
               // Evaluate text as a json expression
               "text json": JSON.parse,
               // Parse text as xml
-              "text xml": jQuery2.parseXML
+              "text xml": jQuery.parseXML
             },
             // For options that shouldn't be deep extended:
             // you can add your own custom options here if
@@ -5461,10 +5468,10 @@
           ajaxSetup: function(target, settings) {
             return settings ? (
               // Building a settings object
-              ajaxExtend(ajaxExtend(target, jQuery2.ajaxSettings), settings)
+              ajaxExtend(ajaxExtend(target, jQuery.ajaxSettings), settings)
             ) : (
               // Extending ajaxSettings
-              ajaxExtend(jQuery2.ajaxSettings, target)
+              ajaxExtend(jQuery.ajaxSettings, target)
             );
           },
           ajaxPrefilter: addToPrefiltersOrTransports(prefilters),
@@ -5476,7 +5483,7 @@
               url = void 0;
             }
             options = options || {};
-            var transport, cacheURL, responseHeadersString, responseHeaders, timeoutTimer, urlAnchor, completed2, fireGlobals, i, uncached, s = jQuery2.ajaxSetup({}, options), callbackContext = s.context || s, globalEventContext = s.context && (callbackContext.nodeType || callbackContext.jquery) ? jQuery2(callbackContext) : jQuery2.event, deferred = jQuery2.Deferred(), completeDeferred = jQuery2.Callbacks("once memory"), statusCode = s.statusCode || {}, requestHeaders = {}, requestHeadersNames = {}, strAbort = "canceled", jqXHR = {
+            var transport, cacheURL, responseHeadersString, responseHeaders, timeoutTimer, urlAnchor, completed2, fireGlobals, i, uncached, s = jQuery.ajaxSetup({}, options), callbackContext = s.context || s, globalEventContext = s.context && (callbackContext.nodeType || callbackContext.jquery) ? jQuery(callbackContext) : jQuery.event, deferred = jQuery.Deferred(), completeDeferred = jQuery.Callbacks("once memory"), statusCode = s.statusCode || {}, requestHeaders = {}, requestHeadersNames = {}, strAbort = "canceled", jqXHR = {
               readyState: 0,
               // Builds headers hashtable if needed
               getResponseHeader: function(key) {
@@ -5550,15 +5557,15 @@
               }
             }
             if (s.data && s.processData && typeof s.data !== "string") {
-              s.data = jQuery2.param(s.data, s.traditional);
+              s.data = jQuery.param(s.data, s.traditional);
             }
             inspectPrefiltersOrTransports(prefilters, s, options, jqXHR);
             if (completed2) {
               return jqXHR;
             }
-            fireGlobals = jQuery2.event && s.global;
-            if (fireGlobals && jQuery2.active++ === 0) {
-              jQuery2.event.trigger("ajaxStart");
+            fireGlobals = jQuery.event && s.global;
+            if (fireGlobals && jQuery.active++ === 0) {
+              jQuery.event.trigger("ajaxStart");
             }
             s.type = s.type.toUpperCase();
             s.hasContent = !rnoContent.test(s.type);
@@ -5578,11 +5585,11 @@
               s.data = s.data.replace(r20, "+");
             }
             if (s.ifModified) {
-              if (jQuery2.lastModified[cacheURL]) {
-                jqXHR.setRequestHeader("If-Modified-Since", jQuery2.lastModified[cacheURL]);
+              if (jQuery.lastModified[cacheURL]) {
+                jqXHR.setRequestHeader("If-Modified-Since", jQuery.lastModified[cacheURL]);
               }
-              if (jQuery2.etag[cacheURL]) {
-                jqXHR.setRequestHeader("If-None-Match", jQuery2.etag[cacheURL]);
+              if (jQuery.etag[cacheURL]) {
+                jqXHR.setRequestHeader("If-None-Match", jQuery.etag[cacheURL]);
               }
             }
             if (s.data && s.hasContent && s.contentType !== false || options.contentType) {
@@ -5644,7 +5651,7 @@
               if (responses) {
                 response = ajaxHandleResponses(s, jqXHR, responses);
               }
-              if (!isSuccess && jQuery2.inArray("script", s.dataTypes) > -1 && jQuery2.inArray("json", s.dataTypes) < 0) {
+              if (!isSuccess && jQuery.inArray("script", s.dataTypes) > -1 && jQuery.inArray("json", s.dataTypes) < 0) {
                 s.converters["text script"] = function() {
                 };
               }
@@ -5653,11 +5660,11 @@
                 if (s.ifModified) {
                   modified = jqXHR.getResponseHeader("Last-Modified");
                   if (modified) {
-                    jQuery2.lastModified[cacheURL] = modified;
+                    jQuery.lastModified[cacheURL] = modified;
                   }
                   modified = jqXHR.getResponseHeader("etag");
                   if (modified) {
-                    jQuery2.etag[cacheURL] = modified;
+                    jQuery.etag[cacheURL] = modified;
                   }
                 }
                 if (status === 204 || s.type === "HEAD") {
@@ -5697,37 +5704,37 @@
               completeDeferred.fireWith(callbackContext, [jqXHR, statusText]);
               if (fireGlobals) {
                 globalEventContext.trigger("ajaxComplete", [jqXHR, s]);
-                if (!--jQuery2.active) {
-                  jQuery2.event.trigger("ajaxStop");
+                if (!--jQuery.active) {
+                  jQuery.event.trigger("ajaxStop");
                 }
               }
             }
             return jqXHR;
           },
           getJSON: function(url, data, callback) {
-            return jQuery2.get(url, data, callback, "json");
+            return jQuery.get(url, data, callback, "json");
           },
           getScript: function(url, callback) {
-            return jQuery2.get(url, void 0, callback, "script");
+            return jQuery.get(url, void 0, callback, "script");
           }
         });
-        jQuery2.each(["get", "post"], function(_i, method) {
-          jQuery2[method] = function(url, data, callback, type) {
+        jQuery.each(["get", "post"], function(_i, method) {
+          jQuery[method] = function(url, data, callback, type) {
             if (isFunction(data)) {
               type = type || callback;
               callback = data;
               data = void 0;
             }
-            return jQuery2.ajax(jQuery2.extend({
+            return jQuery.ajax(jQuery.extend({
               url,
               type: method,
               dataType: type,
               data,
               success: callback
-            }, jQuery2.isPlainObject(url) && url));
+            }, jQuery.isPlainObject(url) && url));
           };
         });
-        jQuery2.ajaxPrefilter(function(s) {
+        jQuery.ajaxPrefilter(function(s) {
           var i;
           for (i in s.headers) {
             if (i.toLowerCase() === "content-type") {
@@ -5735,8 +5742,8 @@
             }
           }
         });
-        jQuery2._evalUrl = function(url, options, doc) {
-          return jQuery2.ajax({
+        jQuery._evalUrl = function(url, options, doc) {
+          return jQuery.ajax({
             url,
             // Make this explicit, since user can override this through ajaxSetup (trac-11264)
             type: "GET",
@@ -5752,18 +5759,18 @@
               }
             },
             dataFilter: function(response) {
-              jQuery2.globalEval(response, options, doc);
+              jQuery.globalEval(response, options, doc);
             }
           });
         };
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           wrapAll: function(html) {
             var wrap;
             if (this[0]) {
               if (isFunction(html)) {
                 html = html.call(this[0]);
               }
-              wrap = jQuery2(html, this[0].ownerDocument).eq(0).clone(true);
+              wrap = jQuery(html, this[0].ownerDocument).eq(0).clone(true);
               if (this[0].parentNode) {
                 wrap.insertBefore(this[0]);
               }
@@ -5780,11 +5787,11 @@
           wrapInner: function(html) {
             if (isFunction(html)) {
               return this.each(function(i) {
-                jQuery2(this).wrapInner(html.call(this, i));
+                jQuery(this).wrapInner(html.call(this, i));
               });
             }
             return this.each(function() {
-              var self = jQuery2(this), contents = self.contents();
+              var self = jQuery(this), contents = self.contents();
               if (contents.length) {
                 contents.wrapAll(html);
               } else {
@@ -5795,23 +5802,23 @@
           wrap: function(html) {
             var htmlIsFunction = isFunction(html);
             return this.each(function(i) {
-              jQuery2(this).wrapAll(htmlIsFunction ? html.call(this, i) : html);
+              jQuery(this).wrapAll(htmlIsFunction ? html.call(this, i) : html);
             });
           },
           unwrap: function(selector) {
             this.parent(selector).not("body").each(function() {
-              jQuery2(this).replaceWith(this.childNodes);
+              jQuery(this).replaceWith(this.childNodes);
             });
             return this;
           }
         });
-        jQuery2.expr.pseudos.hidden = function(elem) {
-          return !jQuery2.expr.pseudos.visible(elem);
+        jQuery.expr.pseudos.hidden = function(elem) {
+          return !jQuery.expr.pseudos.visible(elem);
         };
-        jQuery2.expr.pseudos.visible = function(elem) {
+        jQuery.expr.pseudos.visible = function(elem) {
           return !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
         };
-        jQuery2.ajaxSettings.xhr = function() {
+        jQuery.ajaxSettings.xhr = function() {
           try {
             return new window2.XMLHttpRequest();
           } catch (e) {
@@ -5823,10 +5830,10 @@
           // Support: IE <=9 only
           // trac-1450: sometimes IE returns 1223 when it should be 204
           1223: 204
-        }, xhrSupported = jQuery2.ajaxSettings.xhr();
+        }, xhrSupported = jQuery.ajaxSettings.xhr();
         support.cors = !!xhrSupported && "withCredentials" in xhrSupported;
         support.ajax = xhrSupported = !!xhrSupported;
-        jQuery2.ajaxTransport(function(options) {
+        jQuery.ajaxTransport(function(options) {
           var callback, errorCallback;
           if (support.cors || xhrSupported && !options.crossDomain) {
             return {
@@ -5915,12 +5922,12 @@
             };
           }
         });
-        jQuery2.ajaxPrefilter(function(s) {
+        jQuery.ajaxPrefilter(function(s) {
           if (s.crossDomain) {
             s.contents.script = false;
           }
         });
-        jQuery2.ajaxSetup({
+        jQuery.ajaxSetup({
           accepts: {
             script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
           },
@@ -5929,12 +5936,12 @@
           },
           converters: {
             "text script": function(text) {
-              jQuery2.globalEval(text);
+              jQuery.globalEval(text);
               return text;
             }
           }
         });
-        jQuery2.ajaxPrefilter("script", function(s) {
+        jQuery.ajaxPrefilter("script", function(s) {
           if (s.cache === void 0) {
             s.cache = false;
           }
@@ -5942,12 +5949,12 @@
             s.type = "GET";
           }
         });
-        jQuery2.ajaxTransport("script", function(s) {
+        jQuery.ajaxTransport("script", function(s) {
           if (s.crossDomain || s.scriptAttrs) {
             var script, callback;
             return {
               send: function(_, complete) {
-                script = jQuery2("<script>").attr(s.scriptAttrs || {}).prop({ charset: s.scriptCharset, src: s.url }).on("load error", callback = function(evt) {
+                script = jQuery("<script>").attr(s.scriptAttrs || {}).prop({ charset: s.scriptCharset, src: s.url }).on("load error", callback = function(evt) {
                   script.remove();
                   callback = null;
                   if (evt) {
@@ -5965,15 +5972,15 @@
           }
         });
         var oldCallbacks = [], rjsonp = /(=)\?(?=&|$)|\?\?/;
-        jQuery2.ajaxSetup({
+        jQuery.ajaxSetup({
           jsonp: "callback",
           jsonpCallback: function() {
-            var callback = oldCallbacks.pop() || jQuery2.expando + "_" + nonce.guid++;
+            var callback = oldCallbacks.pop() || jQuery.expando + "_" + nonce.guid++;
             this[callback] = true;
             return callback;
           }
         });
-        jQuery2.ajaxPrefilter("json jsonp", function(s, originalSettings, jqXHR) {
+        jQuery.ajaxPrefilter("json jsonp", function(s, originalSettings, jqXHR) {
           var callbackName, overwritten, responseContainer, jsonProp = s.jsonp !== false && (rjsonp.test(s.url) ? "url" : typeof s.data === "string" && (s.contentType || "").indexOf("application/x-www-form-urlencoded") === 0 && rjsonp.test(s.data) && "data");
           if (jsonProp || s.dataTypes[0] === "jsonp") {
             callbackName = s.jsonpCallback = isFunction(s.jsonpCallback) ? s.jsonpCallback() : s.jsonpCallback;
@@ -5984,7 +5991,7 @@
             }
             s.converters["script json"] = function() {
               if (!responseContainer) {
-                jQuery2.error(callbackName + " was not called");
+                jQuery.error(callbackName + " was not called");
               }
               return responseContainer[0];
             };
@@ -5995,7 +6002,7 @@
             };
             jqXHR.always(function() {
               if (overwritten === void 0) {
-                jQuery2(window2).removeProp(callbackName);
+                jQuery(window2).removeProp(callbackName);
               } else {
                 window2[callbackName] = overwritten;
               }
@@ -6016,7 +6023,7 @@
           body.innerHTML = "<form></form><form></form>";
           return body.childNodes.length === 2;
         }();
-        jQuery2.parseHTML = function(data, context, keepScripts) {
+        jQuery.parseHTML = function(data, context, keepScripts) {
           if (typeof data !== "string") {
             return [];
           }
@@ -6042,11 +6049,11 @@
           }
           parsed = buildFragment([data], context, scripts);
           if (scripts && scripts.length) {
-            jQuery2(scripts).remove();
+            jQuery(scripts).remove();
           }
-          return jQuery2.merge([], parsed.childNodes);
+          return jQuery.merge([], parsed.childNodes);
         };
-        jQuery2.fn.load = function(url, params, callback) {
+        jQuery.fn.load = function(url, params, callback) {
           var selector, type, response, self = this, off = url.indexOf(" ");
           if (off > -1) {
             selector = stripAndCollapse(url.slice(off));
@@ -6059,7 +6066,7 @@
             type = "POST";
           }
           if (self.length > 0) {
-            jQuery2.ajax({
+            jQuery.ajax({
               url,
               // If "type" variable is undefined, then "GET" method will be used.
               // Make value of this field explicit since
@@ -6072,7 +6079,7 @@
               self.html(selector ? (
                 // If a selector was specified, locate the right elements in a dummy div
                 // Exclude scripts to avoid IE 'Permission Denied' errors
-                jQuery2("<div>").append(jQuery2.parseHTML(responseText)).find(selector)
+                jQuery("<div>").append(jQuery.parseHTML(responseText)).find(selector)
               ) : (
                 // Otherwise use the full result
                 responseText
@@ -6085,20 +6092,20 @@
           }
           return this;
         };
-        jQuery2.expr.pseudos.animated = function(elem) {
-          return jQuery2.grep(jQuery2.timers, function(fn) {
+        jQuery.expr.pseudos.animated = function(elem) {
+          return jQuery.grep(jQuery.timers, function(fn) {
             return elem === fn.elem;
           }).length;
         };
-        jQuery2.offset = {
+        jQuery.offset = {
           setOffset: function(elem, options, i) {
-            var curPosition, curLeft, curCSSTop, curTop, curOffset, curCSSLeft, calculatePosition, position = jQuery2.css(elem, "position"), curElem = jQuery2(elem), props = {};
+            var curPosition, curLeft, curCSSTop, curTop, curOffset, curCSSLeft, calculatePosition, position = jQuery.css(elem, "position"), curElem = jQuery(elem), props = {};
             if (position === "static") {
               elem.style.position = "relative";
             }
             curOffset = curElem.offset();
-            curCSSTop = jQuery2.css(elem, "top");
-            curCSSLeft = jQuery2.css(elem, "left");
+            curCSSTop = jQuery.css(elem, "top");
+            curCSSLeft = jQuery.css(elem, "left");
             calculatePosition = (position === "absolute" || position === "fixed") && (curCSSTop + curCSSLeft).indexOf("auto") > -1;
             if (calculatePosition) {
               curPosition = curElem.position();
@@ -6109,7 +6116,7 @@
               curLeft = parseFloat(curCSSLeft) || 0;
             }
             if (isFunction(options)) {
-              options = options.call(elem, i, jQuery2.extend({}, curOffset));
+              options = options.call(elem, i, jQuery.extend({}, curOffset));
             }
             if (options.top != null) {
               props.top = options.top - curOffset.top + curTop;
@@ -6124,12 +6131,12 @@
             }
           }
         };
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           // offset() relates an element's border box to the document origin
           offset: function(options) {
             if (arguments.length) {
               return options === void 0 ? this : this.each(function(i) {
-                jQuery2.offset.setOffset(this, options, i);
+                jQuery.offset.setOffset(this, options, i);
               });
             }
             var rect, win, elem = this[0];
@@ -6153,24 +6160,24 @@
               return;
             }
             var offsetParent, offset, doc, elem = this[0], parentOffset = { top: 0, left: 0 };
-            if (jQuery2.css(elem, "position") === "fixed") {
+            if (jQuery.css(elem, "position") === "fixed") {
               offset = elem.getBoundingClientRect();
             } else {
               offset = this.offset();
               doc = elem.ownerDocument;
               offsetParent = elem.offsetParent || doc.documentElement;
-              while (offsetParent && (offsetParent === doc.body || offsetParent === doc.documentElement) && jQuery2.css(offsetParent, "position") === "static") {
+              while (offsetParent && (offsetParent === doc.body || offsetParent === doc.documentElement) && jQuery.css(offsetParent, "position") === "static") {
                 offsetParent = offsetParent.parentNode;
               }
               if (offsetParent && offsetParent !== elem && offsetParent.nodeType === 1) {
-                parentOffset = jQuery2(offsetParent).offset();
-                parentOffset.top += jQuery2.css(offsetParent, "borderTopWidth", true);
-                parentOffset.left += jQuery2.css(offsetParent, "borderLeftWidth", true);
+                parentOffset = jQuery(offsetParent).offset();
+                parentOffset.top += jQuery.css(offsetParent, "borderTopWidth", true);
+                parentOffset.left += jQuery.css(offsetParent, "borderLeftWidth", true);
               }
             }
             return {
-              top: offset.top - parentOffset.top - jQuery2.css(elem, "marginTop", true),
-              left: offset.left - parentOffset.left - jQuery2.css(elem, "marginLeft", true)
+              top: offset.top - parentOffset.top - jQuery.css(elem, "marginTop", true),
+              left: offset.left - parentOffset.left - jQuery.css(elem, "marginLeft", true)
             };
           },
           // This method will return documentElement in the following cases:
@@ -6186,16 +6193,16 @@
           offsetParent: function() {
             return this.map(function() {
               var offsetParent = this.offsetParent;
-              while (offsetParent && jQuery2.css(offsetParent, "position") === "static") {
+              while (offsetParent && jQuery.css(offsetParent, "position") === "static") {
                 offsetParent = offsetParent.offsetParent;
               }
               return offsetParent || documentElement;
             });
           }
         });
-        jQuery2.each({ scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function(method, prop) {
+        jQuery.each({ scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function(method, prop) {
           var top = "pageYOffset" === prop;
-          jQuery2.fn[method] = function(val) {
+          jQuery.fn[method] = function(val) {
             return access(this, function(elem, method2, val2) {
               var win;
               if (isWindow(elem)) {
@@ -6217,24 +6224,24 @@
             }, method, val, arguments.length);
           };
         });
-        jQuery2.each(["top", "left"], function(_i, prop) {
-          jQuery2.cssHooks[prop] = addGetHookIf(
+        jQuery.each(["top", "left"], function(_i, prop) {
+          jQuery.cssHooks[prop] = addGetHookIf(
             support.pixelPosition,
             function(elem, computed) {
               if (computed) {
                 computed = curCSS(elem, prop);
-                return rnumnonpx.test(computed) ? jQuery2(elem).position()[prop] + "px" : computed;
+                return rnumnonpx.test(computed) ? jQuery(elem).position()[prop] + "px" : computed;
               }
             }
           );
         });
-        jQuery2.each({ Height: "height", Width: "width" }, function(name, type) {
-          jQuery2.each({
+        jQuery.each({ Height: "height", Width: "width" }, function(name, type) {
+          jQuery.each({
             padding: "inner" + name,
             content: type,
             "": "outer" + name
           }, function(defaultExtra, funcName) {
-            jQuery2.fn[funcName] = function(margin, value) {
+            jQuery.fn[funcName] = function(margin, value) {
               var chainable = arguments.length && (defaultExtra || typeof margin !== "boolean"), extra = defaultExtra || (margin === true || value === true ? "margin" : "border");
               return access(this, function(elem, type2, value2) {
                 var doc;
@@ -6253,16 +6260,16 @@
                 }
                 return value2 === void 0 ? (
                   // Get width or height on the element, requesting but not forcing parseFloat
-                  jQuery2.css(elem, type2, extra)
+                  jQuery.css(elem, type2, extra)
                 ) : (
                   // Set width or height on the element
-                  jQuery2.style(elem, type2, value2, extra)
+                  jQuery.style(elem, type2, value2, extra)
                 );
               }, type, chainable ? margin : void 0, chainable);
             };
           });
         });
-        jQuery2.each([
+        jQuery.each([
           "ajaxStart",
           "ajaxStop",
           "ajaxComplete",
@@ -6270,11 +6277,11 @@
           "ajaxSuccess",
           "ajaxSend"
         ], function(_i, type) {
-          jQuery2.fn[type] = function(fn) {
+          jQuery.fn[type] = function(fn) {
             return this.on(type, fn);
           };
         });
-        jQuery2.fn.extend({
+        jQuery.fn.extend({
           bind: function(types, data, fn) {
             return this.on(types, null, data, fn);
           },
@@ -6291,16 +6298,16 @@
             return this.mouseenter(fnOver).mouseleave(fnOut || fnOver);
           }
         });
-        jQuery2.each(
+        jQuery.each(
           "blur focus focusin focusout resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu".split(" "),
           function(_i, name) {
-            jQuery2.fn[name] = function(data, fn) {
+            jQuery.fn[name] = function(data, fn) {
               return arguments.length > 0 ? this.on(name, null, data, fn) : this.trigger(name);
             };
           }
         );
         var rtrim = /^[\s\uFEFF\xA0]+|([^\s\uFEFF\xA0])[\s\uFEFF\xA0]+$/g;
-        jQuery2.proxy = function(fn, context) {
+        jQuery.proxy = function(fn, context) {
           var tmp, args, proxy;
           if (typeof context === "string") {
             tmp = fn[context];
@@ -6314,500 +6321,640 @@
           proxy = function() {
             return fn.apply(context || this, args.concat(slice.call(arguments)));
           };
-          proxy.guid = fn.guid = fn.guid || jQuery2.guid++;
+          proxy.guid = fn.guid = fn.guid || jQuery.guid++;
           return proxy;
         };
-        jQuery2.holdReady = function(hold) {
+        jQuery.holdReady = function(hold) {
           if (hold) {
-            jQuery2.readyWait++;
+            jQuery.readyWait++;
           } else {
-            jQuery2.ready(true);
+            jQuery.ready(true);
           }
         };
-        jQuery2.isArray = Array.isArray;
-        jQuery2.parseJSON = JSON.parse;
-        jQuery2.nodeName = nodeName;
-        jQuery2.isFunction = isFunction;
-        jQuery2.isWindow = isWindow;
-        jQuery2.camelCase = camelCase;
-        jQuery2.type = toType;
-        jQuery2.now = Date.now;
-        jQuery2.isNumeric = function(obj) {
-          var type = jQuery2.type(obj);
+        jQuery.isArray = Array.isArray;
+        jQuery.parseJSON = JSON.parse;
+        jQuery.nodeName = nodeName;
+        jQuery.isFunction = isFunction;
+        jQuery.isWindow = isWindow;
+        jQuery.camelCase = camelCase;
+        jQuery.type = toType;
+        jQuery.now = Date.now;
+        jQuery.isNumeric = function(obj) {
+          var type = jQuery.type(obj);
           return (type === "number" || type === "string") && // parseFloat NaNs numeric-cast false positives ("")
           // ...but misinterprets leading-number strings, particularly hex literals ("0x...")
           // subtraction forces infinities to NaN
           !isNaN(obj - parseFloat(obj));
         };
-        jQuery2.trim = function(text) {
+        jQuery.trim = function(text) {
           return text == null ? "" : (text + "").replace(rtrim, "$1");
         };
         if (typeof define === "function" && define.amd) {
           define("jquery", [], function() {
-            return jQuery2;
+            return jQuery;
           });
         }
         var _jQuery = window2.jQuery, _$ = window2.$;
-        jQuery2.noConflict = function(deep) {
-          if (window2.$ === jQuery2) {
+        jQuery.noConflict = function(deep) {
+          if (window2.$ === jQuery) {
             window2.$ = _$;
           }
-          if (deep && window2.jQuery === jQuery2) {
+          if (deep && window2.jQuery === jQuery) {
             window2.jQuery = _jQuery;
           }
-          return jQuery2;
+          return jQuery;
         };
         if (typeof noGlobal === "undefined") {
-          window2.jQuery = window2.$ = jQuery2;
+          window2.jQuery = window2.$ = jQuery;
         }
-        return jQuery2;
+        return jQuery;
       });
     }
   });
 
-  // node_modules/jquery-ujs/src/rails.js
-  var require_rails = __commonJS({
-    "node_modules/jquery-ujs/src/rails.js"(exports, module) {
-      (function() {
-        "use strict";
-        var jqueryUjsInit = function($4, undefined2) {
-          if ($4.rails !== undefined2) {
-            $4.error("jquery-ujs has already been loaded!");
+  // node_modules/@rails/actioncable/src/adapters.js
+  var adapters_default;
+  var init_adapters = __esm({
+    "node_modules/@rails/actioncable/src/adapters.js"() {
+      adapters_default = {
+        logger: typeof console !== "undefined" ? console : void 0,
+        WebSocket: typeof WebSocket !== "undefined" ? WebSocket : void 0
+      };
+    }
+  });
+
+  // node_modules/@rails/actioncable/src/logger.js
+  var logger_default;
+  var init_logger = __esm({
+    "node_modules/@rails/actioncable/src/logger.js"() {
+      init_adapters();
+      logger_default = {
+        log(...messages) {
+          if (this.enabled) {
+            messages.push(Date.now());
+            adapters_default.logger.log("[ActionCable]", ...messages);
           }
-          var rails;
-          var $document = $4(document);
-          $4.rails = rails = {
-            // Link elements bound by jquery-ujs
-            linkClickSelector: "a[data-confirm], a[data-method], a[data-remote]:not([disabled]), a[data-disable-with], a[data-disable]",
-            // Button elements bound by jquery-ujs
-            buttonClickSelector: "button[data-remote]:not([form]):not(form button), button[data-confirm]:not([form]):not(form button)",
-            // Select elements bound by jquery-ujs
-            inputChangeSelector: "select[data-remote], input[data-remote], textarea[data-remote]",
-            // Form elements bound by jquery-ujs
-            formSubmitSelector: "form:not([data-turbo=true])",
-            // Form input elements bound by jquery-ujs
-            formInputClickSelector: "form:not([data-turbo=true]) input[type=submit], form:not([data-turbo=true]) input[type=image], form:not([data-turbo=true]) button[type=submit], form:not([data-turbo=true]) button:not([type]), input[type=submit][form], input[type=image][form], button[type=submit][form], button[form]:not([type])",
-            // Form input elements disabled during form submission
-            disableSelector: "input[data-disable-with]:enabled, button[data-disable-with]:enabled, textarea[data-disable-with]:enabled, input[data-disable]:enabled, button[data-disable]:enabled, textarea[data-disable]:enabled",
-            // Form input elements re-enabled after form submission
-            enableSelector: "input[data-disable-with]:disabled, button[data-disable-with]:disabled, textarea[data-disable-with]:disabled, input[data-disable]:disabled, button[data-disable]:disabled, textarea[data-disable]:disabled",
-            // Form required input elements
-            requiredInputSelector: "input[name][required]:not([disabled]), textarea[name][required]:not([disabled])",
-            // Form file input elements
-            fileInputSelector: "input[name][type=file]:not([disabled])",
-            // Link onClick disable selector with possible reenable after remote submission
-            linkDisableSelector: "a[data-disable-with], a[data-disable]",
-            // Button onClick disable selector with possible reenable after remote submission
-            buttonDisableSelector: "button[data-remote][data-disable-with], button[data-remote][data-disable]",
-            // Up-to-date Cross-Site Request Forgery token
-            csrfToken: function() {
-              return $4("meta[name=csrf-token]").attr("content");
+        }
+      };
+    }
+  });
+
+  // node_modules/@rails/actioncable/src/connection_monitor.js
+  var now, secondsSince, ConnectionMonitor, connection_monitor_default;
+  var init_connection_monitor = __esm({
+    "node_modules/@rails/actioncable/src/connection_monitor.js"() {
+      init_logger();
+      now = () => (/* @__PURE__ */ new Date()).getTime();
+      secondsSince = (time) => (now() - time) / 1e3;
+      ConnectionMonitor = class {
+        constructor(connection) {
+          this.visibilityDidChange = this.visibilityDidChange.bind(this);
+          this.connection = connection;
+          this.reconnectAttempts = 0;
+        }
+        start() {
+          if (!this.isRunning()) {
+            this.startedAt = now();
+            delete this.stoppedAt;
+            this.startPolling();
+            addEventListener("visibilitychange", this.visibilityDidChange);
+            logger_default.log(`ConnectionMonitor started. stale threshold = ${this.constructor.staleThreshold} s`);
+          }
+        }
+        stop() {
+          if (this.isRunning()) {
+            this.stoppedAt = now();
+            this.stopPolling();
+            removeEventListener("visibilitychange", this.visibilityDidChange);
+            logger_default.log("ConnectionMonitor stopped");
+          }
+        }
+        isRunning() {
+          return this.startedAt && !this.stoppedAt;
+        }
+        recordPing() {
+          this.pingedAt = now();
+        }
+        recordConnect() {
+          this.reconnectAttempts = 0;
+          this.recordPing();
+          delete this.disconnectedAt;
+          logger_default.log("ConnectionMonitor recorded connect");
+        }
+        recordDisconnect() {
+          this.disconnectedAt = now();
+          logger_default.log("ConnectionMonitor recorded disconnect");
+        }
+        // Private
+        startPolling() {
+          this.stopPolling();
+          this.poll();
+        }
+        stopPolling() {
+          clearTimeout(this.pollTimeout);
+        }
+        poll() {
+          this.pollTimeout = setTimeout(
+            () => {
+              this.reconnectIfStale();
+              this.poll();
             },
-            // URL param that must contain the CSRF token
-            csrfParam: function() {
-              return $4("meta[name=csrf-param]").attr("content");
-            },
-            // Make sure that every Ajax request sends the CSRF token
-            CSRFProtection: function(xhr) {
-              var token = rails.csrfToken();
-              if (token)
-                xhr.setRequestHeader("X-CSRF-Token", token);
-            },
-            // Make sure that all forms have actual up-to-date tokens (cached forms contain old ones)
-            refreshCSRFTokens: function() {
-              $4('form input[name="' + rails.csrfParam() + '"]').val(rails.csrfToken());
-            },
-            // Triggers an event on an element and returns false if the event result is false
-            fire: function(obj, name, data) {
-              var event = $4.Event(name);
-              obj.trigger(event, data);
-              return event.result !== false;
-            },
-            // Default confirm dialog, may be overridden with custom confirm dialog in $.rails.confirm
-            confirm: function(message) {
-              return confirm(message);
-            },
-            // Default ajax function, may be overridden with custom function in $.rails.ajax
-            ajax: function(options) {
-              return $4.ajax(options);
-            },
-            // Default way to get an element's href. May be overridden at $.rails.href.
-            href: function(element) {
-              return element[0].href;
-            },
-            // Checks "data-remote" if true to handle the request through a XHR request.
-            isRemote: function(element) {
-              return element.data("remote") !== undefined2 && element.data("remote") !== false;
-            },
-            // Submits "remote" forms and links with ajax
-            handleRemote: function(element) {
-              var method, url, data, withCredentials, dataType, options;
-              if (rails.fire(element, "ajax:before")) {
-                withCredentials = element.data("with-credentials") || null;
-                dataType = element.data("type") || $4.ajaxSettings && $4.ajaxSettings.dataType;
-                if (element.is("form")) {
-                  method = element.data("ujs:submit-button-formmethod") || element.attr("method");
-                  url = element.data("ujs:submit-button-formaction") || element.attr("action");
-                  data = $4(element[0]).serializeArray();
-                  var button = element.data("ujs:submit-button");
-                  if (button) {
-                    data.push(button);
-                    element.data("ujs:submit-button", null);
-                  }
-                  element.data("ujs:submit-button-formmethod", null);
-                  element.data("ujs:submit-button-formaction", null);
-                } else if (element.is(rails.inputChangeSelector)) {
-                  method = element.data("method");
-                  url = element.data("url");
-                  data = element.serialize();
-                  if (element.data("params"))
-                    data = data + "&" + element.data("params");
-                } else if (element.is(rails.buttonClickSelector)) {
-                  method = element.data("method") || "get";
-                  url = element.data("url");
-                  data = element.serialize();
-                  if (element.data("params"))
-                    data = data + "&" + element.data("params");
-                } else {
-                  method = element.data("method");
-                  url = rails.href(element);
-                  data = element.data("params") || null;
-                }
-                options = {
-                  type: method || "GET",
-                  data,
-                  dataType,
-                  // stopping the "ajax:beforeSend" event will cancel the ajax request
-                  beforeSend: function(xhr, settings) {
-                    if (settings.dataType === undefined2) {
-                      xhr.setRequestHeader("accept", "*/*;q=0.5, " + settings.accepts.script);
-                    }
-                    if (rails.fire(element, "ajax:beforeSend", [xhr, settings])) {
-                      element.trigger("ajax:send", xhr);
-                    } else {
-                      return false;
-                    }
-                  },
-                  success: function(data2, status, xhr) {
-                    element.trigger("ajax:success", [data2, status, xhr]);
-                  },
-                  complete: function(xhr, status) {
-                    element.trigger("ajax:complete", [xhr, status]);
-                  },
-                  error: function(xhr, status, error2) {
-                    element.trigger("ajax:error", [xhr, status, error2]);
-                  },
-                  crossDomain: rails.isCrossDomain(url)
-                };
-                if (withCredentials) {
-                  options.xhrFields = {
-                    withCredentials
-                  };
-                }
-                if (url) {
-                  options.url = url;
-                }
-                return rails.ajax(options);
-              } else {
-                return false;
-              }
-            },
-            // Determines if the request is a cross domain request.
-            isCrossDomain: function(url) {
-              var originAnchor = document.createElement("a");
-              originAnchor.href = location.href;
-              var urlAnchor = document.createElement("a");
-              try {
-                urlAnchor.href = url;
-                urlAnchor.href = urlAnchor.href;
-                return !((!urlAnchor.protocol || urlAnchor.protocol === ":") && !urlAnchor.host || originAnchor.protocol + "//" + originAnchor.host === urlAnchor.protocol + "//" + urlAnchor.host);
-              } catch (e) {
-                return true;
-              }
-            },
-            // Handles "data-method" on links such as:
-            // <a href="/users/5" data-method="delete" rel="nofollow" data-confirm="Are you sure?">Delete</a>
-            handleMethod: function(link) {
-              var href = rails.href(link), method = link.data("method"), target = link.attr("target"), csrfToken = rails.csrfToken(), csrfParam = rails.csrfParam(), form = $4('<form method="post" action="' + href + '"></form>'), metadataInput = '<input name="_method" value="' + method + '" type="hidden" />';
-              if (csrfParam !== undefined2 && csrfToken !== undefined2 && !rails.isCrossDomain(href)) {
-                metadataInput += '<input name="' + csrfParam + '" value="' + csrfToken + '" type="hidden" />';
-              }
-              if (target) {
-                form.attr("target", target);
-              }
-              form.hide().append(metadataInput).appendTo("body");
-              form.submit();
-            },
-            // Helper function that returns form elements that match the specified CSS selector
-            // If form is actually a "form" element this will return associated elements outside the from that have
-            // the html form attribute set
-            formElements: function(form, selector) {
-              return form.is("form") ? $4(form[0].elements).filter(selector) : form.find(selector);
-            },
-            /* Disables form elements:
-              - Caches element value in 'ujs:enable-with' data store
-              - Replaces element text with value of 'data-disable-with' attribute
-              - Sets disabled property to true
-            */
-            disableFormElements: function(form) {
-              rails.formElements(form, rails.disableSelector).each(function() {
-                rails.disableFormElement($4(this));
-              });
-            },
-            disableFormElement: function(element) {
-              var method, replacement;
-              method = element.is("button") ? "html" : "val";
-              replacement = element.data("disable-with");
-              if (replacement !== undefined2) {
-                element.data("ujs:enable-with", element[method]());
-                element[method](replacement);
-              }
-              element.prop("disabled", true);
-              element.data("ujs:disabled", true);
-            },
-            /* Re-enables disabled form elements:
-              - Replaces element text with cached value from 'ujs:enable-with' data store (created in `disableFormElements`)
-              - Sets disabled property to false
-            */
-            enableFormElements: function(form) {
-              rails.formElements(form, rails.enableSelector).each(function() {
-                rails.enableFormElement($4(this));
-              });
-            },
-            enableFormElement: function(element) {
-              var method = element.is("button") ? "html" : "val";
-              if (element.data("ujs:enable-with") !== undefined2) {
-                element[method](element.data("ujs:enable-with"));
-                element.removeData("ujs:enable-with");
-              }
-              element.prop("disabled", false);
-              element.removeData("ujs:disabled");
-            },
-            /* For 'data-confirm' attribute:
-                  - Fires `confirm` event
-                  - Shows the confirmation dialog
-                  - Fires the `confirm:complete` event
-            
-                  Returns `true` if no function stops the chain and user chose yes; `false` otherwise.
-                  Attaching a handler to the element's `confirm` event that returns a `falsy` value cancels the confirmation dialog.
-                  Attaching a handler to the element's `confirm:complete` event that returns a `falsy` value makes this function
-                  return false. The `confirm:complete` event is fired whether or not the user answered true or false to the dialog.
-               */
-            allowAction: function(element) {
-              var message = element.data("confirm"), answer = false, callback;
-              if (!message) {
-                return true;
-              }
-              if (rails.fire(element, "confirm")) {
-                try {
-                  answer = rails.confirm(message);
-                } catch (e) {
-                  (console.error || console.log).call(console, e.stack || e);
-                }
-                callback = rails.fire(element, "confirm:complete", [answer]);
-              }
-              return answer && callback;
-            },
-            // Helper function which checks for blank inputs in a form that match the specified CSS selector
-            blankInputs: function(form, specifiedSelector, nonBlank) {
-              var foundInputs = $4(), input, valueToCheck, radiosForNameWithNoneSelected, radioName, selector = specifiedSelector || "input,textarea", requiredInputs = form.find(selector), checkedRadioButtonNames = {};
-              requiredInputs.each(function() {
-                input = $4(this);
-                if (input.is("input[type=radio]")) {
-                  radioName = input.attr("name");
-                  if (!checkedRadioButtonNames[radioName]) {
-                    if (form.find('input[type=radio]:checked[name="' + radioName + '"]').length === 0) {
-                      radiosForNameWithNoneSelected = form.find(
-                        'input[type=radio][name="' + radioName + '"]'
-                      );
-                      foundInputs = foundInputs.add(radiosForNameWithNoneSelected);
-                    }
-                    checkedRadioButtonNames[radioName] = radioName;
-                  }
-                } else {
-                  valueToCheck = input.is("input[type=checkbox],input[type=radio]") ? input.is(":checked") : !!input.val();
-                  if (valueToCheck === nonBlank) {
-                    foundInputs = foundInputs.add(input);
-                  }
-                }
-              });
-              return foundInputs.length ? foundInputs : false;
-            },
-            // Helper function which checks for non-blank inputs in a form that match the specified CSS selector
-            nonBlankInputs: function(form, specifiedSelector) {
-              return rails.blankInputs(form, specifiedSelector, true);
-            },
-            // Helper function, needed to provide consistent behavior in IE
-            stopEverything: function(e) {
-              $4(e.target).trigger("ujs:everythingStopped");
-              e.stopImmediatePropagation();
-              return false;
-            },
-            //  Replace element's html with the 'data-disable-with' after storing original html
-            //  and prevent clicking on it
-            disableElement: function(element) {
-              var replacement = element.data("disable-with");
-              if (replacement !== undefined2) {
-                element.data("ujs:enable-with", element.html());
-                element.html(replacement);
-              }
-              element.on("click.railsDisable", function(e) {
-                return rails.stopEverything(e);
-              });
-              element.data("ujs:disabled", true);
-            },
-            // Restore element to its original state which was disabled by 'disableElement' above
-            enableElement: function(element) {
-              if (element.data("ujs:enable-with") !== undefined2) {
-                element.html(element.data("ujs:enable-with"));
-                element.removeData("ujs:enable-with");
-              }
-              element.off("click.railsDisable");
-              element.removeData("ujs:disabled");
+            this.getPollInterval()
+          );
+        }
+        getPollInterval() {
+          const { staleThreshold, reconnectionBackoffRate } = this.constructor;
+          const backoff = Math.pow(1 + reconnectionBackoffRate, Math.min(this.reconnectAttempts, 10));
+          const jitterMax = this.reconnectAttempts === 0 ? 1 : reconnectionBackoffRate;
+          const jitter = jitterMax * Math.random();
+          return staleThreshold * 1e3 * backoff * (1 + jitter);
+        }
+        reconnectIfStale() {
+          if (this.connectionIsStale()) {
+            logger_default.log(`ConnectionMonitor detected stale connection. reconnectAttempts = ${this.reconnectAttempts}, time stale = ${secondsSince(this.refreshedAt)} s, stale threshold = ${this.constructor.staleThreshold} s`);
+            this.reconnectAttempts++;
+            if (this.disconnectedRecently()) {
+              logger_default.log(`ConnectionMonitor skipping reopening recent disconnect. time disconnected = ${secondsSince(this.disconnectedAt)} s`);
+            } else {
+              logger_default.log("ConnectionMonitor reopening");
+              this.connection.reopen();
             }
-          };
-          if (rails.fire($document, "rails:attachBindings")) {
-            $4.ajaxPrefilter(function(options, originalOptions, xhr) {
-              if (!options.crossDomain) {
-                rails.CSRFProtection(xhr);
+          }
+        }
+        get refreshedAt() {
+          return this.pingedAt ? this.pingedAt : this.startedAt;
+        }
+        connectionIsStale() {
+          return secondsSince(this.refreshedAt) > this.constructor.staleThreshold;
+        }
+        disconnectedRecently() {
+          return this.disconnectedAt && secondsSince(this.disconnectedAt) < this.constructor.staleThreshold;
+        }
+        visibilityDidChange() {
+          if (document.visibilityState === "visible") {
+            setTimeout(
+              () => {
+                if (this.connectionIsStale() || !this.connection.isOpen()) {
+                  logger_default.log(`ConnectionMonitor reopening stale connection on visibilitychange. visibilityState = ${document.visibilityState}`);
+                  this.connection.reopen();
+                }
+              },
+              200
+            );
+          }
+        }
+      };
+      ConnectionMonitor.staleThreshold = 6;
+      ConnectionMonitor.reconnectionBackoffRate = 0.15;
+      connection_monitor_default = ConnectionMonitor;
+    }
+  });
+
+  // node_modules/@rails/actioncable/src/internal.js
+  var internal_default;
+  var init_internal = __esm({
+    "node_modules/@rails/actioncable/src/internal.js"() {
+      internal_default = {
+        "message_types": {
+          "welcome": "welcome",
+          "disconnect": "disconnect",
+          "ping": "ping",
+          "confirmation": "confirm_subscription",
+          "rejection": "reject_subscription"
+        },
+        "disconnect_reasons": {
+          "unauthorized": "unauthorized",
+          "invalid_request": "invalid_request",
+          "server_restart": "server_restart",
+          "remote": "remote"
+        },
+        "default_mount_path": "/cable",
+        "protocols": [
+          "actioncable-v1-json",
+          "actioncable-unsupported"
+        ]
+      };
+    }
+  });
+
+  // node_modules/@rails/actioncable/src/connection.js
+  var message_types, protocols, supportedProtocols, indexOf, Connection, connection_default;
+  var init_connection = __esm({
+    "node_modules/@rails/actioncable/src/connection.js"() {
+      init_adapters();
+      init_connection_monitor();
+      init_internal();
+      init_logger();
+      ({ message_types, protocols } = internal_default);
+      supportedProtocols = protocols.slice(0, protocols.length - 1);
+      indexOf = [].indexOf;
+      Connection = class {
+        constructor(consumer2) {
+          this.open = this.open.bind(this);
+          this.consumer = consumer2;
+          this.subscriptions = this.consumer.subscriptions;
+          this.monitor = new connection_monitor_default(this);
+          this.disconnected = true;
+        }
+        send(data) {
+          if (this.isOpen()) {
+            this.webSocket.send(JSON.stringify(data));
+            return true;
+          } else {
+            return false;
+          }
+        }
+        open() {
+          if (this.isActive()) {
+            logger_default.log(`Attempted to open WebSocket, but existing socket is ${this.getState()}`);
+            return false;
+          } else {
+            const socketProtocols = [...protocols, ...this.consumer.subprotocols || []];
+            logger_default.log(`Opening WebSocket, current state is ${this.getState()}, subprotocols: ${socketProtocols}`);
+            if (this.webSocket) {
+              this.uninstallEventHandlers();
+            }
+            this.webSocket = new adapters_default.WebSocket(this.consumer.url, socketProtocols);
+            this.installEventHandlers();
+            this.monitor.start();
+            return true;
+          }
+        }
+        close({ allowReconnect } = { allowReconnect: true }) {
+          if (!allowReconnect) {
+            this.monitor.stop();
+          }
+          if (this.isOpen()) {
+            return this.webSocket.close();
+          }
+        }
+        reopen() {
+          logger_default.log(`Reopening WebSocket, current state is ${this.getState()}`);
+          if (this.isActive()) {
+            try {
+              return this.close();
+            } catch (error2) {
+              logger_default.log("Failed to reopen WebSocket", error2);
+            } finally {
+              logger_default.log(`Reopening WebSocket in ${this.constructor.reopenDelay}ms`);
+              setTimeout(this.open, this.constructor.reopenDelay);
+            }
+          } else {
+            return this.open();
+          }
+        }
+        getProtocol() {
+          if (this.webSocket) {
+            return this.webSocket.protocol;
+          }
+        }
+        isOpen() {
+          return this.isState("open");
+        }
+        isActive() {
+          return this.isState("open", "connecting");
+        }
+        triedToReconnect() {
+          return this.monitor.reconnectAttempts > 0;
+        }
+        // Private
+        isProtocolSupported() {
+          return indexOf.call(supportedProtocols, this.getProtocol()) >= 0;
+        }
+        isState(...states) {
+          return indexOf.call(states, this.getState()) >= 0;
+        }
+        getState() {
+          if (this.webSocket) {
+            for (let state in adapters_default.WebSocket) {
+              if (adapters_default.WebSocket[state] === this.webSocket.readyState) {
+                return state.toLowerCase();
               }
-            });
-            $4(window).on("pageshow.rails", function() {
-              $4($4.rails.enableSelector).each(function() {
-                var element = $4(this);
-                if (element.data("ujs:disabled")) {
-                  $4.rails.enableFormElement(element);
-                }
-              });
-              $4($4.rails.linkDisableSelector).each(function() {
-                var element = $4(this);
-                if (element.data("ujs:disabled")) {
-                  $4.rails.enableElement(element);
-                }
-              });
-            });
-            $document.on("ajax:complete", rails.linkDisableSelector, function() {
-              rails.enableElement($4(this));
-            });
-            $document.on("ajax:complete", rails.buttonDisableSelector, function() {
-              rails.enableFormElement($4(this));
-            });
-            $document.on("click.rails", rails.linkClickSelector, function(e) {
-              var link = $4(this), method = link.data("method"), data = link.data("params"), metaClick = e.metaKey || e.ctrlKey;
-              if (!rails.allowAction(link))
-                return rails.stopEverything(e);
-              if (!metaClick && link.is(rails.linkDisableSelector))
-                rails.disableElement(link);
-              if (rails.isRemote(link)) {
-                if (metaClick && (!method || method === "GET") && !data) {
-                  return true;
-                }
-                var handleRemote = rails.handleRemote(link);
-                if (handleRemote === false) {
-                  rails.enableElement(link);
-                } else {
-                  handleRemote.fail(function() {
-                    rails.enableElement(link);
-                  });
-                }
-                return false;
-              } else if (method) {
-                rails.handleMethod(link);
-                return false;
+            }
+          }
+          return null;
+        }
+        installEventHandlers() {
+          for (let eventName in this.events) {
+            const handler = this.events[eventName].bind(this);
+            this.webSocket[`on${eventName}`] = handler;
+          }
+        }
+        uninstallEventHandlers() {
+          for (let eventName in this.events) {
+            this.webSocket[`on${eventName}`] = function() {
+            };
+          }
+        }
+      };
+      Connection.reopenDelay = 500;
+      Connection.prototype.events = {
+        message(event) {
+          if (!this.isProtocolSupported()) {
+            return;
+          }
+          const { identifier, message, reason, reconnect, type } = JSON.parse(event.data);
+          switch (type) {
+            case message_types.welcome:
+              if (this.triedToReconnect()) {
+                this.reconnectAttempted = true;
               }
-            });
-            $document.on("click.rails", rails.buttonClickSelector, function(e) {
-              var button = $4(this);
-              if (!rails.allowAction(button) || !rails.isRemote(button))
-                return rails.stopEverything(e);
-              if (button.is(rails.buttonDisableSelector))
-                rails.disableFormElement(button);
-              var handleRemote = rails.handleRemote(button);
-              if (handleRemote === false) {
-                rails.enableFormElement(button);
+              this.monitor.recordConnect();
+              return this.subscriptions.reload();
+            case message_types.disconnect:
+              logger_default.log(`Disconnecting. Reason: ${reason}`);
+              return this.close({ allowReconnect: reconnect });
+            case message_types.ping:
+              return this.monitor.recordPing();
+            case message_types.confirmation:
+              this.subscriptions.confirmSubscription(identifier);
+              if (this.reconnectAttempted) {
+                this.reconnectAttempted = false;
+                return this.subscriptions.notify(identifier, "connected", { reconnected: true });
               } else {
-                handleRemote.fail(function() {
-                  rails.enableFormElement(button);
+                return this.subscriptions.notify(identifier, "connected", { reconnected: false });
+              }
+            case message_types.rejection:
+              return this.subscriptions.reject(identifier);
+            default:
+              return this.subscriptions.notify(identifier, "received", message);
+          }
+        },
+        open() {
+          logger_default.log(`WebSocket onopen event, using '${this.getProtocol()}' subprotocol`);
+          this.disconnected = false;
+          if (!this.isProtocolSupported()) {
+            logger_default.log("Protocol is unsupported. Stopping monitor and disconnecting.");
+            return this.close({ allowReconnect: false });
+          }
+        },
+        close(event) {
+          logger_default.log("WebSocket onclose event");
+          if (this.disconnected) {
+            return;
+          }
+          this.disconnected = true;
+          this.monitor.recordDisconnect();
+          return this.subscriptions.notifyAll("disconnected", { willAttemptReconnect: this.monitor.isRunning() });
+        },
+        error() {
+          logger_default.log("WebSocket onerror event");
+        }
+      };
+      connection_default = Connection;
+    }
+  });
+
+  // node_modules/@rails/actioncable/src/subscription.js
+  var extend, Subscription;
+  var init_subscription = __esm({
+    "node_modules/@rails/actioncable/src/subscription.js"() {
+      extend = function(object, properties) {
+        if (properties != null) {
+          for (let key in properties) {
+            const value = properties[key];
+            object[key] = value;
+          }
+        }
+        return object;
+      };
+      Subscription = class {
+        constructor(consumer2, params = {}, mixin) {
+          this.consumer = consumer2;
+          this.identifier = JSON.stringify(params);
+          extend(this, mixin);
+        }
+        // Perform a channel action with the optional data passed as an attribute
+        perform(action, data = {}) {
+          data.action = action;
+          return this.send(data);
+        }
+        send(data) {
+          return this.consumer.send({ command: "message", identifier: this.identifier, data: JSON.stringify(data) });
+        }
+        unsubscribe() {
+          return this.consumer.subscriptions.remove(this);
+        }
+      };
+    }
+  });
+
+  // node_modules/@rails/actioncable/src/subscription_guarantor.js
+  var SubscriptionGuarantor, subscription_guarantor_default;
+  var init_subscription_guarantor = __esm({
+    "node_modules/@rails/actioncable/src/subscription_guarantor.js"() {
+      init_logger();
+      SubscriptionGuarantor = class {
+        constructor(subscriptions) {
+          this.subscriptions = subscriptions;
+          this.pendingSubscriptions = [];
+        }
+        guarantee(subscription) {
+          if (this.pendingSubscriptions.indexOf(subscription) == -1) {
+            logger_default.log(`SubscriptionGuarantor guaranteeing ${subscription.identifier}`);
+            this.pendingSubscriptions.push(subscription);
+          } else {
+            logger_default.log(`SubscriptionGuarantor already guaranteeing ${subscription.identifier}`);
+          }
+          this.startGuaranteeing();
+        }
+        forget(subscription) {
+          logger_default.log(`SubscriptionGuarantor forgetting ${subscription.identifier}`);
+          this.pendingSubscriptions = this.pendingSubscriptions.filter((s) => s !== subscription);
+        }
+        startGuaranteeing() {
+          this.stopGuaranteeing();
+          this.retrySubscribing();
+        }
+        stopGuaranteeing() {
+          clearTimeout(this.retryTimeout);
+        }
+        retrySubscribing() {
+          this.retryTimeout = setTimeout(
+            () => {
+              if (this.subscriptions && typeof this.subscriptions.subscribe === "function") {
+                this.pendingSubscriptions.map((subscription) => {
+                  logger_default.log(`SubscriptionGuarantor resubscribing ${subscription.identifier}`);
+                  this.subscriptions.subscribe(subscription);
                 });
               }
-              return false;
-            });
-            $document.on("change.rails", rails.inputChangeSelector, function(e) {
-              var link = $4(this);
-              if (!rails.allowAction(link) || !rails.isRemote(link))
-                return rails.stopEverything(e);
-              rails.handleRemote(link);
-              return false;
-            });
-            $document.on("submit.rails", rails.formSubmitSelector, function(e) {
-              var form = $4(this), remote = rails.isRemote(form), blankRequiredInputs, nonBlankFileInputs;
-              if (!rails.allowAction(form))
-                return rails.stopEverything(e);
-              if (form.attr("novalidate") === undefined2) {
-                if (form.data("ujs:formnovalidate-button") === undefined2) {
-                  blankRequiredInputs = rails.blankInputs(form, rails.requiredInputSelector, false);
-                  if (blankRequiredInputs && rails.fire(form, "ajax:aborted:required", [blankRequiredInputs])) {
-                    return rails.stopEverything(e);
-                  }
-                } else {
-                  form.data("ujs:formnovalidate-button", undefined2);
-                }
-              }
-              if (remote) {
-                nonBlankFileInputs = rails.nonBlankInputs(form, rails.fileInputSelector);
-                if (nonBlankFileInputs) {
-                  setTimeout(function() {
-                    rails.disableFormElements(form);
-                  }, 13);
-                  var aborted = rails.fire(form, "ajax:aborted:file", [nonBlankFileInputs]);
-                  if (!aborted) {
-                    setTimeout(function() {
-                      rails.enableFormElements(form);
-                    }, 13);
-                  }
-                  return aborted;
-                }
-                rails.handleRemote(form);
-                return false;
-              } else {
-                setTimeout(function() {
-                  rails.disableFormElements(form);
-                }, 13);
-              }
-            });
-            $document.on("click.rails", rails.formInputClickSelector, function(event) {
-              var button = $4(this);
-              if (!rails.allowAction(button))
-                return rails.stopEverything(event);
-              var name = button.attr("name"), data = name ? { name, value: button.val() } : null;
-              var form = button.closest("form");
-              if (form.length === 0) {
-                form = $4("#" + button.attr("form"));
-              }
-              form.data("ujs:submit-button", data);
-              form.data("ujs:formnovalidate-button", button.attr("formnovalidate"));
-              form.data("ujs:submit-button-formaction", button.attr("formaction"));
-              form.data("ujs:submit-button-formmethod", button.attr("formmethod"));
-            });
-            $document.on("ajax:send.rails", rails.formSubmitSelector, function(event) {
-              if (this === event.target)
-                rails.disableFormElements($4(this));
-            });
-            $document.on("ajax:complete.rails", rails.formSubmitSelector, function(event) {
-              if (this === event.target)
-                rails.enableFormElements($4(this));
-            });
-            $4(function() {
-              rails.refreshCSRFTokens();
-            });
-          }
-        };
-        if (window.jQuery) {
-          jqueryUjsInit(jQuery);
-        } else if (typeof exports === "object" && typeof module === "object") {
-          module.exports = jqueryUjsInit;
+            },
+            500
+          );
         }
-      })();
+      };
+      subscription_guarantor_default = SubscriptionGuarantor;
+    }
+  });
+
+  // node_modules/@rails/actioncable/src/subscriptions.js
+  var Subscriptions;
+  var init_subscriptions = __esm({
+    "node_modules/@rails/actioncable/src/subscriptions.js"() {
+      init_subscription();
+      init_subscription_guarantor();
+      init_logger();
+      Subscriptions = class {
+        constructor(consumer2) {
+          this.consumer = consumer2;
+          this.guarantor = new subscription_guarantor_default(this);
+          this.subscriptions = [];
+        }
+        create(channelName, mixin) {
+          const channel = channelName;
+          const params = typeof channel === "object" ? channel : { channel };
+          const subscription = new Subscription(this.consumer, params, mixin);
+          return this.add(subscription);
+        }
+        // Private
+        add(subscription) {
+          this.subscriptions.push(subscription);
+          this.consumer.ensureActiveConnection();
+          this.notify(subscription, "initialized");
+          this.subscribe(subscription);
+          return subscription;
+        }
+        remove(subscription) {
+          this.forget(subscription);
+          if (!this.findAll(subscription.identifier).length) {
+            this.sendCommand(subscription, "unsubscribe");
+          }
+          return subscription;
+        }
+        reject(identifier) {
+          return this.findAll(identifier).map((subscription) => {
+            this.forget(subscription);
+            this.notify(subscription, "rejected");
+            return subscription;
+          });
+        }
+        forget(subscription) {
+          this.guarantor.forget(subscription);
+          this.subscriptions = this.subscriptions.filter((s) => s !== subscription);
+          return subscription;
+        }
+        findAll(identifier) {
+          return this.subscriptions.filter((s) => s.identifier === identifier);
+        }
+        reload() {
+          return this.subscriptions.map((subscription) => this.subscribe(subscription));
+        }
+        notifyAll(callbackName, ...args) {
+          return this.subscriptions.map((subscription) => this.notify(subscription, callbackName, ...args));
+        }
+        notify(subscription, callbackName, ...args) {
+          let subscriptions;
+          if (typeof subscription === "string") {
+            subscriptions = this.findAll(subscription);
+          } else {
+            subscriptions = [subscription];
+          }
+          return subscriptions.map((subscription2) => typeof subscription2[callbackName] === "function" ? subscription2[callbackName](...args) : void 0);
+        }
+        subscribe(subscription) {
+          if (this.sendCommand(subscription, "subscribe")) {
+            this.guarantor.guarantee(subscription);
+          }
+        }
+        confirmSubscription(identifier) {
+          logger_default.log(`Subscription confirmed ${identifier}`);
+          this.findAll(identifier).map((subscription) => this.guarantor.forget(subscription));
+        }
+        sendCommand(subscription, command) {
+          const { identifier } = subscription;
+          return this.consumer.send({ command, identifier });
+        }
+      };
+    }
+  });
+
+  // node_modules/@rails/actioncable/src/consumer.js
+  function createWebSocketURL(url) {
+    if (typeof url === "function") {
+      url = url();
+    }
+    if (url && !/^wss?:/i.test(url)) {
+      const a = document.createElement("a");
+      a.href = url;
+      a.href = a.href;
+      a.protocol = a.protocol.replace("http", "ws");
+      return a.href;
+    } else {
+      return url;
+    }
+  }
+  var Consumer;
+  var init_consumer = __esm({
+    "node_modules/@rails/actioncable/src/consumer.js"() {
+      init_connection();
+      init_subscriptions();
+      Consumer = class {
+        constructor(url) {
+          this._url = url;
+          this.subscriptions = new Subscriptions(this);
+          this.connection = new connection_default(this);
+          this.subprotocols = [];
+        }
+        get url() {
+          return createWebSocketURL(this._url);
+        }
+        send(data) {
+          return this.connection.send(data);
+        }
+        connect() {
+          return this.connection.open();
+        }
+        disconnect() {
+          return this.connection.close({ allowReconnect: false });
+        }
+        ensureActiveConnection() {
+          if (!this.connection.isActive()) {
+            return this.connection.open();
+          }
+        }
+        addSubProtocol(subprotocol) {
+          this.subprotocols = [...this.subprotocols, subprotocol];
+        }
+      };
+    }
+  });
+
+  // node_modules/@rails/actioncable/src/index.js
+  var src_exports = {};
+  __export(src_exports, {
+    Connection: () => connection_default,
+    ConnectionMonitor: () => connection_monitor_default,
+    Consumer: () => Consumer,
+    INTERNAL: () => internal_default,
+    Subscription: () => Subscription,
+    SubscriptionGuarantor: () => subscription_guarantor_default,
+    Subscriptions: () => Subscriptions,
+    adapters: () => adapters_default,
+    createConsumer: () => createConsumer,
+    createWebSocketURL: () => createWebSocketURL,
+    getConfig: () => getConfig,
+    logger: () => logger_default
+  });
+  function createConsumer(url = getConfig("url") || internal_default.default_mount_path) {
+    return new Consumer(url);
+  }
+  function getConfig(name) {
+    const element = document.head.querySelector(`meta[name='action-cable-${name}']`);
+    if (element) {
+      return element.getAttribute("content");
+    }
+  }
+  var init_src = __esm({
+    "node_modules/@rails/actioncable/src/index.js"() {
+      init_connection();
+      init_connection_monitor();
+      init_consumer();
+      init_internal();
+      init_subscription();
+      init_subscriptions();
+      init_subscription_guarantor();
+      init_adapters();
+      init_logger();
     }
   });
 
@@ -7011,7 +7158,7 @@
         Sifter.prototype.prepareSearch = function(query, options) {
           if (typeof query === "object")
             return query;
-          options = extend2({}, options);
+          options = extend3({}, options);
           var option_fields = options.fields;
           var option_sort = options.sort;
           var option_sort_empty = options.sort_empty;
@@ -7070,7 +7217,7 @@
             return -1;
           return 0;
         };
-        var extend2 = function(a, b) {
+        var extend3 = function(a, b) {
           var i, n, k, object;
           for (i = 1, n = arguments.length; i < n; i++) {
             object = arguments[i];
@@ -8055,8 +8202,5266 @@
   window.jQuery = import_jquery.default;
   window.$ = import_jquery.default;
 
+  // node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js
+  var turbo_es2017_esm_exports = {};
+  __export(turbo_es2017_esm_exports, {
+    FetchEnctype: () => FetchEnctype,
+    FetchMethod: () => FetchMethod,
+    FetchRequest: () => FetchRequest,
+    FetchResponse: () => FetchResponse,
+    FrameElement: () => FrameElement,
+    FrameLoadingStyle: () => FrameLoadingStyle,
+    FrameRenderer: () => FrameRenderer,
+    PageRenderer: () => PageRenderer,
+    PageSnapshot: () => PageSnapshot,
+    StreamActions: () => StreamActions,
+    StreamElement: () => StreamElement,
+    StreamSourceElement: () => StreamSourceElement,
+    cache: () => cache,
+    clearCache: () => clearCache,
+    connectStreamSource: () => connectStreamSource,
+    disconnectStreamSource: () => disconnectStreamSource,
+    fetch: () => fetchWithTurboHeaders,
+    fetchEnctypeFromString: () => fetchEnctypeFromString,
+    fetchMethodFromString: () => fetchMethodFromString,
+    isSafe: () => isSafe,
+    navigator: () => navigator$1,
+    registerAdapter: () => registerAdapter,
+    renderStreamMessage: () => renderStreamMessage,
+    session: () => session,
+    setConfirmMethod: () => setConfirmMethod,
+    setFormMode: () => setFormMode,
+    setProgressBarDelay: () => setProgressBarDelay,
+    start: () => start,
+    visit: () => visit
+  });
+  (function(prototype) {
+    if (typeof prototype.requestSubmit == "function")
+      return;
+    prototype.requestSubmit = function(submitter) {
+      if (submitter) {
+        validateSubmitter(submitter, this);
+        submitter.click();
+      } else {
+        submitter = document.createElement("input");
+        submitter.type = "submit";
+        submitter.hidden = true;
+        this.appendChild(submitter);
+        submitter.click();
+        this.removeChild(submitter);
+      }
+    };
+    function validateSubmitter(submitter, form) {
+      submitter instanceof HTMLElement || raise(TypeError, "parameter 1 is not of type 'HTMLElement'");
+      submitter.type == "submit" || raise(TypeError, "The specified element is not a submit button");
+      submitter.form == form || raise(DOMException, "The specified element is not owned by this form element", "NotFoundError");
+    }
+    function raise(errorConstructor, message, name) {
+      throw new errorConstructor("Failed to execute 'requestSubmit' on 'HTMLFormElement': " + message + ".", name);
+    }
+  })(HTMLFormElement.prototype);
+  var submittersByForm = /* @__PURE__ */ new WeakMap();
+  function findSubmitterFromClickTarget(target) {
+    const element = target instanceof Element ? target : target instanceof Node ? target.parentElement : null;
+    const candidate = element ? element.closest("input, button") : null;
+    return candidate?.type == "submit" ? candidate : null;
+  }
+  function clickCaptured(event) {
+    const submitter = findSubmitterFromClickTarget(event.target);
+    if (submitter && submitter.form) {
+      submittersByForm.set(submitter.form, submitter);
+    }
+  }
+  (function() {
+    if ("submitter" in Event.prototype)
+      return;
+    let prototype = window.Event.prototype;
+    if ("SubmitEvent" in window) {
+      const prototypeOfSubmitEvent = window.SubmitEvent.prototype;
+      if (/Apple Computer/.test(navigator.vendor) && !("submitter" in prototypeOfSubmitEvent)) {
+        prototype = prototypeOfSubmitEvent;
+      } else {
+        return;
+      }
+    }
+    addEventListener("click", clickCaptured, true);
+    Object.defineProperty(prototype, "submitter", {
+      get() {
+        if (this.type == "submit" && this.target instanceof HTMLFormElement) {
+          return submittersByForm.get(this.target);
+        }
+      }
+    });
+  })();
+  var FrameLoadingStyle = {
+    eager: "eager",
+    lazy: "lazy"
+  };
+  var FrameElement = class _FrameElement extends HTMLElement {
+    static delegateConstructor = void 0;
+    loaded = Promise.resolve();
+    static get observedAttributes() {
+      return ["disabled", "complete", "loading", "src"];
+    }
+    constructor() {
+      super();
+      this.delegate = new _FrameElement.delegateConstructor(this);
+    }
+    connectedCallback() {
+      this.delegate.connect();
+    }
+    disconnectedCallback() {
+      this.delegate.disconnect();
+    }
+    reload() {
+      return this.delegate.sourceURLReloaded();
+    }
+    attributeChangedCallback(name) {
+      if (name == "loading") {
+        this.delegate.loadingStyleChanged();
+      } else if (name == "complete") {
+        this.delegate.completeChanged();
+      } else if (name == "src") {
+        this.delegate.sourceURLChanged();
+      } else {
+        this.delegate.disabledChanged();
+      }
+    }
+    /**
+     * Gets the URL to lazily load source HTML from
+     */
+    get src() {
+      return this.getAttribute("src");
+    }
+    /**
+     * Sets the URL to lazily load source HTML from
+     */
+    set src(value) {
+      if (value) {
+        this.setAttribute("src", value);
+      } else {
+        this.removeAttribute("src");
+      }
+    }
+    /**
+     * Gets the refresh mode for the frame.
+     */
+    get refresh() {
+      return this.getAttribute("refresh");
+    }
+    /**
+     * Sets the refresh mode for the frame.
+     */
+    set refresh(value) {
+      if (value) {
+        this.setAttribute("refresh", value);
+      } else {
+        this.removeAttribute("refresh");
+      }
+    }
+    /**
+     * Determines if the element is loading
+     */
+    get loading() {
+      return frameLoadingStyleFromString(this.getAttribute("loading") || "");
+    }
+    /**
+     * Sets the value of if the element is loading
+     */
+    set loading(value) {
+      if (value) {
+        this.setAttribute("loading", value);
+      } else {
+        this.removeAttribute("loading");
+      }
+    }
+    /**
+     * Gets the disabled state of the frame.
+     *
+     * If disabled, no requests will be intercepted by the frame.
+     */
+    get disabled() {
+      return this.hasAttribute("disabled");
+    }
+    /**
+     * Sets the disabled state of the frame.
+     *
+     * If disabled, no requests will be intercepted by the frame.
+     */
+    set disabled(value) {
+      if (value) {
+        this.setAttribute("disabled", "");
+      } else {
+        this.removeAttribute("disabled");
+      }
+    }
+    /**
+     * Gets the autoscroll state of the frame.
+     *
+     * If true, the frame will be scrolled into view automatically on update.
+     */
+    get autoscroll() {
+      return this.hasAttribute("autoscroll");
+    }
+    /**
+     * Sets the autoscroll state of the frame.
+     *
+     * If true, the frame will be scrolled into view automatically on update.
+     */
+    set autoscroll(value) {
+      if (value) {
+        this.setAttribute("autoscroll", "");
+      } else {
+        this.removeAttribute("autoscroll");
+      }
+    }
+    /**
+     * Determines if the element has finished loading
+     */
+    get complete() {
+      return !this.delegate.isLoading;
+    }
+    /**
+     * Gets the active state of the frame.
+     *
+     * If inactive, source changes will not be observed.
+     */
+    get isActive() {
+      return this.ownerDocument === document && !this.isPreview;
+    }
+    /**
+     * Sets the active state of the frame.
+     *
+     * If inactive, source changes will not be observed.
+     */
+    get isPreview() {
+      return this.ownerDocument?.documentElement?.hasAttribute("data-turbo-preview");
+    }
+  };
+  function frameLoadingStyleFromString(style) {
+    switch (style.toLowerCase()) {
+      case "lazy":
+        return FrameLoadingStyle.lazy;
+      default:
+        return FrameLoadingStyle.eager;
+    }
+  }
+  function expandURL(locatable) {
+    return new URL(locatable.toString(), document.baseURI);
+  }
+  function getAnchor(url) {
+    let anchorMatch;
+    if (url.hash) {
+      return url.hash.slice(1);
+    } else if (anchorMatch = url.href.match(/#(.*)$/)) {
+      return anchorMatch[1];
+    }
+  }
+  function getAction$1(form, submitter) {
+    const action = submitter?.getAttribute("formaction") || form.getAttribute("action") || form.action;
+    return expandURL(action);
+  }
+  function getExtension(url) {
+    return (getLastPathComponent(url).match(/\.[^.]*$/) || [])[0] || "";
+  }
+  function isHTML(url) {
+    return !!getExtension(url).match(/^(?:|\.(?:htm|html|xhtml|php))$/);
+  }
+  function isPrefixedBy(baseURL, url) {
+    const prefix = getPrefix(url);
+    return baseURL.href === expandURL(prefix).href || baseURL.href.startsWith(prefix);
+  }
+  function locationIsVisitable(location2, rootLocation) {
+    return isPrefixedBy(location2, rootLocation) && isHTML(location2);
+  }
+  function getRequestURL(url) {
+    const anchor = getAnchor(url);
+    return anchor != null ? url.href.slice(0, -(anchor.length + 1)) : url.href;
+  }
+  function toCacheKey(url) {
+    return getRequestURL(url);
+  }
+  function urlsAreEqual(left, right) {
+    return expandURL(left).href == expandURL(right).href;
+  }
+  function getPathComponents(url) {
+    return url.pathname.split("/").slice(1);
+  }
+  function getLastPathComponent(url) {
+    return getPathComponents(url).slice(-1)[0];
+  }
+  function getPrefix(url) {
+    return addTrailingSlash(url.origin + url.pathname);
+  }
+  function addTrailingSlash(value) {
+    return value.endsWith("/") ? value : value + "/";
+  }
+  var FetchResponse = class {
+    constructor(response) {
+      this.response = response;
+    }
+    get succeeded() {
+      return this.response.ok;
+    }
+    get failed() {
+      return !this.succeeded;
+    }
+    get clientError() {
+      return this.statusCode >= 400 && this.statusCode <= 499;
+    }
+    get serverError() {
+      return this.statusCode >= 500 && this.statusCode <= 599;
+    }
+    get redirected() {
+      return this.response.redirected;
+    }
+    get location() {
+      return expandURL(this.response.url);
+    }
+    get isHTML() {
+      return this.contentType && this.contentType.match(/^(?:text\/([^\s;,]+\b)?html|application\/xhtml\+xml)\b/);
+    }
+    get statusCode() {
+      return this.response.status;
+    }
+    get contentType() {
+      return this.header("Content-Type");
+    }
+    get responseText() {
+      return this.response.clone().text();
+    }
+    get responseHTML() {
+      if (this.isHTML) {
+        return this.response.clone().text();
+      } else {
+        return Promise.resolve(void 0);
+      }
+    }
+    header(name) {
+      return this.response.headers.get(name);
+    }
+  };
+  function activateScriptElement(element) {
+    if (element.getAttribute("data-turbo-eval") == "false") {
+      return element;
+    } else {
+      const createdScriptElement = document.createElement("script");
+      const cspNonce = getMetaContent("csp-nonce");
+      if (cspNonce) {
+        createdScriptElement.nonce = cspNonce;
+      }
+      createdScriptElement.textContent = element.textContent;
+      createdScriptElement.async = false;
+      copyElementAttributes(createdScriptElement, element);
+      return createdScriptElement;
+    }
+  }
+  function copyElementAttributes(destinationElement, sourceElement) {
+    for (const { name, value } of sourceElement.attributes) {
+      destinationElement.setAttribute(name, value);
+    }
+  }
+  function createDocumentFragment(html) {
+    const template = document.createElement("template");
+    template.innerHTML = html;
+    return template.content;
+  }
+  function dispatch(eventName, { target, cancelable, detail } = {}) {
+    const event = new CustomEvent(eventName, {
+      cancelable,
+      bubbles: true,
+      composed: true,
+      detail
+    });
+    if (target && target.isConnected) {
+      target.dispatchEvent(event);
+    } else {
+      document.documentElement.dispatchEvent(event);
+    }
+    return event;
+  }
+  function nextRepaint() {
+    if (document.visibilityState === "hidden") {
+      return nextEventLoopTick();
+    } else {
+      return nextAnimationFrame();
+    }
+  }
+  function nextAnimationFrame() {
+    return new Promise((resolve) => requestAnimationFrame(() => resolve()));
+  }
+  function nextEventLoopTick() {
+    return new Promise((resolve) => setTimeout(() => resolve(), 0));
+  }
+  function nextMicrotask() {
+    return Promise.resolve();
+  }
+  function parseHTMLDocument(html = "") {
+    return new DOMParser().parseFromString(html, "text/html");
+  }
+  function unindent(strings, ...values) {
+    const lines = interpolate(strings, values).replace(/^\n/, "").split("\n");
+    const match = lines[0].match(/^\s+/);
+    const indent = match ? match[0].length : 0;
+    return lines.map((line) => line.slice(indent)).join("\n");
+  }
+  function interpolate(strings, values) {
+    return strings.reduce((result, string, i) => {
+      const value = values[i] == void 0 ? "" : values[i];
+      return result + string + value;
+    }, "");
+  }
+  function uuid() {
+    return Array.from({ length: 36 }).map((_, i) => {
+      if (i == 8 || i == 13 || i == 18 || i == 23) {
+        return "-";
+      } else if (i == 14) {
+        return "4";
+      } else if (i == 19) {
+        return (Math.floor(Math.random() * 4) + 8).toString(16);
+      } else {
+        return Math.floor(Math.random() * 15).toString(16);
+      }
+    }).join("");
+  }
+  function getAttribute(attributeName, ...elements) {
+    for (const value of elements.map((element) => element?.getAttribute(attributeName))) {
+      if (typeof value == "string")
+        return value;
+    }
+    return null;
+  }
+  function hasAttribute(attributeName, ...elements) {
+    return elements.some((element) => element && element.hasAttribute(attributeName));
+  }
+  function markAsBusy(...elements) {
+    for (const element of elements) {
+      if (element.localName == "turbo-frame") {
+        element.setAttribute("busy", "");
+      }
+      element.setAttribute("aria-busy", "true");
+    }
+  }
+  function clearBusyState(...elements) {
+    for (const element of elements) {
+      if (element.localName == "turbo-frame") {
+        element.removeAttribute("busy");
+      }
+      element.removeAttribute("aria-busy");
+    }
+  }
+  function waitForLoad(element, timeoutInMilliseconds = 2e3) {
+    return new Promise((resolve) => {
+      const onComplete = () => {
+        element.removeEventListener("error", onComplete);
+        element.removeEventListener("load", onComplete);
+        resolve();
+      };
+      element.addEventListener("load", onComplete, { once: true });
+      element.addEventListener("error", onComplete, { once: true });
+      setTimeout(resolve, timeoutInMilliseconds);
+    });
+  }
+  function getHistoryMethodForAction(action) {
+    switch (action) {
+      case "replace":
+        return history.replaceState;
+      case "advance":
+      case "restore":
+        return history.pushState;
+    }
+  }
+  function isAction(action) {
+    return action == "advance" || action == "replace" || action == "restore";
+  }
+  function getVisitAction(...elements) {
+    const action = getAttribute("data-turbo-action", ...elements);
+    return isAction(action) ? action : null;
+  }
+  function getMetaElement(name) {
+    return document.querySelector(`meta[name="${name}"]`);
+  }
+  function getMetaContent(name) {
+    const element = getMetaElement(name);
+    return element && element.content;
+  }
+  function setMetaContent(name, content) {
+    let element = getMetaElement(name);
+    if (!element) {
+      element = document.createElement("meta");
+      element.setAttribute("name", name);
+      document.head.appendChild(element);
+    }
+    element.setAttribute("content", content);
+    return element;
+  }
+  function findClosestRecursively(element, selector) {
+    if (element instanceof Element) {
+      return element.closest(selector) || findClosestRecursively(element.assignedSlot || element.getRootNode()?.host, selector);
+    }
+  }
+  function elementIsFocusable(element) {
+    const inertDisabledOrHidden = "[inert], :disabled, [hidden], details:not([open]), dialog:not([open])";
+    return !!element && element.closest(inertDisabledOrHidden) == null && typeof element.focus == "function";
+  }
+  function queryAutofocusableElement(elementOrDocumentFragment) {
+    return Array.from(elementOrDocumentFragment.querySelectorAll("[autofocus]")).find(elementIsFocusable);
+  }
+  async function around(callback, reader) {
+    const before = reader();
+    callback();
+    await nextAnimationFrame();
+    const after = reader();
+    return [before, after];
+  }
+  function doesNotTargetIFrame(anchor) {
+    if (anchor.hasAttribute("target")) {
+      for (const element of document.getElementsByName(anchor.target)) {
+        if (element instanceof HTMLIFrameElement)
+          return false;
+      }
+    }
+    return true;
+  }
+  function findLinkFromClickTarget(target) {
+    return findClosestRecursively(target, "a[href]:not([target^=_]):not([download])");
+  }
+  function getLocationForLink(link) {
+    return expandURL(link.getAttribute("href") || "");
+  }
+  function debounce(fn, delay) {
+    let timeoutId = null;
+    return (...args) => {
+      const callback = () => fn.apply(this, args);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(callback, delay);
+    };
+  }
+  var LimitedSet = class extends Set {
+    constructor(maxSize) {
+      super();
+      this.maxSize = maxSize;
+    }
+    add(value) {
+      if (this.size >= this.maxSize) {
+        const iterator = this.values();
+        const oldestValue = iterator.next().value;
+        this.delete(oldestValue);
+      }
+      super.add(value);
+    }
+  };
+  var recentRequests = new LimitedSet(20);
+  var nativeFetch = window.fetch;
+  function fetchWithTurboHeaders(url, options = {}) {
+    const modifiedHeaders = new Headers(options.headers || {});
+    const requestUID = uuid();
+    recentRequests.add(requestUID);
+    modifiedHeaders.append("X-Turbo-Request-Id", requestUID);
+    return nativeFetch(url, {
+      ...options,
+      headers: modifiedHeaders
+    });
+  }
+  function fetchMethodFromString(method) {
+    switch (method.toLowerCase()) {
+      case "get":
+        return FetchMethod.get;
+      case "post":
+        return FetchMethod.post;
+      case "put":
+        return FetchMethod.put;
+      case "patch":
+        return FetchMethod.patch;
+      case "delete":
+        return FetchMethod.delete;
+    }
+  }
+  var FetchMethod = {
+    get: "get",
+    post: "post",
+    put: "put",
+    patch: "patch",
+    delete: "delete"
+  };
+  function fetchEnctypeFromString(encoding) {
+    switch (encoding.toLowerCase()) {
+      case FetchEnctype.multipart:
+        return FetchEnctype.multipart;
+      case FetchEnctype.plain:
+        return FetchEnctype.plain;
+      default:
+        return FetchEnctype.urlEncoded;
+    }
+  }
+  var FetchEnctype = {
+    urlEncoded: "application/x-www-form-urlencoded",
+    multipart: "multipart/form-data",
+    plain: "text/plain"
+  };
+  var FetchRequest = class {
+    abortController = new AbortController();
+    #resolveRequestPromise = (_value) => {
+    };
+    constructor(delegate, method, location2, requestBody = new URLSearchParams(), target = null, enctype = FetchEnctype.urlEncoded) {
+      const [url, body] = buildResourceAndBody(expandURL(location2), method, requestBody, enctype);
+      this.delegate = delegate;
+      this.url = url;
+      this.target = target;
+      this.fetchOptions = {
+        credentials: "same-origin",
+        redirect: "follow",
+        method,
+        headers: { ...this.defaultHeaders },
+        body,
+        signal: this.abortSignal,
+        referrer: this.delegate.referrer?.href
+      };
+      this.enctype = enctype;
+    }
+    get method() {
+      return this.fetchOptions.method;
+    }
+    set method(value) {
+      const fetchBody = this.isSafe ? this.url.searchParams : this.fetchOptions.body || new FormData();
+      const fetchMethod = fetchMethodFromString(value) || FetchMethod.get;
+      this.url.search = "";
+      const [url, body] = buildResourceAndBody(this.url, fetchMethod, fetchBody, this.enctype);
+      this.url = url;
+      this.fetchOptions.body = body;
+      this.fetchOptions.method = fetchMethod;
+    }
+    get headers() {
+      return this.fetchOptions.headers;
+    }
+    set headers(value) {
+      this.fetchOptions.headers = value;
+    }
+    get body() {
+      if (this.isSafe) {
+        return this.url.searchParams;
+      } else {
+        return this.fetchOptions.body;
+      }
+    }
+    set body(value) {
+      this.fetchOptions.body = value;
+    }
+    get location() {
+      return this.url;
+    }
+    get params() {
+      return this.url.searchParams;
+    }
+    get entries() {
+      return this.body ? Array.from(this.body.entries()) : [];
+    }
+    cancel() {
+      this.abortController.abort();
+    }
+    async perform() {
+      const { fetchOptions } = this;
+      this.delegate.prepareRequest(this);
+      const event = await this.#allowRequestToBeIntercepted(fetchOptions);
+      try {
+        this.delegate.requestStarted(this);
+        if (event.detail.fetchRequest) {
+          this.response = event.detail.fetchRequest.response;
+        } else {
+          this.response = fetchWithTurboHeaders(this.url.href, fetchOptions);
+        }
+        const response = await this.response;
+        return await this.receive(response);
+      } catch (error2) {
+        if (error2.name !== "AbortError") {
+          if (this.#willDelegateErrorHandling(error2)) {
+            this.delegate.requestErrored(this, error2);
+          }
+          throw error2;
+        }
+      } finally {
+        this.delegate.requestFinished(this);
+      }
+    }
+    async receive(response) {
+      const fetchResponse = new FetchResponse(response);
+      const event = dispatch("turbo:before-fetch-response", {
+        cancelable: true,
+        detail: { fetchResponse },
+        target: this.target
+      });
+      if (event.defaultPrevented) {
+        this.delegate.requestPreventedHandlingResponse(this, fetchResponse);
+      } else if (fetchResponse.succeeded) {
+        this.delegate.requestSucceededWithResponse(this, fetchResponse);
+      } else {
+        this.delegate.requestFailedWithResponse(this, fetchResponse);
+      }
+      return fetchResponse;
+    }
+    get defaultHeaders() {
+      return {
+        Accept: "text/html, application/xhtml+xml"
+      };
+    }
+    get isSafe() {
+      return isSafe(this.method);
+    }
+    get abortSignal() {
+      return this.abortController.signal;
+    }
+    acceptResponseType(mimeType) {
+      this.headers["Accept"] = [mimeType, this.headers["Accept"]].join(", ");
+    }
+    async #allowRequestToBeIntercepted(fetchOptions) {
+      const requestInterception = new Promise((resolve) => this.#resolveRequestPromise = resolve);
+      const event = dispatch("turbo:before-fetch-request", {
+        cancelable: true,
+        detail: {
+          fetchOptions,
+          url: this.url,
+          resume: this.#resolveRequestPromise
+        },
+        target: this.target
+      });
+      this.url = event.detail.url;
+      if (event.defaultPrevented)
+        await requestInterception;
+      return event;
+    }
+    #willDelegateErrorHandling(error2) {
+      const event = dispatch("turbo:fetch-request-error", {
+        target: this.target,
+        cancelable: true,
+        detail: { request: this, error: error2 }
+      });
+      return !event.defaultPrevented;
+    }
+  };
+  function isSafe(fetchMethod) {
+    return fetchMethodFromString(fetchMethod) == FetchMethod.get;
+  }
+  function buildResourceAndBody(resource, method, requestBody, enctype) {
+    const searchParams = Array.from(requestBody).length > 0 ? new URLSearchParams(entriesExcludingFiles(requestBody)) : resource.searchParams;
+    if (isSafe(method)) {
+      return [mergeIntoURLSearchParams(resource, searchParams), null];
+    } else if (enctype == FetchEnctype.urlEncoded) {
+      return [resource, searchParams];
+    } else {
+      return [resource, requestBody];
+    }
+  }
+  function entriesExcludingFiles(requestBody) {
+    const entries = [];
+    for (const [name, value] of requestBody) {
+      if (value instanceof File)
+        continue;
+      else
+        entries.push([name, value]);
+    }
+    return entries;
+  }
+  function mergeIntoURLSearchParams(url, requestBody) {
+    const searchParams = new URLSearchParams(entriesExcludingFiles(requestBody));
+    url.search = searchParams.toString();
+    return url;
+  }
+  var AppearanceObserver = class {
+    started = false;
+    constructor(delegate, element) {
+      this.delegate = delegate;
+      this.element = element;
+      this.intersectionObserver = new IntersectionObserver(this.intersect);
+    }
+    start() {
+      if (!this.started) {
+        this.started = true;
+        this.intersectionObserver.observe(this.element);
+      }
+    }
+    stop() {
+      if (this.started) {
+        this.started = false;
+        this.intersectionObserver.unobserve(this.element);
+      }
+    }
+    intersect = (entries) => {
+      const lastEntry = entries.slice(-1)[0];
+      if (lastEntry?.isIntersecting) {
+        this.delegate.elementAppearedInViewport(this.element);
+      }
+    };
+  };
+  var StreamMessage = class {
+    static contentType = "text/vnd.turbo-stream.html";
+    static wrap(message) {
+      if (typeof message == "string") {
+        return new this(createDocumentFragment(message));
+      } else {
+        return message;
+      }
+    }
+    constructor(fragment) {
+      this.fragment = importStreamElements(fragment);
+    }
+  };
+  function importStreamElements(fragment) {
+    for (const element of fragment.querySelectorAll("turbo-stream")) {
+      const streamElement = document.importNode(element, true);
+      for (const inertScriptElement of streamElement.templateElement.content.querySelectorAll("script")) {
+        inertScriptElement.replaceWith(activateScriptElement(inertScriptElement));
+      }
+      element.replaceWith(streamElement);
+    }
+    return fragment;
+  }
+  var PREFETCH_DELAY = 100;
+  var PrefetchCache = class {
+    #prefetchTimeout = null;
+    #prefetched = null;
+    get(url) {
+      if (this.#prefetched && this.#prefetched.url === url && this.#prefetched.expire > Date.now()) {
+        return this.#prefetched.request;
+      }
+    }
+    setLater(url, request, ttl) {
+      this.clear();
+      this.#prefetchTimeout = setTimeout(() => {
+        request.perform();
+        this.set(url, request, ttl);
+        this.#prefetchTimeout = null;
+      }, PREFETCH_DELAY);
+    }
+    set(url, request, ttl) {
+      this.#prefetched = { url, request, expire: new Date((/* @__PURE__ */ new Date()).getTime() + ttl) };
+    }
+    clear() {
+      if (this.#prefetchTimeout)
+        clearTimeout(this.#prefetchTimeout);
+      this.#prefetched = null;
+    }
+  };
+  var cacheTtl = 10 * 1e3;
+  var prefetchCache = new PrefetchCache();
+  var FormSubmissionState = {
+    initialized: "initialized",
+    requesting: "requesting",
+    waiting: "waiting",
+    receiving: "receiving",
+    stopping: "stopping",
+    stopped: "stopped"
+  };
+  var FormSubmission = class _FormSubmission {
+    state = FormSubmissionState.initialized;
+    static confirmMethod(message, _element, _submitter) {
+      return Promise.resolve(confirm(message));
+    }
+    constructor(delegate, formElement, submitter, mustRedirect = false) {
+      const method = getMethod(formElement, submitter);
+      const action = getAction(getFormAction(formElement, submitter), method);
+      const body = buildFormData(formElement, submitter);
+      const enctype = getEnctype(formElement, submitter);
+      this.delegate = delegate;
+      this.formElement = formElement;
+      this.submitter = submitter;
+      this.fetchRequest = new FetchRequest(this, method, action, body, formElement, enctype);
+      this.mustRedirect = mustRedirect;
+    }
+    get method() {
+      return this.fetchRequest.method;
+    }
+    set method(value) {
+      this.fetchRequest.method = value;
+    }
+    get action() {
+      return this.fetchRequest.url.toString();
+    }
+    set action(value) {
+      this.fetchRequest.url = expandURL(value);
+    }
+    get body() {
+      return this.fetchRequest.body;
+    }
+    get enctype() {
+      return this.fetchRequest.enctype;
+    }
+    get isSafe() {
+      return this.fetchRequest.isSafe;
+    }
+    get location() {
+      return this.fetchRequest.url;
+    }
+    // The submission process
+    async start() {
+      const { initialized, requesting } = FormSubmissionState;
+      const confirmationMessage = getAttribute("data-turbo-confirm", this.submitter, this.formElement);
+      if (typeof confirmationMessage === "string") {
+        const answer = await _FormSubmission.confirmMethod(confirmationMessage, this.formElement, this.submitter);
+        if (!answer) {
+          return;
+        }
+      }
+      if (this.state == initialized) {
+        this.state = requesting;
+        return this.fetchRequest.perform();
+      }
+    }
+    stop() {
+      const { stopping, stopped } = FormSubmissionState;
+      if (this.state != stopping && this.state != stopped) {
+        this.state = stopping;
+        this.fetchRequest.cancel();
+        return true;
+      }
+    }
+    // Fetch request delegate
+    prepareRequest(request) {
+      if (!request.isSafe) {
+        const token = getCookieValue(getMetaContent("csrf-param")) || getMetaContent("csrf-token");
+        if (token) {
+          request.headers["X-CSRF-Token"] = token;
+        }
+      }
+      if (this.requestAcceptsTurboStreamResponse(request)) {
+        request.acceptResponseType(StreamMessage.contentType);
+      }
+    }
+    requestStarted(_request) {
+      this.state = FormSubmissionState.waiting;
+      this.submitter?.setAttribute("disabled", "");
+      this.setSubmitsWith();
+      markAsBusy(this.formElement);
+      dispatch("turbo:submit-start", {
+        target: this.formElement,
+        detail: { formSubmission: this }
+      });
+      this.delegate.formSubmissionStarted(this);
+    }
+    requestPreventedHandlingResponse(request, response) {
+      prefetchCache.clear();
+      this.result = { success: response.succeeded, fetchResponse: response };
+    }
+    requestSucceededWithResponse(request, response) {
+      if (response.clientError || response.serverError) {
+        this.delegate.formSubmissionFailedWithResponse(this, response);
+        return;
+      }
+      prefetchCache.clear();
+      if (this.requestMustRedirect(request) && responseSucceededWithoutRedirect(response)) {
+        const error2 = new Error("Form responses must redirect to another location");
+        this.delegate.formSubmissionErrored(this, error2);
+      } else {
+        this.state = FormSubmissionState.receiving;
+        this.result = { success: true, fetchResponse: response };
+        this.delegate.formSubmissionSucceededWithResponse(this, response);
+      }
+    }
+    requestFailedWithResponse(request, response) {
+      this.result = { success: false, fetchResponse: response };
+      this.delegate.formSubmissionFailedWithResponse(this, response);
+    }
+    requestErrored(request, error2) {
+      this.result = { success: false, error: error2 };
+      this.delegate.formSubmissionErrored(this, error2);
+    }
+    requestFinished(_request) {
+      this.state = FormSubmissionState.stopped;
+      this.submitter?.removeAttribute("disabled");
+      this.resetSubmitterText();
+      clearBusyState(this.formElement);
+      dispatch("turbo:submit-end", {
+        target: this.formElement,
+        detail: { formSubmission: this, ...this.result }
+      });
+      this.delegate.formSubmissionFinished(this);
+    }
+    // Private
+    setSubmitsWith() {
+      if (!this.submitter || !this.submitsWith)
+        return;
+      if (this.submitter.matches("button")) {
+        this.originalSubmitText = this.submitter.innerHTML;
+        this.submitter.innerHTML = this.submitsWith;
+      } else if (this.submitter.matches("input")) {
+        const input = this.submitter;
+        this.originalSubmitText = input.value;
+        input.value = this.submitsWith;
+      }
+    }
+    resetSubmitterText() {
+      if (!this.submitter || !this.originalSubmitText)
+        return;
+      if (this.submitter.matches("button")) {
+        this.submitter.innerHTML = this.originalSubmitText;
+      } else if (this.submitter.matches("input")) {
+        const input = this.submitter;
+        input.value = this.originalSubmitText;
+      }
+    }
+    requestMustRedirect(request) {
+      return !request.isSafe && this.mustRedirect;
+    }
+    requestAcceptsTurboStreamResponse(request) {
+      return !request.isSafe || hasAttribute("data-turbo-stream", this.submitter, this.formElement);
+    }
+    get submitsWith() {
+      return this.submitter?.getAttribute("data-turbo-submits-with");
+    }
+  };
+  function buildFormData(formElement, submitter) {
+    const formData = new FormData(formElement);
+    const name = submitter?.getAttribute("name");
+    const value = submitter?.getAttribute("value");
+    if (name) {
+      formData.append(name, value || "");
+    }
+    return formData;
+  }
+  function getCookieValue(cookieName) {
+    if (cookieName != null) {
+      const cookies = document.cookie ? document.cookie.split("; ") : [];
+      const cookie = cookies.find((cookie2) => cookie2.startsWith(cookieName));
+      if (cookie) {
+        const value = cookie.split("=").slice(1).join("=");
+        return value ? decodeURIComponent(value) : void 0;
+      }
+    }
+  }
+  function responseSucceededWithoutRedirect(response) {
+    return response.statusCode == 200 && !response.redirected;
+  }
+  function getFormAction(formElement, submitter) {
+    const formElementAction = typeof formElement.action === "string" ? formElement.action : null;
+    if (submitter?.hasAttribute("formaction")) {
+      return submitter.getAttribute("formaction") || "";
+    } else {
+      return formElement.getAttribute("action") || formElementAction || "";
+    }
+  }
+  function getAction(formAction, fetchMethod) {
+    const action = expandURL(formAction);
+    if (isSafe(fetchMethod)) {
+      action.search = "";
+    }
+    return action;
+  }
+  function getMethod(formElement, submitter) {
+    const method = submitter?.getAttribute("formmethod") || formElement.getAttribute("method") || "";
+    return fetchMethodFromString(method.toLowerCase()) || FetchMethod.get;
+  }
+  function getEnctype(formElement, submitter) {
+    return fetchEnctypeFromString(submitter?.getAttribute("formenctype") || formElement.enctype);
+  }
+  var Snapshot = class {
+    constructor(element) {
+      this.element = element;
+    }
+    get activeElement() {
+      return this.element.ownerDocument.activeElement;
+    }
+    get children() {
+      return [...this.element.children];
+    }
+    hasAnchor(anchor) {
+      return this.getElementForAnchor(anchor) != null;
+    }
+    getElementForAnchor(anchor) {
+      return anchor ? this.element.querySelector(`[id='${anchor}'], a[name='${anchor}']`) : null;
+    }
+    get isConnected() {
+      return this.element.isConnected;
+    }
+    get firstAutofocusableElement() {
+      return queryAutofocusableElement(this.element);
+    }
+    get permanentElements() {
+      return queryPermanentElementsAll(this.element);
+    }
+    getPermanentElementById(id) {
+      return getPermanentElementById(this.element, id);
+    }
+    getPermanentElementMapForSnapshot(snapshot) {
+      const permanentElementMap = {};
+      for (const currentPermanentElement of this.permanentElements) {
+        const { id } = currentPermanentElement;
+        const newPermanentElement = snapshot.getPermanentElementById(id);
+        if (newPermanentElement) {
+          permanentElementMap[id] = [currentPermanentElement, newPermanentElement];
+        }
+      }
+      return permanentElementMap;
+    }
+  };
+  function getPermanentElementById(node, id) {
+    return node.querySelector(`#${id}[data-turbo-permanent]`);
+  }
+  function queryPermanentElementsAll(node) {
+    return node.querySelectorAll("[id][data-turbo-permanent]");
+  }
+  var FormSubmitObserver = class {
+    started = false;
+    constructor(delegate, eventTarget) {
+      this.delegate = delegate;
+      this.eventTarget = eventTarget;
+    }
+    start() {
+      if (!this.started) {
+        this.eventTarget.addEventListener("submit", this.submitCaptured, true);
+        this.started = true;
+      }
+    }
+    stop() {
+      if (this.started) {
+        this.eventTarget.removeEventListener("submit", this.submitCaptured, true);
+        this.started = false;
+      }
+    }
+    submitCaptured = () => {
+      this.eventTarget.removeEventListener("submit", this.submitBubbled, false);
+      this.eventTarget.addEventListener("submit", this.submitBubbled, false);
+    };
+    submitBubbled = (event) => {
+      if (!event.defaultPrevented) {
+        const form = event.target instanceof HTMLFormElement ? event.target : void 0;
+        const submitter = event.submitter || void 0;
+        if (form && submissionDoesNotDismissDialog(form, submitter) && submissionDoesNotTargetIFrame(form, submitter) && this.delegate.willSubmitForm(form, submitter)) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          this.delegate.formSubmitted(form, submitter);
+        }
+      }
+    };
+  };
+  function submissionDoesNotDismissDialog(form, submitter) {
+    const method = submitter?.getAttribute("formmethod") || form.getAttribute("method");
+    return method != "dialog";
+  }
+  function submissionDoesNotTargetIFrame(form, submitter) {
+    if (submitter?.hasAttribute("formtarget") || form.hasAttribute("target")) {
+      const target = submitter?.getAttribute("formtarget") || form.target;
+      for (const element of document.getElementsByName(target)) {
+        if (element instanceof HTMLIFrameElement)
+          return false;
+      }
+      return true;
+    } else {
+      return true;
+    }
+  }
+  var View = class {
+    #resolveRenderPromise = (_value) => {
+    };
+    #resolveInterceptionPromise = (_value) => {
+    };
+    constructor(delegate, element) {
+      this.delegate = delegate;
+      this.element = element;
+    }
+    // Scrolling
+    scrollToAnchor(anchor) {
+      const element = this.snapshot.getElementForAnchor(anchor);
+      if (element) {
+        this.scrollToElement(element);
+        this.focusElement(element);
+      } else {
+        this.scrollToPosition({ x: 0, y: 0 });
+      }
+    }
+    scrollToAnchorFromLocation(location2) {
+      this.scrollToAnchor(getAnchor(location2));
+    }
+    scrollToElement(element) {
+      element.scrollIntoView();
+    }
+    focusElement(element) {
+      if (element instanceof HTMLElement) {
+        if (element.hasAttribute("tabindex")) {
+          element.focus();
+        } else {
+          element.setAttribute("tabindex", "-1");
+          element.focus();
+          element.removeAttribute("tabindex");
+        }
+      }
+    }
+    scrollToPosition({ x, y }) {
+      this.scrollRoot.scrollTo(x, y);
+    }
+    scrollToTop() {
+      this.scrollToPosition({ x: 0, y: 0 });
+    }
+    get scrollRoot() {
+      return window;
+    }
+    // Rendering
+    async render(renderer) {
+      const { isPreview, shouldRender, willRender, newSnapshot: snapshot } = renderer;
+      const shouldInvalidate = willRender;
+      if (shouldRender) {
+        try {
+          this.renderPromise = new Promise((resolve) => this.#resolveRenderPromise = resolve);
+          this.renderer = renderer;
+          await this.prepareToRenderSnapshot(renderer);
+          const renderInterception = new Promise((resolve) => this.#resolveInterceptionPromise = resolve);
+          const options = { resume: this.#resolveInterceptionPromise, render: this.renderer.renderElement, renderMethod: this.renderer.renderMethod };
+          const immediateRender = this.delegate.allowsImmediateRender(snapshot, options);
+          if (!immediateRender)
+            await renderInterception;
+          await this.renderSnapshot(renderer);
+          this.delegate.viewRenderedSnapshot(snapshot, isPreview, this.renderer.renderMethod);
+          this.delegate.preloadOnLoadLinksForView(this.element);
+          this.finishRenderingSnapshot(renderer);
+        } finally {
+          delete this.renderer;
+          this.#resolveRenderPromise(void 0);
+          delete this.renderPromise;
+        }
+      } else if (shouldInvalidate) {
+        this.invalidate(renderer.reloadReason);
+      }
+    }
+    invalidate(reason) {
+      this.delegate.viewInvalidated(reason);
+    }
+    async prepareToRenderSnapshot(renderer) {
+      this.markAsPreview(renderer.isPreview);
+      await renderer.prepareToRender();
+    }
+    markAsPreview(isPreview) {
+      if (isPreview) {
+        this.element.setAttribute("data-turbo-preview", "");
+      } else {
+        this.element.removeAttribute("data-turbo-preview");
+      }
+    }
+    markVisitDirection(direction) {
+      this.element.setAttribute("data-turbo-visit-direction", direction);
+    }
+    unmarkVisitDirection() {
+      this.element.removeAttribute("data-turbo-visit-direction");
+    }
+    async renderSnapshot(renderer) {
+      await renderer.render();
+    }
+    finishRenderingSnapshot(renderer) {
+      renderer.finishRendering();
+    }
+  };
+  var FrameView = class extends View {
+    missing() {
+      this.element.innerHTML = `<strong class="turbo-frame-error">Content missing</strong>`;
+    }
+    get snapshot() {
+      return new Snapshot(this.element);
+    }
+  };
+  var LinkInterceptor = class {
+    constructor(delegate, element) {
+      this.delegate = delegate;
+      this.element = element;
+    }
+    start() {
+      this.element.addEventListener("click", this.clickBubbled);
+      document.addEventListener("turbo:click", this.linkClicked);
+      document.addEventListener("turbo:before-visit", this.willVisit);
+    }
+    stop() {
+      this.element.removeEventListener("click", this.clickBubbled);
+      document.removeEventListener("turbo:click", this.linkClicked);
+      document.removeEventListener("turbo:before-visit", this.willVisit);
+    }
+    clickBubbled = (event) => {
+      if (this.respondsToEventTarget(event.target)) {
+        this.clickEvent = event;
+      } else {
+        delete this.clickEvent;
+      }
+    };
+    linkClicked = (event) => {
+      if (this.clickEvent && this.respondsToEventTarget(event.target) && event.target instanceof Element) {
+        if (this.delegate.shouldInterceptLinkClick(event.target, event.detail.url, event.detail.originalEvent)) {
+          this.clickEvent.preventDefault();
+          event.preventDefault();
+          this.delegate.linkClickIntercepted(event.target, event.detail.url, event.detail.originalEvent);
+        }
+      }
+      delete this.clickEvent;
+    };
+    willVisit = (_event) => {
+      delete this.clickEvent;
+    };
+    respondsToEventTarget(target) {
+      const element = target instanceof Element ? target : target instanceof Node ? target.parentElement : null;
+      return element && element.closest("turbo-frame, html") == this.element;
+    }
+  };
+  var LinkClickObserver = class {
+    started = false;
+    constructor(delegate, eventTarget) {
+      this.delegate = delegate;
+      this.eventTarget = eventTarget;
+    }
+    start() {
+      if (!this.started) {
+        this.eventTarget.addEventListener("click", this.clickCaptured, true);
+        this.started = true;
+      }
+    }
+    stop() {
+      if (this.started) {
+        this.eventTarget.removeEventListener("click", this.clickCaptured, true);
+        this.started = false;
+      }
+    }
+    clickCaptured = () => {
+      this.eventTarget.removeEventListener("click", this.clickBubbled, false);
+      this.eventTarget.addEventListener("click", this.clickBubbled, false);
+    };
+    clickBubbled = (event) => {
+      if (event instanceof MouseEvent && this.clickEventIsSignificant(event)) {
+        const target = event.composedPath && event.composedPath()[0] || event.target;
+        const link = findLinkFromClickTarget(target);
+        if (link && doesNotTargetIFrame(link)) {
+          const location2 = getLocationForLink(link);
+          if (this.delegate.willFollowLinkToLocation(link, location2, event)) {
+            event.preventDefault();
+            this.delegate.followedLinkToLocation(link, location2);
+          }
+        }
+      }
+    };
+    clickEventIsSignificant(event) {
+      return !(event.target && event.target.isContentEditable || event.defaultPrevented || event.which > 1 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey);
+    }
+  };
+  var FormLinkClickObserver = class {
+    constructor(delegate, element) {
+      this.delegate = delegate;
+      this.linkInterceptor = new LinkClickObserver(this, element);
+    }
+    start() {
+      this.linkInterceptor.start();
+    }
+    stop() {
+      this.linkInterceptor.stop();
+    }
+    // Link hover observer delegate
+    canPrefetchRequestToLocation(link, location2) {
+      return false;
+    }
+    prefetchAndCacheRequestToLocation(link, location2) {
+      return;
+    }
+    // Link click observer delegate
+    willFollowLinkToLocation(link, location2, originalEvent) {
+      return this.delegate.willSubmitFormLinkToLocation(link, location2, originalEvent) && (link.hasAttribute("data-turbo-method") || link.hasAttribute("data-turbo-stream"));
+    }
+    followedLinkToLocation(link, location2) {
+      const form = document.createElement("form");
+      const type = "hidden";
+      for (const [name, value] of location2.searchParams) {
+        form.append(Object.assign(document.createElement("input"), { type, name, value }));
+      }
+      const action = Object.assign(location2, { search: "" });
+      form.setAttribute("data-turbo", "true");
+      form.setAttribute("action", action.href);
+      form.setAttribute("hidden", "");
+      const method = link.getAttribute("data-turbo-method");
+      if (method)
+        form.setAttribute("method", method);
+      const turboFrame = link.getAttribute("data-turbo-frame");
+      if (turboFrame)
+        form.setAttribute("data-turbo-frame", turboFrame);
+      const turboAction = getVisitAction(link);
+      if (turboAction)
+        form.setAttribute("data-turbo-action", turboAction);
+      const turboConfirm = link.getAttribute("data-turbo-confirm");
+      if (turboConfirm)
+        form.setAttribute("data-turbo-confirm", turboConfirm);
+      const turboStream = link.hasAttribute("data-turbo-stream");
+      if (turboStream)
+        form.setAttribute("data-turbo-stream", "");
+      this.delegate.submittedFormLinkToLocation(link, location2, form);
+      document.body.appendChild(form);
+      form.addEventListener("turbo:submit-end", () => form.remove(), { once: true });
+      requestAnimationFrame(() => form.requestSubmit());
+    }
+  };
+  var Bardo = class {
+    static async preservingPermanentElements(delegate, permanentElementMap, callback) {
+      const bardo = new this(delegate, permanentElementMap);
+      bardo.enter();
+      await callback();
+      bardo.leave();
+    }
+    constructor(delegate, permanentElementMap) {
+      this.delegate = delegate;
+      this.permanentElementMap = permanentElementMap;
+    }
+    enter() {
+      for (const id in this.permanentElementMap) {
+        const [currentPermanentElement, newPermanentElement] = this.permanentElementMap[id];
+        this.delegate.enteringBardo(currentPermanentElement, newPermanentElement);
+        this.replaceNewPermanentElementWithPlaceholder(newPermanentElement);
+      }
+    }
+    leave() {
+      for (const id in this.permanentElementMap) {
+        const [currentPermanentElement] = this.permanentElementMap[id];
+        this.replaceCurrentPermanentElementWithClone(currentPermanentElement);
+        this.replacePlaceholderWithPermanentElement(currentPermanentElement);
+        this.delegate.leavingBardo(currentPermanentElement);
+      }
+    }
+    replaceNewPermanentElementWithPlaceholder(permanentElement) {
+      const placeholder = createPlaceholderForPermanentElement(permanentElement);
+      permanentElement.replaceWith(placeholder);
+    }
+    replaceCurrentPermanentElementWithClone(permanentElement) {
+      const clone = permanentElement.cloneNode(true);
+      permanentElement.replaceWith(clone);
+    }
+    replacePlaceholderWithPermanentElement(permanentElement) {
+      const placeholder = this.getPlaceholderById(permanentElement.id);
+      placeholder?.replaceWith(permanentElement);
+    }
+    getPlaceholderById(id) {
+      return this.placeholders.find((element) => element.content == id);
+    }
+    get placeholders() {
+      return [...document.querySelectorAll("meta[name=turbo-permanent-placeholder][content]")];
+    }
+  };
+  function createPlaceholderForPermanentElement(permanentElement) {
+    const element = document.createElement("meta");
+    element.setAttribute("name", "turbo-permanent-placeholder");
+    element.setAttribute("content", permanentElement.id);
+    return element;
+  }
+  var Renderer = class {
+    #activeElement = null;
+    constructor(currentSnapshot, newSnapshot, renderElement, isPreview, willRender = true) {
+      this.currentSnapshot = currentSnapshot;
+      this.newSnapshot = newSnapshot;
+      this.isPreview = isPreview;
+      this.willRender = willRender;
+      this.renderElement = renderElement;
+      this.promise = new Promise((resolve, reject) => this.resolvingFunctions = { resolve, reject });
+    }
+    get shouldRender() {
+      return true;
+    }
+    get reloadReason() {
+      return;
+    }
+    prepareToRender() {
+      return;
+    }
+    render() {
+    }
+    finishRendering() {
+      if (this.resolvingFunctions) {
+        this.resolvingFunctions.resolve();
+        delete this.resolvingFunctions;
+      }
+    }
+    async preservingPermanentElements(callback) {
+      await Bardo.preservingPermanentElements(this, this.permanentElementMap, callback);
+    }
+    focusFirstAutofocusableElement() {
+      const element = this.connectedSnapshot.firstAutofocusableElement;
+      if (element) {
+        element.focus();
+      }
+    }
+    // Bardo delegate
+    enteringBardo(currentPermanentElement) {
+      if (this.#activeElement)
+        return;
+      if (currentPermanentElement.contains(this.currentSnapshot.activeElement)) {
+        this.#activeElement = this.currentSnapshot.activeElement;
+      }
+    }
+    leavingBardo(currentPermanentElement) {
+      if (currentPermanentElement.contains(this.#activeElement) && this.#activeElement instanceof HTMLElement) {
+        this.#activeElement.focus();
+        this.#activeElement = null;
+      }
+    }
+    get connectedSnapshot() {
+      return this.newSnapshot.isConnected ? this.newSnapshot : this.currentSnapshot;
+    }
+    get currentElement() {
+      return this.currentSnapshot.element;
+    }
+    get newElement() {
+      return this.newSnapshot.element;
+    }
+    get permanentElementMap() {
+      return this.currentSnapshot.getPermanentElementMapForSnapshot(this.newSnapshot);
+    }
+    get renderMethod() {
+      return "replace";
+    }
+  };
+  var FrameRenderer = class extends Renderer {
+    static renderElement(currentElement, newElement) {
+      const destinationRange = document.createRange();
+      destinationRange.selectNodeContents(currentElement);
+      destinationRange.deleteContents();
+      const frameElement = newElement;
+      const sourceRange = frameElement.ownerDocument?.createRange();
+      if (sourceRange) {
+        sourceRange.selectNodeContents(frameElement);
+        currentElement.appendChild(sourceRange.extractContents());
+      }
+    }
+    constructor(delegate, currentSnapshot, newSnapshot, renderElement, isPreview, willRender = true) {
+      super(currentSnapshot, newSnapshot, renderElement, isPreview, willRender);
+      this.delegate = delegate;
+    }
+    get shouldRender() {
+      return true;
+    }
+    async render() {
+      await nextRepaint();
+      this.preservingPermanentElements(() => {
+        this.loadFrameElement();
+      });
+      this.scrollFrameIntoView();
+      await nextRepaint();
+      this.focusFirstAutofocusableElement();
+      await nextRepaint();
+      this.activateScriptElements();
+    }
+    loadFrameElement() {
+      this.delegate.willRenderFrame(this.currentElement, this.newElement);
+      this.renderElement(this.currentElement, this.newElement);
+    }
+    scrollFrameIntoView() {
+      if (this.currentElement.autoscroll || this.newElement.autoscroll) {
+        const element = this.currentElement.firstElementChild;
+        const block = readScrollLogicalPosition(this.currentElement.getAttribute("data-autoscroll-block"), "end");
+        const behavior = readScrollBehavior(this.currentElement.getAttribute("data-autoscroll-behavior"), "auto");
+        if (element) {
+          element.scrollIntoView({ block, behavior });
+          return true;
+        }
+      }
+      return false;
+    }
+    activateScriptElements() {
+      for (const inertScriptElement of this.newScriptElements) {
+        const activatedScriptElement = activateScriptElement(inertScriptElement);
+        inertScriptElement.replaceWith(activatedScriptElement);
+      }
+    }
+    get newScriptElements() {
+      return this.currentElement.querySelectorAll("script");
+    }
+  };
+  function readScrollLogicalPosition(value, defaultValue) {
+    if (value == "end" || value == "start" || value == "center" || value == "nearest") {
+      return value;
+    } else {
+      return defaultValue;
+    }
+  }
+  function readScrollBehavior(value, defaultValue) {
+    if (value == "auto" || value == "smooth") {
+      return value;
+    } else {
+      return defaultValue;
+    }
+  }
+  var ProgressBar = class _ProgressBar {
+    static animationDuration = 300;
+    /*ms*/
+    static get defaultCSS() {
+      return unindent`
+      .turbo-progress-bar {
+        position: fixed;
+        display: block;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: #0076ff;
+        z-index: 2147483647;
+        transition:
+          width ${_ProgressBar.animationDuration}ms ease-out,
+          opacity ${_ProgressBar.animationDuration / 2}ms ${_ProgressBar.animationDuration / 2}ms ease-in;
+        transform: translate3d(0, 0, 0);
+      }
+    `;
+    }
+    hiding = false;
+    value = 0;
+    visible = false;
+    constructor() {
+      this.stylesheetElement = this.createStylesheetElement();
+      this.progressElement = this.createProgressElement();
+      this.installStylesheetElement();
+      this.setValue(0);
+    }
+    show() {
+      if (!this.visible) {
+        this.visible = true;
+        this.installProgressElement();
+        this.startTrickling();
+      }
+    }
+    hide() {
+      if (this.visible && !this.hiding) {
+        this.hiding = true;
+        this.fadeProgressElement(() => {
+          this.uninstallProgressElement();
+          this.stopTrickling();
+          this.visible = false;
+          this.hiding = false;
+        });
+      }
+    }
+    setValue(value) {
+      this.value = value;
+      this.refresh();
+    }
+    // Private
+    installStylesheetElement() {
+      document.head.insertBefore(this.stylesheetElement, document.head.firstChild);
+    }
+    installProgressElement() {
+      this.progressElement.style.width = "0";
+      this.progressElement.style.opacity = "1";
+      document.documentElement.insertBefore(this.progressElement, document.body);
+      this.refresh();
+    }
+    fadeProgressElement(callback) {
+      this.progressElement.style.opacity = "0";
+      setTimeout(callback, _ProgressBar.animationDuration * 1.5);
+    }
+    uninstallProgressElement() {
+      if (this.progressElement.parentNode) {
+        document.documentElement.removeChild(this.progressElement);
+      }
+    }
+    startTrickling() {
+      if (!this.trickleInterval) {
+        this.trickleInterval = window.setInterval(this.trickle, _ProgressBar.animationDuration);
+      }
+    }
+    stopTrickling() {
+      window.clearInterval(this.trickleInterval);
+      delete this.trickleInterval;
+    }
+    trickle = () => {
+      this.setValue(this.value + Math.random() / 100);
+    };
+    refresh() {
+      requestAnimationFrame(() => {
+        this.progressElement.style.width = `${10 + this.value * 90}%`;
+      });
+    }
+    createStylesheetElement() {
+      const element = document.createElement("style");
+      element.type = "text/css";
+      element.textContent = _ProgressBar.defaultCSS;
+      if (this.cspNonce) {
+        element.nonce = this.cspNonce;
+      }
+      return element;
+    }
+    createProgressElement() {
+      const element = document.createElement("div");
+      element.className = "turbo-progress-bar";
+      return element;
+    }
+    get cspNonce() {
+      return getMetaContent("csp-nonce");
+    }
+  };
+  var HeadSnapshot = class extends Snapshot {
+    detailsByOuterHTML = this.children.filter((element) => !elementIsNoscript(element)).map((element) => elementWithoutNonce(element)).reduce((result, element) => {
+      const { outerHTML } = element;
+      const details = outerHTML in result ? result[outerHTML] : {
+        type: elementType(element),
+        tracked: elementIsTracked(element),
+        elements: []
+      };
+      return {
+        ...result,
+        [outerHTML]: {
+          ...details,
+          elements: [...details.elements, element]
+        }
+      };
+    }, {});
+    get trackedElementSignature() {
+      return Object.keys(this.detailsByOuterHTML).filter((outerHTML) => this.detailsByOuterHTML[outerHTML].tracked).join("");
+    }
+    getScriptElementsNotInSnapshot(snapshot) {
+      return this.getElementsMatchingTypeNotInSnapshot("script", snapshot);
+    }
+    getStylesheetElementsNotInSnapshot(snapshot) {
+      return this.getElementsMatchingTypeNotInSnapshot("stylesheet", snapshot);
+    }
+    getElementsMatchingTypeNotInSnapshot(matchedType, snapshot) {
+      return Object.keys(this.detailsByOuterHTML).filter((outerHTML) => !(outerHTML in snapshot.detailsByOuterHTML)).map((outerHTML) => this.detailsByOuterHTML[outerHTML]).filter(({ type }) => type == matchedType).map(({ elements: [element] }) => element);
+    }
+    get provisionalElements() {
+      return Object.keys(this.detailsByOuterHTML).reduce((result, outerHTML) => {
+        const { type, tracked, elements } = this.detailsByOuterHTML[outerHTML];
+        if (type == null && !tracked) {
+          return [...result, ...elements];
+        } else if (elements.length > 1) {
+          return [...result, ...elements.slice(1)];
+        } else {
+          return result;
+        }
+      }, []);
+    }
+    getMetaValue(name) {
+      const element = this.findMetaElementByName(name);
+      return element ? element.getAttribute("content") : null;
+    }
+    findMetaElementByName(name) {
+      return Object.keys(this.detailsByOuterHTML).reduce((result, outerHTML) => {
+        const {
+          elements: [element]
+        } = this.detailsByOuterHTML[outerHTML];
+        return elementIsMetaElementWithName(element, name) ? element : result;
+      }, void 0 | void 0);
+    }
+  };
+  function elementType(element) {
+    if (elementIsScript(element)) {
+      return "script";
+    } else if (elementIsStylesheet(element)) {
+      return "stylesheet";
+    }
+  }
+  function elementIsTracked(element) {
+    return element.getAttribute("data-turbo-track") == "reload";
+  }
+  function elementIsScript(element) {
+    const tagName = element.localName;
+    return tagName == "script";
+  }
+  function elementIsNoscript(element) {
+    const tagName = element.localName;
+    return tagName == "noscript";
+  }
+  function elementIsStylesheet(element) {
+    const tagName = element.localName;
+    return tagName == "style" || tagName == "link" && element.getAttribute("rel") == "stylesheet";
+  }
+  function elementIsMetaElementWithName(element, name) {
+    const tagName = element.localName;
+    return tagName == "meta" && element.getAttribute("name") == name;
+  }
+  function elementWithoutNonce(element) {
+    if (element.hasAttribute("nonce")) {
+      element.setAttribute("nonce", "");
+    }
+    return element;
+  }
+  var PageSnapshot = class _PageSnapshot extends Snapshot {
+    static fromHTMLString(html = "") {
+      return this.fromDocument(parseHTMLDocument(html));
+    }
+    static fromElement(element) {
+      return this.fromDocument(element.ownerDocument);
+    }
+    static fromDocument({ documentElement, body, head }) {
+      return new this(documentElement, body, new HeadSnapshot(head));
+    }
+    constructor(documentElement, body, headSnapshot) {
+      super(body);
+      this.documentElement = documentElement;
+      this.headSnapshot = headSnapshot;
+    }
+    clone() {
+      const clonedElement = this.element.cloneNode(true);
+      const selectElements = this.element.querySelectorAll("select");
+      const clonedSelectElements = clonedElement.querySelectorAll("select");
+      for (const [index, source] of selectElements.entries()) {
+        const clone = clonedSelectElements[index];
+        for (const option of clone.selectedOptions)
+          option.selected = false;
+        for (const option of source.selectedOptions)
+          clone.options[option.index].selected = true;
+      }
+      for (const clonedPasswordInput of clonedElement.querySelectorAll('input[type="password"]')) {
+        clonedPasswordInput.value = "";
+      }
+      return new _PageSnapshot(this.documentElement, clonedElement, this.headSnapshot);
+    }
+    get lang() {
+      return this.documentElement.getAttribute("lang");
+    }
+    get headElement() {
+      return this.headSnapshot.element;
+    }
+    get rootLocation() {
+      const root = this.getSetting("root") ?? "/";
+      return expandURL(root);
+    }
+    get cacheControlValue() {
+      return this.getSetting("cache-control");
+    }
+    get isPreviewable() {
+      return this.cacheControlValue != "no-preview";
+    }
+    get isCacheable() {
+      return this.cacheControlValue != "no-cache";
+    }
+    get isVisitable() {
+      return this.getSetting("visit-control") != "reload";
+    }
+    get prefersViewTransitions() {
+      return this.headSnapshot.getMetaValue("view-transition") === "same-origin";
+    }
+    get shouldMorphPage() {
+      return this.getSetting("refresh-method") === "morph";
+    }
+    get shouldPreserveScrollPosition() {
+      return this.getSetting("refresh-scroll") === "preserve";
+    }
+    // Private
+    getSetting(name) {
+      return this.headSnapshot.getMetaValue(`turbo-${name}`);
+    }
+  };
+  var ViewTransitioner = class {
+    #viewTransitionStarted = false;
+    #lastOperation = Promise.resolve();
+    renderChange(useViewTransition, render) {
+      if (useViewTransition && this.viewTransitionsAvailable && !this.#viewTransitionStarted) {
+        this.#viewTransitionStarted = true;
+        this.#lastOperation = this.#lastOperation.then(async () => {
+          await document.startViewTransition(render).finished;
+        });
+      } else {
+        this.#lastOperation = this.#lastOperation.then(render);
+      }
+      return this.#lastOperation;
+    }
+    get viewTransitionsAvailable() {
+      return document.startViewTransition;
+    }
+  };
+  var defaultOptions = {
+    action: "advance",
+    historyChanged: false,
+    visitCachedSnapshot: () => {
+    },
+    willRender: true,
+    updateHistory: true,
+    shouldCacheSnapshot: true,
+    acceptsStreamResponse: false
+  };
+  var TimingMetric = {
+    visitStart: "visitStart",
+    requestStart: "requestStart",
+    requestEnd: "requestEnd",
+    visitEnd: "visitEnd"
+  };
+  var VisitState = {
+    initialized: "initialized",
+    started: "started",
+    canceled: "canceled",
+    failed: "failed",
+    completed: "completed"
+  };
+  var SystemStatusCode = {
+    networkFailure: 0,
+    timeoutFailure: -1,
+    contentTypeMismatch: -2
+  };
+  var Direction = {
+    advance: "forward",
+    restore: "back",
+    replace: "none"
+  };
+  var Visit = class {
+    identifier = uuid();
+    // Required by turbo-ios
+    timingMetrics = {};
+    followedRedirect = false;
+    historyChanged = false;
+    scrolled = false;
+    shouldCacheSnapshot = true;
+    acceptsStreamResponse = false;
+    snapshotCached = false;
+    state = VisitState.initialized;
+    viewTransitioner = new ViewTransitioner();
+    constructor(delegate, location2, restorationIdentifier, options = {}) {
+      this.delegate = delegate;
+      this.location = location2;
+      this.restorationIdentifier = restorationIdentifier || uuid();
+      const {
+        action,
+        historyChanged,
+        referrer,
+        snapshot,
+        snapshotHTML,
+        response,
+        visitCachedSnapshot,
+        willRender,
+        updateHistory,
+        shouldCacheSnapshot,
+        acceptsStreamResponse,
+        direction
+      } = {
+        ...defaultOptions,
+        ...options
+      };
+      this.action = action;
+      this.historyChanged = historyChanged;
+      this.referrer = referrer;
+      this.snapshot = snapshot;
+      this.snapshotHTML = snapshotHTML;
+      this.response = response;
+      this.isSamePage = this.delegate.locationWithActionIsSamePage(this.location, this.action);
+      this.isPageRefresh = this.view.isPageRefresh(this);
+      this.visitCachedSnapshot = visitCachedSnapshot;
+      this.willRender = willRender;
+      this.updateHistory = updateHistory;
+      this.scrolled = !willRender;
+      this.shouldCacheSnapshot = shouldCacheSnapshot;
+      this.acceptsStreamResponse = acceptsStreamResponse;
+      this.direction = direction || Direction[action];
+    }
+    get adapter() {
+      return this.delegate.adapter;
+    }
+    get view() {
+      return this.delegate.view;
+    }
+    get history() {
+      return this.delegate.history;
+    }
+    get restorationData() {
+      return this.history.getRestorationDataForIdentifier(this.restorationIdentifier);
+    }
+    get silent() {
+      return this.isSamePage;
+    }
+    start() {
+      if (this.state == VisitState.initialized) {
+        this.recordTimingMetric(TimingMetric.visitStart);
+        this.state = VisitState.started;
+        this.adapter.visitStarted(this);
+        this.delegate.visitStarted(this);
+      }
+    }
+    cancel() {
+      if (this.state == VisitState.started) {
+        if (this.request) {
+          this.request.cancel();
+        }
+        this.cancelRender();
+        this.state = VisitState.canceled;
+      }
+    }
+    complete() {
+      if (this.state == VisitState.started) {
+        this.recordTimingMetric(TimingMetric.visitEnd);
+        this.adapter.visitCompleted(this);
+        this.state = VisitState.completed;
+        this.followRedirect();
+        if (!this.followedRedirect) {
+          this.delegate.visitCompleted(this);
+        }
+      }
+    }
+    fail() {
+      if (this.state == VisitState.started) {
+        this.state = VisitState.failed;
+        this.adapter.visitFailed(this);
+        this.delegate.visitCompleted(this);
+      }
+    }
+    changeHistory() {
+      if (!this.historyChanged && this.updateHistory) {
+        const actionForHistory = this.location.href === this.referrer?.href ? "replace" : this.action;
+        const method = getHistoryMethodForAction(actionForHistory);
+        this.history.update(method, this.location, this.restorationIdentifier);
+        this.historyChanged = true;
+      }
+    }
+    issueRequest() {
+      if (this.hasPreloadedResponse()) {
+        this.simulateRequest();
+      } else if (this.shouldIssueRequest() && !this.request) {
+        this.request = new FetchRequest(this, FetchMethod.get, this.location);
+        this.request.perform();
+      }
+    }
+    simulateRequest() {
+      if (this.response) {
+        this.startRequest();
+        this.recordResponse();
+        this.finishRequest();
+      }
+    }
+    startRequest() {
+      this.recordTimingMetric(TimingMetric.requestStart);
+      this.adapter.visitRequestStarted(this);
+    }
+    recordResponse(response = this.response) {
+      this.response = response;
+      if (response) {
+        const { statusCode } = response;
+        if (isSuccessful(statusCode)) {
+          this.adapter.visitRequestCompleted(this);
+        } else {
+          this.adapter.visitRequestFailedWithStatusCode(this, statusCode);
+        }
+      }
+    }
+    finishRequest() {
+      this.recordTimingMetric(TimingMetric.requestEnd);
+      this.adapter.visitRequestFinished(this);
+    }
+    loadResponse() {
+      if (this.response) {
+        const { statusCode, responseHTML } = this.response;
+        this.render(async () => {
+          if (this.shouldCacheSnapshot)
+            this.cacheSnapshot();
+          if (this.view.renderPromise)
+            await this.view.renderPromise;
+          if (isSuccessful(statusCode) && responseHTML != null) {
+            const snapshot = PageSnapshot.fromHTMLString(responseHTML);
+            await this.renderPageSnapshot(snapshot, false);
+            this.adapter.visitRendered(this);
+            this.complete();
+          } else {
+            await this.view.renderError(PageSnapshot.fromHTMLString(responseHTML), this);
+            this.adapter.visitRendered(this);
+            this.fail();
+          }
+        });
+      }
+    }
+    getCachedSnapshot() {
+      const snapshot = this.view.getCachedSnapshotForLocation(this.location) || this.getPreloadedSnapshot();
+      if (snapshot && (!getAnchor(this.location) || snapshot.hasAnchor(getAnchor(this.location)))) {
+        if (this.action == "restore" || snapshot.isPreviewable) {
+          return snapshot;
+        }
+      }
+    }
+    getPreloadedSnapshot() {
+      if (this.snapshotHTML) {
+        return PageSnapshot.fromHTMLString(this.snapshotHTML);
+      }
+    }
+    hasCachedSnapshot() {
+      return this.getCachedSnapshot() != null;
+    }
+    loadCachedSnapshot() {
+      const snapshot = this.getCachedSnapshot();
+      if (snapshot) {
+        const isPreview = this.shouldIssueRequest();
+        this.render(async () => {
+          this.cacheSnapshot();
+          if (this.isSamePage || this.isPageRefresh) {
+            this.adapter.visitRendered(this);
+          } else {
+            if (this.view.renderPromise)
+              await this.view.renderPromise;
+            await this.renderPageSnapshot(snapshot, isPreview);
+            this.adapter.visitRendered(this);
+            if (!isPreview) {
+              this.complete();
+            }
+          }
+        });
+      }
+    }
+    followRedirect() {
+      if (this.redirectedToLocation && !this.followedRedirect && this.response?.redirected) {
+        this.adapter.visitProposedToLocation(this.redirectedToLocation, {
+          action: "replace",
+          response: this.response,
+          shouldCacheSnapshot: false,
+          willRender: false
+        });
+        this.followedRedirect = true;
+      }
+    }
+    goToSamePageAnchor() {
+      if (this.isSamePage) {
+        this.render(async () => {
+          this.cacheSnapshot();
+          this.performScroll();
+          this.changeHistory();
+          this.adapter.visitRendered(this);
+        });
+      }
+    }
+    // Fetch request delegate
+    prepareRequest(request) {
+      if (this.acceptsStreamResponse) {
+        request.acceptResponseType(StreamMessage.contentType);
+      }
+    }
+    requestStarted() {
+      this.startRequest();
+    }
+    requestPreventedHandlingResponse(_request, _response) {
+    }
+    async requestSucceededWithResponse(request, response) {
+      const responseHTML = await response.responseHTML;
+      const { redirected, statusCode } = response;
+      if (responseHTML == void 0) {
+        this.recordResponse({
+          statusCode: SystemStatusCode.contentTypeMismatch,
+          redirected
+        });
+      } else {
+        this.redirectedToLocation = response.redirected ? response.location : void 0;
+        this.recordResponse({ statusCode, responseHTML, redirected });
+      }
+    }
+    async requestFailedWithResponse(request, response) {
+      const responseHTML = await response.responseHTML;
+      const { redirected, statusCode } = response;
+      if (responseHTML == void 0) {
+        this.recordResponse({
+          statusCode: SystemStatusCode.contentTypeMismatch,
+          redirected
+        });
+      } else {
+        this.recordResponse({ statusCode, responseHTML, redirected });
+      }
+    }
+    requestErrored(_request, _error) {
+      this.recordResponse({
+        statusCode: SystemStatusCode.networkFailure,
+        redirected: false
+      });
+    }
+    requestFinished() {
+      this.finishRequest();
+    }
+    // Scrolling
+    performScroll() {
+      if (!this.scrolled && !this.view.forceReloaded && !this.view.shouldPreserveScrollPosition(this)) {
+        if (this.action == "restore") {
+          this.scrollToRestoredPosition() || this.scrollToAnchor() || this.view.scrollToTop();
+        } else {
+          this.scrollToAnchor() || this.view.scrollToTop();
+        }
+        if (this.isSamePage) {
+          this.delegate.visitScrolledToSamePageLocation(this.view.lastRenderedLocation, this.location);
+        }
+        this.scrolled = true;
+      }
+    }
+    scrollToRestoredPosition() {
+      const { scrollPosition } = this.restorationData;
+      if (scrollPosition) {
+        this.view.scrollToPosition(scrollPosition);
+        return true;
+      }
+    }
+    scrollToAnchor() {
+      const anchor = getAnchor(this.location);
+      if (anchor != null) {
+        this.view.scrollToAnchor(anchor);
+        return true;
+      }
+    }
+    // Instrumentation
+    recordTimingMetric(metric) {
+      this.timingMetrics[metric] = (/* @__PURE__ */ new Date()).getTime();
+    }
+    getTimingMetrics() {
+      return { ...this.timingMetrics };
+    }
+    // Private
+    getHistoryMethodForAction(action) {
+      switch (action) {
+        case "replace":
+          return history.replaceState;
+        case "advance":
+        case "restore":
+          return history.pushState;
+      }
+    }
+    hasPreloadedResponse() {
+      return typeof this.response == "object";
+    }
+    shouldIssueRequest() {
+      if (this.isSamePage) {
+        return false;
+      } else if (this.action == "restore") {
+        return !this.hasCachedSnapshot();
+      } else {
+        return this.willRender;
+      }
+    }
+    cacheSnapshot() {
+      if (!this.snapshotCached) {
+        this.view.cacheSnapshot(this.snapshot).then((snapshot) => snapshot && this.visitCachedSnapshot(snapshot));
+        this.snapshotCached = true;
+      }
+    }
+    async render(callback) {
+      this.cancelRender();
+      this.frame = await nextRepaint();
+      await callback();
+      delete this.frame;
+    }
+    async renderPageSnapshot(snapshot, isPreview) {
+      await this.viewTransitioner.renderChange(this.view.shouldTransitionTo(snapshot), async () => {
+        await this.view.renderPage(snapshot, isPreview, this.willRender, this);
+        this.performScroll();
+      });
+    }
+    cancelRender() {
+      if (this.frame) {
+        cancelAnimationFrame(this.frame);
+        delete this.frame;
+      }
+    }
+  };
+  function isSuccessful(statusCode) {
+    return statusCode >= 200 && statusCode < 300;
+  }
+  var BrowserAdapter = class {
+    progressBar = new ProgressBar();
+    constructor(session2) {
+      this.session = session2;
+    }
+    visitProposedToLocation(location2, options) {
+      if (locationIsVisitable(location2, this.navigator.rootLocation)) {
+        this.navigator.startVisit(location2, options?.restorationIdentifier || uuid(), options);
+      } else {
+        window.location.href = location2.toString();
+      }
+    }
+    visitStarted(visit2) {
+      this.location = visit2.location;
+      visit2.loadCachedSnapshot();
+      visit2.issueRequest();
+      visit2.goToSamePageAnchor();
+    }
+    visitRequestStarted(visit2) {
+      this.progressBar.setValue(0);
+      if (visit2.hasCachedSnapshot() || visit2.action != "restore") {
+        this.showVisitProgressBarAfterDelay();
+      } else {
+        this.showProgressBar();
+      }
+    }
+    visitRequestCompleted(visit2) {
+      visit2.loadResponse();
+    }
+    visitRequestFailedWithStatusCode(visit2, statusCode) {
+      switch (statusCode) {
+        case SystemStatusCode.networkFailure:
+        case SystemStatusCode.timeoutFailure:
+        case SystemStatusCode.contentTypeMismatch:
+          return this.reload({
+            reason: "request_failed",
+            context: {
+              statusCode
+            }
+          });
+        default:
+          return visit2.loadResponse();
+      }
+    }
+    visitRequestFinished(_visit) {
+    }
+    visitCompleted(_visit) {
+      this.progressBar.setValue(1);
+      this.hideVisitProgressBar();
+    }
+    pageInvalidated(reason) {
+      this.reload(reason);
+    }
+    visitFailed(_visit) {
+      this.progressBar.setValue(1);
+      this.hideVisitProgressBar();
+    }
+    visitRendered(_visit) {
+    }
+    // Form Submission Delegate
+    formSubmissionStarted(_formSubmission) {
+      this.progressBar.setValue(0);
+      this.showFormProgressBarAfterDelay();
+    }
+    formSubmissionFinished(_formSubmission) {
+      this.progressBar.setValue(1);
+      this.hideFormProgressBar();
+    }
+    // Private
+    showVisitProgressBarAfterDelay() {
+      this.visitProgressBarTimeout = window.setTimeout(this.showProgressBar, this.session.progressBarDelay);
+    }
+    hideVisitProgressBar() {
+      this.progressBar.hide();
+      if (this.visitProgressBarTimeout != null) {
+        window.clearTimeout(this.visitProgressBarTimeout);
+        delete this.visitProgressBarTimeout;
+      }
+    }
+    showFormProgressBarAfterDelay() {
+      if (this.formProgressBarTimeout == null) {
+        this.formProgressBarTimeout = window.setTimeout(this.showProgressBar, this.session.progressBarDelay);
+      }
+    }
+    hideFormProgressBar() {
+      this.progressBar.hide();
+      if (this.formProgressBarTimeout != null) {
+        window.clearTimeout(this.formProgressBarTimeout);
+        delete this.formProgressBarTimeout;
+      }
+    }
+    showProgressBar = () => {
+      this.progressBar.show();
+    };
+    reload(reason) {
+      dispatch("turbo:reload", { detail: reason });
+      window.location.href = this.location?.toString() || window.location.href;
+    }
+    get navigator() {
+      return this.session.navigator;
+    }
+  };
+  var CacheObserver = class {
+    selector = "[data-turbo-temporary]";
+    deprecatedSelector = "[data-turbo-cache=false]";
+    started = false;
+    start() {
+      if (!this.started) {
+        this.started = true;
+        addEventListener("turbo:before-cache", this.removeTemporaryElements, false);
+      }
+    }
+    stop() {
+      if (this.started) {
+        this.started = false;
+        removeEventListener("turbo:before-cache", this.removeTemporaryElements, false);
+      }
+    }
+    removeTemporaryElements = (_event) => {
+      for (const element of this.temporaryElements) {
+        element.remove();
+      }
+    };
+    get temporaryElements() {
+      return [...document.querySelectorAll(this.selector), ...this.temporaryElementsWithDeprecation];
+    }
+    get temporaryElementsWithDeprecation() {
+      const elements = document.querySelectorAll(this.deprecatedSelector);
+      if (elements.length) {
+        console.warn(
+          `The ${this.deprecatedSelector} selector is deprecated and will be removed in a future version. Use ${this.selector} instead.`
+        );
+      }
+      return [...elements];
+    }
+  };
+  var FrameRedirector = class {
+    constructor(session2, element) {
+      this.session = session2;
+      this.element = element;
+      this.linkInterceptor = new LinkInterceptor(this, element);
+      this.formSubmitObserver = new FormSubmitObserver(this, element);
+    }
+    start() {
+      this.linkInterceptor.start();
+      this.formSubmitObserver.start();
+    }
+    stop() {
+      this.linkInterceptor.stop();
+      this.formSubmitObserver.stop();
+    }
+    // Link interceptor delegate
+    shouldInterceptLinkClick(element, _location, _event) {
+      return this.#shouldRedirect(element);
+    }
+    linkClickIntercepted(element, url, event) {
+      const frame = this.#findFrameElement(element);
+      if (frame) {
+        frame.delegate.linkClickIntercepted(element, url, event);
+      }
+    }
+    // Form submit observer delegate
+    willSubmitForm(element, submitter) {
+      return element.closest("turbo-frame") == null && this.#shouldSubmit(element, submitter) && this.#shouldRedirect(element, submitter);
+    }
+    formSubmitted(element, submitter) {
+      const frame = this.#findFrameElement(element, submitter);
+      if (frame) {
+        frame.delegate.formSubmitted(element, submitter);
+      }
+    }
+    #shouldSubmit(form, submitter) {
+      const action = getAction$1(form, submitter);
+      const meta = this.element.ownerDocument.querySelector(`meta[name="turbo-root"]`);
+      const rootLocation = expandURL(meta?.content ?? "/");
+      return this.#shouldRedirect(form, submitter) && locationIsVisitable(action, rootLocation);
+    }
+    #shouldRedirect(element, submitter) {
+      const isNavigatable = element instanceof HTMLFormElement ? this.session.submissionIsNavigatable(element, submitter) : this.session.elementIsNavigatable(element);
+      if (isNavigatable) {
+        const frame = this.#findFrameElement(element, submitter);
+        return frame ? frame != element.closest("turbo-frame") : false;
+      } else {
+        return false;
+      }
+    }
+    #findFrameElement(element, submitter) {
+      const id = submitter?.getAttribute("data-turbo-frame") || element.getAttribute("data-turbo-frame");
+      if (id && id != "_top") {
+        const frame = this.element.querySelector(`#${id}:not([disabled])`);
+        if (frame instanceof FrameElement) {
+          return frame;
+        }
+      }
+    }
+  };
+  var History = class {
+    location;
+    restorationIdentifier = uuid();
+    restorationData = {};
+    started = false;
+    pageLoaded = false;
+    currentIndex = 0;
+    constructor(delegate) {
+      this.delegate = delegate;
+    }
+    start() {
+      if (!this.started) {
+        addEventListener("popstate", this.onPopState, false);
+        addEventListener("load", this.onPageLoad, false);
+        this.currentIndex = history.state?.turbo?.restorationIndex || 0;
+        this.started = true;
+        this.replace(new URL(window.location.href));
+      }
+    }
+    stop() {
+      if (this.started) {
+        removeEventListener("popstate", this.onPopState, false);
+        removeEventListener("load", this.onPageLoad, false);
+        this.started = false;
+      }
+    }
+    push(location2, restorationIdentifier) {
+      this.update(history.pushState, location2, restorationIdentifier);
+    }
+    replace(location2, restorationIdentifier) {
+      this.update(history.replaceState, location2, restorationIdentifier);
+    }
+    update(method, location2, restorationIdentifier = uuid()) {
+      if (method === history.pushState)
+        ++this.currentIndex;
+      const state = { turbo: { restorationIdentifier, restorationIndex: this.currentIndex } };
+      method.call(history, state, "", location2.href);
+      this.location = location2;
+      this.restorationIdentifier = restorationIdentifier;
+    }
+    // Restoration data
+    getRestorationDataForIdentifier(restorationIdentifier) {
+      return this.restorationData[restorationIdentifier] || {};
+    }
+    updateRestorationData(additionalData) {
+      const { restorationIdentifier } = this;
+      const restorationData = this.restorationData[restorationIdentifier];
+      this.restorationData[restorationIdentifier] = {
+        ...restorationData,
+        ...additionalData
+      };
+    }
+    // Scroll restoration
+    assumeControlOfScrollRestoration() {
+      if (!this.previousScrollRestoration) {
+        this.previousScrollRestoration = history.scrollRestoration ?? "auto";
+        history.scrollRestoration = "manual";
+      }
+    }
+    relinquishControlOfScrollRestoration() {
+      if (this.previousScrollRestoration) {
+        history.scrollRestoration = this.previousScrollRestoration;
+        delete this.previousScrollRestoration;
+      }
+    }
+    // Event handlers
+    onPopState = (event) => {
+      if (this.shouldHandlePopState()) {
+        const { turbo } = event.state || {};
+        if (turbo) {
+          this.location = new URL(window.location.href);
+          const { restorationIdentifier, restorationIndex } = turbo;
+          this.restorationIdentifier = restorationIdentifier;
+          const direction = restorationIndex > this.currentIndex ? "forward" : "back";
+          this.delegate.historyPoppedToLocationWithRestorationIdentifierAndDirection(this.location, restorationIdentifier, direction);
+          this.currentIndex = restorationIndex;
+        }
+      }
+    };
+    onPageLoad = async (_event) => {
+      await nextMicrotask();
+      this.pageLoaded = true;
+    };
+    // Private
+    shouldHandlePopState() {
+      return this.pageIsLoaded();
+    }
+    pageIsLoaded() {
+      return this.pageLoaded || document.readyState == "complete";
+    }
+  };
+  var LinkPrefetchObserver = class {
+    started = false;
+    #prefetchedLink = null;
+    constructor(delegate, eventTarget) {
+      this.delegate = delegate;
+      this.eventTarget = eventTarget;
+    }
+    start() {
+      if (this.started)
+        return;
+      if (this.eventTarget.readyState === "loading") {
+        this.eventTarget.addEventListener("DOMContentLoaded", this.#enable, { once: true });
+      } else {
+        this.#enable();
+      }
+    }
+    stop() {
+      if (!this.started)
+        return;
+      this.eventTarget.removeEventListener("mouseenter", this.#tryToPrefetchRequest, {
+        capture: true,
+        passive: true
+      });
+      this.eventTarget.removeEventListener("mouseleave", this.#cancelRequestIfObsolete, {
+        capture: true,
+        passive: true
+      });
+      this.eventTarget.removeEventListener("turbo:before-fetch-request", this.#tryToUsePrefetchedRequest, true);
+      this.started = false;
+    }
+    #enable = () => {
+      this.eventTarget.addEventListener("mouseenter", this.#tryToPrefetchRequest, {
+        capture: true,
+        passive: true
+      });
+      this.eventTarget.addEventListener("mouseleave", this.#cancelRequestIfObsolete, {
+        capture: true,
+        passive: true
+      });
+      this.eventTarget.addEventListener("turbo:before-fetch-request", this.#tryToUsePrefetchedRequest, true);
+      this.started = true;
+    };
+    #tryToPrefetchRequest = (event) => {
+      if (getMetaContent("turbo-prefetch") === "false")
+        return;
+      const target = event.target;
+      const isLink = target.matches && target.matches("a[href]:not([target^=_]):not([download])");
+      if (isLink && this.#isPrefetchable(target)) {
+        const link = target;
+        const location2 = getLocationForLink(link);
+        if (this.delegate.canPrefetchRequestToLocation(link, location2)) {
+          this.#prefetchedLink = link;
+          const fetchRequest = new FetchRequest(
+            this,
+            FetchMethod.get,
+            location2,
+            new URLSearchParams(),
+            target
+          );
+          prefetchCache.setLater(location2.toString(), fetchRequest, this.#cacheTtl);
+        }
+      }
+    };
+    #cancelRequestIfObsolete = (event) => {
+      if (event.target === this.#prefetchedLink)
+        this.#cancelPrefetchRequest();
+    };
+    #cancelPrefetchRequest = () => {
+      prefetchCache.clear();
+      this.#prefetchedLink = null;
+    };
+    #tryToUsePrefetchedRequest = (event) => {
+      if (event.target.tagName !== "FORM" && event.detail.fetchOptions.method === "get") {
+        const cached = prefetchCache.get(event.detail.url.toString());
+        if (cached) {
+          event.detail.fetchRequest = cached;
+        }
+        prefetchCache.clear();
+      }
+    };
+    prepareRequest(request) {
+      const link = request.target;
+      request.headers["X-Sec-Purpose"] = "prefetch";
+      const turboFrame = link.closest("turbo-frame");
+      const turboFrameTarget = link.getAttribute("data-turbo-frame") || turboFrame?.getAttribute("target") || turboFrame?.id;
+      if (turboFrameTarget && turboFrameTarget !== "_top") {
+        request.headers["Turbo-Frame"] = turboFrameTarget;
+      }
+    }
+    // Fetch request interface
+    requestSucceededWithResponse() {
+    }
+    requestStarted(fetchRequest) {
+    }
+    requestErrored(fetchRequest) {
+    }
+    requestFinished(fetchRequest) {
+    }
+    requestPreventedHandlingResponse(fetchRequest, fetchResponse) {
+    }
+    requestFailedWithResponse(fetchRequest, fetchResponse) {
+    }
+    get #cacheTtl() {
+      return Number(getMetaContent("turbo-prefetch-cache-time")) || cacheTtl;
+    }
+    #isPrefetchable(link) {
+      const href = link.getAttribute("href");
+      if (!href)
+        return false;
+      if (unfetchableLink(link))
+        return false;
+      if (linkToTheSamePage(link))
+        return false;
+      if (linkOptsOut(link))
+        return false;
+      if (nonSafeLink(link))
+        return false;
+      if (eventPrevented(link))
+        return false;
+      return true;
+    }
+  };
+  var unfetchableLink = (link) => {
+    return link.origin !== document.location.origin || !["http:", "https:"].includes(link.protocol) || link.hasAttribute("target");
+  };
+  var linkToTheSamePage = (link) => {
+    return link.pathname + link.search === document.location.pathname + document.location.search || link.href.startsWith("#");
+  };
+  var linkOptsOut = (link) => {
+    if (link.getAttribute("data-turbo-prefetch") === "false")
+      return true;
+    if (link.getAttribute("data-turbo") === "false")
+      return true;
+    const turboPrefetchParent = findClosestRecursively(link, "[data-turbo-prefetch]");
+    if (turboPrefetchParent && turboPrefetchParent.getAttribute("data-turbo-prefetch") === "false")
+      return true;
+    return false;
+  };
+  var nonSafeLink = (link) => {
+    const turboMethod = link.getAttribute("data-turbo-method");
+    if (turboMethod && turboMethod.toLowerCase() !== "get")
+      return true;
+    if (isUJS(link))
+      return true;
+    if (link.hasAttribute("data-turbo-confirm"))
+      return true;
+    if (link.hasAttribute("data-turbo-stream"))
+      return true;
+    return false;
+  };
+  var isUJS = (link) => {
+    return link.hasAttribute("data-remote") || link.hasAttribute("data-behavior") || link.hasAttribute("data-confirm") || link.hasAttribute("data-method");
+  };
+  var eventPrevented = (link) => {
+    const event = dispatch("turbo:before-prefetch", { target: link, cancelable: true });
+    return event.defaultPrevented;
+  };
+  var Navigator = class {
+    constructor(delegate) {
+      this.delegate = delegate;
+    }
+    proposeVisit(location2, options = {}) {
+      if (this.delegate.allowsVisitingLocationWithAction(location2, options.action)) {
+        this.delegate.visitProposedToLocation(location2, options);
+      }
+    }
+    startVisit(locatable, restorationIdentifier, options = {}) {
+      this.stop();
+      this.currentVisit = new Visit(this, expandURL(locatable), restorationIdentifier, {
+        referrer: this.location,
+        ...options
+      });
+      this.currentVisit.start();
+    }
+    submitForm(form, submitter) {
+      this.stop();
+      this.formSubmission = new FormSubmission(this, form, submitter, true);
+      this.formSubmission.start();
+    }
+    stop() {
+      if (this.formSubmission) {
+        this.formSubmission.stop();
+        delete this.formSubmission;
+      }
+      if (this.currentVisit) {
+        this.currentVisit.cancel();
+        delete this.currentVisit;
+      }
+    }
+    get adapter() {
+      return this.delegate.adapter;
+    }
+    get view() {
+      return this.delegate.view;
+    }
+    get rootLocation() {
+      return this.view.snapshot.rootLocation;
+    }
+    get history() {
+      return this.delegate.history;
+    }
+    // Form submission delegate
+    formSubmissionStarted(formSubmission) {
+      if (typeof this.adapter.formSubmissionStarted === "function") {
+        this.adapter.formSubmissionStarted(formSubmission);
+      }
+    }
+    async formSubmissionSucceededWithResponse(formSubmission, fetchResponse) {
+      if (formSubmission == this.formSubmission) {
+        const responseHTML = await fetchResponse.responseHTML;
+        if (responseHTML) {
+          const shouldCacheSnapshot = formSubmission.isSafe;
+          if (!shouldCacheSnapshot) {
+            this.view.clearSnapshotCache();
+          }
+          const { statusCode, redirected } = fetchResponse;
+          const action = this.#getActionForFormSubmission(formSubmission, fetchResponse);
+          const visitOptions = {
+            action,
+            shouldCacheSnapshot,
+            response: { statusCode, responseHTML, redirected }
+          };
+          this.proposeVisit(fetchResponse.location, visitOptions);
+        }
+      }
+    }
+    async formSubmissionFailedWithResponse(formSubmission, fetchResponse) {
+      const responseHTML = await fetchResponse.responseHTML;
+      if (responseHTML) {
+        const snapshot = PageSnapshot.fromHTMLString(responseHTML);
+        if (fetchResponse.serverError) {
+          await this.view.renderError(snapshot, this.currentVisit);
+        } else {
+          await this.view.renderPage(snapshot, false, true, this.currentVisit);
+        }
+        if (!snapshot.shouldPreserveScrollPosition) {
+          this.view.scrollToTop();
+        }
+        this.view.clearSnapshotCache();
+      }
+    }
+    formSubmissionErrored(formSubmission, error2) {
+      console.error(error2);
+    }
+    formSubmissionFinished(formSubmission) {
+      if (typeof this.adapter.formSubmissionFinished === "function") {
+        this.adapter.formSubmissionFinished(formSubmission);
+      }
+    }
+    // Visit delegate
+    visitStarted(visit2) {
+      this.delegate.visitStarted(visit2);
+    }
+    visitCompleted(visit2) {
+      this.delegate.visitCompleted(visit2);
+    }
+    locationWithActionIsSamePage(location2, action) {
+      const anchor = getAnchor(location2);
+      const currentAnchor = getAnchor(this.view.lastRenderedLocation);
+      const isRestorationToTop = action === "restore" && typeof anchor === "undefined";
+      return action !== "replace" && getRequestURL(location2) === getRequestURL(this.view.lastRenderedLocation) && (isRestorationToTop || anchor != null && anchor !== currentAnchor);
+    }
+    visitScrolledToSamePageLocation(oldURL, newURL) {
+      this.delegate.visitScrolledToSamePageLocation(oldURL, newURL);
+    }
+    // Visits
+    get location() {
+      return this.history.location;
+    }
+    get restorationIdentifier() {
+      return this.history.restorationIdentifier;
+    }
+    #getActionForFormSubmission(formSubmission, fetchResponse) {
+      const { submitter, formElement } = formSubmission;
+      return getVisitAction(submitter, formElement) || this.#getDefaultAction(fetchResponse);
+    }
+    #getDefaultAction(fetchResponse) {
+      const sameLocationRedirect = fetchResponse.redirected && fetchResponse.location.href === this.location?.href;
+      return sameLocationRedirect ? "replace" : "advance";
+    }
+  };
+  var PageStage = {
+    initial: 0,
+    loading: 1,
+    interactive: 2,
+    complete: 3
+  };
+  var PageObserver = class {
+    stage = PageStage.initial;
+    started = false;
+    constructor(delegate) {
+      this.delegate = delegate;
+    }
+    start() {
+      if (!this.started) {
+        if (this.stage == PageStage.initial) {
+          this.stage = PageStage.loading;
+        }
+        document.addEventListener("readystatechange", this.interpretReadyState, false);
+        addEventListener("pagehide", this.pageWillUnload, false);
+        this.started = true;
+      }
+    }
+    stop() {
+      if (this.started) {
+        document.removeEventListener("readystatechange", this.interpretReadyState, false);
+        removeEventListener("pagehide", this.pageWillUnload, false);
+        this.started = false;
+      }
+    }
+    interpretReadyState = () => {
+      const { readyState } = this;
+      if (readyState == "interactive") {
+        this.pageIsInteractive();
+      } else if (readyState == "complete") {
+        this.pageIsComplete();
+      }
+    };
+    pageIsInteractive() {
+      if (this.stage == PageStage.loading) {
+        this.stage = PageStage.interactive;
+        this.delegate.pageBecameInteractive();
+      }
+    }
+    pageIsComplete() {
+      this.pageIsInteractive();
+      if (this.stage == PageStage.interactive) {
+        this.stage = PageStage.complete;
+        this.delegate.pageLoaded();
+      }
+    }
+    pageWillUnload = () => {
+      this.delegate.pageWillUnload();
+    };
+    get readyState() {
+      return document.readyState;
+    }
+  };
+  var ScrollObserver = class {
+    started = false;
+    constructor(delegate) {
+      this.delegate = delegate;
+    }
+    start() {
+      if (!this.started) {
+        addEventListener("scroll", this.onScroll, false);
+        this.onScroll();
+        this.started = true;
+      }
+    }
+    stop() {
+      if (this.started) {
+        removeEventListener("scroll", this.onScroll, false);
+        this.started = false;
+      }
+    }
+    onScroll = () => {
+      this.updatePosition({ x: window.pageXOffset, y: window.pageYOffset });
+    };
+    // Private
+    updatePosition(position) {
+      this.delegate.scrollPositionChanged(position);
+    }
+  };
+  var StreamMessageRenderer = class {
+    render({ fragment }) {
+      Bardo.preservingPermanentElements(this, getPermanentElementMapForFragment(fragment), () => {
+        withAutofocusFromFragment(fragment, () => {
+          withPreservedFocus(() => {
+            document.documentElement.appendChild(fragment);
+          });
+        });
+      });
+    }
+    // Bardo delegate
+    enteringBardo(currentPermanentElement, newPermanentElement) {
+      newPermanentElement.replaceWith(currentPermanentElement.cloneNode(true));
+    }
+    leavingBardo() {
+    }
+  };
+  function getPermanentElementMapForFragment(fragment) {
+    const permanentElementsInDocument = queryPermanentElementsAll(document.documentElement);
+    const permanentElementMap = {};
+    for (const permanentElementInDocument of permanentElementsInDocument) {
+      const { id } = permanentElementInDocument;
+      for (const streamElement of fragment.querySelectorAll("turbo-stream")) {
+        const elementInStream = getPermanentElementById(streamElement.templateElement.content, id);
+        if (elementInStream) {
+          permanentElementMap[id] = [permanentElementInDocument, elementInStream];
+        }
+      }
+    }
+    return permanentElementMap;
+  }
+  async function withAutofocusFromFragment(fragment, callback) {
+    const generatedID = `turbo-stream-autofocus-${uuid()}`;
+    const turboStreams = fragment.querySelectorAll("turbo-stream");
+    const elementWithAutofocus = firstAutofocusableElementInStreams(turboStreams);
+    let willAutofocusId = null;
+    if (elementWithAutofocus) {
+      if (elementWithAutofocus.id) {
+        willAutofocusId = elementWithAutofocus.id;
+      } else {
+        willAutofocusId = generatedID;
+      }
+      elementWithAutofocus.id = willAutofocusId;
+    }
+    callback();
+    await nextRepaint();
+    const hasNoActiveElement = document.activeElement == null || document.activeElement == document.body;
+    if (hasNoActiveElement && willAutofocusId) {
+      const elementToAutofocus = document.getElementById(willAutofocusId);
+      if (elementIsFocusable(elementToAutofocus)) {
+        elementToAutofocus.focus();
+      }
+      if (elementToAutofocus && elementToAutofocus.id == generatedID) {
+        elementToAutofocus.removeAttribute("id");
+      }
+    }
+  }
+  async function withPreservedFocus(callback) {
+    const [activeElementBeforeRender, activeElementAfterRender] = await around(callback, () => document.activeElement);
+    const restoreFocusTo = activeElementBeforeRender && activeElementBeforeRender.id;
+    if (restoreFocusTo) {
+      const elementToFocus = document.getElementById(restoreFocusTo);
+      if (elementIsFocusable(elementToFocus) && elementToFocus != activeElementAfterRender) {
+        elementToFocus.focus();
+      }
+    }
+  }
+  function firstAutofocusableElementInStreams(nodeListOfStreamElements) {
+    for (const streamElement of nodeListOfStreamElements) {
+      const elementWithAutofocus = queryAutofocusableElement(streamElement.templateElement.content);
+      if (elementWithAutofocus)
+        return elementWithAutofocus;
+    }
+    return null;
+  }
+  var StreamObserver = class {
+    sources = /* @__PURE__ */ new Set();
+    #started = false;
+    constructor(delegate) {
+      this.delegate = delegate;
+    }
+    start() {
+      if (!this.#started) {
+        this.#started = true;
+        addEventListener("turbo:before-fetch-response", this.inspectFetchResponse, false);
+      }
+    }
+    stop() {
+      if (this.#started) {
+        this.#started = false;
+        removeEventListener("turbo:before-fetch-response", this.inspectFetchResponse, false);
+      }
+    }
+    connectStreamSource(source) {
+      if (!this.streamSourceIsConnected(source)) {
+        this.sources.add(source);
+        source.addEventListener("message", this.receiveMessageEvent, false);
+      }
+    }
+    disconnectStreamSource(source) {
+      if (this.streamSourceIsConnected(source)) {
+        this.sources.delete(source);
+        source.removeEventListener("message", this.receiveMessageEvent, false);
+      }
+    }
+    streamSourceIsConnected(source) {
+      return this.sources.has(source);
+    }
+    inspectFetchResponse = (event) => {
+      const response = fetchResponseFromEvent(event);
+      if (response && fetchResponseIsStream(response)) {
+        event.preventDefault();
+        this.receiveMessageResponse(response);
+      }
+    };
+    receiveMessageEvent = (event) => {
+      if (this.#started && typeof event.data == "string") {
+        this.receiveMessageHTML(event.data);
+      }
+    };
+    async receiveMessageResponse(response) {
+      const html = await response.responseHTML;
+      if (html) {
+        this.receiveMessageHTML(html);
+      }
+    }
+    receiveMessageHTML(html) {
+      this.delegate.receivedMessageFromStream(StreamMessage.wrap(html));
+    }
+  };
+  function fetchResponseFromEvent(event) {
+    const fetchResponse = event.detail?.fetchResponse;
+    if (fetchResponse instanceof FetchResponse) {
+      return fetchResponse;
+    }
+  }
+  function fetchResponseIsStream(response) {
+    const contentType = response.contentType ?? "";
+    return contentType.startsWith(StreamMessage.contentType);
+  }
+  var ErrorRenderer = class extends Renderer {
+    static renderElement(currentElement, newElement) {
+      const { documentElement, body } = document;
+      documentElement.replaceChild(newElement, body);
+    }
+    async render() {
+      this.replaceHeadAndBody();
+      this.activateScriptElements();
+    }
+    replaceHeadAndBody() {
+      const { documentElement, head } = document;
+      documentElement.replaceChild(this.newHead, head);
+      this.renderElement(this.currentElement, this.newElement);
+    }
+    activateScriptElements() {
+      for (const replaceableElement of this.scriptElements) {
+        const parentNode = replaceableElement.parentNode;
+        if (parentNode) {
+          const element = activateScriptElement(replaceableElement);
+          parentNode.replaceChild(element, replaceableElement);
+        }
+      }
+    }
+    get newHead() {
+      return this.newSnapshot.headSnapshot.element;
+    }
+    get scriptElements() {
+      return document.documentElement.querySelectorAll("script");
+    }
+  };
+  var Idiomorph = function() {
+    let EMPTY_SET = /* @__PURE__ */ new Set();
+    let defaults = {
+      morphStyle: "outerHTML",
+      callbacks: {
+        beforeNodeAdded: noOp,
+        afterNodeAdded: noOp,
+        beforeNodeMorphed: noOp,
+        afterNodeMorphed: noOp,
+        beforeNodeRemoved: noOp,
+        afterNodeRemoved: noOp,
+        beforeAttributeUpdated: noOp
+      },
+      head: {
+        style: "merge",
+        shouldPreserve: function(elt) {
+          return elt.getAttribute("im-preserve") === "true";
+        },
+        shouldReAppend: function(elt) {
+          return elt.getAttribute("im-re-append") === "true";
+        },
+        shouldRemove: noOp,
+        afterHeadMorphed: noOp
+      }
+    };
+    function morph(oldNode, newContent, config = {}) {
+      if (oldNode instanceof Document) {
+        oldNode = oldNode.documentElement;
+      }
+      if (typeof newContent === "string") {
+        newContent = parseContent(newContent);
+      }
+      let normalizedContent = normalizeContent(newContent);
+      let ctx = createMorphContext(oldNode, normalizedContent, config);
+      return morphNormalizedContent(oldNode, normalizedContent, ctx);
+    }
+    function morphNormalizedContent(oldNode, normalizedNewContent, ctx) {
+      if (ctx.head.block) {
+        let oldHead = oldNode.querySelector("head");
+        let newHead = normalizedNewContent.querySelector("head");
+        if (oldHead && newHead) {
+          let promises = handleHeadElement(newHead, oldHead, ctx);
+          Promise.all(promises).then(function() {
+            morphNormalizedContent(oldNode, normalizedNewContent, Object.assign(ctx, {
+              head: {
+                block: false,
+                ignore: true
+              }
+            }));
+          });
+          return;
+        }
+      }
+      if (ctx.morphStyle === "innerHTML") {
+        morphChildren(normalizedNewContent, oldNode, ctx);
+        return oldNode.children;
+      } else if (ctx.morphStyle === "outerHTML" || ctx.morphStyle == null) {
+        let bestMatch = findBestNodeMatch(normalizedNewContent, oldNode, ctx);
+        let previousSibling = bestMatch?.previousSibling;
+        let nextSibling = bestMatch?.nextSibling;
+        let morphedNode = morphOldNodeTo(oldNode, bestMatch, ctx);
+        if (bestMatch) {
+          return insertSiblings(previousSibling, morphedNode, nextSibling);
+        } else {
+          return [];
+        }
+      } else {
+        throw "Do not understand how to morph style " + ctx.morphStyle;
+      }
+    }
+    function ignoreValueOfActiveElement(possibleActiveElement, ctx) {
+      return ctx.ignoreActiveValue && possibleActiveElement === document.activeElement && possibleActiveElement !== document.body;
+    }
+    function morphOldNodeTo(oldNode, newContent, ctx) {
+      if (ctx.ignoreActive && oldNode === document.activeElement)
+        ;
+      else if (newContent == null) {
+        if (ctx.callbacks.beforeNodeRemoved(oldNode) === false)
+          return oldNode;
+        oldNode.remove();
+        ctx.callbacks.afterNodeRemoved(oldNode);
+        return null;
+      } else if (!isSoftMatch(oldNode, newContent)) {
+        if (ctx.callbacks.beforeNodeRemoved(oldNode) === false)
+          return oldNode;
+        if (ctx.callbacks.beforeNodeAdded(newContent) === false)
+          return oldNode;
+        oldNode.parentElement.replaceChild(newContent, oldNode);
+        ctx.callbacks.afterNodeAdded(newContent);
+        ctx.callbacks.afterNodeRemoved(oldNode);
+        return newContent;
+      } else {
+        if (ctx.callbacks.beforeNodeMorphed(oldNode, newContent) === false)
+          return oldNode;
+        if (oldNode instanceof HTMLHeadElement && ctx.head.ignore)
+          ;
+        else if (oldNode instanceof HTMLHeadElement && ctx.head.style !== "morph") {
+          handleHeadElement(newContent, oldNode, ctx);
+        } else {
+          syncNodeFrom(newContent, oldNode, ctx);
+          if (!ignoreValueOfActiveElement(oldNode, ctx)) {
+            morphChildren(newContent, oldNode, ctx);
+          }
+        }
+        ctx.callbacks.afterNodeMorphed(oldNode, newContent);
+        return oldNode;
+      }
+    }
+    function morphChildren(newParent, oldParent, ctx) {
+      let nextNewChild = newParent.firstChild;
+      let insertionPoint = oldParent.firstChild;
+      let newChild;
+      while (nextNewChild) {
+        newChild = nextNewChild;
+        nextNewChild = newChild.nextSibling;
+        if (insertionPoint == null) {
+          if (ctx.callbacks.beforeNodeAdded(newChild) === false)
+            return;
+          oldParent.appendChild(newChild);
+          ctx.callbacks.afterNodeAdded(newChild);
+          removeIdsFromConsideration(ctx, newChild);
+          continue;
+        }
+        if (isIdSetMatch(newChild, insertionPoint, ctx)) {
+          morphOldNodeTo(insertionPoint, newChild, ctx);
+          insertionPoint = insertionPoint.nextSibling;
+          removeIdsFromConsideration(ctx, newChild);
+          continue;
+        }
+        let idSetMatch = findIdSetMatch(newParent, oldParent, newChild, insertionPoint, ctx);
+        if (idSetMatch) {
+          insertionPoint = removeNodesBetween(insertionPoint, idSetMatch, ctx);
+          morphOldNodeTo(idSetMatch, newChild, ctx);
+          removeIdsFromConsideration(ctx, newChild);
+          continue;
+        }
+        let softMatch = findSoftMatch(newParent, oldParent, newChild, insertionPoint, ctx);
+        if (softMatch) {
+          insertionPoint = removeNodesBetween(insertionPoint, softMatch, ctx);
+          morphOldNodeTo(softMatch, newChild, ctx);
+          removeIdsFromConsideration(ctx, newChild);
+          continue;
+        }
+        if (ctx.callbacks.beforeNodeAdded(newChild) === false)
+          return;
+        oldParent.insertBefore(newChild, insertionPoint);
+        ctx.callbacks.afterNodeAdded(newChild);
+        removeIdsFromConsideration(ctx, newChild);
+      }
+      while (insertionPoint !== null) {
+        let tempNode = insertionPoint;
+        insertionPoint = insertionPoint.nextSibling;
+        removeNode(tempNode, ctx);
+      }
+    }
+    function ignoreAttribute(attr, to, updateType, ctx) {
+      if (attr === "value" && ctx.ignoreActiveValue && to === document.activeElement) {
+        return true;
+      }
+      return ctx.callbacks.beforeAttributeUpdated(attr, to, updateType) === false;
+    }
+    function syncNodeFrom(from, to, ctx) {
+      let type = from.nodeType;
+      if (type === 1) {
+        const fromAttributes = from.attributes;
+        const toAttributes = to.attributes;
+        for (const fromAttribute of fromAttributes) {
+          if (ignoreAttribute(fromAttribute.name, to, "update", ctx)) {
+            continue;
+          }
+          if (to.getAttribute(fromAttribute.name) !== fromAttribute.value) {
+            to.setAttribute(fromAttribute.name, fromAttribute.value);
+          }
+        }
+        for (let i = toAttributes.length - 1; 0 <= i; i--) {
+          const toAttribute = toAttributes[i];
+          if (ignoreAttribute(toAttribute.name, to, "remove", ctx)) {
+            continue;
+          }
+          if (!from.hasAttribute(toAttribute.name)) {
+            to.removeAttribute(toAttribute.name);
+          }
+        }
+      }
+      if (type === 8 || type === 3) {
+        if (to.nodeValue !== from.nodeValue) {
+          to.nodeValue = from.nodeValue;
+        }
+      }
+      if (!ignoreValueOfActiveElement(to, ctx)) {
+        syncInputValue(from, to, ctx);
+      }
+    }
+    function syncBooleanAttribute(from, to, attributeName, ctx) {
+      if (from[attributeName] !== to[attributeName]) {
+        let ignoreUpdate = ignoreAttribute(attributeName, to, "update", ctx);
+        if (!ignoreUpdate) {
+          to[attributeName] = from[attributeName];
+        }
+        if (from[attributeName]) {
+          if (!ignoreUpdate) {
+            to.setAttribute(attributeName, from[attributeName]);
+          }
+        } else {
+          if (!ignoreAttribute(attributeName, to, "remove", ctx)) {
+            to.removeAttribute(attributeName);
+          }
+        }
+      }
+    }
+    function syncInputValue(from, to, ctx) {
+      if (from instanceof HTMLInputElement && to instanceof HTMLInputElement && from.type !== "file") {
+        let fromValue = from.value;
+        let toValue = to.value;
+        syncBooleanAttribute(from, to, "checked", ctx);
+        syncBooleanAttribute(from, to, "disabled", ctx);
+        if (!from.hasAttribute("value")) {
+          if (!ignoreAttribute("value", to, "remove", ctx)) {
+            to.value = "";
+            to.removeAttribute("value");
+          }
+        } else if (fromValue !== toValue) {
+          if (!ignoreAttribute("value", to, "update", ctx)) {
+            to.setAttribute("value", fromValue);
+            to.value = fromValue;
+          }
+        }
+      } else if (from instanceof HTMLOptionElement) {
+        syncBooleanAttribute(from, to, "selected", ctx);
+      } else if (from instanceof HTMLTextAreaElement && to instanceof HTMLTextAreaElement) {
+        let fromValue = from.value;
+        let toValue = to.value;
+        if (ignoreAttribute("value", to, "update", ctx)) {
+          return;
+        }
+        if (fromValue !== toValue) {
+          to.value = fromValue;
+        }
+        if (to.firstChild && to.firstChild.nodeValue !== fromValue) {
+          to.firstChild.nodeValue = fromValue;
+        }
+      }
+    }
+    function handleHeadElement(newHeadTag, currentHead, ctx) {
+      let added = [];
+      let removed = [];
+      let preserved = [];
+      let nodesToAppend = [];
+      let headMergeStyle = ctx.head.style;
+      let srcToNewHeadNodes = /* @__PURE__ */ new Map();
+      for (const newHeadChild of newHeadTag.children) {
+        srcToNewHeadNodes.set(newHeadChild.outerHTML, newHeadChild);
+      }
+      for (const currentHeadElt of currentHead.children) {
+        let inNewContent = srcToNewHeadNodes.has(currentHeadElt.outerHTML);
+        let isReAppended = ctx.head.shouldReAppend(currentHeadElt);
+        let isPreserved = ctx.head.shouldPreserve(currentHeadElt);
+        if (inNewContent || isPreserved) {
+          if (isReAppended) {
+            removed.push(currentHeadElt);
+          } else {
+            srcToNewHeadNodes.delete(currentHeadElt.outerHTML);
+            preserved.push(currentHeadElt);
+          }
+        } else {
+          if (headMergeStyle === "append") {
+            if (isReAppended) {
+              removed.push(currentHeadElt);
+              nodesToAppend.push(currentHeadElt);
+            }
+          } else {
+            if (ctx.head.shouldRemove(currentHeadElt) !== false) {
+              removed.push(currentHeadElt);
+            }
+          }
+        }
+      }
+      nodesToAppend.push(...srcToNewHeadNodes.values());
+      let promises = [];
+      for (const newNode of nodesToAppend) {
+        let newElt = document.createRange().createContextualFragment(newNode.outerHTML).firstChild;
+        if (ctx.callbacks.beforeNodeAdded(newElt) !== false) {
+          if (newElt.href || newElt.src) {
+            let resolve = null;
+            let promise = new Promise(function(_resolve) {
+              resolve = _resolve;
+            });
+            newElt.addEventListener("load", function() {
+              resolve();
+            });
+            promises.push(promise);
+          }
+          currentHead.appendChild(newElt);
+          ctx.callbacks.afterNodeAdded(newElt);
+          added.push(newElt);
+        }
+      }
+      for (const removedElement of removed) {
+        if (ctx.callbacks.beforeNodeRemoved(removedElement) !== false) {
+          currentHead.removeChild(removedElement);
+          ctx.callbacks.afterNodeRemoved(removedElement);
+        }
+      }
+      ctx.head.afterHeadMorphed(currentHead, { added, kept: preserved, removed });
+      return promises;
+    }
+    function noOp() {
+    }
+    function mergeDefaults(config) {
+      let finalConfig = {};
+      Object.assign(finalConfig, defaults);
+      Object.assign(finalConfig, config);
+      finalConfig.callbacks = {};
+      Object.assign(finalConfig.callbacks, defaults.callbacks);
+      Object.assign(finalConfig.callbacks, config.callbacks);
+      finalConfig.head = {};
+      Object.assign(finalConfig.head, defaults.head);
+      Object.assign(finalConfig.head, config.head);
+      return finalConfig;
+    }
+    function createMorphContext(oldNode, newContent, config) {
+      config = mergeDefaults(config);
+      return {
+        target: oldNode,
+        newContent,
+        config,
+        morphStyle: config.morphStyle,
+        ignoreActive: config.ignoreActive,
+        ignoreActiveValue: config.ignoreActiveValue,
+        idMap: createIdMap(oldNode, newContent),
+        deadIds: /* @__PURE__ */ new Set(),
+        callbacks: config.callbacks,
+        head: config.head
+      };
+    }
+    function isIdSetMatch(node1, node2, ctx) {
+      if (node1 == null || node2 == null) {
+        return false;
+      }
+      if (node1.nodeType === node2.nodeType && node1.tagName === node2.tagName) {
+        if (node1.id !== "" && node1.id === node2.id) {
+          return true;
+        } else {
+          return getIdIntersectionCount(ctx, node1, node2) > 0;
+        }
+      }
+      return false;
+    }
+    function isSoftMatch(node1, node2) {
+      if (node1 == null || node2 == null) {
+        return false;
+      }
+      return node1.nodeType === node2.nodeType && node1.tagName === node2.tagName;
+    }
+    function removeNodesBetween(startInclusive, endExclusive, ctx) {
+      while (startInclusive !== endExclusive) {
+        let tempNode = startInclusive;
+        startInclusive = startInclusive.nextSibling;
+        removeNode(tempNode, ctx);
+      }
+      removeIdsFromConsideration(ctx, endExclusive);
+      return endExclusive.nextSibling;
+    }
+    function findIdSetMatch(newContent, oldParent, newChild, insertionPoint, ctx) {
+      let newChildPotentialIdCount = getIdIntersectionCount(ctx, newChild, oldParent);
+      let potentialMatch = null;
+      if (newChildPotentialIdCount > 0) {
+        let potentialMatch2 = insertionPoint;
+        let otherMatchCount = 0;
+        while (potentialMatch2 != null) {
+          if (isIdSetMatch(newChild, potentialMatch2, ctx)) {
+            return potentialMatch2;
+          }
+          otherMatchCount += getIdIntersectionCount(ctx, potentialMatch2, newContent);
+          if (otherMatchCount > newChildPotentialIdCount) {
+            return null;
+          }
+          potentialMatch2 = potentialMatch2.nextSibling;
+        }
+      }
+      return potentialMatch;
+    }
+    function findSoftMatch(newContent, oldParent, newChild, insertionPoint, ctx) {
+      let potentialSoftMatch = insertionPoint;
+      let nextSibling = newChild.nextSibling;
+      let siblingSoftMatchCount = 0;
+      while (potentialSoftMatch != null) {
+        if (getIdIntersectionCount(ctx, potentialSoftMatch, newContent) > 0) {
+          return null;
+        }
+        if (isSoftMatch(newChild, potentialSoftMatch)) {
+          return potentialSoftMatch;
+        }
+        if (isSoftMatch(nextSibling, potentialSoftMatch)) {
+          siblingSoftMatchCount++;
+          nextSibling = nextSibling.nextSibling;
+          if (siblingSoftMatchCount >= 2) {
+            return null;
+          }
+        }
+        potentialSoftMatch = potentialSoftMatch.nextSibling;
+      }
+      return potentialSoftMatch;
+    }
+    function parseContent(newContent) {
+      let parser = new DOMParser();
+      let contentWithSvgsRemoved = newContent.replace(/<svg(\s[^>]*>|>)([\s\S]*?)<\/svg>/gim, "");
+      if (contentWithSvgsRemoved.match(/<\/html>/) || contentWithSvgsRemoved.match(/<\/head>/) || contentWithSvgsRemoved.match(/<\/body>/)) {
+        let content = parser.parseFromString(newContent, "text/html");
+        if (contentWithSvgsRemoved.match(/<\/html>/)) {
+          content.generatedByIdiomorph = true;
+          return content;
+        } else {
+          let htmlElement = content.firstChild;
+          if (htmlElement) {
+            htmlElement.generatedByIdiomorph = true;
+            return htmlElement;
+          } else {
+            return null;
+          }
+        }
+      } else {
+        let responseDoc = parser.parseFromString("<body><template>" + newContent + "</template></body>", "text/html");
+        let content = responseDoc.body.querySelector("template").content;
+        content.generatedByIdiomorph = true;
+        return content;
+      }
+    }
+    function normalizeContent(newContent) {
+      if (newContent == null) {
+        const dummyParent = document.createElement("div");
+        return dummyParent;
+      } else if (newContent.generatedByIdiomorph) {
+        return newContent;
+      } else if (newContent instanceof Node) {
+        const dummyParent = document.createElement("div");
+        dummyParent.append(newContent);
+        return dummyParent;
+      } else {
+        const dummyParent = document.createElement("div");
+        for (const elt of [...newContent]) {
+          dummyParent.append(elt);
+        }
+        return dummyParent;
+      }
+    }
+    function insertSiblings(previousSibling, morphedNode, nextSibling) {
+      let stack = [];
+      let added = [];
+      while (previousSibling != null) {
+        stack.push(previousSibling);
+        previousSibling = previousSibling.previousSibling;
+      }
+      while (stack.length > 0) {
+        let node = stack.pop();
+        added.push(node);
+        morphedNode.parentElement.insertBefore(node, morphedNode);
+      }
+      added.push(morphedNode);
+      while (nextSibling != null) {
+        stack.push(nextSibling);
+        added.push(nextSibling);
+        nextSibling = nextSibling.nextSibling;
+      }
+      while (stack.length > 0) {
+        morphedNode.parentElement.insertBefore(stack.pop(), morphedNode.nextSibling);
+      }
+      return added;
+    }
+    function findBestNodeMatch(newContent, oldNode, ctx) {
+      let currentElement;
+      currentElement = newContent.firstChild;
+      let bestElement = currentElement;
+      let score = 0;
+      while (currentElement) {
+        let newScore = scoreElement(currentElement, oldNode, ctx);
+        if (newScore > score) {
+          bestElement = currentElement;
+          score = newScore;
+        }
+        currentElement = currentElement.nextSibling;
+      }
+      return bestElement;
+    }
+    function scoreElement(node1, node2, ctx) {
+      if (isSoftMatch(node1, node2)) {
+        return 0.5 + getIdIntersectionCount(ctx, node1, node2);
+      }
+      return 0;
+    }
+    function removeNode(tempNode, ctx) {
+      removeIdsFromConsideration(ctx, tempNode);
+      if (ctx.callbacks.beforeNodeRemoved(tempNode) === false)
+        return;
+      tempNode.remove();
+      ctx.callbacks.afterNodeRemoved(tempNode);
+    }
+    function isIdInConsideration(ctx, id) {
+      return !ctx.deadIds.has(id);
+    }
+    function idIsWithinNode(ctx, id, targetNode) {
+      let idSet = ctx.idMap.get(targetNode) || EMPTY_SET;
+      return idSet.has(id);
+    }
+    function removeIdsFromConsideration(ctx, node) {
+      let idSet = ctx.idMap.get(node) || EMPTY_SET;
+      for (const id of idSet) {
+        ctx.deadIds.add(id);
+      }
+    }
+    function getIdIntersectionCount(ctx, node1, node2) {
+      let sourceSet = ctx.idMap.get(node1) || EMPTY_SET;
+      let matchCount = 0;
+      for (const id of sourceSet) {
+        if (isIdInConsideration(ctx, id) && idIsWithinNode(ctx, id, node2)) {
+          ++matchCount;
+        }
+      }
+      return matchCount;
+    }
+    function populateIdMapForNode(node, idMap) {
+      let nodeParent = node.parentElement;
+      let idElements = node.querySelectorAll("[id]");
+      for (const elt of idElements) {
+        let current = elt;
+        while (current !== nodeParent && current != null) {
+          let idSet = idMap.get(current);
+          if (idSet == null) {
+            idSet = /* @__PURE__ */ new Set();
+            idMap.set(current, idSet);
+          }
+          idSet.add(elt.id);
+          current = current.parentElement;
+        }
+      }
+    }
+    function createIdMap(oldContent, newContent) {
+      let idMap = /* @__PURE__ */ new Map();
+      populateIdMapForNode(oldContent, idMap);
+      populateIdMapForNode(newContent, idMap);
+      return idMap;
+    }
+    return {
+      morph,
+      defaults
+    };
+  }();
+  var PageRenderer = class extends Renderer {
+    static renderElement(currentElement, newElement) {
+      if (document.body && newElement instanceof HTMLBodyElement) {
+        document.body.replaceWith(newElement);
+      } else {
+        document.documentElement.appendChild(newElement);
+      }
+    }
+    get shouldRender() {
+      return this.newSnapshot.isVisitable && this.trackedElementsAreIdentical;
+    }
+    get reloadReason() {
+      if (!this.newSnapshot.isVisitable) {
+        return {
+          reason: "turbo_visit_control_is_reload"
+        };
+      }
+      if (!this.trackedElementsAreIdentical) {
+        return {
+          reason: "tracked_element_mismatch"
+        };
+      }
+    }
+    async prepareToRender() {
+      this.#setLanguage();
+      await this.mergeHead();
+    }
+    async render() {
+      if (this.willRender) {
+        await this.replaceBody();
+      }
+    }
+    finishRendering() {
+      super.finishRendering();
+      if (!this.isPreview) {
+        this.focusFirstAutofocusableElement();
+      }
+    }
+    get currentHeadSnapshot() {
+      return this.currentSnapshot.headSnapshot;
+    }
+    get newHeadSnapshot() {
+      return this.newSnapshot.headSnapshot;
+    }
+    get newElement() {
+      return this.newSnapshot.element;
+    }
+    #setLanguage() {
+      const { documentElement } = this.currentSnapshot;
+      const { lang } = this.newSnapshot;
+      if (lang) {
+        documentElement.setAttribute("lang", lang);
+      } else {
+        documentElement.removeAttribute("lang");
+      }
+    }
+    async mergeHead() {
+      const mergedHeadElements = this.mergeProvisionalElements();
+      const newStylesheetElements = this.copyNewHeadStylesheetElements();
+      this.copyNewHeadScriptElements();
+      await mergedHeadElements;
+      await newStylesheetElements;
+      if (this.willRender) {
+        this.removeUnusedDynamicStylesheetElements();
+      }
+    }
+    async replaceBody() {
+      await this.preservingPermanentElements(async () => {
+        this.activateNewBody();
+        await this.assignNewBody();
+      });
+    }
+    get trackedElementsAreIdentical() {
+      return this.currentHeadSnapshot.trackedElementSignature == this.newHeadSnapshot.trackedElementSignature;
+    }
+    async copyNewHeadStylesheetElements() {
+      const loadingElements = [];
+      for (const element of this.newHeadStylesheetElements) {
+        loadingElements.push(waitForLoad(element));
+        document.head.appendChild(element);
+      }
+      await Promise.all(loadingElements);
+    }
+    copyNewHeadScriptElements() {
+      for (const element of this.newHeadScriptElements) {
+        document.head.appendChild(activateScriptElement(element));
+      }
+    }
+    removeUnusedDynamicStylesheetElements() {
+      for (const element of this.unusedDynamicStylesheetElements) {
+        document.head.removeChild(element);
+      }
+    }
+    async mergeProvisionalElements() {
+      const newHeadElements = [...this.newHeadProvisionalElements];
+      for (const element of this.currentHeadProvisionalElements) {
+        if (!this.isCurrentElementInElementList(element, newHeadElements)) {
+          document.head.removeChild(element);
+        }
+      }
+      for (const element of newHeadElements) {
+        document.head.appendChild(element);
+      }
+    }
+    isCurrentElementInElementList(element, elementList) {
+      for (const [index, newElement] of elementList.entries()) {
+        if (element.tagName == "TITLE") {
+          if (newElement.tagName != "TITLE") {
+            continue;
+          }
+          if (element.innerHTML == newElement.innerHTML) {
+            elementList.splice(index, 1);
+            return true;
+          }
+        }
+        if (newElement.isEqualNode(element)) {
+          elementList.splice(index, 1);
+          return true;
+        }
+      }
+      return false;
+    }
+    removeCurrentHeadProvisionalElements() {
+      for (const element of this.currentHeadProvisionalElements) {
+        document.head.removeChild(element);
+      }
+    }
+    copyNewHeadProvisionalElements() {
+      for (const element of this.newHeadProvisionalElements) {
+        document.head.appendChild(element);
+      }
+    }
+    activateNewBody() {
+      document.adoptNode(this.newElement);
+      this.activateNewBodyScriptElements();
+    }
+    activateNewBodyScriptElements() {
+      for (const inertScriptElement of this.newBodyScriptElements) {
+        const activatedScriptElement = activateScriptElement(inertScriptElement);
+        inertScriptElement.replaceWith(activatedScriptElement);
+      }
+    }
+    async assignNewBody() {
+      await this.renderElement(this.currentElement, this.newElement);
+    }
+    get unusedDynamicStylesheetElements() {
+      return this.oldHeadStylesheetElements.filter((element) => {
+        return element.getAttribute("data-turbo-track") === "dynamic";
+      });
+    }
+    get oldHeadStylesheetElements() {
+      return this.currentHeadSnapshot.getStylesheetElementsNotInSnapshot(this.newHeadSnapshot);
+    }
+    get newHeadStylesheetElements() {
+      return this.newHeadSnapshot.getStylesheetElementsNotInSnapshot(this.currentHeadSnapshot);
+    }
+    get newHeadScriptElements() {
+      return this.newHeadSnapshot.getScriptElementsNotInSnapshot(this.currentHeadSnapshot);
+    }
+    get currentHeadProvisionalElements() {
+      return this.currentHeadSnapshot.provisionalElements;
+    }
+    get newHeadProvisionalElements() {
+      return this.newHeadSnapshot.provisionalElements;
+    }
+    get newBodyScriptElements() {
+      return this.newElement.querySelectorAll("script");
+    }
+  };
+  var MorphRenderer = class extends PageRenderer {
+    async render() {
+      if (this.willRender)
+        await this.#morphBody();
+    }
+    get renderMethod() {
+      return "morph";
+    }
+    // Private
+    async #morphBody() {
+      this.#morphElements(this.currentElement, this.newElement);
+      this.#reloadRemoteFrames();
+      dispatch("turbo:morph", {
+        detail: {
+          currentElement: this.currentElement,
+          newElement: this.newElement
+        }
+      });
+    }
+    #morphElements(currentElement, newElement, morphStyle = "outerHTML") {
+      this.isMorphingTurboFrame = this.#isFrameReloadedWithMorph(currentElement);
+      Idiomorph.morph(currentElement, newElement, {
+        ignoreActiveValue: true,
+        morphStyle,
+        callbacks: {
+          beforeNodeAdded: this.#shouldAddElement,
+          beforeNodeMorphed: this.#shouldMorphElement,
+          beforeAttributeUpdated: this.#shouldUpdateAttribute,
+          beforeNodeRemoved: this.#shouldRemoveElement,
+          afterNodeMorphed: this.#didMorphElement
+        }
+      });
+    }
+    #shouldAddElement = (node) => {
+      return !(node.id && node.hasAttribute("data-turbo-permanent") && document.getElementById(node.id));
+    };
+    #shouldMorphElement = (oldNode, newNode) => {
+      if (oldNode instanceof HTMLElement) {
+        if (!oldNode.hasAttribute("data-turbo-permanent") && (this.isMorphingTurboFrame || !this.#isFrameReloadedWithMorph(oldNode))) {
+          const event = dispatch("turbo:before-morph-element", {
+            cancelable: true,
+            target: oldNode,
+            detail: {
+              newElement: newNode
+            }
+          });
+          return !event.defaultPrevented;
+        } else {
+          return false;
+        }
+      }
+    };
+    #shouldUpdateAttribute = (attributeName, target, mutationType) => {
+      const event = dispatch("turbo:before-morph-attribute", { cancelable: true, target, detail: { attributeName, mutationType } });
+      return !event.defaultPrevented;
+    };
+    #didMorphElement = (oldNode, newNode) => {
+      if (newNode instanceof HTMLElement) {
+        dispatch("turbo:morph-element", {
+          target: oldNode,
+          detail: {
+            newElement: newNode
+          }
+        });
+      }
+    };
+    #shouldRemoveElement = (node) => {
+      return this.#shouldMorphElement(node);
+    };
+    #reloadRemoteFrames() {
+      this.#remoteFrames().forEach((frame) => {
+        if (this.#isFrameReloadedWithMorph(frame)) {
+          this.#renderFrameWithMorph(frame);
+          frame.reload();
+        }
+      });
+    }
+    #renderFrameWithMorph(frame) {
+      frame.addEventListener("turbo:before-frame-render", (event) => {
+        event.detail.render = this.#morphFrameUpdate;
+      }, { once: true });
+    }
+    #morphFrameUpdate = (currentElement, newElement) => {
+      dispatch("turbo:before-frame-morph", {
+        target: currentElement,
+        detail: { currentElement, newElement }
+      });
+      this.#morphElements(currentElement, newElement.children, "innerHTML");
+    };
+    #isFrameReloadedWithMorph(element) {
+      return element.src && element.refresh === "morph";
+    }
+    #remoteFrames() {
+      return Array.from(document.querySelectorAll("turbo-frame[src]")).filter((frame) => {
+        return !frame.closest("[data-turbo-permanent]");
+      });
+    }
+  };
+  var SnapshotCache = class {
+    keys = [];
+    snapshots = {};
+    constructor(size) {
+      this.size = size;
+    }
+    has(location2) {
+      return toCacheKey(location2) in this.snapshots;
+    }
+    get(location2) {
+      if (this.has(location2)) {
+        const snapshot = this.read(location2);
+        this.touch(location2);
+        return snapshot;
+      }
+    }
+    put(location2, snapshot) {
+      this.write(location2, snapshot);
+      this.touch(location2);
+      return snapshot;
+    }
+    clear() {
+      this.snapshots = {};
+    }
+    // Private
+    read(location2) {
+      return this.snapshots[toCacheKey(location2)];
+    }
+    write(location2, snapshot) {
+      this.snapshots[toCacheKey(location2)] = snapshot;
+    }
+    touch(location2) {
+      const key = toCacheKey(location2);
+      const index = this.keys.indexOf(key);
+      if (index > -1)
+        this.keys.splice(index, 1);
+      this.keys.unshift(key);
+      this.trim();
+    }
+    trim() {
+      for (const key of this.keys.splice(this.size)) {
+        delete this.snapshots[key];
+      }
+    }
+  };
+  var PageView = class extends View {
+    snapshotCache = new SnapshotCache(10);
+    lastRenderedLocation = new URL(location.href);
+    forceReloaded = false;
+    shouldTransitionTo(newSnapshot) {
+      return this.snapshot.prefersViewTransitions && newSnapshot.prefersViewTransitions;
+    }
+    renderPage(snapshot, isPreview = false, willRender = true, visit2) {
+      const shouldMorphPage = this.isPageRefresh(visit2) && this.snapshot.shouldMorphPage;
+      const rendererClass = shouldMorphPage ? MorphRenderer : PageRenderer;
+      const renderer = new rendererClass(this.snapshot, snapshot, PageRenderer.renderElement, isPreview, willRender);
+      if (!renderer.shouldRender) {
+        this.forceReloaded = true;
+      } else {
+        visit2?.changeHistory();
+      }
+      return this.render(renderer);
+    }
+    renderError(snapshot, visit2) {
+      visit2?.changeHistory();
+      const renderer = new ErrorRenderer(this.snapshot, snapshot, ErrorRenderer.renderElement, false);
+      return this.render(renderer);
+    }
+    clearSnapshotCache() {
+      this.snapshotCache.clear();
+    }
+    async cacheSnapshot(snapshot = this.snapshot) {
+      if (snapshot.isCacheable) {
+        this.delegate.viewWillCacheSnapshot();
+        const { lastRenderedLocation: location2 } = this;
+        await nextEventLoopTick();
+        const cachedSnapshot = snapshot.clone();
+        this.snapshotCache.put(location2, cachedSnapshot);
+        return cachedSnapshot;
+      }
+    }
+    getCachedSnapshotForLocation(location2) {
+      return this.snapshotCache.get(location2);
+    }
+    isPageRefresh(visit2) {
+      return !visit2 || this.lastRenderedLocation.pathname === visit2.location.pathname && visit2.action === "replace";
+    }
+    shouldPreserveScrollPosition(visit2) {
+      return this.isPageRefresh(visit2) && this.snapshot.shouldPreserveScrollPosition;
+    }
+    get snapshot() {
+      return PageSnapshot.fromElement(this.element);
+    }
+  };
+  var Preloader = class {
+    selector = "a[data-turbo-preload]";
+    constructor(delegate, snapshotCache) {
+      this.delegate = delegate;
+      this.snapshotCache = snapshotCache;
+    }
+    start() {
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", this.#preloadAll);
+      } else {
+        this.preloadOnLoadLinksForView(document.body);
+      }
+    }
+    stop() {
+      document.removeEventListener("DOMContentLoaded", this.#preloadAll);
+    }
+    preloadOnLoadLinksForView(element) {
+      for (const link of element.querySelectorAll(this.selector)) {
+        if (this.delegate.shouldPreloadLink(link)) {
+          this.preloadURL(link);
+        }
+      }
+    }
+    async preloadURL(link) {
+      const location2 = new URL(link.href);
+      if (this.snapshotCache.has(location2)) {
+        return;
+      }
+      const fetchRequest = new FetchRequest(this, FetchMethod.get, location2, new URLSearchParams(), link);
+      await fetchRequest.perform();
+    }
+    // Fetch request delegate
+    prepareRequest(fetchRequest) {
+      fetchRequest.headers["X-Sec-Purpose"] = "prefetch";
+    }
+    async requestSucceededWithResponse(fetchRequest, fetchResponse) {
+      try {
+        const responseHTML = await fetchResponse.responseHTML;
+        const snapshot = PageSnapshot.fromHTMLString(responseHTML);
+        this.snapshotCache.put(fetchRequest.url, snapshot);
+      } catch (_) {
+      }
+    }
+    requestStarted(fetchRequest) {
+    }
+    requestErrored(fetchRequest) {
+    }
+    requestFinished(fetchRequest) {
+    }
+    requestPreventedHandlingResponse(fetchRequest, fetchResponse) {
+    }
+    requestFailedWithResponse(fetchRequest, fetchResponse) {
+    }
+    #preloadAll = () => {
+      this.preloadOnLoadLinksForView(document.body);
+    };
+  };
+  var Cache = class {
+    constructor(session2) {
+      this.session = session2;
+    }
+    clear() {
+      this.session.clearCache();
+    }
+    resetCacheControl() {
+      this.#setCacheControl("");
+    }
+    exemptPageFromCache() {
+      this.#setCacheControl("no-cache");
+    }
+    exemptPageFromPreview() {
+      this.#setCacheControl("no-preview");
+    }
+    #setCacheControl(value) {
+      setMetaContent("turbo-cache-control", value);
+    }
+  };
+  var Session = class {
+    navigator = new Navigator(this);
+    history = new History(this);
+    view = new PageView(this, document.documentElement);
+    adapter = new BrowserAdapter(this);
+    pageObserver = new PageObserver(this);
+    cacheObserver = new CacheObserver();
+    linkPrefetchObserver = new LinkPrefetchObserver(this, document);
+    linkClickObserver = new LinkClickObserver(this, window);
+    formSubmitObserver = new FormSubmitObserver(this, document);
+    scrollObserver = new ScrollObserver(this);
+    streamObserver = new StreamObserver(this);
+    formLinkClickObserver = new FormLinkClickObserver(this, document.documentElement);
+    frameRedirector = new FrameRedirector(this, document.documentElement);
+    streamMessageRenderer = new StreamMessageRenderer();
+    cache = new Cache(this);
+    drive = true;
+    enabled = true;
+    progressBarDelay = 500;
+    started = false;
+    formMode = "on";
+    #pageRefreshDebouncePeriod = 150;
+    constructor(recentRequests2) {
+      this.recentRequests = recentRequests2;
+      this.preloader = new Preloader(this, this.view.snapshotCache);
+      this.debouncedRefresh = this.refresh;
+      this.pageRefreshDebouncePeriod = this.pageRefreshDebouncePeriod;
+    }
+    start() {
+      if (!this.started) {
+        this.pageObserver.start();
+        this.cacheObserver.start();
+        this.linkPrefetchObserver.start();
+        this.formLinkClickObserver.start();
+        this.linkClickObserver.start();
+        this.formSubmitObserver.start();
+        this.scrollObserver.start();
+        this.streamObserver.start();
+        this.frameRedirector.start();
+        this.history.start();
+        this.preloader.start();
+        this.started = true;
+        this.enabled = true;
+      }
+    }
+    disable() {
+      this.enabled = false;
+    }
+    stop() {
+      if (this.started) {
+        this.pageObserver.stop();
+        this.cacheObserver.stop();
+        this.linkPrefetchObserver.stop();
+        this.formLinkClickObserver.stop();
+        this.linkClickObserver.stop();
+        this.formSubmitObserver.stop();
+        this.scrollObserver.stop();
+        this.streamObserver.stop();
+        this.frameRedirector.stop();
+        this.history.stop();
+        this.preloader.stop();
+        this.started = false;
+      }
+    }
+    registerAdapter(adapter) {
+      this.adapter = adapter;
+    }
+    visit(location2, options = {}) {
+      const frameElement = options.frame ? document.getElementById(options.frame) : null;
+      if (frameElement instanceof FrameElement) {
+        const action = options.action || getVisitAction(frameElement);
+        frameElement.delegate.proposeVisitIfNavigatedWithAction(frameElement, action);
+        frameElement.src = location2.toString();
+      } else {
+        this.navigator.proposeVisit(expandURL(location2), options);
+      }
+    }
+    refresh(url, requestId) {
+      const isRecentRequest = requestId && this.recentRequests.has(requestId);
+      if (!isRecentRequest) {
+        this.cache.exemptPageFromPreview();
+        this.visit(url, { action: "replace" });
+      }
+    }
+    connectStreamSource(source) {
+      this.streamObserver.connectStreamSource(source);
+    }
+    disconnectStreamSource(source) {
+      this.streamObserver.disconnectStreamSource(source);
+    }
+    renderStreamMessage(message) {
+      this.streamMessageRenderer.render(StreamMessage.wrap(message));
+    }
+    clearCache() {
+      this.view.clearSnapshotCache();
+    }
+    setProgressBarDelay(delay) {
+      this.progressBarDelay = delay;
+    }
+    setFormMode(mode) {
+      this.formMode = mode;
+    }
+    get location() {
+      return this.history.location;
+    }
+    get restorationIdentifier() {
+      return this.history.restorationIdentifier;
+    }
+    get pageRefreshDebouncePeriod() {
+      return this.#pageRefreshDebouncePeriod;
+    }
+    set pageRefreshDebouncePeriod(value) {
+      this.refresh = debounce(this.debouncedRefresh.bind(this), value);
+      this.#pageRefreshDebouncePeriod = value;
+    }
+    // Preloader delegate
+    shouldPreloadLink(element) {
+      const isUnsafe = element.hasAttribute("data-turbo-method");
+      const isStream = element.hasAttribute("data-turbo-stream");
+      const frameTarget = element.getAttribute("data-turbo-frame");
+      const frame = frameTarget == "_top" ? null : document.getElementById(frameTarget) || findClosestRecursively(element, "turbo-frame:not([disabled])");
+      if (isUnsafe || isStream || frame instanceof FrameElement) {
+        return false;
+      } else {
+        const location2 = new URL(element.href);
+        return this.elementIsNavigatable(element) && locationIsVisitable(location2, this.snapshot.rootLocation);
+      }
+    }
+    // History delegate
+    historyPoppedToLocationWithRestorationIdentifierAndDirection(location2, restorationIdentifier, direction) {
+      if (this.enabled) {
+        this.navigator.startVisit(location2, restorationIdentifier, {
+          action: "restore",
+          historyChanged: true,
+          direction
+        });
+      } else {
+        this.adapter.pageInvalidated({
+          reason: "turbo_disabled"
+        });
+      }
+    }
+    // Scroll observer delegate
+    scrollPositionChanged(position) {
+      this.history.updateRestorationData({ scrollPosition: position });
+    }
+    // Form click observer delegate
+    willSubmitFormLinkToLocation(link, location2) {
+      return this.elementIsNavigatable(link) && locationIsVisitable(location2, this.snapshot.rootLocation);
+    }
+    submittedFormLinkToLocation() {
+    }
+    // Link hover observer delegate
+    canPrefetchRequestToLocation(link, location2) {
+      return this.elementIsNavigatable(link) && locationIsVisitable(location2, this.snapshot.rootLocation);
+    }
+    // Link click observer delegate
+    willFollowLinkToLocation(link, location2, event) {
+      return this.elementIsNavigatable(link) && locationIsVisitable(location2, this.snapshot.rootLocation) && this.applicationAllowsFollowingLinkToLocation(link, location2, event);
+    }
+    followedLinkToLocation(link, location2) {
+      const action = this.getActionForLink(link);
+      const acceptsStreamResponse = link.hasAttribute("data-turbo-stream");
+      this.visit(location2.href, { action, acceptsStreamResponse });
+    }
+    // Navigator delegate
+    allowsVisitingLocationWithAction(location2, action) {
+      return this.locationWithActionIsSamePage(location2, action) || this.applicationAllowsVisitingLocation(location2);
+    }
+    visitProposedToLocation(location2, options) {
+      extendURLWithDeprecatedProperties(location2);
+      this.adapter.visitProposedToLocation(location2, options);
+    }
+    // Visit delegate
+    visitStarted(visit2) {
+      if (!visit2.acceptsStreamResponse) {
+        markAsBusy(document.documentElement);
+        this.view.markVisitDirection(visit2.direction);
+      }
+      extendURLWithDeprecatedProperties(visit2.location);
+      if (!visit2.silent) {
+        this.notifyApplicationAfterVisitingLocation(visit2.location, visit2.action);
+      }
+    }
+    visitCompleted(visit2) {
+      this.view.unmarkVisitDirection();
+      clearBusyState(document.documentElement);
+      this.notifyApplicationAfterPageLoad(visit2.getTimingMetrics());
+    }
+    locationWithActionIsSamePage(location2, action) {
+      return this.navigator.locationWithActionIsSamePage(location2, action);
+    }
+    visitScrolledToSamePageLocation(oldURL, newURL) {
+      this.notifyApplicationAfterVisitingSamePageLocation(oldURL, newURL);
+    }
+    // Form submit observer delegate
+    willSubmitForm(form, submitter) {
+      const action = getAction$1(form, submitter);
+      return this.submissionIsNavigatable(form, submitter) && locationIsVisitable(expandURL(action), this.snapshot.rootLocation);
+    }
+    formSubmitted(form, submitter) {
+      this.navigator.submitForm(form, submitter);
+    }
+    // Page observer delegate
+    pageBecameInteractive() {
+      this.view.lastRenderedLocation = this.location;
+      this.notifyApplicationAfterPageLoad();
+    }
+    pageLoaded() {
+      this.history.assumeControlOfScrollRestoration();
+    }
+    pageWillUnload() {
+      this.history.relinquishControlOfScrollRestoration();
+    }
+    // Stream observer delegate
+    receivedMessageFromStream(message) {
+      this.renderStreamMessage(message);
+    }
+    // Page view delegate
+    viewWillCacheSnapshot() {
+      if (!this.navigator.currentVisit?.silent) {
+        this.notifyApplicationBeforeCachingSnapshot();
+      }
+    }
+    allowsImmediateRender({ element }, options) {
+      const event = this.notifyApplicationBeforeRender(element, options);
+      const {
+        defaultPrevented,
+        detail: { render }
+      } = event;
+      if (this.view.renderer && render) {
+        this.view.renderer.renderElement = render;
+      }
+      return !defaultPrevented;
+    }
+    viewRenderedSnapshot(_snapshot, _isPreview, renderMethod) {
+      this.view.lastRenderedLocation = this.history.location;
+      this.notifyApplicationAfterRender(renderMethod);
+    }
+    preloadOnLoadLinksForView(element) {
+      this.preloader.preloadOnLoadLinksForView(element);
+    }
+    viewInvalidated(reason) {
+      this.adapter.pageInvalidated(reason);
+    }
+    // Frame element
+    frameLoaded(frame) {
+      this.notifyApplicationAfterFrameLoad(frame);
+    }
+    frameRendered(fetchResponse, frame) {
+      this.notifyApplicationAfterFrameRender(fetchResponse, frame);
+    }
+    // Application events
+    applicationAllowsFollowingLinkToLocation(link, location2, ev) {
+      const event = this.notifyApplicationAfterClickingLinkToLocation(link, location2, ev);
+      return !event.defaultPrevented;
+    }
+    applicationAllowsVisitingLocation(location2) {
+      const event = this.notifyApplicationBeforeVisitingLocation(location2);
+      return !event.defaultPrevented;
+    }
+    notifyApplicationAfterClickingLinkToLocation(link, location2, event) {
+      return dispatch("turbo:click", {
+        target: link,
+        detail: { url: location2.href, originalEvent: event },
+        cancelable: true
+      });
+    }
+    notifyApplicationBeforeVisitingLocation(location2) {
+      return dispatch("turbo:before-visit", {
+        detail: { url: location2.href },
+        cancelable: true
+      });
+    }
+    notifyApplicationAfterVisitingLocation(location2, action) {
+      return dispatch("turbo:visit", { detail: { url: location2.href, action } });
+    }
+    notifyApplicationBeforeCachingSnapshot() {
+      return dispatch("turbo:before-cache");
+    }
+    notifyApplicationBeforeRender(newBody, options) {
+      return dispatch("turbo:before-render", {
+        detail: { newBody, ...options },
+        cancelable: true
+      });
+    }
+    notifyApplicationAfterRender(renderMethod) {
+      return dispatch("turbo:render", { detail: { renderMethod } });
+    }
+    notifyApplicationAfterPageLoad(timing = {}) {
+      return dispatch("turbo:load", {
+        detail: { url: this.location.href, timing }
+      });
+    }
+    notifyApplicationAfterVisitingSamePageLocation(oldURL, newURL) {
+      dispatchEvent(
+        new HashChangeEvent("hashchange", {
+          oldURL: oldURL.toString(),
+          newURL: newURL.toString()
+        })
+      );
+    }
+    notifyApplicationAfterFrameLoad(frame) {
+      return dispatch("turbo:frame-load", { target: frame });
+    }
+    notifyApplicationAfterFrameRender(fetchResponse, frame) {
+      return dispatch("turbo:frame-render", {
+        detail: { fetchResponse },
+        target: frame,
+        cancelable: true
+      });
+    }
+    // Helpers
+    submissionIsNavigatable(form, submitter) {
+      if (this.formMode == "off") {
+        return false;
+      } else {
+        const submitterIsNavigatable = submitter ? this.elementIsNavigatable(submitter) : true;
+        if (this.formMode == "optin") {
+          return submitterIsNavigatable && form.closest('[data-turbo="true"]') != null;
+        } else {
+          return submitterIsNavigatable && this.elementIsNavigatable(form);
+        }
+      }
+    }
+    elementIsNavigatable(element) {
+      const container = findClosestRecursively(element, "[data-turbo]");
+      const withinFrame = findClosestRecursively(element, "turbo-frame");
+      if (this.drive || withinFrame) {
+        if (container) {
+          return container.getAttribute("data-turbo") != "false";
+        } else {
+          return true;
+        }
+      } else {
+        if (container) {
+          return container.getAttribute("data-turbo") == "true";
+        } else {
+          return false;
+        }
+      }
+    }
+    // Private
+    getActionForLink(link) {
+      return getVisitAction(link) || "advance";
+    }
+    get snapshot() {
+      return this.view.snapshot;
+    }
+  };
+  function extendURLWithDeprecatedProperties(url) {
+    Object.defineProperties(url, deprecatedLocationPropertyDescriptors);
+  }
+  var deprecatedLocationPropertyDescriptors = {
+    absoluteURL: {
+      get() {
+        return this.toString();
+      }
+    }
+  };
+  var session = new Session(recentRequests);
+  var { cache, navigator: navigator$1 } = session;
+  function start() {
+    session.start();
+  }
+  function registerAdapter(adapter) {
+    session.registerAdapter(adapter);
+  }
+  function visit(location2, options) {
+    session.visit(location2, options);
+  }
+  function connectStreamSource(source) {
+    session.connectStreamSource(source);
+  }
+  function disconnectStreamSource(source) {
+    session.disconnectStreamSource(source);
+  }
+  function renderStreamMessage(message) {
+    session.renderStreamMessage(message);
+  }
+  function clearCache() {
+    console.warn(
+      "Please replace `Turbo.clearCache()` with `Turbo.cache.clear()`. The top-level function is deprecated and will be removed in a future version of Turbo.`"
+    );
+    session.clearCache();
+  }
+  function setProgressBarDelay(delay) {
+    session.setProgressBarDelay(delay);
+  }
+  function setConfirmMethod(confirmMethod) {
+    FormSubmission.confirmMethod = confirmMethod;
+  }
+  function setFormMode(mode) {
+    session.setFormMode(mode);
+  }
+  var Turbo2 = /* @__PURE__ */ Object.freeze({
+    __proto__: null,
+    navigator: navigator$1,
+    session,
+    cache,
+    PageRenderer,
+    PageSnapshot,
+    FrameRenderer,
+    fetch: fetchWithTurboHeaders,
+    start,
+    registerAdapter,
+    visit,
+    connectStreamSource,
+    disconnectStreamSource,
+    renderStreamMessage,
+    clearCache,
+    setProgressBarDelay,
+    setConfirmMethod,
+    setFormMode
+  });
+  var TurboFrameMissingError = class extends Error {
+  };
+  var FrameController = class {
+    fetchResponseLoaded = (_fetchResponse) => Promise.resolve();
+    #currentFetchRequest = null;
+    #resolveVisitPromise = () => {
+    };
+    #connected = false;
+    #hasBeenLoaded = false;
+    #ignoredAttributes = /* @__PURE__ */ new Set();
+    action = null;
+    constructor(element) {
+      this.element = element;
+      this.view = new FrameView(this, this.element);
+      this.appearanceObserver = new AppearanceObserver(this, this.element);
+      this.formLinkClickObserver = new FormLinkClickObserver(this, this.element);
+      this.linkInterceptor = new LinkInterceptor(this, this.element);
+      this.restorationIdentifier = uuid();
+      this.formSubmitObserver = new FormSubmitObserver(this, this.element);
+    }
+    // Frame delegate
+    connect() {
+      if (!this.#connected) {
+        this.#connected = true;
+        if (this.loadingStyle == FrameLoadingStyle.lazy) {
+          this.appearanceObserver.start();
+        } else {
+          this.#loadSourceURL();
+        }
+        this.formLinkClickObserver.start();
+        this.linkInterceptor.start();
+        this.formSubmitObserver.start();
+      }
+    }
+    disconnect() {
+      if (this.#connected) {
+        this.#connected = false;
+        this.appearanceObserver.stop();
+        this.formLinkClickObserver.stop();
+        this.linkInterceptor.stop();
+        this.formSubmitObserver.stop();
+      }
+    }
+    disabledChanged() {
+      if (this.loadingStyle == FrameLoadingStyle.eager) {
+        this.#loadSourceURL();
+      }
+    }
+    sourceURLChanged() {
+      if (this.#isIgnoringChangesTo("src"))
+        return;
+      if (this.element.isConnected) {
+        this.complete = false;
+      }
+      if (this.loadingStyle == FrameLoadingStyle.eager || this.#hasBeenLoaded) {
+        this.#loadSourceURL();
+      }
+    }
+    sourceURLReloaded() {
+      const { src } = this.element;
+      this.#ignoringChangesToAttribute("complete", () => {
+        this.element.removeAttribute("complete");
+      });
+      this.element.src = null;
+      this.element.src = src;
+      return this.element.loaded;
+    }
+    completeChanged() {
+      if (this.#isIgnoringChangesTo("complete"))
+        return;
+      this.#loadSourceURL();
+    }
+    loadingStyleChanged() {
+      if (this.loadingStyle == FrameLoadingStyle.lazy) {
+        this.appearanceObserver.start();
+      } else {
+        this.appearanceObserver.stop();
+        this.#loadSourceURL();
+      }
+    }
+    async #loadSourceURL() {
+      if (this.enabled && this.isActive && !this.complete && this.sourceURL) {
+        this.element.loaded = this.#visit(expandURL(this.sourceURL));
+        this.appearanceObserver.stop();
+        await this.element.loaded;
+        this.#hasBeenLoaded = true;
+      }
+    }
+    async loadResponse(fetchResponse) {
+      if (fetchResponse.redirected || fetchResponse.succeeded && fetchResponse.isHTML) {
+        this.sourceURL = fetchResponse.response.url;
+      }
+      try {
+        const html = await fetchResponse.responseHTML;
+        if (html) {
+          const document2 = parseHTMLDocument(html);
+          const pageSnapshot = PageSnapshot.fromDocument(document2);
+          if (pageSnapshot.isVisitable) {
+            await this.#loadFrameResponse(fetchResponse, document2);
+          } else {
+            await this.#handleUnvisitableFrameResponse(fetchResponse);
+          }
+        }
+      } finally {
+        this.fetchResponseLoaded = () => Promise.resolve();
+      }
+    }
+    // Appearance observer delegate
+    elementAppearedInViewport(element) {
+      this.proposeVisitIfNavigatedWithAction(element, getVisitAction(element));
+      this.#loadSourceURL();
+    }
+    // Form link click observer delegate
+    willSubmitFormLinkToLocation(link) {
+      return this.#shouldInterceptNavigation(link);
+    }
+    submittedFormLinkToLocation(link, _location, form) {
+      const frame = this.#findFrameElement(link);
+      if (frame)
+        form.setAttribute("data-turbo-frame", frame.id);
+    }
+    // Link interceptor delegate
+    shouldInterceptLinkClick(element, _location, _event) {
+      return this.#shouldInterceptNavigation(element);
+    }
+    linkClickIntercepted(element, location2) {
+      this.#navigateFrame(element, location2);
+    }
+    // Form submit observer delegate
+    willSubmitForm(element, submitter) {
+      return element.closest("turbo-frame") == this.element && this.#shouldInterceptNavigation(element, submitter);
+    }
+    formSubmitted(element, submitter) {
+      if (this.formSubmission) {
+        this.formSubmission.stop();
+      }
+      this.formSubmission = new FormSubmission(this, element, submitter);
+      const { fetchRequest } = this.formSubmission;
+      this.prepareRequest(fetchRequest);
+      this.formSubmission.start();
+    }
+    // Fetch request delegate
+    prepareRequest(request) {
+      request.headers["Turbo-Frame"] = this.id;
+      if (this.currentNavigationElement?.hasAttribute("data-turbo-stream")) {
+        request.acceptResponseType(StreamMessage.contentType);
+      }
+    }
+    requestStarted(_request) {
+      markAsBusy(this.element);
+    }
+    requestPreventedHandlingResponse(_request, _response) {
+      this.#resolveVisitPromise();
+    }
+    async requestSucceededWithResponse(request, response) {
+      await this.loadResponse(response);
+      this.#resolveVisitPromise();
+    }
+    async requestFailedWithResponse(request, response) {
+      await this.loadResponse(response);
+      this.#resolveVisitPromise();
+    }
+    requestErrored(request, error2) {
+      console.error(error2);
+      this.#resolveVisitPromise();
+    }
+    requestFinished(_request) {
+      clearBusyState(this.element);
+    }
+    // Form submission delegate
+    formSubmissionStarted({ formElement }) {
+      markAsBusy(formElement, this.#findFrameElement(formElement));
+    }
+    formSubmissionSucceededWithResponse(formSubmission, response) {
+      const frame = this.#findFrameElement(formSubmission.formElement, formSubmission.submitter);
+      frame.delegate.proposeVisitIfNavigatedWithAction(frame, getVisitAction(formSubmission.submitter, formSubmission.formElement, frame));
+      frame.delegate.loadResponse(response);
+      if (!formSubmission.isSafe) {
+        session.clearCache();
+      }
+    }
+    formSubmissionFailedWithResponse(formSubmission, fetchResponse) {
+      this.element.delegate.loadResponse(fetchResponse);
+      session.clearCache();
+    }
+    formSubmissionErrored(formSubmission, error2) {
+      console.error(error2);
+    }
+    formSubmissionFinished({ formElement }) {
+      clearBusyState(formElement, this.#findFrameElement(formElement));
+    }
+    // View delegate
+    allowsImmediateRender({ element: newFrame }, options) {
+      const event = dispatch("turbo:before-frame-render", {
+        target: this.element,
+        detail: { newFrame, ...options },
+        cancelable: true
+      });
+      const {
+        defaultPrevented,
+        detail: { render }
+      } = event;
+      if (this.view.renderer && render) {
+        this.view.renderer.renderElement = render;
+      }
+      return !defaultPrevented;
+    }
+    viewRenderedSnapshot(_snapshot, _isPreview, _renderMethod) {
+    }
+    preloadOnLoadLinksForView(element) {
+      session.preloadOnLoadLinksForView(element);
+    }
+    viewInvalidated() {
+    }
+    // Frame renderer delegate
+    willRenderFrame(currentElement, _newElement) {
+      this.previousFrameElement = currentElement.cloneNode(true);
+    }
+    visitCachedSnapshot = ({ element }) => {
+      const frame = element.querySelector("#" + this.element.id);
+      if (frame && this.previousFrameElement) {
+        frame.replaceChildren(...this.previousFrameElement.children);
+      }
+      delete this.previousFrameElement;
+    };
+    // Private
+    async #loadFrameResponse(fetchResponse, document2) {
+      const newFrameElement = await this.extractForeignFrameElement(document2.body);
+      if (newFrameElement) {
+        const snapshot = new Snapshot(newFrameElement);
+        const renderer = new FrameRenderer(this, this.view.snapshot, snapshot, FrameRenderer.renderElement, false, false);
+        if (this.view.renderPromise)
+          await this.view.renderPromise;
+        this.changeHistory();
+        await this.view.render(renderer);
+        this.complete = true;
+        session.frameRendered(fetchResponse, this.element);
+        session.frameLoaded(this.element);
+        await this.fetchResponseLoaded(fetchResponse);
+      } else if (this.#willHandleFrameMissingFromResponse(fetchResponse)) {
+        this.#handleFrameMissingFromResponse(fetchResponse);
+      }
+    }
+    async #visit(url) {
+      const request = new FetchRequest(this, FetchMethod.get, url, new URLSearchParams(), this.element);
+      this.#currentFetchRequest?.cancel();
+      this.#currentFetchRequest = request;
+      return new Promise((resolve) => {
+        this.#resolveVisitPromise = () => {
+          this.#resolveVisitPromise = () => {
+          };
+          this.#currentFetchRequest = null;
+          resolve();
+        };
+        request.perform();
+      });
+    }
+    #navigateFrame(element, url, submitter) {
+      const frame = this.#findFrameElement(element, submitter);
+      frame.delegate.proposeVisitIfNavigatedWithAction(frame, getVisitAction(submitter, element, frame));
+      this.#withCurrentNavigationElement(element, () => {
+        frame.src = url;
+      });
+    }
+    proposeVisitIfNavigatedWithAction(frame, action = null) {
+      this.action = action;
+      if (this.action) {
+        const pageSnapshot = PageSnapshot.fromElement(frame).clone();
+        const { visitCachedSnapshot } = frame.delegate;
+        frame.delegate.fetchResponseLoaded = async (fetchResponse) => {
+          if (frame.src) {
+            const { statusCode, redirected } = fetchResponse;
+            const responseHTML = await fetchResponse.responseHTML;
+            const response = { statusCode, redirected, responseHTML };
+            const options = {
+              response,
+              visitCachedSnapshot,
+              willRender: false,
+              updateHistory: false,
+              restorationIdentifier: this.restorationIdentifier,
+              snapshot: pageSnapshot
+            };
+            if (this.action)
+              options.action = this.action;
+            session.visit(frame.src, options);
+          }
+        };
+      }
+    }
+    changeHistory() {
+      if (this.action) {
+        const method = getHistoryMethodForAction(this.action);
+        session.history.update(method, expandURL(this.element.src || ""), this.restorationIdentifier);
+      }
+    }
+    async #handleUnvisitableFrameResponse(fetchResponse) {
+      console.warn(
+        `The response (${fetchResponse.statusCode}) from <turbo-frame id="${this.element.id}"> is performing a full page visit due to turbo-visit-control.`
+      );
+      await this.#visitResponse(fetchResponse.response);
+    }
+    #willHandleFrameMissingFromResponse(fetchResponse) {
+      this.element.setAttribute("complete", "");
+      const response = fetchResponse.response;
+      const visit2 = async (url, options) => {
+        if (url instanceof Response) {
+          this.#visitResponse(url);
+        } else {
+          session.visit(url, options);
+        }
+      };
+      const event = dispatch("turbo:frame-missing", {
+        target: this.element,
+        detail: { response, visit: visit2 },
+        cancelable: true
+      });
+      return !event.defaultPrevented;
+    }
+    #handleFrameMissingFromResponse(fetchResponse) {
+      this.view.missing();
+      this.#throwFrameMissingError(fetchResponse);
+    }
+    #throwFrameMissingError(fetchResponse) {
+      const message = `The response (${fetchResponse.statusCode}) did not contain the expected <turbo-frame id="${this.element.id}"> and will be ignored. To perform a full page visit instead, set turbo-visit-control to reload.`;
+      throw new TurboFrameMissingError(message);
+    }
+    async #visitResponse(response) {
+      const wrapped = new FetchResponse(response);
+      const responseHTML = await wrapped.responseHTML;
+      const { location: location2, redirected, statusCode } = wrapped;
+      return session.visit(location2, { response: { redirected, statusCode, responseHTML } });
+    }
+    #findFrameElement(element, submitter) {
+      const id = getAttribute("data-turbo-frame", submitter, element) || this.element.getAttribute("target");
+      return getFrameElementById(id) ?? this.element;
+    }
+    async extractForeignFrameElement(container) {
+      let element;
+      const id = CSS.escape(this.id);
+      try {
+        element = activateElement(container.querySelector(`turbo-frame#${id}`), this.sourceURL);
+        if (element) {
+          return element;
+        }
+        element = activateElement(container.querySelector(`turbo-frame[src][recurse~=${id}]`), this.sourceURL);
+        if (element) {
+          await element.loaded;
+          return await this.extractForeignFrameElement(element);
+        }
+      } catch (error2) {
+        console.error(error2);
+        return new FrameElement();
+      }
+      return null;
+    }
+    #formActionIsVisitable(form, submitter) {
+      const action = getAction$1(form, submitter);
+      return locationIsVisitable(expandURL(action), this.rootLocation);
+    }
+    #shouldInterceptNavigation(element, submitter) {
+      const id = getAttribute("data-turbo-frame", submitter, element) || this.element.getAttribute("target");
+      if (element instanceof HTMLFormElement && !this.#formActionIsVisitable(element, submitter)) {
+        return false;
+      }
+      if (!this.enabled || id == "_top") {
+        return false;
+      }
+      if (id) {
+        const frameElement = getFrameElementById(id);
+        if (frameElement) {
+          return !frameElement.disabled;
+        }
+      }
+      if (!session.elementIsNavigatable(element)) {
+        return false;
+      }
+      if (submitter && !session.elementIsNavigatable(submitter)) {
+        return false;
+      }
+      return true;
+    }
+    // Computed properties
+    get id() {
+      return this.element.id;
+    }
+    get enabled() {
+      return !this.element.disabled;
+    }
+    get sourceURL() {
+      if (this.element.src) {
+        return this.element.src;
+      }
+    }
+    set sourceURL(sourceURL) {
+      this.#ignoringChangesToAttribute("src", () => {
+        this.element.src = sourceURL ?? null;
+      });
+    }
+    get loadingStyle() {
+      return this.element.loading;
+    }
+    get isLoading() {
+      return this.formSubmission !== void 0 || this.#resolveVisitPromise() !== void 0;
+    }
+    get complete() {
+      return this.element.hasAttribute("complete");
+    }
+    set complete(value) {
+      this.#ignoringChangesToAttribute("complete", () => {
+        if (value) {
+          this.element.setAttribute("complete", "");
+        } else {
+          this.element.removeAttribute("complete");
+        }
+      });
+    }
+    get isActive() {
+      return this.element.isActive && this.#connected;
+    }
+    get rootLocation() {
+      const meta = this.element.ownerDocument.querySelector(`meta[name="turbo-root"]`);
+      const root = meta?.content ?? "/";
+      return expandURL(root);
+    }
+    #isIgnoringChangesTo(attributeName) {
+      return this.#ignoredAttributes.has(attributeName);
+    }
+    #ignoringChangesToAttribute(attributeName, callback) {
+      this.#ignoredAttributes.add(attributeName);
+      callback();
+      this.#ignoredAttributes.delete(attributeName);
+    }
+    #withCurrentNavigationElement(element, callback) {
+      this.currentNavigationElement = element;
+      callback();
+      delete this.currentNavigationElement;
+    }
+  };
+  function getFrameElementById(id) {
+    if (id != null) {
+      const element = document.getElementById(id);
+      if (element instanceof FrameElement) {
+        return element;
+      }
+    }
+  }
+  function activateElement(element, currentURL) {
+    if (element) {
+      const src = element.getAttribute("src");
+      if (src != null && currentURL != null && urlsAreEqual(src, currentURL)) {
+        throw new Error(`Matching <turbo-frame id="${element.id}"> element has a source URL which references itself`);
+      }
+      if (element.ownerDocument !== document) {
+        element = document.importNode(element, true);
+      }
+      if (element instanceof FrameElement) {
+        element.connectedCallback();
+        element.disconnectedCallback();
+        return element;
+      }
+    }
+  }
+  var StreamActions = {
+    after() {
+      this.targetElements.forEach((e) => e.parentElement?.insertBefore(this.templateContent, e.nextSibling));
+    },
+    append() {
+      this.removeDuplicateTargetChildren();
+      this.targetElements.forEach((e) => e.append(this.templateContent));
+    },
+    before() {
+      this.targetElements.forEach((e) => e.parentElement?.insertBefore(this.templateContent, e));
+    },
+    prepend() {
+      this.removeDuplicateTargetChildren();
+      this.targetElements.forEach((e) => e.prepend(this.templateContent));
+    },
+    remove() {
+      this.targetElements.forEach((e) => e.remove());
+    },
+    replace() {
+      this.targetElements.forEach((e) => e.replaceWith(this.templateContent));
+    },
+    update() {
+      this.targetElements.forEach((targetElement) => {
+        targetElement.innerHTML = "";
+        targetElement.append(this.templateContent);
+      });
+    },
+    refresh() {
+      session.refresh(this.baseURI, this.requestId);
+    }
+  };
+  var StreamElement = class _StreamElement extends HTMLElement {
+    static async renderElement(newElement) {
+      await newElement.performAction();
+    }
+    async connectedCallback() {
+      try {
+        await this.render();
+      } catch (error2) {
+        console.error(error2);
+      } finally {
+        this.disconnect();
+      }
+    }
+    async render() {
+      return this.renderPromise ??= (async () => {
+        const event = this.beforeRenderEvent;
+        if (this.dispatchEvent(event)) {
+          await nextRepaint();
+          await event.detail.render(this);
+        }
+      })();
+    }
+    disconnect() {
+      try {
+        this.remove();
+      } catch {
+      }
+    }
+    /**
+     * Removes duplicate children (by ID)
+     */
+    removeDuplicateTargetChildren() {
+      this.duplicateChildren.forEach((c) => c.remove());
+    }
+    /**
+     * Gets the list of duplicate children (i.e. those with the same ID)
+     */
+    get duplicateChildren() {
+      const existingChildren = this.targetElements.flatMap((e) => [...e.children]).filter((c) => !!c.id);
+      const newChildrenIds = [...this.templateContent?.children || []].filter((c) => !!c.id).map((c) => c.id);
+      return existingChildren.filter((c) => newChildrenIds.includes(c.id));
+    }
+    /**
+     * Gets the action function to be performed.
+     */
+    get performAction() {
+      if (this.action) {
+        const actionFunction = StreamActions[this.action];
+        if (actionFunction) {
+          return actionFunction;
+        }
+        this.#raise("unknown action");
+      }
+      this.#raise("action attribute is missing");
+    }
+    /**
+     * Gets the target elements which the template will be rendered to.
+     */
+    get targetElements() {
+      if (this.target) {
+        return this.targetElementsById;
+      } else if (this.targets) {
+        return this.targetElementsByQuery;
+      } else {
+        this.#raise("target or targets attribute is missing");
+      }
+    }
+    /**
+     * Gets the contents of the main `<template>`.
+     */
+    get templateContent() {
+      return this.templateElement.content.cloneNode(true);
+    }
+    /**
+     * Gets the main `<template>` used for rendering
+     */
+    get templateElement() {
+      if (this.firstElementChild === null) {
+        const template = this.ownerDocument.createElement("template");
+        this.appendChild(template);
+        return template;
+      } else if (this.firstElementChild instanceof HTMLTemplateElement) {
+        return this.firstElementChild;
+      }
+      this.#raise("first child element must be a <template> element");
+    }
+    /**
+     * Gets the current action.
+     */
+    get action() {
+      return this.getAttribute("action");
+    }
+    /**
+     * Gets the current target (an element ID) to which the result will
+     * be rendered.
+     */
+    get target() {
+      return this.getAttribute("target");
+    }
+    /**
+     * Gets the current "targets" selector (a CSS selector)
+     */
+    get targets() {
+      return this.getAttribute("targets");
+    }
+    /**
+     * Reads the request-id attribute
+     */
+    get requestId() {
+      return this.getAttribute("request-id");
+    }
+    #raise(message) {
+      throw new Error(`${this.description}: ${message}`);
+    }
+    get description() {
+      return (this.outerHTML.match(/<[^>]+>/) ?? [])[0] ?? "<turbo-stream>";
+    }
+    get beforeRenderEvent() {
+      return new CustomEvent("turbo:before-stream-render", {
+        bubbles: true,
+        cancelable: true,
+        detail: { newStream: this, render: _StreamElement.renderElement }
+      });
+    }
+    get targetElementsById() {
+      const element = this.ownerDocument?.getElementById(this.target);
+      if (element !== null) {
+        return [element];
+      } else {
+        return [];
+      }
+    }
+    get targetElementsByQuery() {
+      const elements = this.ownerDocument?.querySelectorAll(this.targets);
+      if (elements.length !== 0) {
+        return Array.prototype.slice.call(elements);
+      } else {
+        return [];
+      }
+    }
+  };
+  var StreamSourceElement = class extends HTMLElement {
+    streamSource = null;
+    connectedCallback() {
+      this.streamSource = this.src.match(/^ws{1,2}:/) ? new WebSocket(this.src) : new EventSource(this.src);
+      connectStreamSource(this.streamSource);
+    }
+    disconnectedCallback() {
+      if (this.streamSource) {
+        this.streamSource.close();
+        disconnectStreamSource(this.streamSource);
+      }
+    }
+    get src() {
+      return this.getAttribute("src") || "";
+    }
+  };
+  FrameElement.delegateConstructor = FrameController;
+  if (customElements.get("turbo-frame") === void 0) {
+    customElements.define("turbo-frame", FrameElement);
+  }
+  if (customElements.get("turbo-stream") === void 0) {
+    customElements.define("turbo-stream", StreamElement);
+  }
+  if (customElements.get("turbo-stream-source") === void 0) {
+    customElements.define("turbo-stream-source", StreamSourceElement);
+  }
+  (() => {
+    let element = document.currentScript;
+    if (!element)
+      return;
+    if (element.hasAttribute("data-turbo-suppress-warning"))
+      return;
+    element = element.parentElement;
+    while (element) {
+      if (element == document.body) {
+        return console.warn(
+          unindent`
+        You are loading Turbo from a <script> element inside the <body> element. This is probably not what you meant to do!
+
+        Load your application’s JavaScript bundle inside the <head> element instead. <script> elements in <body> are evaluated with each page change.
+
+        For more information, see: https://turbo.hotwired.dev/handbook/building#working-with-script-elements
+
+        ——
+        Suppress this warning by adding a "data-turbo-suppress-warning" attribute to: %s
+      `,
+          element.outerHTML
+        );
+      }
+      element = element.parentElement;
+    }
+  })();
+  window.Turbo = { ...Turbo2, StreamActions };
+  start();
+
+  // node_modules/@hotwired/turbo-rails/app/javascript/turbo/cable.js
+  var consumer;
+  async function getConsumer() {
+    return consumer || setConsumer(createConsumer2().then(setConsumer));
+  }
+  function setConsumer(newConsumer) {
+    return consumer = newConsumer;
+  }
+  async function createConsumer2() {
+    const { createConsumer: createConsumer3 } = await Promise.resolve().then(() => (init_src(), src_exports));
+    return createConsumer3();
+  }
+  async function subscribeTo(channel, mixin) {
+    const { subscriptions } = await getConsumer();
+    return subscriptions.create(channel, mixin);
+  }
+
+  // node_modules/@hotwired/turbo-rails/app/javascript/turbo/snakeize.js
+  function walk(obj) {
+    if (!obj || typeof obj !== "object")
+      return obj;
+    if (obj instanceof Date || obj instanceof RegExp)
+      return obj;
+    if (Array.isArray(obj))
+      return obj.map(walk);
+    return Object.keys(obj).reduce(function(acc, key) {
+      var camel = key[0].toLowerCase() + key.slice(1).replace(/([A-Z]+)/g, function(m, x) {
+        return "_" + x.toLowerCase();
+      });
+      acc[camel] = walk(obj[key]);
+      return acc;
+    }, {});
+  }
+
+  // node_modules/@hotwired/turbo-rails/app/javascript/turbo/cable_stream_source_element.js
+  var TurboCableStreamSourceElement = class extends HTMLElement {
+    async connectedCallback() {
+      connectStreamSource(this);
+      this.subscription = await subscribeTo(this.channel, {
+        received: this.dispatchMessageEvent.bind(this),
+        connected: this.subscriptionConnected.bind(this),
+        disconnected: this.subscriptionDisconnected.bind(this)
+      });
+    }
+    disconnectedCallback() {
+      disconnectStreamSource(this);
+      if (this.subscription)
+        this.subscription.unsubscribe();
+    }
+    dispatchMessageEvent(data) {
+      const event = new MessageEvent("message", { data });
+      return this.dispatchEvent(event);
+    }
+    subscriptionConnected() {
+      this.setAttribute("connected", "");
+    }
+    subscriptionDisconnected() {
+      this.removeAttribute("connected");
+    }
+    get channel() {
+      const channel = this.getAttribute("channel");
+      const signed_stream_name = this.getAttribute("signed-stream-name");
+      return { channel, signed_stream_name, ...walk({ ...this.dataset }) };
+    }
+  };
+  if (customElements.get("turbo-cable-stream-source") === void 0) {
+    customElements.define("turbo-cable-stream-source", TurboCableStreamSourceElement);
+  }
+
+  // node_modules/@hotwired/turbo-rails/app/javascript/turbo/fetch_requests.js
+  function encodeMethodIntoRequestBody(event) {
+    if (event.target instanceof HTMLFormElement) {
+      const { target: form, detail: { fetchOptions } } = event;
+      form.addEventListener("turbo:submit-start", ({ detail: { formSubmission: { submitter } } }) => {
+        const body = isBodyInit(fetchOptions.body) ? fetchOptions.body : new URLSearchParams();
+        const method = determineFetchMethod(submitter, body, form);
+        if (!/get/i.test(method)) {
+          if (/post/i.test(method)) {
+            body.delete("_method");
+          } else {
+            body.set("_method", method);
+          }
+          fetchOptions.method = "post";
+        }
+      }, { once: true });
+    }
+  }
+  function determineFetchMethod(submitter, body, form) {
+    const formMethod = determineFormMethod(submitter);
+    const overrideMethod = body.get("_method");
+    const method = form.getAttribute("method") || "get";
+    if (typeof formMethod == "string") {
+      return formMethod;
+    } else if (typeof overrideMethod == "string") {
+      return overrideMethod;
+    } else {
+      return method;
+    }
+  }
+  function determineFormMethod(submitter) {
+    if (submitter instanceof HTMLButtonElement || submitter instanceof HTMLInputElement) {
+      if (submitter.name === "_method") {
+        return submitter.value;
+      } else if (submitter.hasAttribute("formmethod")) {
+        return submitter.formMethod;
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+  function isBodyInit(body) {
+    return body instanceof FormData || body instanceof URLSearchParams;
+  }
+
+  // node_modules/@hotwired/turbo-rails/app/javascript/turbo/index.js
+  window.Turbo = turbo_es2017_esm_exports;
+  addEventListener("turbo:before-fetch-request", encodeMethodIntoRequestBody);
+
   // app/assets/javascripts/administrate/application.js
-  var import_jquery_ujs = __toESM(require_rails());
   var import_selectize_min = __toESM(require_selectize_min());
 
   // node_modules/@hotwired/stimulus/dist/stimulus.js
@@ -9540,7 +14945,7 @@
     return shadow(constructor, getBlessedProperties(constructor));
   }
   function shadow(constructor, properties) {
-    const shadowConstructor = extend(constructor);
+    const shadowConstructor = extend2(constructor);
     const shadowProperties = getShadowProperties(constructor.prototype, properties);
     Object.defineProperties(shadowConstructor.prototype, shadowProperties);
     return shadowConstructor;
@@ -9584,7 +14989,7 @@
       return Object.getOwnPropertyNames;
     }
   })();
-  var extend = (() => {
+  var extend2 = (() => {
     function extendWithReflect(constructor) {
       function extended() {
         return Reflect.construct(constructor, arguments, new.target);
@@ -10532,7 +15937,7 @@
         var dataUrl = (0, import_jquery3.default)(event.target).closest("tr").data("url");
         var selection = window.getSelection().toString();
         if (selection.length === 0 && dataUrl) {
-          window.location = window.location.protocol + "//" + window.location.host + dataUrl;
+          Turbo.visit(dataUrl);
         }
       }
     }
@@ -10558,5 +15963,11 @@ jquery/dist/jquery.js:
 
 selectize/dist/js/selectize.min.js:
   (*! selectize.js - v0.12.6 | https://github.com/selectize/selectize.js | Apache License (v2) *)
+
+@hotwired/turbo/dist/turbo.es2017-esm.js:
+  (*!
+  Turbo 8.0.2
+  Copyright © 2024 37signals LLC
+   *)
 */
 //# sourceMappingURL=/assets/administrate/application.js.map
