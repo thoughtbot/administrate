@@ -1,4 +1,4 @@
-require "jquery-rails"
+require "importmap-rails"
 require "kaminari"
 require "sassc-rails"
 require "selectize-rails"
@@ -22,9 +22,12 @@ module Administrate
     @@javascripts = []
     @@stylesheets = []
 
+    initializer "administrate.importmap" do |app|
+      app.importmap.draw root.join("config/importmap.rb")
+    end
+
     initializer "administrate.assets.precompile" do |app|
       app.config.assets.precompile += [
-        "administrate/application.js",
         "administrate/application.css",
       ]
     end
@@ -45,7 +48,6 @@ module Administrate
       @@javascripts
     end
 
-    add_javascript "administrate/application"
     add_stylesheet "administrate/application"
   end
 end

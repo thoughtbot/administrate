@@ -154,7 +154,7 @@ feature "Search" do
   end
 
   def submit_search
-    page.execute_script("$('.search').submit()")
+    page.execute_script("document.querySelector('.search').submit()")
   end
 
   def order_row_match(order)
