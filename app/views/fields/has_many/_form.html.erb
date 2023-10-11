@@ -23,7 +23,7 @@ and is augmented with [Selectize].
   <%= f.label field.attribute, for: "#{f.object_name}_#{field.attribute_key}" %>
 </div>
 <div class="field-unit__field">
-  <%= f.select(field.attribute_key, nil, {}, multiple: true) do %>
+  <%= f.select(field.attribute_key, nil, {}, multiple: true, data: {controller: field.html_controller}) do %>
     <%= options_for_select(field.associated_resource_options, field.selected_options) %>
   <% end %>
 </div>

@@ -26,7 +26,8 @@ to be displayed on a resource's edit form page.
         field.selectable_options,
         field.data,
       ),
-      include_blank: field.include_blank_option
+      {include_blank: field.include_blank_option},
+      data: {controller: field.html_controller}
     )
   %>
 </div>

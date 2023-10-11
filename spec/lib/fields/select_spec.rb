@@ -2,6 +2,23 @@ require "rails_helper"
 require "administrate/field/select"
 
 describe Administrate::Field::Select do
+  describe "#html_controller" do
+    it "returns select" do
+      customer = create(:customer)
+      field = described_class.new(
+        :email_subscriber,
+        "yes",
+        :_page_,
+        resource: customer,
+        collection: ["no", "yes", "absolutely"]
+      )
+
+      html_controller = field.html_controller
+
+      expect(html_controller).to eq("select")
+    end
+  end
+
   describe "#selectable_options" do
     it "works when :collection is an array" do
       customer = create(:customer)

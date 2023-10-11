@@ -22,7 +22,7 @@ This partial renders an input element for polymorphic relationships.
 
   <div class="field-unit__field">
     <%= pf.hidden_field(:type, value: field.class.name) %>
-    <%= pf.select(:value) do %>
+    <%= pf.select(:value, {}, data: {controller: field.html_controller}) do %>
       <%= grouped_options_for_select(field.associated_resource_grouped_options, field.selected_global_id, prompt: true) %>
     <% end %>
   </div>
