@@ -1,16 +1,20 @@
 ---
-version: 2.1
+version: "2.1"
 
 orbs:
-  browser-tools: circleci/browser-tools@1.4.1
+  browser-tools: circleci/browser-tools@1.4.3
 
 commands:
   shared_steps:
     steps:
       - checkout
 
-      - browser-tools/install-chrome
+      - browser-tools/install-chrome:
+          chrome-version: 114.0.5735.90
+          replace-existing: true
       - browser-tools/install-chromedriver
+
+      - run: google-chrome --version
 
       # Install bundler
       - run: gem install bundler:2.3.5

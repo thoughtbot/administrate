@@ -1,0 +1,38 @@
+#!/bin/sh
+
+set -e
+
+if ! command -v gh > /dev/null; then
+  echo "Please install the GitHub CLI: https://cli.github.com/"
+  exit 1
+fi
+
+last_release=$(git describe --tag --abbrev=0)
+
+template_changes=$(git diff --name-only "${last_release}" | grep html.erb)
+
+echo "The following templates have changed since ${last_release}:"
+echo
+echo "$template_changes" | while read -r line; do
+	if case $line in spec*) false;; esac; then
+		echo "  ${line}"
+  fi
+done
+echo
+echo "If your application overrides any of them, make sure to review your"
+echo "custom templates to ensure that they remain compatible."
+echo
+
+revision_range="${last_release}..origin/main"
+commit_format="--pretty=tformat:%h %s"
+commits_since=$(git log --author="^(?!dependabot).*$" --perl-regexp "${revision_range}" "${commit_format}")
+
+echo "$commits_since" | while read -r line; do
+	sha=$(echo "${line}" | awk '{print $1}')
+	commit_message=$(echo "${line}" | awk '{print substr($0, index($0, " ")+1)}')
+
+	pr_number=$(gh pr list --search "$sha" --state merged --json number --jq '.[].number')
+	trimmed_commit=$(echo "${commit_message}"| sed "s/(\#$pr_number)//g")
+
+	echo "* [] [#${pr_number}] ${trimmed_commit}"
+done

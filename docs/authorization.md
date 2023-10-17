@@ -28,20 +28,30 @@ technically have access to see in the main app. For example, a user may
 have all public records in their scope, but you want to only show *their*
 records in the admin interface to reduce confusion.
 
-In this case, you can add an additional `resolve_admin` to your policy's
-scope and Administrate will use this instead of the `resolve` method.
+In this case, you can add additional pundit `policy_namespace` in your controller
+and Administrate will use the namespaced pundit policy instead.
 
 For example:
 
 ```ruby
-class PostPolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
+# app/controllers/admin/posts_controller.rb
+module Admin
+  class PostsController < ApplicationController
+    include Administrate::Punditize
 
-    def resolve_admin
-      scope.where(owner: user)
+    def policy_namespace
+      [:admin]
+    end
+  end
+end
+
+# app/policies/admin/post_policy.rb
+module Admin
+  class PostPolicy < ApplicationPolicy
+    class Scope < Scope
+      def resolve
+        scope.where(owner: user)
+      end
     end
   end
 end
