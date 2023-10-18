@@ -113,6 +113,9 @@ association `belongs_to :country`, from your model.
 
 **Field::HasMany**
 
+`:collection_attributes` - Set the columns to display in the show view. 
+Default is COLLECTION_ATTRIBUTES in dashboard.
+
 `:limit` - The number of resources (paginated) to display in the show view. To disable pagination,
 set this to `0` or `false`. Default is `5`.
 
