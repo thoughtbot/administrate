@@ -158,7 +158,10 @@ describe Administrate::Order do
         order = Administrate::Order.new(
           double(to_sym: :user),
         )
-        relation = relation_with_association(:has_one)
+        relation = relation_with_association(
+          :has_one,
+          klass: double(table_name: "users"),
+        )
         allow(relation).to receive(:reorder).and_return(relation)
 
         ordered = order.apply(relation)
