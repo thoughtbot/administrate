@@ -75,7 +75,7 @@ module Administrate
         flash[:error] = requested_resource.errors.full_messages.join("<br/>")
       end
       redirect_back(
-        fallback_location: after_resource_destroyed_path(requested_resource)
+        fallback_location: after_resource_destroyed_path(requested_resource),
       )
     end
 
