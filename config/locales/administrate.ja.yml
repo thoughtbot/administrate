@@ -5,9 +5,9 @@ ja:
       confirm: 本当によろしいですか？
       destroy: 削除
       edit: 編集
-      edit_resource: 編集 %{name}
-      show_resource: 参照 %{name}
-      new_resource: 新規 %{name}
+      edit_resource: "%{name}を編集"
+      show_resource: "%{name}を参照"
+      new_resource: "%{name}を作成"
       back: 戻る
     controller:
       create:
@@ -22,9 +22,9 @@ ja:
         none: データがありません
     form:
       error: エラー
-      errors: "%{pluralized_errors}のため%{resource_name}を保存できません。"
+      errors: "%{pluralized_errors}のため%{resource_name}を保存できませんでした。"
     navigation:
       back_to_app: アプリに戻る
     search:
       clear: 検索をクリアする
-      label: サーチ %{resource}
+      label: "%{resource}を検索"

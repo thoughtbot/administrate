@@ -17,7 +17,7 @@ describe "product form has_one relationship" do
 
     click_on "Create Product"
 
-    expect(page).to have_link(ProductMetaTag.last.id.to_s)
+    expect(page).to have_link("Example meta title")
     expect(page).to have_flash(
       t("administrate.controller.create.success", resource: "Product")
     )
@@ -60,7 +60,7 @@ describe "product form has_one relationship" do
 
     click_on "Update Product"
 
-    expect(page).to have_link(product.product_meta_tag.id.to_s)
+    expect(page).to have_link(product.product_meta_tag.meta_title.to_s)
     expect(page).to have_flash(
       t("administrate.controller.update.success", resource: "Product")
     )

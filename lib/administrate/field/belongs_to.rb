@@ -23,12 +23,15 @@ module Administrate
 
       def associated_resource_options
         candidate_resources.map do |resource|
-          [display_candidate_resource(resource), resource.send(primary_key)]
+          [
+            display_candidate_resource(resource),
+            resource.send(association_primary_key),
+          ]
         end
       end
 
       def selected_option
-        data && data.send(primary_key)
+        data&.send(association_primary_key)
       end
 
       def include_blank_option

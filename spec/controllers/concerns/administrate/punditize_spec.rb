@@ -8,9 +8,26 @@ module Administrate
       end
     end
 
+    unless Pundit.const_defined?(:Authorization)
+      # Spec for pundit < 2.2
+      it "exists when Pundit::Authorization is not defined" do
+        reload_punditize
+        expect(Pundit.const_defined?(:Authorization)).to be_falsey
+        expect { build_dummy }.not_to raise_error
+      end
+    end
+
     def unload_constants
       original = Pundit
       Object.send(:remove_const, "Pundit")
+      reload_punditize
+
+      yield
+
+      Object.const_set("Pundit", original)
+    end
+
+    def reload_punditize
       Administrate.send(:remove_const, "Punditize")
       load Rails.root.join(
         "..",
@@ -21,10 +38,6 @@ module Administrate
         "administrate",
         "punditize.rb",
       )
-
-      yield
-
-      Object.const_set("Pundit", original)
     end
 
     def dummy_class

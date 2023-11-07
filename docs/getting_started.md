@@ -3,7 +3,7 @@ title: Getting Started
 ---
 
 Administrate is released as a Ruby gem, and can be installed on Rails
-applications version 5.0 or greater. We support Ruby 2.7 and up.
+applications version 6.0 or greater. We support Ruby 2.7 and up.
 
 First, add the following to your Gemfile:
 

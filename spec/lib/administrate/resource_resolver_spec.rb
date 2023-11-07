@@ -3,25 +3,30 @@ require "rails_helper"
 describe Administrate::ResourceResolver do
   describe "#dashboard_class" do
     it "handles global-namepsace models" do
-      begin
-        class UserDashboard; end
-        resolver = Administrate::ResourceResolver.new("admin/users")
+      class UserDashboard; end
+      resolver = Administrate::ResourceResolver.new("admin/users")
 
-        expect(resolver.dashboard_class).to eq(UserDashboard)
-      ensure
-        remove_constants :UserDashboard
-      end
+      expect(resolver.dashboard_class).to eq(UserDashboard)
+    ensure
+      remove_constants :UserDashboard
     end
 
     it "handles namespaced models" do
-      begin
-        module Library; class BookDashboard; end; end
-        resolver = Administrate::ResourceResolver.new("admin/library/books")
+      module Library; class BookDashboard; end; end
+      resolver = Administrate::ResourceResolver.new("admin/library/books")
 
-        expect(resolver.dashboard_class).to eq(Library::BookDashboard)
-      ensure
-        remove_constants :Library
-      end
+      expect(resolver.dashboard_class).to eq(Library::BookDashboard)
+    ensure
+      remove_constants :Library
+    end
+
+    it "handles plural namespaced models" do
+      module Libraries; class BookDashboard; end; end
+      resolver = Administrate::ResourceResolver.new("admin/libraries/books")
+
+      expect(resolver.dashboard_class).to eq(Libraries::BookDashboard)
+    ensure
+      remove_constants :Libraries
     end
   end
 
@@ -35,25 +40,21 @@ describe Administrate::ResourceResolver do
 
   describe "#resource_class" do
     it "handles global-namepsace models" do
-      begin
-        class User; end
-        resolver = Administrate::ResourceResolver.new("admin/users")
+      class User; end
+      resolver = Administrate::ResourceResolver.new("admin/users")
 
-        expect(resolver.resource_class).to eq(User)
-      ensure
-        remove_constants :User
-      end
+      expect(resolver.resource_class).to eq(User)
+    ensure
+      remove_constants :User
     end
 
     it "handles namespaced models" do
-      begin
-        module Library; class Book; end; end
-        resolver = Administrate::ResourceResolver.new("admin/library/books")
+      module Library; class Book; end; end
+      resolver = Administrate::ResourceResolver.new("admin/library/books")
 
-        expect(resolver.resource_class).to eq(Library::Book)
-      ensure
-        remove_constants :Library
-      end
+      expect(resolver.resource_class).to eq(Library::Book)
+    ensure
+      remove_constants :Library
     end
   end
 

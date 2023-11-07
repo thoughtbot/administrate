@@ -37,4 +37,28 @@ RSpec.describe "product index page" do
 
     expect(current_path).to eq(new_admin_product_path)
   end
+
+  scenario "product sorted by has_one association" do
+    create(
+      :product,
+      product_meta_tag: build(:product_meta_tag, meta_title: "Gamma"),
+    )
+    create(
+      :product,
+      product_meta_tag: build(:product_meta_tag, meta_title: "Alpha"),
+    )
+    create(
+      :product,
+      product_meta_tag: build(:product_meta_tag, meta_title: "Beta"),
+    )
+
+    visit admin_products_path
+    expect(page).to have_content(/Gamma.*Alpha.*Beta/)
+
+    click_on "Product Meta Tag"
+    expect(page).to have_content(/Alpha.*Beta.*Gamma/)
+
+    click_on "Product Meta Tag"
+    expect(page).to have_content(/Gamma.*Beta.*Alpha/)
+  end
 end

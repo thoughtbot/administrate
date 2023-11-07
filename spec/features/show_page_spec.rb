@@ -237,7 +237,7 @@ RSpec.describe "customer show page" do
   end
 
   it "displays translated labels in has_many collection partials" do
-    custom_label = "Time Shipped"
+    custom_label = "Time shipped"
     customer = create(:customer)
     create(:order, customer: customer)
 
@@ -262,6 +262,21 @@ RSpec.describe "customer show page" do
       visit admin_customer_path(customer)
 
       expect(page).to have_css(".cell-label", text: custom_label)
+    end
+  end
+
+  it "displays specified collection_attributes for the has_many association" do
+    line_item = create(:line_item)
+
+    visit admin_order_path(line_item.order)
+
+    within(table_for_attribute(:line_items)) do
+      columns = all("tr th").map do |e|
+        e[:class]&.split&.last&.split("--line_item_")&.last
+      end
+      expect(%w[product quantity unit_price total_price]).to(
+        eq(columns.first(4)),
+      )
     end
   end
 

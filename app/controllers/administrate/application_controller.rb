@@ -40,7 +40,7 @@ module Administrate
     end
 
     def create
-      resource = resource_class.new(resource_params)
+      resource = new_resource(resource_params)
       authorize_resource(resource)
 
       if resource.save
@@ -203,7 +203,7 @@ module Administrate
 
     def resource_params
       params.require(resource_class.model_name.param_key).
-        permit(dashboard.permitted_attributes).
+        permit(dashboard.permitted_attributes(action_name)).
         transform_values { |v| read_param_value(v) }
     end
 
@@ -216,6 +216,8 @@ module Administrate
         end
       elsif data.is_a?(ActionController::Parameters)
         data.transform_values { |v| read_param_value(v) }
+      elsif data.is_a?(String) && data.blank?
+        nil
       else
         data
       end
@@ -267,8 +269,8 @@ module Administrate
     end
     helper_method :show_action?
 
-    def new_resource
-      resource_class.new
+    def new_resource(params = {})
+      resource_class.new(params)
     end
     helper_method :new_resource
 

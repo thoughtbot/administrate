@@ -120,6 +120,6 @@ describe Administrate::Generators::RoutesGenerator, :generator do
 
     run_generator
 
-    expect(routes).to contain('root to: "customers#index')
+    expect(routes).to contain('root to: "countries#index')
   end
 end

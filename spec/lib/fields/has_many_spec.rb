@@ -87,7 +87,7 @@ describe Administrate::Field::HasMany do
       remove_constants :Foo, :FooDashboard
     end
 
-    it "determines what primary key is used on the relationship for the form" do
+    it "is the key matching the associated foreign key" do
       association =
         Administrate::Field::HasMany.with_options(
           primary_key: "uuid", class_name: "Foo",
@@ -241,14 +241,42 @@ describe Administrate::Field::HasMany do
   end
 
   describe "#selected_options" do
-    it "returns a collection of primary keys" do
-      model = double("model", id: 123)
-      value = MockRelation.new([model])
+    it "returns a collection of keys to use for the association" do
+      associated_resource1 = double(
+        "AssociatedResource1",
+        associated_resource_key: "associated-1",
+      )
+      associated_resource2 = double(
+        "AssociatedResource2",
+        associated_resource_key: "associated-2",
+      )
+      attribute_value = MockRelation.new(
+        [
+          associated_resource1,
+          associated_resource2,
+        ],
+      )
+
+      primary_resource = double(
+        "Resource",
+        class: double(
+          "ResourceClass",
+          reflect_on_association: double(
+            "ResourceReflection",
+            association_primary_key: "associated_resource_key",
+          ),
+        ),
+      )
 
       association = Administrate::Field::HasMany
-      field = association.new(:customers, value, :show)
+      field = association.new(
+        :customers,
+        attribute_value,
+        :show,
+        resource: primary_resource,
+      )
 
-      expect(field.selected_options).to eq([123])
+      expect(field.selected_options).to eq(["associated-1", "associated-2"])
     end
 
     context "when there are no records" do
