@@ -27,6 +27,8 @@ module Administrate
         dashboard.try(:item_associations) || []
       end
 
+      attr_accessor :context
+
       private
 
       def attribute_field(dashboard, resource, attribute_name, page)

@@ -11,7 +11,7 @@ module Administrate
       attr_reader :resource
 
       def attributes(action = nil)
-        attributes = dashboard.form_attributes(action)
+        attributes = dashboard.form_attributes(action, context)
 
         if attributes.is_a? Array
           attributes = {"" => attributes}
