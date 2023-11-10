@@ -15,7 +15,7 @@ module Admin
     private
 
     def scoped_resource
-      Customer.where(hidden: false)
+      super.where(hidden: false)
     end
 
     def with_variant
