@@ -5,11 +5,13 @@ module Administrate
     def index
       authorize_resource(resource_class)
       search_term = params[:search].to_s.strip
-      resources = filter_resources(scoped_resource, search_term: search_term)
+      authorized_scope = authorize_scope(scoped_resource)
+      resources = filter_resources(authorized_scope, search_term: search_term)
       resources = apply_collection_includes(resources)
       resources = order.apply(resources)
       resources = paginate_resources(resources)
       page = Administrate::Page::Collection.new(dashboard, order: order)
+      page.context = self
 
       render locals: {
         resources: resources,
@@ -20,28 +22,39 @@ module Administrate
     end
 
     def show
+      page = Administrate::Page::Show.new(dashboard, requested_resource)
+      page.context = self
       render locals: {
-        page: Administrate::Page::Show.new(dashboard, requested_resource)
+        page: page
       }
     end
 
     def new
-      resource = new_resource
-      authorize_resource(resource)
+      resource = new_resource.tap do |resource|
+        authorize_resource(resource)
+        contextualize_resource(resource)
+      end
+
+      page = Administrate::Page::Form.new(dashboard, resource)
+      page.context = self
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, resource)
+        page: page
       }
     end
 
     def edit
+      page = Administrate::Page::Form.new(dashboard, requested_resource)
+      page.context = self
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, requested_resource)
+        page: page
       }
     end
 
     def create
-      resource = new_resource(resource_params)
-      authorize_resource(resource)
+      resource = new_resource(resource_params).tap do |resource|
+        authorize_resource(resource)
+        contextualize_resource(resource)
+      end
 
       if resource.save
         yield(resource) if block_given?
@@ -50,8 +63,10 @@ module Administrate
           notice: translate_with_resource("create.success")
         )
       else
+        page = Administrate::Page::Form.new(dashboard, resource)
+        page.context = self
         render :new, locals: {
-          page: Administrate::Page::Form.new(dashboard, resource)
+          page: page
         }, status: :unprocessable_entity
       end
     end
@@ -64,8 +79,10 @@ module Administrate
           status: :see_other
         )
       else
+        page = Administrate::Page::Form.new(dashboard, requested_resource)
+        page.context = self
         render :edit, locals: {
-          page: Administrate::Page::Form.new(dashboard, requested_resource)
+          page: page
         }, status: :unprocessable_entity
       end
     end
@@ -184,11 +201,16 @@ module Administrate
     def requested_resource
       @requested_resource ||= find_resource(params[:id]).tap do |resource|
         authorize_resource(resource)
+        contextualize_resource(resource)
       end
     end
 
     def find_resource(param)
-      scoped_resource.find(param)
+      authorize_scope(scoped_resource).find(param)
+    end
+
+    def authorize_scope(scope)
+      scope
     end
 
     def scoped_resource
@@ -203,7 +225,7 @@ module Administrate
 
     def resource_params
       params.require(resource_class.model_name.param_key)
-        .permit(dashboard.permitted_attributes(action_name))
+        .permit(dashboard.permitted_attributes(action_name, self))
         .transform_values { |v| read_param_value(v) }
     end
 
@@ -284,6 +306,12 @@ module Administrate
         )
       end
     end
+
+    # Override this if you want to contextualize the resource differently.
+    #
+    # @param resource A resource to be contextualized.
+    # @return nothing
+    def contextualize_resource(resource); end
 
     def paginate_resources(resources)
       resources.page(params[:_page]).per(records_per_page)
