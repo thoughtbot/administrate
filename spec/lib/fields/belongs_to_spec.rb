@@ -262,7 +262,7 @@ describe Administrate::Field::BelongsTo do
         create_list(:customer, 3)
         options = {
           order: "name",
-          scope: -> { Customer.order(name: :desc) }
+          scope: ->(_field) { Customer.order(name: :desc) }
         }
         association = Administrate::Field::BelongsTo.with_options(options)
 
@@ -282,7 +282,7 @@ describe Administrate::Field::BelongsTo do
         order = build(:order)
 
         1.upto(3) { |i| create :customer, name: "customer-#{i}" }
-        scope = -> { Customer.order(name: :desc).limit(2) }
+        scope = ->(_field) { Customer.order(name: :desc).limit(2) }
 
         association = Administrate::Field::BelongsTo.with_options(scope: scope)
         field = association.new(:customer, [], :show, resource: order)
