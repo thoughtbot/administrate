@@ -21,12 +21,13 @@ describe "order form" do
 
   describe "belongs_to relationships" do
     it "has stored value selected" do
-      create(:customer)
-      order = create(:order)
+      customer = create(:customer)
 
-      visit edit_admin_order_path(order)
-      expected = order.customer.id.to_s
-      expect(find_field("Customer").value).to eq expected
+      visit new_admin_order_path
+      select(customer.name, from: "Customer")
+      click_on "Create Order"
+
+      expect(find_field("Customer").value).to eq customer.id.to_s
     end
   end
 

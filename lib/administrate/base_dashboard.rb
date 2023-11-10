@@ -50,7 +50,7 @@ module Administrate
       attribute_types.keys
     end
 
-    def form_attributes(action = nil)
+    def form_attributes(action = nil, _context = nil)
       action =
         case action
         when "update" then "edit"
@@ -68,8 +68,8 @@ module Administrate
       self.class.const_get(cname) if self.class.const_defined?(cname)
     end
 
-    def permitted_attributes(action = nil)
-      form_attributes(action).map do |attr|
+    def permitted_attributes(action = nil, context = nil)
+      form_attributes(action, context).map do |attr|
         attribute_types[attr].permitted_attribute(
           attr,
           resource_class: self.class.model,
