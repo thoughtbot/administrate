@@ -38,14 +38,8 @@ module Administrate
         formatter = options[:format][:formatter]
         formatter_options = options[:format][:formatter_options].to_h
 
-        case formatter
-        when :number_to_delimited
-          ActiveSupport::NumberHelper.number_to_delimited(
-            result, **formatter_options
-          )
-        else
-          result
-        end
+        ActiveSupport::NumberHelper.
+          try(formatter, result, **formatter_options) || result
       end
     end
   end

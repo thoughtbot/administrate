@@ -112,6 +112,15 @@ describe Administrate::Field::Number do
         end
       end
 
+      context "when `formatter: :number_to_currency`" do
+        it "includes the currency" do
+          with_currency = number_with_options(
+            100, format: { formatter: :number_to_currency }
+          )
+          expect(with_currency.to_s).to eq("$100.00")
+        end
+      end
+
       context "when passed incorrect `formatter`" do
         it "works" do
           thousand = number_with_options(1_000, format: { formatter: :rubbish })
