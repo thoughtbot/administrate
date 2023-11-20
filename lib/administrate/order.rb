@@ -92,7 +92,7 @@ module Administrate
     def order_by_attribute(relation)
       relation.joins(
         attribute.to_sym,
-      ).reorder(Arel.sql(order_by_attribute_query))
+      ).reorder(Arel.sql(order_by_attribute_query(relation)))
     end
 
     def order_by_id(relation)
@@ -100,7 +100,7 @@ module Administrate
     end
 
     def order_by_association_id(relation)
-      relation.reorder(Arel.sql(order_by_association_id_query))
+      relation.reorder(Arel.sql(order_by_association_id_query(relation)))
     end
 
     def ordering_by_association_column?(relation)
@@ -118,12 +118,13 @@ module Administrate
       "#{relation.table_name}.#{foreign_key(relation)} #{direction}"
     end
 
-    def order_by_association_id_query
-      "#{association_table_name}.id #{direction}"
+    def order_by_association_id_query(relation)
+      "#{association_table_name(relation)}.id #{direction}"
     end
 
-    def order_by_attribute_query
-      "#{association_table_name}.#{association_attribute} #{direction}"
+    def order_by_attribute_query(relation)
+      table_name = association_table_name(relation)
+      "#{table_name}.#{association_attribute} #{direction}"
     end
 
     def relation_type(relation)
@@ -138,8 +139,8 @@ module Administrate
       reflect_association(relation).foreign_key
     end
 
-    def association_table_name
-      attribute.tableize
+    def association_table_name(relation)
+      reflect_association(relation).klass.table_name
     end
   end
 end

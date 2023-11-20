@@ -104,7 +104,7 @@ describe Administrate::Order do
       context "when `order` argument valid" do
         it "orders by the column" do
           order = Administrate::Order.new(
-            double(to_sym: :user, tableize: "users"),
+            double(to_sym: :user),
             nil,
             association_attribute: "name",
           )
@@ -156,9 +156,12 @@ describe Administrate::Order do
     context "when relation has has_one association" do
       it "orders by id" do
         order = Administrate::Order.new(
-          double(to_sym: :user, tableize: "users"),
+          double(to_sym: :user),
         )
-        relation = relation_with_association(:has_one)
+        relation = relation_with_association(
+          :has_one,
+          klass: double(table_name: "users"),
+        )
         allow(relation).to receive(:reorder).and_return(relation)
 
         ordered = order.apply(relation)
@@ -172,7 +175,7 @@ describe Administrate::Order do
       context "when `order` argument valid" do
         it "orders by the column" do
           order = Administrate::Order.new(
-            double(to_sym: :user, tableize: "users"),
+            double(to_sym: :user),
             nil,
             association_attribute: "name",
           )
@@ -197,7 +200,7 @@ describe Administrate::Order do
       context "when `order` argument invalid" do
         it "orders by id" do
           order = Administrate::Order.new(
-            double(to_sym: :user, tableize: "users"),
+            double(to_sym: :user),
             nil,
             association_attribute: "invalid_column_name",
           )
