@@ -10,9 +10,9 @@ module Administrate
       return order_by_association(relation) unless
         reflect_association(relation).nil?
 
-      order = "#{relation.table_name}.#{attribute} #{direction}"
+      order = relation.arel_table[attribute].public_send(direction)
 
-      return relation.reorder(Arel.sql(order)) if
+      return relation.reorder(order) if
         column_exist?(relation, attribute)
 
       relation
@@ -66,11 +66,11 @@ module Administrate
 
     def order_by_count(relation)
       klass = reflect_association(relation).klass
-      query = "COUNT(#{klass.table_name}.#{klass.primary_key}) #{direction}"
+      query = klass.arel_table[klass.primary_key].count.public_send(direction)
       relation.
         left_joins(attribute.to_sym).
         group(:id).
-        reorder(Arel.sql(query))
+        reorder(query)
     end
 
     def order_by_belongs_to(relation)
@@ -92,15 +92,15 @@ module Administrate
     def order_by_attribute(relation)
       relation.joins(
         attribute.to_sym,
-      ).reorder(Arel.sql(order_by_attribute_query))
+      ).reorder(order_by_attribute_query)
     end
 
     def order_by_id(relation)
-      relation.reorder(Arel.sql(order_by_id_query(relation)))
+      relation.reorder(order_by_id_query(relation))
     end
 
     def order_by_association_id(relation)
-      relation.reorder(Arel.sql(order_by_association_id_query))
+      relation.reorder(order_by_association_id_query)
     end
 
     def ordering_by_association_column?(relation)
@@ -115,15 +115,16 @@ module Administrate
     end
 
     def order_by_id_query(relation)
-      "#{relation.table_name}.#{foreign_key(relation)} #{direction}"
+      relation.arel_table[foreign_key(relation)].public_send(direction)
     end
 
     def order_by_association_id_query
-      "#{association_table_name}.id #{direction}"
+      Arel::Table.new(association_table_name)[:id].public_send(direction)
     end
 
     def order_by_attribute_query
-      "#{association_table_name}.#{association_attribute} #{direction}"
+      table = Arel::Table.new(association_table_name)
+      table[association_attribute].public_send(direction)
     end
 
     def relation_type(relation)
