@@ -17,7 +17,7 @@ commands:
       - run: google-chrome --version
 
       # Install bundler
-      - run: gem install bundler:2.3.5
+      - run: gem install bundler:2.4.22
 
       # Restore Cached Dependencies
       - restore_cache:
