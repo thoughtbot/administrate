@@ -36,6 +36,13 @@ and renders all form fields for a resource's editable attributes.
   <% page.attributes(controller.action_name).each do |attribute| -%>
     <div class="field-unit field-unit--<%= attribute.html_class %> field-unit--<%= requireness(attribute) %>">
       <%= render_field attribute, f: f %>
+
+      <% hint_key = "administrate.field_hints.#{page.resource_name}.#{attribute.name}" %>
+      <% if I18n.exists?(hint_key) -%>
+        <div class="field-unit__hint">
+          <%= I18n.t(hint_key) %>
+        </div>
+      <% end -%>
     </div>
   <% end -%>
 

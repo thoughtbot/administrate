@@ -105,4 +105,27 @@ describe "edit form" do
       expect(element_selections.first("option").value).not_to eq("")
     end
   end
+
+  context "fields hints" do
+    it "displays a field hint element within the field unit" do
+      field_hint = "The typology of customer"
+
+      translations = {
+        administrate: {
+          field_hints: {
+            customer: {
+              kind: field_hint,
+            },
+          },
+        },
+      }
+
+      with_translations(:en, translations) do
+        visit new_admin_customer_path
+
+        css_hint_element = ".field-unit > .field-unit__hint"
+        expect(page).to have_css(css_hint_element, text: field_hint)
+      end
+    end
+  end
 end
