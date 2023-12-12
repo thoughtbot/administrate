@@ -2,11 +2,11 @@ PATH
   remote: .
   specs:
     administrate (0.19.0)
-      actionpack (>= 5.0)
-      actionview (>= 5.0)
-      activerecord (>= 5.0)
-      jquery-rails (>= 4.0)
-      kaminari (>= 1.0)
+      actionpack (>= 6.0, < 8.0)
+      actionview (>= 6.0, < 8.0)
+      activerecord (>= 6.0, < 8.0)
+      jquery-rails (~> 4.6.0)
+      kaminari (~> 1.2.2)
       sassc-rails (~> 2.1)
       selectize-rails (~> 0.6)
 
