@@ -1,0 +1,38 @@
+.identity__banner {
+  margin: 0;
+
+}
+.identity__banner.identity__banner--admin {
+  --color-rainbow-violet: #ee82ee;
+  --color-rainbow-indigo: #4b0082;
+  --color-rainbow-blue: #00f;
+  --color-rainbow-green: #0f0;
+  --color-rainbow-yellow: #ff0;
+  --color-rainbow-orange: #ffa500;
+  --color-rainbow-red: #f00;
+
+  animation: rainbow 1s ease;
+  background-clip: text;
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-rainbow-violet),
+    var(--color-rainbow-indigo),
+    var(--color-rainbow-blue),
+    var(--color-rainbow-green),
+    var(--color-rainbow-yellow),
+    var(--color-rainbow-orange),
+    var(--color-rainbow-red),
+    var(--color-rainbow-violet)
+  );
+  background-size: 800% 800%;
+  text-align: center;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+
+  50% { background-position: 100% 25%; }
+
+  100% { background-position: 0% 50%; }
+}
