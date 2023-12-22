@@ -7,10 +7,7 @@
     <%= content_for(:title) %>
   </h1>
 
-  <div>
-    You are logged in as <em><%= pundit_user.name %></em>.
-    <%= link_to("Become the Admin", become_admin_customer_path("admin")) unless pundit_user.admin? %>
-  </div>
+  <p class="identity__banner<%= " identity__banner--admin" if pundit_user.admin? %>">You are logged in as <em><%= pundit_user.name %></em>. <%= link_to("Become the Admin", become_admin_customer_path("admin")) unless pundit_user.admin? %></p>
 
   <% if show_search_bar %>
     <%= render(

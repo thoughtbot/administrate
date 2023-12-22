@@ -1,0 +1,39 @@
+.identity__banner {
+  margin: 0;
+
+  &.identity__banner--admin {
+    // Done this way purely to satisfy the linter
+    $rainbow-blue: #00f;
+    $rainbow-green: #0f0;
+    $rainbow-indigo: #4b0082;
+    $rainbow-orange: #ffa500;
+    $rainbow-red: #f00;
+    $rainbow-violet: #ee82ee;
+    $rainbow-yellow: #ff0;
+
+    animation: rainbow 1s ease;
+    background-clip: text;
+    background-image: repeating-linear-gradient(
+      45deg,
+      $rainbow-violet,
+      $rainbow-indigo,
+      $rainbow-blue,
+      $rainbow-green,
+      $rainbow-yellow,
+      $rainbow-orange,
+      $rainbow-red,
+      $rainbow-violet
+    );
+    background-size: 800% 800%;
+    text-align: center;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+
+  50% { background-position: 100% 25%; }
+
+  100% { background-position: 0% 50%; }
+}
