@@ -9,6 +9,7 @@ module Administrate
       resources = apply_collection_includes(resources)
       resources = order.apply(resources)
       resources = paginate_resources(resources)
+      @resources = resources
       page = Administrate::Page::Collection.new(dashboard, order: order)
       filters = Administrate::Search.new(scoped_resource, dashboard, search_term).valid_filters
 
@@ -22,13 +23,14 @@ module Administrate
     end
 
     def show
+      @resource = resource = requested_resource
       render locals: {
-        page: Administrate::Page::Show.new(dashboard, requested_resource)
+        page: Administrate::Page::Show.new(dashboard, resource)
       }
     end
 
     def new
-      resource = new_resource
+      @resource = resource = new_resource
       authorize_resource(resource)
       render locals: {
         page: Administrate::Page::Form.new(dashboard, resource)
@@ -36,13 +38,14 @@ module Administrate
     end
 
     def edit
+      @resource = resource = requested_resource
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, requested_resource)
+        page: Administrate::Page::Form.new(dashboard, resource)
       }
     end
 
     def create
-      resource = new_resource(resource_params)
+      @resource = resource = new_resource(resource_params)
       authorize_resource(resource)
 
       if resource.save
@@ -59,26 +62,28 @@ module Administrate
     end
 
     def update
-      if requested_resource.update(resource_params)
+      @resource = resource = requested_resource
+      if resource.update(resource_params)
         redirect_to(
-          after_resource_updated_path(requested_resource),
+          after_resource_updated_path(resource),
           notice: translate_with_resource("update.success"),
           status: :see_other
         )
       else
         render :edit, locals: {
-          page: Administrate::Page::Form.new(dashboard, requested_resource)
+          page: Administrate::Page::Form.new(dashboard, resource)
         }, status: :unprocessable_entity
       end
     end
 
     def destroy
-      if requested_resource.destroy
+      @resource = resource = requested_resource
+      if resource.destroy
         flash[:notice] = translate_with_resource("destroy.success")
       else
-        flash[:error] = requested_resource.errors.full_messages.join("<br/>")
+        flash[:error] = resource.errors.full_messages.join("<br/>")
       end
-      redirect_to after_resource_destroyed_path(requested_resource), status: :see_other
+      redirect_to after_resource_destroyed_path(resource), status: :see_other
     end
 
     private
