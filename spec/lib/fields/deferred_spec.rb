@@ -8,7 +8,7 @@ describe Administrate::Field::Deferred do
   describe "#permitted_attribute" do
     context "when given a `foreign_key` option" do
       before do
-        allow(ActiveSupport::Deprecation).to receive(:warn)
+        allow(Administrate.deprecator).to receive(:warn)
       end
 
       it "returns the value given" do
@@ -26,7 +26,7 @@ describe Administrate::Field::Deferred do
           foreign_key: :bar,
         )
         deferred.permitted_attribute(:foo, resource_class: LineItem)
-        expect(ActiveSupport::Deprecation).to have_received(:warn).
+        expect(Administrate.deprecator).to have_received(:warn).
           with(/:foreign_key is deprecated/)
       end
     end

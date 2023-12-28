@@ -36,7 +36,7 @@ describe Administrate::Field::HasMany do
     let(:dashboard_double) { double(collection_attributes: []) }
 
     before do
-      allow(ActiveSupport::Deprecation).to receive(:warn)
+      allow(Administrate.deprecator).to receive(:warn)
 
       FooDashboard = Class.new
       allow(FooDashboard).to receive(:new).and_return(dashboard_double)
@@ -63,14 +63,14 @@ describe Administrate::Field::HasMany do
       field = association.new(:customers, [], :show)
       field.associated_collection
 
-      expect(ActiveSupport::Deprecation).to have_received(:warn).
+      expect(Administrate.deprecator).to have_received(:warn).
         with(/:class_name is deprecated/)
     end
   end
 
   describe "primary_key option" do
     before do
-      allow(ActiveSupport::Deprecation).to receive(:warn)
+      allow(Administrate.deprecator).to receive(:warn)
 
       Foo = Class.new
       FooDashboard = Class.new
@@ -108,7 +108,7 @@ describe Administrate::Field::HasMany do
       field = association.new(:customers, [], :show)
       field.associated_resource_options
 
-      expect(ActiveSupport::Deprecation).to have_received(:warn).
+      expect(Administrate.deprecator).to have_received(:warn).
         with(/:primary_key is deprecated/)
     end
   end
