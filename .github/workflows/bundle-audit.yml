@@ -8,6 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: 'Bundler Audit'
-        uses: andrewmcodes/bundler-audit-action@main
+        uses: thoughtbot/bundler-audit-action@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
