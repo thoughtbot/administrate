@@ -298,7 +298,7 @@ GEM
       websocket (~> 1.0)
     sentry-raven (3.1.2)
       faraday (>= 1.0)
-    shoulda-matchers (5.3.0)
+    shoulda-matchers (6.0.0)
       activesupport (>= 5.2.0)
     smart_properties (1.17.0)
     sprockets (4.2.0)
