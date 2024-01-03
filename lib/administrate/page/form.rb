@@ -11,7 +11,7 @@ module Administrate
       attr_reader :resource
 
       def attributes(action = nil)
-        dashboard.form_attributes(action).map do |attribute|
+        dashboard.form_attributes(action, context).map do |attribute|
           attribute_field(dashboard, resource, attribute, :form)
         end
       end

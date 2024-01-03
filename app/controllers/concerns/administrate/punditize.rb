@@ -15,12 +15,14 @@ module Administrate
         []
       end
 
-      def scoped_resource
-        namespaced_scope = policy_namespace + [super]
+      def authorize_scope(scope)
+        namespaced_scope = policy_namespace + [scope]
         policy_scope!(pundit_user, namespaced_scope)
       end
 
       def authorize_resource(resource)
+        contextualize_resource(resource) if resource.is_a?(ActiveRecord::Base)
+
         namespaced_resource = policy_namespace + [resource]
         authorize namespaced_resource
       end

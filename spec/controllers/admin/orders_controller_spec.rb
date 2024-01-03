@@ -33,8 +33,8 @@ describe Admin::OrdersController, type: :controller do
     end
 
     describe "GET new" do
-      it "raises a Pundit error" do
-        expect { get :new }.to raise_error(Pundit::NotAuthorizedError)
+      it "allows me to new my records" do
+        expect { get :new }.not_to raise_error
       end
     end
 
@@ -153,8 +153,8 @@ describe Admin::OrdersController, type: :controller do
     end
 
     describe "GET new" do
-      it "raises a Pundit error" do
-        expect { get :new }.to raise_error(Pundit::NotAuthorizedError)
+      it "allows me to new my records" do
+        expect { get :new }.not_to raise_error
       end
     end
 
@@ -230,6 +230,66 @@ describe Admin::OrdersController, type: :controller do
       it "never shows destroy actions" do
         o = create :order, customer: user, address_state: "AZ"
         expect(controller.send(:authorized_action?, o, :destroy)).to be false
+      end
+    end
+
+    context "when the user is an admin" do
+      controller(Admin::OrdersController) do
+        def pundit_user
+          Customer.find_by(name: "Current User")
+        end
+      end
+
+      let!(:user) { create(:customer, name: "Current User") }
+
+      describe "GET new" do
+        it "allows me to new my records" do
+          expect { get :new }.not_to raise_error
+        end
+      end
+
+      describe "POST create" do
+        def send_request
+          post(
+            :create,
+            params: {
+              order: attributes_for(:order, customer: nil),
+            },
+          )
+        end
+
+        it "allows me to create my records" do
+          send_request
+          expect(response).to redirect_to([:admin, (order = Order.last)])
+          expect(order.customer).to eq(user)
+        end
+      end
+    end
+  end
+
+  context "when the user is not an admin" do
+    let!(:user) { create(:customer, name: "Target User") }
+
+    describe "GET new" do
+      it "allows me to new records" do
+        expect { get :new }.not_to raise_error
+      end
+    end
+
+    describe "POST create" do
+      def send_request
+        post(
+          :create,
+          params: {
+            order: attributes_for(:order, customer: nil, customer_id: user.id),
+          },
+        )
+      end
+
+      it "allows me to create my records with target customer" do
+        send_request
+        expect(response).to redirect_to([:admin, (order = Order.last)])
+        expect(order.customer).to eq(user)
       end
     end
   end

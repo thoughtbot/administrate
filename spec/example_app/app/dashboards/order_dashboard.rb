@@ -37,4 +37,16 @@ class OrderDashboard < Administrate::BaseDashboard
 
   FORM_ATTRIBUTES = ATTRIBUTE_TYPES.keys - READ_ONLY_ATTRIBUTES
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys
+
+  def form_attributes(action = nil, context = nil)
+    if ["new", "create"].include?(action.to_s)
+      if context.try(:pundit_user).try(:admin?)
+        super
+      else
+        super - [:customer]
+      end
+    else
+      super - [:customer]
+    end
+  end
 end

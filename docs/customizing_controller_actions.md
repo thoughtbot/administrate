@@ -41,6 +41,17 @@ class Admin::FoosController < Admin::ApplicationController
   #    resource_class.with_less_stuff
   #  end
   # end
+
+
+  # Override this if you want to contextualize the resource differently.
+  # This will be used to contextualize the resource for the all actions without `index`.
+  #
+  # def contextualize_resource(resource)
+  #   case action_name
+  #   when "new", "create"
+  #     resource.author = current_user
+  #   end
+  # end
 end
 ```
 
