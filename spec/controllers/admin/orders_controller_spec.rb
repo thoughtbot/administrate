@@ -108,7 +108,7 @@ describe Admin::OrdersController, type: :controller do
 
   context "with deprecated Punditize concern" do
     before do
-      allow(ActiveSupport::Deprecation).to receive(:warn)
+      allow(Administrate.deprecator).to receive(:warn)
 
       class OrderPolicy
         class Scope
@@ -147,7 +147,7 @@ describe Admin::OrdersController, type: :controller do
         locals = capture_view_locals { get :index }
 
         expect(locals[:resources]).to contain_exactly(order1, order3)
-        expect(ActiveSupport::Deprecation).to have_received(:warn).
+        expect(Administrate.deprecator).to have_received(:warn).
           with(/`resolve_admin` method is deprecated/)
       end
     end
@@ -162,7 +162,7 @@ describe Admin::OrdersController, type: :controller do
       it "allows me to edit my records" do
         order = create :order, customer: user
         expect { get :edit, params: { id: order.id } }.not_to raise_error
-        expect(ActiveSupport::Deprecation).to have_received(:warn).
+        expect(Administrate.deprecator).to have_received(:warn).
           with(/`resolve_admin` method is deprecated/)
       end
 
@@ -171,7 +171,7 @@ describe Admin::OrdersController, type: :controller do
         order = create(:order, customer: other_user)
         expect { get :show, params: { id: order.id } }.
           to raise_error(ActiveRecord::RecordNotFound)
-        expect(ActiveSupport::Deprecation).to have_received(:warn).
+        expect(Administrate.deprecator).to have_received(:warn).
           with(/`resolve_admin` method is deprecated/)
       end
     end
@@ -192,7 +192,7 @@ describe Admin::OrdersController, type: :controller do
         send_request(order: order)
         expect(response).to redirect_to([:admin, order])
         expect(order.reload.address_line_one).to eq("22 Acacia Avenue")
-        expect(ActiveSupport::Deprecation).to have_received(:warn).
+        expect(Administrate.deprecator).to have_received(:warn).
           with(/`resolve_admin` method is deprecated/)
       end
 
@@ -202,7 +202,7 @@ describe Admin::OrdersController, type: :controller do
         expect do
           send_request(order: order)
         end.to raise_error(ActiveRecord::RecordNotFound)
-        expect(ActiveSupport::Deprecation).to have_received(:warn).
+        expect(Administrate.deprecator).to have_received(:warn).
           with(/`resolve_admin` method is deprecated/)
       end
     end

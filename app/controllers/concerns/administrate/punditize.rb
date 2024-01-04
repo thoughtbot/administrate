@@ -42,7 +42,7 @@ module Administrate
         end
 
         if policy_scope.respond_to? :resolve_admin
-          ActiveSupport::Deprecation.warn(
+          Administrate.deprecator.warn(
             "Pundit policy scope `resolve_admin` method is deprecated. " +
             "Please use a namespaced pundit policy instead.",
           )
