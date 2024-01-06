@@ -1,0 +1,89 @@
+html,
+body {
+  font-family: "Lato", serif;
+  font-size: 18px;
+  line-height: 1.62em;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Fjalla One", sans-serif;
+  margin-top: 2em;
+}
+
+a {
+  color: #53adc6;
+  text-decoration: none;
+}
+
+.content {
+  margin-bottom: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  width: 60em;
+}
+.content .sidebar {
+  float: left;
+  width: 20em;
+}
+.content .sidebar-links {
+  list-style: none;
+  padding-left: 0;
+}
+.content .main {
+  float: right;
+  width: 40em;
+}
+
+.flash-wrapper {
+  background-color: #cf726e;
+  color: #f0f0f0;
+  padding: 1em;
+}
+.flash-wrapper .flash {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40em;
+}
+
+code {
+  font-family: "Source Code Pro";
+  font-size: 0.8rem;
+  padding: 0.4em 0.2em 0;
+}
+code.hljs {
+  background-color: #202020;
+  color: #e0e0dc;
+  padding-left: 1rem;
+}
+code.hljs .hljs-string {
+  color: #b0bf82;
+}
+code.hljs .hljs-subst {
+  color: #e0e0dc;
+}
+code.hljs .hljs-constant {
+  color: #8fbdcc;
+}
+code.hljs .hljs-symbol {
+  color: #b95c56;
+}
+code.hljs .hljs-keyword {
+  color: #f8d29d;
+}
+code.hljs .hljs-title,
+code.hljs .hljs-parent {
+  color: #8fbdcc;
+}
+code.hljs .hljs-tag {
+  color: #f8d29d;
+}
+
+/*# sourceMappingURL=docs.css.map */

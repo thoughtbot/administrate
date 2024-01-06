@@ -1,10 +1,11 @@
-# Exit if any subcommand fails
+#!/bin/sh
+
 set -e
 
 VERSION=$(ruby -r ./lib/administrate/version.rb -e "puts Administrate::VERSION")
 echo "Version $VERSION"
-gem build administrate.gemspec
-gem install administrate-${VERSION}.gem
+
+$(dirname "$0")/build-gem
 
 sed -i.bak "s/^gemspec$/gem \"administrate\", \"`echo $VERSION`\"/g" Gemfile
 rm Gemfile.bak

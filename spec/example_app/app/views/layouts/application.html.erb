@@ -11,7 +11,8 @@
   %>
   <title><%= title %></title>
   <%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Lato:300,400,900", media: "all" %>
-  <%= stylesheet_link_tag :application, media: "all" %>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   <%= csrf_meta_tags %>
 </head>
 

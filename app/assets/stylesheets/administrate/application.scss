@@ -2,7 +2,8 @@
 
 @import "reset/normalize";
 
-@import "selectize";
+@import "selectize/dist/css/selectize";
+@import "selectize/dist/css/selectize.default";
 
 @import "library/clearfix";
 @import "library/data-label";
