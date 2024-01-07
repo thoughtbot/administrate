@@ -15,7 +15,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
 
       run_generator ["customer"]
 
-      expect(dashboard).to exist
+      expect(Pathname.new(dashboard)).to exist
       expect(dashboard).to have_correct_syntax
     end
 
@@ -424,7 +424,7 @@ describe Administrate::Generators::DashboardGenerator, :generator do
 
       run_generator ["customer"]
 
-      expect(controller).to exist
+      expect(Pathname.new(controller)).to exist
       expect(controller).to have_correct_syntax
     end
 
