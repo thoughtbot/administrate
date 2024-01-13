@@ -93,3 +93,17 @@ To set custom redirects after the actions `create`, `update` and `destroy` you c
       [namespace, requested_resource.some_other_resource]
     end
 ```
+
+## Creating Records
+
+You can perform actions after creation by passing a `block` to `super` in the
+`create` method. The block will only be called if the resource is successfully
+created.
+
+```ruby
+def create
+  super do |resource|
+    # do something with the newly created resource
+  end
+end
+```
