@@ -82,9 +82,9 @@ RSpec.describe Admin::ApplicationController, type: :controller do
     end
 
     it "triggers a deprecation warning" do
-      allow(ActiveSupport::Deprecation).to receive(:warn)
+      allow(Administrate.deprecator).to receive(:warn)
       get :index
-      expect(ActiveSupport::Deprecation).to(
+      expect(Administrate.deprecator).to(
         have_received(:warn).
           with(/`show_action\?` is deprecated/),
       )
@@ -99,9 +99,9 @@ RSpec.describe Admin::ApplicationController, type: :controller do
     end
 
     it "triggers a deprecation warning" do
-      allow(ActiveSupport::Deprecation).to receive(:warn)
+      allow(Administrate.deprecator).to receive(:warn)
       get :index
-      expect(ActiveSupport::Deprecation).to(
+      expect(Administrate.deprecator).to(
         have_received(:warn).
           with(/`valid_action\?` is deprecated/),
       )

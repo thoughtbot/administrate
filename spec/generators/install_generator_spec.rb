@@ -13,7 +13,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
 
       run_generator
 
-      expect(controller).to exist
+      expect(Pathname.new(controller)).to exist
       expect(controller).to have_correct_syntax
       expect(controller).to contain <<-RB.strip_heredoc
         module Admin
@@ -27,7 +27,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
 
       run_generator ["--namespace", "manager"]
 
-      expect(controller).to exist
+      expect(Pathname.new(controller)).to exist
       expect(controller).to have_correct_syntax
       expect(controller).to contain <<-RB.strip_heredoc
         module Manager

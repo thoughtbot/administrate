@@ -73,8 +73,8 @@ describe Administrate::Search do
     Administrate.send(:remove_const, :SearchSpecMocks)
   end
 
-  before { ActiveSupport::Deprecation.silenced = true }
-  after { ActiveSupport::Deprecation.silenced = false }
+  before { Administrate.deprecator.silenced = true }
+  after { Administrate.deprecator.silenced = false }
 
   describe "#run" do
     it "returns all records when no search term" do
@@ -159,7 +159,7 @@ describe Administrate::Search do
 
     context "when searching through associations" do
       before do
-        allow(ActiveSupport::Deprecation).to receive(:warn)
+        allow(Administrate.deprecator).to receive(:warn)
       end
 
       let(:scoped_object) { Administrate::SearchSpecMocks::Foo }
@@ -217,7 +217,7 @@ describe Administrate::Search do
 
         search.run
 
-        expect(ActiveSupport::Deprecation).to have_received(:warn).
+        expect(Administrate.deprecator).to have_received(:warn).
           with(/:class_name is deprecated/)
       end
     end

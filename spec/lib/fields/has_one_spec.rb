@@ -43,7 +43,7 @@ describe Administrate::Field::HasOne do
   describe ".permitted_attribute" do
     context "with custom class_name" do
       before do
-        allow(ActiveSupport::Deprecation).to receive(:warn)
+        allow(Administrate.deprecator).to receive(:warn)
       end
 
       it "returns attributes from correct dashboard" do
@@ -71,7 +71,7 @@ describe Administrate::Field::HasOne do
           field_name,
           resource_class: Product,
         )
-        expect(ActiveSupport::Deprecation).to have_received(:warn).
+        expect(Administrate.deprecator).to have_received(:warn).
           with(/:class_name is deprecated/)
       end
     end

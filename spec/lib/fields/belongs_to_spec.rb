@@ -88,7 +88,7 @@ describe Administrate::Field::BelongsTo do
 
   describe "class_name option" do
     before do
-      allow(ActiveSupport::Deprecation).to receive(:warn)
+      allow(Administrate.deprecator).to receive(:warn)
     end
 
     it "determines the associated_class" do
@@ -134,7 +134,7 @@ describe Administrate::Field::BelongsTo do
         resource: line_item,
       )
       field.associated_class
-      expect(ActiveSupport::Deprecation).to have_received(:warn).
+      expect(Administrate.deprecator).to have_received(:warn).
         with(/:class_name is deprecated/)
     end
   end
@@ -179,7 +179,7 @@ describe Administrate::Field::BelongsTo do
 
   describe "primary_key option" do
     before do
-      allow(ActiveSupport::Deprecation).to receive(:warn)
+      allow(Administrate.deprecator).to receive(:warn)
 
       Foo = Class.new
       FooDashboard = Class.new
@@ -217,14 +217,14 @@ describe Administrate::Field::BelongsTo do
       field = association.new(:foo, double(uuid: nil), :baz)
       field.selected_option
 
-      expect(ActiveSupport::Deprecation).to have_received(:warn).
+      expect(Administrate.deprecator).to have_received(:warn).
         with(/:primary_key is deprecated/)
     end
   end
 
   describe "foreign_key option" do
     before do
-      allow(ActiveSupport::Deprecation).to receive(:warn)
+      allow(Administrate.deprecator).to receive(:warn)
     end
 
     it "determines what foreign key is used on the relationship for the form" do
@@ -244,7 +244,7 @@ describe Administrate::Field::BelongsTo do
 
       field.permitted_attribute
 
-      expect(ActiveSupport::Deprecation).to have_received(:warn).
+      expect(Administrate.deprecator).to have_received(:warn).
         with(/:foreign_key is deprecated/)
     end
   end
