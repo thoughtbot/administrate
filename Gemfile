@@ -11,7 +11,8 @@ gem "kaminari-i18n"
 gem "pg"
 gem "pundit"
 gem "redcarpet"
-gem "sentry-raven"
+gem "sentry-rails"
+gem "sentry-ruby"
 gem "unicorn"
 
 group :development, :test do
