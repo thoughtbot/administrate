@@ -35,6 +35,23 @@ class OrderDashboard < Administrate::BaseDashboard
     :shipped_at,
   ]
 
-  FORM_ATTRIBUTES = ATTRIBUTE_TYPES.keys - READ_ONLY_ATTRIBUTES
-  SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys
+  FORM_ATTRIBUTES = {
+    "" => %i[customer],
+    "details" => %i[
+      line_items
+      shipped_at
+      payments
+    ],
+    "address" => %i[
+      address_line_one
+      address_line_two
+      address_city
+      address_state
+      address_zip
+    ],
+  }.freeze
+  SHOW_PAGE_ATTRIBUTES = FORM_ATTRIBUTES.merge(
+    "" => %i[customer created_at updated_at],
+    "details" => %i[line_items total_price shipped_at payments],
+  ).freeze
 end

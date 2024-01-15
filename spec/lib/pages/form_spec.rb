@@ -13,14 +13,18 @@ describe Administrate::Page::Form do
   describe "#attributes" do
     let(:line_item) { build(:line_item) }
     let(:page) { described_class.new(LineItemDashboard.new, line_item) }
-    let(:attributes) { page.attributes(action).map(&:attribute) }
+    let(:attributes) do
+      page.attributes(action).transform_values do |attributes|
+        attributes.map(&:attribute)
+      end
+    end
 
     context "for a new action" do
       let(:action) { "new" }
 
       it "returns the attributes from FORM_ATTRIBUTES_NEW" do
         expect(attributes).to match(
-          %i[
+          "" => %i[
             order
             product
           ],
@@ -33,7 +37,7 @@ describe Administrate::Page::Form do
 
       it "returns the attributes from FORM_ATTRIBUTES_NEW" do
         expect(attributes).to match(
-          %i[
+          "" => %i[
             order
             product
           ],
@@ -46,7 +50,7 @@ describe Administrate::Page::Form do
 
       it "returns the attributes from FORM_ATTRIBUTES_EDIT" do
         expect(attributes).to match(
-          %i[
+          "" => %i[
             order
             product
             quantity
