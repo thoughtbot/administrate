@@ -136,10 +136,6 @@ GEM
       railties (>= 5.0.0)
     faker (3.2.3)
       i18n (>= 1.8.11, < 2)
-    faraday (2.7.4)
-      faraday-net_http (>= 2.0, < 3.1)
-      ruby2_keywords (>= 0.0.4)
-    faraday-net_http (3.0.2)
     ffi (1.15.5)
     formulaic (0.4.1)
       activesupport
@@ -281,7 +277,6 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
-    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -296,8 +291,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sentry-raven (3.1.2)
-      faraday (>= 1.0)
+    sentry-rails (5.16.1)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.16.1)
+    sentry-ruby (5.16.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     shoulda-matchers (6.0.0)
       activesupport (>= 5.2.0)
     smart_properties (1.17.0)
@@ -363,7 +361,8 @@ DEPENDENCIES
   rack-timeout
   redcarpet
   selenium-webdriver
-  sentry-raven
+  sentry-rails
+  sentry-ruby
   shoulda-matchers
   timecop
   uglifier
