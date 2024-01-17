@@ -46,6 +46,33 @@ RSpec.describe Admin::ApplicationController, type: :controller do
     end
   end
 
+  describe "creation yeilds resource" do
+    controller(Admin::OrdersController) do
+      attr_reader :resource
+
+      def create
+        super do |resource|
+          @resource = resource
+        end
+      end
+    end
+
+    it "yields the created resource after creation" do
+      customer = create(:customer)
+      order_attributes = build(:order, customer: customer).attributes
+      params = order_attributes.except(
+        "id",
+        "created_at",
+        "updated_at",
+        "shipped_at",
+      )
+
+      post :create, params: { order: params }
+
+      expect(controller.resource).to be_a(Order)
+    end
+  end
+
   describe "authorization" do
     controller(Administrate::ApplicationController) do
       def resource_class

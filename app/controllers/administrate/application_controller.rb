@@ -44,6 +44,7 @@ module Administrate
       authorize_resource(resource)
 
       if resource.save
+        yield(resource) if block_given?
         redirect_to(
           after_resource_created_path(resource),
           notice: translate_with_resource("create.success"),
