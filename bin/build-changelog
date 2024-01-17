@@ -7,7 +7,8 @@ if ! command -v gh > /dev/null; then
   exit 1
 fi
 
-last_release=$(git describe --tag --abbrev=0)
+# last_release=$(git describe --tag --abbrev=0)
+last_release="482bc010"
 
 template_changes=$(git diff --name-only "${last_release}" | grep html.erb)
 

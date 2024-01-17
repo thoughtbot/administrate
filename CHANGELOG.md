@@ -17,6 +17,46 @@
 
 ## Changes
 
+### 0.20.0 (January 17, 2024)
+
+This is our final release before v1.0.0, which will bring with it a big
+change around how we handle our CSS and JS assets. You'll most likely need
+to do some work to update, and we'll be publishing release candidate releases
+to help learn along the way. If you can, we'd love it if you could give them a
+try and report any problems you face!
+
+The following templates have changed since v0.19.0:
+
+  app/views/administrate/application/_form.html.erb
+  app/views/administrate/application/show.html.erb
+  app/views/fields/has_one/_form.html.erb
+  app/views/fields/has_one/_show.html.erb
+
+If your application overrides any of them, make sure to review your
+custom templates to ensure that they remain compatible.
+
+* [FEATURE] [#2484] Yield created resource if block is given
+* [OPTIM] [#2473] Remove CircleCI
+* [COMPAT] [#2485] Switch to the Sentry Ruby & Rails gems
+* [UI] [#2422] Allow grouping fields (new, edit and show)
+* [COMPAT] [#2479] Use a dedicated ActiveSupport::Deprecation instance
+* [COMPAT] [#2483] Start testing against Ruby 3.3
+* [BUGFIX] [#2480] Fix the bundle audit workflow
+* [COMPAT] [#1932] Start testing on GitHub Actions
+* [OPTIM] [#2418] Build SQL with Arel instead of from strings
+* [UI] [#2405] Add form field hints
+* [COMPAT] [#2462] Avoid open-ended dependencies
+* [COMPAT] [#2419] Update `selenium-webdriver` and remove `webdrivers`
+* [COMPAT] [#2469] Drop support for Ruby 2.7, since it's EOL
+* [BUGFIX] [#2427] Support all number helpers of ActiveSupport::NumberHelper
+* [DOC] [#2443] Add sample app path to CONTRIBUTING.md
+* [FEATURE] [#2415] hasMany collection columns
+* [BUGFIX] [#2403] Add Administrate::Punditize methods as module methods
+* [COMPAT] [#2433] Add GitHub Actions as an ecosystem for Dependabot
+* [COMPAT] [#2428] Enable Rails 7 on CI
+* [COMPAT] [#2410] Another year, another change to how to deal with webdrivers
+* [DOC] [#2408] Example app: change float column types to decimal
+
 ### 0.19.0 (July 18, 2023)
 
 Once again, a big catchup release with lots of miscellaneous compatibility
