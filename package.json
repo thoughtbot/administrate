@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "lint:css": "stylelint app/assets/stylesheets/administrate/**/*.scss"
+  },
+  "devDependencies": {
+    "@thoughtbot/stylelint-config": "^4.0.0",
+    "stylelint": "^16.2.1"
+  }
+}

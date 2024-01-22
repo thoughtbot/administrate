@@ -32,6 +32,10 @@ textarea {
   font-size: 16px;
 }
 
+textarea {
+  resize: vertical;
+}
+
 [type="color"],
 [type="date"],
 [type="datetime-local"],
@@ -76,10 +80,6 @@ textarea {
   &::placeholder {
     font-style: italic;
   }
-}
-
-textarea {
-  resize: vertical;
 }
 
 [type="checkbox"],

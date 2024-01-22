@@ -1,5 +1,7 @@
+/* stylelint-disable scss/dollar-variable-empty-line-before */
+
 // Typography
-$base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+$base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif !default;
 $heading-font-family: $base-font-family !default;
@@ -17,8 +19,8 @@ $base-spacing: $base-line-height * 1em !default;
 $small-spacing: $base-spacing * 0.5 !default;
 
 // Colors
-$white: #fff !default;
-$black: #000 !default;
+$white: #ffffff !default;
+$black: #000000 !default;
 
 $blue: #1976d2 !default;
 $red: #d32f2f !default;
@@ -63,3 +65,5 @@ $base-border: 1px solid $base-border-color !default;
 // Transitions
 $base-duration: 250ms !default;
 $base-timing: ease-in-out !default;
+
+/* stylelint-enable scss/dollar-variable-empty-line-before */
