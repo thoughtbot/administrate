@@ -10,7 +10,7 @@ In general, you can override any of the views under Administrate's
 [/app/views][1].
 For example, say that you want to customize the template used for flash
 messages. You can provide your own as
-`/app/views/administrate/application/_flashes.html.erb`, and it will replace
+`app/views/admin/application/_flashes.html.erb`, and it will replace
 Administrate's own.
 
 Figuring out which views are available and where can be repetitive. You can
