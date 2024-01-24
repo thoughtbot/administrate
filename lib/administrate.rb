@@ -1,4 +1,5 @@
 require "administrate/engine"
+require "administrate/version"
 
 module Administrate
   def self.warn_of_missing_resource_class
