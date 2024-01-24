@@ -7,22 +7,23 @@ if ! command -v gh > /dev/null; then
   exit 1
 fi
 
-# last_release=$(git describe --tag --abbrev=0)
-last_release="482bc010"
+last_release=$(git describe --tag --abbrev=0)
 
-template_changes=$(git diff --name-only "${last_release}" | grep html.erb)
+if git diff --name-only "${last_release}" | grep -q html.erb; then
+	template_changes=$(git diff --name-only "${last_release}" | grep html.erb)
 
-echo "The following templates have changed since ${last_release}:"
-echo
-echo "$template_changes" | while read -r line; do
-	if case $line in spec*) false;; esac; then
-		echo "  ${line}"
-  fi
-done
-echo
-echo "If your application overrides any of them, make sure to review your"
-echo "custom templates to ensure that they remain compatible."
-echo
+	echo "The following templates have changed since ${last_release}:"
+	echo
+	echo "$template_changes" | while read -r line; do
+		if case $line in spec*) false;; esac; then
+			echo "  ${line}"
+	  fi
+	done
+	echo
+	echo "If your application overrides any of them, make sure to review your"
+	echo "custom templates to ensure that they remain compatible."
+	echo
+fi
 
 revision_range="${last_release}..origin/main"
 commit_format="--pretty=tformat:%h %s"
