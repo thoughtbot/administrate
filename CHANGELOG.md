@@ -17,6 +17,16 @@
 
 ## Changes
 
+### 0.20.1 (January 24, 2024)
+
+In `0.20.0`, we introduced a regression which potentially meant you might
+get a `NameError` because of a missing import on `Administrate::VERSION`,
+this fixes that and two other minor issues as well.
+
+* [BUGFIX] [#2494] Fix build-changelog with no template changes
+* [BUGFIX] [#2491] Fix missing `Administrate::VERSION` reference
+* [DOC] [#2489] Fix path in documentation
+
 ### 0.20.0 (January 17, 2024)
 
 This is our final release before v1.0.0, which will bring with it a big
