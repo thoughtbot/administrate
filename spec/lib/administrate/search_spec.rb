@@ -35,7 +35,9 @@ describe Administrate::Search do
 
         class UserDashboard
           ATTRIBUTE_TYPES = {
-            id: Administrate::Field::Number.with_options(searchable: true),
+            # RINSED
+            # id: Administrate::Field::Number.with_options(searchable: true),
+            # END RINSED
             name: Administrate::Field::String,
             email: Administrate::Field::Email,
             phone: Administrate::Field::Number,
@@ -44,6 +46,12 @@ describe Administrate::Search do
           COLLECTION_FILTERS = {
             vip: ->(resources) { resources.where(kind: :vip) },
           }.freeze
+
+          # RINSED
+          def attribute_types
+            @attribute_types ||= { id: Administrate::Field::Number.with_options(searchable: true) }.merge(ATTRIBUTE_TYPES)
+          end
+          # END RINSED
         end
 
         class FooDashboard
