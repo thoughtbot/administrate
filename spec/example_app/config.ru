@@ -3,4 +3,7 @@
 require_relative "config/environment"
 
 run Rails.application
-Rails.application.load_server
+
+if Gem::Version.new(Rails.version) >= Gem::Version.new("6.1")
+  Rails.application.load_server
+end

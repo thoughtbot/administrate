@@ -14,7 +14,12 @@ module Administrate
       include Administrate::GeneratorHelpers
       source_root File.expand_path("../templates", __FILE__)
 
-      class_option :namespace, type: :string, default: "admin"
+      class_option(
+        :namespace,
+        type: :string,
+        desc: "Namespace where the admin dashboards will live",
+        default: "admin",
+      )
 
       def run_routes_generator
         if dashboard_resources.none?
