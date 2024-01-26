@@ -1,8 +1,11 @@
 ---
-name: "CodeQL"
-
+name: CodeQL
 on:
   push:
+    branches:
+      - 'main'
+  pull_request:
+    types: [opened, synchronize, reopened]
   schedule:
     - cron: '44 6 * * 4'
 
