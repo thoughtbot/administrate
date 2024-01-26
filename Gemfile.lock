@@ -116,17 +116,9 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-<<<<<<< HEAD
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.1.0)
-=======
-    dartsass-rails (0.4.1)
-      railties (>= 6.0.0)
-    database_cleaner (2.0.1)
-      database_cleaner-active_record (~> 2.0.0)
-    database_cleaner-active_record (2.0.1)
->>>>>>> ec89976 (remove sassc-rails and replace it with dartsass-rails)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
@@ -145,14 +137,7 @@ GEM
       railties (>= 5.0.0)
     faker (3.2.3)
       i18n (>= 1.8.11, < 2)
-<<<<<<< HEAD
     ffi (1.15.5)
-=======
-    faraday (2.7.4)
-      faraday-net_http (>= 2.0, < 3.1)
-      ruby2_keywords (>= 0.0.4)
-    faraday-net_http (3.0.2)
->>>>>>> ec89976 (remove sassc-rails and replace it with dartsass-rails)
     formulaic (0.4.1)
       activesupport
       capybara
@@ -317,18 +302,11 @@ GEM
       sprockets (>= 3.0.0)
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
-<<<<<<< HEAD
     thor (1.3.0)
     tilt (2.2.0)
     timecop (0.9.8)
     timeout (0.4.0)
     tzinfo (2.0.6)
-=======
-    thor (1.2.1)
-    timecop (0.9.6)
-    timeout (0.3.1)
-    tzinfo (2.0.5)
->>>>>>> ec89976 (remove sassc-rails and replace it with dartsass-rails)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
