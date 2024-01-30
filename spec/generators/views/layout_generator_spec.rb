@@ -16,6 +16,19 @@ describe Administrate::Generators::Views::LayoutGenerator, :generator do
       expect(contents).to eq(expected_contents)
     end
 
+    it "copies the layout template into the `namespace=<namespace>` dir" do
+      allow(Rails::Generators).to receive(:invoke)
+      expected_contents = File.read(
+        "app/views/layouts/administrate/application.html.erb"
+      )
+      generated_file = file("app/views/layouts/console/application.html.erb")
+
+      run_generator ["--namespace", "console"]
+      contents = File.read(generated_file)
+
+      expect(contents).to eq(expected_contents)
+    end
+
     it "copies the flashes partial into the `admin/application` namespace" do
       allow(Rails::Generators).to receive(:invoke)
       expected_contents = contents_for_application_template("_flashes")
