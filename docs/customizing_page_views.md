@@ -94,3 +94,25 @@ rails generate administrate:views:layout
  # It only generates the sidebar partial
  # -> app/views/admin/application/_navigation.html.erb
 ```
+
+## Adding custom CSS and JS
+
+You can add custom CSS and JS to Administrate. Put the files in the
+appropriate folders (typically under `assets`) and point Administrate to them
+using the following API, preferably in an initializer. For example, if your
+files are called `admin.css` and `admin.js`:
+
+```
+/// config/initializers/administrate.rb
+Administrate::Engine.add_stylesheet("admin")
+Administrate::Engine.add_javascript("admin")
+```
+
+Then make sure to list them in your manifest file (Rails will helpfully remind
+you of this step if you miss it):
+
+```
+/// app/assets/config/manifest.js
+//= link admin.css
+//= link admin.js
+```
