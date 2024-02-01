@@ -23,5 +23,14 @@
 
 .attribute--nested {
   border: $base-border;
+  display: table;
   padding: $small-spacing;
+  width: 100%;
+}
+
+.attribute--nested--legend {
+  background: $white;
+  display: inline;
+  position: relative;
+  top: -1.5em;
 }
