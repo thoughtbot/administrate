@@ -32,6 +32,21 @@ module Administrate
         attr
       end
 
+      def self._partial_prefixes
+        @_partial_prefixes ||= begin
+          if superclass == Administrate::Field::Base
+            local_partial_prefixes
+          else
+            local_partial_prefixes + superclass._partial_prefixes
+          end
+        end
+      end
+
+      def self.local_partial_prefixes
+        ["fields/#{field_type}"]
+      end
+      private_class_method :local_partial_prefixes
+
       def initialize(attribute, data, page, options = {})
         @attribute = attribute
         @data = data
@@ -48,8 +63,8 @@ module Administrate
         attribute.to_s
       end
 
-      def to_partial_path
-        "/fields/#{self.class.field_type}/#{page}"
+      def _partial_prefixes
+        self.class._partial_prefixes
       end
 
       def required?
