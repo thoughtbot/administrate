@@ -1,8 +1,4 @@
-require "jquery-rails"
 require "kaminari"
-require "sassc-rails"
-require "selectize-rails"
-require "sprockets/railtie"
 
 require "administrate/namespace/resource"
 require "administrate/not_authorized_error"

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+"$(dirname "$0")"/dev -m js=1,css=1
