@@ -7,10 +7,10 @@ require "administrate/field/email"
 require "administrate/field/has_many"
 require "administrate/field/has_one"
 require "administrate/field/number"
-require "administrate/field/string"
 require "administrate/base_dashboard"
 require "administrate/search"
 
+# standard:disable Lint/ConstantDefinitionInBlock
 describe Administrate::Search do
   before :all do
     module Administrate
@@ -22,14 +22,16 @@ describe Administrate::Search do
         end
 
         class Role < MockRecord; end
+
         class Person < MockRecord; end
+
         class Address < MockRecord; end
 
         class Foo < MockRecord
           belongs_to :role
           belongs_to(
             :author,
-            class_name: "Administrate::SearchSpecMocks::Person",
+            class_name: "Administrate::SearchSpecMocks::Person"
           )
           has_one :address
         end
@@ -39,12 +41,12 @@ describe Administrate::Search do
             id: Administrate::Field::Number.with_options(searchable: true),
             name: Administrate::Field::String,
             email: Administrate::Field::Email,
-            phone: Administrate::Field::Number,
+            phone: Administrate::Field::Number
           }.freeze
 
           COLLECTION_FILTERS = {
             vip: ->(resource) { resource.where(kind: :vip) },
-            kind: ->(resource, param) { resource.where(kind: param) },
+            kind: ->(resource, param) { resource.where(kind: param) }
           }.freeze
         end
 
@@ -52,17 +54,17 @@ describe Administrate::Search do
           ATTRIBUTE_TYPES = {
             role: Administrate::Field::BelongsTo.with_options(
               searchable: true,
-              searchable_field: "name",
+              searchable_field: "name"
             ),
             author: Administrate::Field::BelongsTo.with_options(
               searchable: true,
               searchable_fields: ["first_name", "last_name"],
-              class_name: "Administrate::SearchSpecMocks::Person",
+              class_name: "Administrate::SearchSpecMocks::Person"
             ),
             address: Administrate::Field::HasOne.with_options(
               searchable: true,
-              searchable_fields: ["street"],
-            ),
+              searchable_fields: ["street"]
+            )
           }.freeze
         end
       end
@@ -83,7 +85,7 @@ describe Administrate::Search do
       search = Administrate::Search.new(
         scoped_object,
         Administrate::SearchSpecMocks::UserDashboard.new,
-        nil,
+        nil
       )
       expect(scoped_object).to receive(:all)
 
@@ -98,7 +100,7 @@ describe Administrate::Search do
       search = Administrate::Search.new(
         scoped_object,
         Administrate::SearchSpecMocks::UserDashboard.new,
-        "   ",
+        "   "
       )
       expect(scoped_object).to receive(:all)
 
@@ -113,17 +115,17 @@ describe Administrate::Search do
       search = Administrate::Search.new(
         scoped_object,
         Administrate::SearchSpecMocks::UserDashboard.new,
-        "test",
+        "test"
       )
       expected_query = [
         [
           'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
           'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
-          'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+          'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?'
         ].join(" OR "),
         "%test%",
         "%test%",
-        "%test%",
+        "%test%"
       ]
       expect(scoped_object).to receive(:where).with(*expected_query)
 
@@ -138,17 +140,17 @@ describe Administrate::Search do
       search = Administrate::Search.new(
         scoped_object,
         Administrate::SearchSpecMocks::UserDashboard.new,
-        "Тест Test",
+        "Тест Test"
       )
       expected_query = [
         [
           'LOWER(CAST("users"."id" AS CHAR(256))) LIKE ?',
           'LOWER(CAST("users"."name" AS CHAR(256))) LIKE ?',
-          'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?',
+          'LOWER(CAST("users"."email" AS CHAR(256))) LIKE ?'
         ].join(" OR "),
         "%тест test%",
         "%тест test%",
-        "%тест test%",
+        "%тест test%"
       ]
       expect(scoped_object).to receive(:where).with(*expected_query)
 
@@ -168,20 +170,20 @@ describe Administrate::Search do
         Administrate::Search.new(
           scoped_object,
           Administrate::SearchSpecMocks::FooDashboard.new,
-          "Тест Test",
+          "Тест Test"
         )
       end
 
       let(:expected_query) do
         [
-          'LOWER(CAST("roles"."name" AS CHAR(256))) LIKE ?'\
-          ' OR LOWER(CAST("people"."first_name" AS CHAR(256))) LIKE ?'\
-          ' OR LOWER(CAST("people"."last_name" AS CHAR(256))) LIKE ?'\
+          'LOWER(CAST("roles"."name" AS CHAR(256))) LIKE ?' \
+          ' OR LOWER(CAST("people"."first_name" AS CHAR(256))) LIKE ?' \
+          ' OR LOWER(CAST("people"."last_name" AS CHAR(256))) LIKE ?' \
           ' OR LOWER(CAST("addresses"."street" AS CHAR(256))) LIKE ?',
           "%тест test%",
           "%тест test%",
           "%тест test%",
-          "%тест test%",
+          "%тест test%"
         ]
       end
 
@@ -192,7 +194,7 @@ describe Administrate::Search do
         search.run
 
         expect(scoped_object).to(
-          have_received(:left_joins).with(%i(role author address)),
+          have_received(:left_joins).with(%i[role author address])
         )
       end
 
@@ -203,22 +205,22 @@ describe Administrate::Search do
         search.run
 
         expect(scoped_object).to(
-          have_received(:where).with(*expected_query),
+          have_received(:where).with(*expected_query)
         )
       end
 
       it "triggers a deprecation warning" do
         allow(scoped_object).to receive(:where)
         allow(scoped_object).to(
-          receive(:left_joins).
-            with(%i(role author address)).
-            and_return(scoped_object),
+          receive(:left_joins)
+            .with(%i[role author address])
+            .and_return(scoped_object)
         )
 
         search.run
 
-        expect(Administrate.deprecator).to have_received(:warn).
-          with(/:class_name is deprecated/)
+        expect(Administrate.deprecator).to have_received(:warn)
+          .with(/:class_name is deprecated/)
       end
     end
 
@@ -230,12 +232,12 @@ describe Administrate::Search do
       search = Administrate::Search.new(
         scoped_object,
         Administrate::SearchSpecMocks::UserDashboard.new,
-        "vip:",
+        "vip:"
       )
       expect(scoped_object).to \
-        receive(:where).
-        with(kind: :vip).
-        and_return(scoped_object)
+        receive(:where)
+        .with(kind: :vip)
+        .and_return(scoped_object)
       expect(scoped_object).to receive(:where).and_return(scoped_object)
 
       search.run
@@ -244,3 +246,4 @@ describe Administrate::Search do
     end
   end
 end
+# standard:enable Lint/ConstantDefinitionInBlock

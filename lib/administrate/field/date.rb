@@ -6,7 +6,7 @@ module Administrate
       def date
         I18n.localize(
           data.to_date,
-          format: format,
+          format: format
         )
       end
 

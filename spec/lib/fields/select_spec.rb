@@ -10,11 +10,11 @@ describe Administrate::Field::Select do
         "yes",
         :_page_,
         resource: customer,
-        collection: ["no", "yes", "absolutely"],
+        collection: ["no", "yes", "absolutely"]
       )
 
       expect(field.selectable_options).to eq(
-        ["no", "yes", "absolutely"],
+        ["no", "yes", "absolutely"]
       )
     end
 
@@ -28,14 +28,14 @@ describe Administrate::Field::Select do
         collection: {
           "no" => "opt0",
           "yes" => "opt1",
-          "absolutely" => "opt2",
-        },
+          "absolutely" => "opt2"
+        }
       )
 
       expect(field.selectable_options).to eq(
         "no" => "opt0",
         "yes" => "opt1",
-        "absolutely" => "opt2",
+        "absolutely" => "opt2"
       )
     end
 
@@ -50,15 +50,15 @@ describe Administrate::Field::Select do
           {
             "no" => "opt0",
             "yes" => "opt1",
-            "absolutely" => "opt2",
+            "absolutely" => "opt2"
           }
-        },
+        }
       )
 
       expect(field.selectable_options).to eq(
         "no" => "opt0",
         "yes" => "opt1",
-        "absolutely" => "opt2",
+        "absolutely" => "opt2"
       )
     end
 
@@ -74,15 +74,15 @@ describe Administrate::Field::Select do
           {
             "no, #{person.name}" => "opt0",
             "yes, #{person.name}" => "opt1",
-            "absolutely, #{person.name}" => "opt2",
+            "absolutely, #{person.name}" => "opt2"
           }
-        },
+        }
       )
 
       expect(field.selectable_options).to eq(
         "no, Dave" => "opt0",
         "yes, Dave" => "opt1",
-        "absolutely, Dave" => "opt2",
+        "absolutely, Dave" => "opt2"
       )
     end
 
@@ -92,7 +92,7 @@ describe Administrate::Field::Select do
         :kind,
         "vip",
         :_page_,
-        resource: customer,
+        resource: customer
       )
 
       expect(field.selectable_options).to eq(["standard", "vip"])
@@ -105,7 +105,7 @@ describe Administrate::Field::Select do
         "platinum",
         :_page_,
         resource: customer,
-        collection: ["gold", "platinum"],
+        collection: ["gold", "platinum"]
       )
 
       expect(field.selectable_options).to eq(["gold", "platinum"])
@@ -117,7 +117,7 @@ describe Administrate::Field::Select do
         :email_subscriber,
         "opt1",
         :_page_,
-        resource: customer,
+        resource: customer
       )
 
       expect(field.selectable_options).to eq([])

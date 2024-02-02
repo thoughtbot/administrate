@@ -79,7 +79,7 @@ module Administrate
         attribute_types[attr].permitted_attribute(
           attr,
           resource_class: self.class.model,
-          action: action,
+          action: action
         )
       end.uniq
     end
@@ -118,10 +118,10 @@ module Administrate
 
     def item_associations
       attributes = if show_page_attributes.is_a?(Hash)
-                     show_page_attributes.values.flatten
-                   else
-                     show_page_attributes
-                   end
+        show_page_attributes.values.flatten
+      else
+        show_page_attributes
+      end
       attribute_associated attributes
     end
 

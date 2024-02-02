@@ -15,7 +15,7 @@ Rails.application.configure do
   if config.respond_to?(:public_file_server)
     config.public_file_server.enabled = true
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=3600",
+      "Cache-Control" => "public, max-age=3600"
     }
   else
     config.serve_static_files = true
@@ -23,7 +23,7 @@ Rails.application.configure do
   end
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
   config.cache_store = :null_store
 

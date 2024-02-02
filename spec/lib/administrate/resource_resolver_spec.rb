@@ -79,9 +79,9 @@ describe Administrate::ResourceResolver do
       translations = {
         activerecord: {
           models: {
-            "library/book": "Library Book",
-          },
-        },
+            "library/book": "Library Book"
+          }
+        }
       }
 
       with_translations(:en, translations) do

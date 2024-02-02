@@ -21,7 +21,7 @@ module Administrate
       end
 
       def path
-        name.to_s.gsub("/", "_")
+        name.to_s.tr("/", "_")
       end
     end
   end

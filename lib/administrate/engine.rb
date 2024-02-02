@@ -9,7 +9,6 @@ require "administrate/order"
 require "administrate/resource_resolver"
 require "administrate/search"
 require "administrate/namespace"
-require "administrate/namespace/resource"
 
 module Administrate
   class Engine < ::Rails::Engine
@@ -21,7 +20,7 @@ module Administrate
     initializer "administrate.assets.precompile" do |app|
       app.config.assets.precompile += [
         "administrate/application.js",
-        "administrate/application.css",
+        "administrate/application.css"
       ]
     end
 

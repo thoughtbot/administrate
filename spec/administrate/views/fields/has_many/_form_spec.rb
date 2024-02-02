@@ -5,12 +5,12 @@ describe "fields/has_many/_form", type: :view do
     it "displays the association name" do
       has_many = double(
         attribute_key: :associated_object_ids,
-        attribute: :associated_objects,
+        attribute: :associated_objects
       )
 
       render(
         partial: "fields/has_many/form",
-        locals: { f: fake_form_builder, field: has_many },
+        locals: {f: fake_form_builder, field: has_many}
       )
 
       expect(rendered).to include("Associated objects")

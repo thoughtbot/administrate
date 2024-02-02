@@ -21,7 +21,7 @@ describe Administrate::Field::Number do
     should_permit_param(
       "foo",
       on_model: Customer,
-      for_attribute: :foo,
+      for_attribute: :foo
     )
   end
 
@@ -87,21 +87,21 @@ describe Administrate::Field::Number do
       context "when `formatter: :number_to_delimited`" do
         it "includes the delimiter for numbers greater than 999" do
           ninety_nine = number_with_options(
-            999, format: { formatter: :number_to_delimited }
+            999, format: {formatter: :number_to_delimited}
           )
           thousand_default = number_with_options(
-            1_000, format: { formatter: :number_to_delimited }
+            1_000, format: {formatter: :number_to_delimited}
           )
           thousand_explicit_comma = number_with_options(
             1_000, format: {
               formatter: :number_to_delimited,
-              formatter_options: { delimiter: "," },
+              formatter_options: {delimiter: ","}
             }
           )
           million_explicit_space = number_with_options(
             1_000_000, format: {
               formatter: :number_to_delimited,
-              formatter_options: { delimiter: " " },
+              formatter_options: {delimiter: " "}
             }
           )
 
@@ -115,7 +115,7 @@ describe Administrate::Field::Number do
       context "when `formatter: :number_to_currency`" do
         it "includes the currency" do
           with_currency = number_with_options(
-            100, format: { formatter: :number_to_currency }
+            100, format: {formatter: :number_to_currency}
           )
           expect(with_currency.to_s).to eq("$100.00")
         end
@@ -123,7 +123,7 @@ describe Administrate::Field::Number do
 
       context "when passed incorrect `formatter`" do
         it "works" do
-          thousand = number_with_options(1_000, format: { formatter: :rubbish })
+          thousand = number_with_options(1_000, format: {formatter: :rubbish})
 
           expect(thousand.to_s).to eq("1000")
         end
@@ -141,9 +141,9 @@ describe Administrate::Field::Number do
             formatter: :number_to_delimited,
             formatter_options: {
               delimiter: " ",
-              separator: ",",
-            },
-          },
+              separator: ","
+            }
+          }
         }
         number = number_with_options(100, **options)
 

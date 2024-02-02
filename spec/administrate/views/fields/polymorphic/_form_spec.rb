@@ -6,7 +6,7 @@ describe "fields/polymorphic/_form", type: :view do
 
     render(
       partial: "fields/polymorphic/form",
-      locals: { field: polymorphic, f: fake_form_builder },
+      locals: {field: polymorphic, f: fake_form_builder}
     )
 
     expect(rendered).to include("Parent")

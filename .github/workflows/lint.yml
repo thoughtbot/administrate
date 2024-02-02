@@ -8,6 +8,18 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
+  standardrb:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: StandardRB Linter
+        uses: testdouble/standard-ruby-action@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   stylelint:
     runs-on: ubuntu-latest
     steps:

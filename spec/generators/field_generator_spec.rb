@@ -5,18 +5,16 @@ require "generators/administrate/field/field_generator"
 describe Administrate::Generators::FieldGenerator, :generator do
   describe "administrate:field field_name" do
     it "generates a field object" do
-      begin
-        run_generator ["foobar"]
+      run_generator ["foobar"]
 
-        load file("app/fields/foobar_field.rb")
-        field = FoobarField.new(:attr_name, "value", "show")
+      load file("app/fields/foobar_field.rb")
+      field = FoobarField.new(:attr_name, "value", "show")
 
-        expect(field.name).to eq("attr_name")
-        expect(field.data).to eq("value")
-        expect(field.to_s).to eq("value")
-      ensure
-        remove_constants :FoobarField
-      end
+      expect(field.name).to eq("attr_name")
+      expect(field.data).to eq("value")
+      expect(field.to_s).to eq("value")
+    ensure
+      remove_constants :FoobarField
     end
 
     it "generates a default `_index` partial" do

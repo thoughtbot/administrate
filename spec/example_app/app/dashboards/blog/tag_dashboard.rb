@@ -7,7 +7,7 @@ module Blog
       name: Field::String,
       created_at: Field::DateTime,
       updated_at: Field::DateTime,
-      posts: Field::HasMany,
+      posts: Field::HasMany
     }.freeze
 
     COLLECTION_ATTRIBUTES = %i[

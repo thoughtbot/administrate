@@ -8,12 +8,12 @@ describe "fields/date_time/_index", type: :view do
         format: #{Time::DATE_FORMATS[:default]}
       )",
       data: product,
-      datetime: product.created_at,
+      datetime: product.created_at
     )
 
     render(
       partial: "fields/date_time/index",
-      locals: { field: date_time, namespace: :admin },
+      locals: {field: date_time, namespace: :admin}
     )
   end
 end

@@ -7,7 +7,7 @@ describe "fields/time/_index", type: :view do
 
       render(
         partial: "fields/time/index",
-        locals: { field: time },
+        locals: {field: time}
       )
 
       expect(rendered.strip).to eq("")
@@ -21,11 +21,11 @@ describe "fields/time/_index", type: :view do
       time = instance_double(
         "Administrate::Field::Time",
         data: customer.example_time,
-        time: "12:34PM",
+        time: "12:34PM"
       )
       render(
         partial: "fields/time/index",
-        locals: { field: time, namespace: :admin },
+        locals: {field: time, namespace: :admin}
       )
 
       expect(rendered.strip).to eq("12:34PM")

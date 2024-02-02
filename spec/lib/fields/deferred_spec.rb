@@ -14,35 +14,35 @@ describe Administrate::Field::Deferred do
       it "returns the value given" do
         deferred = Administrate::Field::Deferred.new(
           Administrate::Field::BelongsTo,
-          foreign_key: :bar,
+          foreign_key: :bar
         )
-        expect(deferred.permitted_attribute(:foo, resource_class: LineItem)).
-          to eq(:bar)
+        expect(deferred.permitted_attribute(:foo, resource_class: LineItem))
+          .to eq(:bar)
       end
 
       it "triggers a deprecation warning" do
         deferred = Administrate::Field::Deferred.new(
           Administrate::Field::BelongsTo,
-          foreign_key: :bar,
+          foreign_key: :bar
         )
         deferred.permitted_attribute(:foo, resource_class: LineItem)
-        expect(Administrate.deprecator).to have_received(:warn).
-          with(/:foreign_key is deprecated/)
+        expect(Administrate.deprecator).to have_received(:warn)
+          .with(/:foreign_key is deprecated/)
       end
     end
 
     context "when not given a `foreign_key` option" do
       it "delegates to the backing class" do
         deferred = Administrate::Field::Deferred.new(
-          Administrate::Field::String,
+          Administrate::Field::String
         )
         allow(Administrate::Field::String).to receive(:permitted_attribute)
 
         deferred.permitted_attribute(:foo, resource_class: LineItem)
 
         expect(Administrate::Field::String).to(
-          have_received(:permitted_attribute).
-            with(:foo, resource_class: LineItem),
+          have_received(:permitted_attribute)
+            .with(:foo, resource_class: LineItem)
         )
       end
     end
@@ -53,14 +53,14 @@ describe Administrate::Field::Deferred do
         allow(field).to receive(:permitted_attribute)
         deferred = Administrate::Field::Deferred.new(
           field,
-          class_name: "Foo::Bar",
+          class_name: "Foo::Bar"
         )
 
         deferred.permitted_attribute(:bars)
 
         expect(field).to(
-          have_received(:permitted_attribute).
-            with(:bars, class_name: "Foo::Bar"),
+          have_received(:permitted_attribute)
+            .with(:bars, class_name: "Foo::Bar")
         )
       end
     end
@@ -71,11 +71,11 @@ describe Administrate::Field::Deferred do
       it "returns the value given" do
         searchable_deferred = Administrate::Field::Deferred.new(
           double(searchable?: false),
-          searchable: true,
+          searchable: true
         )
         unsearchable_deferred = Administrate::Field::Deferred.new(
           double(searchable?: true),
-          searchable: false,
+          searchable: false
         )
 
         expect(searchable_deferred.searchable?).to eq(true)
@@ -86,10 +86,10 @@ describe Administrate::Field::Deferred do
     context "when not given a `searchable` option" do
       it "falls back to the default of the deferred class" do
         searchable_deferred = Administrate::Field::Deferred.new(
-          double(searchable?: true),
+          double(searchable?: true)
         )
         unsearchable_deferred = Administrate::Field::Deferred.new(
-          double(searchable?: false),
+          double(searchable?: false)
         )
 
         expect(searchable_deferred.searchable?).to eq(true)

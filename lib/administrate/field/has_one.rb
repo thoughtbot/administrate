@@ -20,10 +20,10 @@ module Administrate
             end
           end
         related_dashboard_attributes =
-          Administrate::ResourceResolver.
-            new("admin/#{final_associated_class_name}").
-            dashboard_class.new.permitted_attributes + [:id]
-        { "#{attr}_attributes": related_dashboard_attributes }
+          Administrate::ResourceResolver
+            .new("admin/#{final_associated_class_name}")
+            .dashboard_class.new.permitted_attributes + [:id]
+        {"#{attr}_attributes": related_dashboard_attributes}
       end
 
       def self.eager_load?
@@ -33,14 +33,14 @@ module Administrate
       def nested_form
         @nested_form ||= Administrate::Page::Form.new(
           resolver.dashboard_class.new,
-          data || resolver.resource_class.new,
+          data || resolver.resource_class.new
         )
       end
 
       def nested_show
         @nested_show ||= Administrate::Page::Show.new(
           resolver.dashboard_class.new,
-          data || resolver.resource_class.new,
+          data || resolver.resource_class.new
         )
       end
 

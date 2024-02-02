@@ -7,15 +7,15 @@ describe "fields/url/_form", type: :view do
     url = instance_double(
       "Administrate::Field::Url",
       attribute: :image_url,
-      data: nil,
+      data: nil
     )
 
     render(
       partial: "fields/url/form",
-      locals: { field: url, f: form_builder(product) },
+      locals: {field: url, f: form_builder(product)}
     )
 
-    expect(rendered).to have_css(%{input[type="url"][name="product[image_url]"]})
+    expect(rendered).to have_css(%(input[type="url"][name="product[image_url]"]))
   end
 
   def form_builder(object)
@@ -23,7 +23,7 @@ describe "fields/url/_form", type: :view do
       object.model_name.singular,
       object,
       build_template,
-      {},
+      {}
     )
   end
 

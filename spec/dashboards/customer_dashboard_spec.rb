@@ -12,15 +12,15 @@ describe CustomerDashboard do
 
   describe "#attribute_types" do
     it "maps each attribute to an attribute field" do
-      Field = Administrate::Field
+      stub_const("Field", Administrate::Field)
       dashboard = CustomerDashboard.new
 
       fields = dashboard.attribute_types
 
       expect(fields[:name]).to eq(Field::String)
       expect(fields[:email]).to eq(Field::Email)
-      expect(fields[:lifetime_value]).
-        to eq(Field::Number.with_options(prefix: "$", decimals: 2))
+      expect(fields[:lifetime_value])
+        .to eq(Field::Number.with_options(prefix: "$", decimals: 2))
     end
   end
 
@@ -40,8 +40,8 @@ describe CustomerDashboard do
     context "for a non-existent attribute" do
       it "raises an exception" do
         dashboard = CustomerDashboard.new
-        expect { dashboard.attribute_type_for(:foo) }.
-          to raise_error missing_attribute_message("foo", "CustomerDashboard")
+        expect { dashboard.attribute_type_for(:foo) }
+          .to raise_error missing_attribute_message("foo", "CustomerDashboard")
       end
     end
   end
@@ -53,7 +53,7 @@ describe CustomerDashboard do
         fields = dashboard.attribute_types_for([:name, :email])
         expect(fields).to match(
           name: Administrate::Field::String,
-          email: Administrate::Field::Email,
+          email: Administrate::Field::Email
         )
       end
     end
@@ -61,8 +61,8 @@ describe CustomerDashboard do
     context "for one non-existent attribute" do
       it "raises an exception" do
         dashboard = CustomerDashboard.new
-        expect { dashboard.attribute_types_for([:name, :foo]) }.
-          to raise_error missing_attribute_message("foo", "CustomerDashboard")
+        expect { dashboard.attribute_types_for([:name, :foo]) }
+          .to raise_error missing_attribute_message("foo", "CustomerDashboard")
       end
     end
   end

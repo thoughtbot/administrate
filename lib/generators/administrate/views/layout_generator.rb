@@ -9,7 +9,7 @@ module Administrate
         def copy_template
           copy_file(
             "../../layouts/administrate/application.html.erb",
-            "app/views/layouts/admin/application.html.erb",
+            "app/views/layouts/admin/application.html.erb"
           )
 
           call_generator("administrate:views:navigation")

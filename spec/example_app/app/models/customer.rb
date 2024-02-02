@@ -4,7 +4,7 @@ class Customer < ApplicationRecord
     :territory,
     class_name: "Country",
     foreign_key: :country_code,
-    primary_key: :code,
+    primary_key: :code
   )
   has_many :log_entries, as: :logeable
 
@@ -13,7 +13,7 @@ class Customer < ApplicationRecord
 
   KINDS = {
     "standard" => "kind:std",
-    "vip" => "kind:vip",
+    "vip" => "kind:vip"
   }.freeze
   enum kind: KINDS
 

@@ -43,7 +43,7 @@ describe Administrate::Field::Url do
           :url,
           base_url + "a",
           :page,
-          truncate: base_url.length,
+          truncate: base_url.length
         )
 
         truncated = url.truncate

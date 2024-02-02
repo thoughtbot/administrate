@@ -3,7 +3,7 @@ module Admin
     def index
       @stats = {
         customer_count: Customer.count,
-        order_count: Order.count,
+        order_count: Order.count
       }
     end
   end

@@ -32,10 +32,10 @@ describe "navigation" do
         models: {
           customer: {
             one: "User",
-            other: "Users",
-          },
-        },
-      },
+            other: "Users"
+          }
+        }
+      }
     }
 
     with_translations(:en, translations) do

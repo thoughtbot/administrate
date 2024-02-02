@@ -44,7 +44,7 @@ describe Administrate::Generators::Views::FieldGenerator, :generator do
         field_types.each do |field_type|
           expected_contents = contents_for_field_template(field_type, :show)
           contents = File.read(
-            file("app/views/fields/#{field_type}/_show.html.erb"),
+            file("app/views/fields/#{field_type}/_show.html.erb")
           )
 
           expect(contents).to eq(expected_contents)
@@ -57,7 +57,7 @@ describe Administrate::Generators::Views::FieldGenerator, :generator do
         field_types.each do |field_type|
           expected_contents = contents_for_field_template(field_type, :form)
           contents = File.read(
-            file("app/views/fields/#{field_type}/_form.html.erb"),
+            file("app/views/fields/#{field_type}/_form.html.erb")
           )
 
           expect(contents).to eq(expected_contents)
@@ -70,7 +70,7 @@ describe Administrate::Generators::Views::FieldGenerator, :generator do
         field_types.each do |field_type|
           expected_contents = contents_for_field_template(field_type, :index)
           contents = File.read(
-            file("app/views/fields/#{field_type}/_index.html.erb"),
+            file("app/views/fields/#{field_type}/_index.html.erb")
           )
 
           expect(contents).to eq(expected_contents)
@@ -81,7 +81,7 @@ describe Administrate::Generators::Views::FieldGenerator, :generator do
 
   def contents_for_field_template(field_name, partial_name)
     File.read(
-      "app/views/fields/#{field_name}/_#{partial_name}.html.erb",
+      "app/views/fields/#{field_name}/_#{partial_name}.html.erb"
     )
   end
 end

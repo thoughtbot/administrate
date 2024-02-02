@@ -1,19 +1,19 @@
 begin
-  require 'bundler/setup'
+  require "bundler/setup"
 rescue LoadError
-  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
+  puts "You must `gem install bundler` and `bundle install` to run rake tasks"
 end
 
-require 'rdoc/task'
+require "rdoc/task"
 
-require File.expand_path('../spec/example_app/config/application', __FILE__)
+require File.expand_path("../spec/example_app/config/application", __FILE__)
 
 RDoc::Task.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'Administrate'
-  rdoc.options << '--line-numbers'
-  rdoc.rdoc_files.include('README.rdoc')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+  rdoc.rdoc_dir = "rdoc"
+  rdoc.title = "Administrate"
+  rdoc.options << "--line-numbers"
+  rdoc.rdoc_files.include("README.rdoc")
+  rdoc.rdoc_files.include("lib/**/*.rb")
 end
 
 Bundler::GemHelper.install_tasks

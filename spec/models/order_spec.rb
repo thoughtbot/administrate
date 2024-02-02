@@ -31,7 +31,7 @@ RSpec.describe Order do
     order.destroy
 
     expect(order.errors[:base]).to eq(
-      ["Cannot delete record because dependent payments exist"],
+      ["Cannot delete record because dependent payments exist"]
     )
   end
 
@@ -46,7 +46,7 @@ RSpec.describe Order do
       order = build(:order)
       order.line_items = [
         line_item_stub(total_price: 20),
-        line_item_stub(total_price: 30),
+        line_item_stub(total_price: 30)
       ]
 
       expect(order.total_price).to eq 50

@@ -95,8 +95,8 @@ describe Administrate::Generators::InstallGenerator, :generator do
       run_generator
 
       %w[customer order product line_item].each do |resource|
-        expect(Rails::Generators).
-          to invoke_generator(
+        expect(Rails::Generators)
+          .to invoke_generator(
             "administrate:dashboard", [resource, "--namespace", "admin"]
           )
       end
@@ -107,7 +107,7 @@ describe Administrate::Generators::InstallGenerator, :generator do
     insert_into_file_after_line(
       1,
       file("config/routes.rb"),
-      File.read("lib/generators/administrate/install/templates/routes.rb"),
+      File.read("lib/generators/administrate/install/templates/routes.rb")
     )
   end
 

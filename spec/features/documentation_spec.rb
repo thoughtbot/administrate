@@ -12,7 +12,7 @@ describe "documentation navigation" do
 
     expect(page).to have_css("div.main h1", text: "Administrate")
     expect(page).to have_content(
-      "A framework for creating flexible, powerful admin dashboards in Rails",
+      "A framework for creating flexible, powerful admin dashboards in Rails"
     )
   end
 
@@ -21,7 +21,7 @@ describe "documentation navigation" do
 
     expect(page).to have_css("div.main h1", text: "Contributing Guide")
     expect(page).to have_content(
-      "We welcome pull requests from everyone.",
+      "We welcome pull requests from everyone."
     )
 
     visit("/CONTRIBUTING.md")
@@ -80,8 +80,8 @@ describe "documentation navigation" do
   it "links to the GitHub repo" do
     visit root_path
 
-    expect(github_link[:href]).
-      to eq "https://github.com/thoughtbot/administrate"
+    expect(github_link[:href])
+      .to eq "https://github.com/thoughtbot/administrate"
   end
 
   private
@@ -91,8 +91,8 @@ describe "documentation navigation" do
   end
 
   def internal_documentation_links
-    all(".sidebar a").
-      map { |anchor| anchor[:href] }.
-      select { |href| URI.parse(href).relative? }
+    all(".sidebar a")
+      .map { |anchor| anchor[:href] }
+      .select { |href| URI.parse(href).relative? }
   end
 end

@@ -17,11 +17,11 @@ module GeneratorSpecHelpers
 
   def contents_for_application_template(view_name)
     File.read(
-      "app/views/administrate/application/#{view_name}.html.erb",
+      "app/views/administrate/application/#{view_name}.html.erb"
     )
   end
 
-  def invoke_generator(generator, args = [], options = { behavior: :invoke })
+  def invoke_generator(generator, args = [], options = {behavior: :invoke})
     have_received(:invoke).with(generator, args, options)
   end
 

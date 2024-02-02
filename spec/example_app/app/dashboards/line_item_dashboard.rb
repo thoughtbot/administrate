@@ -5,7 +5,7 @@ class LineItemDashboard < Administrate::BaseDashboard
     :order,
     :product,
     :quantity,
-    :unit_price,
+    :unit_price
   ]
 
   ATTRIBUTE_TYPES = {
@@ -15,7 +15,7 @@ class LineItemDashboard < Administrate::BaseDashboard
     product: Field::BelongsTo,
     quantity: Field::Number,
     total_price: Field::Number.with_options(prefix: "$", decimals: 2),
-    unit_price: Field::Number.with_options(prefix: "$", decimals: 2),
+    unit_price: Field::Number.with_options(prefix: "$", decimals: 2)
   }
 
   COLLECTION_ATTRIBUTES = ATTRIBUTES + [:total_price]

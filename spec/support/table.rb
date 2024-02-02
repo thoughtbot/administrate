@@ -29,7 +29,7 @@ module Features
     "/" + [
       :admin,
       model.class.to_s.underscore.pluralize,
-      model.to_param,
+      model.to_param
     ].join("/")
   end
 end

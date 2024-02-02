@@ -23,7 +23,7 @@ describe Administrate::Field::HasMany do
         :orders,
         Order.all,
         :show,
-        resource: customer,
+        resource: customer
       )
 
       page = field.associated_collection
@@ -38,17 +38,13 @@ describe Administrate::Field::HasMany do
     before do
       allow(Administrate.deprecator).to receive(:warn)
 
-      FooDashboard = Class.new
+      stub_const("FooDashboard", Class.new)
       allow(FooDashboard).to receive(:new).and_return(dashboard_double)
     end
 
-    after do
-      remove_constants :FooDashboard
-    end
-
     it "determines what dashboard is used to present the association" do
-      association = Administrate::Field::HasMany.
-        with_options(class_name: "Foo")
+      association = Administrate::Field::HasMany
+        .with_options(class_name: "Foo")
       field = association.new(:customers, [], :show)
       collection = field.associated_collection
       attributes = collection.attribute_names
@@ -58,13 +54,13 @@ describe Administrate::Field::HasMany do
     end
 
     it "triggers a deprecation warning" do
-      association = Administrate::Field::HasMany.
-        with_options(class_name: "Foo")
+      association = Administrate::Field::HasMany
+        .with_options(class_name: "Foo")
       field = association.new(:customers, [], :show)
       field.associated_collection
 
-      expect(Administrate.deprecator).to have_received(:warn).
-        with(/:class_name is deprecated/)
+      expect(Administrate.deprecator).to have_received(:warn)
+        .with(/:class_name is deprecated/)
     end
   end
 
@@ -72,25 +68,21 @@ describe Administrate::Field::HasMany do
     before do
       allow(Administrate.deprecator).to receive(:warn)
 
-      Foo = Class.new
-      FooDashboard = Class.new
+      stub_const("Foo", Class.new)
+      stub_const("FooDashboard", Class.new)
       uuid = SecureRandom.uuid
       allow(Foo).to receive(:all).and_return([Foo])
       allow(Foo).to receive(:uuid).and_return(uuid)
       allow(Foo).to receive(:id).and_return(1)
       allow_any_instance_of(FooDashboard).to(
-        receive(:display_resource).and_return(uuid),
+        receive(:display_resource).and_return(uuid)
       )
-    end
-
-    after do
-      remove_constants :Foo, :FooDashboard
     end
 
     it "is the key matching the associated foreign key" do
       association =
         Administrate::Field::HasMany.with_options(
-          primary_key: "uuid", class_name: "Foo",
+          primary_key: "uuid", class_name: "Foo"
         )
       field = association.new(:customers, [], :show)
       field.associated_resource_options
@@ -103,13 +95,13 @@ describe Administrate::Field::HasMany do
     it "triggers a deprecation warning" do
       association =
         Administrate::Field::HasMany.with_options(
-          primary_key: "uuid", class_name: "Foo",
+          primary_key: "uuid", class_name: "Foo"
         )
       field = association.new(:customers, [], :show)
       field.associated_resource_options
 
-      expect(Administrate.deprecator).to have_received(:warn).
-        with(/:primary_key is deprecated/)
+      expect(Administrate.deprecator).to have_received(:warn)
+        .with(/:primary_key is deprecated/)
     end
   end
 
@@ -143,7 +135,7 @@ describe Administrate::Field::HasMany do
           :orders,
           value,
           :show,
-          resource: customer,
+          resource: customer
         )
 
         expect(field.more_than_limit?).to eq(false)
@@ -161,7 +153,7 @@ describe Administrate::Field::HasMany do
         :orders,
         value,
         :show,
-        resource: customer,
+        resource: customer
       )
 
       expect(field.resources.size).to eq(limit)
@@ -176,7 +168,7 @@ describe Administrate::Field::HasMany do
           :orders,
           value,
           :show,
-          resource: customer,
+          resource: customer
         )
 
         expect(field.resources).to eq([])
@@ -198,13 +190,13 @@ describe Administrate::Field::HasMany do
     context "with `sort_by` option" do
       it "returns the resources in correct order" do
         customer = create(:customer, :with_orders)
-        options = { sort_by: :address_line_two }
+        options = {sort_by: :address_line_two}
         association = Administrate::Field::HasMany.with_options(options)
         field = association.new(
           :orders,
           customer.orders,
           :show,
-          resource: customer,
+          resource: customer
         )
 
         correct_order = customer.orders.sort_by(&:address_line_two).map(&:id)
@@ -220,13 +212,13 @@ describe Administrate::Field::HasMany do
     context "with `direction` option" do
       it "returns the resources in correct order" do
         customer = create(:customer, :with_orders)
-        options = { sort_by: :address_line_two, direction: :desc }
+        options = {sort_by: :address_line_two, direction: :desc}
         association = Administrate::Field::HasMany.with_options(options)
         field = association.new(
           :orders,
           customer.orders,
           :show,
-          resource: customer,
+          resource: customer
         )
 
         reversed_order = customer.orders.sort_by(&:address_line_two).map(&:id)
@@ -244,17 +236,17 @@ describe Administrate::Field::HasMany do
     it "returns a collection of keys to use for the association" do
       associated_resource1 = double(
         "AssociatedResource1",
-        associated_resource_key: "associated-1",
+        associated_resource_key: "associated-1"
       )
       associated_resource2 = double(
         "AssociatedResource2",
-        associated_resource_key: "associated-2",
+        associated_resource_key: "associated-2"
       )
       attribute_value = MockRelation.new(
         [
           associated_resource1,
-          associated_resource2,
-        ],
+          associated_resource2
+        ]
       )
 
       primary_resource = double(
@@ -263,9 +255,9 @@ describe Administrate::Field::HasMany do
           "ResourceClass",
           reflect_on_association: double(
             "ResourceReflection",
-            association_primary_key: "associated_resource_key",
-          ),
-        ),
+            association_primary_key: "associated_resource_key"
+          )
+        )
       )
 
       association = Administrate::Field::HasMany
@@ -273,7 +265,7 @@ describe Administrate::Field::HasMany do
         :customers,
         attribute_value,
         :show,
-        resource: primary_resource,
+        resource: primary_resource
       )
 
       expect(field.selected_options).to eq(["associated-1", "associated-2"])
@@ -288,7 +280,7 @@ describe Administrate::Field::HasMany do
           :orders,
           value,
           :show,
-          resource: customer,
+          resource: customer
         )
 
         expect(field.selected_options).to be_nil

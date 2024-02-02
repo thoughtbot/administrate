@@ -19,7 +19,7 @@ describe Admin::CustomersController, type: :controller do
 
     it "passes the search term to the view" do
       locals = capture_view_locals do
-        get :index, params: { search: "foo" }
+        get :index, params: {search: "foo"}
       end
 
       expect(locals[:search_term]).to eq("foo")
@@ -32,7 +32,7 @@ describe Admin::CustomersController, type: :controller do
     end
 
     it "shows the search bar" do
-      customer = create(:customer)
+      create(:customer)
 
       locals = capture_view_locals { get :index }
       expect(locals[:show_search_bar]).to be_truthy
@@ -73,7 +73,7 @@ describe Admin::CustomersController, type: :controller do
       customer = create(:customer)
 
       locals = capture_view_locals do
-        get :show, params: { id: customer.to_param }
+        get :show, params: {id: customer.to_param}
       end
 
       page = locals[:page]
@@ -95,7 +95,7 @@ describe Admin::CustomersController, type: :controller do
       customer = create(:customer)
 
       locals = capture_view_locals do
-        get :edit, params: { id: customer.to_param }
+        get :edit, params: {id: customer.to_param}
       end
 
       page = locals[:page]
@@ -108,12 +108,12 @@ describe Admin::CustomersController, type: :controller do
     describe "with valid params" do
       it "creates a new Customer" do
         expect {
-          post :create, params: { customer: attributes_for(:customer) }
+          post :create, params: {customer: attributes_for(:customer)}
         }.to change(Customer, :count).by(1)
       end
 
       it "redirects to the created customer" do
-        post :create, params: { customer: attributes_for(:customer) }
+        post :create, params: {customer: attributes_for(:customer)}
 
         expect(response).to redirect_to([:admin, Customer.last])
       end
@@ -121,10 +121,10 @@ describe Admin::CustomersController, type: :controller do
 
     describe "with invalid params" do
       it "passes a form page object to the view" do
-        invalid_attributes = { name: "" }
+        invalid_attributes = {name: ""}
 
         locals = capture_view_locals do
-          post :create, params: { customer: invalid_attributes }
+          post :create, params: {customer: invalid_attributes}
         end
 
         page = locals[:page]
@@ -135,10 +135,10 @@ describe Admin::CustomersController, type: :controller do
 
     describe "with empty string param" do
       it "sets empty string value to nil" do
-        empty_string_attributes = { country_code: "" }
+        empty_string_attributes = {country_code: ""}
 
         locals = capture_view_locals do
-          post :create, params: { customer: empty_string_attributes }
+          post :create, params: {customer: empty_string_attributes}
         end
 
         page = locals[:page]
@@ -152,9 +152,9 @@ describe Admin::CustomersController, type: :controller do
       it "updates the requested customer" do
         customer = create(:customer)
         new_name = "new name"
-        new_attributes = { name: new_name }
+        new_attributes = {name: new_name}
 
-        put :update, params: { id: customer.to_param, customer: new_attributes }
+        put :update, params: {id: customer.to_param, customer: new_attributes}
 
         customer.reload
         expect(customer.name).to eq new_name
@@ -166,7 +166,7 @@ describe Admin::CustomersController, type: :controller do
 
         put(
           :update,
-          params: { id: customer.to_param, customer: valid_attributes },
+          params: {id: customer.to_param, customer: valid_attributes}
         )
 
         expect(response).to redirect_to([:admin, customer])
@@ -176,12 +176,12 @@ describe Admin::CustomersController, type: :controller do
     describe "with invalid params" do
       it "passes a form page object to the view" do
         customer = create(:customer)
-        invalid_attributes = { name: "" }
+        invalid_attributes = {name: ""}
 
         locals = capture_view_locals do
           put(
             :update,
-            params: { id: customer.to_param, customer: invalid_attributes },
+            params: {id: customer.to_param, customer: invalid_attributes}
           )
         end
 
@@ -197,14 +197,14 @@ describe Admin::CustomersController, type: :controller do
       customer = create(:customer)
 
       expect do
-        delete :destroy, params: { id: customer.to_param }
+        delete :destroy, params: {id: customer.to_param}
       end.to change(Customer, :count).by(-1)
     end
 
     it "redirects to the customers list" do
       customer = create(:customer)
 
-      delete :destroy, params: { id: customer.to_param }
+      delete :destroy, params: {id: customer.to_param}
 
       expect(response).to redirect_to(admin_customers_url)
     end

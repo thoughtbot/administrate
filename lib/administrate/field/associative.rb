@@ -41,7 +41,7 @@ module Administrate
         else
           self.class.associated_class_name(
             resource.class,
-            attribute,
+            attribute
           )
         end
       end

@@ -8,11 +8,11 @@ describe Administrate::Field::Base do
     it "is false by default" do
       resource_class = class_double(
         "ActiveRecord::Base",
-        validators_on: [],
+        validators_on: []
       )
       resource = instance_double(
         "ActiveRecord::Base",
-        class: resource_class,
+        class: resource_class
       )
       field = field_class.new(:attribute, :date, :page, resource: resource)
 
@@ -22,15 +22,15 @@ describe Administrate::Field::Base do
     it "is true on an unconditional requirement for a value" do
       validator = ActiveRecord::Validations::PresenceValidator.new(
         attributes: [:foo],
-        options: {},
+        options: {}
       )
       resource_class = class_double(
         "ActiveRecord::Base",
-        validators_on: [validator],
+        validators_on: [validator]
       )
       resource = instance_double(
         "ActiveRecord::Base",
-        class: resource_class,
+        class: resource_class
       )
       field = field_class.new(:attribute, :date, :page, resource: resource)
 
@@ -40,15 +40,15 @@ describe Administrate::Field::Base do
     it "is false on a conditional requirement for a value (with :if)" do
       validator = ActiveRecord::Validations::PresenceValidator.new(
         attributes: [:foo],
-        if: -> { true },
+        if: -> { true }
       )
       resource_class = class_double(
         "ActiveRecord::Base",
-        validators_on: [validator],
+        validators_on: [validator]
       )
       resource = instance_double(
         "ActiveRecord::Base",
-        class: resource_class,
+        class: resource_class
       )
       field = field_class.new(:attribute, :date, :page, resource: resource)
 
@@ -58,15 +58,15 @@ describe Administrate::Field::Base do
     it "is false on a conditional requirement for a value (with :unless)" do
       validator = ActiveRecord::Validations::PresenceValidator.new(
         attributes: [:foo],
-        unless: -> { true },
+        unless: -> { true }
       )
       resource_class = class_double(
         "ActiveRecord::Base",
-        validators_on: [validator],
+        validators_on: [validator]
       )
       resource = instance_double(
         "ActiveRecord::Base",
-        class: resource_class,
+        class: resource_class
       )
       field = field_class.new(:attribute, :date, :page, resource: resource)
 
@@ -76,16 +76,16 @@ describe Administrate::Field::Base do
     it "is true for an unpersisted record in only required on create" do
       validator = ActiveRecord::Validations::PresenceValidator.new(
         attributes: [:foo],
-        on: :create,
+        on: :create
       )
       resource_class = class_double(
         "ActiveRecord::Base",
-        validators_on: [validator],
+        validators_on: [validator]
       )
       resource = instance_double(
         "ActiveRecord::Base",
         class: resource_class,
-        persisted?: false,
+        persisted?: false
       )
       field = field_class.new(:attribute, :date, :page, resource: resource)
 
@@ -95,16 +95,16 @@ describe Administrate::Field::Base do
     it "is false for a persisted record if only required on create" do
       validator = ActiveRecord::Validations::PresenceValidator.new(
         attributes: [:foo],
-        on: :create,
+        on: :create
       )
       resource_class = class_double(
         "ActiveRecord::Base",
-        validators_on: [validator],
+        validators_on: [validator]
       )
       resource = instance_double(
         "ActiveRecord::Base",
         class: resource_class,
-        persisted?: true,
+        persisted?: true
       )
       field = field_class.new(:attribute, :date, :page, resource: resource)
 
@@ -114,16 +114,16 @@ describe Administrate::Field::Base do
     it "is true for a persisted record in only required on update" do
       validator = ActiveRecord::Validations::PresenceValidator.new(
         attributes: [:foo],
-        on: :update,
+        on: :update
       )
       resource_class = class_double(
         "ActiveRecord::Base",
-        validators_on: [validator],
+        validators_on: [validator]
       )
       resource = instance_double(
         "ActiveRecord::Base",
         class: resource_class,
-        persisted?: true,
+        persisted?: true
       )
       field = field_class.new(:attribute, :date, :page, resource: resource)
 
@@ -133,16 +133,16 @@ describe Administrate::Field::Base do
     it "is false for a persisted record in only required on update" do
       validator = ActiveRecord::Validations::PresenceValidator.new(
         attributes: [:foo],
-        on: :update,
+        on: :update
       )
       resource_class = class_double(
         "ActiveRecord::Base",
-        validators_on: [validator],
+        validators_on: [validator]
       )
       resource = instance_double(
         "ActiveRecord::Base",
         class: resource_class,
-        persisted?: false,
+        persisted?: false
       )
       field = field_class.new(:attribute, :date, :page, resource: resource)
 
@@ -152,15 +152,15 @@ describe Administrate::Field::Base do
     it "is false when required only on unstandard situations" do
       validator = ActiveRecord::Validations::PresenceValidator.new(
         attributes: [:foo],
-        on: :some_situation_or_the_other,
+        on: :some_situation_or_the_other
       )
       resource_class = class_double(
         "ActiveRecord::Base",
-        validators_on: [validator],
+        validators_on: [validator]
       )
       resource = instance_double(
         "ActiveRecord::Base",
-        class: resource_class,
+        class: resource_class
       )
       field = field_class.new(:attribute, :date, :page, resource: resource)
 

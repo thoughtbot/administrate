@@ -9,7 +9,7 @@ describe "fields/has_one/_index", type: :view do
       "Administrate::Field::HasOne",
       data: product,
       linkable?: true,
-      display_associated_resource: product.name,
+      display_associated_resource: product.name
     )
   end
 
@@ -17,7 +17,7 @@ describe "fields/has_one/_index", type: :view do
     let(:has_one) do
       instance_double(
         "Administrate::Field::HasOne",
-        linkable?: false,
+        linkable?: false
       )
     end
 
@@ -57,7 +57,7 @@ describe "fields/has_one/_index", type: :view do
   def render_has_one_index
     render(
       partial: "fields/has_one/index",
-      locals: { field: has_one, namespace: :admin },
+      locals: {field: has_one, namespace: :admin}
     )
   end
 end

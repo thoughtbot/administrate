@@ -19,11 +19,11 @@ Blog::Post.destroy_all
 Page.destroy_all
 
 countries = Country.create! [
-  { code: "US", name: "USA" },
-  { code: "CA", name: "Canada" },
-  { code: "CN", name: "China" },
-  { code: "RU", name: "Russia" },
-  { code: "AU", name: "Australia" },
+  {code: "US", name: "USA"},
+  {code: "CA", name: "Canada"},
+  {code: "CN", name: "China"},
+  {code: "RU", name: "Russia"},
+  {code: "AU", name: "Australia"}
 ]
 
 customer_attributes = Array.new(100) do
@@ -32,7 +32,7 @@ customer_attributes = Array.new(100) do
     name: name,
     email: Faker::Internet.email(name: name),
     territory: countries.sample,
-    password: Faker::Internet.password,
+    password: Faker::Internet.password
   }
 end
 
@@ -41,27 +41,27 @@ customers = Customer.create!(customer_attributes)
 log_entry_attributes = customers.map do |c|
   {
     action: "create",
-    logeable: c,
+    logeable: c
   }
 end
 
 LogEntry.create!(log_entry_attributes)
 
-product_attributes = YAML.load_file(Rails.root.join('db/seeds/products.yml'))
+product_attributes = YAML.load_file(Rails.root.join("db/seeds/products.yml"))
 
 product_attributes.each do |attributes|
   attributes = attributes.merge product_meta_tag_attributes: {
     meta_title: Faker::Movies::LordOfTheRings.character,
-    meta_description: Faker::Movies::LordOfTheRings.location,
+    meta_description: Faker::Movies::LordOfTheRings.location
   }
-  Product.create! attributes.merge(price: 20 + rand(50))
+  Product.create! attributes.merge(price: rand(20..69))
 end
 
 Product.find_each do |p|
   Page.create!(
     title: "Rules of #{p.name}",
     body: Faker::Lorem.paragraph,
-    product: p,
+    product: p
   )
 end
 
@@ -72,12 +72,12 @@ Product.find_each do |p|
   Blog::Post.create!(
     title: "The secrets of #{p.name}",
     body: Faker::Lorem.paragraph,
-    tags: [tag_secrets],
+    tags: [tag_secrets]
   )
   Blog::Post.create!(
     title: "If you liked #{p.name}, you will love these products",
     body: Faker::Lorem.paragraph,
-    tags: [tag_recommendations],
+    tags: [tag_recommendations]
   )
 end
 
@@ -89,11 +89,11 @@ def create_order(customer:, shipped_at: nil)
     address_city: Faker::Address.city,
     address_state: Faker::Address.state_abbr,
     address_zip: Faker::Address.zip,
-    shipped_at: shipped_at,
+    shipped_at: shipped_at
   )
   LogEntry.create!(
     action: "create",
-    logeable: order,
+    logeable: order
   )
 
   item_count = (1..3).to_a.sample
@@ -102,7 +102,7 @@ def create_order(customer:, shipped_at: nil)
       order: order,
       product: product,
       unit_price: product.price,
-      quantity: (1..3).to_a.sample,
+      quantity: (1..3).to_a.sample
     )
   end
 

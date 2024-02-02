@@ -21,7 +21,7 @@ describe Administrate::Field::Boolean do
     should_permit_param(
       "foo",
       on_model: Customer,
-      for_attribute: :foo,
+      for_attribute: :foo
     )
   end
 

@@ -15,9 +15,9 @@ class CustomerDashboard < Administrate::BaseDashboard
     territory: Field::BelongsTo.with_options(
       searchable: true,
       searchable_fields: ["name"],
-      include_blank: true,
+      include_blank: true
     ),
-    password: Field::Password,
+    password: Field::Password
   }
 
   COLLECTION_ATTRIBUTES = ATTRIBUTE_TYPES.keys - %i[created_at updated_at]
@@ -28,12 +28,12 @@ class CustomerDashboard < Administrate::BaseDashboard
     :email_subscriber,
     :kind,
     :territory,
-    :password,
+    :password
   ].freeze
 
   COLLECTION_FILTERS = {
     vip: ->(resources) { resources.where(kind: :vip) },
-    kind: ->(resources, arg) { resources.where(kind: arg) },
+    kind: ->(resources, arg) { resources.where(kind: arg) }
   }.freeze
 
   def display_resource(customer)

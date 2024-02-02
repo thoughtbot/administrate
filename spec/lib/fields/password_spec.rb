@@ -20,7 +20,7 @@ describe Administrate::Field::Password do
     should_permit_param(
       "foo",
       on_model: Customer,
-      for_attribute: :foo,
+      for_attribute: :foo
     )
   end
 
@@ -54,8 +54,8 @@ describe Administrate::Field::Password do
 
       it "shortens to the given length & different to default character" do
         password = password_with_options(lorem(30),
-                                         truncate: 10,
-                                         character: "-")
+          truncate: 10,
+          character: "-")
 
         expect(password.truncate).to eq(lorem(10, "-"))
       end

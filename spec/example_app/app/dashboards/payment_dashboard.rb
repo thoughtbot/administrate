@@ -5,11 +5,11 @@ class PaymentDashboard < Administrate::BaseDashboard
     id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    order: Field::BelongsTo,
+    order: Field::BelongsTo
   }
 
   COLLECTION_ATTRIBUTES = [
-    :id,
+    :id
   ]
 
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys

@@ -18,7 +18,7 @@ module Administrate
         attributes = dashboard.show_page_attributes
 
         if attributes.is_a? Array
-          attributes = { "" => attributes }
+          attributes = {"" => attributes}
         end
 
         attributes.transform_values do |attrs|

@@ -39,10 +39,10 @@ RSpec.describe Administrate::ApplicationHelper do
             models: {
               customer: {
                 one: "User",
-                other: "Users",
-              },
-            },
-          },
+                other: "Users"
+              }
+            }
+          }
         }
       end
 
@@ -114,10 +114,10 @@ RSpec.describe Administrate::ApplicationHelper do
         ctx.accessible_action?("my_resource", "foo")
 
         expect(ctx).to(
-          have_received(:existing_action?).with(:my_resource, "foo"),
+          have_received(:existing_action?).with(:my_resource, "foo")
         )
         expect(ctx).to(
-          have_received(:authorized_action?).with(:my_resource, "foo"),
+          have_received(:authorized_action?).with(:my_resource, "foo")
         )
       ensure
         remove_constants :MyResource
@@ -133,10 +133,10 @@ RSpec.describe Administrate::ApplicationHelper do
         ctx.accessible_action?(:my_resource, "foo")
 
         expect(ctx).to(
-          have_received(:existing_action?).with(:my_resource, "foo"),
+          have_received(:existing_action?).with(:my_resource, "foo")
         )
         expect(ctx).to(
-          have_received(:authorized_action?).with(:my_resource, "foo"),
+          have_received(:authorized_action?).with(:my_resource, "foo")
         )
       ensure
         remove_constants :MyResource
@@ -153,7 +153,7 @@ RSpec.describe Administrate::ApplicationHelper do
 
         expect(ctx).to have_received(:existing_action?).with(MyResource, "foo")
         expect(ctx).to(
-          have_received(:authorized_action?).with(MyResource, "foo"),
+          have_received(:authorized_action?).with(MyResource, "foo")
         )
       ensure
         remove_constants :MyResource
