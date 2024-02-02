@@ -1,0 +1,22 @@
+---
+name: Lint
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  stylelint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JS
+        uses: actions/setup-node@v4
+        with:
+          cache: yarn
+      - name: Install JS dependencies
+        run: yarn install
+      - name: Run Stylelint
+        run: yarn run lint:css

@@ -1,5 +1,24 @@
+.cell-label__sort-indicator {
+  float: right;
+  margin-left: 5px;
+
+  svg {
+    fill: $hint-grey;
+    height: 13px;
+    transition: transform $base-duration $base-timing;
+    width: 13px;
+  }
+}
+
 .cell-label {
   padding-top: 0.15em;
+
+  a {
+    color: inherit;
+    display: inline-block;
+    transition: color $base-duration $base-timing;
+    width: 100%;
+  }
 
   &:hover {
     a {
@@ -11,30 +30,11 @@
       transform: rotate(180deg);
     }
   }
-
-  a {
-    color: inherit;
-    display: inline-block;
-    transition: color $base-duration $base-timing;
-    width: 100%;
-  }
 }
 
 .cell-label--asc,
 .cell-label--desc {
   font-weight: $bold-font-weight;
-}
-
-.cell-label__sort-indicator {
-  float: right;
-  margin-left: 5px;
-
-  svg {
-    fill: $hint-grey;
-    height: 13px;
-    transition: transform $base-duration $base-timing;
-    width: 13px;
-  }
 }
 
 .cell-label__sort-indicator--desc {

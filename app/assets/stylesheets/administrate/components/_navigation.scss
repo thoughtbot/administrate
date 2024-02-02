@@ -1,4 +1,4 @@
-$_navigation-link-padding: 0.6em;
+$navigation-link-padding: 0.6em;
 
 .navigation {
   flex: 1 0 10rem;
@@ -11,8 +11,8 @@ $_navigation-link-padding: 0.6em;
   color: $base-font-color;
   display: block;
   line-height: 1;
-  margin-left: -($_navigation-link-padding);
-  padding: $_navigation-link-padding;
+  margin-left: -($navigation-link-padding);
+  padding: $navigation-link-padding;
   transition: background-color $base-duration $base-timing,
               color $base-duration $base-timing;
 

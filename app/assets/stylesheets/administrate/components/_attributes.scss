@@ -1,5 +1,6 @@
 .attribute-label {
   @include data-label;
+
   clear: left;
   float: left;
   margin-bottom: $base-spacing;
