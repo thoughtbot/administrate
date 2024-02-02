@@ -10,12 +10,6 @@ A framework for creating flexible, powerful admin dashboards in Rails.
 
 [demo]: https://administrate-demo.herokuapp.com/admin
 
-### Warning:
-
-Administrate is still pre-1.0,
-and there may be occasional breaking changes to the API.
-Check the [release notes] for important updates.
-
 [release notes]: https://github.com/thoughtbot/administrate/releases
 
 ![administrate](https://user-images.githubusercontent.com/11917/72203824-ec10f980-3468-11ea-9ac1-51cd28ff88b7.png)
