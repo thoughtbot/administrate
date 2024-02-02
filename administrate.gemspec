@@ -25,7 +25,8 @@ Gem::Specification.new do |s|
     
     To do that, we're following a few simple rules:
     
-    - No DSLs (domain-specific languages)
+    - Stay as close to standard Rails as possible, keeping the
+      Administrate-specific code as small as practical,
     - Support the simplest use cases,
       and let the user override defaults with standard tools
       such as plain Rails controllers and views.
