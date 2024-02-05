@@ -17,6 +17,27 @@
 
 ## Changes
 
+### 1.0.0.beta1 (February 5, 2024)
+
+In this release, the assets Administrate requires are now bundled in with the
+gem itself. You might need to do something to try this release out and we'd
+like to hear from you about how this goes! Please open an issue if you have any
+troubles.
+
+We have [an open PR to document how to work with custom assets][pr2467], if
+that's something you're doing.
+
+The plan is to release a couple of "beta" releases, followed by a release
+candidate after we've ironed out the migration requirements.
+
+* [OPTIM] [#2508] Lint Ruby with standardrb
+* [COMPAT] [#2507] Add .node-version to test against Node v20.11.0
+* [CHANGE] [#2397] Start bundling compiled assets in the Gem
+* [UI] [#2492] Switch to using @thoughtbot/stylelint-config
+* [BUGFIX] [#2498] Enable running workflows from forks
+
+[pr2467]: https://github.com/thoughtbot/administrate/pull/2475
+
 ### 0.20.1 (January 24, 2024)
 
 In `0.20.0`, we introduced a regression which potentially meant you might
