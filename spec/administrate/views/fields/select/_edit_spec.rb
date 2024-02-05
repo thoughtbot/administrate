@@ -9,17 +9,17 @@ describe "fields/select/_form", type: :view do
       attribute: :email_subscriber,
       data: false,
       selectable_options: [true, false, nil],
-      include_blank_option: false,
+      include_blank_option: false
     )
 
     render(
       partial: "fields/select/form",
-      locals: { field: select, f: form_builder(customer) },
+      locals: {field: select, f: form_builder(customer)}
     )
 
     expect(rendered).to have_css(
-      %{select[name="customer[email_subscriber]"]
-        option[value="false"][selected="selected"]},
+      %(select[name="customer[email_subscriber]"]
+        option[value="false"][selected="selected"])
     )
   end
 
@@ -30,17 +30,17 @@ describe "fields/select/_form", type: :view do
       attribute: :email_subscriber,
       data: "Yes",
       selectable_options: ["Yes", "No"],
-      include_blank_option: "Unknown",
+      include_blank_option: "Unknown"
     )
 
     render(
       partial: "fields/select/form",
-      locals: { field: select, f: form_builder(customer) },
+      locals: {field: select, f: form_builder(customer)}
     )
 
     expect(rendered).to have_css(
-      %{select[name="customer[email_subscriber]"] option[value=""]},
-      text: "Unknown",
+      %(select[name="customer[email_subscriber]"] option[value=""]),
+      text: "Unknown"
     )
   end
 
@@ -49,7 +49,7 @@ describe "fields/select/_form", type: :view do
       object.model_name.singular,
       object,
       build_template,
-      {},
+      {}
     )
   end
 

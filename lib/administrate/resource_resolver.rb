@@ -35,7 +35,7 @@ module Administrate
     end
 
     def controller_path_parts
-      path_parts = controller_path.split("/")[1..-1]
+      path_parts = controller_path.split("/")[1..]
       path_parts << path_parts.pop.singularize
     end
 

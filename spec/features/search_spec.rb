@@ -16,7 +16,7 @@ feature "Search" do
     it "is hidden when nothing is searchable in the current dashboard" do
       CustomerDashboard::ATTRIBUTE_TYPES.each do |_name, field_class|
         allow(field_class).to(
-          receive(:searchable?).and_return(false),
+          receive(:searchable?).and_return(false)
         )
       end
 
@@ -122,7 +122,7 @@ feature "Search" do
   scenario "admin clears search" do
     query = "foo"
     mismatch = create(:customer, name: "someone")
-    visit admin_customers_path(search: query, customer: { order: :name })
+    visit admin_customers_path(search: query, customer: {order: :name})
 
     expect(page).not_to have_content(mismatch.email)
     clear_search

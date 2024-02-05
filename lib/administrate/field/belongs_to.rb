@@ -25,7 +25,7 @@ module Administrate
         candidate_resources.map do |resource|
           [
             display_candidate_resource(resource),
-            resource.send(association_primary_key),
+            resource.send(association_primary_key)
           ]
         end
       end

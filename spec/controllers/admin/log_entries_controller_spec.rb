@@ -7,10 +7,10 @@ describe Admin::LogEntriesController, type: :controller do
         action: action,
         logeable: {
           type: "Administrate::Field::Polymorphic",
-          value: logeable.to_global_id.to_s,
-        },
+          value: logeable.to_global_id.to_s
+        }
       )
-      post :create, params: { log_entry: resource_params }
+      post :create, params: {log_entry: resource_params}
     end
 
     describe "with valid params" do
@@ -36,15 +36,15 @@ describe Admin::LogEntriesController, type: :controller do
               params: {
                 logeable: {
                   type: "Administrate::Field::Polymorphic",
-                  value: customer.to_global_id.to_s,
-                },
-              },
-            },
-          },
+                  value: customer.to_global_id.to_s
+                }
+              }
+            }
+          }
         )
 
         allow_any_instance_of(
-          LogEntryDashboard,
+          LogEntryDashboard
         ).to receive(:permitted_attributes).and_return(
           [
             arbitrarily: {
@@ -52,23 +52,23 @@ describe Admin::LogEntriesController, type: :controller do
                 params: {
                   logeable: [
                     :type,
-                    :value,
-                  ],
-                },
-              },
-            },
-          ],
+                    :value
+                  ]
+                }
+              }
+            }
+          ]
         )
 
         LogEntry.attr_accessor :arbitrarily
 
-        post :create, params: { log_entry: resource_params }
+        post :create, params: {log_entry: resource_params}
 
         logeable_in_params = subject.send(:resource_params).dig(
           :arbitrarily,
           :nested,
           :params,
-          :logeable,
+          :logeable
         )
         expect(logeable_in_params).to eq(customer)
       end
@@ -95,10 +95,10 @@ describe Admin::LogEntriesController, type: :controller do
         action: action,
         logeable: {
           type: "Administrate::Field::Polymorphic",
-          value: logeable.to_global_id.to_s,
-        },
+          value: logeable.to_global_id.to_s
+        }
       )
-      put :update, params: { id: original.to_param, log_entry: resource_params }
+      put :update, params: {id: original.to_param, log_entry: resource_params}
     end
 
     describe "with valid params" do

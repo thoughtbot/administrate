@@ -51,18 +51,16 @@ describe Administrate::Generators::RoutesGenerator, :generator do
     end
 
     it "skips models that aren't backed by the database with a warning" do
-      begin
-        class ModelWithoutDBTable < ApplicationRecord; end
-        routes = file("config/routes.rb")
+      class ModelWithoutDBTable < ApplicationRecord; end
+      routes = file("config/routes.rb")
 
-        output = run_generator
+      output = run_generator
 
-        expect(routes).not_to contain("model_without_db_table")
-        expect(output).to include("WARNING: Unable to generate a dashboard " \
-          "for ModelWithoutDBTable.")
-      ensure
-        remove_constants :ModelWithoutDBTable
-      end
+      expect(routes).not_to contain("model_without_db_table")
+      expect(output).to include("WARNING: Unable to generate a dashboard " \
+        "for ModelWithoutDBTable.")
+    ensure
+      remove_constants :ModelWithoutDBTable
     end
 
     it "skips models that don't have a named constant" do
@@ -93,7 +91,7 @@ describe Administrate::Generators::RoutesGenerator, :generator do
         output = run_generator
 
         expect(routes).not_to contain("abstract_model")
-        expect(output).not_to include("WARNING: Unable to generate a "\
+        expect(output).not_to include("WARNING: Unable to generate a " \
           "dashboard for AbstractModel")
       end
     end

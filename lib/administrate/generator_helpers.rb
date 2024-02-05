@@ -7,7 +7,7 @@ module Administrate
     private
 
     def generator_options
-      { behavior: behavior }
+      {behavior: behavior}
     end
   end
 end

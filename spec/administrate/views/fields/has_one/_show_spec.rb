@@ -13,12 +13,12 @@ describe "fields/has_one/_show", type: :view do
       has_one = Administrate::Field::HasOne.new(
         :product_meta_tag,
         build(:product_meta_tag),
-        :show,
+        :show
       )
 
       render(
         partial: "fields/has_one/show",
-        locals: { field: has_one },
+        locals: {field: has_one}
       )
 
       expect(rendered.strip).to eq("")
@@ -35,17 +35,17 @@ describe "fields/has_one/_show", type: :view do
         name: "simple_string_field",
         truncate: "string value",
         html_class: "string",
-        to_partial_path: "fields/string/index",
+        to_partial_path: "fields/string/index"
       )
 
       nested_show_page_for_has_one = instance_double(
         "Administrate::Page::Show",
         resource: double(
-          class: ProductMetaTag,
+          class: ProductMetaTag
         ),
-        attributes: { "" => [
-          nested_simple_field,
-        ] },
+        attributes: {"" => [
+          nested_simple_field
+        ]}
       )
 
       @has_one_field = instance_double(
@@ -54,7 +54,7 @@ describe "fields/has_one/_show", type: :view do
         data: field_resource,
         linkable?: true,
         nested_show: nested_show_page_for_has_one,
-        associated_class_name: "NestedHasOne",
+        associated_class_name: "NestedHasOne"
       )
 
       @page_double = instance_double("Administrate::Page::Show")
@@ -66,8 +66,8 @@ describe "fields/has_one/_show", type: :view do
         locals: {
           field: @has_one_field,
           page: @page_double,
-          resource_name: "parent_resource",
-        },
+          resource_name: "parent_resource"
+        }
       )
     end
 
@@ -76,10 +76,10 @@ describe "fields/has_one/_show", type: :view do
         helpers: {
           label: {
             nested_has_one: {
-              simple_string_field: "Just a Simple String",
-            },
-          },
-        },
+              simple_string_field: "Just a Simple String"
+            }
+          }
+        }
       )
 
       render_field
@@ -123,15 +123,15 @@ describe "fields/has_one/_show", type: :view do
         data: nested_collection,
         html_class: "has-many",
         name: "payments",
-        to_partial_path: "fields/has_many/index",
+        to_partial_path: "fields/has_many/index"
       )
 
       nested_show_page_for_nested_has_one = instance_double(
         "Administrate::Page::Show",
         resource: double(
-          class: ProductMetaTag,
+          class: ProductMetaTag
         ),
-        attributes: { "" => [] },
+        attributes: {"" => []}
       )
 
       nested_has_one = instance_double(
@@ -143,12 +143,12 @@ describe "fields/has_one/_show", type: :view do
         html_class: "has-one",
         to_partial_path: "fields/has_one/show",
         display_associated_resource: "Resource Doubly Nested with HasOne",
-        name: "page",
+        name: "page"
       )
 
       nested_show_page_for_top_has_one = instance_double(
         "Administrate::Page::Show",
-        attributes: { "" => [nested_has_one, nested_has_many] },
+        attributes: {"" => [nested_has_one, nested_has_many]}
       )
 
       has_one_field = instance_double(
@@ -157,7 +157,7 @@ describe "fields/has_one/_show", type: :view do
         data: field_resource,
         linkable?: true,
         nested_show: nested_show_page_for_top_has_one,
-        associated_class_name: "NameOfAssociatedClass",
+        associated_class_name: "NameOfAssociatedClass"
       )
 
       page_double = instance_double("Administrate::Page::Show")
@@ -167,8 +167,8 @@ describe "fields/has_one/_show", type: :view do
         locals: {
           field: has_one_field,
           page: page_double,
-          resource_name: "product_meta_tag",
-        },
+          resource_name: "product_meta_tag"
+        }
       )
 
       expect(rendered.strip).to include("Resource Nested with HasOne")

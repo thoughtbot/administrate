@@ -32,7 +32,7 @@ class DocPage
     def doc_paths
       [
         Dir.glob(Rails.root + "../../**/*.md"),
-        Dir.glob(Rails.root + "../../*.md"),
+        Dir.glob(Rails.root + "../../*.md")
       ].join
     end
 
@@ -95,7 +95,7 @@ class DocPage
     def redcarpet_config
       {
         fenced_code_blocks: true,
-        autolink: true,
+        autolink: true
       }
     end
   end

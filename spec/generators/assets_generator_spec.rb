@@ -10,8 +10,8 @@ describe Administrate::Generators::AssetsGenerator, :generator do
       run_generator []
 
       %w[javascripts stylesheets].each do |asset|
-        expect(Rails::Generators).
-          to invoke_generator("administrate:assets:#{asset}")
+        expect(Rails::Generators)
+          .to invoke_generator("administrate:assets:#{asset}")
       end
     end
   end

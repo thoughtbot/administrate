@@ -20,8 +20,8 @@ RSpec.describe DocPage do
       expect(page).to have_attributes(
         title: nil,
         body: a_string_matching(
-          /A framework for creating flexible, powerful admin dashboards/,
-        ),
+          /A framework for creating flexible, powerful admin dashboards/
+        )
       )
     end
 
@@ -32,8 +32,8 @@ RSpec.describe DocPage do
         title: "Getting Started",
         body: a_string_starting_with(
           "<h1>Getting Started</h1>\n\n<p>Administrate is " \
-          "released as a Ruby gem",
-        ),
+          "released as a Ruby gem"
+        )
       )
     end
   end

@@ -6,7 +6,7 @@ module Administrate
       def date
         I18n.localize(
           data.in_time_zone(timezone).to_date,
-          format: format,
+          format: format
         )
       end
 
@@ -14,7 +14,7 @@ module Administrate
         I18n.localize(
           data.in_time_zone(timezone),
           format: format,
-          default: data,
+          default: data
         )
       end
 

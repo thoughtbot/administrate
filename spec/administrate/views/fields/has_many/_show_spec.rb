@@ -7,7 +7,7 @@ describe "fields/has_many/_show", type: :view do
 
       render(
         partial: "fields/has_many/show",
-        locals: { field: has_many },
+        locals: {field: has_many}
       )
 
       expect(rendered.strip).to eq(t("administrate.fields.has_many.none"))

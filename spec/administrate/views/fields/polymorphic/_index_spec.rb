@@ -8,7 +8,7 @@ describe "fields/polymorphic/_index", type: :view do
     instance_double(
       "Administrate::Field::Polymorphic",
       data: product,
-      display_associated_resource: product.name,
+      display_associated_resource: product.name
     )
   end
 
@@ -16,7 +16,7 @@ describe "fields/polymorphic/_index", type: :view do
     let(:polymorphic) do
       instance_double(
         "Administrate::Field::Polymorphic",
-        data: nil,
+        data: nil
       )
     end
 
@@ -55,7 +55,7 @@ describe "fields/polymorphic/_index", type: :view do
   def render_polymorphic_index
     render(
       partial: "fields/polymorphic/index",
-      locals: { field: polymorphic, namespace: :admin },
+      locals: {field: polymorphic, namespace: :admin}
     )
   end
 end

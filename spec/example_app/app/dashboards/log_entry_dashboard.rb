@@ -1,12 +1,12 @@
 require "administrate/base_dashboard"
 
 class LogEntryDashboard < Administrate::BaseDashboard
-  ATTRIBUTES = %i(action logeable).freeze
+  ATTRIBUTES = %i[action logeable].freeze
 
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     action: Field::String,
-    logeable: Field::Polymorphic.with_options(classes: [Customer, ::Order]),
+    logeable: Field::Polymorphic.with_options(classes: [Customer, ::Order])
   }.freeze
 
   COLLECTION_ATTRIBUTES = [:id] + ATTRIBUTES
@@ -24,9 +24,9 @@ class LogEntryDashboard < Administrate::BaseDashboard
   end
 
   def display_logeable(logeable)
-    (logeable.class.to_s + "Dashboard").
-      constantize.
-      new.
-      display_resource(logeable)
+    (logeable.class.to_s + "Dashboard")
+      .constantize
+      .new
+      .display_resource(logeable)
   end
 end

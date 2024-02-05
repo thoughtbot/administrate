@@ -6,7 +6,7 @@ module Administrate
       def template_field_object
         template(
           "field_object.rb.erb",
-          "app/fields/#{file_name}_field.rb",
+          "app/fields/#{file_name}_field.rb"
         )
       end
 
@@ -23,7 +23,7 @@ module Administrate
 
         copy_file(
           partial,
-          "app/views/fields/#{file_name}_field/#{partial}",
+          "app/views/fields/#{file_name}_field/#{partial}"
         )
       end
     end

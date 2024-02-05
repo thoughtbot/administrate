@@ -16,10 +16,10 @@ describe "edit form" do
       helpers: {
         label: {
           customer: {
-            email_subscriber: custom_label,
-          },
-        },
-      },
+            email_subscriber: custom_label
+          }
+        }
+      }
     }
 
     with_translations(:en, translations) do
@@ -36,7 +36,7 @@ describe "edit form" do
       Product.human_attribute_name(:name),
       Product.human_attribute_name(:description),
       Product.human_attribute_name(:price),
-      Product.human_attribute_name(:image_url),
+      Product.human_attribute_name(:image_url)
     ]
 
     required_field_labels = find_all(".field-unit--required").map(&:text)
@@ -114,10 +114,10 @@ describe "edit form" do
         administrate: {
           field_hints: {
             customer: {
-              kind: field_hint,
-            },
-          },
-        },
+              kind: field_hint
+            }
+          }
+        }
       }
 
       with_translations(:en, translations) do

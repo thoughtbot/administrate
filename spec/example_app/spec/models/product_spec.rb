@@ -11,7 +11,7 @@ RSpec.describe Product do
     it "is trimmed on save" do
       product = FactoryBot.create(
         :product,
-        image_url: "\n https://example.com/foo/bar  \n",
+        image_url: "\n https://example.com/foo/bar  \n"
       )
       expect(product.image_url).to eq("https://example.com/foo/bar")
     end

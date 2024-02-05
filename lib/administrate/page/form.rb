@@ -14,7 +14,7 @@ module Administrate
         attributes = dashboard.form_attributes(action)
 
         if attributes.is_a? Array
-          attributes = { "" => attributes }
+          attributes = {"" => attributes}
         end
 
         attributes.transform_values do |attrs|

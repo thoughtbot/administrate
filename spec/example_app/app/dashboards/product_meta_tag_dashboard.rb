@@ -10,7 +10,7 @@ class ProductMetaTagDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     meta_title: Field::String,
-    meta_description: Field::String,
+    meta_description: Field::String
   }.freeze
 
   COLLECTION_ATTRIBUTES = ATTRIBUTES

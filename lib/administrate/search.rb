@@ -59,8 +59,7 @@ module Administrate
         @scoped_resource.all
       else
         results = search_results(@scoped_resource)
-        results = filter_results(results)
-        results
+        filter_results(results)
       end
     end
 
@@ -112,9 +111,9 @@ module Administrate
     end
 
     def search_results(resources)
-      resources.
-        left_joins(tables_to_join).
-        where(query_template, *query_values)
+      resources
+        .left_joins(tables_to_join)
+        .where(query_template, *query_values)
     end
 
     def valid_filters
@@ -141,8 +140,8 @@ module Administrate
           end
         ActiveRecord::Base.connection.quote_table_name(unquoted_table_name)
       else
-        ActiveRecord::Base.connection.
-          quote_table_name(@scoped_resource.table_name)
+        ActiveRecord::Base.connection
+          .quote_table_name(@scoped_resource.table_name)
       end
     end
 

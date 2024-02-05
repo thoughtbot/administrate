@@ -3,6 +3,7 @@ require "rails_helper"
 # Test Authorization by using the Pundit concern and an example policy,
 # which will test all the authorization functionality.
 
+# standard:disable Lint/ConstantDefinitionInBlock
 describe Admin::OrdersController, type: :controller do
   context "with namespaced Punditize concern" do
     controller(Admin::OrdersController) do
@@ -41,14 +42,14 @@ describe Admin::OrdersController, type: :controller do
     describe "GET edit" do
       it "allows me to edit my records" do
         order = create :order, customer: user
-        expect { get :edit, params: { id: order.id } }.not_to raise_error
+        expect { get :edit, params: {id: order.id} }.not_to raise_error
       end
 
       it "does not allow me to see other users' records" do
         other_user = create(:customer)
         order = create(:order, customer: other_user)
-        expect { get :show, params: { id: order.id } }.
-          to raise_error(ActiveRecord::RecordNotFound)
+        expect { get :show, params: {id: order.id} }
+          .to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
@@ -58,8 +59,8 @@ describe Admin::OrdersController, type: :controller do
           :update,
           params: {
             id: order.id,
-            order: { address_line_one: "22 Acacia Avenue" },
-          },
+            order: {address_line_one: "22 Acacia Avenue"}
+          }
         )
       end
 
@@ -82,8 +83,8 @@ describe Admin::OrdersController, type: :controller do
     describe "DELETE destroy" do
       it "never allows me to delete a record" do
         o = create :order, customer: user, address_state: "AZ"
-        expect { delete :destroy, params: { id: o.id } }.
-          to raise_error(Pundit::NotAuthorizedError)
+        expect { delete :destroy, params: {id: o.id} }
+          .to raise_error(Pundit::NotAuthorizedError)
       end
     end
 
@@ -147,8 +148,8 @@ describe Admin::OrdersController, type: :controller do
         locals = capture_view_locals { get :index }
 
         expect(locals[:resources]).to contain_exactly(order1, order3)
-        expect(Administrate.deprecator).to have_received(:warn).
-          with(/`resolve_admin` method is deprecated/)
+        expect(Administrate.deprecator).to have_received(:warn)
+          .with(/`resolve_admin` method is deprecated/)
       end
     end
 
@@ -161,18 +162,18 @@ describe Admin::OrdersController, type: :controller do
     describe "GET edit" do
       it "allows me to edit my records" do
         order = create :order, customer: user
-        expect { get :edit, params: { id: order.id } }.not_to raise_error
-        expect(Administrate.deprecator).to have_received(:warn).
-          with(/`resolve_admin` method is deprecated/)
+        expect { get :edit, params: {id: order.id} }.not_to raise_error
+        expect(Administrate.deprecator).to have_received(:warn)
+          .with(/`resolve_admin` method is deprecated/)
       end
 
       it "does not allow me to see other users' records" do
         other_user = create(:customer)
         order = create(:order, customer: other_user)
-        expect { get :show, params: { id: order.id } }.
-          to raise_error(ActiveRecord::RecordNotFound)
-        expect(Administrate.deprecator).to have_received(:warn).
-          with(/`resolve_admin` method is deprecated/)
+        expect { get :show, params: {id: order.id} }
+          .to raise_error(ActiveRecord::RecordNotFound)
+        expect(Administrate.deprecator).to have_received(:warn)
+          .with(/`resolve_admin` method is deprecated/)
       end
     end
 
@@ -182,8 +183,8 @@ describe Admin::OrdersController, type: :controller do
           :update,
           params: {
             id: order.id,
-            order: { address_line_one: "22 Acacia Avenue" },
-          },
+            order: {address_line_one: "22 Acacia Avenue"}
+          }
         )
       end
 
@@ -192,8 +193,8 @@ describe Admin::OrdersController, type: :controller do
         send_request(order: order)
         expect(response).to redirect_to([:admin, order])
         expect(order.reload.address_line_one).to eq("22 Acacia Avenue")
-        expect(Administrate.deprecator).to have_received(:warn).
-          with(/`resolve_admin` method is deprecated/)
+        expect(Administrate.deprecator).to have_received(:warn)
+          .with(/`resolve_admin` method is deprecated/)
       end
 
       it "does not allow me to update other users' records" do
@@ -202,16 +203,16 @@ describe Admin::OrdersController, type: :controller do
         expect do
           send_request(order: order)
         end.to raise_error(ActiveRecord::RecordNotFound)
-        expect(Administrate.deprecator).to have_received(:warn).
-          with(/`resolve_admin` method is deprecated/)
+        expect(Administrate.deprecator).to have_received(:warn)
+          .with(/`resolve_admin` method is deprecated/)
       end
     end
 
     describe "DELETE destroy" do
       it "never allows me to delete a record" do
         o = create :order, customer: user, address_state: "AZ"
-        expect { delete :destroy, params: { id: o.id } }.
-          to raise_error(Pundit::NotAuthorizedError)
+        expect { delete :destroy, params: {id: o.id} }
+          .to raise_error(Pundit::NotAuthorizedError)
       end
     end
 
@@ -234,3 +235,4 @@ describe Admin::OrdersController, type: :controller do
     end
   end
 end
+# standard:enable Lint/ConstantDefinitionInBlock

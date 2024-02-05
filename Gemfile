@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 ruby "3.2.2" unless ENV["CI"]
 
 gemspec
@@ -27,6 +27,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "i18n-tasks", "1.0.13"
   gem "pry"
+  gem "standard"
   gem "yard"
 end
 

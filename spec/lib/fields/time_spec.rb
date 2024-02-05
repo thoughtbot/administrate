@@ -19,8 +19,8 @@ describe Administrate::Field::Time do
       time = DateTime.new(2021, 3, 26, 16, 38)
       formats = {
         time: {
-          formats: { short: "%H:%M" },
-        },
+          formats: {short: "%H:%M"}
+        }
       }
 
       options_field = Administrate::Field::Time.with_options(format: :short)

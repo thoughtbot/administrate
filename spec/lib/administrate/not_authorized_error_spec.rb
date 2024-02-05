@@ -5,10 +5,10 @@ describe Administrate::NotAuthorizedError do
     it "produces a message mentioning it directly" do
       error = described_class.new(
         resource: Administrate,
-        action: "foo",
+        action: "foo"
       )
       expect(error.message).to eq(
-        %{Not allowed to perform "foo" on Administrate},
+        %(Not allowed to perform "foo" on Administrate)
       )
     end
   end
@@ -17,9 +17,9 @@ describe Administrate::NotAuthorizedError do
     it "produces a message mentioning it directly" do
       error = described_class.new(
         resource: "User",
-        action: "foo",
+        action: "foo"
       )
-      expect(error.message).to eq(%{Not allowed to perform "foo" on "User"})
+      expect(error.message).to eq(%(Not allowed to perform "foo" on "User"))
     end
   end
 
@@ -27,9 +27,9 @@ describe Administrate::NotAuthorizedError do
     it "produces a message mentioning it directly" do
       error = described_class.new(
         resource: :user,
-        action: "foo",
+        action: "foo"
       )
-      expect(error.message).to eq(%{Not allowed to perform "foo" on :user})
+      expect(error.message).to eq(%(Not allowed to perform "foo" on :user))
     end
   end
 
@@ -39,10 +39,10 @@ describe Administrate::NotAuthorizedError do
 
       error = described_class.new(
         resource: TestStuff.new,
-        action: "foo",
+        action: "foo"
       )
       expect(error.message).to eq(
-        %{Not allowed to perform "foo" on the given TestStuff},
+        %(Not allowed to perform "foo" on the given TestStuff)
       )
     ensure
       remove_constants :TestStuff

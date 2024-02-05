@@ -1,6 +1,6 @@
 module Administrate
   module Punditize
-    if Object.const_defined?("Pundit")
+    if Object.const_defined?(:Pundit)
       extend ActiveSupport::Concern
 
       if Pundit.const_defined?(:Authorization)
@@ -28,7 +28,7 @@ module Administrate
       def authorized_action?(resource, action)
         namespaced_resource = policy_namespace + [resource]
         policy = Pundit.policy!(pundit_user, namespaced_resource)
-        policy.send("#{action}?".to_sym)
+        policy.send(:"#{action}?")
       end
 
       def policy_scope!(user, scope)
@@ -38,13 +38,13 @@ module Administrate
           policy_scope = policy_scope_class.new(user, pundit_model(scope))
         rescue ArgumentError
           raise(Pundit::InvalidConstructorError,
-                "Invalid #<#{policy_scope_class}> constructor is called")
+            "Invalid #<#{policy_scope_class}> constructor is called")
         end
 
         if policy_scope.respond_to? :resolve_admin
           Administrate.deprecator.warn(
-            "Pundit policy scope `resolve_admin` method is deprecated. " +
-            "Please use a namespaced pundit policy instead.",
+            "Pundit policy scope `resolve_admin` method is deprecated. " \
+            "Please use a namespaced pundit policy instead."
           )
           policy_scope.resolve_admin
         else

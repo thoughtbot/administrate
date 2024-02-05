@@ -38,8 +38,8 @@ module Administrate
         formatter = options[:format][:formatter]
         formatter_options = options[:format][:formatter_options].to_h
 
-        ActiveSupport::NumberHelper.
-          try(formatter, result, **formatter_options) || result
+        ActiveSupport::NumberHelper
+          .try(formatter, result, **formatter_options) || result
       end
     end
   end

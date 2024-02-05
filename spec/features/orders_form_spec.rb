@@ -79,10 +79,10 @@ describe "order form" do
         helpers: {
           label: {
             order: {
-              line_items: custom_label,
-            },
-          },
-        },
+              line_items: custom_label
+            }
+          }
+        }
       }
 
       with_translations(:en, translations) do

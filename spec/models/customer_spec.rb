@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe Customer, :type => :model do
+RSpec.describe Customer, type: :model do
   it { should have_many :orders }
 
   it { should validate_presence_of(:name) }
@@ -25,7 +25,7 @@ RSpec.describe Customer, :type => :model do
     it "sums the total_price of all orders" do
       customer = Customer.new orders: [
         order_stub(total_price: 20),
-        order_stub(total_price: 30),
+        order_stub(total_price: 30)
       ]
 
       expect(customer.lifetime_value).to eq 50

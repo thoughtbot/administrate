@@ -5,14 +5,14 @@ describe "fields/has_many/_index", type: :view do
     it "displays the pluralized attribute name" do
       has_many = double(
         data: double(
-          size: 0,
+          size: 0
         ),
-        attribute: :teams,
+        attribute: :teams
       )
 
       render(
         partial: "fields/has_many/index",
-        locals: { field: has_many },
+        locals: {field: has_many}
       )
 
       expect(rendered.strip).to eq("0 teams")
@@ -23,14 +23,14 @@ describe "fields/has_many/_index", type: :view do
     it "displays the singularized attribute name" do
       has_many = double(
         data: double(
-          size: 1,
+          size: 1
         ),
-        attribute: :teams,
+        attribute: :teams
       )
 
       render(
         partial: "fields/has_many/index",
-        locals: { field: has_many },
+        locals: {field: has_many}
       )
 
       expect(rendered.strip).to eq("1 team")
@@ -41,14 +41,14 @@ describe "fields/has_many/_index", type: :view do
     it "displays the pluralized attribute name" do
       has_many = double(
         data: double(
-          size: 2,
+          size: 2
         ),
-        attribute: :teams,
+        attribute: :teams
       )
 
       render(
         partial: "fields/has_many/index",
-        locals: { field: has_many },
+        locals: {field: has_many}
       )
 
       expect(rendered.strip).to eq("2 teams")

@@ -6,8 +6,8 @@ class AddSlugToProducts < ActiveRecord::Migration[4.2]
     products.each do |product|
       update(<<-SQL)
         UPDATE products
-          SET slug='#{product['name'].parameterize}'
-          WHERE id=#{product['id']}
+          SET slug='#{product["name"].parameterize}'
+          WHERE id=#{product["id"]}
       SQL
     end
 

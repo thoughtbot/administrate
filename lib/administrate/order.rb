@@ -48,7 +48,7 @@ module Administrate
     end
 
     def opposite_direction
-      direction == :asc ? :desc : :asc
+      (direction == :asc) ? :desc : :asc
     end
 
     def order_by_association(relation)
@@ -67,10 +67,10 @@ module Administrate
     def order_by_count(relation)
       klass = reflect_association(relation).klass
       query = klass.arel_table[klass.primary_key].count.public_send(direction)
-      relation.
-        left_joins(attribute.to_sym).
-        group(:id).
-        reorder(query)
+      relation
+        .left_joins(attribute.to_sym)
+        .group(:id)
+        .reorder(query)
     end
 
     def order_by_belongs_to(relation)
@@ -91,7 +91,7 @@ module Administrate
 
     def order_by_attribute(relation)
       relation.joins(
-        attribute.to_sym,
+        attribute.to_sym
       ).reorder(order_by_attribute_query)
     end
 

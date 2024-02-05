@@ -52,7 +52,7 @@ describe "customer edit page" do
     visit edit_admin_customer_path(customer)
     expect(page).to have_css(
       ".selectize-input.items > [data-value]",
-      text: "vip",
+      text: "vip"
     )
   end
 
@@ -65,7 +65,7 @@ describe "customer edit page" do
 
     expect(page).to have_css(
       "#error_explanation ul li.flash-error",
-      text: "Name can't be blank",
+      text: "Name can't be blank"
     )
   end
 
@@ -77,9 +77,9 @@ describe "customer edit page" do
     translations = {
       activerecord: {
         models: {
-          customer: "Custom name",
-        },
-      },
+          customer: "Custom name"
+        }
+      }
     }
 
     with_translations(:en, translations) do

@@ -8,8 +8,8 @@ RSpec.describe Product do
     it { should validate_presence_of(:price) }
 
     it do
-      should validate_numericality_of(:release_year).
-        is_less_than_or_equal_to(Time.now.year)
+      should validate_numericality_of(:release_year)
+        .is_less_than_or_equal_to(Time.now.year)
     end
 
     it "should not allow names that produce empty slugs" do
@@ -17,8 +17,8 @@ RSpec.describe Product do
 
       product.validate
 
-      expect(product.errors[:name]).
-        to include("must have letters or numbers for the URL")
+      expect(product.errors[:name])
+        .to include("must have letters or numbers for the URL")
     end
 
     context "with other products in the database" do
@@ -38,5 +38,4 @@ RSpec.describe Product do
 
     expect(Product.all).to be_empty
   end
-
 end

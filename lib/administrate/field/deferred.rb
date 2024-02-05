@@ -35,7 +35,7 @@ module Administrate
 
       def searchable_field
         Administrate.deprecator.warn(
-          "searchable_field is deprecated, use searchable_fields instead",
+          "searchable_field is deprecated, use searchable_fields instead"
         )
         options.fetch(:searchable_field)
       end

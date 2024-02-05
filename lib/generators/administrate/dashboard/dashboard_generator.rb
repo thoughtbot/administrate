@@ -13,14 +13,14 @@ module Administrate
         time: "Field::Time",
         text: "Field::Text",
         string: "Field::String",
-        uuid: "Field::String",
+        uuid: "Field::String"
       }
 
       ATTRIBUTE_OPTIONS_MAPPING = {
         # procs must be defined in one line!
-        enum: {  searchable: false,
-                 collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys } },
-        float: { decimals: 2 },
+        enum: {searchable: false,
+               collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }},
+        float: {decimals: 2}
       }
 
       DEFAULT_FIELD_TYPE = "Field::String.with_options(searchable: false)"
@@ -31,7 +31,7 @@ module Administrate
         :namespace,
         type: :string,
         desc: "Namespace where the admin dashboards live",
-        default: "admin",
+        default: "admin"
       )
 
       source_root File.expand_path("../templates", __FILE__)
@@ -39,13 +39,13 @@ module Administrate
       def create_dashboard_definition
         template(
           "dashboard.rb.erb",
-          Rails.root.join("app/dashboards/#{file_name}_dashboard.rb"),
+          Rails.root.join("app/dashboards/#{file_name}_dashboard.rb")
         )
       end
 
       def create_resource_controller
         destination = Rails.root.join(
-          "app/controllers/#{namespace}/#{file_name.pluralize}_controller.rb",
+          "app/controllers/#{namespace}/#{file_name.pluralize}_controller.rb"
         )
 
         template("controller.rb.erb", destination)
@@ -72,7 +72,7 @@ module Administrate
           primary_key,
           *attrs.sort,
           created_at,
-          updated_at,
+          updated_at
         ].compact
       end
 
@@ -116,7 +116,7 @@ module Administrate
 
       def enum_column?(attr)
         klass.respond_to?(:defined_enums) &&
-          klass.defined_enums.keys.include?(attr)
+          klass.defined_enums.key?(attr)
       end
 
       def column_types(attr)

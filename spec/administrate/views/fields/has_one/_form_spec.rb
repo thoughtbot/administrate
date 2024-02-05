@@ -8,12 +8,12 @@ describe "fields/has_one/_form", type: :view do
       attribute: "Meta",
       data: nil,
       nested_form: nested_form,
-      name: "product_tag",
+      name: "product_tag"
     )
 
     render(
       partial: "fields/has_one/form",
-      locals: { field: has_one, f: form_builder },
+      locals: {field: has_one, f: form_builder}
     )
 
     expect(rendered.strip).to include("Product Tag")
@@ -32,10 +32,10 @@ describe "fields/has_one/_form", type: :view do
     instance_double(
       "Administrate::Page::Show",
       resource: double(
-        class: ProductMetaTag,
+        class: ProductMetaTag
       ),
       attributes: [],
-      resource_name: "Product Tag",
+      resource_name: "Product Tag"
     )
   end
 end

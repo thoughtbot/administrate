@@ -16,7 +16,7 @@ describe LineItemDashboard do
             product
             quantity
             unit_price
-          ],
+          ]
         )
       end
     end
@@ -29,7 +29,7 @@ describe LineItemDashboard do
           %i[
             order
             product
-          ],
+          ]
         )
       end
     end
@@ -43,7 +43,7 @@ describe LineItemDashboard do
             order
             product
             quantity
-          ],
+          ]
         )
       end
     end
@@ -58,7 +58,7 @@ describe LineItemDashboard do
             product
             quantity
             unit_price
-          ],
+          ]
         )
       end
     end

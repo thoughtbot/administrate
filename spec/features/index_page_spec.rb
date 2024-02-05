@@ -1,7 +1,5 @@
 require "rails_helper"
 
-search_input_selector = ".search__input"
-
 describe "customer index page" do
   it "displays customers' name and email" do
     customer = create(:customer)
@@ -62,10 +60,10 @@ describe "customer index page" do
       helpers: {
         label: {
           customer: {
-            email_subscriber: custom_label,
-          },
-        },
-      },
+            email_subscriber: custom_label
+          }
+        }
+      }
     }
 
     with_translations(:en, translations) do

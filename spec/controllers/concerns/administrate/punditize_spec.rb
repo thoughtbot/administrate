@@ -24,7 +24,7 @@ module Administrate
 
       yield
 
-      Object.const_set("Pundit", original)
+      Object.const_set(:Pundit, original)
     end
 
     def reload_punditize
@@ -36,7 +36,7 @@ module Administrate
         "controllers",
         "concerns",
         "administrate",
-        "punditize.rb",
+        "punditize.rb"
       )
     end
 

@@ -41,15 +41,15 @@ RSpec.describe "product index page" do
   scenario "product sorted by has_one association" do
     create(
       :product,
-      product_meta_tag: build(:product_meta_tag, meta_title: "Gamma"),
+      product_meta_tag: build(:product_meta_tag, meta_title: "Gamma")
     )
     create(
       :product,
-      product_meta_tag: build(:product_meta_tag, meta_title: "Alpha"),
+      product_meta_tag: build(:product_meta_tag, meta_title: "Alpha")
     )
     create(
       :product,
-      product_meta_tag: build(:product_meta_tag, meta_title: "Beta"),
+      product_meta_tag: build(:product_meta_tag, meta_title: "Beta")
     )
 
     visit admin_products_path

@@ -8,12 +8,12 @@ describe "fields/polymorphic/_show", type: :view do
       polymorphic = instance_double(
         "Administrate::Field::Polymorphic",
         display_associated_resource: "",
-        data: nil,
+        data: nil
       )
 
       render(
         partial: "fields/polymorphic/show",
-        locals: { field: polymorphic },
+        locals: {field: polymorphic}
       )
 
       expect(rendered.strip).to eq("")
@@ -28,14 +28,14 @@ describe "fields/polymorphic/_show", type: :view do
         "Administrate::Field::Polymorphic",
         display_associated_resource: product.name,
         data: product,
-        attribute: "product",
+        attribute: "product"
       )
 
       allow(view).to receive(:accessible_action?).and_return(true)
 
       render(
         partial: "fields/polymorphic/show",
-        locals: { field: polymorphic, namespace: :admin },
+        locals: {field: polymorphic, namespace: :admin}
       )
 
       expected = "<a href=\"#{product_path}\">#{product.name}</a>"
