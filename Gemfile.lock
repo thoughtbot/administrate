@@ -97,6 +97,7 @@ GEM
       erubi (~> 1.4)
       parser (>= 2.4)
       smart_properties
+    bigdecimal (3.1.6)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.40.0)
@@ -110,7 +111,8 @@ GEM
       xpath (~> 3.2)
     coderay (1.1.3)
     concurrent-ruby (1.2.3)
-    crack (0.4.5)
+    crack (0.4.6)
+      bigdecimal
       rexml
     crass (1.0.6)
     cssbundling-rails (1.4.0)
@@ -143,7 +145,7 @@ GEM
     front_matter_parser (1.0.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    hashdiff (1.0.1)
+    hashdiff (1.1.0)
     highline (2.1.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
@@ -341,7 +343,7 @@ GEM
     unicorn (6.1.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
-    webmock (3.19.1)
+    webmock (3.20.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
