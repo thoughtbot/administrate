@@ -1,5 +1,7 @@
 button,
-input,
+[type="button"],
+[type="reset"],
+[type="submit"],
 .button {
   appearance: none;
   background-color: $action-color;

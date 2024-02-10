@@ -1604,7 +1604,9 @@ hr {
 }
 
 button,
-input,
+[type=button],
+[type=reset],
+[type=submit],
 .button {
   appearance: none;
   background-color: #1976d2;
@@ -1626,25 +1628,33 @@ input,
   white-space: nowrap;
 }
 button:hover,
-input:hover,
+[type=button]:hover,
+[type=reset]:hover,
+[type=submit]:hover,
 .button:hover {
   background-color: #145ea8;
   color: #ffffff;
 }
 button:focus,
-input:focus,
+[type=button]:focus,
+[type=reset]:focus,
+[type=submit]:focus,
 .button:focus {
   outline: 3px solid rgba(25, 118, 210, 0.6);
   outline-offset: 1px;
 }
 button:disabled,
-input:disabled,
+[type=button]:disabled,
+[type=reset]:disabled,
+[type=submit]:disabled,
 .button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
 button:disabled:hover,
-input:disabled:hover,
+[type=button]:disabled:hover,
+[type=reset]:disabled:hover,
+[type=submit]:disabled:hover,
 .button:disabled:hover {
   background-color: #1976d2;
 }
