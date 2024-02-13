@@ -7,10 +7,10 @@
 <% end %>
 
 <% if existing_action?(collection_presenter.resource_name, :destroy) %>
-  <td><%= link_to(
+  <td><%= button_to(
     t("administrate.actions.destroy"),
     [namespace, resource],
-    class: "text-color-red",
+    class: "link link--danger",
     method: :delete,
     data: { turbo_confirm: t("administrate.actions.confirm") }
   ) if authorized_action?(resource, :destroy) %></td>

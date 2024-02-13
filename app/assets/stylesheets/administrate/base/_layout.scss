@@ -13,6 +13,11 @@ figure {
   margin: 0;
 }
 
+/* stylelint-disable selector-no-qualifying-type, selector-class-pattern */
+form.button_to { // we don't control this class name
+  display: contents;
+}
+
 img,
 picture {
   margin: 0;

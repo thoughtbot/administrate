@@ -22,23 +22,23 @@ button,
   vertical-align: middle;
   white-space: nowrap;
 
-  &:hover {
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:not(.link):hover {
     background-color: mix($black, $action-color, 20%);
     color: $white;
   }
 
-  &:focus {
+  &:not(.link):focus {
     outline: $focus-outline;
     outline-offset: $focus-outline-offset;
   }
 
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-
-    &:hover {
-      background-color: $action-color;
-    }
+  &:not(.link):disabled:hover {
+    background-color: $action-color;
   }
 }
 
