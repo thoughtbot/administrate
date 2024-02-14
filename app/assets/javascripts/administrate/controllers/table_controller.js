@@ -1,7 +1,10 @@
-$(function() {
-  var keycodes = { space: 32, enter: 13 };
+import { Controller } from "@hotwired/stimulus";
+import $ from "jquery";
 
-  var visitDataUrl = function(event) {
+var keycodes = { space: 32, enter: 13 };
+
+export default class extends Controller {
+  visitDataUrl(event) {
     if (event.type == "click" ||
         event.keyCode == keycodes.space ||
         event.keyCode == keycodes.enter) {
@@ -16,8 +19,5 @@ $(function() {
         window.location = window.location.protocol + '//' + window.location.host + dataUrl;
       }
     }
-  };
-
-  $("table").on("click", ".js-table-row", visitDataUrl);
-  $("table").on("keydown", ".js-table-row", visitDataUrl);
-});
+  }
+};

@@ -22,5 +22,6 @@ that displays all possible records to associate with.
 <div class="field-unit__field">
   <%= f.select(field.permitted_attribute,
                options_for_select(field.associated_resource_options, field.selected_option),
-               include_blank: field.include_blank_option) %>
+               {include_blank: field.include_blank_option},
+               data: {controller: field.html_controller}) %>
 </div>

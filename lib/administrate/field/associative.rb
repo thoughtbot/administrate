@@ -46,6 +46,10 @@ module Administrate
         end
       end
 
+      def html_controller
+        "select"
+      end
+
       private
 
       def associated_dashboard

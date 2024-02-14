@@ -5,6 +5,7 @@
     "lint:css": "stylelint app/assets/stylesheets/administrate/**/*.scss"
   },
   "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
     "esbuild": "^0.18.11",
     "jquery": "^3.7.0",
     "jquery-ujs": "^1.2.3",

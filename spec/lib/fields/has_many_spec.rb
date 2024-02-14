@@ -4,6 +4,18 @@ require "support/constant_helpers"
 require "support/mock_relation"
 
 describe Administrate::Field::HasMany do
+  describe "#html_controller" do
+    it "returns select" do
+      page = :show
+      items = double
+      field = Administrate::Field::HasMany.new(:items, items, page)
+
+      html_controller = field.html_controller
+
+      expect(html_controller).to eq("select")
+    end
+  end
+
   describe "#to_partial_path" do
     it "returns a partial based on the page being rendered" do
       page = :show

@@ -27,6 +27,6 @@ RSpec.feature "Log search", type: :feature do
   end
 
   def submit_search
-    page.execute_script("$('.search').submit()")
+    page.find_field("Search").send_keys(:enter)
   end
 end

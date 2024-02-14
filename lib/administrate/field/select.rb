@@ -35,6 +35,10 @@ module Administrate
       def active_record_enum_values
         resource.class.defined_enums[attribute.to_s].map(&:first)
       end
+
+      def html_controller
+        "select"
+      end
     end
   end
 end

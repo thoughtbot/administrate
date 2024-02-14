@@ -14,6 +14,18 @@ describe Administrate::Field::BelongsTo do
     )
   end
 
+  describe "#html_controller" do
+    it "returns select" do
+      page = :show
+      owner = double
+      field = Administrate::Field::BelongsTo.new(:owner, owner, page)
+
+      html_controller = field.html_controller
+
+      expect(html_controller).to eq("select")
+    end
+  end
+
   describe "#to_partial_path" do
     it "returns a partial based on the page being rendered" do
       page = :show

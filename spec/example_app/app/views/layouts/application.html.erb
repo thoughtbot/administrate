@@ -14,6 +14,7 @@
   <%= stylesheet_link_tag "application", media: "all" %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   <%= csrf_meta_tags %>
+  <%= render "javascript" %>
 </head>
 
 <body class="<%= body_class %>">
@@ -24,8 +25,6 @@
       <%= render "flashes" -%>
 
       <%= yield %>
-
-      <%= render "javascript" %>
     </div>
   </main>
 </body>

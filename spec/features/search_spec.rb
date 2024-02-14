@@ -154,7 +154,7 @@ feature "Search" do
   end
 
   def submit_search
-    page.execute_script("$('.search').submit()")
+    page.find_field("Search").send_keys(:enter)
   end
 
   def order_row_match(order)
