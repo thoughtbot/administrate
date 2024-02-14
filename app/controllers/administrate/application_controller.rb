@@ -60,7 +60,8 @@ module Administrate
       if requested_resource.update(resource_params)
         redirect_to(
           after_resource_updated_path(requested_resource),
-          notice: translate_with_resource("update.success")
+          notice: translate_with_resource("update.success"),
+          status: :see_other
         )
       else
         render :edit, locals: {
@@ -75,7 +76,7 @@ module Administrate
       else
         flash[:error] = requested_resource.errors.full_messages.join("<br/>")
       end
-      redirect_to after_resource_destroyed_path(requested_resource)
+      redirect_to after_resource_destroyed_path(requested_resource), status: :see_other
     end
 
     private

@@ -8,7 +8,7 @@ by providing a `content_for(:javascript)` block.
 %>
 
 <% Administrate::Engine.javascripts.each do |js_path| %>
-  <%= javascript_include_tag js_path %>
+  <%= javascript_include_tag js_path, "data-turbo-track": "reload", defer: true %>
 <% end %>
 
 <%= yield :javascript %>
