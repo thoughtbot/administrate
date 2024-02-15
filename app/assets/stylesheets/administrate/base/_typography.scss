@@ -21,10 +21,21 @@ p {
   margin: 0 0 $small-spacing;
 }
 
-a {
+a,
+.link:is(
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"]
+) {
   color: $action-color;
   text-decoration-skip-ink: auto;
   transition: color $base-duration $base-timing;
+
+  /* stylelint-disable selector-no-qualifying-type */
+  &.link--danger {
+    color: $red;
+  }
 
   &:hover {
     color: mix($black, $action-color, 25%);

@@ -87,7 +87,11 @@ pre {
  * 1. Remove the gray background on active links in IE 10.
  * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
  */
-a {
+a,
+.link:is(button,
+[type=button],
+[type=reset],
+[type=submit]) {
   background-color: transparent; /* 1 */
   -webkit-text-decoration-skip: objects; /* 2 */
 }
@@ -1438,6 +1442,11 @@ figure {
   margin: 0;
 }
 
+/* stylelint-disable selector-no-qualifying-type, selector-class-pattern */
+form.button_to {
+  display: contents;
+}
+
 img,
 picture {
   margin: 0;
@@ -1539,15 +1548,35 @@ p {
   margin: 0 0 0.75em;
 }
 
-a {
+a,
+.link:is(button,
+[type=button],
+[type=reset],
+[type=submit]) {
   color: #1976d2;
   text-decoration-skip-ink: auto;
   transition: color 250ms ease-in-out;
+  /* stylelint-disable selector-no-qualifying-type */
 }
-a:hover {
+a.link--danger,
+.link:is(button,
+[type=button],
+[type=reset],
+[type=submit]).link--danger {
+  color: #d32f2f;
+}
+a:hover,
+.link:is(button,
+[type=button],
+[type=reset],
+[type=submit]):hover {
   color: #13599e;
 }
-a:focus {
+a:focus,
+.link:is(button,
+[type=button],
+[type=reset],
+[type=submit]):focus {
   outline: 3px solid rgba(25, 118, 210, 0.6);
   outline-offset: 1px;
 }
@@ -1627,22 +1656,6 @@ button,
   vertical-align: middle;
   white-space: nowrap;
 }
-button:hover,
-[type=button]:hover,
-[type=reset]:hover,
-[type=submit]:hover,
-.button:hover {
-  background-color: #145ea8;
-  color: #ffffff;
-}
-button:focus,
-[type=button]:focus,
-[type=reset]:focus,
-[type=submit]:focus,
-.button:focus {
-  outline: 3px solid rgba(25, 118, 210, 0.6);
-  outline-offset: 1px;
-}
 button:disabled,
 [type=button]:disabled,
 [type=reset]:disabled,
@@ -1651,11 +1664,27 @@ button:disabled,
   cursor: not-allowed;
   opacity: 0.5;
 }
-button:disabled:hover,
-[type=button]:disabled:hover,
-[type=reset]:disabled:hover,
-[type=submit]:disabled:hover,
-.button:disabled:hover {
+button:not(.link):hover,
+[type=button]:not(.link):hover,
+[type=reset]:not(.link):hover,
+[type=submit]:not(.link):hover,
+.button:not(.link):hover {
+  background-color: #145ea8;
+  color: #ffffff;
+}
+button:not(.link):focus,
+[type=button]:not(.link):focus,
+[type=reset]:not(.link):focus,
+[type=submit]:not(.link):focus,
+.button:not(.link):focus {
+  outline: 3px solid rgba(25, 118, 210, 0.6);
+  outline-offset: 1px;
+}
+button:not(.link):disabled:hover,
+[type=button]:not(.link):disabled:hover,
+[type=reset]:not(.link):disabled:hover,
+[type=submit]:not(.link):disabled:hover,
+.button:not(.link):disabled:hover {
   background-color: #1976d2;
 }
 
@@ -1961,10 +1990,6 @@ button:disabled:hover,
 }
 .search__clear-icon:hover {
   fill: #1976d2;
-}
-
-.text-color-red {
-  color: #d32f2f;
 }
 
 /*# sourceMappingURL=application.css.map */
