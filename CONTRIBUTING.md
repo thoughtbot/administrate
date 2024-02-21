@@ -70,7 +70,7 @@ This project uses:
 * Sass
 * [BEM]-style CSS selectors, with [namespaces]
 * Autoprefixer
-* SCSS-Lint, with [Hound] ([configuration](.scss-lint.yml))
+* SCSS-Lint, with [stylelint] ([configuration](stylelint-config))
 * A variety of CSS units:
   - `em` for typographical-related elements
   - `rem` for lengths related to components
@@ -79,7 +79,8 @@ This project uses:
 
 [BEM]: http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/
 [namespaces]: http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/
-[Hound]: https://houndci.com/
+[stylelint]: https://stylelint.io
+[stylelint-config]: https://github.com/thoughtbot/stylelint-config
 
 ## Labels
 
