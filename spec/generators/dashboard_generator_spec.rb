@@ -425,11 +425,42 @@ describe Administrate::Generators::DashboardGenerator, :generator do
       run_generator ["foo", "--namespace", "manager"]
       load file("app/controllers/manager/foos_controller.rb")
 
+      binding.pry
+
       expect(Manager::FoosController.ancestors)
         .to include(Manager::ApplicationController)
     ensure
       remove_constants :Foo
       Manager.send(:remove_const, :FoosController)
+    end
+
+    it "uses the given namespace and model socpe to create controller and dashboard" do
+      ActiveRecord::Schema.define { create_table :foo_bar_cars }
+      module Foo
+        module Bar
+          def self.table_name_prefix
+            "foo_bar_"
+          end
+
+          class Car < Administrate::Generators::TestRecord; end
+        end
+      end
+
+      module Manager
+        class ApplicationController < Administrate::ApplicationController; end
+      end
+
+      run_generator ["Foo::Bar::Car", "--namespace", "manager"]
+      load file("app/controllers/manager/cars_controller.rb")
+      load file("app/dashboards/car_dashboard.rb")
+
+      expect(Manager::CarsController.ancestors)
+        .to include(Manager::ApplicationController)
+      expect(Foo::Bar::CarDashboard.ancestors)
+        .to include(Administrate::BaseDashboard)
+    ensure
+      remove_constants :Foo
+      # Manager.send(:remove_const, :CarsController)
     end
   end
 end
