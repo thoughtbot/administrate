@@ -102,8 +102,8 @@ feature "Search" do
     fill_in :search, with: "kind:vip"
     submit_search
 
-    expect(page).not_to have_content(standard_match.email)
     expect(page).to have_content(kind_match.email)
+    expect(page).not_to have_content(standard_match.email)
   end
 
   scenario "admin searches with an a term similiar to a filter", :js do
