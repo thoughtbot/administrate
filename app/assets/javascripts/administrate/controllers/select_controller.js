@@ -3,6 +3,15 @@ import $ from "jquery";
 
 export default class extends Controller {
   connect() {
-    $(this.element).selectize({});
+    const options = {}
+    if(this.shouldAllowEmptyOptionsFor(this.element)) {
+      options["allowEmptyOption"] = true
+    }
+    $(this.element).selectize(options);
   }
+
+  shouldAllowEmptyOptionsFor(element) {
+    return element.children[0].value=='' && element.children[0].label==" "
+  }
+
 };
