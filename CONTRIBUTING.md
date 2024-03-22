@@ -38,11 +38,12 @@ coverage and (where necessary) have internationalisation support.
 Administrate's demo application can be run like any Rails application:
 
 ```sh
-bundle exec rails s
+bin/dev
 ```
 
 This will start the application defined in `spec/example_app`.
-You can view the `example_app` in the browser by navigating to `/admin`
+You can view the `example_app` in the browser by navigating to
+http://localhost:5000/admin.
 
 ## Repository Structure
 
