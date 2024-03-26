@@ -11252,7 +11252,7 @@
       return document.documentElement.querySelectorAll("script");
     }
   };
-  var Idiomorph = function() {
+  var Idiomorph = /* @__PURE__ */ function() {
     let EMPTY_SET = /* @__PURE__ */ new Set();
     let defaults = {
       morphStyle: "outerHTML",
@@ -15921,7 +15921,14 @@
   var import_jquery2 = __toESM(require_jquery());
   var select_controller_default = class extends Controller {
     connect() {
-      (0, import_jquery2.default)(this.element).selectize({});
+      const options = {};
+      if (this.shouldAllowEmptyOptionsFor(this.element)) {
+        options["allowEmptyOption"] = true;
+      }
+      (0, import_jquery2.default)(this.element).selectize(options);
+    }
+    shouldAllowEmptyOptionsFor(element) {
+      return element.children[0].value == "" && element.children[0].label == " ";
     }
   };
 
