@@ -1,0 +1,59 @@
+---
+
+version: '2.4'
+
+networks:
+  internal_network:
+    driver: bridge
+
+volumes:
+  bundle_data:
+    driver: local
+  postgres_data:
+    driver: local
+
+x-default-logging: &logging
+  logging:
+    options:
+      max-size: '12m'
+      max-file: '5'
+    driver: json-file
+
+services:
+  console:
+    image: ruby
+    command: sleep 10000000;
+    environment:
+      CI: t
+      PGHOST: postgres
+      PGUSER: administrate
+      PGPASSWORD: administrate
+    <<: *logging
+    networks:
+      - internal_network
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/work
+      - bundle_data:/usr/local/bundle
+    working_dir: /work
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: administrate
+      POSTGRES_DB: administrate_test
+      POSTGRES_PASSWORD: administrate
+    healthcheck:
+      test: pg_isready -U notroot -h localhost -p 5432 -d healthcheck-db || exit 1
+      interval: '10s'
+      retries: 20
+      start_period: '10s'
+      timeout: '7s'
+    <<: *logging
+    networks:
+      - internal_network
+    ports:
+        - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data

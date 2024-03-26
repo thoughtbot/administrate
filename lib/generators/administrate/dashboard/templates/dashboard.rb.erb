@@ -1,68 +1,77 @@
 require "administrate/base_dashboard"
 
-class <%= class_name %>Dashboard < Administrate::BaseDashboard
-  # ATTRIBUTE_TYPES
-  # a hash that describes the type of each of the model's fields.
-  #
-  # Each different type represents an Administrate::Field object,
-  # which determines how the attribute is displayed
-  # on pages throughout the dashboard.
-  ATTRIBUTE_TYPES = {
-<% attributes.each do |attr| -%>
-    <%= attr %>: <%= field_type(attr) %>,
+<% indent = String.new -%>
+<% regular_class_path.map(&:capitalize).each do |module_namespace| -%>
+<%= indent %>module <%= module_namespace %>
+<% indent += '  ' -%>
 <% end -%>
-  }.freeze
+<%= indent %>class <%= file_name.capitalize %>Dashboard < Administrate::BaseDashboard
+<%= indent %>  # ATTRIBUTE_TYPES
+<%= indent %>  # a hash that describes the type of each of the model's fields.
+<%= indent %>  #
+<%= indent %>  # Each different type represents an Administrate::Field object,
+<%= indent %>  # which determines how the attribute is displayed
+<%= indent %>  # on pages throughout the dashboard.
+<%= indent %>  ATTRIBUTE_TYPES = {
+<% attributes.each do |attr| -%>
+    <%= indent %><%= attr %>: <%= field_type(attr) %>,
+<% end -%>
+<%= indent %>  }.freeze
 
-  # COLLECTION_ATTRIBUTES
-  # an array of attributes that will be displayed on the model's index page.
-  #
-  # By default, it's limited to four items to reduce clutter on index pages.
-  # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = %i[
+<%= indent %>  # COLLECTION_ATTRIBUTES
+<%= indent %>  # an array of attributes that will be displayed on the model's index page.
+<%= indent %>  #
+<%= indent %>  # By default, it's limited to four items to reduce clutter on index pages.
+<%= indent %>  # Feel free to add, remove, or rearrange items.
+<%= indent %>  COLLECTION_ATTRIBUTES = %i[
 <%=
   attributes.first(COLLECTION_ATTRIBUTE_LIMIT).map do |attr|
-    "    #{attr}"
+    indent + "    #{attr}"
   end.join("\n")
 %>
-  ].freeze
+<%= indent %>  ].freeze
 
-  # SHOW_PAGE_ATTRIBUTES
-  # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = %i[
+<%= indent %>  # SHOW_PAGE_ATTRIBUTES
+<%= indent %>  # an array of attributes that will be displayed on the model's show page.
+<%= indent %>  SHOW_PAGE_ATTRIBUTES = %i[
 <%=
   attributes.map do |attr|
-    "    #{attr}"
+    indent + "    #{attr}"
   end.join("\n")
 %>
-  ].freeze
+<%= indent %>  ].freeze
 
-  # FORM_ATTRIBUTES
-  # an array of attributes that will be displayed
-  # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = %i[
+<%= indent %>  # FORM_ATTRIBUTES
+<%= indent %>  # an array of attributes that will be displayed
+<%= indent %>  # on the model's form (`new` and `edit`) pages.
+<%= indent %>  FORM_ATTRIBUTES = %i[
 <%=
   form_attributes.map do |attr|
-    "    #{attr}"
+    indent + "    #{attr}"
   end.join("\n")
 %>
-  ].freeze
+<%= indent %>  ].freeze
 
-  # COLLECTION_FILTERS
-  # a hash that defines filters that can be used while searching via the search
-  # field of the dashboard.
-  #
-  # For example to add an option to search for open resources by typing "open:"
-  # in the search field:
-  #
-  #   COLLECTION_FILTERS = {
-  #     open: ->(resources) { resources.where(open: true) }
-  #   }.freeze
-  COLLECTION_FILTERS = {}.freeze
+<%= indent %>  # COLLECTION_FILTERS
+<%= indent %>  # a hash that defines filters that can be used while searching via the search
+<%= indent %>  # field of the dashboard.
+<%= indent %>  #
+<%= indent %>  # For example to add an option to search for open resources by typing "open:"
+<%= indent %>  # in the search field:
+<%= indent %>  #
+<%= indent %>  #   COLLECTION_FILTERS = {
+<%= indent %>  #     open: ->(resources) { resources.where(open: true) }
+<%= indent %>  #   }.freeze
+<%= indent %>  COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how <%= file_name.pluralize.humanize.downcase %> are displayed
-  # across all pages of the admin dashboard.
-  #
-  # def display_resource(<%= file_name %>)
-  #   "<%= class_name %> ##{<%= file_name %>.id}"
-  # end
-end
+<%= indent %>  # Overwrite this method to customize how <%= file_name.pluralize.humanize.downcase %> are displayed
+<%= indent %>  # across all pages of the admin dashboard.
+<%= indent %>  #
+<%= indent %>  # def display_resource(<%= file_name %>)
+<%= indent %>  #   "<%= class_name %> ##{<%= file_name %>.id}"
+<%= indent %>  # end
+<%= indent %>end
+<% regular_class_path.reverse.each do |module_namespace| -%>
+<% indent = indent[0...-2] -%>
+<%= indent %>end
+<% end -%>
