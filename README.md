@@ -34,9 +34,10 @@ and to be easier for developers to customize.
 
 To accomplish these goals, Administrate follows a few guiding principles:
 
-- No DSLs (domain-specific languages)
+- Stay as close to standard Rails as possible, keeping the
+  Administrate-specific code as small as practical,
 - Support the simplest use cases, and let the user override defaults with
-  standard tools such as plain Rails controllers and views.
+  standard tools such as plain Rails controllers and views,
 - Break up the library into core components and plugins,
   so each component stays small and easy to maintain.
 
