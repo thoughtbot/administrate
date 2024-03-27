@@ -17,10 +17,9 @@
 }
 
 .field-unit__field {
+  flex-grow: 1;
   float: left;
   margin-left: 2rem;
-  max-width: 50rem;
-  width: 100%;
 
   .optgroup-header {
     font-weight: $bold-font-weight;
@@ -41,7 +40,7 @@
   width: 100%;
 
   .field-unit__field {
-    width: 100%;
+    flex-grow: 1;
   }
 
   .field-unit__label {
