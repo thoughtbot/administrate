@@ -1,0 +1,18 @@
+<%#
+# RichText Show Partial
+
+This partial renders a rich_text attribute,
+to be displayed on a resource's show page.
+
+By default, the attribute is rendered as HTML.
+
+## Local variables:
+
+- `field`:
+  An instance of [Administrate::Field::RichText][1].
+  A wrapper around the RichText object pulled from the database.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/RichText
+%>
+
+<%= field.data %>
