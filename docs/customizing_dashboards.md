@@ -144,7 +144,7 @@ Default is `false`.
 For example:
 
 ```ruby
-  cities: Field::HasMany.with_options(
+  cities: Field::HasOne.with_options(
     searchable: true,
     searchable_fields: ['name'],
   )
