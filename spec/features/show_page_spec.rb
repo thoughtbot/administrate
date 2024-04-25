@@ -277,6 +277,14 @@ RSpec.describe "customer show page" do
     end
   end
 
+  it "displays non-attribute field" do
+    customer = create(:customer)
+
+    visit admin_customer_path(customer)
+
+    expect(page).to have_text("Hello, Non Attribute Field")
+  end
+
   def ids_in_table
     all("tr td:first-child").map(&:text).map(&:to_i)
   end
