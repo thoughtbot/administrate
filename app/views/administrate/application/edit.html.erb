@@ -22,6 +22,8 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
     <%= content_for(:title) %>
   </h1>
 
+  <%= content_for(:header_middle) %>
+
   <div>
     <%= link_to(
       t("administrate.actions.show_resource", name: page.page_title),
@@ -29,8 +31,18 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
       class: "button",
     ) if accessible_action?(page.resource, :show) %>
   </div>
+
+  <%= content_for(:header_last) %>
 </header>
 
-<section class="main-content__body">
-  <%= render "form", page: page %>
-</section>
+<%= content_for(:before_main) %>
+
+<% if content_for?(:main) %>
+  <%= content_for(:main) %>
+<% else %>
+  <section class="main-content__body">
+    <%= render "form", page: page %>
+  </section>
+<% end %>
+
+<%= content_for(:after_main) %>
