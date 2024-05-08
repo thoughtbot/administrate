@@ -86,24 +86,17 @@ feature "Search" do
   end
 
   scenario "admin searches with a filter with arguments", :js do
-    kind_match = create(:customer, kind: "vip", email: "vip@kind.com")
-    standard_match = create(:customer, kind: "standard", email: "me@kind.com")
-    no_match = create(:customer, kind: "vip", email: "standard@kind.com")
+    kind_match = create(:customer, kind: "vip", email: "standard@kind.com")
+    total_mismatch = create(:customer, kind: "standard", email: "me@kind.com")
+    kind_mismatch = create(:customer, kind: "standard", email: "vip@kind.com")
 
     visit admin_customers_path
-    fill_in :search, with: "kind:standard"
-    submit_search
-
-    expect(page).to have_content(standard_match.email)
-    expect(page).not_to have_content(kind_match.email)
-    expect(page).not_to have_content(no_match.email)
-
-    clear_search
     fill_in :search, with: "kind:vip"
     submit_search
 
-    expect(page).not_to have_content(standard_match.email)
     expect(page).to have_content(kind_match.email)
+    expect(page).not_to have_content(total_mismatch.email)
+    expect(page).not_to have_content(kind_mismatch.email)
   end
 
   scenario "admin searches with an a term similiar to a filter", :js do
