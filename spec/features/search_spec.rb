@@ -101,6 +101,7 @@ feature "Search" do
     clear_search
     fill_in :search, with: "kind:vip"
     submit_search
+    sleep 1
 
     expect(page).to have_content(kind_match.email)
     expect(page).not_to have_content(standard_match.email)
