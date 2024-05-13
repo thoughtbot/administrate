@@ -116,14 +116,14 @@ describe Administrate::Order do
       context "when `order` argument valid" do
         it "orders by the column" do
           order = Administrate::Order.new(
-            double(to_sym: :user, tableize: "users"),
+            :user,
             nil,
             association_attribute: "name"
           )
           relation = relation_with_association(
             :belongs_to,
+            reflection: { table_name: :users },
             klass: double(
-              table_name: "users",
               columns_hash: {"name" => :value}
             )
           )
@@ -134,6 +134,7 @@ describe Administrate::Order do
           expect(relation).to have_received(:reorder).with(
             to_sql('"users"."name" ASC')
           )
+          expect(relation).to have_received(:joins).with(:user)
           expect(ordered).to eq(relation)
         end
       end
@@ -141,7 +142,7 @@ describe Administrate::Order do
       context "when `order` argument invalid" do
         it "orders by id" do
           order = Administrate::Order.new(
-            double(table_name: "users", to_sym: :user),
+            :user,
             nil,
             association_attribute: "invalid_column_name"
           )
@@ -152,7 +153,6 @@ describe Administrate::Order do
               columns_hash: {name: :value}
             )
           )
-          allow(relation).to receive(:joins).and_return(relation)
           allow(relation).to receive(:reorder).and_return(relation)
 
           ordered = order.apply(relation)
@@ -168,30 +168,36 @@ describe Administrate::Order do
     context "when relation has has_one association" do
       it "orders by id" do
         order = Administrate::Order.new(
-          double(to_sym: :user, tableize: "users")
+          :user
         )
-        relation = relation_with_association(:has_one)
+        relation = relation_with_association(
+          :has_one,
+          reflection: {table_name: 'users', association_primary_key: 'uid'}
+        )
+
+        allow(relation).to receive(:joins).and_return(relation)
         allow(relation).to receive(:reorder).and_return(relation)
 
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:reorder).with(
-          to_sql('"users"."id" ASC')
+          to_sql('"users"."uid" ASC')
         )
+        expect(relation).to have_received(:joins).with(:user)
         expect(ordered).to eq(relation)
       end
 
       context "when `order` argument valid" do
         it "orders by the column" do
           order = Administrate::Order.new(
-            double(to_sym: :user, tableize: "users"),
+            :user,
             nil,
             association_attribute: "name"
           )
           relation = relation_with_association(
             :has_one,
+            reflection: { table_name: 'users' },
             klass: double(
-              table_name: "users",
               columns_hash: {"name" => :value}
             )
           )
@@ -202,6 +208,7 @@ describe Administrate::Order do
           expect(relation).to have_received(:reorder).with(
             to_sql('"users"."name" ASC')
           )
+          expect(relation).to have_received(:joins).with(:user)
           expect(ordered).to eq(relation)
         end
       end
@@ -209,14 +216,14 @@ describe Administrate::Order do
       context "when `order` argument invalid" do
         it "orders by id" do
           order = Administrate::Order.new(
-            double(to_sym: :user, tableize: "users"),
+            :user,
             nil,
             association_attribute: "invalid_column_name"
           )
           relation = relation_with_association(
             :has_one,
+            reflection: { table_name: 'users', association_primary_key: 'pk' },
             klass: double(
-              table_name: "users",
               columns_hash: {name: :value}
             )
           )
@@ -226,8 +233,9 @@ describe Administrate::Order do
           ordered = order.apply(relation)
 
           expect(relation).to have_received(:reorder).with(
-            to_sql('"users"."id" ASC')
+            to_sql('"users"."pk" ASC')
           )
+          expect(relation).to have_received(:joins).with(:user)
           expect(ordered).to eq(relation)
         end
       end
@@ -330,7 +338,8 @@ describe Administrate::Order do
   def relation_with_association(
     association,
     foreign_key: "#{association}_id",
-    klass: nil
+    klass: nil,
+    reflection: {}
   )
     double(
       klass: double(
@@ -338,7 +347,10 @@ describe Administrate::Order do
           "#{association}_reflection",
           macro: association,
           foreign_key: foreign_key,
-          klass: klass
+          table_name: association.to_s.tableize,
+          klass: klass,
+          association_primary_key: :id,
+          **reflection
         )
       ),
       table_name: "table_name",
