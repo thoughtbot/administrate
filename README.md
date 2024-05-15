@@ -68,20 +68,23 @@ community](https://github.com/thoughtbot/administrate/graphs/contributors).
 
 ## License
 
-administrate is Copyright © 2015-2023 thoughtbot.
+administrate is Copyright © 2015 thoughtbot.
 It is free software, and may be redistributed under the terms specified in the
 [LICENSE](/LICENSE.md) file.
 
+<!-- START /templates/footer.md -->
 ## About thoughtbot
 
-![thoughtbot](https://thoughtbot.com/brand_assets/93:44.svg)
+![thoughtbot](https://thoughtbot.com/thoughtbot-logo-for-readmes.svg)
 
-administrate is maintained and funded by thoughtbot, inc.
+This repo is maintained and funded by thoughtbot, inc.
 The names and logos for thoughtbot are trademarks of thoughtbot, inc.
 
 We love open source software!
-See [our other projects][community] or
-[hire us][hire] to design, develop, and grow your product.
+See [our other projects][community].
+We are [available for hire][hire].
 
 [community]: https://thoughtbot.com/community?utm_source=github
-[hire]: https://thoughtbot.com?utm_source=github
+[hire]: https://thoughtbot.com/hire-us?utm_source=github
+
+<!-- END /templates/footer.md -->
