@@ -21,6 +21,16 @@ describe Administrate::Generators::Views::IndexGenerator, :generator do
 
       expect(contents).to eq(expected_contents)
     end
+
+    it "copies the index_header partial into the `admin/application` namespace" do
+      expected_contents = contents_for_application_template("_index_header")
+      generated_file = file("app/views/admin/application/_index_header.html.erb")
+
+      run_generator []
+      contents = File.read(generated_file)
+
+      expect(contents).to eq(expected_contents)
+    end
   end
 
   describe "administrate:views:index resource" do
@@ -41,6 +51,15 @@ describe Administrate::Generators::Views::IndexGenerator, :generator do
 
       expect(contents).to eq(expected_contents)
     end
+
+    it "copies the index_header partial into the `admin/resource` namespace" do
+      expected_contents = contents_for_application_template("_index_header")
+
+      run_generator ["users"]
+      contents = File.read(file("app/views/admin/users/_index_header.html.erb"))
+
+      expect(contents).to eq(expected_contents)
+    end
   end
 
   describe "administrate:views:index resource --namespace=<namespace>" do
@@ -58,6 +77,15 @@ describe Administrate::Generators::Views::IndexGenerator, :generator do
 
       run_generator ["users", "--namespace", "console"]
       contents = File.read(file("app/views/console/users/_collection.html.erb"))
+
+      expect(contents).to eq(expected_contents)
+    end
+
+    it "copies the index_header partial into the `namespace/resource` namespace" do
+      expected_contents = contents_for_application_template("_index_header")
+
+      run_generator ["users", "--namespace", "console"]
+      contents = File.read(file("app/views/console/users/_index_header.html.erb"))
 
       expect(contents).to eq(expected_contents)
     end

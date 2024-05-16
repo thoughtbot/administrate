@@ -9,6 +9,7 @@ module Administrate
         def copy_template
           copy_resource_template("index")
           copy_resource_template("_collection")
+          copy_resource_template("_index_header")
         end
       end
     end
