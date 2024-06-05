@@ -24,6 +24,12 @@ module Administrate
       ]
     end
 
+    initializer "administrate.action_text" do
+      ActiveSupport.on_load :action_text_rich_text do
+        require "administrate/field/rich_text"
+      end
+    end
+
     def self.add_javascript(script)
       @@javascripts << script
     end

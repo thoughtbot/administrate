@@ -37,7 +37,7 @@ module GeneratorSpecHelpers
 
   def reset_routes
     Rails.application.routes.clear!
-    load "spec/example_app/config/routes.rb"
+    Rails.application.routes_reloader.execute
   end
 
   private

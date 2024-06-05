@@ -18,6 +18,7 @@ gem "unicorn"
 gem "cssbundling-rails", "~> 1.2"
 gem "jsbundling-rails", "~> 1.1"
 gem "sprockets-rails", "~> 3.4"
+gem "image_processing"
 gem "rails", "~> 6.0.3.4"
 
 group :development, :test do
@@ -26,7 +27,7 @@ group :development, :test do
   gem "byebug"
   gem "dotenv-rails"
   gem "factory_bot_rails"
-  gem "i18n-tasks", "1.0.13"
+  gem "i18n-tasks", "1.0.14"
   gem "pry"
   gem "standard"
   gem "yard"

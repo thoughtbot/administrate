@@ -8,10 +8,12 @@ class ProductDashboard < Administrate::BaseDashboard
     :description,
     :image_url,
     :product_meta_tag,
-    :release_year
+    :release_year,
+    :banner
   ]
 
   ATTRIBUTE_TYPES = {
+    banner: Field::RichText,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     description: Field::Text,
