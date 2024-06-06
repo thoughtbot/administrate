@@ -285,8 +285,14 @@ module Administrate
       end
     end
 
+    # KAMINARI
     def paginate_resources(resources)
-      resources.page(params[:_page]).per(records_per_page)
+      binding.pry
+      resources.cursor_paginate
+      cursor_paginate(limit: records_per_page, after: params[:after], append_primary_key: false) if params[:after]
+      cursor_paginate(limit: records_per_page, after: params[:before], append_primary_key: false) if params[:before]
+
+      # resources.page(params[:_page]).per(records_per_page)
     end
   end
 end

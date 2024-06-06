@@ -72,13 +72,13 @@ module Administrate
     def sanitized_order_params(page, current_field_name)
       collection_names = page.item_associations + [current_field_name]
       association_params = collection_names.map do |assoc_name|
-        {assoc_name => %i[order direction page per_page]}
+        {assoc_name => %i[order direction page per_page before after]}
       end
-      params.permit(:search, :id, :_page, :per_page, association_params)
+      params.permit(:search, :id, :_page, :per_page, :before, :after, association_params)
     end
 
     def clear_search_params
-      params.except(:search, :_page).permit(
+      params.except(:search, :_page, :before, :after).permit(
         :per_page, resource_name => %i[order direction]
       )
     end

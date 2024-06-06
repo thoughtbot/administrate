@@ -16,15 +16,16 @@ Gem::Specification.new do |s|
   s.add_dependency "actionpack", ">= 6.0", "< 8.0"
   s.add_dependency "actionview", ">= 6.0", "< 8.0"
   s.add_dependency "activerecord", ">= 6.0", "< 8.0"
-  s.add_dependency "kaminari", "~> 1.2.2"
+  # s.add_dependency "kaminari", "~> 1.2.2"
+  s.add_dependency "activerecord_cursor_paginate", "~> 0.1.0"
 
   s.description = <<~DESCRIPTION
     Administrate is heavily inspired by projects like Rails Admin and ActiveAdmin,
     but aims to provide a better user experience for site admins,
     and to be easier for developers to customize.
-    
+
     To do that, we're following a few simple rules:
-    
+
     - No DSLs (domain-specific languages)
     - Support the simplest use cases,
       and let the user override defaults with standard tools
