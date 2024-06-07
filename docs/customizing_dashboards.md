@@ -144,14 +144,14 @@ Default is `false`.
 For example:
 
 ```ruby
-  cities: Field::HasMany.with_options(
+  city: Field::HasOne.with_options(
     searchable: true,
     searchable_fields: ['name'],
   )
 ```
 
 with this, you will be able to search through the column `name` from the
-association `has_many :cities`, from your model.
+association `has_one :city`, from your model.
 
 `:class_name` (deprecated) - Specifies the name of the associated class.
 
