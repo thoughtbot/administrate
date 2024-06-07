@@ -1,0 +1,16 @@
+---
+name: diff-check
+on: [push]
+
+jobs:
+  appraisal:
+    runs-on: ubuntu-latest
+    env:
+      DIFF_CHECK_APPRAISAL: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+      - run: bundle install
+      - uses: nickcharlton/diff-check@main
+        with:
+          command: bundle exec appraisal
