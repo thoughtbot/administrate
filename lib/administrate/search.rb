@@ -138,15 +138,14 @@ module Administrate
           else
             @scoped_resource.reflect_on_association(attr).klass.table_name
           end
-        ActiveRecord::Base.connection.quote_table_name(unquoted_table_name)
+        @scoped_resource.connection.quote_table_name(unquoted_table_name)
       else
-        ActiveRecord::Base.connection
-          .quote_table_name(@scoped_resource.table_name)
+        @scoped_resource.connection.quote_table_name(@scoped_resource.table_name)
       end
     end
 
     def column_to_query(attr)
-      ActiveRecord::Base.connection.quote_column_name(attr)
+      @scoped_resource.connection.quote_column_name(attr)
     end
 
     def tables_to_join
