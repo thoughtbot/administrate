@@ -32,7 +32,7 @@ class Product < ApplicationRecord
 
   def name=(value)
     self.slug = value.to_s.parameterize
-    super(value)
+    super
   end
 
   def to_param
