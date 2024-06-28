@@ -19,5 +19,9 @@ By default, the input is a text field.
   <%= f.label field.attribute %>
 </div>
 <div class="field-unit__field">
-  <%= f.text_field field.attribute %>
+  <% if field.resource.class.columns_hash[field.attribute.to_s].array? %>
+    <%= f.text_field field.attribute, value: JSON.dump(field.data) %>
+  <% else %>
+    <%= f.text_field field.attribute, value: field.data %>
+  <% end %>
 </div>
