@@ -23,6 +23,8 @@ as well as a link to its edit page.
     <%= content_for(:title) %>
   </h1>
 
+  <%= content_for(:header_middle) %>
+
   <div>
     <%= link_to(
       t("administrate.actions.edit_resource", name: page.page_title),
@@ -38,28 +40,38 @@ as well as a link to its edit page.
       data: { turbo_confirm: t("administrate.actions.confirm") }
     ) if accessible_action?(page.resource, :destroy) %>
   </div>
+
+  <%= content_for(:header_last) %>
 </header>
 
-<section class="main-content__body">
-  <dl>
-    <% page.attributes.each do |title, attributes| %>
-      <fieldset class="<%= "field-unit--nested" if title.present? %>">
-        <% if title.present? %>
-          <legend><%= t "helpers.label.#{page.resource_name}.#{title}", default: title %></legend>
-        <% end %>
+<%= content_for(:before_main) %>
 
-        <% attributes.each do |attribute| %>
-          <dt class="attribute-label" id="<%= attribute.name %>">
-          <%= t(
-            "helpers.label.#{resource_name}.#{attribute.name}",
-            default: page.resource.class.human_attribute_name(attribute.name),
-          ) %>
-          </dt>
+<% if content_for?(:main) %>
+  <%= content_for(:main) %>
+<% else %>
+  <section class="main-content__body">
+    <dl>
+      <% page.attributes.each do |title, attributes| %>
+        <fieldset class="<%= "field-unit--nested" if title.present? %>">
+          <% if title.present? %>
+            <legend><%= t "helpers.label.#{page.resource_name}.#{title}", default: title %></legend>
+          <% end %>
 
-          <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
-              ><%= render_field attribute, page: page %></dd>
-        <% end %>
-      </fieldset>
-    <% end %>
-  </dl>
-</section>
+          <% attributes.each do |attribute| %>
+            <dt class="attribute-label" id="<%= attribute.name %>">
+            <%= t(
+              "helpers.label.#{resource_name}.#{attribute.name}",
+              default: page.resource.class.human_attribute_name(attribute.name),
+            ) %>
+            </dt>
+
+            <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
+                ><%= render_field attribute, page: page %></dd>
+          <% end %>
+        </fieldset>
+      <% end %>
+    </dl>
+  </section>
+<% end %>
+
+<%= content_for(:after_main) %>
