@@ -54,3 +54,16 @@
     content: " *";
   }
 }
+
+section .field-unit--nested {
+  display: table;
+  margin-bottom: 1rem;
+  width: 90%;
+}
+
+.field-unit--legend {
+  background: $white;
+  display: inline;
+  position: relative;
+  top: -1.5rem;
+}
