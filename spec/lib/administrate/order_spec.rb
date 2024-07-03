@@ -122,7 +122,7 @@ describe Administrate::Order do
           )
           relation = relation_with_association(
             :belongs_to,
-            reflection: { table_name: :users },
+            reflection: {table_name: :users},
             klass: double(
               columns_hash: {"name" => :value}
             )
@@ -172,7 +172,7 @@ describe Administrate::Order do
         )
         relation = relation_with_association(
           :has_one,
-          reflection: {table_name: 'users', association_primary_key: 'uid'}
+          reflection: {table_name: "users", association_primary_key: "uid"}
         )
 
         allow(relation).to receive(:joins).and_return(relation)
@@ -196,7 +196,7 @@ describe Administrate::Order do
           )
           relation = relation_with_association(
             :has_one,
-            reflection: { table_name: 'users' },
+            reflection: {table_name: "users"},
             klass: double(
               columns_hash: {"name" => :value}
             )
@@ -222,7 +222,7 @@ describe Administrate::Order do
           )
           relation = relation_with_association(
             :has_one,
-            reflection: { table_name: 'users', association_primary_key: 'pk' },
+            reflection: {table_name: "users", association_primary_key: "pk"},
             klass: double(
               columns_hash: {name: :value}
             )
