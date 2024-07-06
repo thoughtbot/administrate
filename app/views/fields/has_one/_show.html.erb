@@ -16,18 +16,24 @@ All show page attributes of has_one relationship would be rendered
 %>
 
 <% if field.linkable? %>
-  <fieldset class="attribute--nested">
-    <legend>
+  <section class="attribute--nested">
+    <h1>
+      <nav class="attribute--nested--legend">
       <%= link_to_if(
         accessible_action?(field.data, :show),
         field.display_associated_resource,
         [namespace, field.data],
       ) %>
-    </legend>
+      </nav>
+    </h1>
     <% field.nested_show.attributes.each do |title, attributes| -%>
-      <fieldset class="<%= "field-unit--nested" if title.present? %>">
+      <section class="<%= "field-unit--nested" if title.present? %>">
         <% if title.present? %>
-          <legend><%= t "helpers.label.#{namespace}.#{title}", default: title %></legend>
+          <h1>
+             <nav class="<%= "field-unit--legend" %>">
+               <%= t "helpers.label.#{namespace}.#{title}", default: title %>
+             </nav>
+          </h1>
         <% end %>
 
         <% attributes.each do |attribute| %>
@@ -41,7 +47,7 @@ All show page attributes of has_one relationship would be rendered
             <%= render_field attribute, { page: page } %>
           </dd>
         <% end %>
-      </fieldset>
+      </section>
     <% end -%>
-  </fieldset>
+  </section>
 <% end %>
