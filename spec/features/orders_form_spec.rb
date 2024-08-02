@@ -28,6 +28,26 @@ describe "order form" do
       expected = order.customer.id.to_s
       expect(find_field("Customer").value).to eq expected
     end
+
+    it "displays translated label when translation for the attribute is available" do
+      order = create(:order)
+      custom_attribute_name = "Client"
+      translations = {
+        activerecord: {
+          attributes: {
+            order: {
+              customer: custom_attribute_name
+            }
+          }
+        }
+      }
+
+      with_translations(:en, translations) do
+        visit edit_admin_order_path(order)
+
+        expect(page).to have_css("label", text: custom_attribute_name)
+      end
+    end
   end
 
   describe "has_many relationships" do
@@ -89,6 +109,26 @@ describe "order form" do
         visit edit_admin_order_path(order)
 
         expect(page).to have_css("label", text: custom_label)
+      end
+    end
+
+    it "displays translated label when translation for the attribute is available" do
+      order = create(:order)
+      custom_attribute_name = "Lines"
+      translations = {
+        activerecord: {
+          attributes: {
+            order: {
+              line_items: custom_attribute_name
+            }
+          }
+        }
+      }
+
+      with_translations(:en, translations) do
+        visit edit_admin_order_path(order)
+
+        expect(page).to have_css("label", text: custom_attribute_name)
       end
     end
 
