@@ -16,7 +16,7 @@ gem "sentry-rails"
 gem "sentry-ruby"
 gem "unicorn"
 
-gem "cssbundling-rails", "~> 1.2"
+gem "cssbundling-rails", "~> 1.4"
 gem "jsbundling-rails", "~> 1.1"
 gem "sprockets-rails", "~> 3.4"
 

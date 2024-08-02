@@ -109,7 +109,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    cssbundling-rails (1.4.0)
+    cssbundling-rails (1.4.1)
       railties (>= 6.0.0)
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
@@ -374,7 +374,7 @@ DEPENDENCIES
   awesome_print
   byebug
   capybara
-  cssbundling-rails (~> 1.2)
+  cssbundling-rails (~> 1.4)
   database_cleaner
   dotenv-rails
   factory_bot_rails
