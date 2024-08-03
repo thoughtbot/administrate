@@ -54,4 +54,12 @@ class OrderDashboard < Administrate::BaseDashboard
     "" => %i[customer created_at updated_at],
     "details" => %i[line_items total_price shipped_at payments]
   ).freeze
+
+  def form_attributes(action = nil, context = nil)
+    if %w[new create].include?(action.to_s) && context.try(:pundit_user).try(:admin?)
+      super
+    else
+      super.dup.tap{|attrs| attrs[""] = attrs[""] - %i[customer]}.compact_blank
+    end
+  end
 end
