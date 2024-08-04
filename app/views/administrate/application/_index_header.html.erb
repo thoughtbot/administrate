@@ -7,6 +7,8 @@
     <%= content_for(:title) %>
   </h1>
 
+  <%= content_for(:header_middle) %>
+
   <% if show_search_bar %>
     <%= render(
       "search",
@@ -25,4 +27,6 @@
       class: "button",
     ) if accessible_action?(new_resource, :new) %>
   </div>
+
+  <%= content_for(:header_last) %>
 </header>
