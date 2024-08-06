@@ -204,10 +204,13 @@ module Administrate
     def resource_params
       params.require(resource_class.model_name.param_key)
         .permit(dashboard.permitted_attributes(action_name))
-        .transform_values { |v| read_param_value(v) }
+        .to_h
+        .each_with_object({}) do |(key, value), result|
+          result[key] = read_param_value(key, value, resource_class)
+        end
     end
 
-    def read_param_value(data)
+    def read_param_value(key, data, resource_class)
       if data.is_a?(ActionController::Parameters) && data[:type]
         if data[:type] == Administrate::Field::Polymorphic.to_s
           GlobalID::Locator.locate(data[:value])
@@ -218,6 +221,8 @@ module Administrate
         data.transform_values { |v| read_param_value(v) }
       elsif data.is_a?(String) && data.blank?
         nil
+      elsif data.is_a?(String) && resource_class.columns_hash[key.to_s].array?
+        JSON.parse(data)
       else
         data
       end
