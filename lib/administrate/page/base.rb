@@ -36,7 +36,7 @@ module Administrate
       end
 
       def get_attribute_value(resource, attribute_name)
-        resource.public_send(attribute_name)
+        resource.try(attribute_name)
       end
 
       attr_reader :dashboard, :options
