@@ -1,0 +1,15 @@
+---
+name: diff-check
+on: [push]
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+      - run: bundle install
+      - run: echo "# hello world" >> Gemfile
+      - uses: nickcharlton/diff-check@tee-output
+        with:
+          command: bundle exec appraisal
