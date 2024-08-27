@@ -306,6 +306,23 @@ describe Administrate::Field::BelongsTo do
 
         expect(resources).to eq ["customer-3", "customer-2"]
       end
+
+      context "when scope with argument" do
+        it "returns the resources within the passed scope" do
+          # Building instead of creating, to avoid a dependent customer being
+          # created, leading to random failures
+          order = build(:order)
+
+          1.upto(3) { |i| create :customer, name: "customer-#{i}" }
+          scope = ->(_field) { Customer.order(name: :desc).limit(2) }
+
+          association = Administrate::Field::BelongsTo.with_options(scope: scope)
+          field = association.new(:customer, [], :show, resource: order)
+          resources = field.associated_resource_options.compact.to_h.keys
+
+          expect(resources).to eq ["customer-3", "customer-2"]
+        end
+      end
     end
   end
 end
