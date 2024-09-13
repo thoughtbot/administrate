@@ -143,6 +143,9 @@ module Administrate
         sorting_direction,
         association_attribute: order_by_field(
           dashboard_attribute(sorting_attribute)
+        ),
+        sorting_field: sorting_field(
+          dashboard_attribute(sorting_params.fetch(:order, nil))
         )
       )
     end
@@ -151,6 +154,12 @@ module Administrate
       return unless dashboard.try(:options)
 
       dashboard.options.fetch(:order, nil)
+    end
+
+    def sorting_field(dashboard)
+      return unless dashboard.try(:options)
+
+      dashboard.options.fetch(:sorting_field, nil)
     end
 
     def dashboard_attribute(attribute)
