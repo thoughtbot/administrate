@@ -21,6 +21,10 @@ module Administrate
           options == other.options
       end
 
+      def getter
+        options.fetch(:getter, nil)
+      end
+
       def associative?
         deferred_class.associative?
       end
@@ -55,6 +59,10 @@ module Administrate
         else
           deferred_class.permitted_attribute(attr, options.merge(opts))
         end
+      end
+
+      def read_value(resource, attribute_name)
+        @deferred_class.read_value(resource, attribute_name, options)
       end
 
       delegate :html_class, to: :deferred_class

@@ -167,4 +167,34 @@ describe Administrate::Field::Base do
       expect(field.required?).to eq(false)
     end
   end
+
+  describe "read_value" do
+    it "reads the value from the resource" do
+      resource = double(attribute: "value")
+      field = field_class.new(:attribute, :date, :page, resource: resource)
+
+      expect(field.read_value).to eq("value")
+    end
+
+    it "reads the value from the resource with a custom getter" do
+      resource = double(custom_getter: "value")
+      field = field_class.new(:attribute, :date, :page, resource: resource, getter: :custom_getter)
+
+      expect(field.read_value).to eq("value")
+    end
+
+    it "reads the value from the resource with a custom getter block" do
+      resource = double
+      field = field_class.new(:attribute, :date, :page, resource: resource, getter: ->(field) { field.resource.custom_getter })
+
+      expect(resource).to receive(:custom_getter)
+      field.read_value
+    end
+
+    it "returns nil if the resource is nil" do
+      field = field_class.new(:attribute, :date, :page, resource: nil)
+
+      expect(field.read_value).to eq(nil)
+    end
+  end
 end
