@@ -34,11 +34,10 @@ module Administrate
 
       def initialize(attribute, data, page, options = {})
         @attribute = attribute
-        @data = data
         @page = page
         @resource = options.delete(:resource)
         @options = options
-        @data = read_value if @data.nil?
+        @data = read_value(data)
       end
 
       def html_class
@@ -53,15 +52,17 @@ module Administrate
         attribute.to_s
       end
 
-      def read_value
+      def read_value(data = nil)
         if options.key?(:getter)
           if options[:getter].respond_to?(:call)
             options[:getter].call(self)
           else
-            resource&.public_send(options[:getter])
+            resource.try(options[:getter])
           end
+        elsif data.nil?
+          resource.try(attribute)
         else
-          resource&.public_send(attribute)
+          data
         end
       end
 
