@@ -41,12 +41,7 @@ module Administrate
       private
 
       def candidate_resources
-        scope =
-          if options[:scope]
-            options[:scope].call(self)
-          else
-            associated_class.all
-          end
+        scope = options[:scope] ? options[:scope].call(self) : associated_class.all
 
         order = options.delete(:order)
         order ? scope.reorder(order) : scope
