@@ -55,7 +55,7 @@ class OrderDashboard < Administrate::BaseDashboard
     "details" => %i[line_items total_price shipped_at payments]
   ).freeze
 
-  def form_attributes(action = nil, context = nil)
+  def form_attributes(action = nil)
     if %w[new create].include?(action.to_s) && context.try(:pundit_user).try(:admin?)
       super
     else
