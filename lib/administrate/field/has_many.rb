@@ -26,7 +26,10 @@ module Administrate
           associated_dashboard,
           order: order,
           collection_attributes: options[:collection_attributes]
-        )
+        ).tap do |page|
+          page.context = context
+          page.dashboard_context = context
+        end
       end
 
       def attribute_key
