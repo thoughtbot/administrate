@@ -29,11 +29,21 @@ module Administrate
 
       attr_accessor :context
 
+      def dashboard_context=(context)
+        dashboard.context = context
+      end
+
       private
 
       def attribute_field(dashboard, resource, attribute_name, page)
         field = dashboard.attribute_type_for(attribute_name)
-        field.new(attribute_name, nil, page, resource: resource)
+        field.new(attribute_name, nil, page, resource: resource).tap do |f|
+          f.context = context
+        end
+      end
+
+      def get_attribute_value(resource, attribute_name)
+        resource.public_send(attribute_name)
       end
 
       attr_reader :dashboard, :options

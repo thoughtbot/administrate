@@ -19,11 +19,12 @@ describe OrderDashboard do
       context "when the user is not an admin" do
         it "not returns attributes with customer_id" do
           dashboard = OrderDashboard.new
+          dashboard.context = ctx_with_non_admin_user
           expect(
-            dashboard.permitted_attributes("new", ctx_with_non_admin_user)
+            dashboard.permitted_attributes("new")
           ).not_to include("customer_id")
           expect(
-            dashboard.permitted_attributes("create", ctx_with_non_admin_user)
+            dashboard.permitted_attributes("create")
           ).not_to include("customer_id")
         end
       end
@@ -31,11 +32,12 @@ describe OrderDashboard do
       context "when the user is an admin" do
         it "returns attributes with customer_id" do
           dashboard = OrderDashboard.new
+          dashboard.context = ctx_with_admin_user
           expect(
-            dashboard.permitted_attributes("new", ctx_with_admin_user)
+            dashboard.permitted_attributes("new")
           ).to include("customer_id")
           expect(
-            dashboard.permitted_attributes("create", ctx_with_admin_user)
+            dashboard.permitted_attributes("create")
           ).to include("customer_id")
         end
       end
@@ -52,11 +54,12 @@ describe OrderDashboard do
       context "when the user is not an admin" do
         it "not returns attributes with customer_id" do
           dashboard = OrderDashboard.new
+          dashboard.context = ctx_with_non_admin_user
           expect(
-            dashboard.permitted_attributes("edit", ctx_with_non_admin_user)
+            dashboard.permitted_attributes("edit")
           ).not_to include("customer_id")
           expect(
-            dashboard.permitted_attributes("update", ctx_with_non_admin_user)
+            dashboard.permitted_attributes("update")
           ).not_to include("customer_id")
         end
       end
@@ -64,11 +67,12 @@ describe OrderDashboard do
       context "when the user is an admin" do
         it "also no returns attributes with customer_id" do
           dashboard = OrderDashboard.new
+          dashboard.context = ctx_with_admin_user
           expect(
-            dashboard.permitted_attributes("edit", ctx_with_admin_user)
+            dashboard.permitted_attributes("edit")
           ).not_to include("customer_id")
           expect(
-            dashboard.permitted_attributes("update", ctx_with_admin_user)
+            dashboard.permitted_attributes("update")
           ).not_to include("customer_id")
         end
       end

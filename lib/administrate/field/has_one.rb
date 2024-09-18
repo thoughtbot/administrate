@@ -34,14 +34,20 @@ module Administrate
         @nested_form ||= Administrate::Page::Form.new(
           resolver.dashboard_class.new,
           data || resolver.resource_class.new
-        )
+        ).tap do |page|
+          page.context = context
+          page.dashboard_context = context
+        end
       end
 
       def nested_show
         @nested_show ||= Administrate::Page::Show.new(
           resolver.dashboard_class.new,
           data || resolver.resource_class.new
-        )
+        ) do |page|
+          page.context = context
+          page.dashboard_context = context
+        end
       end
 
       def linkable?
