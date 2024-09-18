@@ -51,7 +51,7 @@ module Administrate
       attribute_types.keys
     end
 
-    def form_attributes(action = nil, _context = nil)
+    def form_attributes(action = nil)
       action =
         case action
         when "update" then "edit"
@@ -69,8 +69,8 @@ module Administrate
       self.class.const_get(cname) if self.class.const_defined?(cname)
     end
 
-    def permitted_attributes(action = nil, context = nil)
-      attributes = form_attributes(action, context)
+    def permitted_attributes(action = nil)
+      attributes = form_attributes(action)
 
       if attributes.is_a? Hash
         attributes = attributes.values.flatten
@@ -125,6 +125,8 @@ module Administrate
       end
       attribute_associated attributes
     end
+
+    attr_accessor :context
 
     private
 
