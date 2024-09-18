@@ -186,6 +186,9 @@ describe Administrate::Field::BelongsTo do
       allow_any_instance_of(FooDashboard).to(
         receive(:display_resource).and_return(uuid)
       )
+      allow_any_instance_of(FooDashboard).to(
+        receive(:context=).with(nil).and_return(nil)
+      )
     end
 
     it "is the associated table key that matches our foreign key" do
