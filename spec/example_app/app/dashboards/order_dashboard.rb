@@ -71,7 +71,7 @@ class OrderDashboard < Administrate::BaseDashboard
     )
     .freeze
 
-  def form_attributes(action = nil, context = nil)
+  def form_attributes(action = nil)
     if %w[new create].include?(action.to_s) && context.try(:pundit_user).try(:admin?)
       super
     else
