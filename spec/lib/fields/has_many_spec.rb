@@ -52,6 +52,7 @@ describe Administrate::Field::HasMany do
 
       stub_const("FooDashboard", Class.new)
       allow(FooDashboard).to receive(:new).and_return(dashboard_double)
+      allow(dashboard_double).to receive(:context=).with(nil).and_return(nil)
     end
 
     it "determines what dashboard is used to present the association" do
@@ -78,6 +79,9 @@ describe Administrate::Field::HasMany do
       allow(Foo).to receive(:id).and_return(1)
       allow_any_instance_of(FooDashboard).to(
         receive(:display_resource).and_return(uuid)
+      )
+      allow_any_instance_of(FooDashboard).to(
+        receive(:context=).with(nil).and_return(nil)
       )
     end
 
