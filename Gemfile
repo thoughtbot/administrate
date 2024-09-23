@@ -18,7 +18,7 @@ gem "unicorn"
 
 gem "cssbundling-rails", "~> 1.4"
 gem "jsbundling-rails", "~> 1.3"
-gem "sprockets-rails", "~> 3.4"
+gem "sprockets-rails", "~> 3.5"
 
 group :development, :test do
   gem "appraisal"

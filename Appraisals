@@ -1,5 +1,6 @@
 appraise "rails60" do
   gem "rails", "~> 6.0.3.4"
+  gem "sprockets-rails", "~> 3.4"
 end
 
 appraise "rails61" do
