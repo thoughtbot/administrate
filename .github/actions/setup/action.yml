@@ -1,0 +1,38 @@
+---
+name: Setup
+description: Shared setup steps
+inputs:
+  ruby-version:
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Set up Ruby ${{ inputs.ruby-version }}
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ inputs.ruby-version }}
+        bundler-cache: true
+    - name: Set up JS
+      uses: actions/setup-node@v4
+      with:
+        cache: yarn
+    - name: Install Ruby dependencies
+      run: bundle install
+      shell: bash
+    - name: Install Appraisal dependencies
+      run: bundle exec appraisal install
+      shell: bash
+    - name: Install JS dependencies
+      run: yarn install
+      shell: bash
+    - name: Setup the environment
+      run: cp .sample.env .env
+      shell: bash
+    - run: cp spec/example_app/config/database.yml.sample spec/example_app/config/database.yml
+      shell: bash
+    - name: Setup the database
+      run: bundle exec rake db:setup
+      shell: bash
+    - name: Build assets
+      run: yarn run build && yarn run build:css
+      shell: bash
