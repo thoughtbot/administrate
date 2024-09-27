@@ -267,6 +267,9 @@ Default is `false`.
 `:truncate` - Set the number of characters to display in the index view.
 Defaults to `50`.
 
+`:input_options` - Options to customize the text area in form view.
+Example: `.with_options(input_options: { rows: 20 })`
+
 **Field::Url**
 
 `:searchable` - Specify if the attribute should be considered when searching.
