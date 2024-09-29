@@ -20,8 +20,7 @@ class OrderDashboard < Administrate::BaseDashboard
           r.address_state,
           r.address_zip
         ].compact.join("\n")
-      },
-      searchable: false
+      }
     ),
     customer: Field::BelongsTo.with_options(order: "name"),
     line_items: Field::HasMany.with_options(

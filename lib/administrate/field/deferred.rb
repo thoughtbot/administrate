@@ -34,7 +34,11 @@ module Administrate
       end
 
       def searchable?
-        options.fetch(:searchable, deferred_class.searchable?)
+        if options.key?(:getter)
+          false
+        else
+          options.fetch(:searchable, deferred_class.searchable?)
+        end
       end
 
       def searchable_field
