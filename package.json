@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "esbuild app/assets/javascripts/administrate/application.js --bundle --sourcemap --outdir=app/assets/builds/administrate --public-path=/assets/administrate",
-    "build:css": "sass ./app/assets/stylesheets/administrate/application.scss:./app/assets/builds/administrate/application.css ./app/assets/stylesheets/administrate-internal/docs.scss:./app/assets/builds/administrate-internal/docs.css --source-map --load-path=node_modules",
+    "build:css": "sass ./app/assets/stylesheets/administrate/application.scss:./app/assets/builds/administrate/application.css ./app/assets/stylesheets/administrate-internal/docs.scss:./app/assets/builds/administrate-internal/docs.css --source-map --embed-sources --load-path=node_modules",
     "lint:css": "stylelint app/assets/stylesheets/administrate/**/*.scss"
   },
   "dependencies": {
