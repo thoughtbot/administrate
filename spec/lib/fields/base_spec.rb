@@ -168,33 +168,49 @@ describe Administrate::Field::Base do
     end
   end
 
-  describe "read_value" do
-    it "reads the value from the resource" do
-      resource = double(attribute: "value")
-      field = field_class.new(:attribute, :date, :page, resource: resource)
+  describe "#data" do
+    context "when given nil data" do
+      it "reads the value from the resource" do
+        resource = double(attribute: "resource value")
+        field = field_class.new(:attribute, nil, :page, resource: resource)
 
-      expect(field.read_value).to eq("value")
+        expect(field.data).to eq("resource value")
+      end
     end
 
-    it "reads the value from the resource with a custom getter" do
-      resource = double(custom_getter: "value")
-      field = field_class.new(:attribute, :date, :page, resource: resource, getter: :custom_getter)
+    context "when given non-nil data" do
+      it "uses the given data" do
+        resource = double(attribute: "resource value")
+        field = field_class.new(:attribute, "given value", :page, resource: resource)
 
-      expect(field.read_value).to eq("value")
+        expect(field.data).to eq("given value")
+      end
     end
 
-    it "reads the value from the resource with a custom getter block" do
-      resource = double("Model", custom_getter: "value")
-      field = field_class.new(:attribute, :date, :page, resource: resource, getter: ->(field) { field.resource.custom_getter })
+    context "when given a :getter value" do
+      it "reads the attribute with the name of the value" do
+        resource = double(custom_getter: "custom value")
+        field = field_class.new(:attribute, :date, :page, resource: resource, getter: :custom_getter)
 
-      expect(resource).to receive(:custom_getter)
-      expect(field.read_value).to eq("value")
+        expect(field.data).to eq("custom value")
+      end
     end
 
-    it "returns nil if the resource is nil" do
-      field = field_class.new(:attribute, :date, :page, resource: nil)
+    context "when given a :getter block" do
+      it "uses it to produce a value" do
+        resource = double("Model", custom_getter: "custom value")
+        field = field_class.new(:attribute, :date, :page, resource: resource, getter: ->(f) { f.resource.custom_getter + " from block" })
 
-      expect(field.read_value).to eq(nil)
+        expect(field.data).to eq("custom value from block")
+      end
+    end
+
+    context "when given a :getter block" do
+      it "returns nil if the resource is nil" do
+        field = field_class.new(:attribute, nil, :page, resource: nil)
+
+        expect(field.data).to eq(nil)
+      end
     end
   end
 end
