@@ -7,7 +7,7 @@ describe "fields/text/_form", type: :view do
       "Administrate::Field::Text",
       attribute: :name,
       data: nil,
-      options: { input_options: { rows: 50 } }
+      options: {input_options: {rows: 50}}
     )
 
     render_partial(textarea)
