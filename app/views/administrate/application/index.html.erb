@@ -32,15 +32,23 @@ It renders the `_table` partial to display details about the resources.
   )
 %>
 
-<section class="main-content__body main-content__body--flush">
-  <%= render(
-    "collection",
-    collection_presenter: page,
-    collection_field_name: resource_name,
-    page: page,
-    resources: resources,
-    table_title: "page-title"
-  ) %>
+<%= content_for(:before_main) %>
 
-  <%= render("pagination", resources: resources) %>
-</section>
+<% if content_for?(:main) %>
+  <%= content_for(:main) %>
+<% else %>
+  <section class="main-content__body main-content__body--flush">
+    <%= render(
+      "collection",
+      collection_presenter: page,
+      collection_field_name: resource_name,
+      page: page,
+      resources: resources,
+      table_title: "page-title"
+    ) %>
+
+    <%= render("pagination", resources: resources) %>
+  </section>
+<% end %>
+
+<%= content_for(:after_main) %>
