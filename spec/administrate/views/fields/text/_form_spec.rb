@@ -1,7 +1,7 @@
 require "rails_helper"
 require "administrate/field/text"
 
-RSpec.describe "fields/text/_form" do
+RSpec.describe "fields/text/_form", type: :view do
   it "allows configuring input options" do
     textarea = instance_double(
       "Administrate::Field::Text",
