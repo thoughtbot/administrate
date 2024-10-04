@@ -1,7 +1,8 @@
 module Administrate
   class Order
-    def initialize(attribute = nil, direction = nil, association_attribute: nil)
+    def initialize(attribute = nil, direction = nil, association_attribute: nil, sorting_field: nil)
       @attribute = attribute
+      @sorting_field = sorting_field.presence || attribute
       @direction = sanitize_direction(direction)
       @association_attribute = association_attribute
     end
@@ -10,10 +11,10 @@ module Administrate
       return order_by_association(relation) unless
         reflect_association(relation).nil?
 
-      order = relation.arel_table[attribute].public_send(direction)
+      order = relation.arel_table[sorting_field].public_send(direction)
 
       return relation.reorder(order) if
-        column_exist?(relation, attribute)
+        column_exist?(relation, sorting_field)
 
       relation
     end
@@ -33,7 +34,7 @@ module Administrate
 
     private
 
-    attr_reader :attribute, :association_attribute
+    attr_reader :attribute, :sorting_field, :association_attribute
 
     def sanitize_direction(direction)
       %w[asc desc].include?(direction.to_s) ? direction.to_sym : :asc
@@ -68,7 +69,7 @@ module Administrate
       klass = reflect_association(relation).klass
       query = klass.arel_table[klass.primary_key].count.public_send(direction)
       relation
-        .left_joins(attribute.to_sym)
+        .left_joins(sorting_field.to_sym)
         .group(:id)
         .reorder(query)
     end
@@ -118,7 +119,7 @@ module Administrate
 
     def order_by_association_column(relation, column_name)
       relation.joins(
-        attribute.to_sym
+        sorting_field.to_sym
       ).reorder(order_by_association_column_query(relation, column_name))
     end
 
@@ -132,7 +133,7 @@ module Administrate
     end
 
     def reflect_association(relation)
-      relation.klass.reflect_on_association(attribute.to_s)
+      relation.klass.reflect_on_association(sorting_field.to_s)
     end
 
     def association_foreign_key(relation)

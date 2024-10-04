@@ -20,7 +20,7 @@ describe CustomerDashboard do
       expect(fields[:name]).to eq(Field::String)
       expect(fields[:email]).to eq(Field::Email)
       expect(fields[:lifetime_value])
-        .to eq(Field::Number.with_options(prefix: "$", decimals: 2))
+        .to eq(Field::Number.with_options(prefix: "$", decimals: 2, sortable: false))
     end
   end
 

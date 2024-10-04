@@ -21,6 +21,10 @@ module Administrate
           options == other.options
       end
 
+      def getter
+        options.fetch(:getter, nil)
+      end
+
       def associative?
         deferred_class.associative?
       end
@@ -48,6 +52,14 @@ module Administrate
         end
       end
 
+      def sortable?
+        options.fetch(:sortable, deferred_class.sortable?)
+      end
+
+      def sortable_field
+        options.fetch(:sortable_field, nil)
+      end
+
       def permitted_attribute(attr, opts = {})
         if options.key?(:foreign_key)
           Administrate.warn_of_deprecated_option(:foreign_key)
@@ -55,6 +67,10 @@ module Administrate
         else
           deferred_class.permitted_attribute(attr, options.merge(opts))
         end
+      end
+
+      def read_value(resource, attribute_name)
+        @deferred_class.read_value(resource, attribute_name, options)
       end
 
       delegate :html_class, to: :deferred_class

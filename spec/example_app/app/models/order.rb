@@ -15,4 +15,8 @@ class Order < ApplicationRecord
   def total_price
     line_items.map(&:total_price).reduce(0, :+)
   end
+
+  def address
+    [address_line_two, address_line_one, address_city, address_state, address_zip].compact.join(" ")
+  end
 end

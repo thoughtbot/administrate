@@ -98,6 +98,38 @@ describe Administrate::Field::Deferred do
     end
   end
 
+  describe "#sortable?" do
+    context "when given a `sortable` option" do
+      it "returns the value given" do
+        sortable_deferred = Administrate::Field::Deferred.new(
+          double(sortable?: false),
+          sortable: true
+        )
+        unsortable_deferred = Administrate::Field::Deferred.new(
+          double(sortable?: true),
+          sortable: false
+        )
+
+        expect(sortable_deferred.sortable?).to eq(true)
+        expect(unsortable_deferred.sortable?).to eq(false)
+      end
+    end
+
+    context "when not given a `sortable` option" do
+      it "falls back to the default of the deferred class" do
+        sortable_deferred = Administrate::Field::Deferred.new(
+          double(sortable?: true)
+        )
+        unsortable_deferred = Administrate::Field::Deferred.new(
+          double(sortable?: false)
+        )
+
+        expect(sortable_deferred.sortable?).to eq(true)
+        expect(unsortable_deferred.sortable?).to eq(false)
+      end
+    end
+  end
+
   describe "#==" do
     it "returns false for different deferred classes" do
       one = Administrate::Field::Deferred.new(String)
