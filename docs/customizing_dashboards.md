@@ -82,7 +82,8 @@ the table views and in the dropdown menu on the record forms.
 You can set multiple columns as well with direction. E.g.: `"name, email DESC"`.
 
 `:scope` - Specifies a custom scope inside a callable. Useful for preloading.
-Example: `.with_options(scope: -> { MyModel.includes(:rel).limit(5) })`
+Example #1: `.with_options(scope: -> { MyModel.includes(:rel).limit(5) })`
+Example #2: `.with_options(scope: -> (field) { field.resource.my_models.includes(:rel).limit(5) })`
 
 `:include_blank` - Specifies if the select element to be rendered should include
 blank option. Default is `true`.
@@ -113,7 +114,7 @@ association `belongs_to :country`, from your model.
 
 **Field::HasMany**
 
-`:collection_attributes` - Set the columns to display in the show view. 
+`:collection_attributes` - Set the columns to display in the show view.
 Default is COLLECTION_ATTRIBUTES in dashboard.
 
 `:limit` - The number of resources (paginated) to display in the show view. To disable pagination,
