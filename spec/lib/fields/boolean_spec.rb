@@ -5,15 +5,15 @@ require "support/field_matchers"
 describe Administrate::Field::Boolean do
   include FieldMatchers
 
-  describe "#to_partial_path" do
+  describe "#_partial_prefixes" do
     it "returns a partial based on the page being rendered" do
       page = :show
       boolean = double
       field = Administrate::Field::Boolean.new(:price, boolean, page)
 
-      path = field.to_partial_path
+      prefixes = field._partial_prefixes
 
-      expect(path).to eq("/fields/boolean/#{page}")
+      expect(prefixes).to eq(["fields/boolean"])
     end
   end
 

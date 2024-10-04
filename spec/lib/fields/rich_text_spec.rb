@@ -13,7 +13,7 @@ describe Administrate::Field::RichText do
     )
   end
 
-  describe "#to_partial_path" do
+  describe "#_partial_prefixes" do
     it "returns a partial based on the page being rendered" do
       page = :show
       action_text = ActionText::RichText.new(
@@ -21,9 +21,9 @@ describe Administrate::Field::RichText do
       )
       field = Administrate::Field::RichText.new(:document, action_text, page)
 
-      path = field.to_partial_path
+      prefixes = field._partial_prefixes
 
-      expect(path).to eq("/fields/rich_text/#{page}")
+      expect(prefixes).to eq(["fields/rich_text"])
     end
   end
 

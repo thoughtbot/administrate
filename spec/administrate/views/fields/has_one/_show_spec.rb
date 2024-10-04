@@ -35,7 +35,8 @@ describe "fields/has_one/_show", type: :view do
         name: "simple_string_field",
         truncate: "string value",
         html_class: "string",
-        to_partial_path: "fields/string/index"
+        page: "index",
+        _partial_prefixes: ["fields/string"]
       )
 
       nested_show_page_for_has_one = instance_double(
@@ -123,7 +124,8 @@ describe "fields/has_one/_show", type: :view do
         data: nested_collection,
         html_class: "has-many",
         name: "payments",
-        to_partial_path: "fields/has_many/index"
+        page: "index",
+        _partial_prefixes: ["fields/has_many"]
       )
 
       nested_show_page_for_nested_has_one = instance_double(
@@ -141,7 +143,8 @@ describe "fields/has_one/_show", type: :view do
         linkable?: true,
         nested_show: nested_show_page_for_nested_has_one,
         html_class: "has-one",
-        to_partial_path: "fields/has_one/show",
+        page: "show",
+        _partial_prefixes: ["fields/has_one"],
         display_associated_resource: "Resource Doubly Nested with HasOne",
         name: "page"
       )
