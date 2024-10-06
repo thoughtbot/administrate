@@ -1,21 +1,22 @@
-require "rails_helper"
-require "administrate/field/select"
+require 'rails_helper'
+require 'administrate/field/select'
 
-describe "fields/select/_form", type: :view do
-  it "displays the field with correct name and selection" do
+describe 'fields/select/_form', type: :view do
+  it 'displays the field with correct name and selection' do
     customer = build(:customer)
     select = instance_double(
-      "Administrate::Field::Select",
+      'Administrate::Field::Select',
       attribute: :email_subscriber,
       data: false,
       selectable_options: [true, false, nil],
       include_blank_option: false,
-      html_controller: "select"
+      selected: nil,
+      html_controller: 'select'
     )
 
     render(
-      partial: "fields/select/form",
-      locals: {field: select, f: form_builder(customer)}
+      partial: 'fields/select/form',
+      locals: { field: select, f: form_builder(customer) }
     )
 
     expect(rendered).to have_css(
@@ -24,25 +25,49 @@ describe "fields/select/_form", type: :view do
     )
   end
 
-  it "can include a blank option" do
+  it 'can include a blank option' do
     customer = build(:customer)
     select = instance_double(
-      "Administrate::Field::Select",
+      'Administrate::Field::Select',
       attribute: :email_subscriber,
-      data: "Yes",
-      selectable_options: ["Yes", "No"],
-      include_blank_option: "Unknown",
-      html_controller: "select"
+      data: 'Yes',
+      selectable_options: %w[Yes No],
+      include_blank_option: 'Unknown',
+      selected: nil,
+      html_controller: 'select'
     )
 
     render(
-      partial: "fields/select/form",
-      locals: {field: select, f: form_builder(customer)}
+      partial: 'fields/select/form',
+      locals: { field: select, f: form_builder(customer) }
     )
 
     expect(rendered).to have_css(
       %(select[name="customer[email_subscriber]"][data-controller~="select"] option[value=""]),
-      text: "Unknown"
+      text: 'Unknown'
+    )
+  end
+
+  it 'uses the default when data is nil' do
+    customer = build(:customer)
+    select = instance_double(
+      'Administrate::Field::Select',
+      attribute: :email_subscriber,
+      data: nil,
+      selectable_options: ['Yes', 'No'],
+      include_blank_option: false,
+      selected: 'No',
+      html_controller: 'select'
+    )
+
+    render(
+      partial: 'fields/select/form',
+      locals: { field: select, f: form_builder(customer) }
+    )
+
+    expect(rendered).to have_css(
+      %(select[name="customer[email_subscriber]"][data-controller~="select"] option[value="No"][selected="selected"]),
+      text: 'No'
     )
   end
 

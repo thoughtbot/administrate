@@ -28,6 +28,10 @@ module Administrate
         options.fetch(:include_blank, false)
       end
 
+      def selected
+        options.fetch(:selected, nil)
+      end
+
       def active_record_enum?
         resource.class.defined_enums.key?(attribute.to_s)
       end
