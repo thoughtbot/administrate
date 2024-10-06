@@ -10,6 +10,7 @@ describe "fields/select/_form", type: :view do
       data: false,
       selectable_options: [true, false, nil],
       include_blank_option: false,
+      selected: nil,
       html_controller: "select"
     )
 
@@ -34,6 +35,7 @@ describe "fields/select/_form", type: :view do
       data: "Yes",
       selectable_options: ["Yes", "No"],
       include_blank_option: "Unknown",
+      selected: nil,
       html_controller: "select"
     )
 
@@ -47,6 +49,31 @@ describe "fields/select/_form", type: :view do
     expect(rendered).to have_css(
       %(select[name="customer[email_subscriber]"][data-controller~="select"] option[value=""]),
       text: "Unknown"
+    )
+  end
+
+  it "uses the selected value when given" do
+    customer = build(:customer)
+    select = instance_double(
+      "Administrate::Field::Select",
+      attribute: :email_subscriber,
+      data: nil,
+      selectable_options: ["Yes", "No"],
+      include_blank_option: false,
+      selected: "No",
+      html_controller: "select"
+    )
+
+    fields model: customer do |f|
+      render(
+        partial: "fields/select/form",
+        locals: {field: select, f: f}
+      )
+    end
+
+    expect(rendered).to have_css(
+      %(select[name="customer[email_subscriber]"][data-controller~="select"] option[value="No"][selected="selected"]),
+      text: "No"
     )
   end
 end
