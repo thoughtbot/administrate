@@ -436,3 +436,133 @@ en:
 ```
 
 If not defined (see `SHOW_PAGE_ATTRIBUTES` above), Administrate will default to the given strings.
+
+## Virtual Attributes
+
+For all field types, you can use the `getter` option to change where the data is retrieved from or to set the data directly.
+
+By using this, you can define an attribute in `ATTRIBUTE_TYPES` that doesn’t exist in the model, and use it for various purposes.
+
+### Attribute Aliases
+
+You can create an alias for an attribute. For example:
+
+```ruby
+  ATTRIBUTE_TYPES = {
+    shipped_at: Field::DateTime,
+    shipped_on: Field::Date.with_options(
+      getter: :shipped_at
+    )
+  }
+  COLLECTION_ATTRIBUTES = [
+    :shipped_on
+  }
+  SHOW_PAGE_ATTRIBUTES = [
+    :shipped_at
+  }
+```
+
+In this example, a virtual attribute `shipped_on` based on the value of `shipped_at` is defined as a `Date` type and used for display on the index page (this can help save table cell space).
+
+### Decorated Attributes
+
+You can also use this to decorate data. For example:
+
+```ruby
+  ATTRIBUTE_TYPES = {
+    price: Field::Number,
+    price_including_tax: Field::Number.with_options(
+      getter: -> (field) {
+        field.resource.price * 1.1 if field.resource.price.present?
+      }
+    )
+  }
+```
+
+### Composite Attributes
+
+You can dynamically create a virtual attribute by combining multiple attributes for display. For example:
+
+```ruby
+  ATTRIBUTE_TYPES = {
+    first_name: Field::String,
+    last_name: Field::String,
+    full_name: Field::String.with_options(
+      getter: -> (field) {
+        [
+          field.resource.first_name,
+          field.resource.last_name
+        ].compact_blank.join(' ')
+      }
+    )
+  }
+```
+
+## Virtual Fields
+
+Custom fields can also be combined with virtual attributes.
+
+```ruby
+  ATTRIBUTE_TYPES = {
+    id: Field::Number,
+    receipt: Field::ReceiptLink
+  }
+```
+
+```ruby
+module Administrate
+  module Field
+    class ReceiptLink < Base
+      def data
+        resource.id
+      end
+
+      def filename
+        "receipt-#{data}.pdf"
+      end
+
+      def url
+        "/files/receipts/#{filename}"
+      end
+    end
+  end
+end
+```
+
+```erb
+<%= link_to field.filename, field.url %>
+```
+
+### Custom Actions via Virtual Field
+
+By creating custom fields that are not dependent on specific attributes, you can insert custom views into any screen.
+For example, you can add custom buttons like this:
+
+```ruby
+  ATTRIBUTE_TYPES = {
+    id: Field::Number,
+    custom_index_actions: Field::CustomActionButtons,
+    custom_show_actions: Field::CustomActionButtons,
+  }
+```
+
+```ruby
+module Administrate
+  module Field
+    class CustomActionButtons < Base
+      def data
+        resource.id
+      end
+    end
+  end
+end
+```
+
+```erb
+<%# app/views/fields/custom_action_buttons/_index.html.erb %>
+<% if field.data.present? %>
+  <%= button_to "some action 1", [:some_action_1, namespace, field.resource] %>
+  <%= button_to "some action 2", [:some_action_2, namespace, field.resource] %>
+  <%= button_to "some action 3", [:some_action_3, namespace, field.resource] %>
+<% end %>
+```
