@@ -48,7 +48,7 @@ describe 'fields/select/_form', type: :view do
     )
   end
 
-  it 'uses the default when data is nil' do
+  it 'uses the selected value when given' do
     customer = build(:customer)
     select = instance_double(
       'Administrate::Field::Select',
