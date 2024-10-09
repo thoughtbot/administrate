@@ -18,5 +18,5 @@ This partial renders a textarea element for a text attribute.
   <%= f.label field.attribute %>
 </div>
 <div class="field-unit__field">
-  <%= f.text_area field.attribute %>
+  <%= f.text_area field.attribute, field.options.fetch(:input_options, {}) %>
 </div>
