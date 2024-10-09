@@ -83,6 +83,7 @@ module Administrate
       end
 
       attr_reader :attribute, :data, :options, :page, :resource
+      attr_accessor :context
     end
   end
 end

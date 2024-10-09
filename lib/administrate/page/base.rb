@@ -27,12 +27,20 @@ module Administrate
         dashboard.try(:item_associations) || []
       end
 
+      attr_accessor :context
+
+      def dashboard_context=(context)
+        dashboard.context = context
+      end
+
       private
 
       def attribute_field(dashboard, resource, attribute_name, page)
         value = get_attribute_value(resource, attribute_name)
         field = dashboard.attribute_type_for(attribute_name)
-        field.new(attribute_name, value, page, resource: resource)
+        field.new(attribute_name, value, page, resource: resource).tap do |f|
+          f.context = context
+        end
       end
 
       def get_attribute_value(resource, attribute_name)
