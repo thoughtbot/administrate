@@ -1,14 +1,14 @@
 require "administrate/field/email"
 
 describe Administrate::Field::Email do
-  describe "#to_partial_path" do
+  describe "#_partial_prefixes" do
     it "returns a partial based on the page being rendered" do
       page = :show
       field = Administrate::Field::Email.new(:email, "foo@example.com", page)
 
-      path = field.to_partial_path
+      prefixes = field._partial_prefixes
 
-      expect(path).to eq("/fields/email/#{page}")
+      expect(prefixes).to eq(["fields/email"])
     end
   end
 end

@@ -9,7 +9,15 @@ module Administrate
 
     def render_field(field, locals = {})
       locals[:field] = field
-      render locals: locals, partial: field.to_partial_path
+      if (prefix = find_partial_prefix(field))
+        render locals: locals, partial: "#{prefix}/#{field.page}"
+      end
+    end
+
+    def find_partial_prefix(field)
+      field._partial_prefixes.detect do |prefix|
+        lookup_context.template_exists?(field.page, [prefix], true)
+      end
     end
 
     def requireness(field)
