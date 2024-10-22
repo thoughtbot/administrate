@@ -203,9 +203,7 @@ describe Administrate::Field::Base do
 
         expect(field.data).to eq("custom value from block")
       end
-    end
 
-    context "when given a :getter block" do
       it "returns nil if the resource is nil" do
         field = field_class.new(:attribute, nil, :page, resource: nil)
 
