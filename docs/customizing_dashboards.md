@@ -500,7 +500,7 @@ You can dynamically create a virtual attribute by combining multiple attributes 
 
 ## Virtual Fields
 
-Custom fields can also be combined with virtual attributes.
+Custom fields can also be defined using virtual fields.
 
 ```ruby
   ATTRIBUTE_TYPES = {
