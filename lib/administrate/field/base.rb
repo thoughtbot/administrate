@@ -24,6 +24,10 @@ module Administrate
         false
       end
 
+      def self.sortable?
+        true
+      end
+
       def self.field_type
         to_s.split("::").last.underscore
       end
@@ -38,6 +42,7 @@ module Administrate
         @page = page
         @resource = options.delete(:resource)
         @options = options
+        @data = read_value if @data.nil?
       end
 
       def html_class
@@ -50,6 +55,18 @@ module Administrate
 
       def name
         attribute.to_s
+      end
+
+      def read_value
+        if options.key?(:getter)
+          if options[:getter].respond_to?(:call)
+            options[:getter].call(self)
+          else
+            resource&.public_send(options[:getter])
+          end
+        else
+          resource&.public_send(attribute)
+        end
       end
 
       def to_partial_path

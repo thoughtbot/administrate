@@ -10,6 +10,10 @@ class OrderDashboard < Administrate::BaseDashboard
     address_city: Field::String,
     address_state: Field::String,
     address_zip: Field::String,
+    address: Field::String.with_options(
+      sorting_field: :address_zip,
+      searchable: false
+    ),
     customer: Field::BelongsTo.with_options(order: "name"),
     line_items: Field::HasMany.with_options(
       collection_attributes: %i[product quantity unit_price total_price]
@@ -29,7 +33,7 @@ class OrderDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :id,
     :customer,
-    :address_state,
+    :address,
     :total_price,
     :line_items,
     :shipped_at
