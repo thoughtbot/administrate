@@ -52,7 +52,7 @@ module Administrate
         attribute.to_s
       end
 
-      def read_value(data = nil)
+      def read_value(data)
         if options.key?(:getter)
           if options[:getter].respond_to?(:call)
             options[:getter].call(self)

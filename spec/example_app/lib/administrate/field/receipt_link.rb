@@ -8,7 +8,7 @@ module Administrate
       end
 
       def filename
-        "receipt-#{resource.id}.pdf"
+        "receipt-#{resource.id}.txt"
       end
     end
   end

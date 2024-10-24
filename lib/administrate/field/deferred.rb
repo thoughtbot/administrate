@@ -65,10 +65,6 @@ module Administrate
         end
       end
 
-      def read_value(resource, attribute_name)
-        @deferred_class.read_value(resource, attribute_name, options)
-      end
-
       delegate :html_class, to: :deferred_class
     end
   end
