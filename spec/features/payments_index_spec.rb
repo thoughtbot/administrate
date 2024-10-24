@@ -28,6 +28,6 @@ RSpec.describe "payment index page" do
     click_row_for(payment)
 
     expect(page).to have_content(payment.id)
-    expect(current_path).to eq(admin_payment_path(payment))
+    expect(page).to have_current_path(admin_payment_path(payment))
   end
 end
