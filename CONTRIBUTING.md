@@ -44,6 +44,14 @@ bin/dev
 This will start the application defined in `spec/example_app`.
 You can view the `example_app` in the browser by navigating to `/admin`.
 
+### Docker compose services
+
+If you want to use `docker compose` in order to start needed services (eg: postgres) you can run:
+
+```sh
+docker compose up
+```
+
 ## Repository Structure
 
 * The gem's source code lives in the `app` and `lib` subdirectories.

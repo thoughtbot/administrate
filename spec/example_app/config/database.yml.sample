@@ -5,6 +5,10 @@ development: &default
   min_messages: warning
   pool: 2
   timeout: 5000
+  username: <%= ENV['PGUSER'] %>
+  password: <%= ENV['PGPASSWORD'] %>
+  host: <%= ENV['PGHOST'] %>
+  port: <%= ENV['PGPORT'] %>
 
 test:
   <<: *default
