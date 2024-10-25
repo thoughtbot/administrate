@@ -17,6 +17,60 @@
 
 ## Changes
 
+### 1.0.0.beta2 (October 25, 2024)
+
+The following templates have changed since v1.0.0.beta1:
+
+  app/views/administrate/application/_collection.html.erb
+  app/views/administrate/application/_collection_item_actions.html.erb
+  app/views/administrate/application/_index_header.html.erb
+  app/views/administrate/application/_javascript.html.erb
+  app/views/administrate/application/edit.html.erb
+  app/views/administrate/application/index.html.erb
+  app/views/administrate/application/new.html.erb
+  app/views/administrate/application/show.html.erb
+  app/views/fields/belongs_to/_form.html.erb
+  app/views/fields/has_many/_form.html.erb
+  app/views/fields/polymorphic/_form.html.erb
+  app/views/fields/rich_text/_form.html.erb
+  app/views/fields/rich_text/_index.html.erb
+  app/views/fields/rich_text/_show.html.erb
+  app/views/fields/select/_form.html.erb
+  app/views/fields/text/_form.html.erb
+  app/views/layouts/administrate/application.html.erb
+
+If your application overrides any of them, make sure to review your
+custom templates to ensure that they remain compatible.
+
+* [FEATURE] [#2658] Support for virtual fields
+* [FEATURE] [#2665] Allow configuring textarea input options
+* [FEATURE] [#2652] Allow scope to accept field in Field::BelongsTo
+* [CHANGE] [#2674] Remove legacy asset generators
+* [FEATURE] [#2668] Embed sources in CSS sourcemaps
+* [FEATURE] [#2574] Add several layout hooks to provide extra content
+* [I18n] [#2590] Translate labels for belongs_to/_form if available
+* [DOC] [#2609] Add diff-check to catch missing Appraisal runs
+* [COMPAT] [#2654] Update cssbundling/jsbundling in Appraisals
+* [SECURITY] [#2630] Add security.yml and SECURITY.md
+* [SECURITY] [#2637] Update rexml to fix a security vulnerability
+* [DOC] [#2568] update document on example website to HasOne field type for 
+  HasOne section
+* [BUGFIX] [#2584] Fix ordering HasOne fields without explicit order
+* [BUGFIX] [#2558] Fix broken has_one style
+* [BUGFIX] [#2495] Fix generator path for namespaced models
+* [COMPAT] [#2607] Update Rails from 7.0.8.1 to 7.0.8.1
+* [FEATURE] [#2411] Add Field::RichText
+* [FEATURE] [#2582] Copy the index_header partial when generating views
+* [BUGFIX] [#2581] Fix "search with a filter with arguments" spec
+* [DOC] [#2550] Call dynamic-readme reusable workflow
+* [DOC] [#2556] Update contributing guide with command to start server
+* [COMPAT] [#2536] Update Rails to 7.0.8.1
+* [SECURITY] [#2516] Unsafe Actions: Replace `link_to` calls with `button_to`
+* [CHANGE] [#2448] Replace `jquery-ujs` with `@hotwired/turbo`
+* [CHANGE] [#2447] Implement client-side with Stimulus
+* [FIX] [#2502] Fix bug where layout generator ignored namespace
+* [FIX] [#2512] Fix Field::Boolean hidden checkbox regression
+
 ### 1.0.0.beta1 (February 5, 2024)
 
 In this release, the assets Administrate requires are now bundled in with the

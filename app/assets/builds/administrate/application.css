@@ -863,14 +863,6 @@ trix-editor .attachment__metadata .attachment__size {
   padding-right: 0.6em;
 }
 
-.trix-content ul {
-  list-style-type: disc;
-}
-
-.trix-content ol {
-  list-style-type: decimal;
-}
-
 .trix-content li {
   margin-left: 1em;
 }
@@ -2327,10 +2319,9 @@ button:not(.link):disabled:hover,
 }
 
 .field-unit__field {
+  flex-grow: 1;
   float: left;
   margin-left: 2rem;
-  max-width: 50rem;
-  width: 100%;
 }
 .field-unit__field .optgroup-header {
   font-weight: 700;
@@ -2350,7 +2341,7 @@ button:not(.link):disabled:hover,
   width: 100%;
 }
 .field-unit--nested .field-unit__field {
-  width: 100%;
+  flex-grow: 1;
 }
 .field-unit--nested .field-unit__label {
   width: 10rem;
