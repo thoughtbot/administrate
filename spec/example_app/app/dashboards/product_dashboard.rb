@@ -9,7 +9,9 @@ class ProductDashboard < Administrate::BaseDashboard
     :image_url,
     :product_meta_tag,
     :release_year,
-    :banner
+    :banner,
+    :hero_image,
+    :thumbnails
   ]
 
   ATTRIBUTE_TYPES = {
@@ -24,7 +26,9 @@ class ProductDashboard < Administrate::BaseDashboard
     product_meta_tag: Field::HasOne.with_options(order: "meta_title"),
     release_year: Field::Select.with_options(
       collection: -> { (Time.current.year - 10)..Time.current.year }
-    )
+    ),
+    hero_image: Field::Attached::One,
+    thumbnails: Field::Attached::Many,
   }
 
   COLLECTION_ATTRIBUTES = ATTRIBUTES

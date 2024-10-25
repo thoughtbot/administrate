@@ -45,6 +45,16 @@ FactoryBot.define do
     end
     product_meta_tag
     release_year { [2018, 2019, 2020].sample }
+
+    transient do
+      hero_image { nil }
+    end
+
+    after :build do |record, factory|
+      if (pathname = factory.hero_image)
+        record.hero_image.attach io: pathname.open, filename: pathname.to_s
+      end
+    end
   end
 
   factory :product_meta_tag do

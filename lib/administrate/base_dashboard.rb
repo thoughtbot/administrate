@@ -1,3 +1,5 @@
+require "administrate/field/attached/one"
+require "administrate/field/attached/many"
 require "administrate/field/belongs_to"
 require "administrate/field/boolean"
 require "administrate/field/date_time"

@@ -3,21 +3,23 @@ require "rails_helper"
 describe "product form has_one relationship" do
   include ActiveSupport::Testing::TimeHelpers
 
-  it "saves product and meta tag data correctly" do
+  it "saves product and meta tag data correctly", :js do
     visit new_admin_product_path
 
     fill_in "Name", with: "Example"
     fill_in "Price", with: "0"
     fill_in "Description", with: "Example"
     fill_in "Image url", with: "http://imageurlthatdoesnotexist"
-    fill_in "Meta title", with: "Example meta title"
-    fill_in "Meta description", with: "Example meta description"
-
-    expect(page).to have_css("legend", text: "Product Meta Tag")
+    within_fieldset "Product Meta Tag" do
+      fill_in "Meta title", with: "Example meta title"
+      fill_in "Meta description", with: "Example meta description"
+    end
+    attach_file "Hero image", file_fixture("image.png")
 
     click_on "Create Product"
 
     expect(page).to have_link("Example meta title")
+      .and(have_element("img", src: /image.png/))
     expect(page).to have_flash(
       t("administrate.controller.create.success", resource: "Product")
     )
@@ -53,17 +55,21 @@ describe "product form has_one relationship" do
     ProductDashboard::ATTRIBUTE_TYPES[:release_year] = old_release_year
   end
 
-  it "edits product and meta tag data correctly" do
-    product = create(:product)
+  it "edits product and meta tag data correctly", :js do
+    product = create(:product, hero_image: file_fixture("image.svg"))
+    hero_image = product.hero_image
 
     visit edit_admin_product_path(product)
-
+    attach_file "Hero image", file_fixture("image.png")
     click_on "Update Product"
 
     expect(page).to have_link(product.product_meta_tag.meta_title.to_s)
+      .and(have_element("img", src: /image.png/))
+      .and(have_no_element("img", src: /image.svg/))
     expect(page).to have_flash(
       t("administrate.controller.update.success", resource: "Product")
     )
+    expect { hero_image.reload }.to raise_error(ActiveRecord::RecordNotFound)
   end
 
   describe "has_one relationships" do

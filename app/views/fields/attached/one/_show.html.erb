@@ -1,0 +1,22 @@
+<%#
+  # Attached One Show Partial
+
+  This partial renders an attachment attribute,
+  to be displayed on a resource's show page.
+
+  By default, the attribute is rendered as an attachment tag.
+
+  ## Local variables:
+
+  - `field`:
+    An instance of [Administrate::Field::Attached::One][1].
+    A wrapper around the attachment pulled from the database.
+
+  [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Attached::One
+%>
+
+<% if field.attached? %>
+  <%= render partial: "fields/attached/one/attachment", locals: { field: field } %>
+<% else %>
+  No attachment
+<% end %>

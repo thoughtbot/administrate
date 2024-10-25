@@ -1,0 +1,24 @@
+<%#
+  # Attached One Form Partial
+
+  This partial renders an input element for a single attached attribute.
+  By default, the input is a file field for the attached file.
+
+  ## Local variables:
+
+  - `f`:
+    A Rails form generator, used to help create the appropriate input fields.
+  - `field`:
+    An instance of [Administrate::Field::Attached::One][1].
+    A wrapper around the attachment pulled from the database.
+
+  [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Attached/One
+%>
+
+
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.file_field(field.attribute) %>
+</div>

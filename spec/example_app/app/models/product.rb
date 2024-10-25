@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
   has_rich_text :banner
+  has_one_attached :hero_image
+  has_many_attached :thumbnails
 
   def self.policy_class=(policy)
     @policy_class = policy
