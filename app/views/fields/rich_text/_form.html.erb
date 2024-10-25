@@ -1,3 +1,19 @@
+<%#
+# Rich Text Form Partial
+
+This partial renders a trix-editor element for ActionText::RichText attributes.
+
+## Local variables:
+
+- `f`:
+  A Rails form generator, used to help create the appropriate trix-editor fields.
+- `field`:
+  An instance of [Administrate::Field::RichText][1].
+  A wrapper around the tmie attributes pulled from the model.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/RichText
+%>
+
 <div class="field-unit__label">
   <%= f.label field.attribute %>
 </div>

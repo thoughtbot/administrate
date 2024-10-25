@@ -31,26 +31,11 @@ RSpec.describe "fields/text/_form", type: :view do
   def render_partial(field)
     product = build(:product)
 
-    render(
-      partial: "fields/text/form",
-      locals: {field: field, f: form_builder(product)}
-    )
-  end
-
-  def form_builder(object)
-    ActionView::Helpers::FormBuilder.new(
-      object.model_name.singular,
-      object,
-      build_template,
-      {}
-    )
-  end
-
-  def build_template
-    Object.new.tap do |template|
-      template.extend ActionView::Helpers::FormHelper
-      template.extend ActionView::Helpers::FormOptionsHelper
-      template.extend ActionView::Helpers::FormTagHelper
+    fields model: product do |f|
+      render(
+        partial: "fields/text/form",
+        locals: {field: field, f: f}
+      )
     end
   end
 end
