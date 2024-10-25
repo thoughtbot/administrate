@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     root to: "customers#index"
   end
 
+  get "/files/receipts/*filename.txt", to: "files#download"
+
   get "/*page", to: "docs#show", constraints: ->(request) { !request.path.start_with?("/rails/") }
   root to: "docs#index"
 end

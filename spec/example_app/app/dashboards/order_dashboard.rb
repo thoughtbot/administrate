@@ -10,6 +10,18 @@ class OrderDashboard < Administrate::BaseDashboard
     address_city: Field::String,
     address_state: Field::String,
     address_zip: Field::String,
+    full_address: Field::String.with_options(
+      getter: ->(field) {
+        r = field.resource
+        [
+          r.address_line_one,
+          r.address_line_two,
+          r.address_city,
+          r.address_state,
+          r.address_zip
+        ].compact.join("\n")
+      }
+    ),
     customer: Field::BelongsTo.with_options(order: "name"),
     line_items: Field::HasMany.with_options(
       collection_attributes: %i[product quantity unit_price total_price]
@@ -29,7 +41,7 @@ class OrderDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :id,
     :customer,
-    :address_state,
+    :full_address,
     :total_price,
     :line_items,
     :shipped_at
@@ -50,8 +62,11 @@ class OrderDashboard < Administrate::BaseDashboard
       address_zip
     ]
   }.freeze
-  SHOW_PAGE_ATTRIBUTES = FORM_ATTRIBUTES.merge(
-    "" => %i[customer created_at updated_at],
-    "details" => %i[line_items total_price shipped_at payments]
-  ).freeze
+  SHOW_PAGE_ATTRIBUTES = FORM_ATTRIBUTES
+    .except("address")
+    .merge(
+      "" => %i[customer full_address created_at updated_at],
+      "details" => %i[line_items total_price shipped_at payments]
+    )
+    .freeze
 end
