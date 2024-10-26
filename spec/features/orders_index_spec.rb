@@ -35,14 +35,14 @@ feature "order index page" do
     visit admin_orders_path
     click_on t("administrate.actions.edit")
 
-    expect(current_path).to eq(edit_admin_order_path(order))
+    expect(page).to have_current_path(edit_admin_order_path(order))
   end
 
   scenario "user clicks through to the new page" do
     visit admin_orders_path
     click_on("New order")
 
-    expect(current_path).to eq(new_admin_order_path)
+    expect(page).to have_current_path(new_admin_order_path)
   end
 
   scenario "user deletes record", js: true do

@@ -38,14 +38,14 @@ feature "log entries index page" do
     visit admin_log_entries_path
     click_on t("administrate.actions.edit")
 
-    expect(current_path).to eq(edit_admin_log_entry_path(log_entry))
+    expect(page).to have_current_path(edit_admin_log_entry_path(log_entry))
   end
 
   scenario "user clicks through to the new page" do
     visit admin_log_entries_path
     click_on("New log entry")
 
-    expect(current_path).to eq(new_admin_log_entry_path)
+    expect(page).to have_current_path(new_admin_log_entry_path)
   end
 
   scenario "user deletes record", js: true do
