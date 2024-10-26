@@ -43,14 +43,14 @@ describe "customer index page" do
     visit admin_customers_path
     click_on "Edit"
 
-    expect(current_path).to eq(edit_admin_customer_path(customer))
+    expect(page).to have_current_path(edit_admin_customer_path(customer))
   end
 
   it "links to the new page" do
     visit admin_customers_path
     click_on("New customer")
 
-    expect(current_path).to eq(new_admin_customer_path)
+    expect(page).to have_current_path(new_admin_customer_path)
   end
 
   it "displays translated labels" do
