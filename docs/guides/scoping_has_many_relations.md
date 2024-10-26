@@ -18,10 +18,10 @@ Since ActiveRecord infers the class name from the first argument, the new `has_m
 
 ## Add new relationship to dashboard
 
-Your new scoped relation can be used in the dashboard just like the original `HasMany`. Notice the new field needs to specifiy the class name as an option like you did in the model.
+Your new scoped relation can be used in the dashboard just like the original `HasMany`.
 
 ```ruby
 ATTRIBUTE_TYPES = {
   orders: Field::HasMany,
-  processed_orders: Field::HasMany.with_options(class_name: 'Order')
+  processed_orders: Field::HasMany
 ```
