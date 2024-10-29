@@ -106,6 +106,13 @@ For example:
 with this, you will be able to search through the column `name` from the
 association `belongs_to :country`, from your model.
 
+`:sortable` - Specifies if sorting should be enabled in the table views.  
+Default is `true`.  
+
+`:sorting_column` - Specifies the column of the associated model to be used for sorting in the table views and dropdown menu.  
+If `sorting_column` is omitted and `order` is specified, the value of `order` will be used.  
+If neither is specified, sorting will be done using the foreign key.  
+
 `:class_name` - Specifies the name of the associated class.
 
 `:primary_key` (deprecated) - Specifies the association's primary_key.
@@ -123,6 +130,14 @@ set this to `0` or `false`. Default is `5`.
 `:sort_by` - What to sort the association by in the show view.
 
 `:direction` - What direction the sort should be in, `:asc` (default) or `:desc`.
+
+`:sortable` - Specifies if sorting should be enabled in the table views.  
+Default is `true`.  
+
+`:sorting_column` - Specifies the column of the associated model to be used for sorting in the dropdown menu.  
+If `sorting_column` is omitted and `sort_by` is specified, the value of `sort_by` will be used.  
+If neither is specified, sorting will be done using the foreign key.  
+For `HasMany` associations, sorting is based on the count, so this option is not referenced in the table views.  
 
 `:class_name` - Specifies the name of the associated class.
 
@@ -154,6 +169,13 @@ For example:
 with this, you will be able to search through the column `name` from the
 association `has_one :city`, from your model.
 
+`:sortable` - Specifies if sorting should be enabled in the table views.  
+Default is `true`.  
+
+`:sorting_column` - Specifies the column of the associated model to be used for sorting in the table views and dropdown menu.  
+If `sorting_column` is omitted and `order` is specified, the value of `order` will be used.  
+If neither is specified, sorting will be done using the foreign key.  
+
 `:class_name` - Specifies the name of the associated class.
 
 **Field::Number**
@@ -161,6 +183,13 @@ association `has_one :city`, from your model.
 `:searchable` - Specify if the attribute should be considered when searching.
 Note that currently number fields are searched like text, which may yield
 more results than expected. Default is `false`.
+
+`:sortable` - Specifies if sorting should be enabled in the table views.  
+Default is `true`.  
+
+`:sorting_column` - Specifies the column to be used for sorting in the table view.  
+By default, the column itself is used, but when used as a virtual column,  
+a custom sorting column can be specified.  
 
 `:decimals` - Set the number of decimals to display. Defaults to `0`.
 
@@ -210,7 +239,17 @@ Default is `[]`.
 `:order` - What to sort the association by in the form select.
 Default is `nil`.
 
+`:sortable` - Specifies if sorting should be enabled in the table views.  
+Default is `true`.  
+
 **Field::DateTime**
+
+`:sortable` - Specifies if sorting should be enabled in the table views.  
+Default is `true`.  
+
+`:sorting_column` - Specifies the column to be used for sorting in the table view.  
+By default, the column itself is used, but when used as a virtual column,  
+a custom sorting column can be specified.  
 
 `:format` - Specify what format, using `strftime` you would like `DateTime`
 objects to display as.
@@ -219,6 +258,13 @@ objects to display as.
 in.
 
 **Field::Date**
+
+`:sortable` - Specifies if sorting should be enabled in the table views.  
+Default is `true`.  
+
+`:sorting_column` - Specifies the column to be used for sorting in the table view.  
+By default, the column itself is used, but when used as a virtual column,  
+a custom sorting column can be specified.  
 
 `:format` - Specify what format, using `strftime` you would like `Date`
 objects to display as.
@@ -249,12 +295,26 @@ If no collection is provided and no enum can be detected, the list of options wi
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `true`.
 
+`:sortable` - Specifies if sorting should be enabled in the table views.  
+Default is `true`.  
+
+`:sorting_column` - Specifies the column to be used for sorting in the table view.  
+By default, the column itself is used, but when used as a virtual column,  
+a custom sorting column can be specified.  
+
 `:include_blank` - Similar to [the option of the same name accepted by Rails helpers](https://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html). If provided, a "blank" option will be added first to the list of options, with the value of `include_blank` as label.
 
 **Field::String**
 
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `true`.
+
+`:sortable` - Specifies if sorting should be enabled in the table views.  
+Default is `true`.  
+
+`:sorting_column` - Specifies the column to be used for sorting in the table view.  
+By default, the column itself is used, but when used as a virtual column,  
+a custom sorting column can be specified.  
 
 `:truncate` - Set the number of characters to display in the index view.
 Defaults to `50`.
@@ -263,6 +323,13 @@ Defaults to `50`.
 
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `false`.
+
+`:sortable` - Specifies if sorting should be enabled in the table views.  
+Default is `true`.  
+
+`:sorting_column` - Specifies the column to be used for sorting in the table view.  
+By default, the column itself is used, but when used as a virtual column,  
+a custom sorting column can be specified.  
 
 `:truncate` - Set the number of characters to display in the index view.
 Defaults to `50`.
@@ -275,6 +342,13 @@ Example: `.with_options(input_options: { rows: 20 })`
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `true`.
 
+`:sortable` - Specifies if sorting should be enabled in the table views.  
+Default is `true`.  
+
+`:sorting_column` - Specifies the column to be used for sorting in the table view.  
+By default, the column itself is used, but when used as a virtual column,  
+a custom sorting column can be specified.  
+
 `:truncate` - Set the number of characters to display in the index view.
 Defaults to `50`.
 
@@ -285,6 +359,9 @@ Defaults is `{}`.
 
 `:searchable` - Specify if the attribute should be considered when searching.
 Default is `false`.
+
+`:sortable` - Specifies if sorting should be enabled in the table views.  
+Default is `false`.  
 
 `:truncate` - Set the number of characters to display in the views.
 Defaults to `50`.
