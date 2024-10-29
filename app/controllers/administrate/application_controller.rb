@@ -141,16 +141,18 @@ module Administrate
       @order ||= Administrate::Order.new(
         sorting_attribute,
         sorting_direction,
-        association_attribute: order_by_field(
+        sorting_column: sorting_column(
           dashboard_attribute(sorting_attribute)
         )
       )
     end
 
-    def order_by_field(dashboard)
-      return unless dashboard.try(:options)
+    def sorting_column(dashboard_attribute)
+      return unless dashboard_attribute.try(:options)
 
-      dashboard.options.fetch(:order, nil)
+      dashboard_attribute.options.fetch(:sorting_column) {
+        dashboard_attribute.options.fetch(:order, nil)
+      }
     end
 
     def dashboard_attribute(attribute)
