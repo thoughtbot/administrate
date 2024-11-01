@@ -6,6 +6,10 @@ module Administrate
       class Many < Administrate::Field::Base
         delegate :attached?, to: :data, allow_nil: true
 
+        def self.permitted_attribute(attribute, _options = {})
+          {attribute => []}
+        end
+
         def to_partial_path
           "fields/attached/many/#{page}"
         end

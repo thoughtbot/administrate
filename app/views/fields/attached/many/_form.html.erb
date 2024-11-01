@@ -1,0 +1,20 @@
+<fieldset>
+  <legend><%= "Many" %></legend>
+  <%= f.collection_check_boxes(field.attribute, field.data, :signed_id, :filename) do |builder| %>
+    <figure>
+      <%= image_tag builder.object %>
+
+      <figcaption>
+        <%= builder.check_box checked: true %>
+        <%= builder.label %>
+      </figcaption>
+    </figure>
+  <% end %>
+
+  <div class="field-unit__label">
+    <%= f.label field.attribute %>
+  </div>
+  <div class="field-unit__field">
+    <%= f.file_field(field.attribute, name: f.field_name(field.attribute, multiple: true)) %>
+  </div>
+</fieldset>

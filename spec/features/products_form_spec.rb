@@ -55,7 +55,20 @@ describe "product form has_one relationship" do
     ProductDashboard::ATTRIBUTE_TYPES[:release_year] = old_release_year
   end
 
-  it "edits product and meta tag data correctly", :js do
+  it "edits product and meta tag data correctly" do
+    product = create(:product)
+
+    visit edit_admin_product_path(product)
+
+    click_on "Update Product"
+
+    expect(page).to have_link(product.product_meta_tag.meta_title.to_s)
+    expect(page).to have_flash(
+      t("administrate.controller.update.success", resource: "Product")
+    )
+  end
+
+  it "edits has_one_attached :hero_image" do
     product = create(:product, hero_image: file_fixture("image.svg"))
     hero_image = product.hero_image
 
@@ -63,13 +76,33 @@ describe "product form has_one relationship" do
     attach_file "Hero image", file_fixture("image.png")
     click_on "Update Product"
 
-    expect(page).to have_link(product.product_meta_tag.meta_title.to_s)
-      .and(have_element("img", src: /image.png/))
+    expect(page).to have_element("img", src: /image.png/)
       .and(have_no_element("img", src: /image.svg/))
-    expect(page).to have_flash(
-      t("administrate.controller.update.success", resource: "Product")
-    )
     expect { hero_image.reload }.to raise_error(ActiveRecord::RecordNotFound)
+  end
+
+  it "attaches has_many_attached :thumbnails" do
+    product = create(:product, thumbnails: [file_fixture("image.png")])
+    thumbnail = product.thumbnails.first
+
+    visit edit_admin_product_path(product)
+    check thumbnail.filename.to_s
+    attach_file "Thumbnails", file_fixture("image.svg")
+    click_on "Update Product"
+
+    expect(page).to have_element("img", src: /#{thumbnail.filename}/)
+      .and(have_element("img", src: /image.svg/))
+  end
+
+  it "removes has_many_attached :thumbnails" do
+    product = create(:product, thumbnails: [file_fixture("image.png")])
+    thumbnail = product.thumbnails.first
+
+    visit edit_admin_product_path(product)
+    uncheck thumbnail.filename.to_s
+    click_on "Update Product"
+
+    expect(page).to have_no_element("img", src: /#{thumbnail.filename}/)
   end
 
   describe "has_one relationships" do

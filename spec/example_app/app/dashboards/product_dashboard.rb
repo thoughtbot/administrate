@@ -28,7 +28,7 @@ class ProductDashboard < Administrate::BaseDashboard
       collection: -> { (Time.current.year - 10)..Time.current.year }
     ),
     hero_image: Field::Attached::One,
-    thumbnails: Field::Attached::Many,
+    thumbnails: Field::Attached::Many
   }
 
   COLLECTION_ATTRIBUTES = ATTRIBUTES

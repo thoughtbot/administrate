@@ -48,11 +48,16 @@ FactoryBot.define do
 
     transient do
       hero_image { nil }
+      thumbnails { [] }
     end
 
     after :build do |record, factory|
       if (pathname = factory.hero_image)
         record.hero_image.attach io: pathname.open, filename: pathname.to_s
+      end
+
+      if (attachments = factory.thumbnails.map { { io: _1.open, filename: _1.to_s } }.presence)
+        record.thumbnails.attach(attachments)
       end
     end
   end
