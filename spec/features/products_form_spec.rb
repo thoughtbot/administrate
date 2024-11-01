@@ -3,7 +3,7 @@ require "rails_helper"
 describe "product form has_one relationship" do
   include ActiveSupport::Testing::TimeHelpers
 
-  it "saves product and meta tag data correctly" do
+  it "saves product and meta tag data correctly", js: true do
     visit new_admin_product_path
 
     fill_in "Name", with: "Example"
@@ -12,11 +12,17 @@ describe "product form has_one relationship" do
     fill_in "Image url", with: "http://imageurlthatdoesnotexist"
     fill_in "Meta title", with: "Example meta title"
     fill_in "Meta description", with: "Example meta description"
+    fill_in_rich_text_area "Banner", with: <<~HTML
+      <div>A banner with a <a href="https://example.com">link</a>.</div>
+    HTML
 
     expect(page).to have_css("legend", text: "Product Meta Tag")
 
     click_on "Create Product"
 
+    within(".trix-content div", text: "A banner with a link") do
+      expect(page).to have_link("link", href: "https://example.com")
+    end
     expect(page).to have_link("Example meta title")
     expect(page).to have_flash(
       t("administrate.controller.create.success", resource: "Product")
@@ -53,13 +59,27 @@ describe "product form has_one relationship" do
     ProductDashboard::ATTRIBUTE_TYPES[:release_year] = old_release_year
   end
 
-  it "edits product and meta tag data correctly" do
-    product = create(:product)
+  it "edits product and meta tag data correctly", js: true do
+    product = create(:product, banner: <<~HTML)
+      <div>A banner with a <a href="https://example.com">link</a>.</div>
+    HTML
 
     visit edit_admin_product_path(product)
 
+    within(:rich_text_area, "Banner") do
+      within("div", text: "A banner with a link") do
+        expect(page).to have_link("link", href: "https://example.com")
+      end
+    end
+
+    fill_in_rich_text_area "Banner", with: <<~HTML
+      <div>A changed banner without a link.</div>
+    HTML
     click_on "Update Product"
 
+    within(".trix-content div", text: "A changed banner without a link.") do
+      expect(page).to have_no_link(href: "https://example.com")
+    end
     expect(page).to have_link(product.product_meta_tag.meta_title.to_s)
     expect(page).to have_flash(
       t("administrate.controller.update.success", resource: "Product")
