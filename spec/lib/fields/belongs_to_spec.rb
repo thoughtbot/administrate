@@ -133,22 +133,6 @@ describe Administrate::Field::BelongsTo do
         /^Line Item \#\d\d\d\d$/
       )
     end
-
-    it "triggers a deprecation warning" do
-      line_item = create(:line_item)
-      field_class = Administrate::Field::BelongsTo.with_options(
-        class_name: "Customer"
-      )
-      field = field_class.new(
-        :product,
-        line_item.product,
-        :show,
-        resource: line_item
-      )
-      field.associated_class
-      expect(Administrate.deprecator).to have_received(:warn)
-        .with(/:class_name is deprecated/)
-    end
   end
 
   describe ":include_blank option" do

@@ -106,11 +106,11 @@ For example:
 with this, you will be able to search through the column `name` from the
 association `belongs_to :country`, from your model.
 
+`:class_name` - Specifies the name of the associated class.
+
 `:primary_key` (deprecated) - Specifies the association's primary_key.
 
 `:foreign_key` (deprecated) - Specifies the name of the foreign key directly.
-
-`:class_name` (deprecated) - Specifies the name of the associated class.
 
 **Field::HasMany**
 
@@ -124,11 +124,11 @@ set this to `0` or `false`. Default is `5`.
 
 `:direction` - What direction the sort should be in, `:asc` (default) or `:desc`.
 
+`:class_name` - Specifies the name of the associated class.
+
 `:primary_key` (deprecated) - Specifies object's primary_key.
 
 `:foreign_key` (deprecated) - Specifies the name of the foreign key directly.
-
-`:class_name` (deprecated) - Specifies the name of the associated class.
 
 **Field::HasOne**
 
@@ -154,7 +154,7 @@ For example:
 with this, you will be able to search through the column `name` from the
 association `has_one :city`, from your model.
 
-`:class_name` (deprecated) - Specifies the name of the associated class.
+`:class_name` - Specifies the name of the associated class.
 
 **Field::Number**
 

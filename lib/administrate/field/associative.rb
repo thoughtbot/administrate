@@ -37,7 +37,7 @@ module Administrate
 
       def associated_class_name
         if option_given?(:class_name)
-          deprecated_option(:class_name)
+          options.fetch(:class_name)
         else
           self.class.associated_class_name(
             resource.class,

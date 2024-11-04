@@ -64,16 +64,6 @@ describe Administrate::Field::HasMany do
       expect(dashboard_double).to have_received(:collection_attributes)
       expect(attributes).to eq([])
     end
-
-    it "triggers a deprecation warning" do
-      association = Administrate::Field::HasMany
-        .with_options(class_name: "Foo")
-      field = association.new(:customers, [], :show)
-      field.associated_collection
-
-      expect(Administrate.deprecator).to have_received(:warn)
-        .with(/:class_name is deprecated/)
-    end
   end
 
   describe "primary_key option" do
