@@ -18,7 +18,7 @@ module Administrate
 
           [
             route.defaults[:controller].delete_prefix(prefix),
-            route.defaults[:action],
+            route.defaults[:action]
           ]
         end
       end
