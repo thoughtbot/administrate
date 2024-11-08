@@ -14372,24 +14372,46 @@
     }
     start() {
       this.directUpload.create(this.directUploadDidComplete.bind(this));
+      this.dispatch("start");
     }
     directUploadWillStoreFileWithXHR(xhr) {
       xhr.upload.addEventListener("progress", (event) => {
         const progress = event.loaded / event.total * 100;
         this.attachment.setUploadProgress(progress);
+        if (progress) {
+          this.dispatch("progress", {
+            progress
+          });
+        }
       });
     }
     directUploadDidComplete(error2, attributes) {
       if (error2) {
-        throw new Error(`Direct upload failed: ${error2}`);
+        this.dispatchError(error2);
+      } else {
+        this.attachment.setAttributes({
+          sgid: attributes.attachable_sgid,
+          url: this.createBlobUrl(attributes.signed_id, attributes.filename)
+        });
+        this.dispatch("end");
       }
-      this.attachment.setAttributes({
-        sgid: attributes.attachable_sgid,
-        url: this.createBlobUrl(attributes.signed_id, attributes.filename)
-      });
     }
     createBlobUrl(signedId, filename) {
       return this.blobUrlTemplate.replace(":signed_id", signedId).replace(":filename", encodeURIComponent(filename));
+    }
+    dispatch(name, detail = {}) {
+      detail.attachment = this.attachment;
+      return dispatchEvent2(this.element, `direct-upload:${name}`, {
+        detail
+      });
+    }
+    dispatchError(error2) {
+      const event = this.dispatch("error", {
+        error: error2
+      });
+      if (!event.defaultPrevented) {
+        alert(error2);
+      }
     }
     get directUploadUrl() {
       return this.element.dataset.directUploadUrl;

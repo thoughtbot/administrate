@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: [3.1, 3.2, 3.3]
+        ruby: [3.2, 3.3]
     env:
       PGHOST: localhost
       PGUSER: administrate
@@ -65,10 +65,13 @@ jobs:
       fail-fast: false
       matrix:
         ruby: [3.1, 3.2, 3.3]
-        appraisal: [rails61, rails70, pundit21]
+        appraisal: [rails61, rails70, rails80, pundit21]
         include:
           - ruby: '3.0'
             appraisal: rails60
+        exclude:
+          - ruby: 3.1
+            appraisal: rails80
     env:
       PGHOST: localhost
       PGUSER: administrate

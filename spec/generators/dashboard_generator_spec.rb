@@ -140,7 +140,11 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
 
         class Shipment < Administrate::Generators::TestRecord
-          enum status: %i[ready processing shipped]
+          if Rails.gem_version >= Gem::Version.new("7.0")
+            enum :status, %i[ready processing shipped]
+          else
+            enum status: %i[ready processing shipped]
+          end
           reset_column_information
         end
 
@@ -161,7 +165,11 @@ describe Administrate::Generators::DashboardGenerator, :generator do
         end
 
         class Shipment < Administrate::Generators::TestRecord
-          enum status: %i[ready processing shipped]
+          if Rails.gem_version >= Gem::Version.new("7.0")
+            enum :status, %i[ready processing shipped]
+          else
+            enum status: %i[ready processing shipped]
+          end
           reset_column_information
         end
 
