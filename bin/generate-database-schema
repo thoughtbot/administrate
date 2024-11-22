@@ -1,0 +1,37 @@
+#!/bin/sh
+
+set -e
+
+run_in_container() {
+	container_id=$1
+	shift
+	cmd=$*
+
+	docker exec --workdir /app "$container_id" bash -c "$cmd"
+}
+
+ruby_version=$(cat .ruby-version)
+owner=$(whoami)
+
+echo "Starting container using Ruby $ruby_version..."
+container_id=$(
+	docker run --network="host" \
+		--env PGHOST --env PGUSER --env PGPASSWORD \
+		-d -v .:/app ruby:"$ruby_version" sleep infinity
+)
+
+echo "Check the environment is correct..."
+run_in_container "$container_id" "env"
+
+echo "Run bundle install..."
+run_in_container "$container_id" "bundle install"
+
+echo "Running db:setup..."
+run_in_container "$container_id" "bundle exec rake db:setup"
+
+echo "Tidying up container..."
+docker stop "$container_id" > /dev/null
+docker rm "$container_id" > /dev/null
+
+echo "Restoring file permissions..."
+sudo chown -R "$owner" .

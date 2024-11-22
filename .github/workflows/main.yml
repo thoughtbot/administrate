@@ -34,9 +34,28 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup
+      - name: Set up Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Set up JS
+        uses: actions/setup-node@v4
+        with:
+          cache: yarn
+      - name: Install Ruby dependencies
+        run: bundle install
+      - name: Install Appraisal dependencies
+        run: bundle exec appraisal install
+      - name: Install JS dependencies
+        run: yarn install
+      - name: Setup the environment
+        run: cp .sample.env .env
+      - run: cp spec/example_app/config/database.yml.sample spec/example_app/config/database.yml
+      - name: Setup the database
+        run: bundle exec rake db:setup
+      - name: Build assets
+        run: yarn run build && yarn run build:css
       - name: Run tests
         run: bundle exec rspec
 
@@ -70,8 +89,30 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup
+      - name: Setup the environment
+        run: cp .sample.env .env
+      - run: cp spec/example_app/config/database.yml.sample spec/example_app/config/database.yml
+      - name: Prepare main database schema
+        run: bin/generate-database-schema
+      - name: Set up Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-      - name: Appraise Rails ${{ matrix.appraisal }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} rspec
+      - name: Set up JS
+        uses: actions/setup-node@v4
+        with:
+          cache: yarn
+      - name: Remove Ruby version specification
+        run: sed -i 's/^ruby\(.*\)//g' gemfiles/${{ matrix.appraisal }}.gemfile
+      - name: Install Ruby dependencies
+        run: bundle install
+        env:
+          BUNDLE_GEMFILE: gemfiles/${{ matrix.appraisal }}.gemfile
+      - name: Install JS dependencies
+        run: yarn install
+      - name: Build assets
+        run: yarn run build && yarn run build:css
+      - name: Run tests
+        run: bundle exec rspec
+        env:
+          BUNDLE_GEMFILE: gemfiles/${{ matrix.appraisal }}.gemfile
