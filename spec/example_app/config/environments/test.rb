@@ -4,56 +4,52 @@
 # and recreated between test runs. Don't rely on the data there!
 
 Rails.application.configure do
-  config.cache_classes = true
+  # Settings specified here will take precedence over those in
+  # config/application.rb.
 
-  # Do not eager load code on boot. This avoids loading your whole application
-  # just for the purpose of running a single test. If you are using a tool that
-  # preloads Rails for running tests, you may have to set it to true.
-  config.eager_load = false
+  # While tests run files are not watched, reloading is not necessary.
+  config.enable_reloading = false
 
-  # Configure public file server for tests with Cache-Control for performance.
-  if config.respond_to?(:public_file_server)
-    config.public_file_server.enabled = true
-    config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=3600"
-    }
-  else
-    config.serve_static_files = true
-    config.static_cache_control = "public, max-age=3600"
-  end
+  # Eager loading loads your entire application. When running a single test
+  # locally, this is usually not necessary, and can slow down your test suite.
+  # However, it's recommended that you enable it in continuous integration
+  # systems to ensure eager loading is working properly before deploying your
+  # code.
+  config.eager_load = ENV["CI"].present?
 
-  # Show full error reports and disable caching.
+  # Configure public file server for tests with cache-control for performance.
+  config.public_file_server.headers = {"cache-control" => "public, max-age=3600"}
+
+  # Show full error reports.
   config.consider_all_requests_local = true
-  config.action_controller.perform_caching = false
   config.cache_store = :null_store
 
-  # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = false
+  # Render exception templates for rescuable exceptions and raise for other
+  # exceptions.
+  config.action_dispatch.show_exceptions = :rescuable
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
 
+  # Store uploaded files on the local file system in a temporary directory.
+  config.active_storage.service = :test
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  # Log disallowed deprecations.
-  config.active_support.disallowed_deprecation = :log
-
-  # Tell Active Support which deprecation messages to disallow.
-  config.active_support.disallowed_deprecation_warnings = []
-
   # Raises error for missing translations.
-
   if Rails.gem_version <= Gem::Version.new("6.1")
     config.action_view.raise_on_missing_translations = true
   else
     config.i18n.raise_on_missing_translations = true
   end
 
-  if Rails.gem_version >= Gem::Version.new("7.0")
-    config.active_support.cache_format_version = 7.0
-  end
+  # Annotate rendered view with file names.
+  # config.action_view.annotate_rendered_view_with_filenames = true
 
-  # Store uploaded files on the local file system in a temporary directory.
-  config.active_storage.service = :test
+  # Raise error when a before_action's only/except options reference missing
+  # actions.
+  if Rails.gem_version >= Gem::Version.new("7.0")
+    config.action_controller.raise_on_missing_callback_actions = true
+  end
 end
