@@ -1,19 +1,20 @@
 module Administrate
   class Order
-    def initialize(attribute = nil, direction = nil, association_attribute: nil)
+    def initialize(attribute = nil, direction = nil, association_attribute: nil, sorting_column: nil)
       @attribute = attribute
       @direction = sanitize_direction(direction)
-      @association_attribute = association_attribute
+      # @association_attribute = association_attribute
+      @sorting_column = sorting_column || attribute
     end
 
     def apply(relation)
       return order_by_association(relation) unless
         reflect_association(relation).nil?
 
-      order = relation.arel_table[attribute].public_send(direction)
+      order = relation.arel_table[sorting_column].public_send(direction)
 
       return relation.reorder(order) if
-        column_exist?(relation, attribute)
+        column_exist?(relation, sorting_column)
 
       relation
     end
@@ -33,7 +34,7 @@ module Administrate
 
     private
 
-    attr_reader :attribute, :association_attribute
+    attr_reader :attribute, :association_attribute, :sorting_column
 
     def sanitize_direction(direction)
       %w[asc desc].include?(direction.to_s) ? direction.to_sym : :asc
@@ -94,9 +95,9 @@ module Administrate
     end
 
     def ordering_by_association_column?(relation)
-      association_attribute &&
+      (attribute != sorting_column) &&
         column_exist?(
-          reflect_association(relation).klass, association_attribute.to_sym
+          reflect_association(relation).klass, sorting_column.to_sym
         )
     end
 
@@ -113,7 +114,7 @@ module Administrate
     end
 
     def order_by_association_attribute(relation)
-      order_by_association_column(relation, association_attribute)
+      order_by_association_column(relation, sorting_column)
     end
 
     def order_by_association_column(relation, column_name)
