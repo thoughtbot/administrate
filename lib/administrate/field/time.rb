@@ -4,15 +4,16 @@ module Administrate
   module Field
     class Time < Base
       def time
-        return I18n.localize(data, format: format) if options[:format]
-
-        data.strftime("%I:%M%p")
+        I18n.localize(
+          data,
+          format: format
+        )
       end
 
       private
 
       def format
-        options[:format]
+        options.fetch(:format, "%I:%M%p")
       end
     end
   end
