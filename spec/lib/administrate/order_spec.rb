@@ -118,7 +118,7 @@ describe Administrate::Order do
           order = Administrate::Order.new(
             :user,
             nil,
-            association_attribute: "name"
+            sorting_column: "name"
           )
           relation = relation_with_association(
             :belongs_to,
@@ -144,7 +144,7 @@ describe Administrate::Order do
           order = Administrate::Order.new(
             :user,
             nil,
-            association_attribute: "invalid_column_name"
+            sorting_column: "invalid_column_name"
           )
           relation = relation_with_association(
             :belongs_to,
@@ -192,7 +192,7 @@ describe Administrate::Order do
           order = Administrate::Order.new(
             :user,
             nil,
-            association_attribute: "name"
+            sorting_column: "name"
           )
           relation = relation_with_association(
             :has_one,
@@ -218,7 +218,7 @@ describe Administrate::Order do
           order = Administrate::Order.new(
             :user,
             nil,
-            association_attribute: "invalid_column_name"
+            sorting_column: "invalid_column_name"
           )
           relation = relation_with_association(
             :has_one,

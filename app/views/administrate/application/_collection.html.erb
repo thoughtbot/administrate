@@ -23,25 +23,35 @@ to display a collection of resources in an HTML table.
     <tr>
       <% collection_presenter.attribute_types.each do |attr_name, attr_type| %>
         <th class="cell-label
-        cell-label--<%= attr_type.html_class %>
-        cell-label--<%= collection_presenter.ordered_html_class(attr_name) %>
-        cell-label--<%= "#{collection_presenter.resource_name}_#{attr_name}" %>"
-        scope="col"
-        aria-sort="<%= sort_order(collection_presenter.ordered_html_class(attr_name)) %>">
-        <%= link_to(sanitized_order_params(page, collection_field_name).merge(
-          collection_presenter.order_params_for(attr_name, key: collection_field_name)
-        )) do %>
-        <%= t(
-          "helpers.label.#{collection_presenter.resource_name}.#{attr_name}",
-          default: resource_class.human_attribute_name(attr_name).titleize,
-        ) %>
-            <% if collection_presenter.ordered_by?(attr_name) %>
-              <span class="cell-label__sort-indicator cell-label__sort-indicator--<%= collection_presenter.ordered_html_class(attr_name) %>">
-                <svg aria-hidden="true">
-                  <use xlink:href="#icon-up-caret" />
-                </svg>
-              </span>
+          cell-label--<%= attr_type.html_class %>
+          cell-label--<%= collection_presenter.ordered_html_class(attr_name) %>
+          cell-label--<%= "#{collection_presenter.resource_name}_#{attr_name}" %>"
+          scope="col"
+          <% if attr_type.sortable? %>
+            aria-sort="<%= sort_order(collection_presenter.ordered_html_class(attr_name)) %>"
+          <% end %>
+        >
+          <% if attr_type.sortable? %>
+            <%= link_to(sanitized_order_params(page, collection_field_name).merge(
+              collection_presenter.order_params_for(attr_name, key: collection_field_name)
+            )) do %>
+              <%= t(
+                "helpers.label.#{collection_presenter.resource_name}.#{attr_name}",
+                default: resource_class.human_attribute_name(attr_name).titleize,
+              ) %>
+              <% if collection_presenter.ordered_by?(attr_name) %>
+                <span class="cell-label__sort-indicator cell-label__sort-indicator--<%= collection_presenter.ordered_html_class(attr_name) %>">
+                  <svg aria-hidden="true">
+                    <use xlink:href="#icon-up-caret" />
+                  </svg>
+                </span>
+              <% end %>
             <% end %>
+          <% else %>
+            <%= t(
+              "helpers.label.#{collection_presenter.resource_name}.#{attr_name}",
+              default: resource_class.human_attribute_name(attr_name).titleize,
+            ) %>
           <% end %>
         </th>
       <% end %>
