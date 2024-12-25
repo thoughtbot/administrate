@@ -2346,6 +2346,11 @@ button:not(.link):disabled:hover,
 .field-unit--nested .field-unit__label {
   width: 10rem;
 }
+.field-unit--nested .field-unit__hint {
+  font-size: 90%;
+  margin-left: 13rem;
+  width: 100%;
+}
 
 .field-unit--required label::after {
   color: #d32f2f;

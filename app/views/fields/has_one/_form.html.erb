@@ -29,6 +29,13 @@ The form will be rendered as nested_from to parent relationship.
         <% attributes.each do |attribute| %>
           <div class="field-unit field-unit--<%= attribute.html_class %>">
             <%= render_field attribute, f: has_one_f %>
+
+            <% hint_key = "administrate.field_hints.#{field.nested_form.resource_name}.#{attribute.name}" %>
+            <% if I18n.exists?(hint_key) -%>
+              <div class="field-unit__hint">
+                <%= I18n.t(hint_key) %>
+              </div>
+            <% end -%>
           </div>
         <% end %>
       </fieldset>
