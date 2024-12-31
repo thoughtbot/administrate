@@ -4,6 +4,8 @@ appraise "rails60" do
 end
 
 appraise "rails61" do
+  gem "drb"
+  gem "mutex_m"
   gem "rails", "~> 6.1"
 end
 

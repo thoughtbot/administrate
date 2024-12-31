@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "3.2.2" unless ENV["CI"] && !ENV["DIFF_CHECK_APPRAISAL"]
+ruby "3.4.1" unless ENV["CI"] && !ENV["DIFF_CHECK_APPRAISAL"]
 
 gemspec
 
