@@ -1,3 +1,16 @@
+:root {
+  --blue: #53adc6;
+  --red: #cf726e;
+  --green: #5bc89e;
+  --white: #f0f0f0;
+  --code-black: #202020;
+  --code-white: #e0e0dc;
+  --code-green: #b0bf82;
+  --code-blue: #8fbdcc;
+  --code-yellow: #f8d29d;
+  --code-red: #b95c56;
+}
+
 html,
 body {
   font-family: "Lato", serif;
@@ -18,7 +31,7 @@ h3 {
 }
 
 a {
-  color: #53adc6;
+  color: var(--blue);
   text-decoration: none;
 }
 
@@ -43,8 +56,8 @@ a {
 }
 
 .flash-wrapper {
-  background-color: #cf726e;
-  color: #f0f0f0;
+  background-color: var(--red);
+  color: var(--white);
   padding: 1em;
 }
 .flash-wrapper .flash {
@@ -59,31 +72,31 @@ code {
   padding: 0.4em 0.2em 0;
 }
 code.hljs {
-  background-color: #202020;
-  color: #e0e0dc;
+  background-color: var(--code-black);
+  color: var(--code-white);
   padding-left: 1rem;
 }
 code.hljs .hljs-string {
-  color: #b0bf82;
+  color: var(--code-green);
 }
 code.hljs .hljs-subst {
-  color: #e0e0dc;
+  color: var(--code-white);
 }
 code.hljs .hljs-constant {
-  color: #8fbdcc;
+  color: var(--code-blue);
 }
 code.hljs .hljs-symbol {
-  color: #b95c56;
+  color: var(--code-red);
 }
 code.hljs .hljs-keyword {
-  color: #f8d29d;
+  color: var(--code-yellow);
 }
 code.hljs .hljs-title,
 code.hljs .hljs-parent {
-  color: #8fbdcc;
+  color: var(--code-blue);
 }
 code.hljs .hljs-tag {
-  color: #f8d29d;
+  color: var(--code-yellow);
 }
 
 /*# sourceMappingURL=docs.css.map */
