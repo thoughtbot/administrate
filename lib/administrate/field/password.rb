@@ -7,6 +7,10 @@ module Administrate
         false
       end
 
+      def self.sortable?
+        false
+      end
+
       def truncate
         data.to_s.gsub(/./, character)[0...truncation_length]
       end
