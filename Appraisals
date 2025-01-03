@@ -1,4 +1,5 @@
 appraise "rails60" do
+  gem "psych", "< 4"
   gem "rails", "~> 6.0.3.4"
   gem "sprockets-rails", "~> 3.4"
 end
