@@ -17,6 +17,7 @@ class CustomerDashboard < Administrate::BaseDashboard
       searchable_fields: ["name"],
       include_blank: true
     ),
+    example_time: Field::Time,
     password: Field::Password
   }
 
@@ -28,6 +29,7 @@ class CustomerDashboard < Administrate::BaseDashboard
     :email_subscriber,
     :kind,
     :territory,
+    :example_time,
     :password
   ].freeze
 
