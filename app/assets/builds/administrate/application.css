@@ -1880,7 +1880,7 @@ textarea {
 [type=week]:hover,
 input:not([type]):hover,
 textarea:hover {
-  border-color: #b2b3b4;
+  border-color: rgb(178.4, 179.2, 180);
 }
 [type=color]:focus,
 [type=date]:focus,
@@ -1915,7 +1915,7 @@ textarea:focus {
 [type=week]:disabled,
 input:not([type]):disabled,
 textarea:disabled {
-  background-color: #f2f2f2;
+  background-color: rgb(242.25, 242.25, 242.25);
   cursor: not-allowed;
 }
 [type=color]:disabled:hover,
@@ -2106,19 +2106,12 @@ a,
   transition: color 250ms ease-in-out;
   /* stylelint-disable selector-no-qualifying-type */
 }
-a.link--danger,
-.link:is(button,
-[type=button],
-[type=reset],
-[type=submit]).link--danger {
-  color: #d32f2f;
-}
 a:hover,
 .link:is(button,
 [type=button],
 [type=reset],
 [type=submit]):hover {
-  color: #13599e;
+  color: rgb(18.75, 88.5, 157.5);
 }
 a:focus,
 .link:is(button,
@@ -2127,6 +2120,20 @@ a:focus,
 [type=submit]):focus {
   outline: 3px solid rgba(25, 118, 210, 0.6);
   outline-offset: 1px;
+}
+a.link--danger,
+.link:is(button,
+[type=button],
+[type=reset],
+[type=submit]).link--danger {
+  color: #d32f2f;
+}
+a.link--danger:hover,
+.link:is(button,
+[type=button],
+[type=reset],
+[type=submit]).link--danger:hover {
+  color: rgb(168.8, 37.6, 37.6);
 }
 
 hr {
@@ -2217,7 +2224,7 @@ button:not(.link):hover,
 [type=reset]:not(.link):hover,
 [type=submit]:not(.link):hover,
 .button:not(.link):hover {
-  background-color: #145ea8;
+  background-color: rgb(20, 94.4, 168);
   color: #ffffff;
 }
 button:not(.link):focus,
@@ -2246,9 +2253,12 @@ button:not(.link):disabled:hover,
 .button--danger {
   background-color: #d32f2f;
 }
-.button--danger:hover {
-  background-color: #a92626;
+.button--danger:not(.link):hover {
+  background-color: rgb(168.8, 37.6, 37.6);
   color: #ffffff;
+}
+.button--danger:not(.link):disabled:hover {
+  background-color: rgb(168.8, 37.6, 37.6);
 }
 
 .button--nav {
@@ -2354,66 +2364,66 @@ button:not(.link):disabled:hover,
 
 .flash-alert {
   background-color: #fff6bf;
-  color: #66624c;
+  color: rgb(102, 98.4, 76.4);
   display: block;
   margin-bottom: 0.75em;
   padding: 0.75em;
   text-align: center;
 }
 .flash-alert a {
-  color: #4d4a39;
+  color: rgb(76.5, 73.8, 57.3);
   text-decoration: underline;
 }
 .flash-alert a:focus, .flash-alert a:hover {
-  color: #1a1913;
+  color: rgb(25.5, 24.6, 19.1);
 }
 
 .flash-error {
   background-color: #fbe3e4;
-  color: #645b5b;
+  color: rgb(100.4, 90.8, 91.2);
   display: block;
   margin-bottom: 0.75em;
   padding: 0.75em;
   text-align: center;
 }
 .flash-error a {
-  color: #4b4444;
+  color: rgb(75.3, 68.1, 68.4);
   text-decoration: underline;
 }
 .flash-error a:focus, .flash-error a:hover {
-  color: #191717;
+  color: rgb(25.1, 22.7, 22.8);
 }
 
 .flash-notice {
   background-color: #e5edf8;
-  color: #5c5f63;
+  color: rgb(91.6, 94.8, 99.2);
   display: block;
   margin-bottom: 0.75em;
   padding: 0.75em;
   text-align: center;
 }
 .flash-notice a {
-  color: #45474a;
+  color: rgb(68.7, 71.1, 74.4);
   text-decoration: underline;
 }
 .flash-notice a:focus, .flash-notice a:hover {
-  color: #171819;
+  color: rgb(22.9, 23.7, 24.8);
 }
 
 .flash-success {
   background-color: #e6efc2;
-  color: #5c604e;
+  color: rgb(92, 95.6, 77.6);
   display: block;
   margin-bottom: 0.75em;
   padding: 0.75em;
   text-align: center;
 }
 .flash-success a {
-  color: #45483a;
+  color: rgb(69, 71.7, 58.2);
   text-decoration: underline;
 }
 .flash-success a:focus, .flash-success a:hover {
-  color: #171813;
+  color: rgb(23, 23.9, 19.4);
 }
 
 .form-actions {
@@ -2469,7 +2479,7 @@ button:not(.link):disabled:hover,
   margin-bottom: 0.75em;
 }
 .navigation__link:hover {
-  background-color: #eaebeb;
+  background-color: rgb(233.7, 234.65, 234.65);
   border-radius: 4px;
   color: #293f54;
 }
