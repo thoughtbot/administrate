@@ -52,9 +52,13 @@ button,
 .button--danger {
   background-color: $red;
 
-  &:hover {
+  &:not(.link):hover {
     background-color: mix($black, $red, 20%);
     color: $white;
+  }
+
+  &:not(.link):disabled:hover {
+    background-color: mix($black, $red, 20%);
   }
 }
 
