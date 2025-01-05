@@ -1814,11 +1814,11 @@ trix-editor .attachment__metadata .attachment__size {
   --light-blue: #e5edf8;
   --grey-0: #f6f7f7;
   --grey-1: #dfe0e1;
-  --grey-2: $grey-2;
-  --grey-5: $grey-5;
-  --grey-7: $grey-7;
-  --hint-grey: $hint-grey;
-  --base-font-color: $base-font-color;
+  --grey-2: #cfd8dc;
+  --grey-5: #adb5bd;
+  --grey-7: #293f54;
+  --hint-grey: #7b808c;
+  --base-font-color: var(--grey-7);
   --action-color: var(--blue);
   --base-background-color: var(--grey-0);
   --focus-outline-color: rgb(from var(--action-color) r g b / 0.4);
@@ -2102,7 +2102,7 @@ td img {
 }
 
 body {
-  color: #293f54;
+  color: var(--base-font-color);
   font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 1em;
   line-height: 1.5;
@@ -2176,7 +2176,7 @@ hr {
 }
 
 .attribute-label {
-  color: #7b808c;
+  color: var(--hint-grey);
   font-size: 0.8em;
   font-weight: 400;
   letter-spacing: 0.0357em;
@@ -2288,7 +2288,7 @@ button:not(.link):disabled:hover,
   margin-left: 5px;
 }
 .cell-label__sort-indicator svg {
-  fill: #7b808c;
+  fill: var(--hint-grey);
   height: 13px;
   transition: transform 250ms ease-in-out;
   width: 13px;
@@ -2486,7 +2486,7 @@ button:not(.link):disabled:hover,
 
 .navigation__link {
   background-color: transparent;
-  color: #293f54;
+  color: var(--base-font-color);
   display: block;
   line-height: 1;
   margin-left: -0.6em;
@@ -2499,7 +2499,7 @@ button:not(.link):disabled:hover,
 .navigation__link:hover {
   background-color: color-mix(var(--black) 5%, var(--base-background-color));
   border-radius: 4px;
-  color: #293f54;
+  color: var(--base-font-color);
 }
 
 .navigation__link--active {
@@ -2538,7 +2538,7 @@ button:not(.link):disabled:hover,
 }
 
 .search__eyeglass-icon {
-  fill: #293f54;
+  fill: var(--grey-7);
   height: 1rem;
   left: 1rem;
   position: absolute;
@@ -2557,7 +2557,7 @@ button:not(.link):disabled:hover,
 }
 
 .search__clear-icon {
-  fill: #adb5bd;
+  fill: var(--grey-5);
   height: 1rem;
   position: absolute;
   transition: fill 250ms ease-in-out;

@@ -1,17 +1,5 @@
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 
-// Colors
-
-$grey-1: #dfe0e1 !default;
-$grey-2: #cfd8dc !default;
-$grey-5: #adb5bd !default;
-$grey-7: #293f54 !default;
-
-$hint-grey: #7b808c !default;
-
-// Font Colors
-$base-font-color: $grey-7 !default;
-
 :root {
   --white: #ffffff;
   --black: #000000;
@@ -25,14 +13,14 @@ $base-font-color: $grey-7 !default;
 
   --grey-0: #f6f7f7;
   --grey-1: #dfe0e1;
-  --grey-2: $grey-2;
-  --grey-5: $grey-5;
-  --grey-7: $grey-7;
+  --grey-2: #cfd8dc;
+  --grey-5: #adb5bd;
+  --grey-7: #293f54;
 
-  --hint-grey: $hint-grey;
+  --hint-grey: #7b808c;
 
   // Font Colors
-  --base-font-color: $base-font-color;
+  --base-font-color: var(--grey-7);
   --action-color: var(--blue);
 
   // Background Colors
