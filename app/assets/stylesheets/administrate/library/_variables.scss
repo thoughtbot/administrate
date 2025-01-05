@@ -17,9 +17,6 @@ $flashes: (
   "success": var(--light-green)
 ) !default;
 
-// Border
-$base-border: 1px solid var(--base-border-color) !default;
-
 /* stylelint-enable scss/dollar-variable-empty-line-before */
 
 :root {
@@ -73,6 +70,8 @@ $base-border: 1px solid var(--base-border-color) !default;
   --base-border-color: var(--grey-1);
   --box-shadow-color-1: rgb(0, 0, 0, 0.12);
   --box-shadow-color-2: rgb(0, 0, 0, 0.2);
+
+  --base-border: 1px solid var(--base-border-color);
 
   // Transitions
   --base-duration: 250ms;
