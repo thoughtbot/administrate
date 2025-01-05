@@ -2,8 +2,6 @@
 
 // Typography
 
-$base-font-size: 1em !default;
-
 $bold-font-weight: 700 !default;
 
 $base-line-height: 1.5 !default;
@@ -37,6 +35,8 @@ $base-timing: ease-in-out !default;
   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
   --heading-font-family: $base-font-family;
+
+  --base-font-size: 1em;
 
   // Other sizes
 
