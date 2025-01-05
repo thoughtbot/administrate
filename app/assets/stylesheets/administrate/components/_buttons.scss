@@ -4,10 +4,10 @@ button,
 [type="submit"],
 .button {
   appearance: none;
-  background-color: $action-color;
+  background-color: var(--action-color);
   border: 0;
   border-radius: $base-border-radius;
-  color: $white;
+  color: var(--white);
   cursor: pointer;
   display: inline-block;
   font-family: $base-font-family;
@@ -28,17 +28,17 @@ button,
   }
 
   &:not(.link):hover {
-    background-color: mix($black, $action-color, 20%);
-    color: $white;
+    background-color: color-mix(in srgb, var(--black) 20%, var(--action-color));
+    color: var(--white);
   }
 
   &:not(.link):focus {
-    outline: $focus-outline;
-    outline-offset: $focus-outline-offset;
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
   }
 
   &:not(.link):disabled:hover {
-    background-color: $action-color;
+    background-color: var(--action-color);
   }
 }
 
@@ -53,8 +53,8 @@ button,
   background-color: $red;
 
   &:hover {
-    background-color: mix($black, $red, 20%);
-    color: $white;
+    background-color: color-mix(in srgb, var(--black) 20%, var(--red));
+    color: var(--white);
   }
 }
 

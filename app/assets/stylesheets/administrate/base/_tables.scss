@@ -28,8 +28,8 @@ tbody tr {
   }
 
   &:focus {
-    outline: $focus-outline;
-    outline-offset: -($focus-outline-width);
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-inset);
   }
 }
 

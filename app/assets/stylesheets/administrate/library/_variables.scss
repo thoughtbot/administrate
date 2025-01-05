@@ -1,26 +1,6 @@
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 
-// Typography
-$base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
-  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif !default;
-$heading-font-family: $base-font-family !default;
-
-$base-font-size: 1em !default;
-
-$bold-font-weight: 700 !default;
-
-$base-line-height: 1.5 !default;
-$heading-line-height: 1.2 !default;
-
-// Other Sizes
-$base-border-radius: 4px !default;
-$base-spacing: $base-line-height * 1em !default;
-$small-spacing: $base-spacing * 0.5 !default;
-
 // Colors
-$white: #ffffff !default;
-$black: #000000 !default;
 
 $blue: #1976d2 !default;
 $red: #d32f2f !default;
@@ -39,28 +19,84 @@ $hint-grey: #7b808c !default;
 
 // Font Colors
 $base-font-color: $grey-7 !default;
-$action-color: $blue !default;
 
 // Background Colors
 $base-background-color: $grey-0 !default;
 
 // Focus
-$focus-outline-color: transparentize($action-color, 0.4);
-$focus-outline-width: 3px;
-$focus-outline: $focus-outline-width solid $focus-outline-color;
-$focus-outline-offset: 1px;
-
-// Flash Colors
-$flashes: (
-  "alert": $light-yellow,
-  "error": $light-red,
-  "notice": $light-blue,
-  "success": $light-green
-) !default;
+// $focus-outline-color: transparentize($action-color, 0.4);
 
 // Border
 $base-border-color: $grey-1 !default;
-$base-border: 1px solid $base-border-color !default;
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+
+  --blue: #1976d2;
+  --red: #d32f2f;
+  --light-yellow: $light-yellow;
+  --light-red: $light-red;
+  --light-green: $light-green;
+  --light-blue: $light-blue;
+
+  --grey-0: $grey-0;
+  --grey-1: #dfe0e1;
+  --grey-2: $grey-2;
+  --grey-5: $grey-5;
+  --grey-7: $grey-7;
+
+  --hint-grey: $hint-grey;
+
+  // Font Colors
+  --base-font-color: $base-font-color;
+  --action-color: var(--blue);
+
+  // Background Colors
+  --base-background-color: $base-background-color;
+
+  // Focus
+  --focus-outline-color: rgb(from var(--action-color) r g b / 0.4);
+  --focus-outline-width: 3px;
+  --focus-outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  --focus-outline-offset: 1px;
+  --focus-outline-inset: calc(-1 * var(--focus-outline-offset));
+
+  // Border
+  --base-border-color: var(--grey-1);
+
+  --box-shadow-color-1: rgb(0, 0, 0, 0.12);
+  --box-shadow-color-2: rgb(0, 0, 0, 0.2);
+}
+
+// Typography
+$base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
+  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif !default;
+$heading-font-family: $base-font-family !default;
+
+$base-font-size: 1em !default;
+
+$bold-font-weight: 700 !default;
+
+$base-line-height: 1.5 !default;
+$heading-line-height: 1.2 !default;
+
+// Other Sizes
+$base-border-radius: 4px !default;
+$base-spacing: $base-line-height * 1em !default;
+$small-spacing: $base-spacing * 0.5 !default;
+
+// Flash Colors
+$flashes: (
+  "alert": var(--light-yellow),
+  "error": var(--light-red),
+  "notice": var(--light-blue),
+  "success": var(--light-green)
+) !default;
+
+// Border
+$base-border: 1px solid var(--base-border-color) !default;
 
 // Transitions
 $base-duration: 250ms !default;

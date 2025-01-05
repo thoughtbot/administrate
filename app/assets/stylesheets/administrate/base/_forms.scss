@@ -52,7 +52,7 @@ textarea {
 input:not([type]),
 textarea {
   appearance: none;
-  background-color: $white;
+  background-color: var(--white);
   border: $base-border;
   border-radius: $base-border-radius;
   padding: 0.5em;
@@ -60,16 +60,16 @@ textarea {
   width: 100%;
 
   &:hover {
-    border-color: mix($black, $base-border-color, 20%);
+    border-color: color-mix(in srgb, var(--black) 20%, var(--base-border-color));
   }
 
   &:focus {
-    border-color: $action-color;
+    border-color: var(--action-color);
     outline: none;
   }
 
   &:disabled {
-    background-color: mix($black, $white, 5%);
+    background-color: color-mix(in srgb, var(--black) 5%, var(--white));
     cursor: not-allowed;
 
     &:hover {
@@ -101,7 +101,7 @@ select {
 [type="file"],
 select {
   &:focus {
-    outline: $focus-outline;
-    outline-offset: $focus-outline-offset;
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
   }
 }

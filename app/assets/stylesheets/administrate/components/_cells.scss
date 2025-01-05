@@ -22,11 +22,11 @@
 
   &:hover {
     a {
-      color: $action-color;
+      color: var(--action-color);
     }
 
     svg {
-      fill: $action-color;
+      fill: var(--action-color);
       transform: rotate(180deg);
     }
   }

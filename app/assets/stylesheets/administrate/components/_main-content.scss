@@ -1,8 +1,8 @@
 .main-content {
-  background-color: $white;
+  background-color: var(--white);
   border-radius: $base-border-radius;
-  box-shadow: 0 0 6px 0 rgba($black, 0.12),
-              0 2px 2px rgba($black, 0.2);
+  box-shadow: 0 0 6px 0 var(--box-shadow-color-1),
+              0 2px 2px var(--box-shadow-color-2);
   flex: 1 1 100%;
   min-width: 800px;
   padding-bottom: 10vh;
