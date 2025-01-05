@@ -1,9 +1,6 @@
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 
 // Typography
-
-$bold-font-weight: 700 !default;
-
 $base-line-height: 1.5 !default;
 $heading-line-height: 1.2 !default;
 
@@ -34,9 +31,10 @@ $base-timing: ease-in-out !default;
   --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
-  --heading-font-family: $base-font-family;
+  --heading-font-family: var(--base-font-family);
 
   --base-font-size: 1em;
+  --bold-font-weight: 700;
 
   // Other sizes
 

@@ -34,7 +34,7 @@
 
 .cell-label--asc,
 .cell-label--desc {
-  font-weight: $bold-font-weight;
+  font-weight: var(--bold-font-weight);
 }
 
 .cell-label__sort-indicator--desc {
