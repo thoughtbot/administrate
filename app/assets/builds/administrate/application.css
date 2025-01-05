@@ -1808,10 +1808,10 @@ trix-editor .attachment__metadata .attachment__size {
   --black: #000000;
   --blue: #1976d2;
   --red: #d32f2f;
-  --light-yellow: $light-yellow;
-  --light-red: $light-red;
-  --light-green: $light-green;
-  --light-blue: $light-blue;
+  --light-yellow: #fff6bf;
+  --light-red: #fbe3e4;
+  --light-green: #e6efc2;
+  --light-blue: #e5edf8;
   --grey-0: $grey-0;
   --grey-1: #dfe0e1;
   --grey-2: $grey-2;
@@ -2139,7 +2139,7 @@ a.link--danger,
 [type=button],
 [type=reset],
 [type=submit]).link--danger {
-  color: #d32f2f;
+  color: var(--red);
 }
 a:hover,
 .link:is(button,
@@ -2272,7 +2272,7 @@ button:not(.link):disabled:hover,
 }
 
 .button--danger {
-  background-color: #d32f2f;
+  background-color: var(--red);
 }
 .button--danger:hover {
   background-color: color-mix(in srgb, var(--black) 20%, var(--red));
@@ -2376,7 +2376,7 @@ button:not(.link):disabled:hover,
 }
 
 .field-unit--required label::after {
-  color: #d32f2f;
+  color: var(--red);
   content: " *";
 }
 

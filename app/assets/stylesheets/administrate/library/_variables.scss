@@ -2,13 +2,6 @@
 
 // Colors
 
-// $blue: #1976d2 !default;
-$red: #d32f2f !default;
-$light-yellow: #fff6bf !default;
-$light-red: #fbe3e4 !default;
-$light-green: #e6efc2 !default;
-$light-blue: #e5edf8 !default;
-
 $grey-0: #f6f7f7 !default;
 $grey-1: #dfe0e1 !default;
 $grey-2: #cfd8dc !default;
@@ -32,10 +25,10 @@ $base-border-color: $grey-1 !default;
 
   --blue: #1976d2;
   --red: #d32f2f;
-  --light-yellow: $light-yellow;
-  --light-red: $light-red;
-  --light-green: $light-green;
-  --light-blue: $light-blue;
+  --light-yellow: #fff6bf;
+  --light-red: #fbe3e4;
+  --light-green: #e6efc2;
+  --light-blue: #e5edf8;
 
   --grey-0: $grey-0;
   --grey-1: #dfe0e1;

@@ -50,7 +50,7 @@ button,
 }
 
 .button--danger {
-  background-color: $red;
+  background-color: var(--red);
 
   &:hover {
     background-color: color-mix(in srgb, var(--black) 20%, var(--red));
