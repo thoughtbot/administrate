@@ -20,10 +20,6 @@ $flashes: (
 // Border
 $base-border: 1px solid var(--base-border-color) !default;
 
-// Transitions
-$base-duration: 250ms !default;
-$base-timing: ease-in-out !default;
-
 /* stylelint-enable scss/dollar-variable-empty-line-before */
 
 :root {
@@ -79,4 +75,6 @@ $base-timing: ease-in-out !default;
   --box-shadow-color-2: rgb(0, 0, 0, 0.2);
 
   // Transitions
+  --base-duration: 250ms;
+  --base-timing: ease-in-out;
 }
