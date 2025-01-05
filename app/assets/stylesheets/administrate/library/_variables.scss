@@ -9,14 +9,6 @@ $base-border-radius: 4px !default;
 $base-spacing: $base-line-height * 1em !default;
 $small-spacing: $base-spacing * 0.5 !default;
 
-// Flash Colors
-$flashes: (
-  "alert": var(--light-yellow),
-  "error": var(--light-red),
-  "notice": var(--light-blue),
-  "success": var(--light-green)
-) !default;
-
 /* stylelint-enable scss/dollar-variable-empty-line-before */
 
 :root {
@@ -64,8 +56,6 @@ $flashes: (
   --focus-outline-offset: 1px;
   --focus-outline-inset: calc(-1 * var(--focus-outline-offset));
 
-  // Flash Colors
-
   // Border
   --base-border-color: var(--grey-1);
   --box-shadow-color-1: rgb(0, 0, 0, 0.12);
@@ -77,3 +67,11 @@ $flashes: (
   --base-duration: 250ms;
   --base-timing: ease-in-out;
 }
+
+// Flash Colors
+$flashes: (
+  "alert": var(--light-yellow),
+  "error": var(--light-red),
+  "notice": var(--light-blue),
+  "success": var(--light-green)
+) !default;
