@@ -2,7 +2,6 @@
 
 // Colors
 
-$grey-0: #f6f7f7 !default;
 $grey-1: #dfe0e1 !default;
 $grey-2: #cfd8dc !default;
 $grey-5: #adb5bd !default;
@@ -12,9 +11,6 @@ $hint-grey: #7b808c !default;
 
 // Font Colors
 $base-font-color: $grey-7 !default;
-
-// Background Colors
-$base-background-color: $grey-0 !default;
 
 // Border
 $base-border-color: $grey-1 !default;
@@ -30,7 +26,7 @@ $base-border-color: $grey-1 !default;
   --light-green: #e6efc2;
   --light-blue: #e5edf8;
 
-  --grey-0: $grey-0;
+  --grey-0: #f6f7f7;
   --grey-1: #dfe0e1;
   --grey-2: $grey-2;
   --grey-5: $grey-5;
@@ -43,7 +39,7 @@ $base-border-color: $grey-1 !default;
   --action-color: var(--blue);
 
   // Background Colors
-  --base-background-color: $base-background-color;
+  --base-background-color: var(--grey-0);
 
   // Focus
   --focus-outline-color: rgb(from var(--action-color) r g b / 0.4);

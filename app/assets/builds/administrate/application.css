@@ -1812,7 +1812,7 @@ trix-editor .attachment__metadata .attachment__size {
   --light-red: #fbe3e4;
   --light-green: #e6efc2;
   --light-blue: #e5edf8;
-  --grey-0: $grey-0;
+  --grey-0: #f6f7f7;
   --grey-1: #dfe0e1;
   --grey-2: $grey-2;
   --grey-5: $grey-5;
@@ -1820,7 +1820,7 @@ trix-editor .attachment__metadata .attachment__size {
   --hint-grey: $hint-grey;
   --base-font-color: $base-font-color;
   --action-color: var(--blue);
-  --base-background-color: $base-background-color;
+  --base-background-color: var(--grey-0);
   --focus-outline-color: rgb(from var(--action-color) r g b / 0.4);
   --focus-outline-width: 3px;
   --focus-outline: var(--focus-outline-width) solid var(--focus-outline-color);
@@ -2004,7 +2004,7 @@ select:focus {
 }
 
 html {
-  background-color: #f6f7f7;
+  background-color: var(--base-background-color);
   box-sizing: border-box;
 }
 
@@ -2067,7 +2067,7 @@ tr {
 }
 
 tbody tr:hover {
-  background-color: #f6f7f7;
+  background-color: var(--base-background-color);
 }
 tbody tr [role=link] {
   cursor: pointer;
@@ -2497,7 +2497,7 @@ button:not(.link):disabled:hover,
   margin-bottom: 0.75em;
 }
 .navigation__link:hover {
-  background-color: color-mix(var(--black) 5%, #f6f7f7);
+  background-color: color-mix(var(--black) 5%, var(--base-background-color));
   border-radius: 4px;
   color: #293f54;
 }
