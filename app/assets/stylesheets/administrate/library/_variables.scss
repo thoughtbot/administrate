@@ -1,6 +1,46 @@
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 
+// Typography
+
+$base-font-size: 1em !default;
+
+$bold-font-weight: 700 !default;
+
+$base-line-height: 1.5 !default;
+$heading-line-height: 1.2 !default;
+
+// Other Sizes
+$base-border-radius: 4px !default;
+$base-spacing: $base-line-height * 1em !default;
+$small-spacing: $base-spacing * 0.5 !default;
+
+// Flash Colors
+$flashes: (
+  "alert": var(--light-yellow),
+  "error": var(--light-red),
+  "notice": var(--light-blue),
+  "success": var(--light-green)
+) !default;
+
+// Border
+$base-border: 1px solid var(--base-border-color) !default;
+
+// Transitions
+$base-duration: 250ms !default;
+$base-timing: ease-in-out !default;
+
+/* stylelint-enable scss/dollar-variable-empty-line-before */
+
 :root {
+  // Typography
+  --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
+  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  --heading-font-family: $base-font-family;
+
+  // Other sizes
+
+  // Colors
   --white: #ffffff;
   --black: #000000;
 
@@ -33,44 +73,12 @@
   --focus-outline-offset: 1px;
   --focus-outline-inset: calc(-1 * var(--focus-outline-offset));
 
+  // Flash Colors
+
   // Border
   --base-border-color: var(--grey-1);
-
   --box-shadow-color-1: rgb(0, 0, 0, 0.12);
   --box-shadow-color-2: rgb(0, 0, 0, 0.2);
+
+  // Transitions
 }
-
-// Typography
-$base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
-  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif !default;
-$heading-font-family: $base-font-family !default;
-
-$base-font-size: 1em !default;
-
-$bold-font-weight: 700 !default;
-
-$base-line-height: 1.5 !default;
-$heading-line-height: 1.2 !default;
-
-// Other Sizes
-$base-border-radius: 4px !default;
-$base-spacing: $base-line-height * 1em !default;
-$small-spacing: $base-spacing * 0.5 !default;
-
-// Flash Colors
-$flashes: (
-  "alert": var(--light-yellow),
-  "error": var(--light-red),
-  "notice": var(--light-blue),
-  "success": var(--light-green)
-) !default;
-
-// Border
-$base-border: 1px solid var(--base-border-color) !default;
-
-// Transitions
-$base-duration: 250ms !default;
-$base-timing: ease-in-out !default;
-
-/* stylelint-enable scss/dollar-variable-empty-line-before */
