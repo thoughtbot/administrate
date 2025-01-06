@@ -189,7 +189,6 @@ GEM
     kaminari-i18n (0.5.0)
       kaminari
       rails
-    kgio (2.11.4)
     language_server-protocol (3.17.0.3)
     launchy (3.0.1)
       addressable (~> 2.8)
@@ -232,6 +231,8 @@ GEM
       date
       stringio
     public_suffix (6.0.1)
+    puma (6.5.0)
+      nio4r (~> 2.0)
     pundit (2.4.0)
       activesupport (>= 3.0.0)
     racc (1.8.1)
@@ -276,7 +277,6 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
-    raindrops (0.20.1)
     rake (13.2.1)
     rdoc (6.10.0)
       psych (>= 4.0.0)
@@ -367,9 +367,6 @@ GEM
     uglifier (4.2.1)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (2.6.0)
-    unicorn (6.1.0)
-      kgio (~> 2.6)
-      raindrops (~> 0.7)
     uri (1.0.2)
     useragent (0.16.11)
     webmock (3.24.0)
@@ -411,6 +408,7 @@ DEPENDENCIES
   kaminari-i18n
   launchy
   pg
+  puma
   pundit
   rack-timeout
   redcarpet
@@ -422,7 +420,6 @@ DEPENDENCIES
   standard
   timecop
   uglifier
-  unicorn
   webmock
   webrick
   xpath (= 3.2.0)
