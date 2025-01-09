@@ -7,6 +7,10 @@ module Administrate
         false
       end
 
+      def search_requires_string_cast?
+        false
+      end
+
       def truncate
         data.to_s[0...truncation_length]
       end

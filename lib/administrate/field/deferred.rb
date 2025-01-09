@@ -41,6 +41,26 @@ module Administrate
         end
       end
 
+      def search_exact?
+        if options.key?(:getter)
+          false
+        else
+          options.fetch(:search_exact, deferred_class.search_exact?)
+        end
+      end
+
+      def search_lower?
+        if options.key?(:getter)
+          false
+        else
+          options.fetch(:searchable, deferred_class.searchable?)
+        end
+      end
+
+      def search_requires_string_cast?
+        deferred_class.search_requires_string_cast?
+      end
+
       def searchable_field
         Administrate.deprecator.warn(
           "searchable_field is deprecated, use searchable_fields instead"
