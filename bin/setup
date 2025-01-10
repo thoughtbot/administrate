@@ -13,6 +13,7 @@ if [ ! -e "$DB_CONFIG_PATH" ]; then
 fi
 
 gem install bundler --conservative
+bundle install
 bundle exec appraisal install
 yarn install
 
