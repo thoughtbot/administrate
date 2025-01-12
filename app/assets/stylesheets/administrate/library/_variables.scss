@@ -58,9 +58,6 @@ $small-spacing: $base-spacing * 0.5 !default;
 
   // Border
   --base-border-color: var(--grey-1);
-  --box-shadow-color-1: rgb(0, 0, 0, 0.12);
-  --box-shadow-color-2: rgb(0, 0, 0, 0.2);
-
   --base-border: 1px solid var(--base-border-color);
 
   // Transitions

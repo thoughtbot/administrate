@@ -1834,8 +1834,6 @@ trix-editor .attachment__metadata .attachment__size {
   --focus-outline-offset: 1px;
   --focus-outline-inset: calc(-1 * var(--focus-outline-offset));
   --base-border-color: var(--grey-1);
-  --box-shadow-color-1: rgb(0, 0, 0, 0.12);
-  --box-shadow-color-2: rgb(0, 0, 0, 0.2);
   --base-border: 1px solid var(--base-border-color);
   --base-duration: 250ms;
   --base-timing: ease-in-out;
@@ -2460,7 +2458,7 @@ button:not(.link):disabled:hover,
 .main-content {
   background-color: var(--white);
   border-radius: 4px;
-  box-shadow: 0 0 6px 0 var(--box-shadow-color-1), 0 2px 2px var(--box-shadow-color-2);
+  box-shadow: 0 0 6px 0 rgb(from var(--black) r g b/0.12), 0 2px 2px rgb(from var(--black) r g b/0.2);
   flex: 1 1 100%;
   min-width: 800px;
   padding-bottom: 10vh;
