@@ -16,6 +16,19 @@ feature "Search" do
     expect(page).not_to have_content(mismatch.email)
   end
 
+  scenario "admin searches for customer by exact name", :js do
+    query = "perfect"
+    perfect_match = create(:customer, email: "bar@baz.com", name: "Perfect")
+    mismatch = create(:customer, email: "foobar@baz.com", name: "Perfectionist")
+
+    visit admin_customers_path
+    fill_in :search, with: query
+    submit_search
+
+    expect(page).to have_content(perfect_match.email)
+    expect(page).not_to have_content(mismatch.email)
+  end
+
   scenario "admin searches for order by id", :js do
     # Long, predictable ids to avoid simple numbers matching more than one thing
     orders = Array.new(4) { |i| create(:order, id: (i + 1).to_s * 7) }
@@ -33,7 +46,7 @@ feature "Search" do
 
   scenario "admin searches across different fields", :js do
     query = "dan"
-    name_match = create(:customer, name: "Dan Croak", email: "foo@bar.com")
+    name_match = create(:customer, name: "Dan", email: "foo@bar.com")
     email_match = create(:customer, name: "foo", email: "dan@thoughtbot.com")
     mismatch = create(:customer)
 

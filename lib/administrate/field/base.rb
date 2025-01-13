@@ -20,6 +20,16 @@ module Administrate
         false
       end
 
+      # RINSED: add support for exact matches only in search for query efficiency
+      # eg. searching by email address in the (very large) emails table
+      def self.search_exact?
+        false
+      end
+
+      def self.search_lower?
+        true
+      end
+
       def self.field_type
         to_s.split("::").last.underscore
       end

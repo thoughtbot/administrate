@@ -40,9 +40,12 @@ default_job: &default_job
   working_directory: ~/administrate
   steps:
     - shared_steps
+    # NOTE: the following steps have been commented out temporarily because of a breaking change in the appraisal gem
+    # Its dependencies can no longer successfully be met and attempts to install it will fail.
+    #
     # Run the tests against multiple versions of Rails
-    - run: bundle exec appraisal install
-    - run: bundle exec appraisal rspec
+    # - run: bundle exec appraisal install
+    # - run: bundle exec appraisal rspec
 
 jobs:
   ruby-26:

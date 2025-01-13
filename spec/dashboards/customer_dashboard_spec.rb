@@ -17,7 +17,7 @@ describe CustomerDashboard do
 
       fields = dashboard.attribute_types
 
-      expect(fields[:name]).to eq(Field::String)
+      expect(fields[:name]).to eq(Field::String.with_options(search_exact: true))
       expect(fields[:email]).to eq(Field::Email)
       expect(fields[:lifetime_value]).
         to eq(Field::Number.with_options(prefix: "$", decimals: 2))
@@ -33,7 +33,7 @@ describe CustomerDashboard do
       it "returns the attribute field" do
         dashboard = CustomerDashboard.new
         field = dashboard.attribute_type_for(:name)
-        expect(field).to eq Administrate::Field::String
+        expect(field).to eq Administrate::Field::String.with_options(search_exact: true)
       end
     end
 
@@ -52,7 +52,7 @@ describe CustomerDashboard do
         dashboard = CustomerDashboard.new
         fields = dashboard.attribute_types_for([:name, :email])
         expect(fields).to match(
-          name: Administrate::Field::String,
+          name: Administrate::Field::String.with_options(search_exact: true),
           email: Administrate::Field::Email,
         )
       end

@@ -29,6 +29,16 @@ module Administrate
         options.fetch(:searchable, deferred_class.searchable?)
       end
 
+      # RINSED: add support for exact matches only in search for query efficiency
+      # eg. searching by email address in the (very large) emails table
+      def search_exact?
+        options.fetch(:search_exact, deferred_class.search_exact?)
+      end
+
+      def search_lower?
+        options.fetch(:search_lower, deferred_class.search_lower?)
+      end
+
       def searchable_field
         ActiveSupport::Deprecation.warn(
           "searchable_field is deprecated, use searchable_fields instead",

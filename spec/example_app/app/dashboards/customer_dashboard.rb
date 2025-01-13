@@ -7,7 +7,11 @@ class CustomerDashboard < Administrate::BaseDashboard
     email: Field::Email,
     email_subscriber: Field::Boolean,
     lifetime_value: Field::Number.with_options(prefix: "$", decimals: 2),
-    name: Field::String,
+
+    # RINSED: add support for exact matches only in search for query efficiency
+    # eg. searching by email address in the (very large) emails table
+    name: Field::String.with_options(search_exact: true),
+
     orders: Field::HasMany.with_options(limit: 2, sort_by: :id),
     log_entries: Field::HasManyVariant.with_options(limit: 2, sort_by: :id),
     updated_at: Field::DateTime,
