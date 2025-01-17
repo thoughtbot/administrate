@@ -2265,6 +2265,18 @@ button:not(.link):disabled:hover,
   margin-bottom: 1.5em;
 }
 
+.button--tooltip {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  /* stylelint-disable declaration-no-important */
+}
+.button--tooltip:hover {
+  background-color: unset !important;
+}
+
 .cell-label__sort-indicator {
   float: right;
   margin-left: 5px;
@@ -2546,6 +2558,44 @@ button:not(.link):disabled:hover,
 }
 .search__clear-icon:hover {
   color: #1976d2;
+}
+
+.search__tooltip {
+  anchor-name: --tooltip-anchor;
+  margin-right: 2rem;
+}
+.search__tooltip svg {
+  color: #adb5bd;
+  height: 24px;
+  width: 24px;
+}
+.search__tooltip svg:hover {
+  color: #1976d2;
+}
+
+.search__tooltip-popover {
+  background-color: #1976d2;
+  border-color: #1976d2;
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 2rem;
+  width: max-content;
+}
+
+/* We can remove this stylelint disable (and the css-anchor-positioning polyfill)
+   when position-anchor becomes widely available */
+/* stylelint-disable property-no-unknown */
+.search__tooltip-popover-positioning {
+  left: anchor(center);
+  margin: 1rem;
+  position: fixed;
+  position-anchor: --tooltip-anchor;
+  top: anchor(bottom);
+  transform: translateX(-50%);
+}
+
+.search__tooltip-popover-value {
+  opacity: 0.5;
 }
 
 /*# sourceMappingURL=application.css.map */
