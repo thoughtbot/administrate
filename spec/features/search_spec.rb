@@ -25,6 +25,54 @@ feature "Search" do
     end
   end
 
+  describe "search bar tooltip" do
+    def have_a_search_tooltip
+      have_css("button[popovertarget=search-tooltip]")
+    end
+
+    def search_tooltip_icon
+      find("button[popovertarget=search-tooltip]")
+    end
+
+    it "is visible when the current dashboard has collection filters" do
+      visit admin_customers_path
+
+      expect(page).to have_a_search_tooltip
+    end
+
+    context "when clicked" do
+      it "shows a popover with the available filters" do
+        visit admin_customers_path
+
+        search_tooltip_icon.click
+
+        expect(page).to have_content("Use filters to refine your search")
+        expect(page).to have_content("vip:<value>")
+        expect(page).to have_content("kind:<value>")
+      end
+    end
+
+    it "is hidden when the current dashboard has no collection filters" do
+      stub_const("CustomerDashboard::COLLECTION_FILTERS", {})
+
+      visit admin_customers_path
+
+      expect(page).not_to have_a_search_tooltip
+    end
+
+    it "is hidden when nothing is searchable in the current dashboard" do
+      CustomerDashboard::ATTRIBUTE_TYPES.each do |_name, field_class|
+        allow(field_class).to(
+          receive(:searchable?).and_return(false)
+        )
+      end
+
+      visit admin_customers_path
+
+      expect(page).not_to have_a_search_tooltip
+    end
+  end
+
   scenario "admin searches for customer by email", :js do
     query = "bar@baz.com"
     perfect_match = create(:customer, email: "bar@baz.com")

@@ -2255,6 +2255,17 @@ button:not(.link):disabled:hover,
   margin-bottom: 1.5em;
 }
 
+.button--tooltip {
+  background: none;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.button--tooltip:hover {
+  background-color: unset !important;
+}
+
 .cell-label__sort-indicator {
   float: right;
   margin-left: 5px;
@@ -2537,6 +2548,38 @@ button:not(.link):disabled:hover,
 }
 .search__clear-icon:hover {
   fill: #1976d2;
+}
+
+.search__tooltip {
+  margin-right: 2rem;
+  anchor-name: --tooltip-anchor;
+}
+.search__tooltip svg {
+  height: 24px;
+  width: 24px;
+  fill: #adb5bd;
+}
+.search__tooltip svg:hover {
+  fill: #1976d2;
+}
+
+.search__tooltip-popover {
+  position-anchor: --tooltip-anchor;
+  position: fixed;
+  top: anchor(bottom);
+  left: anchor(center);
+  transform: translateX(-50%);
+  margin: 1rem;
+  padding: 2rem;
+  border-color: #1976d2;
+  background-color: #1976d2;
+  color: #ffffff;
+  border-radius: 4px;
+  width: max-content;
+}
+
+.search__tooltip-popover-value {
+  opacity: 0.5;
 }
 
 /*# sourceMappingURL=application.css.map */

@@ -44,3 +44,38 @@ $search-icon-size: 1rem;
     fill: $action-color;
   }
 }
+
+.search__tooltip {
+  margin-right: 2rem;
+  anchor-name: --tooltip-anchor;
+
+  svg {
+    height: 24px;
+    width: 24px;
+    fill: $grey-5;
+
+    &:hover {
+      fill: $action-color;
+    }
+  }
+}
+
+.search__tooltip-popover {
+  position-anchor: --tooltip-anchor;
+  position: fixed;
+  top: anchor(bottom);
+  left: anchor(center);
+  transform: translateX(-50%);
+  margin: 1rem;
+  
+  padding: 2rem;
+  border-color: $blue;
+  background-color: $blue;
+  color: $white;
+  border-radius: $base-border-radius;
+  width: max-content;
+}
+
+.search__tooltip-popover-value {
+  opacity: 0.5;
+}

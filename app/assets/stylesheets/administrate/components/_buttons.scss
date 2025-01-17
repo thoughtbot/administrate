@@ -61,3 +61,15 @@ button,
 .button--nav {
   margin-bottom: $base-spacing;
 }
+
+.button--tooltip {
+  background: none;
+	color: inherit;
+	border: none;
+	cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    background-color: unset !important;
+  }
+}

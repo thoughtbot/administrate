@@ -22172,6 +22172,14 @@
   // app/assets/javascripts/administrate/controllers/index.js
   application.register("select", select_controller_default);
   application.register("table", table_controller_default);
+  var searchPopover = document.querySelector("[popover][id='search-tooltip']");
+  var searchTooltip = document.querySelector("button[popovertarget='search-tooltip']");
+  searchTooltip.addEventListener("mouseenter", () => {
+    searchPopover.showPopover();
+  });
+  searchTooltip.addEventListener("mouseleave", () => {
+    searchPopover.hidePopover();
+  });
 })();
 /*! Bundled license information:
 
