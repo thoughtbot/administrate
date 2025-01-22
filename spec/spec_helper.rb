@@ -1,4 +1,5 @@
-# http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require "jet_black/rspec"
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.syntax = :expect
