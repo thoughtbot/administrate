@@ -37,6 +37,7 @@ group :test do
   gem "capybara"
   gem "database_cleaner"
   gem "formulaic"
+  gem "jet_black"
   gem "launchy"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
