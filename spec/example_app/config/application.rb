@@ -1,5 +1,6 @@
 require_relative "boot"
 
+require "logger"
 require "active_model/railtie"
 require "active_record/railtie"
 require "action_controller/railtie"
