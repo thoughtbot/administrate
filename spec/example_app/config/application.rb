@@ -28,6 +28,7 @@ module AdministratePrototype
 
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.active_record.time_zone_aware_types = %i[datetime time]
+    config.active_support.to_time_preserves_timezone = :zone
 
     # Opt-out of FLoC: https://amifloced.org/
     config.action_dispatch
