@@ -28,6 +28,10 @@ module Administrate
         options.fetch(:include_blank, false)
       end
 
+      def multiple
+        options.fetch(:multiple, false)
+      end
+
       def selected
         options.fetch(:selected, nil)
       end

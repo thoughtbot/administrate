@@ -24,7 +24,7 @@ to be displayed on a resource's edit form page.
       field.attribute,
       options_for_select(
         field.selectable_options,
-        field.data
+        field.selected.presence || field.data
       ),
       {
         include_blank: field.include_blank_option,
@@ -32,12 +32,10 @@ to be displayed on a resource's edit form page.
       },
       data: {
         controller: field.html_controller,
-        select: {
-          selected_value: Array.wrap(field.selected).to_json,
-          include_blank_value: field.include_blank_option,
-          multiple_value: field.options[:multiple],
-          max_items_value: field.options[:max_items]
-        }
+        select_selected_value: Array.wrap(field.selected).to_json,
+        select_include_blank_value: field.include_blank_option,
+        select_multiple_value: field.options[:multiple],
+        select_max_items_value: field.options[:max_items]
       }
     )
   %>
