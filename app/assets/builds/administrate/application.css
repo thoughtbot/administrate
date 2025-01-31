@@ -2257,8 +2257,8 @@ button:not(.link):disabled:hover,
 
 .button--tooltip {
   background: none;
-  color: inherit;
   border: none;
+  color: inherit;
   cursor: pointer;
   padding: 0;
 }
@@ -2551,30 +2551,30 @@ button:not(.link):disabled:hover,
 }
 
 .search__tooltip {
-  margin-right: 2rem;
   anchor-name: --tooltip-anchor;
+  margin-right: 2rem;
 }
 .search__tooltip svg {
+  fill: #adb5bd;
   height: 24px;
   width: 24px;
-  fill: #adb5bd;
 }
 .search__tooltip svg:hover {
   fill: #1976d2;
 }
 
 .search__tooltip-popover {
-  position-anchor: --tooltip-anchor;
-  position: fixed;
-  top: anchor(bottom);
   left: anchor(center);
-  transform: translateX(-50%);
   margin: 1rem;
-  padding: 2rem;
-  border-color: #1976d2;
+  position: fixed;
+  position-anchor: --tooltip-anchor;
+  top: anchor(bottom);
+  transform: translateX(-50%);
   background-color: #1976d2;
-  color: #ffffff;
+  border-color: #1976d2;
   border-radius: 4px;
+  color: #ffffff;
+  padding: 2rem;
   width: max-content;
 }
 

@@ -46,13 +46,13 @@ $search-icon-size: 1rem;
 }
 
 .search__tooltip {
-  margin-right: 2rem;
   anchor-name: --tooltip-anchor;
+  margin-right: 2rem;
 
   svg {
+    fill: $grey-5;
     height: 24px;
     width: 24px;
-    fill: $grey-5;
 
     &:hover {
       fill: $action-color;
@@ -61,18 +61,18 @@ $search-icon-size: 1rem;
 }
 
 .search__tooltip-popover {
-  position-anchor: --tooltip-anchor;
-  position: fixed;
-  top: anchor(bottom);
   left: anchor(center);
-  transform: translateX(-50%);
   margin: 1rem;
+  position: fixed;
+  position-anchor: --tooltip-anchor;
+  top: anchor(bottom);
+  transform: translateX(-50%);
   
-  padding: 2rem;
-  border-color: $blue;
   background-color: $blue;
-  color: $white;
+  border-color: $blue;
   border-radius: $base-border-radius;
+  color: $white;
+  padding: 2rem;
   width: max-content;
 }
 
