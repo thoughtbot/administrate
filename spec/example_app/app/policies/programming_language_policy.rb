@@ -1,0 +1,3 @@
+class ProgrammingLanguagePolicy < ApplicationPolicy
+
+end

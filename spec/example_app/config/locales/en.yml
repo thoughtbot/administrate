@@ -23,3 +23,15 @@ en:
 
   titles:
     application: Administrate-prototype
+
+  administrate:
+    field_hints:
+      programming_language:
+        single_choice: "This is how you make a select where you have to choose an option."
+        multiple_choices: "This is how you make a select with multiple options, because it does not include blank it selects the first value from the collection."
+        single_include_blank: "This is how you make a select where you can choose an option because it includes_blank."
+        multiple_include_blank: "This is how you make a select with multiple options including blank."
+        single_choice_selected: "This is how you make a select with an option preselected."
+        multiple_choices_selected: "This is how you make a select with multiple options preselected."
+        single_choice_max_item: "The amount of options in this select are limited because of max_items, because max_items is 1, it automatically becomes a simple select."
+        multiple_choices_selected_with_max_items: "This select has multiple options selected and a max_items 3. When the options selected superseed the max_items, it selects only the first(up to max-items)"
