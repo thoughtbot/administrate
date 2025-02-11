@@ -46,6 +46,12 @@
   .field-unit__label {
     width: 10rem;
   }
+
+  .field-unit__hint {
+    font-size: 90%;
+    margin-left: calc(13rem);
+    width: 100%;
+  }
 }
 
 .field-unit--required {
