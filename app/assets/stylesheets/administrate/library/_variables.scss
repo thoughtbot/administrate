@@ -1,15 +1,6 @@
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 
 // Typography
-$base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
-  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif !default;
-$heading-font-family: $base-font-family !default;
-
-$base-font-size: 1em !default;
-
-$bold-font-weight: 700 !default;
-
 $base-line-height: 1.5 !default;
 $heading-line-height: 1.2 !default;
 
@@ -18,52 +9,66 @@ $base-border-radius: 4px !default;
 $base-spacing: $base-line-height * 1em !default;
 $small-spacing: $base-spacing * 0.5 !default;
 
-// Colors
-$white: #ffffff !default;
-$black: #000000 !default;
+/* stylelint-enable scss/dollar-variable-empty-line-before */
 
-$blue: #1976d2 !default;
-$red: #d32f2f !default;
-$light-yellow: #fff6bf !default;
-$light-red: #fbe3e4 !default;
-$light-green: #e6efc2 !default;
-$light-blue: #e5edf8 !default;
+:root {
+  // Typography
+  --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
+  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  --heading-font-family: var(--base-font-family);
 
-$grey-0: #f6f7f7 !default;
-$grey-1: #dfe0e1 !default;
-$grey-2: #cfd8dc !default;
-$grey-5: #adb5bd !default;
-$grey-7: #293f54 !default;
+  --base-font-size: 1em;
+  --bold-font-weight: 700;
 
-$hint-grey: #7b808c !default;
+  // Other sizes
 
-// Font Colors
-$base-font-color: $grey-7 !default;
-$action-color: $blue !default;
+  // Colors
+  --white: #ffffff;
+  --black: #000000;
 
-// Background Colors
-$base-background-color: $grey-0 !default;
+  --blue: #1976d2;
+  --red: #d32f2f;
+  --light-yellow: #fff6bf;
+  --light-red: #fbe3e4;
+  --light-green: #e6efc2;
+  --light-blue: #e5edf8;
 
-// Focus
-$focus-outline-color: transparentize($action-color, 0.4);
-$focus-outline-width: 3px;
-$focus-outline: $focus-outline-width solid $focus-outline-color;
-$focus-outline-offset: 1px;
+  --grey-0: #f6f7f7;
+  --grey-1: #dfe0e1;
+  --grey-2: #cfd8dc;
+  --grey-5: #adb5bd;
+  --grey-7: #293f54;
+
+  --hint-grey: #7b808c;
+
+  // Font Colors
+  --base-font-color: var(--grey-7);
+  --action-color: var(--blue);
+
+  // Background Colors
+  --base-background-color: var(--grey-0);
+
+  // Focus
+  --focus-outline-color: rgb(from var(--action-color) r g b / 0.4);
+  --focus-outline-width: 3px;
+  --focus-outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  --focus-outline-offset: 1px;
+  --focus-outline-inset: calc(-1 * var(--focus-outline-offset));
+
+  // Border
+  --base-border-color: var(--grey-1);
+  --base-border: 1px solid var(--base-border-color);
+
+  // Transitions
+  --base-duration: 250ms;
+  --base-timing: ease-in-out;
+}
 
 // Flash Colors
 $flashes: (
-  "alert": $light-yellow,
-  "error": $light-red,
-  "notice": $light-blue,
-  "success": $light-green
+  "alert": var(--light-yellow),
+  "error": var(--light-red),
+  "notice": var(--light-blue),
+  "success": var(--light-green)
 ) !default;
-
-// Border
-$base-border-color: $grey-1 !default;
-$base-border: 1px solid $base-border-color !default;
-
-// Transitions
-$base-duration: 250ms !default;
-$base-timing: ease-in-out !default;
-
-/* stylelint-enable scss/dollar-variable-empty-line-before */

@@ -22,7 +22,7 @@
   margin-left: 2rem;
 
   .optgroup-header {
-    font-weight: $bold-font-weight;
+    font-weight: var(--bold-font-weight);
   }
 }
 
@@ -33,7 +33,7 @@
 }
 
 .field-unit--nested {
-  border: $base-border;
+  border: var(--base-border);
   margin-left: 7.5%;
   max-width: 60rem;
   padding: $small-spacing;
@@ -50,7 +50,7 @@
 
 .field-unit--required {
   label::after {
-    color: $red;
+    color: var(--red);
     content: " *";
   }
 }
