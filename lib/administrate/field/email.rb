@@ -6,6 +6,10 @@ module Administrate
       def self.searchable?
         true
       end
+
+      def search_requires_string_cast?
+        false
+      end
     end
   end
 end

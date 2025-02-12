@@ -87,8 +87,18 @@ module Administrate
       search_attributes.map do |attr|
         table_name = query_table_name(attr)
         searchable_fields(attr).map do |field|
+          attribute_type = attribute_types[attr]
           column_name = column_to_query(field)
-          "LOWER(CAST(#{table_name}.#{column_name} AS CHAR(256))) LIKE ?"
+
+          search_target = "#{table_name}.#{column_name}"
+          search_target = "CAST(#{search_target} AS CHAR(256))" if attribute_type.search_requires_string_cast?
+          search_target = "LOWER(#{search_target})" if attribute_type.search_lower?
+
+          if attribute_types[attr].search_exact?
+            "#{search_target} = ?"
+          else
+            "#{search_target} LIKE ?"
+          end
         end.join(" OR ")
       end.join(" OR ")
     end
@@ -100,10 +110,21 @@ module Administrate
     end
 
     def query_values
-      fields_count = search_attributes.sum do |attr|
-        searchable_fields(attr).count
+      search_attributes.flat_map do |attr|
+        attribute_type = attribute_types[attr]
+
+        search_term = if attribute_type.search_lower?
+          term.mb_chars.downcase
+        else
+          term.mb_chars
+        end
+
+        if attribute_type.search_exact?
+          [search_term] * searchable_fields(attr).count
+        else
+          ["%#{search_term}%"] * searchable_fields(attr).count
+        end
       end
-      ["%#{term.mb_chars.downcase}%"] * fields_count
     end
 
     def search_attributes
