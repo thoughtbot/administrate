@@ -1,7 +1,5 @@
 <div style="padding: 20px">
   <h1>Stats</h1>
   <br>
-  <p><b>Total Customers:</b> <%= @stats[:customer_count] %></h1>
-  <br>
-  <p><b>Total Orders:</b> <%= @stats[:order_count] %></h1>
+  <p>Stats are only visible to Admin. <%= link_to("Become the Admin", become_admin_customer_path("admin"), class: "identity__become-action") %></p>
 </div>
