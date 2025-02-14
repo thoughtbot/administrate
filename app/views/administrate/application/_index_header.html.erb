@@ -2,6 +2,16 @@
   <%= display_resource_name(page.resource_name) %>
 <% end %>
 
+<%#
+  TODO: Move where this polyfill lives. Where?
+  Also, do we want to import the polyfill js directly instead of linking to unpkg.com?
+ %>
+<script type="module">
+  if (!("anchorName" in document.documentElement.style)) {
+    import("https://unpkg.com/@oddbird/css-anchor-positioning");
+  }
+</script>
+
 <header class="main-content__header">
   <h1 class="main-content__page-title" id="page-title">
     <%= content_for(:title) %>
@@ -15,6 +25,23 @@
       search_term: search_term,
       resource_name: display_resource_name(page.resource_name)
     ) %>
+
+    <% if filters.any? %>
+      <button popovertarget="search-tooltip" class="button--tooltip search__tooltip">
+        <svg role="img">
+          <use xlink:href="#icon-question-mark" />
+        </svg>
+      </button>
+
+      <div popover id="search-tooltip" role="tooltip" class="search__tooltip-popover">
+        <p><strong>Use filters to refine your search</strong></p>
+        <ul>
+          <% filters.keys.each do |filter_key| %>
+          <li><%= filter_key %>:<span class="search__tooltip-popover-value">&lt;value&gt;</span></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   <% end %>
 
   <div>
