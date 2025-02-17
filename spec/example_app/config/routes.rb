@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :product_meta_tags
     resources :payments, only: [:index, :show]
     resources :series
+    resources :programming_languages
 
     namespace :blog do
       resources :posts

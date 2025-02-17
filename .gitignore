@@ -41,3 +41,5 @@ gemfiles/.bundle/
 .yardoc
 /doc
 *.gem
+.aider.*
+aider.conf.yml

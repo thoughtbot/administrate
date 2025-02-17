@@ -22146,8 +22146,29 @@
   // app/assets/javascripts/administrate/controllers/select_controller.js
   var import_jquery2 = __toESM(require_jquery());
   var select_controller_default = class extends Controller {
+    static values = {
+      selected: { Array, default: [] },
+      // Use an array to support multiple selected values
+      includeBlank: { type: Boolean, default: false },
+      multiple: { type: Boolean, default: false },
+      maxItems: { type: Number }
+    };
     connect() {
-      (0, import_jquery2.default)(this.element).selectize({});
+      var optionsCount = null;
+      if (this.multipleValue) {
+        optionsCount = 1;
+      }
+      if (this.maxItemsValue) {
+        optionsCount = this.maxItemsValue;
+      }
+      const selectElement = (0, import_jquery2.default)(this.element).selectize({
+        allowEmptyOption: this.includeBlankValue,
+        maxItems: optionsCount
+      });
+      const selectizeInstance = selectElement[0].selectize;
+      if (this.selectedValue.length > 0) {
+        selectizeInstance.setValue(this.selectedValue);
+      }
     }
   };
 
