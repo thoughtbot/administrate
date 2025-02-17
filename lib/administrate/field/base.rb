@@ -24,6 +24,10 @@ module Administrate
         false
       end
 
+      def self.sortable?
+        true
+      end
+
       def self.field_type
         to_s.split("::").last.underscore
       end
