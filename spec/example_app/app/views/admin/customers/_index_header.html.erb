@@ -1,5 +1,5 @@
 <% content_for(:header_middle) do %>
-  <p class="identity__banner<%= " identity__banner--admin" if pundit_user.admin? %>">You are logged in as <em><%= pundit_user.name %></em>. <%= link_to("Become the Admin", become_admin_customer_path("admin"), class: "identity__become-action") unless pundit_user.admin? %></p>
+  <p class="identity__banner">You are logged in as <em><%= pundit_user.name %></em>. <%= link_to("Become the Admin", become_admin_customer_path("admin"), class: "identity__become-action")%></p>
 <% end %>
 
 <%= render template: 'administrate/application/_index_header', locals: local_assigns %>

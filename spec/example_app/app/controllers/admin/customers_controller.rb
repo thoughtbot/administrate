@@ -1,5 +1,7 @@
 module Admin
   class CustomersController < Admin::ApplicationController
+    before_action :with_variant, only: %i[index]
+
     def become
       user_id = params[:id]
       if user_id == "admin"
@@ -14,6 +16,12 @@ module Admin
 
     def scoped_resource
       Customer.where(hidden: false)
+    end
+
+    def with_variant
+      if @current_user.admin?
+        request.variant = :admin
+      end
     end
   end
 end

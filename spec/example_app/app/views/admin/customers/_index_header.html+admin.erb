@@ -1,0 +1,5 @@
+<% content_for(:header_middle) do %>
+  <p class="identity__banner identity__banner--admin">You are logged in as <em><%= pundit_user.name %></em>.</p>
+<% end %>
+
+<%= render template: 'administrate/application/_index_header', locals: local_assigns %>
