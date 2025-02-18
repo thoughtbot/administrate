@@ -1,14 +1,16 @@
-$blue: #53adc6;
-$red: #cf726e;
-$green: #5bc89e;
-$white: #f0f0f0;
+:root {
+  --blue: #53adc6;
+  --red: #cf726e;
+  --green: #5bc89e;
+  --white: #f0f0f0;
 
-$code-black: #202020;
-$code-white: #e0e0dc;
-$code-green: #b0bf82;
-$code-blue: #8fbdcc;
-$code-yellow: #f8d29d;
-$code-red: #b95c56;
+  --code-black: #202020;
+  --code-white: #e0e0dc;
+  --code-green: #b0bf82;
+  --code-blue: #8fbdcc;
+  --code-yellow: #f8d29d;
+  --code-red: #b95c56;
+}
 
 html,
 body {
@@ -30,7 +32,7 @@ h3 {
 }
 
 a {
-  color: $blue;
+  color: var(--blue);
   text-decoration: none;
 }
 
@@ -58,8 +60,8 @@ a {
 }
 
 .flash-wrapper {
-  background-color: $red;
-  color: $white;
+  background-color: var(--red);
+  color: var(--white);
   padding: 1em;
 
   .flash {
@@ -75,19 +77,19 @@ code {
   padding: 0.4em 0.2em 0;
 
   &.hljs {
-    background-color: $code-black;
-    color: $code-white;
+    background-color: var(--code-black);
+    color: var(--code-white);
     padding-left: 1rem;
 
-    .hljs-string { color: $code-green; }
-    .hljs-subst { color: $code-white; }
-    .hljs-constant { color: $code-blue; }
-    .hljs-symbol { color: $code-red; }
-    .hljs-keyword { color: $code-yellow; }
+    .hljs-string { color: var(--code-green); }
+    .hljs-subst { color: var(--code-white); }
+    .hljs-constant { color: var(--code-blue); }
+    .hljs-symbol { color: var(--code-red); }
+    .hljs-keyword { color: var(--code-yellow); }
 
     .hljs-title,
-    .hljs-parent { color: $code-blue; }
+    .hljs-parent { color: var(--code-blue); }
 
-    .hljs-tag { color: $code-yellow; }
+    .hljs-tag { color: var(--code-yellow); }
   }
 }
