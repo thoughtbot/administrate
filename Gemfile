@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "3.2.2" unless ENV["CI"] && !ENV["DIFF_CHECK_APPRAISAL"]
+ruby "3.4.1" unless ENV["CI"] && !ENV["DIFF_CHECK_APPRAISAL"]
 
 gemspec
 
@@ -10,11 +10,11 @@ gem "globalid"
 gem "image_processing"
 gem "kaminari-i18n"
 gem "pg"
+gem "puma"
 gem "pundit"
 gem "redcarpet"
 gem "sentry-rails"
 gem "sentry-ruby"
-gem "unicorn"
 
 gem "cssbundling-rails", "~> 1.4"
 gem "jsbundling-rails", "~> 1.3"
@@ -27,7 +27,6 @@ group :development, :test do
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "i18n-tasks", "1.0.14"
-  gem "pry"
   gem "standard"
   gem "yard"
 end

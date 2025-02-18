@@ -17,6 +17,31 @@
 
 ## Changes
 
+### 1.0.0.beta3 (December 24, 2024)
+
+The following templates have changed since v1.0.0.beta2:
+
+  app/views/administrate/application/new.html.erb
+  app/views/fields/rich_text/_form.html.erb
+
+If your application overrides any of them, make sure to review your
+custom templates to ensure that they remain compatible.
+
+* [BUGFIX] [#2728] Fix BUNDLE_GEMFILE path for demo deployments
+* [COMPAT] [#2705] Add support for Rails 8.0
+* [DOC] [#2712] Separate Appraisal runs from primary test runs
+* [DOC] [#2680] Run diff-check on JS/CSS to catch updates
+* [BUGFIX] [#2710] Re-bundle JS in a fresh environment
+* [CHANGE] [#2452] Updated Views::IndexGenerator to copy all partials
+* [CHANGE] [#2684] Singularize object creation form resource name.
+* [DOC] [#2524] Start running Appraisals in the build matrix
+* [COMPAT] [#2697] Undeprecate :class_name
+* [DOC] [#2700] Add feature-test coverage for Rich Text Field
+* [DOC] [#2693] Generate `fields/rich_text/form` with documentation
+* [COMPAT] [#2696] Reliable way to check a path with Capybara
+* [DOC] [#2475] Document using custom assets
+* [COMPAT] [#2691] Add .tool-versions for asdf
+
 ### 1.0.0.beta2 (October 25, 2024)
 
 The following templates have changed since v1.0.0.beta1:

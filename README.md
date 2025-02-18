@@ -2,46 +2,32 @@
 
 [![CircleCI](https://img.shields.io/circleci/project/github/thoughtbot/administrate.svg)](https://circleci.com/gh/thoughtbot/administrate/tree/main)
 [![Gem Version](https://badge.fury.io/rb/administrate.svg)](https://badge.fury.io/rb/administrate)
-[![Code Climate](https://codeclimate.com/github/thoughtbot/administrate/badges/gpa.svg)](https://codeclimate.com/github/thoughtbot/administrate)
-[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
 A framework for creating flexible, powerful admin dashboards in Rails.
 [Try the demo][demo].
 
 [demo]: https://administrate-demo.herokuapp.com/admin
 
-### Warning:
-
-Administrate is still pre-1.0,
-and there may be occasional breaking changes to the API.
-Check the [release notes] for important updates.
-
 [release notes]: https://github.com/thoughtbot/administrate/releases
 
 ![administrate](https://user-images.githubusercontent.com/11917/72203824-ec10f980-3468-11ea-9ac1-51cd28ff88b7.png)
 
-## What Is Administrate?
+## What's Administrate?
 
-Administrate is a library for Rails apps
-that automatically generates admin dashboards.
-Administrate's admin dashboards give non-technical users clean interfaces
-that allow them to create, edit, search, and delete records
-for any model in the application.
-
-Administrate solves the same problem as [Rails Admin] and [ActiveAdmin],
-but aims to provide a better user experience for site admins,
-and to be easier for developers to customize.
+Administrate is a library for Rails that generates admin dashboards. These give
+users clean interfaces that allow them to create, edit, search, and delete
+records for any model in the application. Administrate aims to provide the best
+user experience, and doing as much work as possible for you, whilst also being
+flexible to customise.
 
 To accomplish these goals, Administrate follows a few guiding principles:
 
-- No DSLs (domain-specific languages)
-- Support the simplest use cases, and let the user override defaults with
-  standard tools such as plain Rails controllers and views.
-- Break up the library into core components and plugins,
-  so each component stays small and easy to maintain.
-
-[Rails Admin]: https://github.com/sferik/rails_admin
-[ActiveAdmin]: http://activeadmin.info/
+* Stay as close to standard Rails as possible, keeping the
+  Administrate-specific code as small as practical,
+* Support the simplest use cases, and let the user override defaults with
+  standard tools such as plain Rails controllers and views,
+* Break up the library into core components and plugins, so each component
+  stays small and pleasant to maintain.
 
 ## Documentation
 

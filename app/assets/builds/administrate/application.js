@@ -6976,8 +6976,7 @@
         };
         Sifter.prototype.tokenize = function(query) {
           query = trim(String(query || "").toLowerCase());
-          if (!query || !query.length)
-            return [];
+          if (!query || !query.length) return [];
           var i2, n2, regex, letter;
           var tokens = [];
           var words = query.split(/ +/);
@@ -7026,15 +7025,12 @@
           nesting = search.options.nesting;
           var scoreValue = function(value, token) {
             var score, pos;
-            if (!value)
-              return 0;
+            if (!value) return 0;
             value = String(value || "");
             pos = value.search(token.regex);
-            if (pos === -1)
-              return 0;
+            if (pos === -1) return 0;
             score = token.string.length / value.length;
-            if (pos === 0)
-              score += 0.5;
+            if (pos === 0) score += 0.5;
             return score;
           };
           var scoreObject = function() {
@@ -7071,8 +7067,7 @@
               var score;
               for (var i2 = 0, sum = 0; i2 < token_count; i2++) {
                 score = scoreObject(tokens[i2], data);
-                if (score <= 0)
-                  return 0;
+                if (score <= 0) return 0;
                 sum += score;
               }
               return sum / token_count;
@@ -7092,8 +7087,7 @@
           search = self.prepareSearch(search, options);
           sort = !search.query && options.sort_empty || options.sort;
           get_field = function(name, result) {
-            if (name === "$score")
-              return result.score;
+            if (name === "$score") return result.score;
             return getattr(self.items[result.id], name, options.nesting);
           };
           fields = [];
@@ -7148,26 +7142,21 @@
                   get_field(field2, a2),
                   get_field(field2, b2)
                 );
-                if (result)
-                  return result;
+                if (result) return result;
               }
               return 0;
             };
           }
         };
         Sifter.prototype.prepareSearch = function(query, options) {
-          if (typeof query === "object")
-            return query;
+          if (typeof query === "object") return query;
           options = extend3({}, options);
           var option_fields = options.fields;
           var option_sort = options.sort;
           var option_sort_empty = options.sort_empty;
-          if (option_fields && !is_array(option_fields))
-            options.fields = [option_fields];
-          if (option_sort && !is_array(option_sort))
-            options.sort = [option_sort];
-          if (option_sort_empty && !is_array(option_sort_empty))
-            options.sort_empty = [option_sort_empty];
+          if (option_fields && !is_array(option_fields)) options.fields = [option_fields];
+          if (option_sort && !is_array(option_sort)) options.sort = [option_sort];
+          if (option_sort_empty && !is_array(option_sort_empty)) options.sort_empty = [option_sort_empty];
           return {
             options,
             query: String(query || "").toLowerCase(),
@@ -7197,8 +7186,7 @@
             });
           }
           fn_sort = self.getSortFunction(search, options);
-          if (fn_sort)
-            search.items.sort(fn_sort);
+          if (fn_sort) search.items.sort(fn_sort);
           search.total = search.items.length;
           if (typeof options.limit === "number") {
             search.items = search.items.slice(0, options.limit);
@@ -7211,18 +7199,15 @@
           }
           a2 = asciifold(String(a2 || ""));
           b2 = asciifold(String(b2 || ""));
-          if (a2 > b2)
-            return 1;
-          if (b2 > a2)
-            return -1;
+          if (a2 > b2) return 1;
+          if (b2 > a2) return -1;
           return 0;
         };
         var extend3 = function(a2, b2) {
           var i2, n2, k2, object;
           for (i2 = 1, n2 = arguments.length; i2 < n2; i2++) {
             object = arguments[i2];
-            if (!object)
-              continue;
+            if (!object) continue;
             for (k2 in object) {
               if (object.hasOwnProperty(k2)) {
                 a2[k2] = object[k2];
@@ -7232,13 +7217,10 @@
           return a2;
         };
         var getattr = function(obj, name, nesting) {
-          if (!obj || !name)
-            return;
-          if (!nesting)
-            return obj[name];
+          if (!obj || !name) return;
+          if (!nesting) return obj[name];
           var names = name.split(".");
-          while (names.length && (obj = obj[names.shift()]))
-            ;
+          while (names.length && (obj = obj[names.shift()])) ;
           return obj;
         };
         var trim = function(str) {
@@ -7406,9 +7388,7 @@
                   var h3 = a4.splitText(e3), i3 = (h3.splitText(f3[0].length), h3.cloneNode(true));
                   g3.appendChild(i3), h3.parentNode.replaceChild(g3, h3), b4 = 1;
                 }
-              } else if (1 === a4.nodeType && a4.childNodes && !/(script|style)/i.test(a4.tagName) && ("highlight" !== a4.className || "SPAN" !== a4.tagName))
-                for (var j3 = 0; j3 < a4.childNodes.length; ++j3)
-                  j3 += d3(a4.childNodes[j3]);
+              } else if (1 === a4.nodeType && a4.childNodes && !/(script|style)/i.test(a4.tagName) && ("highlight" !== a4.className || "SPAN" !== a4.tagName)) for (var j3 = 0; j3 < a4.childNodes.length; ++j3) j3 += d3(a4.childNodes[j3]);
               return b4;
             };
             return a3.each(function() {
@@ -7431,12 +7411,9 @@
           var c3 = arguments.length;
           return 0 === c3 ? delete this._events : 1 === c3 ? delete this._events[a3] : (this._events = this._events || {}, void (a3 in this._events != false && this._events[a3].splice(this._events[a3].indexOf(b3), 1)));
         }, trigger: function(a3) {
-          if (this._events = this._events || {}, a3 in this._events != false)
-            for (var b3 = 0; b3 < this._events[a3].length; b3++)
-              this._events[a3][b3].apply(this, Array.prototype.slice.call(arguments, 1));
+          if (this._events = this._events || {}, a3 in this._events != false) for (var b3 = 0; b3 < this._events[a3].length; b3++) this._events[a3][b3].apply(this, Array.prototype.slice.call(arguments, 1));
         } }, e2.mixin = function(a3) {
-          for (var b3 = ["on", "off", "trigger"], c3 = 0; c3 < b3.length; c3++)
-            a3.prototype[b3[c3]] = e2.prototype[b3[c3]];
+          for (var b3 = ["on", "off", "trigger"], c3 = 0; c3 < b3.length; c3++) a3.prototype[b3[c3]] = e2.prototype[b3[c3]];
         };
         var f2 = /Mac/.test(navigator.userAgent), g2 = f2 ? 91 : 17, h2 = f2 ? 18 : 17, i2 = !/android/i.test(window.navigator.userAgent) && !!document.createElement("input").validity, j2 = function(a3) {
           return void 0 !== a3;
@@ -7474,22 +7451,18 @@
           var d3, e3 = a3.trigger, f3 = {};
           a3.trigger = function() {
             var c4 = arguments[0];
-            if (-1 === b3.indexOf(c4))
-              return e3.apply(a3, arguments);
+            if (-1 === b3.indexOf(c4)) return e3.apply(a3, arguments);
             f3[c4] = arguments;
           }, c3.apply(a3, []), a3.trigger = e3;
-          for (d3 in f3)
-            f3.hasOwnProperty(d3) && e3.apply(a3, f3[d3]);
+          for (d3 in f3) f3.hasOwnProperty(d3) && e3.apply(a3, f3[d3]);
         }, q2 = function(a3, b3, c3, d3) {
           a3.on(b3, c3, function(b4) {
-            for (var c4 = b4.target; c4 && c4.parentNode !== a3[0]; )
-              c4 = c4.parentNode;
+            for (var c4 = b4.target; c4 && c4.parentNode !== a3[0]; ) c4 = c4.parentNode;
             return b4.currentTarget = c4, d3.apply(this, [b4]);
           });
         }, r2 = function(a3) {
           var b3 = {};
-          if ("selectionStart" in a3)
-            b3.start = a3.selectionStart, b3.length = a3.selectionEnd - b3.start;
+          if ("selectionStart" in a3) b3.start = a3.selectionStart, b3.length = a3.selectionEnd - b3.start;
           else if (document.selection) {
             a3.focus();
             var c3 = document.selection.createRange(), d3 = document.selection.createRange().text.length;
@@ -7498,11 +7471,8 @@
           return b3;
         }, s2 = function(a3, b3, c3) {
           var d3, e3, f3 = {};
-          if (c3)
-            for (d3 = 0, e3 = c3.length; d3 < e3; d3++)
-              f3[c3[d3]] = a3.css(c3[d3]);
-          else
-            f3 = a3.css();
+          if (c3) for (d3 = 0, e3 = c3.length; d3 < e3; d3++) f3[c3[d3]] = a3.css(c3[d3]);
+          else f3 = a3.css();
           b3.css(f3);
         }, t2 = function(b3, c3) {
           return b3 ? (w2.$testInput || (w2.$testInput = a2("<span />").css({ position: "absolute", top: -99999, left: -99999, width: "auto", padding: 0, whiteSpace: "pre" }).appendTo("body")), w2.$testInput.text(b3), s2(c3, w2.$testInput, ["letterSpacing", "fontSize", "fontFamily", "fontWeight", "textTransform"]), w2.$testInput.width()) : 0;
@@ -7520,13 +7490,11 @@
           h3 = c3[0], h3.selectize = i3;
           var j3 = window.getComputedStyle && window.getComputedStyle(h3, null);
           if (g3 = j3 ? j3.getPropertyValue("direction") : h3.currentStyle && h3.currentStyle.direction, g3 = g3 || c3.parents("[dir]:first").attr("dir") || "", a2.extend(i3, { order: 0, settings: d3, $input: c3, tabIndex: c3.attr("tabindex") || "", tagType: "select" === h3.tagName.toLowerCase() ? 1 : 2, rtl: /rtl/i.test(g3), eventNS: ".selectize" + ++w2.count, highlightedValue: null, isBlurring: false, isOpen: false, isDisabled: false, isRequired: c3.is("[required]"), isInvalid: false, isLocked: false, isFocused: false, isInputHidden: false, isSetup: false, isShiftDown: false, isCmdDown: false, isCtrlDown: false, ignoreFocus: false, ignoreBlur: false, ignoreHover: false, hasOptions: false, currentResults: null, lastValue: "", caretPos: 0, loading: 0, loadedSearches: {}, $activeOption: null, $activeItems: [], optgroups: {}, options: {}, userOptions: {}, items: [], renderCache: {}, onSearchChange: null === d3.loadThrottle ? i3.onSearchChange : o2(i3.onSearchChange, d3.loadThrottle) }), i3.sifter = new b2(this.options, { diacritics: d3.diacritics }), i3.settings.options) {
-            for (e3 = 0, f3 = i3.settings.options.length; e3 < f3; e3++)
-              i3.registerOption(i3.settings.options[e3]);
+            for (e3 = 0, f3 = i3.settings.options.length; e3 < f3; e3++) i3.registerOption(i3.settings.options[e3]);
             delete i3.settings.options;
           }
           if (i3.settings.optgroups) {
-            for (e3 = 0, f3 = i3.settings.optgroups.length; e3 < f3; e3++)
-              i3.registerOptionGroup(i3.settings.optgroups[e3]);
+            for (e3 = 0, f3 = i3.settings.optgroups.length; e3 < f3; e3++) i3.registerOptionGroup(i3.settings.optgroups[e3]);
             delete i3.settings.optgroups;
           }
           i3.settings.mode = i3.settings.mode || (1 === i3.settings.maxItems ? "single" : "multi"), "boolean" != typeof i3.settings.hideSelected && (i3.settings.hideSelected = "multi" === i3.settings.mode), i3.initializePlugins(i3.settings.plugins), i3.setupCallbacks(), i3.setupTemplates(), i3.setup();
@@ -7574,8 +7542,7 @@
             a3.keyCode === h2 && (p3.isCtrlDown = false), 16 === a3.keyCode && (p3.isShiftDown = false), a3.keyCode === g2 && (p3.isCmdDown = false);
           }), v3.on("mousedown" + s3, function(a3) {
             if (p3.isFocused) {
-              if (a3.target === p3.$dropdown[0] || a3.target.parentNode === p3.$dropdown[0])
-                return false;
+              if (a3.target === p3.$dropdown[0] || a3.target.parentNode === p3.$dropdown[0]) return false;
               p3.$control.has(a3.target).length || a3.target === p3.$control[0] || p3.blur(a3.target);
             }
           }), t3.on(["scroll" + s3, "resize" + s3].join(" "), function() {
@@ -7600,8 +7567,7 @@
           b3.settings.render = a2.extend({}, e3, b3.settings.render);
         }, setupCallbacks: function() {
           var a3, b3, c3 = { initialize: "onInitialize", change: "onChange", item_add: "onItemAdd", item_remove: "onItemRemove", clear: "onClear", option_add: "onOptionAdd", option_remove: "onOptionRemove", option_clear: "onOptionClear", optgroup_add: "onOptionGroupAdd", optgroup_remove: "onOptionGroupRemove", optgroup_clear: "onOptionGroupClear", dropdown_open: "onDropdownOpen", dropdown_close: "onDropdownClose", type: "onType", load: "onLoad", focus: "onFocus", blur: "onBlur" };
-          for (a3 in c3)
-            c3.hasOwnProperty(a3) && (b3 = this.settings[c3[a3]]) && this.on(a3, b3);
+          for (a3 in c3) c3.hasOwnProperty(a3) && (b3 = this.settings[c3[a3]]) && this.on(a3, b3);
         }, onClick: function(a3) {
           var b3 = this;
           b3.isFocused && b3.isOpen || (b3.focus(), a3.preventDefault());
@@ -7609,46 +7575,36 @@
           var c3 = this, d3 = b3.isDefaultPrevented();
           a2(b3.target);
           if (c3.isFocused) {
-            if (b3.target !== c3.$control_input[0])
-              return "single" === c3.settings.mode ? c3.isOpen ? c3.close() : c3.open() : d3 || c3.setActiveItem(null), false;
-          } else
-            d3 || window.setTimeout(function() {
-              c3.focus();
-            }, 0);
+            if (b3.target !== c3.$control_input[0]) return "single" === c3.settings.mode ? c3.isOpen ? c3.close() : c3.open() : d3 || c3.setActiveItem(null), false;
+          } else d3 || window.setTimeout(function() {
+            c3.focus();
+          }, 0);
         }, onChange: function() {
           this.$input.trigger("change");
         }, onPaste: function(b3) {
           var c3 = this;
-          if (c3.isFull() || c3.isInputHidden || c3.isLocked)
-            return void b3.preventDefault();
+          if (c3.isFull() || c3.isInputHidden || c3.isLocked) return void b3.preventDefault();
           c3.settings.splitOn && setTimeout(function() {
             var b4 = c3.$control_input.val();
-            if (b4.match(c3.settings.splitOn))
-              for (var d3 = a2.trim(b4).split(c3.settings.splitOn), e3 = 0, f3 = d3.length; e3 < f3; e3++)
-                c3.createItem(d3[e3]);
+            if (b4.match(c3.settings.splitOn)) for (var d3 = a2.trim(b4).split(c3.settings.splitOn), e3 = 0, f3 = d3.length; e3 < f3; e3++) c3.createItem(d3[e3]);
           }, 0);
         }, onKeyPress: function(a3) {
-          if (this.isLocked)
-            return a3 && a3.preventDefault();
+          if (this.isLocked) return a3 && a3.preventDefault();
           var b3 = String.fromCharCode(a3.keyCode || a3.which);
           return this.settings.create && "multi" === this.settings.mode && b3 === this.settings.delimiter ? (this.createItem(), a3.preventDefault(), false) : void 0;
         }, onKeyDown: function(a3) {
           var b3 = (a3.target, this.$control_input[0], this);
-          if (b3.isLocked)
-            return void (9 !== a3.keyCode && a3.preventDefault());
+          if (b3.isLocked) return void (9 !== a3.keyCode && a3.preventDefault());
           switch (a3.keyCode) {
             case 65:
-              if (b3.isCmdDown)
-                return void b3.selectAll();
+              if (b3.isCmdDown) return void b3.selectAll();
               break;
             case 27:
               return void (b3.isOpen && (a3.preventDefault(), a3.stopPropagation(), b3.close()));
             case 78:
-              if (!a3.ctrlKey || a3.altKey)
-                break;
+              if (!a3.ctrlKey || a3.altKey) break;
             case 40:
-              if (!b3.isOpen && b3.hasOptions)
-                b3.open();
+              if (!b3.isOpen && b3.hasOptions) b3.open();
               else if (b3.$activeOption) {
                 b3.ignoreHover = true;
                 var c3 = b3.getAdjacentOption(b3.$activeOption, 1);
@@ -7656,8 +7612,7 @@
               }
               return void a3.preventDefault();
             case 80:
-              if (!a3.ctrlKey || a3.altKey)
-                break;
+              if (!a3.ctrlKey || a3.altKey) break;
             case 38:
               if (b3.$activeOption) {
                 b3.ignoreHover = true;
@@ -7680,8 +7635,7 @@
           return !b3.isFull() && !b3.isInputHidden || (f2 ? a3.metaKey : a3.ctrlKey) ? void 0 : void a3.preventDefault();
         }, onKeyUp: function(a3) {
           var b3 = this;
-          if (b3.isLocked)
-            return a3 && a3.preventDefault();
+          if (b3.isLocked) return a3 && a3.preventDefault();
           var c3 = b3.$control_input.val() || "";
           b3.lastValue !== c3 && (b3.lastValue = c3, b3.onSearchChange(c3), b3.refreshOptions(), b3.trigger("type", c3));
         }, onSearchChange: function(a3) {
@@ -7691,14 +7645,12 @@
           })));
         }, onFocus: function(a3) {
           var b3 = this, c3 = b3.isFocused;
-          if (b3.isDisabled)
-            return b3.blur(), a3 && a3.preventDefault(), false;
+          if (b3.isDisabled) return b3.blur(), a3 && a3.preventDefault(), false;
           b3.ignoreFocus || (b3.isFocused = true, "focus" === b3.settings.preload && b3.onSearchChange(""), c3 || b3.trigger("focus"), b3.$activeItems.length || (b3.showInput(), b3.setActiveItem(null), b3.refreshOptions(!!b3.settings.openOnFocus)), b3.refreshState());
         }, onBlur: function(a3, b3) {
           var c3 = this;
           if (c3.isFocused && (c3.isFocused = false, !c3.ignoreFocus)) {
-            if (!c3.ignoreBlur && document.activeElement === c3.$dropdown_content[0])
-              return c3.ignoreBlur = true, void c3.onFocus(a3);
+            if (!c3.ignoreBlur && document.activeElement === c3.$dropdown_content[0]) return c3.ignoreBlur = true, void c3.onFocus(a3);
             var d3 = function() {
               c3.close(), c3.setTextboxValue(""), c3.setActiveItem(null), c3.setActiveOption(null), c3.setCaret(c3.items.length), c3.refreshState(), b3 && b3.focus && b3.focus(), c3.isBlurring = false, c3.ignoreFocus = false, c3.trigger("blur");
             };
@@ -7731,14 +7683,11 @@
         }, setActiveItem: function(b3, c3) {
           var d3, e3, f3, g3, h3, i3, j3, k3, l3 = this;
           if ("single" !== l3.settings.mode) {
-            if (b3 = a2(b3), !b3.length)
-              return a2(l3.$activeItems).removeClass("active"), l3.$activeItems = [], void (l3.isFocused && l3.showInput());
+            if (b3 = a2(b3), !b3.length) return a2(l3.$activeItems).removeClass("active"), l3.$activeItems = [], void (l3.isFocused && l3.showInput());
             if ("mousedown" === (d3 = c3 && c3.type.toLowerCase()) && l3.isShiftDown && l3.$activeItems.length) {
-              for (k3 = l3.$control.children(".active:last"), g3 = Array.prototype.indexOf.apply(l3.$control[0].childNodes, [k3[0]]), h3 = Array.prototype.indexOf.apply(l3.$control[0].childNodes, [b3[0]]), g3 > h3 && (j3 = g3, g3 = h3, h3 = j3), e3 = g3; e3 <= h3; e3++)
-                i3 = l3.$control[0].childNodes[e3], -1 === l3.$activeItems.indexOf(i3) && (a2(i3).addClass("active"), l3.$activeItems.push(i3));
+              for (k3 = l3.$control.children(".active:last"), g3 = Array.prototype.indexOf.apply(l3.$control[0].childNodes, [k3[0]]), h3 = Array.prototype.indexOf.apply(l3.$control[0].childNodes, [b3[0]]), g3 > h3 && (j3 = g3, g3 = h3, h3 = j3), e3 = g3; e3 <= h3; e3++) i3 = l3.$control[0].childNodes[e3], -1 === l3.$activeItems.indexOf(i3) && (a2(i3).addClass("active"), l3.$activeItems.push(i3));
               c3.preventDefault();
-            } else
-              "mousedown" === d3 && l3.isCtrlDown || "keydown" === d3 && this.isShiftDown ? b3.hasClass("active") ? (f3 = l3.$activeItems.indexOf(b3[0]), l3.$activeItems.splice(f3, 1), b3.removeClass("active")) : l3.$activeItems.push(b3.addClass("active")[0]) : (a2(l3.$activeItems).removeClass("active"), l3.$activeItems = [b3.addClass("active")[0]]);
+            } else "mousedown" === d3 && l3.isCtrlDown || "keydown" === d3 && this.isShiftDown ? b3.hasClass("active") ? (f3 = l3.$activeItems.indexOf(b3[0]), l3.$activeItems.splice(f3, 1), b3.removeClass("active")) : l3.$activeItems.push(b3.addClass("active")[0]) : (a2(l3.$activeItems).removeClass("active"), l3.$activeItems = [b3.addClass("active")[0]]);
             l3.hideInput(), this.isFocused || l3.focus();
           }
         }, setActiveOption: function(b3, c3, d3) {
@@ -7766,37 +7715,24 @@
           return "string" == typeof b3 && (b3 = [{ field: b3 }]), { fields: a3.searchField, conjunction: a3.searchConjunction, sort: b3, nesting: a3.nesting };
         }, search: function(b3) {
           var c3, d3, e3, f3 = this, g3 = f3.settings, h3 = this.getSearchOptions();
-          if (g3.score && "function" != typeof (e3 = f3.settings.score.apply(this, [b3])))
-            throw new Error('Selectize "score" setting must be a function that returns a function');
-          if (b3 !== f3.lastQuery ? (f3.lastQuery = b3, d3 = f3.sifter.search(b3, a2.extend(h3, { score: e3 })), f3.currentResults = d3) : d3 = a2.extend(true, {}, f3.currentResults), g3.hideSelected)
-            for (c3 = d3.items.length - 1; c3 >= 0; c3--)
-              -1 !== f3.items.indexOf(k2(d3.items[c3].id)) && d3.items.splice(c3, 1);
+          if (g3.score && "function" != typeof (e3 = f3.settings.score.apply(this, [b3]))) throw new Error('Selectize "score" setting must be a function that returns a function');
+          if (b3 !== f3.lastQuery ? (f3.lastQuery = b3, d3 = f3.sifter.search(b3, a2.extend(h3, { score: e3 })), f3.currentResults = d3) : d3 = a2.extend(true, {}, f3.currentResults), g3.hideSelected) for (c3 = d3.items.length - 1; c3 >= 0; c3--) -1 !== f3.items.indexOf(k2(d3.items[c3].id)) && d3.items.splice(c3, 1);
           return d3;
         }, refreshOptions: function(b3) {
           var c3, e3, f3, g3, h3, i3, j3, l3, m3, n3, o3, p3, q3, r3, s3, t3;
           void 0 === b3 && (b3 = true);
           var u3 = this, w3 = a2.trim(u3.$control_input.val()), x2 = u3.search(w3), y2 = u3.$dropdown_content, z2 = u3.$activeOption && k2(u3.$activeOption.attr("data-value"));
-          for (g3 = x2.items.length, "number" == typeof u3.settings.maxOptions && (g3 = Math.min(g3, u3.settings.maxOptions)), h3 = {}, i3 = [], c3 = 0; c3 < g3; c3++)
-            for (j3 = u3.options[x2.items[c3].id], l3 = u3.render("option", j3), m3 = j3[u3.settings.optgroupField] || "", n3 = a2.isArray(m3) ? m3 : [m3], e3 = 0, f3 = n3 && n3.length; e3 < f3; e3++)
-              m3 = n3[e3], u3.optgroups.hasOwnProperty(m3) || (m3 = ""), h3.hasOwnProperty(m3) || (h3[m3] = document.createDocumentFragment(), i3.push(m3)), h3[m3].appendChild(l3);
+          for (g3 = x2.items.length, "number" == typeof u3.settings.maxOptions && (g3 = Math.min(g3, u3.settings.maxOptions)), h3 = {}, i3 = [], c3 = 0; c3 < g3; c3++) for (j3 = u3.options[x2.items[c3].id], l3 = u3.render("option", j3), m3 = j3[u3.settings.optgroupField] || "", n3 = a2.isArray(m3) ? m3 : [m3], e3 = 0, f3 = n3 && n3.length; e3 < f3; e3++) m3 = n3[e3], u3.optgroups.hasOwnProperty(m3) || (m3 = ""), h3.hasOwnProperty(m3) || (h3[m3] = document.createDocumentFragment(), i3.push(m3)), h3[m3].appendChild(l3);
           for (this.settings.lockOptgroupOrder && i3.sort(function(a3, b4) {
             return (u3.optgroups[a3].$order || 0) - (u3.optgroups[b4].$order || 0);
-          }), o3 = document.createDocumentFragment(), c3 = 0, g3 = i3.length; c3 < g3; c3++)
-            m3 = i3[c3], u3.optgroups.hasOwnProperty(m3) && h3[m3].childNodes.length ? (p3 = document.createDocumentFragment(), p3.appendChild(u3.render("optgroup_header", u3.optgroups[m3])), p3.appendChild(h3[m3]), o3.appendChild(u3.render("optgroup", a2.extend({}, u3.optgroups[m3], { html: v2(p3), dom: p3 })))) : o3.appendChild(h3[m3]);
-          if (y2.html(o3), u3.settings.highlight && (y2.removeHighlight(), x2.query.length && x2.tokens.length))
-            for (c3 = 0, g3 = x2.tokens.length; c3 < g3; c3++)
-              d2(y2, x2.tokens[c3].regex);
-          if (!u3.settings.hideSelected)
-            for (c3 = 0, g3 = u3.items.length; c3 < g3; c3++)
-              u3.getOption(u3.items[c3]).addClass("selected");
+          }), o3 = document.createDocumentFragment(), c3 = 0, g3 = i3.length; c3 < g3; c3++) m3 = i3[c3], u3.optgroups.hasOwnProperty(m3) && h3[m3].childNodes.length ? (p3 = document.createDocumentFragment(), p3.appendChild(u3.render("optgroup_header", u3.optgroups[m3])), p3.appendChild(h3[m3]), o3.appendChild(u3.render("optgroup", a2.extend({}, u3.optgroups[m3], { html: v2(p3), dom: p3 })))) : o3.appendChild(h3[m3]);
+          if (y2.html(o3), u3.settings.highlight && (y2.removeHighlight(), x2.query.length && x2.tokens.length)) for (c3 = 0, g3 = x2.tokens.length; c3 < g3; c3++) d2(y2, x2.tokens[c3].regex);
+          if (!u3.settings.hideSelected) for (c3 = 0, g3 = u3.items.length; c3 < g3; c3++) u3.getOption(u3.items[c3]).addClass("selected");
           q3 = u3.canCreate(w3), q3 && (y2.prepend(u3.render("option_create", { input: w3 })), t3 = a2(y2[0].childNodes[0])), u3.hasOptions = x2.items.length > 0 || q3, u3.hasOptions ? (x2.items.length > 0 ? (s3 = z2 && u3.getOption(z2), s3 && s3.length ? r3 = s3 : "single" === u3.settings.mode && u3.items.length && (r3 = u3.getOption(u3.items[0])), r3 && r3.length || (r3 = t3 && !u3.settings.addPrecedence ? u3.getAdjacentOption(t3, 1) : y2.find("[data-selectable]:first"))) : r3 = t3, u3.setActiveOption(r3), b3 && !u3.isOpen && u3.open()) : (u3.setActiveOption(null), b3 && u3.isOpen && u3.close());
         }, addOption: function(b3) {
           var c3, d3, e3, f3 = this;
-          if (a2.isArray(b3))
-            for (c3 = 0, d3 = b3.length; c3 < d3; c3++)
-              f3.addOption(b3[c3]);
-          else
-            (e3 = f3.registerOption(b3)) && (f3.userOptions[e3] = true, f3.lastQuery = null, f3.trigger("option_add", e3, b3));
+          if (a2.isArray(b3)) for (c3 = 0, d3 = b3.length; c3 < d3; c3++) f3.addOption(b3[c3]);
+          else (e3 = f3.registerOption(b3)) && (f3.userOptions[e3] = true, f3.lastQuery = null, f3.trigger("option_add", e3, b3));
         }, registerOption: function(a3) {
           var b3 = k2(a3[this.settings.valueField]);
           return void 0 !== b3 && null !== b3 && !this.options.hasOwnProperty(b3) && (a3.$order = a3.$order || ++this.order, this.options[b3] = a3, b3);
@@ -7812,8 +7748,7 @@
         }, updateOption: function(b3, c3) {
           var d3, e3, f3, g3, h3, i3, j3, l3 = this;
           if (b3 = k2(b3), f3 = k2(c3[l3.settings.valueField]), null !== b3 && l3.options.hasOwnProperty(b3)) {
-            if ("string" != typeof f3)
-              throw new Error("Value must be set in option data");
+            if ("string" != typeof f3) throw new Error("Value must be set in option data");
             j3 = l3.options[b3].$order, f3 !== b3 && (delete l3.options[b3], -1 !== (g3 = l3.items.indexOf(b3)) && l3.items.splice(g3, 1, f3)), c3.$order = c3.$order || j3, l3.options[f3] = c3, h3 = l3.renderCache.item, i3 = l3.renderCache.option, h3 && (delete h3[b3], delete h3[f3]), i3 && (delete i3[b3], delete i3[f3]), -1 !== l3.items.indexOf(f3) && (d3 = l3.getItem(b3), e3 = a2(l3.render("item", c3)), d3.hasClass("active") && e3.addClass("active"), d3.replaceWith(e3)), l3.lastQuery = null, l3.isOpen && l3.refreshOptions(false);
           }
         }, removeOption: function(a3, b3) {
@@ -7835,26 +7770,21 @@
           return e3 >= 0 && e3 < d3.length ? d3.eq(e3) : a2();
         }, getElementWithValue: function(b3, c3) {
           if (void 0 !== (b3 = k2(b3)) && null !== b3) {
-            for (var d3 = 0, e3 = c3.length; d3 < e3; d3++)
-              if (c3[d3].getAttribute("data-value") === b3)
-                return a2(c3[d3]);
+            for (var d3 = 0, e3 = c3.length; d3 < e3; d3++) if (c3[d3].getAttribute("data-value") === b3) return a2(c3[d3]);
           }
           return a2();
         }, getItem: function(a3) {
           return this.getElementWithValue(a3, this.$control.children());
         }, addItems: function(b3, c3) {
           this.buffer = document.createDocumentFragment();
-          for (var d3 = this.$control[0].childNodes, e3 = 0; e3 < d3.length; e3++)
-            this.buffer.appendChild(d3[e3]);
-          for (var f3 = a2.isArray(b3) ? b3 : [b3], e3 = 0, g3 = f3.length; e3 < g3; e3++)
-            this.isPending = e3 < g3 - 1, this.addItem(f3[e3], c3);
+          for (var d3 = this.$control[0].childNodes, e3 = 0; e3 < d3.length; e3++) this.buffer.appendChild(d3[e3]);
+          for (var f3 = a2.isArray(b3) ? b3 : [b3], e3 = 0, g3 = f3.length; e3 < g3; e3++) this.isPending = e3 < g3 - 1, this.addItem(f3[e3], c3);
           var h3 = this.$control[0];
           h3.insertBefore(this.buffer, h3.firstChild), this.buffer = null;
         }, addItem: function(b3, c3) {
           p2(this, c3 ? [] : ["change"], function() {
             var d3, e3, f3, g3, h3, i3 = this, j3 = i3.settings.mode;
-            if (b3 = k2(b3), -1 !== i3.items.indexOf(b3))
-              return void ("single" === j3 && i3.close());
+            if (b3 = k2(b3), -1 !== i3.items.indexOf(b3)) return void ("single" === j3 && i3.close());
             i3.options.hasOwnProperty(b3) && ("single" === j3 && i3.clear(c3), "multi" === j3 && i3.isFull() || (d3 = a2(i3.render("item", i3.options[b3])), h3 = i3.isFull(), i3.items.splice(i3.caretPos, 0, b3), i3.insertAtCaret(d3), (!i3.isPending || !h3 && i3.isFull()) && i3.refreshState(), i3.isSetup && (f3 = i3.$dropdown_content.find("[data-selectable]"), i3.isPending || (e3 = i3.getOption(b3), g3 = i3.getAdjacentOption(e3, 1).attr("data-value"), i3.refreshOptions(i3.isFocused && "single" !== j3), g3 && i3.setActiveOption(i3.getOption(g3))), !f3.length || i3.isFull() ? i3.close() : i3.isPending || i3.positionDropdown(), i3.updatePlaceholder(), i3.trigger("item_add", b3, d3), i3.isPending || i3.updateOriginalInput({ silent: c3 }))));
           });
         }, removeItem: function(b3, c3) {
@@ -7865,18 +7795,15 @@
           b3 = b3 || a2.trim(d3.$control_input.val() || "");
           var f3 = arguments[arguments.length - 1];
           if ("function" != typeof f3 && (f3 = function() {
-          }), "boolean" != typeof c3 && (c3 = true), !d3.canCreate(b3))
-            return f3(), false;
+          }), "boolean" != typeof c3 && (c3 = true), !d3.canCreate(b3)) return f3(), false;
           d3.lock();
           var g3 = "function" == typeof d3.settings.create ? this.settings.create : function(a3) {
             var b4 = {};
             return b4[d3.settings.labelField] = a3, b4[d3.settings.valueField] = a3, b4;
           }, h3 = n2(function(a3) {
-            if (d3.unlock(), !a3 || "object" != typeof a3)
-              return f3();
+            if (d3.unlock(), !a3 || "object" != typeof a3) return f3();
             var b4 = k2(a3[d3.settings.valueField]);
-            if ("string" != typeof b4)
-              return f3();
+            if ("string" != typeof b4) return f3();
             d3.setTextboxValue(""), d3.addOption(a3), d3.setCaret(e3), d3.addItem(b4), d3.refreshOptions(c3 && "single" !== d3.settings.mode), f3(a3);
           }), i3 = g3.apply(this, [b3, h3]);
           return void 0 !== i3 && h3(i3), true;
@@ -7885,8 +7812,7 @@
         }, refreshState: function() {
           this.refreshValidityState(), this.refreshClasses();
         }, refreshValidityState: function() {
-          if (!this.isRequired)
-            return false;
+          if (!this.isRequired) return false;
           var a3 = !this.items.length;
           this.isInvalid = a3, this.$control_input.prop("required", a3), this.$input.prop("required", !a3);
         }, refreshClasses: function() {
@@ -7897,11 +7823,9 @@
         }, updateOriginalInput: function(a3) {
           var b3, c3, d3, e3, f3 = this;
           if (a3 = a3 || {}, 1 === f3.tagType) {
-            for (d3 = [], b3 = 0, c3 = f3.items.length; b3 < c3; b3++)
-              e3 = f3.options[f3.items[b3]][f3.settings.labelField] || "", d3.push('<option value="' + l2(f3.items[b3]) + '" selected="selected">' + l2(e3) + "</option>");
+            for (d3 = [], b3 = 0, c3 = f3.items.length; b3 < c3; b3++) e3 = f3.options[f3.items[b3]][f3.settings.labelField] || "", d3.push('<option value="' + l2(f3.items[b3]) + '" selected="selected">' + l2(e3) + "</option>");
             d3.length || this.$input.attr("multiple") || d3.push('<option value="" selected="selected"></option>'), f3.$input.html(d3.join(""));
-          } else
-            f3.$input.val(f3.getValue()), f3.$input.attr("value", f3.$input.val());
+          } else f3.$input.val(f3.getValue()), f3.$input.attr("value", f3.$input.val());
           f3.isSetup && (a3.silent || f3.trigger("change", f3.$input.val()));
         }, updatePlaceholder: function() {
           if (this.settings.placeholder) {
@@ -7926,15 +7850,11 @@
         }, deleteSelection: function(b3) {
           var c3, d3, e3, f3, g3, h3, i3, j3, k3, l3 = this;
           if (e3 = b3 && 8 === b3.keyCode ? -1 : 1, f3 = r2(l3.$control_input[0]), l3.$activeOption && !l3.settings.hideSelected && (i3 = l3.getAdjacentOption(l3.$activeOption, -1).attr("data-value")), g3 = [], l3.$activeItems.length) {
-            for (k3 = l3.$control.children(".active:" + (e3 > 0 ? "last" : "first")), h3 = l3.$control.children(":not(input)").index(k3), e3 > 0 && h3++, c3 = 0, d3 = l3.$activeItems.length; c3 < d3; c3++)
-              g3.push(a2(l3.$activeItems[c3]).attr("data-value"));
+            for (k3 = l3.$control.children(".active:" + (e3 > 0 ? "last" : "first")), h3 = l3.$control.children(":not(input)").index(k3), e3 > 0 && h3++, c3 = 0, d3 = l3.$activeItems.length; c3 < d3; c3++) g3.push(a2(l3.$activeItems[c3]).attr("data-value"));
             b3 && (b3.preventDefault(), b3.stopPropagation());
-          } else
-            (l3.isFocused || "single" === l3.settings.mode) && l3.items.length && (e3 < 0 && 0 === f3.start && 0 === f3.length ? g3.push(l3.items[l3.caretPos - 1]) : e3 > 0 && f3.start === l3.$control_input.val().length && g3.push(l3.items[l3.caretPos]));
-          if (!g3.length || "function" == typeof l3.settings.onDelete && false === l3.settings.onDelete.apply(l3, [g3]))
-            return false;
-          for (void 0 !== h3 && l3.setCaret(h3); g3.length; )
-            l3.removeItem(g3.pop());
+          } else (l3.isFocused || "single" === l3.settings.mode) && l3.items.length && (e3 < 0 && 0 === f3.start && 0 === f3.length ? g3.push(l3.items[l3.caretPos - 1]) : e3 > 0 && f3.start === l3.$control_input.val().length && g3.push(l3.items[l3.caretPos]));
+          if (!g3.length || "function" == typeof l3.settings.onDelete && false === l3.settings.onDelete.apply(l3, [g3])) return false;
+          for (void 0 !== h3 && l3.setCaret(h3); g3.length; ) l3.removeItem(g3.pop());
           return l3.showInput(), l3.positionDropdown(), l3.refreshOptions(true), i3 && (j3 = l3.getOption(i3), j3.length && l3.setActiveOption(j3)), true;
         }, advanceSelection: function(a3, b3) {
           var c3, d3, e3, f3, g3, h3 = this;
@@ -7946,8 +7866,7 @@
           var c3 = this;
           if (b3 = "single" === c3.settings.mode ? c3.items.length : Math.max(0, Math.min(c3.items.length, b3)), !c3.isPending) {
             var d3, e3, f3, g3;
-            for (f3 = c3.$control.children(":not(input)"), d3 = 0, e3 = f3.length; d3 < e3; d3++)
-              g3 = a2(f3[d3]).detach(), d3 < b3 ? c3.$control_input.before(g3) : c3.$control.append(g3);
+            for (f3 = c3.$control.children(":not(input)"), d3 = 0, e3 = f3.length; d3 < e3; d3++) g3 = a2(f3[d3]).detach(), d3 < b3 ? c3.$control_input.before(g3) : c3.$control.append(g3);
           }
           c3.caretPos = b3;
         }, lock: function() {
@@ -7971,8 +7890,7 @@
           void 0 === a3 ? b3.renderCache = {} : delete b3.renderCache[a3];
         }, canCreate: function(a3) {
           var b3 = this;
-          if (!b3.settings.create)
-            return false;
+          if (!b3.settings.create) return false;
           var c3 = b3.settings.createFilter;
           return a3.length && ("function" != typeof c3 || c3.apply(b3, [a3])) && ("string" != typeof c3 || new RegExp(c3).test(a3)) && (!(c3 instanceof RegExp) || c3.test(a3));
         } }), w2.count = 0, w2.defaults = {
@@ -8021,15 +7939,11 @@
         }, a2.fn.selectize = function(b3) {
           var c3 = a2.fn.selectize.defaults, d3 = a2.extend({}, c3, b3), e3 = d3.dataAttr, f3 = d3.labelField, g3 = d3.valueField, h3 = d3.disabledField, i3 = d3.optgroupField, j3 = d3.optgroupLabelField, l3 = d3.optgroupValueField, m3 = function(b4, c4) {
             var h4, i4, j4, k3, l4 = b4.attr(e3);
-            if (l4)
-              for (c4.options = JSON.parse(l4), h4 = 0, i4 = c4.options.length; h4 < i4; h4++)
-                c4.items.push(c4.options[h4][g3]);
+            if (l4) for (c4.options = JSON.parse(l4), h4 = 0, i4 = c4.options.length; h4 < i4; h4++) c4.items.push(c4.options[h4][g3]);
             else {
               var m4 = a2.trim(b4.val() || "");
-              if (!d3.allowEmptyOption && !m4.length)
-                return;
-              for (j4 = m4.split(d3.delimiter), h4 = 0, i4 = j4.length; h4 < i4; h4++)
-                k3 = {}, k3[f3] = j4[h4], k3[g3] = j4[h4], c4.options.push(k3);
+              if (!d3.allowEmptyOption && !m4.length) return;
+              for (j4 = m4.split(d3.delimiter), h4 = 0, i4 = j4.length; h4 < i4; h4++) k3 = {}, k3[f3] = j4[h4], k3[g3] = j4[h4], c4.options.push(k3);
               c4.items = j4;
             }
           }, n3 = function(b4, c4) {
@@ -8039,23 +7953,20 @@
             }, t3 = function(b5, e4) {
               b5 = a2(b5);
               var j4 = k2(b5.val());
-              if (j4 || d3.allowEmptyOption)
-                if (r3.hasOwnProperty(j4)) {
-                  if (e4) {
-                    var l4 = r3[j4][i3];
-                    l4 ? a2.isArray(l4) ? l4.push(e4) : r3[j4][i3] = [l4, e4] : r3[j4][i3] = e4;
-                  }
-                } else {
-                  var m5 = s3(b5) || {};
-                  m5[f3] = m5[f3] || b5.text(), m5[g3] = m5[g3] || j4, m5[h3] = m5[h3] || b5.prop("disabled"), m5[i3] = m5[i3] || e4, r3[j4] = m5, q3.push(m5), b5.is(":selected") && c4.items.push(j4);
+              if (j4 || d3.allowEmptyOption) if (r3.hasOwnProperty(j4)) {
+                if (e4) {
+                  var l4 = r3[j4][i3];
+                  l4 ? a2.isArray(l4) ? l4.push(e4) : r3[j4][i3] = [l4, e4] : r3[j4][i3] = e4;
                 }
+              } else {
+                var m5 = s3(b5) || {};
+                m5[f3] = m5[f3] || b5.text(), m5[g3] = m5[g3] || j4, m5[h3] = m5[h3] || b5.prop("disabled"), m5[i3] = m5[i3] || e4, r3[j4] = m5, q3.push(m5), b5.is(":selected") && c4.items.push(j4);
+              }
             };
-            for (c4.maxItems = b4.attr("multiple") ? null : 1, p3 = b4.children(), m4 = 0, n4 = p3.length; m4 < n4; m4++)
-              o3 = p3[m4].tagName.toLowerCase(), "optgroup" === o3 ? function(b5) {
-                var d4, e4, f4, g4, i4;
-                for (b5 = a2(b5), f4 = b5.attr("label"), f4 && (g4 = s3(b5) || {}, g4[j3] = f4, g4[l3] = f4, g4[h3] = b5.prop("disabled"), c4.optgroups.push(g4)), i4 = a2("option", b5), d4 = 0, e4 = i4.length; d4 < e4; d4++)
-                  t3(i4[d4], f4);
-              }(p3[m4]) : "option" === o3 && t3(p3[m4]);
+            for (c4.maxItems = b4.attr("multiple") ? null : 1, p3 = b4.children(), m4 = 0, n4 = p3.length; m4 < n4; m4++) o3 = p3[m4].tagName.toLowerCase(), "optgroup" === o3 ? function(b5) {
+              var d4, e4, f4, g4, i4;
+              for (b5 = a2(b5), f4 = b5.attr("label"), f4 && (g4 = s3(b5) || {}, g4[j3] = f4, g4[l3] = f4, g4[h3] = b5.prop("disabled"), c4.optgroups.push(g4)), i4 = a2("option", b5), d4 = 0, e4 = i4.length; d4 < e4; d4++) t3(i4[d4], f4);
+            }(p3[m4]) : "option" === o3 && t3(p3[m4]);
           };
           return this.each(function() {
             if (!this.selectize) {
@@ -8066,8 +7977,7 @@
             }
           });
         }, a2.fn.selectize.defaults = w2.defaults, a2.fn.selectize.support = { validity: i2 }, w2.define("drag_drop", function(b3) {
-          if (!a2.fn.sortable)
-            throw new Error('The "drag_drop" plugin requires jQuery UI "sortable".');
+          if (!a2.fn.sortable) throw new Error('The "drag_drop" plugin requires jQuery UI "sortable".');
           if ("multi" === this.settings.mode) {
             var c3 = this;
             c3.lock = function() {
@@ -8127,8 +8037,7 @@
             var e4, f3, g3, h3, i3, j3, k3;
             if (k3 = a2("[data-group]", c3.$dropdown_content), (f3 = k3.length) && c3.$dropdown_content.width()) {
               if (b3.equalizeHeight) {
-                for (g3 = 0, e4 = 0; e4 < f3; e4++)
-                  g3 = Math.max(g3, k3.eq(e4).height());
+                for (g3 = 0, e4 = 0; e4 < f3; e4++) g3 = Math.max(g3, k3.eq(e4).height());
                 k3.css({ height: g3 });
               }
               b3.equalizeWidth && (j3 = c3.$dropdown_content.innerWidth() - d3(), h3 = Math.round(j3 / f3), k3.css({ width: h3 }), f3 > 1 && (i3 = j3 - h3 * (f3 - 1), k3.eq(f3 - 1).css({ width: i3 })));
@@ -8137,27 +8046,26 @@
           (b3.equalizeHeight || b3.equalizeWidth) && (m2.after(this, "positionDropdown", e3), m2.after(this, "refreshOptions", e3));
         }), w2.define("remove_button", function(b3) {
           b3 = a2.extend({ label: "&times;", title: "Remove", className: "remove", append: true }, b3);
-          if ("single" === this.settings.mode)
-            return void function(b4, c3) {
-              c3.className = "remove-single";
-              var d3 = b4, e3 = '<a href="javascript:void(0)" class="' + c3.className + '" tabindex="-1" title="' + l2(c3.title) + '">' + c3.label + "</a>", f3 = function(b5, c4) {
-                return a2("<span>").append(b5).append(c4);
+          if ("single" === this.settings.mode) return void function(b4, c3) {
+            c3.className = "remove-single";
+            var d3 = b4, e3 = '<a href="javascript:void(0)" class="' + c3.className + '" tabindex="-1" title="' + l2(c3.title) + '">' + c3.label + "</a>", f3 = function(b5, c4) {
+              return a2("<span>").append(b5).append(c4);
+            };
+            b4.setup = function() {
+              var g3 = d3.setup;
+              return function() {
+                if (c3.append) {
+                  var h3 = a2(d3.$input.context).attr("id"), i3 = (a2("#" + h3), d3.settings.render.item);
+                  d3.settings.render.item = function(a3) {
+                    return f3(i3.apply(b4, arguments), e3);
+                  };
+                }
+                g3.apply(b4, arguments), b4.$control.on("click", "." + c3.className, function(a3) {
+                  a3.preventDefault(), d3.isLocked || d3.clear();
+                });
               };
-              b4.setup = function() {
-                var g3 = d3.setup;
-                return function() {
-                  if (c3.append) {
-                    var h3 = a2(d3.$input.context).attr("id"), i3 = (a2("#" + h3), d3.settings.render.item);
-                    d3.settings.render.item = function(a3) {
-                      return f3(i3.apply(b4, arguments), e3);
-                    };
-                  }
-                  g3.apply(b4, arguments), b4.$control.on("click", "." + c3.className, function(a3) {
-                    a3.preventDefault(), d3.isLocked || d3.clear();
-                  });
-                };
-              }();
-            }(this, b3);
+            }();
+          }(this, b3);
           !function(b4, c3) {
             var d3 = b4, e3 = '<a href="javascript:void(0)" class="' + c3.className + '" tabindex="-1" title="' + l2(c3.title) + '">' + c3.label + "</a>", f3 = function(a3, b5) {
               var c4 = a3.search(/(<\/[^>]+>\s*)$/);
@@ -8203,7 +8111,7 @@
   window.$ = import_jquery.default;
 
   // node_modules/trix/dist/trix.esm.min.js
-  var t = "2.1.1";
+  var t = "2.1.4";
   var e = "[data-trix-attachment]";
   var i = { preview: { presentation: "gallery", caption: { name: true, size: true } }, file: { caption: { size: true } } };
   var n = { default: { tagName: "div", parse: false }, quote: { tagName: "blockquote", nestable: true }, heading1: { tagName: "h1", terminal: true, breakOnReturn: true, group: false }, code: { tagName: "pre", terminal: true, htmlAttributes: ["language"], text: { plaintext: true } }, bulletList: { tagName: "ul", parse: false }, bullet: { tagName: "li", listAttribute: "bulletList", group: false, nestable: true, test(t2) {
@@ -8261,41 +8169,32 @@
     return s2.initEvent(t2, i2, n2), null != r2 && g.call(s2, r2), o2.dispatchEvent(s2);
   };
   var v = function(t2, e2) {
-    if (1 === (null == t2 ? void 0 : t2.nodeType))
-      return p.call(t2, e2);
+    if (1 === (null == t2 ? void 0 : t2.nodeType)) return p.call(t2, e2);
   };
   var A = function(t2) {
     let { matchingSelector: e2, untilNode: i2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-    for (; t2 && t2.nodeType !== Node.ELEMENT_NODE; )
-      t2 = t2.parentNode;
+    for (; t2 && t2.nodeType !== Node.ELEMENT_NODE; ) t2 = t2.parentNode;
     if (null != t2) {
-      if (null == e2)
-        return t2;
-      if (t2.closest && null == i2)
-        return t2.closest(e2);
+      if (null == e2) return t2;
+      if (t2.closest && null == i2) return t2.closest(e2);
       for (; t2 && t2 !== i2; ) {
-        if (v(t2, e2))
-          return t2;
+        if (v(t2, e2)) return t2;
         t2 = t2.parentNode;
       }
     }
   };
   var x = (t2) => document.activeElement !== t2 && y(t2, document.activeElement);
   var y = function(t2, e2) {
-    if (t2 && e2)
-      for (; e2; ) {
-        if (e2 === t2)
-          return true;
-        e2 = e2.parentNode;
-      }
+    if (t2 && e2) for (; e2; ) {
+      if (e2 === t2) return true;
+      e2 = e2.parentNode;
+    }
   };
   var C = function(t2) {
     var e2;
-    if (null === (e2 = t2) || void 0 === e2 || !e2.parentNode)
-      return;
+    if (null === (e2 = t2) || void 0 === e2 || !e2.parentNode) return;
     let i2 = 0;
-    for (t2 = t2.previousSibling; t2; )
-      i2++, t2 = t2.previousSibling;
+    for (t2 = t2.previousSibling; t2; ) i2++, t2 = t2.previousSibling;
     return i2;
   };
   var k = (t2) => {
@@ -8326,15 +8225,9 @@
     let e2, i2, n2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
     "object" == typeof t2 ? (n2 = t2, t2 = n2.tagName) : n2 = { attributes: n2 };
     const r2 = document.createElement(t2);
-    if (null != n2.editable && (null == n2.attributes && (n2.attributes = {}), n2.attributes.contenteditable = n2.editable), n2.attributes)
-      for (e2 in n2.attributes)
-        i2 = n2.attributes[e2], r2.setAttribute(e2, i2);
-    if (n2.style)
-      for (e2 in n2.style)
-        i2 = n2.style[e2], r2.style[e2] = i2;
-    if (n2.data)
-      for (e2 in n2.data)
-        i2 = n2.data[e2], r2.dataset[e2] = i2;
+    if (null != n2.editable && (null == n2.attributes && (n2.attributes = {}), n2.attributes.contenteditable = n2.editable), n2.attributes) for (e2 in n2.attributes) i2 = n2.attributes[e2], r2.setAttribute(e2, i2);
+    if (n2.style) for (e2 in n2.style) i2 = n2.style[e2], r2.style[e2] = i2;
+    if (n2.data) for (e2 in n2.data) i2 = n2.data[e2], r2.dataset[e2] = i2;
     return n2.className && n2.className.split(" ").forEach((t3) => {
       r2.classList.add(t3);
     }), n2.textContent && (r2.textContent = n2.textContent), n2.childNodes && [].concat(n2.childNodes).forEach((t3) => {
@@ -8343,8 +8236,7 @@
   };
   var L;
   var D = function() {
-    if (null != L)
-      return L;
+    if (null != L) return L;
     L = [];
     for (const t2 in n) {
       const e2 = n[t2];
@@ -8363,8 +8255,7 @@
   var F = (t2) => (null == t2 ? void 0 : t2.nodeType) === Node.COMMENT_NODE;
   var P = function(t2) {
     let { name: e2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-    if (t2)
-      return O(t2) ? t2.data === h ? !e2 || t2.parentNode.dataset.trixCursorTarget === e2 : void 0 : P(t2.firstChild);
+    if (t2) return O(t2) ? t2.data === h ? !e2 || t2.parentNode.dataset.trixCursorTarget === e2 : void 0 : P(t2.firstChild);
   };
   var I = (t2) => v(t2, e);
   var N = (t2) => O(t2) && "" === (null == t2 ? void 0 : t2.data);
@@ -8383,8 +8274,7 @@
     return "bold" === e2.fontWeight || e2.fontWeight >= 600;
   } }, italic: { tagName: "em", inheritable: true, parser: (t2) => "italic" === window.getComputedStyle(t2).fontStyle }, href: { groupTagName: "a", parser(t2) {
     const i2 = "a:not(".concat(e, ")"), n2 = t2.closest(i2);
-    if (n2)
-      return n2.getAttribute("href");
+    if (n2) return n2.getAttribute("href");
   } }, strike: { tagName: "del", inheritable: true }, frozen: { style: { backgroundColor: "highlight" } } };
   var U = { getDefaultHTML: () => '<div class="trix-button-row">\n      <span class="trix-button-group trix-button-group--text-tools" data-trix-button-group="text-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-bold" data-trix-attribute="bold" data-trix-key="b" title="'.concat(l.bold, '" tabindex="-1">').concat(l.bold, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-italic" data-trix-attribute="italic" data-trix-key="i" title="').concat(l.italic, '" tabindex="-1">').concat(l.italic, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-strike" data-trix-attribute="strike" title="').concat(l.strike, '" tabindex="-1">').concat(l.strike, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-link" data-trix-attribute="href" data-trix-action="link" data-trix-key="k" title="').concat(l.link, '" tabindex="-1">').concat(l.link, '</button>\n      </span>\n\n      <span class="trix-button-group trix-button-group--block-tools" data-trix-button-group="block-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-heading-1" data-trix-attribute="heading1" title="').concat(l.heading1, '" tabindex="-1">').concat(l.heading1, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-quote" data-trix-attribute="quote" title="').concat(l.quote, '" tabindex="-1">').concat(l.quote, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-code" data-trix-attribute="code" title="').concat(l.code, '" tabindex="-1">').concat(l.code, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-bullet-list" data-trix-attribute="bullet" title="').concat(l.bullets, '" tabindex="-1">').concat(l.bullets, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-number-list" data-trix-attribute="number" title="').concat(l.numbers, '" tabindex="-1">').concat(l.numbers, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-decrease-nesting-level" data-trix-action="decreaseNestingLevel" title="').concat(l.outdent, '" tabindex="-1">').concat(l.outdent, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-increase-nesting-level" data-trix-action="increaseNestingLevel" title="').concat(l.indent, '" tabindex="-1">').concat(l.indent, '</button>\n      </span>\n\n      <span class="trix-button-group trix-button-group--file-tools" data-trix-button-group="file-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-attach" data-trix-action="attachFiles" title="').concat(l.attachFiles, '" tabindex="-1">').concat(l.attachFiles, '</button>\n      </span>\n\n      <span class="trix-button-group-spacer"></span>\n\n      <span class="trix-button-group trix-button-group--history-tools" data-trix-button-group="history-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-undo" data-trix-action="undo" data-trix-key="z" title="').concat(l.undo, '" tabindex="-1">').concat(l.undo, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-redo" data-trix-action="redo" data-trix-key="shift+z" title="').concat(l.redo, '" tabindex="-1">').concat(l.redo, '</button>\n      </span>\n    </div>\n\n    <div class="trix-dialogs" data-trix-dialogs>\n      <div class="trix-dialog trix-dialog--link" data-trix-dialog="href" data-trix-dialog-attribute="href">\n        <div class="trix-dialog__link-fields">\n          <input type="url" name="href" class="trix-input trix-input--dialog" placeholder="').concat(l.urlPlaceholder, '" aria-label="').concat(l.url, '" required data-trix-input>\n          <div class="trix-button-group">\n            <input type="button" class="trix-button trix-button--dialog" value="').concat(l.link, '" data-trix-method="setAttribute">\n            <input type="button" class="trix-button trix-button--dialog" value="').concat(l.unlink, '" data-trix-method="removeAttribute">\n          </div>\n        </div>\n      </div>\n    </div>') };
   var q = { interval: 5e3 };
@@ -8402,8 +8292,7 @@
   };
   var z = function(t2) {
     const e2 = t2.match(J);
-    if (!e2)
-      throw new Error("can't parse @proxyMethod expression: ".concat(t2));
+    if (!e2) throw new Error("can't parse @proxyMethod expression: ".concat(t2));
     const i2 = { name: e2[4] };
     return null != e2[2] ? i2.toMethod = e2[1] : i2.toProperty = e2[1], null != e2[3] && (i2.optional = true), i2;
   };
@@ -8514,18 +8403,15 @@
   };
   var rt = function() {
     let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [], e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
-    if (t2.length !== e2.length)
-      return false;
+    if (t2.length !== e2.length) return false;
     for (let i2 = 0; i2 < t2.length; i2++) {
-      if (t2[i2] !== e2[i2])
-        return false;
+      if (t2[i2] !== e2[i2]) return false;
     }
     return true;
   };
   var ot = function(t2) {
     const e2 = t2.slice(0);
-    for (var i2 = arguments.length, n2 = new Array(i2 > 1 ? i2 - 1 : 0), r2 = 1; r2 < i2; r2++)
-      n2[r2 - 1] = arguments[r2];
+    for (var i2 = arguments.length, n2 = new Array(i2 > 1 ? i2 - 1 : 0), r2 = 1; r2 < i2; r2++) n2[r2 - 1] = arguments[r2];
     return e2.splice(...n2), e2;
   };
   var st = /[\u05BE\u05C0\u05C3\u05D0-\u05EA\u05F0-\u05F4\u061B\u061F\u0621-\u063A\u0640-\u064A\u066D\u0671-\u06B7\u06BA-\u06BE\u06C0-\u06CE\u06D0-\u06D5\u06E5\u06E6\u200F\u202B\u202E\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE72\uFE74\uFE76-\uFEFC]/;
@@ -8574,19 +8460,16 @@
   };
   var At = function() {
     const t2 = xt("trix-csp-nonce") || xt("csp-nonce");
-    if (t2)
-      return t2.getAttribute("content");
+    if (t2) return t2.getAttribute("content");
   };
   var xt = (t2) => document.head.querySelector("meta[name=".concat(t2, "]"));
   var yt = { "application/x-trix-feature-detection": "test" };
   var Ct = function(t2) {
     const e2 = t2.getData("text/plain"), i2 = t2.getData("text/html");
-    if (!e2 || !i2)
-      return null == e2 ? void 0 : e2.length;
+    if (!e2 || !i2) return null == e2 ? void 0 : e2.length;
     {
       const { body: t3 } = new DOMParser().parseFromString(i2, "text/html");
-      if (t3.textContent === e2)
-        return !t3.querySelector("*");
+      if (t3.textContent === e2) return !t3.querySelector("*");
     }
   };
   var kt = /Mac|^iP/.test(navigator.platform) ? (t2) => t2.metaKey : (t2) => t2.ctrlKey;
@@ -8602,27 +8485,22 @@
   };
   var St = function() {
     let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}, e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-    if (Object.keys(t2).length !== Object.keys(e2).length)
-      return false;
+    if (Object.keys(t2).length !== Object.keys(e2).length) return false;
     for (const i2 in t2) {
-      if (t2[i2] !== e2[i2])
-        return false;
+      if (t2[i2] !== e2[i2]) return false;
     }
     return true;
   };
   var Lt = function(t2) {
-    if (null != t2)
-      return Array.isArray(t2) || (t2 = [t2, t2]), [Tt(t2[0]), Tt(null != t2[1] ? t2[1] : t2[0])];
+    if (null != t2) return Array.isArray(t2) || (t2 = [t2, t2]), [Tt(t2[0]), Tt(null != t2[1] ? t2[1] : t2[0])];
   };
   var Dt = function(t2) {
-    if (null == t2)
-      return;
+    if (null == t2) return;
     const [e2, i2] = Lt(t2);
     return Bt(e2, i2);
   };
   var wt = function(t2, e2) {
-    if (null == t2 || null == e2)
-      return;
+    if (null == t2 || null == e2) return;
     const [i2, n2] = Lt(t2), [r2, o2] = Lt(e2);
     return Bt(i2, r2) && Bt(n2, o2);
   };
@@ -8640,16 +8518,13 @@
       this.started || (this.started = true, document.addEventListener("selectionchange", this.update, true));
     }
     stop() {
-      if (this.started)
-        return this.started = false, document.removeEventListener("selectionchange", this.update, true);
+      if (this.started) return this.started = false, document.removeEventListener("selectionchange", this.update, true);
     }
     registerSelectionManager(t2) {
-      if (!this.selectionManagers.includes(t2))
-        return this.selectionManagers.push(t2), this.start();
+      if (!this.selectionManagers.includes(t2)) return this.selectionManagers.push(t2), this.start();
     }
     unregisterSelectionManager(t2) {
-      if (this.selectionManagers = this.selectionManagers.filter((e2) => e2 !== t2), 0 === this.selectionManagers.length)
-        return this.stop();
+      if (this.selectionManagers = this.selectionManagers.filter((e2) => e2 !== t2), 0 === this.selectionManagers.length) return this.stop();
     }
     notifySelectionManagersOfSelectionChange() {
       return this.selectionManagers.map((t2) => t2.selectionDidChange());
@@ -8664,14 +8539,12 @@
   var Pt = new Ft();
   var It = function() {
     const t2 = window.getSelection();
-    if (t2.rangeCount > 0)
-      return t2;
+    if (t2.rangeCount > 0) return t2;
   };
   var Nt = function() {
     var t2;
     const e2 = null === (t2 = It()) || void 0 === t2 ? void 0 : t2.getRangeAt(0);
-    if (e2 && !Mt(e2))
-      return e2;
+    if (e2 && !Mt(e2)) return e2;
   };
   var Ot = function(t2) {
     const e2 = window.getSelection();
@@ -8683,30 +8556,25 @@
   var Ut = new RegExp("[^\\S".concat(d, "]"));
   var qt = (t2) => t2.replace(new RegExp("".concat(Ut.source), "g"), " ").replace(/\ {2,}/g, " ");
   var Vt = function(t2, e2) {
-    if (t2.isEqualTo(e2))
-      return ["", ""];
+    if (t2.isEqualTo(e2)) return ["", ""];
     const i2 = Ht(t2, e2), { length: n2 } = i2.utf16String;
     let r2;
     if (n2) {
       const { offset: o2 } = i2, s2 = t2.codepoints.slice(0, o2).concat(t2.codepoints.slice(o2 + n2));
       r2 = Ht(e2, X.fromCodepoints(s2));
-    } else
-      r2 = Ht(e2, t2);
+    } else r2 = Ht(e2, t2);
     return [i2.utf16String.toString(), r2.utf16String.toString()];
   };
   var Ht = function(t2, e2) {
     let i2 = 0, n2 = t2.length, r2 = e2.length;
-    for (; i2 < n2 && t2.charAt(i2).isEqualTo(e2.charAt(i2)); )
-      i2++;
-    for (; n2 > i2 + 1 && t2.charAt(n2 - 1).isEqualTo(e2.charAt(r2 - 1)); )
-      n2--, r2--;
+    for (; i2 < n2 && t2.charAt(i2).isEqualTo(e2.charAt(i2)); ) i2++;
+    for (; n2 > i2 + 1 && t2.charAt(n2 - 1).isEqualTo(e2.charAt(r2 - 1)); ) n2--, r2--;
     return { utf16String: t2.slice(i2, n2), offset: i2 };
   };
   var zt = class _zt extends nt {
     static fromCommonAttributesOfObjects() {
       let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
-      if (!t2.length)
-        return new this();
+      if (!t2.length) return new this();
       let e2 = Gt(t2[0]), i2 = e2.getKeys();
       return t2.slice(1).forEach((t3) => {
         i2 = e2.getKeysCommonToHash(Gt(t3)), e2 = e2.slice(i2);
@@ -8806,8 +8674,7 @@
         var o2;
         if (t2) {
           var s2, a2, l2;
-          if (null !== (s2 = e3.canBeGrouped) && void 0 !== s2 && s2.call(e3, i2) && null !== (a2 = (l2 = t2[t2.length - 1]).canBeGroupedWith) && void 0 !== a2 && a2.call(l2, e3, i2))
-            return void t2.push(e3);
+          if (null !== (s2 = e3.canBeGrouped) && void 0 !== s2 && s2.call(e3, i2) && null !== (a2 = (l2 = t2[t2.length - 1]).canBeGroupedWith) && void 0 !== a2 && a2.call(l2, e3, i2)) return void t2.push(e3);
           r2.push(new this(t2, { depth: i2, asTree: n2 })), t2 = null;
         }
         null !== (o2 = e3.canBeGrouped) && void 0 !== o2 && o2.call(e3, i2) ? t2 = [e3] : r2.push(e3);
@@ -8853,8 +8720,7 @@
     }
     remove(t2) {
       const e2 = Zt(t2), i2 = this.elements[e2];
-      if (i2)
-        return delete this.elements[e2], i2;
+      if (i2) return delete this.elements[e2], i2;
     }
     reset() {
       let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
@@ -8931,13 +8797,10 @@
     }
     findElementForObject(t2) {
       const e2 = null == t2 ? void 0 : t2.id;
-      if (e2)
-        return this.rootView.element.querySelector("[data-trix-id='".concat(e2, "']"));
+      if (e2) return this.rootView.element.querySelector("[data-trix-id='".concat(e2, "']"));
     }
     findViewForObject(t2) {
-      for (const e2 of this.getAllChildViews())
-        if (e2.object === t2)
-          return e2;
+      for (const e2 of this.getAllChildViews()) if (e2.object === t2) return e2;
     }
     getViewCache() {
       return this.rootView !== this ? this.rootView.getViewCache() : this.isViewCachingEnabled() ? (this.viewCache || (this.viewCache = {}), this.viewCache) : void 0;
@@ -8963,8 +8826,7 @@
       const t2 = this.getViewCache();
       if (t2) {
         const e2 = this.getAllChildViews().concat(this).map((t3) => t3.object.getCacheKey());
-        for (const i2 in t2)
-          e2.includes(i2) || delete t2[i2];
+        for (const i2 in t2) e2.includes(i2) || delete t2[i2];
       }
     }
   };
@@ -8990,8 +8852,77 @@
       return this.getChildViews()[0].createContainerElement(t2);
     }
   };
-  var { css: ne } = V;
-  var re = class extends ee {
+  var ne = "style href src width height language class".split(" ");
+  var re = "javascript:".split(" ");
+  var oe = "script iframe form noscript".split(" ");
+  var se = class extends H {
+    static setHTML(t2, e2) {
+      const i2 = new this(e2).sanitize(), n2 = i2.getHTML ? i2.getHTML() : i2.outerHTML;
+      t2.innerHTML = n2;
+    }
+    static sanitize(t2, e2) {
+      const i2 = new this(t2, e2);
+      return i2.sanitize(), i2;
+    }
+    constructor(t2) {
+      let { allowedAttributes: e2, forbiddenProtocols: i2, forbiddenElements: n2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+      super(...arguments), this.allowedAttributes = e2 || ne, this.forbiddenProtocols = i2 || re, this.forbiddenElements = n2 || oe, this.body = ae(t2);
+    }
+    sanitize() {
+      return this.sanitizeElements(), this.normalizeListElementNesting();
+    }
+    getHTML() {
+      return this.body.innerHTML;
+    }
+    getBody() {
+      return this.body;
+    }
+    sanitizeElements() {
+      const t2 = R(this.body), e2 = [];
+      for (; t2.nextNode(); ) {
+        const i2 = t2.currentNode;
+        switch (i2.nodeType) {
+          case Node.ELEMENT_NODE:
+            this.elementIsRemovable(i2) ? e2.push(i2) : this.sanitizeElement(i2);
+            break;
+          case Node.COMMENT_NODE:
+            e2.push(i2);
+        }
+      }
+      return e2.forEach((t3) => k(t3)), this.body;
+    }
+    sanitizeElement(t2) {
+      return t2.hasAttribute("href") && this.forbiddenProtocols.includes(t2.protocol) && t2.removeAttribute("href"), Array.from(t2.attributes).forEach((e2) => {
+        let { name: i2 } = e2;
+        this.allowedAttributes.includes(i2) || 0 === i2.indexOf("data-trix") || t2.removeAttribute(i2);
+      }), t2;
+    }
+    normalizeListElementNesting() {
+      return Array.from(this.body.querySelectorAll("ul,ol")).forEach((t2) => {
+        const e2 = t2.previousElementSibling;
+        e2 && "li" === E(e2) && e2.appendChild(t2);
+      }), this.body;
+    }
+    elementIsRemovable(t2) {
+      if ((null == t2 ? void 0 : t2.nodeType) === Node.ELEMENT_NODE) return this.elementIsForbidden(t2) || this.elementIsntSerializable(t2);
+    }
+    elementIsForbidden(t2) {
+      return this.forbiddenElements.includes(E(t2));
+    }
+    elementIsntSerializable(t2) {
+      return "false" === t2.getAttribute("data-trix-serialize") && !I(t2);
+    }
+  };
+  var ae = function() {
+    let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+    t2 = t2.replace(/<\/html[^>]*>[^]*$/i, "</html>");
+    const e2 = document.implementation.createHTMLDocument("");
+    return e2.documentElement.innerHTML = t2, Array.from(e2.head.querySelectorAll("style")).forEach((t3) => {
+      e2.body.appendChild(t3);
+    }), e2.body;
+  };
+  var { css: le } = V;
+  var ce = class extends ee {
     constructor() {
       super(...arguments), this.attachment = this.object, this.attachment.uploadProgressDelegate = this, this.attachmentPiece = this.options.piece;
     }
@@ -9001,40 +8932,38 @@
     createNodes() {
       let t2;
       const e2 = t2 = S({ tagName: "figure", className: this.getClassName(), data: this.getData(), editable: false }), i2 = this.getHref();
-      return i2 && (t2 = S({ tagName: "a", editable: false, attributes: { href: i2, tabindex: -1 } }), e2.appendChild(t2)), this.attachment.hasContent() ? t2.innerHTML = this.attachment.getContent() : this.createContentNodes().forEach((e3) => {
+      return i2 && (t2 = S({ tagName: "a", editable: false, attributes: { href: i2, tabindex: -1 } }), e2.appendChild(t2)), this.attachment.hasContent() ? se.setHTML(t2, this.attachment.getContent()) : this.createContentNodes().forEach((e3) => {
         t2.appendChild(e3);
-      }), t2.appendChild(this.createCaptionElement()), this.attachment.isPending() && (this.progressElement = S({ tagName: "progress", attributes: { class: ne.attachmentProgress, value: this.attachment.getUploadProgress(), max: 100 }, data: { trixMutable: true, trixStoreKey: ["progressElement", this.attachment.id].join("/") } }), e2.appendChild(this.progressElement)), [oe("left"), e2, oe("right")];
+      }), t2.appendChild(this.createCaptionElement()), this.attachment.isPending() && (this.progressElement = S({ tagName: "progress", attributes: { class: le.attachmentProgress, value: this.attachment.getUploadProgress(), max: 100 }, data: { trixMutable: true, trixStoreKey: ["progressElement", this.attachment.id].join("/") } }), e2.appendChild(this.progressElement)), [ue("left"), e2, ue("right")];
     }
     createCaptionElement() {
-      const t2 = S({ tagName: "figcaption", className: ne.attachmentCaption }), e2 = this.attachmentPiece.getCaption();
-      if (e2)
-        t2.classList.add("".concat(ne.attachmentCaption, "--edited")), t2.textContent = e2;
+      const t2 = S({ tagName: "figcaption", className: le.attachmentCaption }), e2 = this.attachmentPiece.getCaption();
+      if (e2) t2.classList.add("".concat(le.attachmentCaption, "--edited")), t2.textContent = e2;
       else {
         let e3, i2;
         const n2 = this.getCaptionConfig();
         if (n2.name && (e3 = this.attachment.getFilename()), n2.size && (i2 = this.attachment.getFormattedFilesize()), e3) {
-          const i3 = S({ tagName: "span", className: ne.attachmentName, textContent: e3 });
+          const i3 = S({ tagName: "span", className: le.attachmentName, textContent: e3 });
           t2.appendChild(i3);
         }
         if (i2) {
           e3 && t2.appendChild(document.createTextNode(" "));
-          const n3 = S({ tagName: "span", className: ne.attachmentSize, textContent: i2 });
+          const n3 = S({ tagName: "span", className: le.attachmentSize, textContent: i2 });
           t2.appendChild(n3);
         }
       }
       return t2;
     }
     getClassName() {
-      const t2 = [ne.attachment, "".concat(ne.attachment, "--").concat(this.attachment.getType())], e2 = this.attachment.getExtension();
-      return e2 && t2.push("".concat(ne.attachment, "--").concat(e2)), t2.join(" ");
+      const t2 = [le.attachment, "".concat(le.attachment, "--").concat(this.attachment.getType())], e2 = this.attachment.getExtension();
+      return e2 && t2.push("".concat(le.attachment, "--").concat(e2)), t2.join(" ");
     }
     getData() {
       const t2 = { trixAttachment: JSON.stringify(this.attachment), trixContentType: this.attachment.getContentType(), trixId: this.attachment.id }, { attributes: e2 } = this.attachmentPiece;
       return e2.isEmpty() || (t2.trixAttributes = JSON.stringify(e2)), this.attachment.isPending() && (t2.trixSerialize = false), t2;
     }
     getHref() {
-      if (!se(this.attachment.getContent(), "a"))
-        return this.attachment.getHref();
+      if (!he(this.attachment.getContent(), "a")) return this.attachment.getHref();
     }
     getCaptionConfig() {
       var t2;
@@ -9050,12 +8979,12 @@
       e2 && (e2.value = t2);
     }
   };
-  var oe = (t2) => S({ tagName: "span", textContent: h, data: { trixCursorTarget: t2, trixSerialize: false } });
-  var se = function(t2, e2) {
+  var ue = (t2) => S({ tagName: "span", textContent: h, data: { trixCursorTarget: t2, trixSerialize: false } });
+  var he = function(t2, e2) {
     const i2 = S("div");
-    return i2.innerHTML = t2 || "", i2.querySelector(e2);
+    return se.setHTML(i2, t2 || ""), i2.querySelector(e2);
   };
-  var ae = class extends re {
+  var de = class extends ce {
     constructor() {
       super(...arguments), this.attachment.previewDelegate = this;
     }
@@ -9069,13 +8998,11 @@
     refresh(t2) {
       var e2;
       t2 || (t2 = null === (e2 = this.findElement()) || void 0 === e2 ? void 0 : e2.querySelector("img"));
-      if (t2)
-        return this.updateAttributesForImage(t2);
+      if (t2) return this.updateAttributesForImage(t2);
     }
     updateAttributesForImage(t2) {
       const e2 = this.attachment.getURL(), i2 = this.attachment.getPreviewURL();
-      if (t2.src = i2 || e2, i2 === e2)
-        t2.removeAttribute("data-trix-serialized-attributes");
+      if (t2.src = i2 || e2, i2 === e2) t2.removeAttribute("data-trix-serialized-attributes");
       else {
         const i3 = JSON.stringify({ src: e2 });
         t2.setAttribute("data-trix-serialized-attributes", i3);
@@ -9089,7 +9016,7 @@
       return this.refresh(this.image), this.refresh();
     }
   };
-  var le = class extends ee {
+  var ge = class extends ee {
     constructor() {
       super(...arguments), this.piece = this.object, this.attributes = this.piece.getAttributes(), this.textConfig = this.options.textConfig, this.context = this.options.context, this.piece.attachment ? this.attachment = this.piece.attachment : this.string = this.piece.toString();
     }
@@ -9111,13 +9038,12 @@
       return t2;
     }
     createAttachmentNodes() {
-      const t2 = this.attachment.isPreviewable() ? ae : re;
+      const t2 = this.attachment.isPreviewable() ? de : ce;
       return this.createChildView(t2, this.piece.attachment, { piece: this.piece }).getNodes();
     }
     createStringNodes() {
       var t2;
-      if (null !== (t2 = this.textConfig) && void 0 !== t2 && t2.plaintext)
-        return [document.createTextNode(this.string)];
+      if (null !== (t2 = this.textConfig) && void 0 !== t2 && t2.plaintext) return [document.createTextNode(this.string)];
       {
         const t3 = [], e2 = this.string.split("\n");
         for (let i2 = 0; i2 < e2.length; i2++) {
@@ -9146,14 +9072,10 @@
             const e3 = S(o2.tagName);
             r2 ? (r2.appendChild(e3), r2 = e3) : t2 = r2 = e3;
           }
-          if (o2.styleProperty && (n2[o2.styleProperty] = i2), o2.style)
-            for (e2 in o2.style)
-              i2 = o2.style[e2], n2[e2] = i2;
+          if (o2.styleProperty && (n2[o2.styleProperty] = i2), o2.style) for (e2 in o2.style) i2 = o2.style[e2], n2[e2] = i2;
         }
       }
-      if (Object.keys(n2).length)
-        for (e2 in t2 || (t2 = S("span")), n2)
-          i2 = n2[e2], t2.style[e2] = i2;
+      if (Object.keys(n2).length) for (e2 in t2 || (t2 = S("span")), n2) i2 = n2[e2], t2.style[e2] = i2;
       return t2;
     }
     createContainerElement() {
@@ -9169,7 +9091,7 @@
       return this.context.isLast && (t2 = t2.replace(/\ $/, d)), t2 = t2.replace(/(\S)\ {3}(\S)/g, "$1 ".concat(d, " $2")).replace(/\ {2}/g, "".concat(d, " ")).replace(/\ {2}/g, " ".concat(d)), (this.context.isFirst || this.context.followsWhitespace) && (t2 = t2.replace(/^\ /, d)), t2;
     }
   };
-  var ce = class extends ee {
+  var me = class extends ee {
     constructor() {
       super(...arguments), this.text = this.object, this.textConfig = this.options.textConfig;
     }
@@ -9177,8 +9099,8 @@
       const t2 = [], e2 = Xt.groupObjects(this.getPieces()), i2 = e2.length - 1;
       for (let r2 = 0; r2 < e2.length; r2++) {
         const o2 = e2[r2], s2 = {};
-        0 === r2 && (s2.isFirst = true), r2 === i2 && (s2.isLast = true), ue(n2) && (s2.followsWhitespace = true);
-        const a2 = this.findOrCreateCachedChildView(le, o2, { textConfig: this.textConfig, context: s2 });
+        0 === r2 && (s2.isFirst = true), r2 === i2 && (s2.isLast = true), pe(n2) && (s2.followsWhitespace = true);
+        const a2 = this.findOrCreateCachedChildView(ge, o2, { textConfig: this.textConfig, context: s2 });
         t2.push(...Array.from(a2.getNodes() || []));
         var n2 = o2;
       }
@@ -9188,23 +9110,21 @@
       return Array.from(this.text.getPieces()).filter((t2) => !t2.hasAttribute("blockBreak"));
     }
   };
-  var ue = (t2) => /\s$/.test(null == t2 ? void 0 : t2.toString());
-  var { css: he } = V;
-  var de = class extends ee {
+  var pe = (t2) => /\s$/.test(null == t2 ? void 0 : t2.toString());
+  var { css: fe } = V;
+  var be = class extends ee {
     constructor() {
       super(...arguments), this.block = this.object, this.attributes = this.block.getAttributes();
     }
     createNodes() {
       const t2 = [document.createComment("block")];
-      if (this.block.isEmpty())
-        t2.push(S("br"));
+      if (this.block.isEmpty()) t2.push(S("br"));
       else {
         var e2;
-        const i2 = null === (e2 = gt(this.block.getLastAttribute())) || void 0 === e2 ? void 0 : e2.text, n2 = this.findOrCreateCachedChildView(ce, this.block.text, { textConfig: i2 });
+        const i2 = null === (e2 = gt(this.block.getLastAttribute())) || void 0 === e2 ? void 0 : e2.text, n2 = this.findOrCreateCachedChildView(me, this.block.text, { textConfig: i2 });
         t2.push(...Array.from(n2.getNodes() || [])), this.shouldAddExtraNewlineElement() && t2.push(S("br"));
       }
-      if (this.attributes.length)
-        return t2;
+      if (this.attributes.length) return t2;
       {
         let e3;
         const { tagName: i2 } = n.default;
@@ -9219,7 +9139,7 @@
       const n2 = this.attributes[t2], { tagName: r2, htmlAttributes: o2 = [] } = gt(n2);
       if (0 === t2 && this.block.isRTL() && Object.assign(e2, { dir: "rtl" }), "attachmentGallery" === n2) {
         const t3 = this.block.getBlockBreakPosition();
-        i2 = "".concat(he.attachmentGallery, " ").concat(he.attachmentGallery, "--").concat(t3);
+        i2 = "".concat(fe.attachmentGallery, " ").concat(fe.attachmentGallery, "--").concat(t3);
       }
       return Object.entries(this.block.htmlAttributes).forEach((t3) => {
         let [i3, n3] = t3;
@@ -9230,7 +9150,7 @@
       return /\n\n$/.test(this.block.toString());
     }
   };
-  var ge = class extends ee {
+  var ve = class extends ee {
     static render(t2) {
       const e2 = S("div"), i2 = new this(t2, { element: e2 });
       return i2.render(), i2.sync(), e2;
@@ -9245,46 +9165,44 @@
       if (this.childViews = [], this.shadowElement = S("div"), !this.document.isEmpty()) {
         const t2 = Xt.groupObjects(this.document.getBlocks(), { asTree: true });
         Array.from(t2).forEach((t3) => {
-          const e2 = this.findOrCreateCachedChildView(de, t3);
+          const e2 = this.findOrCreateCachedChildView(be, t3);
           Array.from(e2.getNodes()).map((t4) => this.shadowElement.appendChild(t4));
         });
       }
     }
     isSynced() {
-      return pe(this.shadowElement, this.element);
+      return xe(this.shadowElement, this.element);
     }
     sync() {
       const t2 = this.createDocumentFragmentForSync();
-      for (; this.element.lastChild; )
-        this.element.removeChild(this.element.lastChild);
+      for (; this.element.lastChild; ) this.element.removeChild(this.element.lastChild);
       return this.element.appendChild(t2), this.didSync();
     }
     didSync() {
-      return this.elementStore.reset(me(this.element)), Rt(() => this.garbageCollectCachedViews());
+      return this.elementStore.reset(Ae(this.element)), Rt(() => this.garbageCollectCachedViews());
     }
     createDocumentFragmentForSync() {
       const t2 = document.createDocumentFragment();
       return Array.from(this.shadowElement.childNodes).forEach((e2) => {
         t2.appendChild(e2.cloneNode(true));
-      }), Array.from(me(t2)).forEach((t3) => {
+      }), Array.from(Ae(t2)).forEach((t3) => {
         const e2 = this.elementStore.remove(t3);
         e2 && t3.parentNode.replaceChild(e2, t3);
       }), t2;
     }
   };
-  var me = (t2) => t2.querySelectorAll("[data-trix-store-key]");
-  var pe = (t2, e2) => fe(t2.innerHTML) === fe(e2.innerHTML);
-  var fe = (t2) => t2.replace(/&nbsp;/g, " ");
-  function be(t2) {
+  var Ae = (t2) => t2.querySelectorAll("[data-trix-store-key]");
+  var xe = (t2, e2) => ye(t2.innerHTML) === ye(e2.innerHTML);
+  var ye = (t2) => t2.replace(/&nbsp;/g, " ");
+  function Ce(t2) {
     var e2, i2;
     function n2(e3, i3) {
       try {
-        var o2 = t2[e3](i3), s2 = o2.value, a2 = s2 instanceof ve;
+        var o2 = t2[e3](i3), s2 = o2.value, a2 = s2 instanceof ke;
         Promise.resolve(a2 ? s2.v : s2).then(function(i4) {
           if (a2) {
             var l2 = "return" === e3 ? "return" : "next";
-            if (!s2.k || i4.done)
-              return n2(l2, i4);
+            if (!s2.k || i4.done) return n2(l2, i4);
             i4 = t2[l2](i4).value;
           }
           r2(o2.done ? "return" : "normal", i4);
@@ -9315,44 +9233,41 @@
       });
     }, "function" != typeof t2.return && (this.return = void 0);
   }
-  function ve(t2, e2) {
+  function ke(t2, e2) {
     this.v = t2, this.k = e2;
   }
-  function Ae(t2, e2, i2) {
-    return (e2 = xe(e2)) in t2 ? Object.defineProperty(t2, e2, { value: i2, enumerable: true, configurable: true, writable: true }) : t2[e2] = i2, t2;
+  function Re(t2, e2, i2) {
+    return (e2 = Ee(e2)) in t2 ? Object.defineProperty(t2, e2, { value: i2, enumerable: true, configurable: true, writable: true }) : t2[e2] = i2, t2;
   }
-  function xe(t2) {
+  function Ee(t2) {
     var e2 = function(t3, e3) {
-      if ("object" != typeof t3 || null === t3)
-        return t3;
+      if ("object" != typeof t3 || null === t3) return t3;
       var i2 = t3[Symbol.toPrimitive];
       if (void 0 !== i2) {
         var n2 = i2.call(t3, e3 || "default");
-        if ("object" != typeof n2)
-          return n2;
+        if ("object" != typeof n2) return n2;
         throw new TypeError("@@toPrimitive must return a primitive value.");
       }
       return ("string" === e3 ? String : Number)(t3);
     }(t2, "string");
     return "symbol" == typeof e2 ? e2 : String(e2);
   }
-  be.prototype["function" == typeof Symbol && Symbol.asyncIterator || "@@asyncIterator"] = function() {
+  Ce.prototype["function" == typeof Symbol && Symbol.asyncIterator || "@@asyncIterator"] = function() {
     return this;
-  }, be.prototype.next = function(t2) {
+  }, Ce.prototype.next = function(t2) {
     return this._invoke("next", t2);
-  }, be.prototype.throw = function(t2) {
+  }, Ce.prototype.throw = function(t2) {
     return this._invoke("throw", t2);
-  }, be.prototype.return = function(t2) {
+  }, Ce.prototype.return = function(t2) {
     return this._invoke("return", t2);
   };
-  var ye = class extends nt {
+  var Se = class extends nt {
     static registerType(t2, e2) {
       e2.type = t2, this.types[t2] = e2;
     }
     static fromJSON(t2) {
       const e2 = this.types[t2.type];
-      if (e2)
-        return e2.fromJSON(t2);
+      if (e2) return e2.fromJSON(t2);
     }
     constructor(t2) {
       let e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
@@ -9419,8 +9334,8 @@
       return false;
     }
   };
-  Ae(ye, "types", {});
-  var Ce = class extends te {
+  Re(Se, "types", {});
+  var Le = class extends te {
     constructor(t2) {
       super(...arguments), this.url = t2;
     }
@@ -9429,7 +9344,7 @@
       e2.onload = () => (e2.width = this.width = e2.naturalWidth, e2.height = this.height = e2.naturalHeight, t2(true, e2)), e2.onerror = () => t2(false), e2.src = this.url;
     }
   };
-  var ke = class _ke extends nt {
+  var De = class _De extends nt {
     static attachmentForFile(t2) {
       const e2 = new this(this.attributesForFile(t2));
       return e2.setFile(t2), e2;
@@ -9457,18 +9372,16 @@
       let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
       const e2 = this.attributes.merge(t2);
       var i2, n2, r2, o2;
-      if (!this.attributes.isEqualTo(e2))
-        return this.attributes = e2, this.didChangeAttributes(), null === (i2 = this.previewDelegate) || void 0 === i2 || null === (n2 = i2.attachmentDidChangeAttributes) || void 0 === n2 || n2.call(i2, this), null === (r2 = this.delegate) || void 0 === r2 || null === (o2 = r2.attachmentDidChangeAttributes) || void 0 === o2 ? void 0 : o2.call(r2, this);
+      if (!this.attributes.isEqualTo(e2)) return this.attributes = e2, this.didChangeAttributes(), null === (i2 = this.previewDelegate) || void 0 === i2 || null === (n2 = i2.attachmentDidChangeAttributes) || void 0 === n2 || n2.call(i2, this), null === (r2 = this.delegate) || void 0 === r2 || null === (o2 = r2.attachmentDidChangeAttributes) || void 0 === o2 ? void 0 : o2.call(r2, this);
     }
     didChangeAttributes() {
-      if (this.isPreviewable())
-        return this.preloadURL();
+      if (this.isPreviewable()) return this.preloadURL();
     }
     isPending() {
       return null != this.file && !(this.getURL() || this.getHref());
     }
     isPreviewable() {
-      return this.attributes.has("previewable") ? this.attributes.get("previewable") : _ke.previewablePattern.test(this.getContentType());
+      return this.attributes.has("previewable") ? this.attributes.get("previewable") : _De.previewablePattern.test(this.getContentType());
     }
     getType() {
       return this.hasContent() ? "content" : this.isPreviewable() ? "preview" : "file";
@@ -9512,8 +9425,7 @@
       return this.file;
     }
     setFile(t2) {
-      if (this.file = t2, this.isPreviewable())
-        return this.preloadFile();
+      if (this.file = t2, this.isPreviewable()) return this.preloadFile();
     }
     releaseFile() {
       this.releasePreloadedFile(), this.file = null;
@@ -9523,8 +9435,7 @@
     }
     setUploadProgress(t2) {
       var e2, i2;
-      if (this.uploadProgress !== t2)
-        return this.uploadProgress = t2, null === (e2 = this.uploadProgressDelegate) || void 0 === e2 || null === (i2 = e2.attachmentDidChangeUploadProgress) || void 0 === i2 ? void 0 : i2.call(e2, this);
+      if (this.uploadProgress !== t2) return this.uploadProgress = t2, null === (e2 = this.uploadProgressDelegate) || void 0 === e2 || null === (i2 = e2.attachmentDidChangeUploadProgress) || void 0 === i2 ? void 0 : i2.call(e2, this);
     }
     toJSON() {
       return this.getAttributes();
@@ -9537,15 +9448,13 @@
     }
     setPreviewURL(t2) {
       var e2, i2, n2, r2;
-      if (t2 !== this.getPreviewURL())
-        return this.previewURL = t2, null === (e2 = this.previewDelegate) || void 0 === e2 || null === (i2 = e2.attachmentDidChangeAttributes) || void 0 === i2 || i2.call(e2, this), null === (n2 = this.delegate) || void 0 === n2 || null === (r2 = n2.attachmentDidChangePreviewURL) || void 0 === r2 ? void 0 : r2.call(n2, this);
+      if (t2 !== this.getPreviewURL()) return this.previewURL = t2, null === (e2 = this.previewDelegate) || void 0 === e2 || null === (i2 = e2.attachmentDidChangeAttributes) || void 0 === i2 || i2.call(e2, this), null === (n2 = this.delegate) || void 0 === n2 || null === (r2 = n2.attachmentDidChangePreviewURL) || void 0 === r2 ? void 0 : r2.call(n2, this);
     }
     preloadURL() {
       return this.preload(this.getURL(), this.releaseFile);
     }
     preloadFile() {
-      if (this.file)
-        return this.fileObjectURL = URL.createObjectURL(this.file), this.preload(this.fileObjectURL);
+      if (this.file) return this.fileObjectURL = URL.createObjectURL(this.file), this.preload(this.fileObjectURL);
     }
     releasePreloadedFile() {
       this.fileObjectURL && (URL.revokeObjectURL(this.fileObjectURL), this.fileObjectURL = null);
@@ -9553,17 +9462,17 @@
     preload(t2, e2) {
       if (t2 && t2 !== this.getPreviewURL()) {
         this.preloadingURL = t2;
-        return new Ce(t2).then((i2) => {
+        return new Le(t2).then((i2) => {
           let { width: n2, height: r2 } = i2;
           return this.getWidth() && this.getHeight() || this.setAttributes({ width: n2, height: r2 }), this.preloadingURL = null, this.setPreviewURL(t2), null == e2 ? void 0 : e2();
         }).catch(() => (this.preloadingURL = null, null == e2 ? void 0 : e2()));
       }
     }
   };
-  Ae(ke, "previewablePattern", /^image(\/(gif|png|webp|jpe?g)|$)/);
-  var Re = class _Re extends ye {
+  Re(De, "previewablePattern", /^image(\/(gif|png|webp|jpe?g)|$)/);
+  var we = class _we extends Se {
     static fromJSON(t2) {
-      return new this(ke.fromJSON(t2.attachment), t2.attributes);
+      return new this(De.fromJSON(t2.attachment), t2.attributes);
     }
     constructor(t2) {
       super(...arguments), this.attachment = t2, this.length = 1, this.ensureAttachmentExclusivelyHasAttribute("href"), this.attachment.hasContent() || this.removeProhibitedAttributes();
@@ -9572,7 +9481,7 @@
       this.hasAttribute(t2) && (this.attachment.hasAttribute(t2) || this.attachment.setAttributes(this.attributes.slice([t2])), this.attributes = this.attributes.remove(t2));
     }
     removeProhibitedAttributes() {
-      const t2 = this.attributes.slice(_Re.permittedAttributes);
+      const t2 = this.attributes.slice(_we.permittedAttributes);
       t2.isEqualTo(this.attributes) || (this.attributes = t2);
     }
     getValue() {
@@ -9602,8 +9511,8 @@
       return JSON.stringify(this.toString());
     }
   };
-  Ae(Re, "permittedAttributes", ["caption", "presentation"]), ye.registerType("attachment", Re);
-  var Ee = class extends ye {
+  Re(we, "permittedAttributes", ["caption", "presentation"]), Se.registerType("attachment", we);
+  var Te = class extends Se {
     static fromJSON(t2) {
       return new this(t2.string, t2.attributes);
     }
@@ -9638,8 +9547,8 @@
       return t2.length > 15 && (t2 = t2.slice(0, 14) + "\u2026"), JSON.stringify(t2.toString());
     }
   };
-  ye.registerType("string", Ee);
-  var Se = class extends nt {
+  Se.registerType("string", Te);
+  var Be = class extends nt {
     static box(t2) {
       return t2 instanceof this ? t2 : new this(t2);
     }
@@ -9651,8 +9560,7 @@
       return this.objects.indexOf(t2);
     }
     splice() {
-      for (var t2 = arguments.length, e2 = new Array(t2), i2 = 0; i2 < t2; i2++)
-        e2[i2] = arguments[i2];
+      for (var t2 = arguments.length, e2 = new Array(t2), i2 = 0; i2 < t2; i2++) e2[i2] = arguments[i2];
       return new this.constructor(ot(this.objects, ...e2));
     }
     eachObject(t2) {
@@ -9697,8 +9605,8 @@
       return new this.constructor(o2);
     }
     splitObjectsAtRange(t2) {
-      let e2, [i2, n2, r2] = this.splitObjectAtPosition(De(t2));
-      return [i2, e2] = new this.constructor(i2).splitObjectAtPosition(we(t2) + r2), [i2, n2, e2 - 1];
+      let e2, [i2, n2, r2] = this.splitObjectAtPosition(Pe(t2));
+      return [i2, e2] = new this.constructor(i2).splitObjectAtPosition(Ie(t2) + r2), [i2, n2, e2 - 1];
     }
     getObjectAtPosition(t2) {
       const { index: e2 } = this.findIndexAndOffsetAtPosition(t2);
@@ -9707,15 +9615,12 @@
     splitObjectAtPosition(t2) {
       let e2, i2;
       const { index: n2, offset: r2 } = this.findIndexAndOffsetAtPosition(t2), o2 = this.objects.slice(0);
-      if (null != n2)
-        if (0 === r2)
-          e2 = n2, i2 = 0;
-        else {
-          const t3 = this.getObjectAtIndex(n2), [s2, a2] = t3.splitAtOffset(r2);
-          o2.splice(n2, 1, s2, a2), e2 = n2 + 1, i2 = s2.getLength() - r2;
-        }
-      else
-        e2 = o2.length, i2 = 0;
+      if (null != n2) if (0 === r2) e2 = n2, i2 = 0;
+      else {
+        const t3 = this.getObjectAtIndex(n2), [s2, a2] = t3.splitAtOffset(r2);
+        o2.splice(n2, 1, s2, a2), e2 = n2 + 1, i2 = s2.getLength() - r2;
+      }
+      else e2 = o2.length, i2 = 0;
       return [o2, e2, i2];
     }
     consolidate() {
@@ -9734,8 +9639,7 @@
       let e2, i2 = 0;
       for (e2 = 0; e2 < this.objects.length; e2++) {
         const n2 = i2 + this.objects[e2].getLength();
-        if (i2 <= t2 && t2 < n2)
-          return { index: e2, offset: t2 - i2 };
+        if (i2 <= t2 && t2 < n2) return { index: e2, offset: t2 - i2 };
         i2 = n2;
       }
       return { index: null, offset: null };
@@ -9744,8 +9648,7 @@
       let i2 = 0;
       for (let n2 = 0; n2 < this.objects.length; n2++) {
         const r2 = this.objects[n2];
-        if (n2 < t2)
-          i2 += r2.getLength();
+        if (n2 < t2) i2 += r2.getLength();
         else if (n2 === t2) {
           i2 += e2;
           break;
@@ -9766,16 +9669,15 @@
       return this.toArray();
     }
     isEqualTo(t2) {
-      return super.isEqualTo(...arguments) || Le(this.objects, null == t2 ? void 0 : t2.objects);
+      return super.isEqualTo(...arguments) || Fe(this.objects, null == t2 ? void 0 : t2.objects);
     }
     contentsForInspection() {
       return { objects: "[".concat(this.objects.map((t2) => t2.inspect()).join(", "), "]") };
     }
   };
-  var Le = function(t2) {
+  var Fe = function(t2) {
     let e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
-    if (t2.length !== e2.length)
-      return false;
+    if (t2.length !== e2.length) return false;
     let i2 = true;
     for (let n2 = 0; n2 < t2.length; n2++) {
       const r2 = t2[n2];
@@ -9783,23 +9685,23 @@
     }
     return i2;
   };
-  var De = (t2) => t2[0];
-  var we = (t2) => t2[1];
-  var Te = class extends nt {
+  var Pe = (t2) => t2[0];
+  var Ie = (t2) => t2[1];
+  var Ne = class extends nt {
     static textForAttachmentWithAttributes(t2, e2) {
-      return new this([new Re(t2, e2)]);
+      return new this([new we(t2, e2)]);
     }
     static textForStringWithAttributes(t2, e2) {
-      return new this([new Ee(t2, e2)]);
+      return new this([new Te(t2, e2)]);
     }
     static fromJSON(t2) {
-      return new this(Array.from(t2).map((t3) => ye.fromJSON(t3)));
+      return new this(Array.from(t2).map((t3) => Se.fromJSON(t3)));
     }
     constructor() {
       let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
       super(...arguments);
       const e2 = t2.filter((t3) => !t3.isEmpty());
-      this.pieceList = new Se(e2);
+      this.pieceList = new Be(e2);
     }
     copy() {
       return this.copyWithPieceList(this.pieceList);
@@ -9824,8 +9726,7 @@
       return this.removeTextAtRange(e2).insertTextAtPosition(t2, e2[0]);
     }
     moveTextFromRangeToPosition(t2, e2) {
-      if (t2[0] <= e2 && e2 <= t2[1])
-        return;
+      if (t2[0] <= e2 && e2 <= t2[1]) return;
       const i2 = this.getTextAtRange(t2), n2 = i2.getLength();
       return t2[0] < e2 && (e2 -= n2), this.removeTextAtRange(t2).insertTextAtPosition(i2, e2);
     }
@@ -9856,10 +9757,8 @@
     getExpandedRangeForAttributeAtOffset(t2, e2) {
       let i2, n2 = i2 = e2;
       const r2 = this.getLength();
-      for (; n2 > 0 && this.getCommonAttributesAtRange([n2 - 1, i2])[t2]; )
-        n2--;
-      for (; i2 < r2 && this.getCommonAttributesAtRange([e2, i2 + 1])[t2]; )
-        i2++;
+      for (; n2 > 0 && this.getCommonAttributesAtRange([n2 - 1, i2])[t2]; ) n2--;
+      for (; i2 < r2 && this.getCommonAttributesAtRange([e2, i2 + 1])[t2]; ) i2++;
       return [n2, i2];
     }
     getTextAtRange(t2) {
@@ -9888,8 +9787,7 @@
       let e2 = 0;
       for (const n2 of this.pieceList.toArray()) {
         var i2;
-        if ((null === (i2 = n2.attachment) || void 0 === i2 ? void 0 : i2.id) === t2)
-          return { attachment: n2.attachment, position: e2 };
+        if ((null === (i2 = n2.attachment) || void 0 === i2 ? void 0 : i2.id) === t2) return { attachment: n2.attachment, position: e2 };
         e2 += n2.length;
       }
       return { attachment: null, position: null };
@@ -9900,8 +9798,7 @@
     }
     getRangeOfAttachment(t2) {
       const e2 = this.getAttachmentAndPositionById(t2.id), i2 = e2.position;
-      if (t2 = e2.attachment)
-        return [i2, i2 + 1];
+      if (t2 = e2.attachment) return [i2, i2 + 1];
     }
     updateAttributesForAttachment(t2, e2) {
       const i2 = this.getRangeOfAttachment(e2);
@@ -9952,12 +9849,12 @@
       return "rtl" === this.getDirection();
     }
   };
-  var Be = class _Be extends nt {
+  var Oe = class _Oe extends nt {
     static fromJSON(t2) {
-      return new this(Te.fromJSON(t2.text), t2.attributes, t2.htmlAttributes);
+      return new this(Ne.fromJSON(t2.text), t2.attributes, t2.htmlAttributes);
     }
     constructor(t2, e2, i2) {
-      super(...arguments), this.text = Fe(t2 || new Te()), this.attributes = e2 || [], this.htmlAttributes = i2 || {};
+      super(...arguments), this.text = Me(t2 || new Ne()), this.attributes = e2 || [], this.htmlAttributes = i2 || {};
     }
     isEmpty() {
       return this.text.isBlockBreak();
@@ -9966,13 +9863,13 @@
       return !!super.isEqualTo(t2) || this.text.isEqualTo(null == t2 ? void 0 : t2.text) && rt(this.attributes, null == t2 ? void 0 : t2.attributes) && St(this.htmlAttributes, null == t2 ? void 0 : t2.htmlAttributes);
     }
     copyWithText(t2) {
-      return new _Be(t2, this.attributes, this.htmlAttributes);
+      return new _Oe(t2, this.attributes, this.htmlAttributes);
     }
     copyWithoutText() {
       return this.copyWithText(null);
     }
     copyWithAttributes(t2) {
-      return new _Be(this.text, t2, this.htmlAttributes);
+      return new _Oe(this.text, t2, this.htmlAttributes);
     }
     copyWithoutAttributes() {
       return this.copyWithAttributes(null);
@@ -9982,22 +9879,22 @@
       return e2 ? this.copyWithText(e2) : this.copyWithText(this.text.copyUsingObjectMap(t2));
     }
     addAttribute(t2) {
-      const e2 = this.attributes.concat(je(t2));
+      const e2 = this.attributes.concat(He(t2));
       return this.copyWithAttributes(e2);
     }
     addHTMLAttribute(t2, e2) {
       const i2 = Object.assign({}, this.htmlAttributes, { [t2]: e2 });
-      return new _Be(this.text, this.attributes, i2);
+      return new _Oe(this.text, this.attributes, i2);
     }
     removeAttribute(t2) {
-      const { listAttribute: e2 } = gt(t2), i2 = Ue(Ue(this.attributes, t2), e2);
+      const { listAttribute: e2 } = gt(t2), i2 = _e(_e(this.attributes, t2), e2);
       return this.copyWithAttributes(i2);
     }
     removeLastAttribute() {
       return this.removeAttribute(this.getLastAttribute());
     }
     getLastAttribute() {
-      return We(this.attributes);
+      return ze(this.attributes);
     }
     getAttributes() {
       return this.attributes.slice(0);
@@ -10015,7 +9912,7 @@
       return this.getAttributeLevel() > 0;
     }
     getLastNestableAttribute() {
-      return We(this.getNestableAttributes());
+      return ze(this.getNestableAttributes());
     }
     getNestableAttributes() {
       return this.attributes.filter((t2) => gt(t2).nestable);
@@ -10030,7 +9927,7 @@
     increaseNestingLevel() {
       const t2 = this.getLastNestableAttribute();
       if (t2) {
-        const e2 = this.attributes.lastIndexOf(t2), i2 = ot(this.attributes, e2 + 1, 0, ...je(t2));
+        const e2 = this.attributes.lastIndexOf(t2), i2 = ot(this.attributes, e2 + 1, 0, ...He(t2));
         return this.copyWithAttributes(i2);
       }
       return this;
@@ -10060,8 +9957,7 @@
         case "backward":
           n2 = i2.slice(0, e2).lastIndexOf("\n");
       }
-      if (-1 !== n2)
-        return n2;
+      if (-1 !== n2) return n2;
     }
     contentsForInspection() {
       return { text: this.text.inspect(), attributes: this.attributes };
@@ -10085,7 +9981,7 @@
       return !this.hasAttributes() && !t2.hasAttributes() && this.getDirection() === t2.getDirection();
     }
     consolidateWith(t2) {
-      const e2 = Te.textForStringWithAttributes("\n"), i2 = this.getTextWithoutBlockBreak().appendText(e2);
+      const e2 = Ne.textForStringWithAttributes("\n"), i2 = this.getTextWithoutBlockBreak().appendText(e2);
       return this.copyWithText(i2.appendText(t2.text));
     }
     splitAtOffset(t2) {
@@ -10096,7 +9992,7 @@
       return this.text.getLength() - 1;
     }
     getTextWithoutBlockBreak() {
-      return Oe(this.text) ? this.text.getTextAtRange([0, this.getBlockBreakPosition()]) : this.text.copy();
+      return qe(this.text) ? this.text.getTextAtRange([0, this.getBlockBreakPosition()]) : this.text.copy();
     }
     canBeGrouped(t2) {
       return this.attributes[t2];
@@ -10115,47 +10011,46 @@
       })().includes(i2[e2 + 1])) && (this.getDirection() === t2.getDirection() || t2.isEmpty());
     }
   };
-  var Fe = function(t2) {
-    return t2 = Pe(t2), t2 = Ne(t2);
+  var Me = function(t2) {
+    return t2 = je(t2), t2 = Ue(t2);
   };
-  var Pe = function(t2) {
+  var je = function(t2) {
     let e2 = false;
     const i2 = t2.getPieces();
     let n2 = i2.slice(0, i2.length - 1);
     const r2 = i2[i2.length - 1];
-    return r2 ? (n2 = n2.map((t3) => t3.isBlockBreak() ? (e2 = true, Me(t3)) : t3), e2 ? new Te([...n2, r2]) : t2) : t2;
+    return r2 ? (n2 = n2.map((t3) => t3.isBlockBreak() ? (e2 = true, Ve(t3)) : t3), e2 ? new Ne([...n2, r2]) : t2) : t2;
   };
-  var Ie = Te.textForStringWithAttributes("\n", { blockBreak: true });
-  var Ne = function(t2) {
-    return Oe(t2) ? t2 : t2.appendText(Ie);
+  var We = Ne.textForStringWithAttributes("\n", { blockBreak: true });
+  var Ue = function(t2) {
+    return qe(t2) ? t2 : t2.appendText(We);
   };
-  var Oe = function(t2) {
+  var qe = function(t2) {
     const e2 = t2.getLength();
-    if (0 === e2)
-      return false;
+    if (0 === e2) return false;
     return t2.getTextAtRange([e2 - 1, e2]).isBlockBreak();
   };
-  var Me = (t2) => t2.copyWithoutAttribute("blockBreak");
-  var je = function(t2) {
+  var Ve = (t2) => t2.copyWithoutAttribute("blockBreak");
+  var He = function(t2) {
     const { listAttribute: e2 } = gt(t2);
     return e2 ? [e2, t2] : [t2];
   };
-  var We = (t2) => t2.slice(-1)[0];
-  var Ue = function(t2, e2) {
+  var ze = (t2) => t2.slice(-1)[0];
+  var _e = function(t2, e2) {
     const i2 = t2.lastIndexOf(e2);
     return -1 === i2 ? t2 : ot(t2, i2, 1);
   };
-  var qe = class extends nt {
+  var Je = class extends nt {
     static fromJSON(t2) {
-      return new this(Array.from(t2).map((t3) => Be.fromJSON(t3)));
+      return new this(Array.from(t2).map((t3) => Oe.fromJSON(t3)));
     }
     static fromString(t2, e2) {
-      const i2 = Te.textForStringWithAttributes(t2, e2);
-      return new this([new Be(i2)]);
+      const i2 = Ne.textForStringWithAttributes(t2, e2);
+      return new this([new Oe(i2)]);
     }
     constructor() {
       let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
-      super(...arguments), 0 === t2.length && (t2 = [new Be()]), this.blockList = Se.box(t2);
+      super(...arguments), 0 === t2.length && (t2 = [new Oe()]), this.blockList = Be.box(t2);
     }
     isEmpty() {
       const t2 = this.getBlockAtIndex(0);
@@ -10201,8 +10096,7 @@
       if (rt(a2, l2)) {
         const e3 = s2.slice(0, -a2.length);
         i2 = t2.copyWithBaseBlockAttributes(e3);
-      } else
-        i2 = t2.copy({ consolidateBlocks: true }).copyWithBaseBlockAttributes(s2);
+      } else i2 = t2.copy({ consolidateBlocks: true }).copyWithBaseBlockAttributes(s2);
       const c2 = i2.getBlockCount(), u2 = i2.getBlockAtIndex(0);
       if (rt(s2, u2.getAttributes())) {
         const t3 = u2.getTextWithoutBlockBreak();
@@ -10211,8 +10105,7 @@
           const e3 = r2 + t3.getLength();
           n2 = n2.insertDocumentAtRange(i2, e3);
         }
-      } else
-        n2 = this.insertDocumentAtRange(i2, e2);
+      } else n2 = this.insertDocumentAtRange(i2, e2);
       return n2;
     }
     insertTextAtRange(t2, e2) {
@@ -10224,11 +10117,9 @@
       let e2;
       t2 = Lt(t2);
       const [i2, n2] = t2;
-      if (Dt(t2))
-        return this;
+      if (Dt(t2)) return this;
       const [r2, o2] = Array.from(this.locationRangeFromRange(t2)), s2 = r2.index, a2 = r2.offset, l2 = this.getBlockAtIndex(s2), c2 = o2.index, u2 = o2.offset, h2 = this.getBlockAtIndex(c2);
-      if (n2 - i2 == 1 && l2.getBlockBreakPosition() === a2 && h2.getBlockBreakPosition() !== u2 && "\n" === h2.text.getStringAtPosition(u2))
-        e2 = this.blockList.editObjectAtIndex(c2, (t3) => t3.copyWithText(t3.text.removeTextAtRange([u2, u2 + 1])));
+      if (n2 - i2 == 1 && l2.getBlockBreakPosition() === a2 && h2.getBlockBreakPosition() !== u2 && "\n" === h2.text.getStringAtPosition(u2)) e2 = this.blockList.editObjectAtIndex(c2, (t3) => t3.copyWithText(t3.text.removeTextAtRange([u2, u2 + 1])));
       else {
         let t3;
         const i3 = l2.text.getTextAtRange([0, a2]), n3 = h2.text.getTextAtRange([u2, h2.getLength()]), r3 = i3.appendText(n3);
@@ -10242,8 +10133,7 @@
       let i2;
       t2 = Lt(t2);
       const [n2, r2] = t2;
-      if (n2 <= e2 && e2 <= r2)
-        return this;
+      if (n2 <= e2 && e2 <= r2) return this;
       let o2 = this.getDocumentAtRange(t2), s2 = this.removeTextAtRange(t2);
       const a2 = n2 < e2;
       a2 && (e2 -= o2.getLength());
@@ -10282,7 +10172,7 @@
       let e2;
       t2 = Lt(t2);
       const [i2] = t2, { offset: n2 } = this.locationFromPosition(i2), r2 = this.removeTextAtRange(t2);
-      return 0 === n2 && (e2 = [new Be()]), new this.constructor(r2.blockList.insertSplittableListAtPosition(new Se(e2), i2));
+      return 0 === n2 && (e2 = [new Oe()]), new this.constructor(r2.blockList.insertSplittableListAtPosition(new Be(e2), i2));
     }
     applyBlockAttributeAtRange(t2, e2, i2) {
       const n2 = this.expandRangeToLineBreaksAndSplitBlocks(i2);
@@ -10293,8 +10183,7 @@
         r2 = r2.removeLastListAttributeAtRange(i2, { exceptAttributeName: t2 });
         const e3 = r2.convertLineBreaksToBlockBreaksInRange(i2);
         r2 = e3.document, i2 = e3.range;
-      } else
-        r2 = o2.exclusive ? r2.removeBlockAttributesAtRange(i2) : o2.terminal ? r2.removeLastTerminalAttributeAtRange(i2) : r2.consolidateBlocksAtRange(i2);
+      } else r2 = o2.exclusive ? r2.removeBlockAttributesAtRange(i2) : o2.terminal ? r2.removeLastTerminalAttributeAtRange(i2) : r2.consolidateBlocksAtRange(i2);
       return r2.addAttributeAtRange(t2, e2, i2);
     }
     removeLastListAttributeAtRange(t2) {
@@ -10324,8 +10213,7 @@
       const r2 = this.locationFromPosition(i2), o2 = this.locationFromPosition(n2);
       let s2 = this;
       const a2 = s2.getBlockAtIndex(r2.index);
-      if (r2.offset = a2.findLineBreakInDirectionFromPosition("backward", r2.offset), null != r2.offset && (e2 = s2.positionFromLocation(r2), s2 = s2.insertBlockBreakAtRange([e2, e2 + 1]), o2.index += 1, o2.offset -= s2.getBlockAtIndex(r2.index).getLength(), r2.index += 1), r2.offset = 0, 0 === o2.offset && o2.index > r2.index)
-        o2.index -= 1, o2.offset = s2.getBlockAtIndex(o2.index).getBlockBreakPosition();
+      if (r2.offset = a2.findLineBreakInDirectionFromPosition("backward", r2.offset), null != r2.offset && (e2 = s2.positionFromLocation(r2), s2 = s2.insertBlockBreakAtRange([e2, e2 + 1]), o2.index += 1, o2.offset -= s2.getBlockAtIndex(r2.index).getLength(), r2.index += 1), r2.offset = 0, 0 === o2.offset && o2.index > r2.index) o2.index -= 1, o2.offset = s2.getBlockAtIndex(o2.index).getBlockBreakPosition();
       else {
         const t3 = s2.getBlockAtIndex(o2.index);
         "\n" === t3.text.getStringAtRange([o2.offset - 1, o2.offset]) ? o2.offset -= 1 : o2.offset = t3.findLineBreakInDirectionFromPosition("forward", o2.offset), o2.offset !== t3.getBlockBreakPosition() && (e2 = s2.positionFromLocation(o2), s2 = s2.insertBlockBreakAtRange([e2, e2 + 1]));
@@ -10398,44 +10286,38 @@
       let i2, n2;
       t2 = Lt(t2);
       const [r2, o2] = t2, s2 = this.locationFromPosition(r2), a2 = this.locationFromPosition(o2);
-      if (s2.index === a2.index)
-        return i2 = this.getBlockAtIndex(s2.index), n2 = [s2.offset, a2.offset], e2(i2, n2, s2.index);
-      for (let t3 = s2.index; t3 <= a2.index; t3++)
-        if (i2 = this.getBlockAtIndex(t3), i2) {
-          switch (t3) {
-            case s2.index:
-              n2 = [s2.offset, i2.text.getLength()];
-              break;
-            case a2.index:
-              n2 = [0, a2.offset];
-              break;
-            default:
-              n2 = [0, i2.text.getLength()];
-          }
-          e2(i2, n2, t3);
+      if (s2.index === a2.index) return i2 = this.getBlockAtIndex(s2.index), n2 = [s2.offset, a2.offset], e2(i2, n2, s2.index);
+      for (let t3 = s2.index; t3 <= a2.index; t3++) if (i2 = this.getBlockAtIndex(t3), i2) {
+        switch (t3) {
+          case s2.index:
+            n2 = [s2.offset, i2.text.getLength()];
+            break;
+          case a2.index:
+            n2 = [0, a2.offset];
+            break;
+          default:
+            n2 = [0, i2.text.getLength()];
         }
+        e2(i2, n2, t3);
+      }
     }
     getCommonAttributesAtRange(t2) {
       t2 = Lt(t2);
       const [e2] = t2;
-      if (Dt(t2))
-        return this.getCommonAttributesAtPosition(e2);
+      if (Dt(t2)) return this.getCommonAttributesAtPosition(e2);
       {
         const e3 = [], i2 = [];
         return this.eachBlockAtRange(t2, function(t3, n2) {
-          if (n2[0] !== n2[1])
-            return e3.push(t3.text.getCommonAttributesAtRange(n2)), i2.push(Ve(t3));
+          if (n2[0] !== n2[1]) return e3.push(t3.text.getCommonAttributesAtRange(n2)), i2.push(Ke(t3));
         }), zt.fromCommonAttributesOfObjects(e3).merge(zt.fromCommonAttributesOfObjects(i2)).toObject();
       }
     }
     getCommonAttributesAtPosition(t2) {
       let e2, i2;
       const { index: n2, offset: r2 } = this.locationFromPosition(t2), o2 = this.getBlockAtIndex(n2);
-      if (!o2)
-        return {};
-      const s2 = Ve(o2), a2 = o2.text.getAttributesAtPosition(r2), l2 = o2.text.getAttributesAtPosition(r2 - 1), c2 = Object.keys(W).filter((t3) => W[t3].inheritable);
-      for (e2 in l2)
-        i2 = l2[e2], (i2 === a2[e2] || c2.includes(e2)) && (s2[e2] = i2);
+      if (!o2) return {};
+      const s2 = Ke(o2), a2 = o2.text.getAttributesAtPosition(r2), l2 = o2.text.getAttributesAtPosition(r2 - 1), c2 = Object.keys(W).filter((t3) => W[t3].inheritable);
+      for (e2 in l2) i2 = l2[e2], (i2 === a2[e2] || c2.includes(e2)) && (s2[e2] = i2);
       return s2;
     }
     getRangeOfCommonAttributeAtPosition(t2, e2) {
@@ -10448,17 +10330,14 @@
         const i2 = this.getBlockAtIndex(e2).getAttributes(), n2 = Math.min(t2.length, i2.length);
         t2 = (() => {
           const e3 = [];
-          for (let r2 = 0; r2 < n2 && i2[r2] === t2[r2]; r2++)
-            e3.push(i2[r2]);
+          for (let r2 = 0; r2 < n2 && i2[r2] === t2[r2]; r2++) e3.push(i2[r2]);
           return e3;
         })();
       }
       return t2;
     }
     getAttachmentById(t2) {
-      for (const e2 of this.getAttachments())
-        if (e2.id === t2)
-          return e2;
+      for (const e2 of this.getAttachments()) if (e2.id === t2) return e2;
     }
     getAttachmentPieces() {
       let t2 = [];
@@ -10475,8 +10354,7 @@
       const i2 = this.blockList.toArray();
       for (let n2 = 0; n2 < i2.length; n2++) {
         const { text: r2 } = i2[n2], o2 = r2.getRangeOfAttachment(t2);
-        if (o2)
-          return Lt([e2 + o2[0], e2 + o2[1]]);
+        if (o2) return Lt([e2 + o2[0], e2 + o2[1]]);
         e2 += r2.getLength();
       }
     }
@@ -10485,9 +10363,7 @@
       return this.locationRangeFromRange(e2);
     }
     getAttachmentPieceForAttachment(t2) {
-      for (const e2 of this.getAttachmentPieces())
-        if (e2.attachment === t2)
-          return e2;
+      for (const e2 of this.getAttachmentPieces()) if (e2.attachment === t2) return e2;
     }
     findRangesForBlockAttribute(t2) {
       let e2 = 0;
@@ -10509,8 +10385,7 @@
     }
     locationFromPosition(t2) {
       const e2 = this.blockList.findIndexAndOffsetAtPosition(Math.max(0, t2));
-      if (null != e2.index)
-        return e2;
+      if (null != e2.index) return e2;
       {
         const t3 = this.getBlocks();
         return { index: t3.length - 1, offset: t3[t3.length - 1].getLength() };
@@ -10523,8 +10398,7 @@
       return Lt(this.locationFromPosition(t2));
     }
     locationRangeFromRange(t2) {
-      if (!(t2 = Lt(t2)))
-        return;
+      if (!(t2 = Lt(t2))) return;
       const [e2, i2] = Array.from(t2), n2 = this.locationFromPosition(e2), r2 = this.locationFromPosition(i2);
       return Lt([n2, r2]);
     }
@@ -10563,75 +10437,9 @@
       return JSON.stringify(this.blockList.toArray().map((t2) => JSON.parse(t2.text.toConsole())));
     }
   };
-  var Ve = function(t2) {
+  var Ke = function(t2) {
     const e2 = {}, i2 = t2.getLastAttribute();
     return i2 && (e2[i2] = true), e2;
-  };
-  var He = "style href src width height language class".split(" ");
-  var ze = "javascript:".split(" ");
-  var _e = "script iframe form noscript".split(" ");
-  var Je = class extends H {
-    static sanitize(t2, e2) {
-      const i2 = new this(t2, e2);
-      return i2.sanitize(), i2;
-    }
-    constructor(t2) {
-      let { allowedAttributes: e2, forbiddenProtocols: i2, forbiddenElements: n2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-      super(...arguments), this.allowedAttributes = e2 || He, this.forbiddenProtocols = i2 || ze, this.forbiddenElements = n2 || _e, this.body = Ke(t2);
-    }
-    sanitize() {
-      return this.sanitizeElements(), this.normalizeListElementNesting();
-    }
-    getHTML() {
-      return this.body.innerHTML;
-    }
-    getBody() {
-      return this.body;
-    }
-    sanitizeElements() {
-      const t2 = R(this.body), e2 = [];
-      for (; t2.nextNode(); ) {
-        const i2 = t2.currentNode;
-        switch (i2.nodeType) {
-          case Node.ELEMENT_NODE:
-            this.elementIsRemovable(i2) ? e2.push(i2) : this.sanitizeElement(i2);
-            break;
-          case Node.COMMENT_NODE:
-            e2.push(i2);
-        }
-      }
-      return e2.forEach((t3) => k(t3)), this.body;
-    }
-    sanitizeElement(t2) {
-      return t2.hasAttribute("href") && this.forbiddenProtocols.includes(t2.protocol) && t2.removeAttribute("href"), Array.from(t2.attributes).forEach((e2) => {
-        let { name: i2 } = e2;
-        this.allowedAttributes.includes(i2) || 0 === i2.indexOf("data-trix") || t2.removeAttribute(i2);
-      }), t2;
-    }
-    normalizeListElementNesting() {
-      return Array.from(this.body.querySelectorAll("ul,ol")).forEach((t2) => {
-        const e2 = t2.previousElementSibling;
-        e2 && "li" === E(e2) && e2.appendChild(t2);
-      }), this.body;
-    }
-    elementIsRemovable(t2) {
-      if ((null == t2 ? void 0 : t2.nodeType) === Node.ELEMENT_NODE)
-        return this.elementIsForbidden(t2) || this.elementIsntSerializable(t2);
-    }
-    elementIsForbidden(t2) {
-      return this.forbiddenElements.includes(E(t2));
-    }
-    elementIsntSerializable(t2) {
-      return "false" === t2.getAttribute("data-trix-serialize") && !I(t2);
-    }
-  };
-  var Ke = function() {
-    let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
-    t2 = t2.replace(/<\/html[^>]*>[^]*$/i, "</html>");
-    const e2 = document.implementation.createHTMLDocument("");
-    return e2.documentElement.innerHTML = t2, Array.from(e2.head.querySelectorAll("style")).forEach((t3) => {
-      e2.body.appendChild(t3);
-    }), e2.body;
   };
   var Ge = function(t2) {
     let e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
@@ -10639,8 +10447,7 @@
   };
   var $e = (t2, e2) => {
     try {
-      const i2 = JSON.parse(t2.getAttribute("data-trix-".concat(e2)));
-      return "text/html" === i2.contentType && i2.content && (i2.content = Je.sanitize(i2.content).getHTML()), i2;
+      return JSON.parse(t2.getAttribute("data-trix-".concat(e2)));
     } catch (t3) {
       return {};
     }
@@ -10655,16 +10462,13 @@
       super(...arguments), this.html = t2, this.referenceElement = e2, this.blocks = [], this.blockElements = [], this.processedElements = [];
     }
     getDocument() {
-      return qe.fromJSON(this.blocks);
+      return Je.fromJSON(this.blocks);
     }
     parse() {
       try {
-        this.createHiddenContainer();
-        const t2 = Je.sanitize(this.html).getHTML();
-        this.containerElement.innerHTML = t2;
-        const e2 = R(this.containerElement, { usingFilter: ti });
-        for (; e2.nextNode(); )
-          this.processNode(e2.currentNode);
+        this.createHiddenContainer(), se.setHTML(this.containerElement, this.html);
+        const t2 = R(this.containerElement, { usingFilter: ti });
+        for (; t2.nextNode(); ) this.processNode(t2.currentNode);
         return this.translateBlockElementMarginsToNewlines();
       } finally {
         this.removeHiddenContainer();
@@ -10679,8 +10483,7 @@
     processNode(t2) {
       switch (t2.nodeType) {
         case Node.TEXT_NODE:
-          if (!this.isInsignificantTextNode(t2))
-            return this.appendBlockForTextNode(t2), this.processTextNode(t2);
+          if (!this.isInsignificantTextNode(t2)) return this.appendBlockForTextNode(t2), this.processTextNode(t2);
           break;
         case Node.ELEMENT_NODE:
           return this.appendBlockForElement(t2), this.processElement(t2);
@@ -10688,8 +10491,7 @@
     }
     appendBlockForTextNode(t2) {
       const e2 = t2.parentNode;
-      if (e2 === this.currentBlockElement && this.isBlockElement(t2.previousSibling))
-        return this.appendStringWithAttributes("\n");
+      if (e2 === this.currentBlockElement && this.isBlockElement(t2.previousSibling)) return this.appendStringWithAttributes("\n");
       if (e2 === this.containerElement || this.isBlockElement(e2)) {
         var i2;
         const t3 = this.getBlockAttributes(e2), n2 = this.getBlockHTMLAttributes(e2);
@@ -10702,23 +10504,20 @@
         if (!this.isInsignificantTextNode(t2.firstChild) || !this.isBlockElement(t2.firstElementChild)) {
           const e3 = this.getBlockAttributes(t2), n2 = this.getBlockHTMLAttributes(t2);
           if (t2.firstChild) {
-            if (i2 && rt(e3, this.currentBlock.attributes))
-              return this.appendStringWithAttributes("\n");
+            if (i2 && rt(e3, this.currentBlock.attributes)) return this.appendStringWithAttributes("\n");
             this.currentBlock = this.appendBlockForAttributesWithElement(e3, t2, n2), this.currentBlockElement = t2;
           }
         }
       } else if (this.currentBlockElement && !i2 && !e2) {
         const e3 = this.findParentBlockElement(t2);
-        if (e3)
-          return this.appendBlockForElement(e3);
+        if (e3) return this.appendBlockForElement(e3);
         this.currentBlock = this.appendEmptyBlock(), this.currentBlockElement = null;
       }
     }
     findParentBlockElement(t2) {
       let { parentElement: e2 } = t2;
       for (; e2 && e2 !== this.containerElement; ) {
-        if (this.isBlockElement(e2) && this.blockElements.includes(e2))
-          return e2;
+        if (this.isBlockElement(e2) && this.blockElements.includes(e2)) return e2;
         e2 = e2.parentElement;
       }
       return null;
@@ -10753,12 +10552,10 @@
           }
           return this.appendAttachmentWithAttributes(e2, this.getTextAttributes(t2)), this.processedElements.push(t2);
         case "tr":
-          if (this.needsTableSeparator(t2))
-            return this.appendStringWithAttributes(j.tableRowSeparator);
+          if (this.needsTableSeparator(t2)) return this.appendStringWithAttributes(j.tableRowSeparator);
           break;
         case "td":
-          if (this.needsTableSeparator(t2))
-            return this.appendStringWithAttributes(j.tableCellSeparator);
+          if (this.needsTableSeparator(t2)) return this.appendStringWithAttributes(j.tableCellSeparator);
       }
     }
     appendBlockForAttributesWithElement(t2, e2) {
@@ -10785,14 +10582,12 @@
     }
     appendStringToTextAtIndex(t2, e2) {
       const { text: i2 } = this.blocks[e2], n2 = i2[i2.length - 1];
-      if ("string" !== (null == n2 ? void 0 : n2.type))
-        return i2.push(Ge(t2));
+      if ("string" !== (null == n2 ? void 0 : n2.type)) return i2.push(Ge(t2));
       n2.string += t2;
     }
     prependStringToTextAtIndex(t2, e2) {
       const { text: i2 } = this.blocks[e2], n2 = i2[0];
-      if ("string" !== (null == n2 ? void 0 : n2.type))
-        return i2.unshift(Ge(t2));
+      if ("string" !== (null == n2 ? void 0 : n2.type)) return i2.unshift(Ge(t2));
       n2.string = t2 + n2.string;
     }
     getTextAttributes(t2) {
@@ -10800,25 +10595,21 @@
       const i2 = {};
       for (const n2 in W) {
         const r2 = W[n2];
-        if (r2.tagName && A(t2, { matchingSelector: r2.tagName, untilNode: this.containerElement }))
-          i2[n2] = true;
+        if (r2.tagName && A(t2, { matchingSelector: r2.tagName, untilNode: this.containerElement })) i2[n2] = true;
         else if (r2.parser) {
           if (e2 = r2.parser(t2), e2) {
             let o2 = false;
-            for (const i3 of this.findBlockElementAncestors(t2))
-              if (r2.parser(i3) === e2) {
-                o2 = true;
-                break;
-              }
+            for (const i3 of this.findBlockElementAncestors(t2)) if (r2.parser(i3) === e2) {
+              o2 = true;
+              break;
+            }
             o2 || (i2[n2] = e2);
           }
-        } else
-          r2.styleProperty && (e2 = t2.style[r2.styleProperty], e2 && (i2[n2] = e2));
+        } else r2.styleProperty && (e2 = t2.style[r2.styleProperty], e2 && (i2[n2] = e2));
       }
       if (I(t2)) {
         const n2 = $e(t2, "attributes");
-        for (const t3 in n2)
-          e2 = n2[t3], i2[t3] = e2;
+        for (const t3 in n2) e2 = n2[t3], i2[t3] = e2;
       }
       return i2;
     }
@@ -10829,8 +10620,7 @@
           const o2 = n[r2];
           var i2;
           if (false !== o2.parse) {
-            if (E(t2) === o2.tagName)
-              (null !== (i2 = o2.test) && void 0 !== i2 && i2.call(o2, t2) || !o2.test) && (e2.push(r2), o2.listAttribute && e2.push(o2.listAttribute));
+            if (E(t2) === o2.tagName) (null !== (i2 = o2.test) && void 0 !== i2 && i2.call(o2, t2) || !o2.test) && (e2.push(r2), o2.listAttribute && e2.push(o2.listAttribute));
           }
         }
         t2 = t2.parentNode;
@@ -10852,14 +10642,11 @@
       return e2;
     }
     isBlockElement(t2) {
-      if ((null == t2 ? void 0 : t2.nodeType) === Node.ELEMENT_NODE && !I(t2) && !A(t2, { matchingSelector: "td", untilNode: this.containerElement }))
-        return D().includes(E(t2)) || "block" === window.getComputedStyle(t2).display;
+      if ((null == t2 ? void 0 : t2.nodeType) === Node.ELEMENT_NODE && !I(t2) && !A(t2, { matchingSelector: "td", untilNode: this.containerElement })) return D().includes(E(t2)) || "block" === window.getComputedStyle(t2).display;
     }
     isInsignificantTextNode(t2) {
-      if ((null == t2 ? void 0 : t2.nodeType) !== Node.TEXT_NODE)
-        return;
-      if (!ii(t2.data))
-        return;
+      if ((null == t2 ? void 0 : t2.nodeType) !== Node.TEXT_NODE) return;
+      if (!ii(t2.data)) return;
       const { parentNode: e2, previousSibling: i2, nextSibling: n2 } = t2;
       return Qe(e2.previousSibling) && !this.isBlockElement(e2.previousSibling) || Ye(e2) ? void 0 : !i2 || this.isBlockElement(i2) || !n2 || this.isBlockElement(n2);
     }
@@ -10883,8 +10670,7 @@
     }
     getMarginOfBlockElementAtIndex(t2) {
       const e2 = this.blockElements[t2];
-      if (e2 && e2.textContent && !D().includes(E(e2)) && !this.processedElements.includes(e2))
-        return Ze(e2);
+      if (e2 && e2.textContent && !D().includes(E(e2)) && !this.processedElements.includes(e2)) return Ze(e2);
     }
     getMarginOfDefaultBlockElement() {
       const t2 = S(n.default.tagName);
@@ -10898,8 +10684,7 @@
   var Qe = (t2) => t2 && !ni(t2.textContent);
   var Ze = function(t2) {
     const e2 = window.getComputedStyle(t2);
-    if ("block" === e2.display)
-      return { top: parseInt(e2.marginTop), bottom: parseInt(e2.marginBottom) };
+    if ("block" === e2.display) return { top: parseInt(e2.marginTop), bottom: parseInt(e2.marginBottom) };
   };
   var ti = function(t2) {
     return "style" === E(t2) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
@@ -10913,21 +10698,17 @@
   var ai = new RegExp("<!--block-->", "g");
   var li = { "application/json": function(t2) {
     let e2;
-    if (t2 instanceof qe)
-      e2 = t2;
+    if (t2 instanceof Je) e2 = t2;
     else {
-      if (!(t2 instanceof HTMLElement))
-        throw new Error("unserializable object");
+      if (!(t2 instanceof HTMLElement)) throw new Error("unserializable object");
       e2 = Xe.parse(t2.innerHTML).getDocument();
     }
     return e2.toSerializableDocument().toJSONString();
   }, "text/html": function(t2) {
     let e2;
-    if (t2 instanceof qe)
-      e2 = ge.render(t2);
+    if (t2 instanceof Je) e2 = ve.render(t2);
     else {
-      if (!(t2 instanceof HTMLElement))
-        throw new Error("unserializable object");
+      if (!(t2 instanceof HTMLElement)) throw new Error("unserializable object");
       e2 = t2.cloneNode(true);
     }
     return Array.from(e2.querySelectorAll("[data-trix-serialize=false]")).forEach((t3) => {
@@ -10981,8 +10762,7 @@
     }
     requestRemovalOfAttachment(t2) {
       var e2, i2;
-      if (this.attachmentIsManaged(t2))
-        return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.attachmentManagerDidRequestRemovalOfAttachment) || void 0 === i2 ? void 0 : i2.call(e2, t2);
+      if (this.attachmentIsManaged(t2)) return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.attachmentManagerDidRequestRemovalOfAttachment) || void 0 === i2 ? void 0 : i2.call(e2, t2);
     }
     unmanageAttachment(t2) {
       const e2 = this.managedAttachments[t2.id];
@@ -11013,12 +10793,11 @@
   };
   var gi = class extends H {
     constructor() {
-      super(...arguments), this.document = new qe(), this.attachments = [], this.currentAttributes = {}, this.revision = 0;
+      super(...arguments), this.document = new Je(), this.attachments = [], this.currentAttributes = {}, this.revision = 0;
     }
     setDocument(t2) {
       var e2, i2;
-      if (!t2.isEqualTo(this.document))
-        return this.document = t2, this.refreshAttachments(), this.revision++, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionDidChangeDocument) || void 0 === i2 ? void 0 : i2.call(e2, t2);
+      if (!t2.isEqualTo(this.document)) return this.document = t2, this.refreshAttachments(), this.revision++, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionDidChangeDocument) || void 0 === i2 ? void 0 : i2.call(e2, t2);
     }
     getSnapshot() {
       return { document: this.document, selectedRange: this.getSelectedRange() };
@@ -11026,7 +10805,7 @@
     loadSnapshot(t2) {
       var e2, i2, n2, r2;
       let { document: o2, selectedRange: s2 } = t2;
-      return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionWillLoadSnapshot) || void 0 === i2 || i2.call(e2), this.setDocument(null != o2 ? o2 : new qe()), this.setSelection(null != s2 ? s2 : [0, 0]), null === (n2 = this.delegate) || void 0 === n2 || null === (r2 = n2.compositionDidLoadSnapshot) || void 0 === r2 ? void 0 : r2.call(n2);
+      return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionWillLoadSnapshot) || void 0 === i2 || i2.call(e2), this.setDocument(null != o2 ? o2 : new Je()), this.setSelection(null != s2 ? s2 : [0, 0]), null === (n2 = this.delegate) || void 0 === n2 || null === (r2 = n2.compositionDidLoadSnapshot) || void 0 === r2 ? void 0 : r2.call(n2);
     }
     insertText(t2) {
       let { updatePosition: e2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : { updatePosition: true };
@@ -11036,19 +10815,19 @@
       return e2 && this.setSelection(r2), this.notifyDelegateOfInsertionAtRange([n2, r2]);
     }
     insertBlock() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : new Be();
-      const e2 = new qe([t2]);
+      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : new Oe();
+      const e2 = new Je([t2]);
       return this.insertDocument(e2);
     }
     insertDocument() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : new qe();
+      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : new Je();
       const e2 = this.getSelectedRange();
       this.setDocument(this.document.insertDocumentAtRange(t2, e2));
       const i2 = e2[0], n2 = i2 + t2.getLength();
       return this.setSelection(n2), this.notifyDelegateOfInsertionAtRange([i2, n2]);
     }
     insertString(t2, e2) {
-      const i2 = this.getCurrentTextAttributes(), n2 = Te.textForStringWithAttributes(t2, i2);
+      const i2 = this.getCurrentTextAttributes(), n2 = Ne.textForStringWithAttributes(t2, i2);
       return this.insertText(n2, e2);
     }
     insertBlockBreak() {
@@ -11059,10 +10838,9 @@
     }
     insertLineBreak() {
       const t2 = new di(this);
-      if (t2.shouldDecreaseListLevel())
-        return this.decreaseListLevel(), this.setSelection(t2.startPosition);
+      if (t2.shouldDecreaseListLevel()) return this.decreaseListLevel(), this.setSelection(t2.startPosition);
       if (t2.shouldPrependListItem()) {
-        const e2 = new qe([t2.block.copyWithoutText()]);
+        const e2 = new Je([t2.block.copyWithoutText()]);
         return this.insertDocument(e2);
       }
       return t2.shouldInsertBlockBreak() ? this.insertBlockBreak() : t2.shouldRemoveLastBlockAttribute() ? this.removeLastBlockAttribute() : t2.shouldBreakFormattedBlock() ? this.breakFormattedBlock(t2) : this.insertString("\n");
@@ -11085,7 +10863,7 @@
       return Array.from(t2).forEach((t3) => {
         var i2;
         if (null !== (i2 = this.delegate) && void 0 !== i2 && i2.compositionShouldAcceptFile(t3)) {
-          const i3 = ke.attachmentForFile(t3);
+          const i3 = De.attachmentForFile(t3);
           e2.push(i3);
         }
       }), this.insertAttachments(e2);
@@ -11094,24 +10872,21 @@
       return this.insertAttachments([t2]);
     }
     insertAttachments(t2) {
-      let e2 = new Te();
+      let e2 = new Ne();
       return Array.from(t2).forEach((t3) => {
         var n2;
         const r2 = t3.getType(), o2 = null === (n2 = i[r2]) || void 0 === n2 ? void 0 : n2.presentation, s2 = this.getCurrentTextAttributes();
         o2 && (s2.presentation = o2);
-        const a2 = Te.textForAttachmentWithAttributes(t3, s2);
+        const a2 = Ne.textForAttachmentWithAttributes(t3, s2);
         e2 = e2.appendText(a2);
       }), this.insertText(e2);
     }
     shouldManageDeletingInDirection(t2) {
       const e2 = this.getLocationRange();
       if (Dt(e2)) {
-        if ("backward" === t2 && 0 === e2[0].offset)
-          return true;
-        if (this.shouldManageMovingCursorInDirection(t2))
-          return true;
-      } else if (e2[0].index !== e2[1].index)
-        return true;
+        if ("backward" === t2 && 0 === e2[0].offset) return true;
+        if (this.shouldManageMovingCursorInDirection(t2)) return true;
+      } else if (e2[0].index !== e2[1].index) return true;
       return false;
     }
     deleteInDirection(t2) {
@@ -11121,8 +10896,7 @@
       const a2 = Dt(s2);
       if (a2 ? i2 = "backward" === t2 && 0 === o2[0].offset : n2 = o2[0].index !== o2[1].index, i2 && this.canDecreaseBlockAttributeLevel()) {
         const t3 = this.getBlock();
-        if (t3.isListItem() ? this.decreaseListLevel() : this.decreaseBlockAttributeLevel(), this.setSelection(s2[0]), t3.isEmpty())
-          return false;
+        if (t3.isListItem() ? this.decreaseListLevel() : this.decreaseBlockAttributeLevel(), this.setSelection(s2[0]), t3.isEmpty()) return false;
       }
       return a2 && (s2 = this.getExpandedRangeInDirection(t2, { length: r2 }), "backward" === t2 && (e2 = this.getAttachmentAtRange(s2))), e2 ? (this.editAttachment(e2), false) : (this.setDocument(this.document.removeTextAtRange(s2)), this.setSelection(s2[0]), !i2 && !n2 && void 0);
     }
@@ -11132,8 +10906,7 @@
     }
     removeAttachment(t2) {
       const e2 = this.document.getRangeOfAttachment(t2);
-      if (e2)
-        return this.stopEditingAttachment(), this.setDocument(this.document.removeTextAtRange(e2)), this.setSelection(e2[0]);
+      if (e2) return this.stopEditingAttachment(), this.setDocument(this.document.removeTextAtRange(e2)), this.setSelection(e2[0]);
     }
     removeLastBlockAttribute() {
       const [t2, e2] = Array.from(this.getSelectedRange()), i2 = this.document.getBlockAtPosition(e2);
@@ -11143,8 +10916,7 @@
       return this.placeholderPosition = this.getPosition(), this.insertString(" ");
     }
     selectPlaceholder() {
-      if (null != this.placeholderPosition)
-        return this.setSelectedRange([this.placeholderPosition, this.placeholderPosition + 1]), this.getSelectedRange();
+      if (null != this.placeholderPosition) return this.setSelectedRange([this.placeholderPosition, this.placeholderPosition + 1]), this.getSelectedRange();
     }
     forgetPlaceholder() {
       this.placeholderPosition = null;
@@ -11163,16 +10935,13 @@
     canSetCurrentTextAttribute(t2) {
       const e2 = this.getSelectedDocument();
       if (e2) {
-        for (const t3 of Array.from(e2.getAttachments()))
-          if (!t3.hasContent())
-            return false;
+        for (const t3 of Array.from(e2.getAttachments())) if (!t3.hasContent()) return false;
         return true;
       }
     }
     canSetCurrentBlockAttribute(t2) {
       const e2 = this.getBlock();
-      if (e2)
-        return !e2.isTerminalBlock();
+      if (e2) return !e2.isTerminalBlock();
     }
     setCurrentAttribute(t2, e2) {
       return gt(t2) ? this.setBlockAttribute(t2, e2) : (this.setTextAttribute(t2, e2), this.currentAttributes[t2] = e2, this.notifyDelegateOfCurrentAttributesChange());
@@ -11187,33 +10956,28 @@
     }
     setTextAttribute(t2, e2) {
       const i2 = this.getSelectedRange();
-      if (!i2)
-        return;
+      if (!i2) return;
       const [n2, r2] = Array.from(i2);
-      if (n2 !== r2)
-        return this.setDocument(this.document.addAttributeAtRange(t2, e2, i2));
+      if (n2 !== r2) return this.setDocument(this.document.addAttributeAtRange(t2, e2, i2));
       if ("href" === t2) {
-        const t3 = Te.textForStringWithAttributes(e2, { href: e2 });
+        const t3 = Ne.textForStringWithAttributes(e2, { href: e2 });
         return this.insertText(t3);
       }
     }
     setBlockAttribute(t2, e2) {
       const i2 = this.getSelectedRange();
-      if (this.canSetCurrentAttribute(t2))
-        return this.setDocument(this.document.applyBlockAttributeAtRange(t2, e2, i2)), this.setSelection(i2);
+      if (this.canSetCurrentAttribute(t2)) return this.setDocument(this.document.applyBlockAttributeAtRange(t2, e2, i2)), this.setSelection(i2);
     }
     removeCurrentAttribute(t2) {
       return gt(t2) ? (this.removeBlockAttribute(t2), this.updateCurrentAttributes()) : (this.removeTextAttribute(t2), delete this.currentAttributes[t2], this.notifyDelegateOfCurrentAttributesChange());
     }
     removeTextAttribute(t2) {
       const e2 = this.getSelectedRange();
-      if (e2)
-        return this.setDocument(this.document.removeAttributeAtRange(t2, e2));
+      if (e2) return this.setDocument(this.document.removeAttributeAtRange(t2, e2));
     }
     removeBlockAttribute(t2) {
       const e2 = this.getSelectedRange();
-      if (e2)
-        return this.setDocument(this.document.removeAttributeAtRange(t2, e2));
+      if (e2) return this.setDocument(this.document.removeAttributeAtRange(t2, e2));
     }
     canDecreaseNestingLevel() {
       var t2;
@@ -11223,27 +10987,23 @@
       var t2;
       const e2 = this.getBlock();
       if (e2) {
-        if (null === (t2 = gt(e2.getLastNestableAttribute())) || void 0 === t2 || !t2.listAttribute)
-          return e2.getNestingLevel() > 0;
+        if (null === (t2 = gt(e2.getLastNestableAttribute())) || void 0 === t2 || !t2.listAttribute) return e2.getNestingLevel() > 0;
         {
           const t3 = this.getPreviousBlock();
-          if (t3)
-            return function() {
-              let t4 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
-              return rt((arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : []).slice(0, t4.length), t4);
-            }(t3.getListItemAttributes(), e2.getListItemAttributes());
+          if (t3) return function() {
+            let t4 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
+            return rt((arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : []).slice(0, t4.length), t4);
+          }(t3.getListItemAttributes(), e2.getListItemAttributes());
         }
       }
     }
     decreaseNestingLevel() {
       const t2 = this.getBlock();
-      if (t2)
-        return this.setDocument(this.document.replaceBlock(t2, t2.decreaseNestingLevel()));
+      if (t2) return this.setDocument(this.document.replaceBlock(t2, t2.decreaseNestingLevel()));
     }
     increaseNestingLevel() {
       const t2 = this.getBlock();
-      if (t2)
-        return this.setDocument(this.document.replaceBlock(t2, t2.increaseNestingLevel()));
+      if (t2) return this.setDocument(this.document.replaceBlock(t2, t2.increaseNestingLevel()));
     }
     canDecreaseBlockAttributeLevel() {
       var t2;
@@ -11252,8 +11012,7 @@
     decreaseBlockAttributeLevel() {
       var t2;
       const e2 = null === (t2 = this.getBlock()) || void 0 === t2 ? void 0 : t2.getLastAttribute();
-      if (e2)
-        return this.removeCurrentAttribute(e2);
+      if (e2) return this.removeCurrentAttribute(e2);
     }
     decreaseListLevel() {
       let [t2] = Array.from(this.getSelectedRange());
@@ -11261,8 +11020,7 @@
       let i2 = e2;
       const n2 = this.getBlock().getAttributeLevel();
       let r2 = this.document.getBlockAtIndex(i2 + 1);
-      for (; r2 && r2.isListItem() && !(r2.getAttributeLevel() <= n2); )
-        i2++, r2 = this.document.getBlockAtIndex(i2 + 1);
+      for (; r2 && r2.isListItem() && !(r2.getAttributeLevel() <= n2); ) i2++, r2 = this.document.getBlockAtIndex(i2 + 1);
       t2 = this.document.positionFromLocation({ index: e2, offset: 0 });
       const o2 = this.document.positionFromLocation({ index: i2, offset: 0 });
       return this.setDocument(this.document.removeLastListAttributeAtRange([t2, o2]));
@@ -11273,8 +11031,7 @@
         const e2 = this.document.getCommonAttributesAtRange(t2);
         if (Array.from(dt()).forEach((t3) => {
           e2[t3] || this.canSetCurrentAttribute(t3) || (e2[t3] = false);
-        }), !St(e2, this.currentAttributes))
-          return this.currentAttributes = e2, this.notifyDelegateOfCurrentAttributesChange();
+        }), !St(e2, this.currentAttributes)) return this.currentAttributes = e2, this.notifyDelegateOfCurrentAttributesChange();
       }
     }
     getCurrentAttributes() {
@@ -11304,8 +11061,7 @@
     }
     getSelectedRange() {
       const t2 = this.getLocationRange();
-      if (t2)
-        return this.document.rangeFromLocationRange(t2);
+      if (t2) return this.document.rangeFromLocationRange(t2);
     }
     setSelectedRange(t2) {
       const e2 = this.document.locationRangeFromRange(t2);
@@ -11313,8 +11069,7 @@
     }
     getPosition() {
       const t2 = this.getLocationRange();
-      if (t2)
-        return this.document.positionFromLocation(t2[0]);
+      if (t2) return this.document.positionFromLocation(t2[0]);
     }
     getLocationRange(t2) {
       return this.targetLocationRange ? this.targetLocationRange : this.getSelectionManager().getLocationRange(t2) || Lt({ index: 0, offset: 0 });
@@ -11342,23 +11097,20 @@
       return "backward" === t2 ? e2 ? i2 -= e2 : i2 = this.translateUTF16PositionFromOffset(i2, -1) : e2 ? n2 += e2 : n2 = this.translateUTF16PositionFromOffset(n2, 1), Lt([i2, n2]);
     }
     shouldManageMovingCursorInDirection(t2) {
-      if (this.editingAttachment)
-        return true;
+      if (this.editingAttachment) return true;
       const e2 = this.getExpandedRangeInDirection(t2);
       return null != this.getAttachmentAtRange(e2);
     }
     moveCursorInDirection(t2) {
       let e2, i2;
-      if (this.editingAttachment)
-        i2 = this.document.getRangeOfAttachment(this.editingAttachment);
+      if (this.editingAttachment) i2 = this.document.getRangeOfAttachment(this.editingAttachment);
       else {
         const n2 = this.getSelectedRange();
         i2 = this.getExpandedRangeInDirection(t2), e2 = !wt(n2, i2);
       }
       if ("backward" === t2 ? this.setSelectedRange(i2[0]) : this.setSelectedRange(i2[1]), e2) {
         const t3 = this.getAttachmentAtRange(i2);
-        if (t3)
-          return this.editAttachment(t3);
+        if (t3) return this.editAttachment(t3);
       }
     }
     expandSelectionInDirection(t2) {
@@ -11367,8 +11119,7 @@
       return this.setSelectedRange(i2);
     }
     expandSelectionForEditing() {
-      if (this.hasCurrentAttribute("href"))
-        return this.expandSelectionAroundCommonAttribute("href");
+      if (this.hasCurrentAttribute("href")) return this.expandSelectionAroundCommonAttribute("href");
     }
     expandSelectionAroundCommonAttribute(t2) {
       const e2 = this.getPosition(), i2 = this.document.getRangeOfCommonAttributeAtPosition(t2, e2);
@@ -11383,8 +11134,7 @@
     }
     positionIsCursorTarget(t2) {
       const e2 = this.document.locationFromPosition(t2);
-      if (e2)
-        return this.locationIsCursorTarget(e2);
+      if (e2) return this.locationIsCursorTarget(e2);
     }
     positionIsBlockBreak(t2) {
       var e2;
@@ -11392,8 +11142,7 @@
     }
     getSelectedDocument() {
       const t2 = this.getSelectedRange();
-      if (t2)
-        return this.document.getDocumentAtRange(t2);
+      if (t2) return this.document.getDocumentAtRange(t2);
     }
     getSelectedAttachments() {
       var t2;
@@ -11437,8 +11186,7 @@
     }
     editAttachment(t2, e2) {
       var i2, n2;
-      if (t2 !== this.editingAttachment)
-        return this.stopEditingAttachment(), this.editingAttachment = t2, null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.compositionDidStartEditingAttachment) || void 0 === n2 ? void 0 : n2.call(i2, this.editingAttachment, e2);
+      if (t2 !== this.editingAttachment) return this.stopEditingAttachment(), this.editingAttachment = t2, null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.compositionDidStartEditingAttachment) || void 0 === n2 ? void 0 : n2.call(i2, this.editingAttachment, e2);
     }
     stopEditingAttachment() {
       var t2, e2;
@@ -11455,26 +11203,23 @@
       const { block: i2 } = t2;
       let n2 = t2.startPosition, r2 = [n2 - 1, n2];
       i2.getBlockBreakPosition() === t2.startLocation.offset ? (i2.breaksOnReturn() && "\n" === t2.nextCharacter ? n2 += 1 : e2 = e2.removeTextAtRange(r2), r2 = [n2, n2]) : "\n" === t2.nextCharacter ? "\n" === t2.previousCharacter ? r2 = [n2 - 1, n2 + 1] : (r2 = [n2, n2 + 1], n2 += 1) : t2.startLocation.offset - 1 != 0 && (n2 += 1);
-      const o2 = new qe([i2.removeLastAttribute().copyWithoutText()]);
+      const o2 = new Je([i2.removeLastAttribute().copyWithoutText()]);
       return this.setDocument(e2.insertDocumentAtRange(o2, r2)), this.setSelection(n2);
     }
     getPreviousBlock() {
       const t2 = this.getLocationRange();
       if (t2) {
         const { index: e2 } = t2[0];
-        if (e2 > 0)
-          return this.document.getBlockAtIndex(e2 - 1);
+        if (e2 > 0) return this.document.getBlockAtIndex(e2 - 1);
       }
     }
     getBlock() {
       const t2 = this.getLocationRange();
-      if (t2)
-        return this.document.getBlockAtIndex(t2[0].index);
+      if (t2) return this.document.getBlockAtIndex(t2[0].index);
     }
     getAttachmentAtRange(t2) {
       const e2 = this.document.getDocumentAtRange(t2);
-      if (e2.toString() === "".concat("\uFFFC", "\n"))
-        return e2.getAttachments()[0];
+      if (e2.toString() === "".concat("\uFFFC", "\n")) return e2.getAttachments()[0];
     }
     notifyDelegateOfCurrentAttributesChange() {
       var t2, e2;
@@ -11577,7 +11322,7 @@
     }
     loadJSON(t2) {
       let { document: e2, selectedRange: i2 } = t2;
-      return e2 = qe.fromJSON(e2), this.loadSnapshot({ document: e2, selectedRange: i2 });
+      return e2 = Je.fromJSON(e2), this.loadSnapshot({ document: e2, selectedRange: i2 });
     }
     loadSnapshot(t2) {
       return this.undoManager = new mi(this.composition), this.composition.loadSnapshot(t2);
@@ -11666,12 +11411,10 @@
       return this.composition.canIncreaseNestingLevel();
     }
     decreaseNestingLevel() {
-      if (this.canDecreaseNestingLevel())
-        return this.composition.decreaseNestingLevel();
+      if (this.canDecreaseNestingLevel()) return this.composition.decreaseNestingLevel();
     }
     increaseNestingLevel() {
-      if (this.canIncreaseNestingLevel())
-        return this.composition.increaseNestingLevel();
+      if (this.canIncreaseNestingLevel()) return this.composition.increaseNestingLevel();
     }
     canRedo() {
       return this.undoManager.canRedo();
@@ -11684,12 +11427,10 @@
       return this.undoManager.recordUndoEntry(t2, { context: e2, consolidatable: i2 });
     }
     redo() {
-      if (this.canRedo())
-        return this.undoManager.redo();
+      if (this.canRedo()) return this.undoManager.redo();
     }
     undo() {
-      if (this.canUndo())
-        return this.undoManager.undo();
+      if (this.canUndo()) return this.undoManager.undo();
     }
   };
   var yi = class {
@@ -11708,10 +11449,8 @@
           break;
         }
         if (s3.parentNode === t2) {
-          if (n2++ === e2)
-            break;
-        } else if (!y(t2, s3) && n2 > 0)
-          break;
+          if (n2++ === e2) break;
+        } else if (!y(t2, s3) && n2 > 0) break;
         T(s3, { strict: i2 }) ? (r2 && o2.index++, o2.offset = 0, r2 = true) : o2.offset += Ci(s3);
       }
       return o2;
@@ -11719,21 +11458,17 @@
     findContainerAndOffsetFromLocation(t2) {
       let e2, i2;
       if (0 === t2.index && 0 === t2.offset) {
-        for (e2 = this.element, i2 = 0; e2.firstChild; )
-          if (e2 = e2.firstChild, w(e2)) {
-            i2 = 1;
-            break;
-          }
+        for (e2 = this.element, i2 = 0; e2.firstChild; ) if (e2 = e2.firstChild, w(e2)) {
+          i2 = 1;
+          break;
+        }
         return [e2, i2];
       }
       let [n2, r2] = this.findNodeAndOffsetFromLocation(t2);
       if (n2) {
-        if (O(n2))
-          0 === Ci(n2) ? (e2 = n2.parentNode.parentNode, i2 = C(n2.parentNode), P(n2, { name: "right" }) && i2++) : (e2 = n2, i2 = t2.offset - r2);
+        if (O(n2)) 0 === Ci(n2) ? (e2 = n2.parentNode.parentNode, i2 = C(n2.parentNode), P(n2, { name: "right" }) && i2++) : (e2 = n2, i2 = t2.offset - r2);
         else {
-          if (e2 = n2.parentNode, !T(n2.previousSibling) && !w(e2))
-            for (; n2 === e2.lastChild && (n2 = e2, e2 = e2.parentNode, !w(e2)); )
-              ;
+          if (e2 = n2.parentNode, !T(n2.previousSibling) && !w(e2)) for (; n2 === e2.lastChild && (n2 = e2, e2 = e2.parentNode, !w(e2)); ) ;
           i2 = C(n2), 0 !== t2.offset && i2++;
         }
         return [e2, i2];
@@ -11743,21 +11478,16 @@
       let e2, i2, n2 = 0;
       for (const r2 of this.getSignificantNodesForIndex(t2.index)) {
         const o2 = Ci(r2);
-        if (t2.offset <= n2 + o2)
-          if (O(r2)) {
-            if (e2 = r2, i2 = n2, t2.offset === i2 && P(e2))
-              break;
-          } else
-            e2 || (e2 = r2, i2 = n2);
-        if (n2 += o2, n2 > t2.offset)
-          break;
+        if (t2.offset <= n2 + o2) if (O(r2)) {
+          if (e2 = r2, i2 = n2, t2.offset === i2 && P(e2)) break;
+        } else e2 || (e2 = r2, i2 = n2);
+        if (n2 += o2, n2 > t2.offset) break;
       }
       return [e2, i2];
     }
     findAttachmentElementParentForNode(t2) {
       for (; t2 && t2 !== this.element; ) {
-        if (I(t2))
-          return t2;
+        if (I(t2)) return t2;
         t2 = t2.parentNode;
       }
     }
@@ -11768,20 +11498,16 @@
         const o2 = i2.currentNode;
         var r2;
         if (B(o2)) {
-          if (null != r2 ? r2++ : r2 = 0, r2 === t2)
-            n2 = true;
-          else if (n2)
-            break;
-        } else
-          n2 && e2.push(o2);
+          if (null != r2 ? r2++ : r2 = 0, r2 === t2) n2 = true;
+          else if (n2) break;
+        } else n2 && e2.push(o2);
       }
       return e2;
     }
   };
   var Ci = function(t2) {
     if (t2.nodeType === Node.TEXT_NODE) {
-      if (P(t2))
-        return 0;
+      if (P(t2)) return 0;
       return t2.textContent.length;
     }
     return "br" === E(t2) || I(t2) ? 1 : 0;
@@ -11802,8 +11528,7 @@
         const { offsetNode: t3, offset: r2 } = document.caretPositionFromPoint(i2, n2);
         return e2 = document.createRange(), e2.setStart(t3, r2), e2;
       }
-      if (document.caretRangeFromPoint)
-        return document.caretRangeFromPoint(i2, n2);
+      if (document.caretRangeFromPoint) return document.caretRangeFromPoint(i2, n2);
       if (document.body.createTextRange) {
         const t3 = Nt();
         try {
@@ -11828,8 +11553,7 @@
       return false === t2.strict ? this.createLocationRangeFromDOMRange(Nt()) : t2.ignoreLock ? this.currentLocationRange : this.lockedLocationRange ? this.lockedLocationRange : this.currentLocationRange;
     }
     setLocationRange(t2) {
-      if (this.lockedLocationRange)
-        return;
+      if (this.lockedLocationRange) return;
       t2 = Lt(t2);
       const e2 = this.createDOMRangeFromLocationRange(t2);
       e2 && (Ot(e2), this.updateCurrentLocationRange(t2));
@@ -11841,8 +11565,7 @@
     }
     getClientRectAtLocationRange(t2) {
       const e2 = this.createDOMRangeFromLocationRange(t2);
-      if (e2)
-        return this.getClientRectsForDOMRange(e2)[1];
+      if (e2) return this.getClientRectsForDOMRange(e2)[1];
     }
     locationIsCursorTarget(t2) {
       const e2 = Array.from(this.findNodeAndOffsetFromLocation(t2))[0];
@@ -11854,8 +11577,7 @@
     unlock() {
       if (0 == --this.lockCount) {
         const { lockedLocationRange: t2 } = this;
-        if (this.lockedLocationRange = null, null != t2)
-          return this.setLocationRange(t2);
+        if (this.lockedLocationRange = null, null != t2) return this.setLocationRange(t2);
       }
     }
     clearSelection() {
@@ -11870,11 +11592,9 @@
       return !this.selectionIsCollapsed();
     }
     createLocationRangeFromDOMRange(t2, e2) {
-      if (null == t2 || !this.domRangeWithinElement(t2))
-        return;
+      if (null == t2 || !this.domRangeWithinElement(t2)) return;
       const i2 = this.findLocationFromContainerAndOffset(t2.startContainer, t2.startOffset, e2);
-      if (!i2)
-        return;
+      if (!i2) return;
       const n2 = t2.collapsed ? void 0 : this.findLocationFromContainerAndOffset(t2.endContainer, t2.endOffset, e2);
       return Lt([i2, n2]);
     }
@@ -11887,19 +11607,16 @@
       const e2 = () => {
         if (this.paused = false, clearTimeout(i2), Array.from(t2).forEach((t3) => {
           t3.destroy();
-        }), y(document, this.element))
-          return this.selectionDidChange();
+        }), y(document, this.element)) return this.selectionDidChange();
       }, i2 = setTimeout(e2, 200);
       t2 = ["mousemove", "keydown"].map((t3) => f(t3, { onElement: document, withCallback: e2 }));
     }
     selectionDidChange() {
-      if (!this.paused && !x(this.element))
-        return this.updateCurrentLocationRange();
+      if (!this.paused && !x(this.element)) return this.updateCurrentLocationRange();
     }
     updateCurrentLocationRange(t2) {
       var e2, i2;
-      if ((null != t2 ? t2 : t2 = this.createLocationRangeFromDOMRange(Nt())) && !wt(t2, this.currentLocationRange))
-        return this.currentLocationRange = t2, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.locationRangeDidChange) || void 0 === i2 ? void 0 : i2.call(e2, this.currentLocationRange.slice(0));
+      if ((null != t2 ? t2 : t2 = this.createLocationRangeFromDOMRange(Nt())) && !wt(t2, this.currentLocationRange)) return this.currentLocationRange = t2, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.locationRangeDidChange) || void 0 === i2 ? void 0 : i2.call(e2, this.currentLocationRange.slice(0));
     }
     createDOMRangeFromLocationRange(t2) {
       const e2 = this.findContainerAndOffsetFromLocation(t2[0]), i2 = Dt(t2) ? e2 : this.findContainerAndOffsetFromLocation(t2[1]) || e2;
@@ -11911,16 +11628,15 @@
     getLocationAtPoint(t2) {
       const e2 = this.createDOMRangeFromPoint(t2);
       var i2;
-      if (e2)
-        return null === (i2 = this.createLocationRangeFromDOMRange(e2)) || void 0 === i2 ? void 0 : i2[0];
+      if (e2) return null === (i2 = this.createLocationRangeFromDOMRange(e2)) || void 0 === i2 ? void 0 : i2[0];
     }
     domRangeWithinElement(t2) {
       return t2.collapsed ? y(this.element, t2.startContainer) : y(this.element, t2.startContainer) && y(this.element, t2.endContainer);
     }
   };
   Li.proxyMethod("locationMapper.findLocationFromContainerAndOffset"), Li.proxyMethod("locationMapper.findContainerAndOffsetFromLocation"), Li.proxyMethod("locationMapper.findNodeAndOffsetFromLocation"), Li.proxyMethod("pointMapper.createDOMRangeFromPoint"), Li.proxyMethod("pointMapper.getClientRectsForDOMRange");
-  var Di = Object.freeze({ __proto__: null, Attachment: ke, AttachmentManager: hi, AttachmentPiece: Re, Block: Be, Composition: gi, Document: qe, Editor: xi, HTMLParser: Xe, HTMLSanitizer: Je, LineBreakInsertion: di, LocationMapper: yi, ManagedAttachment: ui, Piece: ye, PointMapper: Si, SelectionManager: Li, SplittableList: Se, StringPiece: Ee, Text: Te, UndoManager: mi });
-  var wi = Object.freeze({ __proto__: null, ObjectView: ee, AttachmentView: re, BlockView: de, DocumentView: ge, PieceView: le, PreviewableAttachmentView: ae, TextView: ce });
+  var Di = Object.freeze({ __proto__: null, Attachment: De, AttachmentManager: hi, AttachmentPiece: we, Block: Oe, Composition: gi, Document: Je, Editor: xi, HTMLParser: Xe, HTMLSanitizer: se, LineBreakInsertion: di, LocationMapper: yi, ManagedAttachment: ui, Piece: Se, PointMapper: Si, SelectionManager: Li, SplittableList: Be, StringPiece: Te, Text: Ne, UndoManager: mi });
+  var wi = Object.freeze({ __proto__: null, ObjectView: ee, AttachmentView: ce, BlockView: be, DocumentView: ve, PieceView: ge, PreviewableAttachmentView: de, TextView: me });
   var { lang: Ti, css: Bi, keyNames: Fi } = V;
   var Pi = function(t2) {
     return function() {
@@ -11931,12 +11647,12 @@
   var Ii = class extends H {
     constructor(t2, e2, i2) {
       let n2 = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {};
-      super(...arguments), Ae(this, "makeElementMutable", Pi(() => ({ do: () => {
+      super(...arguments), Re(this, "makeElementMutable", Pi(() => ({ do: () => {
         this.element.dataset.trixMutable = true;
-      }, undo: () => delete this.element.dataset.trixMutable }))), Ae(this, "addToolbar", Pi(() => {
+      }, undo: () => delete this.element.dataset.trixMutable }))), Re(this, "addToolbar", Pi(() => {
         const t3 = S({ tagName: "div", className: Bi.attachmentToolbar, data: { trixMutable: true }, childNodes: S({ tagName: "div", className: "trix-button-row", childNodes: S({ tagName: "span", className: "trix-button-group trix-button-group--actions", childNodes: S({ tagName: "button", className: "trix-button trix-button--remove", textContent: Ti.remove, attributes: { title: Ti.remove }, data: { trixAction: "remove" } }) }) }) });
         return this.attachment.isPreviewable() && t3.appendChild(S({ tagName: "div", className: Bi.attachmentMetadataContainer, childNodes: S({ tagName: "span", className: Bi.attachmentMetadata, childNodes: [S({ tagName: "span", className: Bi.attachmentName, textContent: this.attachment.getFilename(), attributes: { title: this.attachment.getFilename() } }), S({ tagName: "span", className: Bi.attachmentSize, textContent: this.attachment.getFormattedFilesize() })] }) })), f("click", { onElement: t3, withCallback: this.didClickToolbar }), f("click", { onElement: t3, matchingSelector: "[data-trix-action]", withCallback: this.didClickActionButton }), b("trix-attachment-before-toolbar", { onElement: this.element, attributes: { toolbar: t3, attachment: this.attachment } }), { do: () => this.element.appendChild(t3), undo: () => k(t3) };
-      })), Ae(this, "installCaptionEditor", Pi(() => {
+      })), Re(this, "installCaptionEditor", Pi(() => {
         const t3 = S({ tagName: "textarea", className: Bi.attachmentCaptionEditor, attributes: { placeholder: Ti.captionPlaceholder }, data: { trixMutable: true } });
         t3.value = this.attachmentPiece.getCaption();
         const e3 = t3.cloneNode();
@@ -11947,8 +11663,7 @@
         f("input", { onElement: t3, withCallback: i3 }), f("input", { onElement: t3, withCallback: this.didInputCaption }), f("keydown", { onElement: t3, withCallback: this.didKeyDownCaption }), f("change", { onElement: t3, withCallback: this.didChangeCaption }), f("blur", { onElement: t3, withCallback: this.didBlurCaption });
         const n3 = this.element.querySelector("figcaption"), r2 = n3.cloneNode();
         return { do: () => {
-          if (n3.style.display = "none", r2.appendChild(t3), r2.appendChild(e3), r2.classList.add("".concat(Bi.attachmentCaption, "--editing")), n3.parentElement.insertBefore(r2, n3), i3(), this.options.editCaption)
-            return Rt(() => t3.focus());
+          if (n3.style.display = "none", r2.appendChild(t3), r2.appendChild(e3), r2.classList.add("".concat(Bi.attachmentCaption, "--editing")), n3.parentElement.insertBefore(r2, n3), i3(), this.options.editCaption) return Rt(() => t3.focus());
         }, undo() {
           k(r2), n3.style.display = null;
         } };
@@ -11960,18 +11675,15 @@
     uninstall() {
       var t2;
       let e2 = this.undos.pop();
-      for (this.savePendingCaption(); e2; )
-        e2(), e2 = this.undos.pop();
+      for (this.savePendingCaption(); e2; ) e2(), e2 = this.undos.pop();
       null === (t2 = this.delegate) || void 0 === t2 || t2.didUninstallAttachmentEditor(this);
     }
     savePendingCaption() {
       if (null != this.pendingCaption) {
         const r2 = this.pendingCaption;
         var t2, e2, i2, n2;
-        if (this.pendingCaption = null, r2)
-          null === (t2 = this.delegate) || void 0 === t2 || null === (e2 = t2.attachmentEditorDidRequestUpdatingAttributesForAttachment) || void 0 === e2 || e2.call(t2, { caption: r2 }, this.attachment);
-        else
-          null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.attachmentEditorDidRequestRemovingAttributeForAttachment) || void 0 === n2 || n2.call(i2, "caption", this.attachment);
+        if (this.pendingCaption = null, r2) null === (t2 = this.delegate) || void 0 === t2 || null === (e2 = t2.attachmentEditorDidRequestUpdatingAttributesForAttachment) || void 0 === e2 || e2.call(t2, { caption: r2 }, this.attachment);
+        else null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.attachmentEditorDidRequestRemovingAttributeForAttachment) || void 0 === n2 || n2.call(i2, "caption", this.attachment);
       }
     }
     didClickToolbar(t2) {
@@ -11979,13 +11691,11 @@
     }
     didClickActionButton(t2) {
       var e2;
-      if ("remove" === t2.target.getAttribute("data-trix-action"))
-        return null === (e2 = this.delegate) || void 0 === e2 ? void 0 : e2.attachmentEditorDidRequestRemovalOfAttachment(this.attachment);
+      if ("remove" === t2.target.getAttribute("data-trix-action")) return null === (e2 = this.delegate) || void 0 === e2 ? void 0 : e2.attachmentEditorDidRequestRemovalOfAttachment(this.attachment);
     }
     didKeyDownCaption(t2) {
       var e2, i2;
-      if ("return" === Fi[t2.keyCode])
-        return t2.preventDefault(), this.savePendingCaption(), null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.attachmentEditorDidRequestDeselectingAttachment) || void 0 === i2 ? void 0 : i2.call(e2, this.attachment);
+      if ("return" === Fi[t2.keyCode]) return t2.preventDefault(), this.savePendingCaption(), null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.attachmentEditorDidRequestDeselectingAttachment) || void 0 === i2 ? void 0 : i2.call(e2, this.attachment);
     }
     didInputCaption(t2) {
       this.pendingCaption = t2.target.value.replace(/\s/g, " ").trim();
@@ -11999,14 +11709,13 @@
   };
   var Ni = class extends H {
     constructor(t2, i2) {
-      super(...arguments), this.didFocus = this.didFocus.bind(this), this.didBlur = this.didBlur.bind(this), this.didClickAttachment = this.didClickAttachment.bind(this), this.element = t2, this.composition = i2, this.documentView = new ge(this.composition.document, { element: this.element }), f("focus", { onElement: this.element, withCallback: this.didFocus }), f("blur", { onElement: this.element, withCallback: this.didBlur }), f("click", { onElement: this.element, matchingSelector: "a[contenteditable=false]", preventDefault: true }), f("mousedown", { onElement: this.element, matchingSelector: e, withCallback: this.didClickAttachment }), f("click", { onElement: this.element, matchingSelector: "a".concat(e), preventDefault: true });
+      super(...arguments), this.didFocus = this.didFocus.bind(this), this.didBlur = this.didBlur.bind(this), this.didClickAttachment = this.didClickAttachment.bind(this), this.element = t2, this.composition = i2, this.documentView = new ve(this.composition.document, { element: this.element }), f("focus", { onElement: this.element, withCallback: this.didFocus }), f("blur", { onElement: this.element, withCallback: this.didBlur }), f("click", { onElement: this.element, matchingSelector: "a[contenteditable=false]", preventDefault: true }), f("mousedown", { onElement: this.element, matchingSelector: e, withCallback: this.didClickAttachment }), f("click", { onElement: this.element, matchingSelector: "a".concat(e), preventDefault: true });
     }
     didFocus(t2) {
       var e2;
       const i2 = () => {
         var t3, e3;
-        if (!this.focused)
-          return this.focused = true, null === (t3 = this.delegate) || void 0 === t3 || null === (e3 = t3.compositionControllerDidFocus) || void 0 === e3 ? void 0 : e3.call(t3);
+        if (!this.focused) return this.focused = true, null === (t3 = this.delegate) || void 0 === t3 || null === (e3 = t3.compositionControllerDidFocus) || void 0 === e3 ? void 0 : e3.call(t3);
       };
       return (null === (e2 = this.blurPromise) || void 0 === e2 ? void 0 : e2.then(i2)) || i2();
     }
@@ -12053,11 +11762,9 @@
     }
     installAttachmentEditorForAttachment(t2, e2) {
       var i2;
-      if ((null === (i2 = this.attachmentEditor) || void 0 === i2 ? void 0 : i2.attachment) === t2)
-        return;
+      if ((null === (i2 = this.attachmentEditor) || void 0 === i2 ? void 0 : i2.attachment) === t2) return;
       const n2 = this.documentView.findElementForObject(t2);
-      if (!n2)
-        return;
+      if (!n2) return;
       this.uninstallAttachmentEditor();
       const r2 = this.composition.document.getAttachmentPieceForAttachment(t2);
       this.attachmentEditor = new Ii(r2, n2, this.element, e2), this.attachmentEditor.delegate = this;
@@ -12109,8 +11816,7 @@
     }
     didMutate(t2) {
       var e2, i2;
-      if (this.mutations.push(...Array.from(this.findSignificantMutations(t2) || [])), this.mutations.length)
-        return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.elementDidMutate) || void 0 === i2 || i2.call(e2, this.getMutationSummary()), this.reset();
+      if (this.mutations.push(...Array.from(this.findSignificantMutations(t2) || [])), this.mutations.length) return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.elementDidMutate) || void 0 === i2 || i2.call(e2, this.getMutationSummary()), this.reset();
     }
     reset() {
       this.mutations = [];
@@ -12119,11 +11825,8 @@
       return t2.filter((t3) => this.mutationIsSignificant(t3));
     }
     mutationIsSignificant(t2) {
-      if (this.nodeIsMutable(t2.target))
-        return false;
-      for (const e2 of Array.from(this.nodesModifiedByMutation(t2)))
-        if (this.nodeIsSignificant(e2))
-          return true;
+      if (this.nodeIsMutable(t2.target)) return false;
+      for (const e2 of Array.from(this.nodesModifiedByMutation(t2))) if (this.nodeIsSignificant(e2)) return true;
       return false;
     }
     nodeIsSignificant(t2) {
@@ -12187,14 +11890,13 @@
   var qi = function() {
     let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
     const e2 = [];
-    for (const i2 of Array.from(t2))
-      switch (i2.nodeType) {
-        case Node.TEXT_NODE:
-          e2.push(i2.data);
-          break;
-        case Node.ELEMENT_NODE:
-          "br" === E(i2) ? e2.push("\n") : e2.push(...Array.from(qi(i2.childNodes) || []));
-      }
+    for (const i2 of Array.from(t2)) switch (i2.nodeType) {
+      case Node.TEXT_NODE:
+        e2.push(i2.data);
+        break;
+      case Node.ELEMENT_NODE:
+        "br" === E(i2) ? e2.push("\n") : e2.push(...Array.from(qi(i2.childNodes) || []));
+    }
     return e2;
   };
   var Vi = class extends te {
@@ -12244,8 +11946,7 @@
   var Ki = class extends H {
     constructor(t2) {
       super(...arguments), this.element = t2, this.mutationObserver = new Ui(this.element), this.mutationObserver.delegate = this, this.flakyKeyboardDetector = new Hi(this.element);
-      for (const t3 in this.constructor.events)
-        f(t3, { onElement: this.element, withCallback: this.handlerFor(t3) });
+      for (const t3 in this.constructor.events) f(t3, { onElement: this.element, withCallback: this.handlerFor(t3) });
     }
     elementDidMutate(t2) {
     }
@@ -12276,8 +11977,7 @@
       return (e2) => {
         e2.defaultPrevented || this.handleInput(() => {
           if (!x(this.element)) {
-            if (this.flakyKeyboardDetector.shouldIgnore(e2))
-              return;
+            if (this.flakyKeyboardDetector.shouldIgnore(e2)) return;
             this.eventName = t2, this.constructor.events[t2].call(this, e2);
           }
         });
@@ -12298,7 +11998,7 @@
     }
   };
   var Gi;
-  Ae(Ki, "events", {});
+  Re(Ki, "events", {});
   var { browser: $i, keyNames: Xi } = V;
   var Yi = 0;
   var Qi = class extends Ki {
@@ -12328,16 +12028,14 @@
     }
     mutationIsExpected(t2) {
       let { textAdded: e2, textDeleted: i2 } = t2;
-      if (this.inputSummary.preferDocument)
-        return true;
+      if (this.inputSummary.preferDocument) return true;
       const n2 = null != e2 ? e2 === this.inputSummary.textAdded : !this.inputSummary.textAdded, r2 = null != i2 ? this.inputSummary.didDelete : !this.inputSummary.didDelete, o2 = ["\n", " \n"].includes(e2) && !n2, s2 = "\n" === i2 && !r2;
       if (o2 && !s2 || s2 && !o2) {
         const t3 = this.getSelectedRange();
         if (t3) {
           var a2;
           const i3 = o2 ? e2.replace(/\n$/, "").length || -1 : (null == e2 ? void 0 : e2.length) || 1;
-          if (null !== (a2 = this.responder) && void 0 !== a2 && a2.positionIsBlockBreak(t3[1] + i3))
-            return true;
+          if (null !== (a2 = this.responder) && void 0 !== a2 && a2.positionIsBlockBreak(t3[1] + i3)) return true;
         }
       }
       return n2 && r2;
@@ -12348,8 +12046,7 @@
       return i2 || !n2;
     }
     getCompositionInput() {
-      if (this.isComposing())
-        return this.compositionInput;
+      if (this.isComposing()) return this.compositionInput;
       this.compositionInput = new rn(this);
     }
     isComposing() {
@@ -12362,22 +12059,19 @@
     serializeSelectionToDataTransfer(t2) {
       var e2;
       if (!function(t3) {
-        if (null == t3 || !t3.setData)
-          return false;
+        if (null == t3 || !t3.setData) return false;
         for (const e3 in yt) {
           const i3 = yt[e3];
           try {
-            if (t3.setData(e3, i3), !t3.getData(e3) === i3)
-              return false;
+            if (t3.setData(e3, i3), !t3.getData(e3) === i3) return false;
           } catch (t4) {
             return false;
           }
         }
         return true;
-      }(t2))
-        return;
+      }(t2)) return;
       const i2 = null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.getSelectedDocument().toSerializableDocument();
-      return t2.setData("application/x-trix-document", JSON.stringify(i2)), t2.setData("text/html", ge.render(i2).innerHTML), t2.setData("text/plain", i2.toString().replace(/\n$/, "")), true;
+      return t2.setData("application/x-trix-document", JSON.stringify(i2)), t2.setData("text/html", ve.render(i2).innerHTML), t2.setData("text/plain", i2.toString().replace(/\n$/, "")), true;
     }
     canAcceptDataTransfer(t2) {
       const e2 = {};
@@ -12393,7 +12087,7 @@
       });
     }
   };
-  Ae(Qi, "events", { keydown(t2) {
+  Re(Qi, "events", { keydown(t2) {
     this.isComposing() || this.resetInputSummary(), this.inputSummary.didInput = true;
     const e2 = Xi[t2.keyCode];
     if (e2) {
@@ -12409,19 +12103,15 @@
       if (e3) {
         var n2;
         const i3 = ["alt", "shift"].map((e4) => {
-          if (t2["".concat(e4, "Key")])
-            return e4;
+          if (t2["".concat(e4, "Key")]) return e4;
         }).filter((t3) => t3);
         i3.push(e3), null !== (n2 = this.delegate) && void 0 !== n2 && n2.inputControllerDidReceiveKeyboardCommand(i3) && t2.preventDefault();
       }
     }
   }, keypress(t2) {
-    if (null != this.inputSummary.eventName)
-      return;
-    if (t2.metaKey)
-      return;
-    if (t2.ctrlKey && !t2.altKey)
-      return;
+    if (null != this.inputSummary.eventName) return;
+    if (t2.metaKey) return;
+    if (t2.ctrlKey && !t2.altKey) return;
     const e2 = en(t2);
     var i2, n2;
     return e2 ? (null === (i2 = this.delegate) || void 0 === i2 || i2.inputControllerWillPerformTyping(), null === (n2 = this.responder) || void 0 === n2 || n2.insertString(e2), this.setInputSummary({ textAdded: e2, didDelete: this.selectionIsExpanded() })) : void 0;
@@ -12442,8 +12132,7 @@
       t2.preventDefault();
       const n2 = { x: t2.clientX, y: t2.clientY };
       var e2, i2;
-      if (!St(n2, this.draggingPoint))
-        return this.draggingPoint = n2, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.inputControllerDidReceiveDragOverPoint) || void 0 === i2 ? void 0 : i2.call(e2, this.draggingPoint);
+      if (!St(n2, this.draggingPoint)) return this.draggingPoint = n2, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.inputControllerDidReceiveDragOverPoint) || void 0 === i2 ? void 0 : i2.call(e2, this.draggingPoint);
     }
   }, dragend(t2) {
     var e2, i2;
@@ -12452,31 +12141,28 @@
     var e2, i2;
     t2.preventDefault();
     const n2 = null === (e2 = t2.dataTransfer) || void 0 === e2 ? void 0 : e2.files, r2 = t2.dataTransfer.getData("application/x-trix-document"), o2 = { x: t2.clientX, y: t2.clientY };
-    if (null === (i2 = this.responder) || void 0 === i2 || i2.setLocationRangeFromPointRange(o2), null != n2 && n2.length)
-      this.attachFiles(n2);
+    if (null === (i2 = this.responder) || void 0 === i2 || i2.setLocationRangeFromPointRange(o2), null != n2 && n2.length) this.attachFiles(n2);
     else if (this.draggedRange) {
       var s2, a2;
       null === (s2 = this.delegate) || void 0 === s2 || s2.inputControllerWillMoveText(), null === (a2 = this.responder) || void 0 === a2 || a2.moveTextFromRange(this.draggedRange), this.draggedRange = null, this.requestRender();
     } else if (r2) {
       var l2;
-      const t3 = qe.fromJSONString(r2);
+      const t3 = Je.fromJSONString(r2);
       null === (l2 = this.responder) || void 0 === l2 || l2.insertDocument(t3), this.requestRender();
     }
     this.draggedRange = null, this.draggingPoint = null;
   }, cut(t2) {
     var e2, i2;
-    if (null !== (e2 = this.responder) && void 0 !== e2 && e2.selectionIsExpanded() && (this.serializeSelectionToDataTransfer(t2.clipboardData) && t2.preventDefault(), null === (i2 = this.delegate) || void 0 === i2 || i2.inputControllerWillCutText(), this.deleteInDirection("backward"), t2.defaultPrevented))
-      return this.requestRender();
+    if (null !== (e2 = this.responder) && void 0 !== e2 && e2.selectionIsExpanded() && (this.serializeSelectionToDataTransfer(t2.clipboardData) && t2.preventDefault(), null === (i2 = this.delegate) || void 0 === i2 || i2.inputControllerWillCutText(), this.deleteInDirection("backward"), t2.defaultPrevented)) return this.requestRender();
   }, copy(t2) {
     var e2;
     null !== (e2 = this.responder) && void 0 !== e2 && e2.selectionIsExpanded() && this.serializeSelectionToDataTransfer(t2.clipboardData) && t2.preventDefault();
   }, paste(t2) {
     const e2 = t2.clipboardData || t2.testClipboardData, i2 = { clipboard: e2 };
-    if (!e2 || nn(t2))
-      return void this.getPastedHTMLUsingHiddenElement((t3) => {
-        var e3, n3, r3;
-        return i2.type = "text/html", i2.html = t3, null === (e3 = this.delegate) || void 0 === e3 || e3.inputControllerWillPaste(i2), null === (n3 = this.responder) || void 0 === n3 || n3.insertHTML(i2.html), this.requestRender(), null === (r3 = this.delegate) || void 0 === r3 ? void 0 : r3.inputControllerDidPaste(i2);
-      });
+    if (!e2 || nn(t2)) return void this.getPastedHTMLUsingHiddenElement((t3) => {
+      var e3, n3, r3;
+      return i2.type = "text/html", i2.html = t3, null === (e3 = this.delegate) || void 0 === e3 || e3.inputControllerWillPaste(i2), null === (n3 = this.responder) || void 0 === n3 || n3.insertHTML(i2.html), this.requestRender(), null === (r3 = this.delegate) || void 0 === r3 ? void 0 : r3.inputControllerDidPaste(i2);
+    });
     const n2 = e2.getData("URL"), r2 = e2.getData("text/html"), o2 = e2.getData("public.url-name");
     if (n2) {
       var s2, a2, l2;
@@ -12508,7 +12194,7 @@
     this.inputSummary.didInput = true;
   }, input(t2) {
     return this.inputSummary.didInput = true, t2.stopPropagation();
-  } }), Ae(Qi, "keys", { backspace(t2) {
+  } }), Re(Qi, "keys", { backspace(t2) {
     var e2;
     return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), this.deleteInDirection("backward", t2);
   }, delete(t2) {
@@ -12522,12 +12208,10 @@
     null !== (e2 = this.responder) && void 0 !== e2 && e2.canIncreaseNestingLevel() && (null === (i2 = this.responder) || void 0 === i2 || i2.increaseNestingLevel(), this.requestRender(), t2.preventDefault());
   }, left(t2) {
     var e2;
-    if (this.selectionIsInCursorTarget())
-      return t2.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("backward");
+    if (this.selectionIsInCursorTarget()) return t2.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("backward");
   }, right(t2) {
     var e2;
-    if (this.selectionIsInCursorTarget())
-      return t2.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("forward");
+    if (this.selectionIsInCursorTarget()) return t2.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("forward");
   }, control: { d(t2) {
     var e2;
     return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), this.deleteInDirection("forward", t2);
@@ -12544,11 +12228,9 @@
     var e2, i2;
     null !== (e2 = this.responder) && void 0 !== e2 && e2.canDecreaseNestingLevel() && (null === (i2 = this.responder) || void 0 === i2 || i2.decreaseNestingLevel(), this.requestRender(), t2.preventDefault());
   }, left(t2) {
-    if (this.selectionIsInCursorTarget())
-      return t2.preventDefault(), this.expandSelectionInDirection("backward");
+    if (this.selectionIsInCursorTarget()) return t2.preventDefault(), this.expandSelectionInDirection("backward");
   }, right(t2) {
-    if (this.selectionIsInCursorTarget())
-      return t2.preventDefault(), this.expandSelectionInDirection("forward");
+    if (this.selectionIsInCursorTarget()) return t2.preventDefault(), this.expandSelectionInDirection("forward");
   } }, alt: { backspace(t2) {
     var e2;
     return this.setInputSummary({ preferDocument: false }), null === (e2 = this.delegate) || void 0 === e2 ? void 0 : e2.inputControllerWillPerformTyping();
@@ -12562,12 +12244,10 @@
   };
   var tn = !(null === (Gi = " ".codePointAt) || void 0 === Gi || !Gi.call(" ", 0));
   var en = function(t2) {
-    if (t2.key && tn && t2.key.codePointAt(0) === t2.keyCode)
-      return t2.key;
+    if (t2.key && tn && t2.key.codePointAt(0) === t2.keyCode) return t2.key;
     {
       let e2;
-      if (null === t2.which ? e2 = t2.keyCode : 0 !== t2.which && 0 !== t2.charCode && (e2 = t2.charCode), null != e2 && "escape" !== Xi[e2])
-        return X.fromCodepoints([e2]).toString();
+      if (null === t2.which ? e2 = t2.keyCode : 0 !== t2.which && 0 !== t2.charCode && (e2 = t2.charCode), null != e2 && "escape" !== Xi[e2]) return X.fromCodepoints([e2]).toString();
     }
   };
   var nn = function(t2) {
@@ -12576,8 +12256,7 @@
       if (e2.types.includes("text/html")) {
         for (const t3 of e2.types) {
           const i2 = /^CorePasteboardFlavorType/.test(t3), n2 = /^dyn\./.test(t3) && e2.getData(t3);
-          if (i2 || n2)
-            return true;
+          if (i2 || n2) return true;
         }
         return false;
       }
@@ -12594,8 +12273,7 @@
     start(t2) {
       if (this.data.start = t2, this.isSignificant()) {
         var e2, i2;
-        if ("keypress" === this.inputSummary.eventName && this.inputSummary.textAdded)
-          null === (i2 = this.responder) || void 0 === i2 || i2.deleteInDirection("left");
+        if ("keypress" === this.inputSummary.eventName && this.inputSummary.textAdded) null === (i2 = this.responder) || void 0 === i2 || i2.deleteInDirection("left");
         this.selectionIsExpanded() || (this.insertPlaceholder(), this.requestRender()), this.range = null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.getSelectedRange();
       }
     }
@@ -12654,19 +12332,17 @@
     }
     toggleAttributeIfSupported(t2) {
       var e2;
-      if (dt().includes(t2))
-        return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformFormatting(t2), this.withTargetDOMRange(function() {
-          var e3;
-          return null === (e3 = this.responder) || void 0 === e3 ? void 0 : e3.toggleCurrentAttribute(t2);
-        });
+      if (dt().includes(t2)) return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformFormatting(t2), this.withTargetDOMRange(function() {
+        var e3;
+        return null === (e3 = this.responder) || void 0 === e3 ? void 0 : e3.toggleCurrentAttribute(t2);
+      });
     }
     activateAttributeIfSupported(t2, e2) {
       var i2;
-      if (dt().includes(t2))
-        return null === (i2 = this.delegate) || void 0 === i2 || i2.inputControllerWillPerformFormatting(t2), this.withTargetDOMRange(function() {
-          var i3;
-          return null === (i3 = this.responder) || void 0 === i3 ? void 0 : i3.setCurrentAttribute(t2, e2);
-        });
+      if (dt().includes(t2)) return null === (i2 = this.delegate) || void 0 === i2 || i2.inputControllerWillPerformFormatting(t2), this.withTargetDOMRange(function() {
+        var i3;
+        return null === (i3 = this.responder) || void 0 === i3 ? void 0 : i3.setCurrentAttribute(t2, e2);
+      });
     }
     deleteInDirection(t2) {
       let { recordUndoEntry: e2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : { recordUndoEntry: true };
@@ -12675,7 +12351,7 @@
       const n2 = () => {
         var e3;
         return null === (e3 = this.responder) || void 0 === e3 ? void 0 : e3.deleteInDirection(t2);
-      }, r2 = this.getTargetDOMRange({ minLength: 2 });
+      }, r2 = this.getTargetDOMRange({ minLength: this.composing ? 1 : 2 });
       return r2 ? this.withTargetDOMRange(r2, n2) : n2();
     }
     withTargetDOMRange(t2, e2) {
@@ -12688,8 +12364,7 @@
       const n2 = null === (t2 = (e2 = this.event).getTargetRanges) || void 0 === t2 ? void 0 : t2.call(e2);
       if (n2 && n2.length) {
         const t3 = sn(n2[0]);
-        if (0 === i2 || t3.toString().length >= i2)
-          return t3;
+        if (0 === i2 || t3.toString().length >= i2) return t3;
       }
     }
     withEvent(t2, e2) {
@@ -12703,23 +12378,22 @@
       return i2;
     }
   };
-  Ae(on, "events", { keydown(t2) {
+  Re(on, "events", { keydown(t2) {
     if (kt(t2)) {
       var e2;
-      const i2 = un(t2);
+      const i2 = hn(t2);
       null !== (e2 = this.delegate) && void 0 !== e2 && e2.inputControllerDidReceiveKeyboardCommand(i2) && t2.preventDefault();
     } else {
       let e3 = t2.key;
       t2.altKey && (e3 += "+Alt"), t2.shiftKey && (e3 += "+Shift");
       const i2 = this.constructor.keys[e3];
-      if (i2)
-        return this.withEvent(t2, i2);
+      if (i2) return this.withEvent(t2, i2);
     }
   }, paste(t2) {
     var e2;
     let i2;
     const n2 = null === (e2 = t2.clipboardData) || void 0 === e2 ? void 0 : e2.getData("URL");
-    return ln(t2) ? (t2.preventDefault(), this.attachFiles(t2.clipboardData.files)) : cn(t2) ? (t2.preventDefault(), i2 = { type: "text/plain", string: t2.clipboardData.getData("text/plain") }, null === (r2 = this.delegate) || void 0 === r2 || r2.inputControllerWillPaste(i2), null === (o2 = this.responder) || void 0 === o2 || o2.insertString(i2.string), this.render(), null === (s2 = this.delegate) || void 0 === s2 ? void 0 : s2.inputControllerDidPaste(i2)) : n2 ? (t2.preventDefault(), i2 = { type: "text/html", html: this.createLinkHTML(n2) }, null === (a2 = this.delegate) || void 0 === a2 || a2.inputControllerWillPaste(i2), null === (l2 = this.responder) || void 0 === l2 || l2.insertHTML(i2.html), this.render(), null === (c2 = this.delegate) || void 0 === c2 ? void 0 : c2.inputControllerDidPaste(i2)) : void 0;
+    return cn(t2) ? (t2.preventDefault(), this.attachFiles(t2.clipboardData.files)) : un(t2) ? (t2.preventDefault(), i2 = { type: "text/plain", string: t2.clipboardData.getData("text/plain") }, null === (r2 = this.delegate) || void 0 === r2 || r2.inputControllerWillPaste(i2), null === (o2 = this.responder) || void 0 === o2 || o2.insertString(i2.string), this.render(), null === (s2 = this.delegate) || void 0 === s2 ? void 0 : s2.inputControllerDidPaste(i2)) : n2 ? (t2.preventDefault(), i2 = { type: "text/html", html: this.createLinkHTML(n2) }, null === (a2 = this.delegate) || void 0 === a2 || a2.inputControllerWillPaste(i2), null === (l2 = this.responder) || void 0 === l2 || l2.insertHTML(i2.html), this.render(), null === (c2 = this.delegate) || void 0 === c2 ? void 0 : c2.inputControllerDidPaste(i2)) : void 0;
     var r2, o2, s2, a2, l2, c2;
   }, beforeinput(t2) {
     const e2 = this.constructor.inputTypes[t2.inputType];
@@ -12728,26 +12402,23 @@
     Pt.reset();
   }, dragstart(t2) {
     var e2, i2;
-    null !== (e2 = this.responder) && void 0 !== e2 && e2.selectionContainsAttachments() && (t2.dataTransfer.setData("application/x-trix-dragging", true), this.dragging = { range: null === (i2 = this.responder) || void 0 === i2 ? void 0 : i2.getSelectedRange(), point: hn(t2) });
+    null !== (e2 = this.responder) && void 0 !== e2 && e2.selectionContainsAttachments() && (t2.dataTransfer.setData("application/x-trix-dragging", true), this.dragging = { range: null === (i2 = this.responder) || void 0 === i2 ? void 0 : i2.getSelectedRange(), point: dn(t2) });
   }, dragenter(t2) {
     an(t2) && t2.preventDefault();
   }, dragover(t2) {
     if (this.dragging) {
       t2.preventDefault();
-      const i2 = hn(t2);
+      const i2 = dn(t2);
       var e2;
-      if (!St(i2, this.dragging.point))
-        return this.dragging.point = i2, null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.setLocationRangeFromPointRange(i2);
-    } else
-      an(t2) && t2.preventDefault();
+      if (!St(i2, this.dragging.point)) return this.dragging.point = i2, null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.setLocationRangeFromPointRange(i2);
+    } else an(t2) && t2.preventDefault();
   }, drop(t2) {
     var e2, i2;
-    if (this.dragging)
-      return t2.preventDefault(), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillMoveText(), null === (i2 = this.responder) || void 0 === i2 || i2.moveTextFromRange(this.dragging.range), this.dragging = null, this.scheduleRender();
+    if (this.dragging) return t2.preventDefault(), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillMoveText(), null === (i2 = this.responder) || void 0 === i2 || i2.moveTextFromRange(this.dragging.range), this.dragging = null, this.scheduleRender();
     if (an(t2)) {
       var n2;
       t2.preventDefault();
-      const e3 = hn(t2);
+      const e3 = dn(t2);
       return null === (n2 = this.responder) || void 0 === n2 || n2.setLocationRangeFromPointRange(e3), this.attachFiles(t2.dataTransfer.files);
     }
   }, dragend() {
@@ -12755,27 +12426,22 @@
     this.dragging && (null === (t2 = this.responder) || void 0 === t2 || t2.setSelectedRange(this.dragging.range), this.dragging = null);
   }, compositionend(t2) {
     this.composing && (this.composing = false, a.recentAndroid || this.scheduleRender());
-  } }), Ae(on, "keys", { ArrowLeft() {
+  } }), Re(on, "keys", { ArrowLeft() {
     var t2, e2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.shouldManageMovingCursorInDirection("backward"))
-      return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("backward");
+    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.shouldManageMovingCursorInDirection("backward")) return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("backward");
   }, ArrowRight() {
     var t2, e2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.shouldManageMovingCursorInDirection("forward"))
-      return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("forward");
+    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.shouldManageMovingCursorInDirection("forward")) return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("forward");
   }, Backspace() {
     var t2, e2, i2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.shouldManageDeletingInDirection("backward"))
-      return this.event.preventDefault(), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), null === (i2 = this.responder) || void 0 === i2 || i2.deleteInDirection("backward"), this.render();
+    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.shouldManageDeletingInDirection("backward")) return this.event.preventDefault(), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), null === (i2 = this.responder) || void 0 === i2 || i2.deleteInDirection("backward"), this.render();
   }, Tab() {
     var t2, e2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.canIncreaseNestingLevel())
-      return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 || e2.increaseNestingLevel(), this.render();
+    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.canIncreaseNestingLevel()) return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 || e2.increaseNestingLevel(), this.render();
   }, "Tab+Shift"() {
     var t2, e2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.canDecreaseNestingLevel())
-      return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 || e2.decreaseNestingLevel(), this.render();
-  } }), Ae(on, "inputTypes", { deleteByComposition() {
+    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.canDecreaseNestingLevel()) return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 || e2.decreaseNestingLevel(), this.render();
+  } }), Re(on, "inputTypes", { deleteByComposition() {
     return this.deleteInDirection("backward", { recordUndoEntry: false });
   }, deleteByCut() {
     return this.deleteInDirection("backward");
@@ -12816,11 +12482,10 @@
     return this.activateAttributeIfSupported("font", this.event.data);
   }, formatIndent() {
     var t2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.canIncreaseNestingLevel())
-      return this.withTargetDOMRange(function() {
-        var t3;
-        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.increaseNestingLevel();
-      });
+    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.canIncreaseNestingLevel()) return this.withTargetDOMRange(function() {
+      var t3;
+      return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.increaseNestingLevel();
+    });
   }, formatItalic() {
     return this.toggleAttributeIfSupported("italic");
   }, formatJustifyCenter() {
@@ -12833,11 +12498,10 @@
     return this.toggleAttributeIfSupported("justifyRight");
   }, formatOutdent() {
     var t2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.canDecreaseNestingLevel())
-      return this.withTargetDOMRange(function() {
-        var t3;
-        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.decreaseNestingLevel();
-      });
+    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.canDecreaseNestingLevel()) return this.withTargetDOMRange(function() {
+      var t3;
+      return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.decreaseNestingLevel();
+    });
   }, formatRemove() {
     this.withTargetDOMRange(function() {
       for (const i2 in null === (t2 = this.responder) || void 0 === t2 ? void 0 : t2.getCurrentAttributes()) {
@@ -12870,52 +12534,50 @@
   }, insertFromDrop() {
     const t2 = this.deleteByDragRange;
     var e2;
-    if (t2)
-      return this.deleteByDragRange = null, null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillMoveText(), this.withTargetDOMRange(function() {
-        var e3;
-        return null === (e3 = this.responder) || void 0 === e3 ? void 0 : e3.moveTextFromRange(t2);
-      });
+    if (t2) return this.deleteByDragRange = null, null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillMoveText(), this.withTargetDOMRange(function() {
+      var e3;
+      return null === (e3 = this.responder) || void 0 === e3 ? void 0 : e3.moveTextFromRange(t2);
+    });
   }, insertFromPaste() {
-    var t2;
-    const { dataTransfer: e2 } = this.event, i2 = { dataTransfer: e2 }, n2 = e2.getData("URL"), r2 = e2.getData("text/html");
-    if (n2) {
+    const { dataTransfer: t2 } = this.event, e2 = { dataTransfer: t2 }, i2 = t2.getData("URL"), n2 = t2.getData("text/html");
+    if (i2) {
+      var r2;
+      let n3;
+      this.event.preventDefault(), e2.type = "text/html";
+      const o3 = t2.getData("public.url-name");
+      n3 = o3 ? qt(o3).trim() : i2, e2.html = this.createLinkHTML(i2, n3), null === (r2 = this.delegate) || void 0 === r2 || r2.inputControllerWillPaste(e2), this.withTargetDOMRange(function() {
+        var t3;
+        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertHTML(e2.html);
+      }), this.afterRender = () => {
+        var t3;
+        return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerDidPaste(e2);
+      };
+    } else if (Ct(t2)) {
       var o2;
-      let t3;
-      this.event.preventDefault(), i2.type = "text/html";
-      const r3 = e2.getData("public.url-name");
-      t3 = r3 ? qt(r3).trim() : n2, i2.html = this.createLinkHTML(n2, t3), null === (o2 = this.delegate) || void 0 === o2 || o2.inputControllerWillPaste(i2), this.withTargetDOMRange(function() {
-        var t4;
-        return null === (t4 = this.responder) || void 0 === t4 ? void 0 : t4.insertHTML(i2.html);
+      e2.type = "text/plain", e2.string = t2.getData("text/plain"), null === (o2 = this.delegate) || void 0 === o2 || o2.inputControllerWillPaste(e2), this.withTargetDOMRange(function() {
+        var t3;
+        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertString(e2.string);
       }), this.afterRender = () => {
-        var t4;
-        return null === (t4 = this.delegate) || void 0 === t4 ? void 0 : t4.inputControllerDidPaste(i2);
+        var t3;
+        return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerDidPaste(e2);
       };
-    } else if (Ct(e2)) {
+    } else if (ln(this.event)) {
       var s2;
-      i2.type = "text/plain", i2.string = e2.getData("text/plain"), null === (s2 = this.delegate) || void 0 === s2 || s2.inputControllerWillPaste(i2), this.withTargetDOMRange(function() {
+      e2.type = "File", e2.file = t2.files[0], null === (s2 = this.delegate) || void 0 === s2 || s2.inputControllerWillPaste(e2), this.withTargetDOMRange(function() {
         var t3;
-        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertString(i2.string);
+        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertFile(e2.file);
       }), this.afterRender = () => {
         var t3;
-        return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerDidPaste(i2);
+        return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerDidPaste(e2);
       };
-    } else if (r2) {
+    } else if (n2) {
       var a2;
-      this.event.preventDefault(), i2.type = "text/html", i2.html = r2, null === (a2 = this.delegate) || void 0 === a2 || a2.inputControllerWillPaste(i2), this.withTargetDOMRange(function() {
+      this.event.preventDefault(), e2.type = "text/html", e2.html = n2, null === (a2 = this.delegate) || void 0 === a2 || a2.inputControllerWillPaste(e2), this.withTargetDOMRange(function() {
         var t3;
-        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertHTML(i2.html);
+        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertHTML(e2.html);
       }), this.afterRender = () => {
         var t3;
-        return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerDidPaste(i2);
-      };
-    } else if (null !== (t2 = e2.files) && void 0 !== t2 && t2.length) {
-      var l2;
-      i2.type = "File", i2.file = e2.files[0], null === (l2 = this.delegate) || void 0 === l2 || l2.inputControllerWillPaste(i2), this.withTargetDOMRange(function() {
-        var t3;
-        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertFile(i2.file);
-      }), this.afterRender = () => {
-        var t3;
-        return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerDidPaste(i2);
+        return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerDidPaste(e2);
       };
     }
   }, insertFromYank() {
@@ -12953,52 +12615,59 @@
     var e2;
     return Array.from((null === (e2 = t2.dataTransfer) || void 0 === e2 ? void 0 : e2.types) || []).includes("Files");
   };
-  var ln = function(t2) {
-    const e2 = t2.clipboardData;
-    if (e2)
-      return e2.types.includes("Files") && 1 === e2.types.length && e2.files.length >= 1;
+  var ln = (t2) => {
+    var e2;
+    return (null === (e2 = t2.dataTransfer.files) || void 0 === e2 ? void 0 : e2[0]) && !cn(t2) && !((t3) => {
+      let { dataTransfer: e3 } = t3;
+      return e3.types.includes("Files") && e3.types.includes("text/html") && e3.getData("text/html").includes("urn:schemas-microsoft-com:office:office");
+    })(t2);
   };
   var cn = function(t2) {
     const e2 = t2.clipboardData;
-    if (e2)
-      return e2.types.includes("text/plain") && 1 === e2.types.length;
+    if (e2) {
+      return Array.from(e2.types).filter((t3) => t3.match(/file/i)).length === e2.types.length && e2.files.length >= 1;
+    }
   };
   var un = function(t2) {
+    const e2 = t2.clipboardData;
+    if (e2) return e2.types.includes("text/plain") && 1 === e2.types.length;
+  };
+  var hn = function(t2) {
     const e2 = [];
     return t2.altKey && e2.push("alt"), t2.shiftKey && e2.push("shift"), e2.push(t2.key), e2;
   };
-  var hn = (t2) => ({ x: t2.clientX, y: t2.clientY });
-  var dn = "[data-trix-attribute]";
-  var gn = "[data-trix-action]";
-  var mn = "".concat(dn, ", ").concat(gn);
-  var pn = "[data-trix-dialog]";
-  var fn = "".concat(pn, "[data-trix-active]");
-  var bn = "".concat(pn, " [data-trix-method]");
-  var vn = "".concat(pn, " [data-trix-input]");
-  var An = (t2, e2) => (e2 || (e2 = yn(t2)), t2.querySelector("[data-trix-input][name='".concat(e2, "']")));
-  var xn = (t2) => t2.getAttribute("data-trix-action");
-  var yn = (t2) => t2.getAttribute("data-trix-attribute") || t2.getAttribute("data-trix-dialog-attribute");
-  var Cn = class extends H {
+  var dn = (t2) => ({ x: t2.clientX, y: t2.clientY });
+  var gn = "[data-trix-attribute]";
+  var mn = "[data-trix-action]";
+  var pn = "".concat(gn, ", ").concat(mn);
+  var fn = "[data-trix-dialog]";
+  var bn = "".concat(fn, "[data-trix-active]");
+  var vn = "".concat(fn, " [data-trix-method]");
+  var An = "".concat(fn, " [data-trix-input]");
+  var xn = (t2, e2) => (e2 || (e2 = Cn(t2)), t2.querySelector("[data-trix-input][name='".concat(e2, "']")));
+  var yn = (t2) => t2.getAttribute("data-trix-action");
+  var Cn = (t2) => t2.getAttribute("data-trix-attribute") || t2.getAttribute("data-trix-dialog-attribute");
+  var kn = class extends H {
     constructor(t2) {
-      super(t2), this.didClickActionButton = this.didClickActionButton.bind(this), this.didClickAttributeButton = this.didClickAttributeButton.bind(this), this.didClickDialogButton = this.didClickDialogButton.bind(this), this.didKeyDownDialogInput = this.didKeyDownDialogInput.bind(this), this.element = t2, this.attributes = {}, this.actions = {}, this.resetDialogInputs(), f("mousedown", { onElement: this.element, matchingSelector: gn, withCallback: this.didClickActionButton }), f("mousedown", { onElement: this.element, matchingSelector: dn, withCallback: this.didClickAttributeButton }), f("click", { onElement: this.element, matchingSelector: mn, preventDefault: true }), f("click", { onElement: this.element, matchingSelector: bn, withCallback: this.didClickDialogButton }), f("keydown", { onElement: this.element, matchingSelector: vn, withCallback: this.didKeyDownDialogInput });
+      super(t2), this.didClickActionButton = this.didClickActionButton.bind(this), this.didClickAttributeButton = this.didClickAttributeButton.bind(this), this.didClickDialogButton = this.didClickDialogButton.bind(this), this.didKeyDownDialogInput = this.didKeyDownDialogInput.bind(this), this.element = t2, this.attributes = {}, this.actions = {}, this.resetDialogInputs(), f("mousedown", { onElement: this.element, matchingSelector: mn, withCallback: this.didClickActionButton }), f("mousedown", { onElement: this.element, matchingSelector: gn, withCallback: this.didClickAttributeButton }), f("click", { onElement: this.element, matchingSelector: pn, preventDefault: true }), f("click", { onElement: this.element, matchingSelector: vn, withCallback: this.didClickDialogButton }), f("keydown", { onElement: this.element, matchingSelector: An, withCallback: this.didKeyDownDialogInput });
     }
     didClickActionButton(t2, e2) {
       var i2;
       null === (i2 = this.delegate) || void 0 === i2 || i2.toolbarDidClickButton(), t2.preventDefault();
-      const n2 = xn(e2);
+      const n2 = yn(e2);
       return this.getDialog(n2) ? this.toggleDialog(n2) : null === (r2 = this.delegate) || void 0 === r2 ? void 0 : r2.toolbarDidInvokeAction(n2, e2);
       var r2;
     }
     didClickAttributeButton(t2, e2) {
       var i2;
       null === (i2 = this.delegate) || void 0 === i2 || i2.toolbarDidClickButton(), t2.preventDefault();
-      const n2 = yn(e2);
+      const n2 = Cn(e2);
       var r2;
       this.getDialog(n2) ? this.toggleDialog(n2) : null === (r2 = this.delegate) || void 0 === r2 || r2.toolbarDidToggleAttribute(n2);
       return this.refreshAttributeButtons();
     }
     didClickDialogButton(t2, e2) {
-      const i2 = A(e2, { matchingSelector: pn });
+      const i2 = A(e2, { matchingSelector: fn });
       return this[e2.getAttribute("data-trix-method")].call(this, i2);
     }
     didKeyDownDialogInput(t2, e2) {
@@ -13007,8 +12676,7 @@
         const i2 = e2.getAttribute("name"), n2 = this.getDialog(i2);
         this.setAttribute(n2);
       }
-      if (27 === t2.keyCode)
-        return t2.preventDefault(), this.hideDialog();
+      if (27 === t2.keyCode) return t2.preventDefault(), this.hideDialog();
     }
     updateActions(t2) {
       return this.actions = t2, this.refreshActionButtons();
@@ -13019,7 +12687,7 @@
       });
     }
     eachActionButton(t2) {
-      return Array.from(this.element.querySelectorAll(gn)).map((e2) => t2(e2, xn(e2)));
+      return Array.from(this.element.querySelectorAll(mn)).map((e2) => t2(e2, yn(e2)));
     }
     updateAttributes(t2) {
       return this.attributes = t2, this.refreshAttributeButtons();
@@ -13028,21 +12696,19 @@
       return this.eachAttributeButton((t2, e2) => (t2.disabled = false === this.attributes[e2], this.attributes[e2] || this.dialogIsVisible(e2) ? (t2.setAttribute("data-trix-active", ""), t2.classList.add("trix-active")) : (t2.removeAttribute("data-trix-active"), t2.classList.remove("trix-active"))));
     }
     eachAttributeButton(t2) {
-      return Array.from(this.element.querySelectorAll(dn)).map((e2) => t2(e2, yn(e2)));
+      return Array.from(this.element.querySelectorAll(gn)).map((e2) => t2(e2, Cn(e2)));
     }
     applyKeyboardCommand(t2) {
       const e2 = JSON.stringify(t2.sort());
       for (const t3 of Array.from(this.element.querySelectorAll("[data-trix-key]"))) {
         const i2 = t3.getAttribute("data-trix-key").split("+");
-        if (JSON.stringify(i2.sort()) === e2)
-          return b("mousedown", { onElement: t3 }), true;
+        if (JSON.stringify(i2.sort()) === e2) return b("mousedown", { onElement: t3 }), true;
       }
       return false;
     }
     dialogIsVisible(t2) {
       const e2 = this.getDialog(t2);
-      if (e2)
-        return e2.hasAttribute("data-trix-active");
+      if (e2) return e2.hasAttribute("data-trix-active");
     }
     toggleDialog(t2) {
       return this.dialogIsVisible(t2) ? this.hideDialog() : this.showDialog(t2);
@@ -13054,31 +12720,30 @@
       n2.setAttribute("data-trix-active", ""), n2.classList.add("trix-active"), Array.from(n2.querySelectorAll("input[disabled]")).forEach((t3) => {
         t3.removeAttribute("disabled");
       });
-      const r2 = yn(n2);
+      const r2 = Cn(n2);
       if (r2) {
-        const e3 = An(n2, t2);
+        const e3 = xn(n2, t2);
         e3 && (e3.value = this.attributes[r2] || "", e3.select());
       }
       return null === (i2 = this.delegate) || void 0 === i2 ? void 0 : i2.toolbarDidShowDialog(t2);
     }
     setAttribute(t2) {
-      const e2 = yn(t2), i2 = An(t2, e2);
+      const e2 = Cn(t2), i2 = xn(t2, e2);
       return i2.willValidate && !i2.checkValidity() ? (i2.setAttribute("data-trix-validate", ""), i2.classList.add("trix-validate"), i2.focus()) : (null === (n2 = this.delegate) || void 0 === n2 || n2.toolbarDidUpdateAttribute(e2, i2.value), this.hideDialog());
       var n2;
     }
     removeAttribute(t2) {
       var e2;
-      const i2 = yn(t2);
+      const i2 = Cn(t2);
       return null === (e2 = this.delegate) || void 0 === e2 || e2.toolbarDidRemoveAttribute(i2), this.hideDialog();
     }
     hideDialog() {
-      const t2 = this.element.querySelector(fn);
+      const t2 = this.element.querySelector(bn);
       var e2;
-      if (t2)
-        return t2.removeAttribute("data-trix-active"), t2.classList.remove("trix-active"), this.resetDialogInputs(), null === (e2 = this.delegate) || void 0 === e2 ? void 0 : e2.toolbarDidHideDialog(((t3) => t3.getAttribute("data-trix-dialog"))(t2));
+      if (t2) return t2.removeAttribute("data-trix-active"), t2.classList.remove("trix-active"), this.resetDialogInputs(), null === (e2 = this.delegate) || void 0 === e2 ? void 0 : e2.toolbarDidHideDialog(((t3) => t3.getAttribute("data-trix-dialog"))(t2));
     }
     resetDialogInputs() {
-      Array.from(this.element.querySelectorAll(vn)).forEach((t2) => {
+      Array.from(this.element.querySelectorAll(An)).forEach((t2) => {
         t2.setAttribute("disabled", "disabled"), t2.removeAttribute("data-trix-validate"), t2.classList.remove("trix-validate");
       });
     }
@@ -13086,10 +12751,10 @@
       return this.element.querySelector("[data-trix-dialog=".concat(t2, "]"));
     }
   };
-  var kn = class extends Oi {
+  var Rn = class extends Oi {
     constructor(t2) {
       let { editorElement: e2, document: i2, html: n2 } = t2;
-      super(...arguments), this.editorElement = e2, this.selectionManager = new Li(this.editorElement), this.selectionManager.delegate = this, this.composition = new gi(), this.composition.delegate = this, this.attachmentManager = new hi(this.composition.getAttachments()), this.attachmentManager.delegate = this, this.inputController = 2 === M.getLevel() ? new on(this.editorElement) : new Qi(this.editorElement), this.inputController.delegate = this, this.inputController.responder = this.composition, this.compositionController = new Ni(this.editorElement, this.composition), this.compositionController.delegate = this, this.toolbarController = new Cn(this.editorElement.toolbarElement), this.toolbarController.delegate = this, this.editor = new xi(this.composition, this.selectionManager, this.editorElement), i2 ? this.editor.loadDocument(i2) : this.editor.loadHTML(n2);
+      super(...arguments), this.editorElement = e2, this.selectionManager = new Li(this.editorElement), this.selectionManager.delegate = this, this.composition = new gi(), this.composition.delegate = this, this.attachmentManager = new hi(this.composition.getAttachments()), this.attachmentManager.delegate = this, this.inputController = 2 === M.getLevel() ? new on(this.editorElement) : new Qi(this.editorElement), this.inputController.delegate = this, this.inputController.responder = this.composition, this.compositionController = new Ni(this.editorElement, this.composition), this.compositionController.delegate = this, this.toolbarController = new kn(this.editorElement.toolbarElement), this.toolbarController.delegate = this, this.editor = new xi(this.composition, this.selectionManager, this.editorElement), i2 ? this.editor.loadDocument(i2) : this.editor.loadHTML(n2);
     }
     registerSelectionManager() {
       return Pt.registerSelectionManager(this.selectionManager);
@@ -13104,8 +12769,7 @@
       return this.composition.replaceHTML(this.editorElement.innerHTML);
     }
     compositionDidChangeDocument(t2) {
-      if (this.notifyEditorElement("document-change"), !this.handlingInput)
-        return this.render();
+      if (this.notifyEditorElement("document-change"), !this.handlingInput) return this.render();
     }
     compositionDidChangeCurrentAttributes(t2) {
       return this.currentAttributes = t2, this.toolbarController.updateAttributes(this.currentAttributes), this.updateCurrentActions(), this.notifyEditorElement("attributes-change", { attributes: this.currentAttributes });
@@ -13139,8 +12803,7 @@
       this.compositionController.uninstallAttachmentEditor(), this.attachmentLocationRange = null;
     }
     compositionDidRequestChangingSelectionToLocationRange(t2) {
-      if (!this.loadingSnapshot || this.isFocused())
-        return this.requestedLocationRange = t2, this.compositionRevisionWhenLocationRangeRequested = this.composition.revision, this.handlingInput ? void 0 : this.render();
+      if (!this.loadingSnapshot || this.isFocused()) return this.requestedLocationRange = t2, this.compositionRevisionWhenLocationRangeRequested = this.composition.revision, this.handlingInput ? void 0 : this.render();
     }
     compositionWillLoadSnapshot() {
       this.loadingSnapshot = true;
@@ -13189,8 +12852,7 @@
       this.requestedRender = true;
     }
     inputControllerDidHandleInput() {
-      if (this.handlingInput = false, this.requestedRender)
-        return this.requestedRender = false, this.render();
+      if (this.handlingInput = false, this.requestedRender) return this.requestedRender = false, this.render();
     }
     inputControllerDidAllowUnhandledInput() {
       return this.notifyEditorElement("change");
@@ -13241,23 +12903,19 @@
       return this.composition.updateCurrentAttributes(), this.updateCurrentActions(), this.attachmentLocationRange && !wt(this.attachmentLocationRange, t2) && this.composition.stopEditingAttachment(), this.notifyEditorElement("selection-change");
     }
     toolbarDidClickButton() {
-      if (!this.getLocationRange())
-        return this.setLocationRange({ index: 0, offset: 0 });
+      if (!this.getLocationRange()) return this.setLocationRange({ index: 0, offset: 0 });
     }
     toolbarDidInvokeAction(t2, e2) {
       return this.invokeAction(t2, e2);
     }
     toolbarDidToggleAttribute(t2) {
-      if (this.recordFormattingUndoEntry(t2), this.composition.toggleCurrentAttribute(t2), this.render(), !this.selectionFrozen)
-        return this.editorElement.focus();
+      if (this.recordFormattingUndoEntry(t2), this.composition.toggleCurrentAttribute(t2), this.render(), !this.selectionFrozen) return this.editorElement.focus();
     }
     toolbarDidUpdateAttribute(t2, e2) {
-      if (this.recordFormattingUndoEntry(t2), this.composition.setCurrentAttribute(t2, e2), this.render(), !this.selectionFrozen)
-        return this.editorElement.focus();
+      if (this.recordFormattingUndoEntry(t2), this.composition.setCurrentAttribute(t2, e2), this.render(), !this.selectionFrozen) return this.editorElement.focus();
     }
     toolbarDidRemoveAttribute(t2) {
-      if (this.recordFormattingUndoEntry(t2), this.composition.removeCurrentAttribute(t2), this.render(), !this.selectionFrozen)
-        return this.editorElement.focus();
+      if (this.recordFormattingUndoEntry(t2), this.composition.removeCurrentAttribute(t2), this.render(), !this.selectionFrozen) return this.editorElement.focus();
     }
     toolbarWillShowDialog(t2) {
       return this.composition.expandSelectionForEditing(), this.freezeSelection();
@@ -13269,12 +12927,10 @@
       return this.thawSelection(), this.editorElement.focus(), this.notifyEditorElement("toolbar-dialog-hide", { dialogName: t2 });
     }
     freezeSelection() {
-      if (!this.selectionFrozen)
-        return this.selectionManager.lock(), this.composition.freezeSelection(), this.selectionFrozen = true, this.render();
+      if (!this.selectionFrozen) return this.selectionManager.lock(), this.composition.freezeSelection(), this.selectionFrozen = true, this.render();
     }
     thawSelection() {
-      if (this.selectionFrozen)
-        return this.composition.thawSelection(), this.selectionManager.unlock(), this.selectionFrozen = false, this.render();
+      if (this.selectionFrozen) return this.composition.thawSelection(), this.selectionManager.unlock(), this.selectionFrozen = false, this.render();
     }
     canInvokeAction(t2) {
       return !!this.actionIsExternal(t2) || !(null === (e2 = this.actions[t2]) || void 0 === e2 || null === (e2 = e2.test) || void 0 === e2 || !e2.call(this));
@@ -13289,29 +12945,25 @@
     }
     getCurrentActions() {
       const t2 = {};
-      for (const e2 in this.actions)
-        t2[e2] = this.canInvokeAction(e2);
+      for (const e2 in this.actions) t2[e2] = this.canInvokeAction(e2);
       return t2;
     }
     updateCurrentActions() {
       const t2 = this.getCurrentActions();
-      if (!St(t2, this.currentActions))
-        return this.currentActions = t2, this.toolbarController.updateActions(this.currentActions), this.notifyEditorElement("actions-change", { actions: this.currentActions });
+      if (!St(t2, this.currentActions)) return this.currentActions = t2, this.toolbarController.updateActions(this.currentActions), this.notifyEditorElement("actions-change", { actions: this.currentActions });
     }
     runEditorFilters() {
       let t2 = this.composition.getSnapshot();
       if (Array.from(this.editor.filters).forEach((e3) => {
         const { document: i3, selectedRange: n2 } = t2;
         t2 = e3.call(this.editor, t2) || {}, t2.document || (t2.document = i3), t2.selectedRange || (t2.selectedRange = n2);
-      }), e2 = t2, i2 = this.composition.getSnapshot(), !wt(e2.selectedRange, i2.selectedRange) || !e2.document.isEqualTo(i2.document))
-        return this.composition.loadSnapshot(t2);
+      }), e2 = t2, i2 = this.composition.getSnapshot(), !wt(e2.selectedRange, i2.selectedRange) || !e2.document.isEqualTo(i2.document)) return this.composition.loadSnapshot(t2);
       var e2, i2;
     }
     updateInputElement() {
       const t2 = function(t3, e2) {
         const i2 = li[e2];
-        if (i2)
-          return i2(t3);
+        if (i2) return i2(t3);
         throw new Error("unknown content type: ".concat(e2));
       }(this.compositionController.getSerializableElement(), "text/html");
       return this.editorElement.setInputElementValue(t2);
@@ -13337,15 +12989,13 @@
     }
     recordFormattingUndoEntry(t2) {
       const e2 = gt(t2), i2 = this.selectionManager.getLocationRange();
-      if (e2 || !Dt(i2))
-        return this.editor.recordUndoEntry("Formatting", { context: this.getUndoContext(), consolidatable: true });
+      if (e2 || !Dt(i2)) return this.editor.recordUndoEntry("Formatting", { context: this.getUndoContext(), consolidatable: true });
     }
     recordTypingUndoEntry() {
       return this.editor.recordUndoEntry("Typing", { context: this.getUndoContext(this.currentAttributes), consolidatable: true });
     }
     getUndoContext() {
-      for (var t2 = arguments.length, e2 = new Array(t2), i2 = 0; i2 < t2; i2++)
-        e2[i2] = arguments[i2];
+      for (var t2 = arguments.length, e2 = new Array(t2), i2 = 0; i2 < t2; i2++) e2[i2] = arguments[i2];
       return [this.getLocationContext(), this.getTimeContext(), ...Array.from(e2)];
     }
     getLocationContext() {
@@ -13366,7 +13016,7 @@
       return this.constructor.actions;
     }
   };
-  Ae(kn, "actions", { undo: { test() {
+  Re(Rn, "actions", { undo: { test() {
     return this.editor.canUndo();
   }, perform() {
     return this.editor.undo();
@@ -13386,45 +13036,42 @@
     return this.editor.decreaseNestingLevel() && this.render();
   } }, attachFiles: { test: () => true, perform() {
     return M.pickFiles(this.editor.insertFiles);
-  } } }), kn.proxyMethod("getSelectionManager().setLocationRange"), kn.proxyMethod("getSelectionManager().getLocationRange");
-  var Rn = Object.freeze({ __proto__: null, AttachmentEditorController: Ii, CompositionController: Ni, Controller: Oi, EditorController: kn, InputController: Ki, Level0InputController: Qi, Level2InputController: on, ToolbarController: Cn });
-  var En = Object.freeze({ __proto__: null, MutationObserver: Ui, SelectionChangeObserver: Ft });
-  var Sn = Object.freeze({ __proto__: null, FileVerificationOperation: Vi, ImagePreloadOperation: Ce });
+  } } }), Rn.proxyMethod("getSelectionManager().setLocationRange"), Rn.proxyMethod("getSelectionManager().getLocationRange");
+  var En = Object.freeze({ __proto__: null, AttachmentEditorController: Ii, CompositionController: Ni, Controller: Oi, EditorController: Rn, InputController: Ki, Level0InputController: Qi, Level2InputController: on, ToolbarController: kn });
+  var Sn = Object.freeze({ __proto__: null, MutationObserver: Ui, SelectionChangeObserver: Ft });
+  var Ln = Object.freeze({ __proto__: null, FileVerificationOperation: Vi, ImagePreloadOperation: Le });
   bt("trix-toolbar", "%t {\n  display: block;\n}\n\n%t {\n  white-space: nowrap;\n}\n\n%t [data-trix-dialog] {\n  display: none;\n}\n\n%t [data-trix-dialog][data-trix-active] {\n  display: block;\n}\n\n%t [data-trix-dialog] [data-trix-validate]:invalid {\n  background-color: #ffdddd;\n}");
-  var Ln = class extends HTMLElement {
+  var Dn = class extends HTMLElement {
     connectedCallback() {
       "" === this.innerHTML && (this.innerHTML = U.getDefaultHTML());
     }
   };
-  var Dn = 0;
-  var wn = function(t2) {
-    if (!t2.hasAttribute("contenteditable"))
-      return t2.setAttribute("contenteditable", ""), function(t3) {
-        let e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-        return e2.times = 1, f(t3, e2);
-      }("focus", { onElement: t2, withCallback: () => Tn(t2) });
-  };
+  var wn = 0;
   var Tn = function(t2) {
-    return Bn(t2), Fn(t2);
+    if (!t2.hasAttribute("contenteditable")) return t2.setAttribute("contenteditable", ""), function(t3) {
+      let e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+      return e2.times = 1, f(t3, e2);
+    }("focus", { onElement: t2, withCallback: () => Bn(t2) });
   };
   var Bn = function(t2) {
-    var e2, i2;
-    if (null !== (e2 = (i2 = document).queryCommandSupported) && void 0 !== e2 && e2.call(i2, "enableObjectResizing"))
-      return document.execCommand("enableObjectResizing", false, false), f("mscontrolselect", { onElement: t2, preventDefault: true });
+    return Fn(t2), Pn(t2);
   };
   var Fn = function(t2) {
     var e2, i2;
+    if (null !== (e2 = (i2 = document).queryCommandSupported) && void 0 !== e2 && e2.call(i2, "enableObjectResizing")) return document.execCommand("enableObjectResizing", false, false), f("mscontrolselect", { onElement: t2, preventDefault: true });
+  };
+  var Pn = function(t2) {
+    var e2, i2;
     if (null !== (e2 = (i2 = document).queryCommandSupported) && void 0 !== e2 && e2.call(i2, "DefaultParagraphSeparator")) {
       const { tagName: t3 } = n.default;
-      if (["div", "p"].includes(t3))
-        return document.execCommand("DefaultParagraphSeparator", false, t3);
+      if (["div", "p"].includes(t3)) return document.execCommand("DefaultParagraphSeparator", false, t3);
     }
   };
-  var Pn = a.forcesObjectResizing ? { display: "inline", width: "auto" } : { display: "inline-block", width: "1px" };
-  bt("trix-editor", "%t {\n    display: block;\n}\n\n%t:empty:not(:focus)::before {\n    content: attr(placeholder);\n    color: graytext;\n    cursor: text;\n    pointer-events: none;\n    white-space: pre-line;\n}\n\n%t a[contenteditable=false] {\n    cursor: text;\n}\n\n%t img {\n    max-width: 100%;\n    height: auto;\n}\n\n%t ".concat(e, " figcaption textarea {\n    resize: none;\n}\n\n%t ").concat(e, " figcaption textarea.trix-autoresize-clone {\n    position: absolute;\n    left: -9999px;\n    max-height: 0px;\n}\n\n%t ").concat(e, " figcaption[data-trix-placeholder]:empty::before {\n    content: attr(data-trix-placeholder);\n    color: graytext;\n}\n\n%t [data-trix-cursor-target] {\n    display: ").concat(Pn.display, " !important;\n    width: ").concat(Pn.width, " !important;\n    padding: 0 !important;\n    margin: 0 !important;\n    border: none !important;\n}\n\n%t [data-trix-cursor-target=left] {\n    vertical-align: top !important;\n    margin-left: -1px !important;\n}\n\n%t [data-trix-cursor-target=right] {\n    vertical-align: bottom !important;\n    margin-right: -1px !important;\n}"));
-  var In = class extends HTMLElement {
+  var In = a.forcesObjectResizing ? { display: "inline", width: "auto" } : { display: "inline-block", width: "1px" };
+  bt("trix-editor", "%t {\n    display: block;\n}\n\n%t:empty:not(:focus)::before {\n    content: attr(placeholder);\n    color: graytext;\n    cursor: text;\n    pointer-events: none;\n    white-space: pre-line;\n}\n\n%t a[contenteditable=false] {\n    cursor: text;\n}\n\n%t img {\n    max-width: 100%;\n    height: auto;\n}\n\n%t ".concat(e, " figcaption textarea {\n    resize: none;\n}\n\n%t ").concat(e, " figcaption textarea.trix-autoresize-clone {\n    position: absolute;\n    left: -9999px;\n    max-height: 0px;\n}\n\n%t ").concat(e, " figcaption[data-trix-placeholder]:empty::before {\n    content: attr(data-trix-placeholder);\n    color: graytext;\n}\n\n%t [data-trix-cursor-target] {\n    display: ").concat(In.display, " !important;\n    width: ").concat(In.width, " !important;\n    padding: 0 !important;\n    margin: 0 !important;\n    border: none !important;\n}\n\n%t [data-trix-cursor-target=left] {\n    vertical-align: top !important;\n    margin-left: -1px !important;\n}\n\n%t [data-trix-cursor-target=right] {\n    vertical-align: bottom !important;\n    margin-right: -1px !important;\n}"));
+  var Nn = class extends HTMLElement {
     get trixId() {
-      return this.hasAttribute("trix-id") ? this.getAttribute("trix-id") : (this.setAttribute("trix-id", ++Dn), this.trixId);
+      return this.hasAttribute("trix-id") ? this.getAttribute("trix-id") : (this.setAttribute("trix-id", ++wn), this.trixId);
     }
     get labels() {
       const t2 = [];
@@ -13434,8 +13081,7 @@
     }
     get toolbarElement() {
       var t2;
-      if (this.hasAttribute("toolbar"))
-        return null === (t2 = this.ownerDocument) || void 0 === t2 ? void 0 : t2.getElementById(this.getAttribute("toolbar"));
+      if (this.hasAttribute("toolbar")) return null === (t2 = this.ownerDocument) || void 0 === t2 ? void 0 : t2.getElementById(this.getAttribute("toolbar"));
       if (this.parentNode) {
         const t3 = "trix-toolbar-".concat(this.trixId);
         this.setAttribute("toolbar", t3);
@@ -13449,8 +13095,7 @@
     }
     get inputElement() {
       var t2;
-      if (this.hasAttribute("input"))
-        return null === (t2 = this.ownerDocument) || void 0 === t2 ? void 0 : t2.getElementById(this.getAttribute("input"));
+      if (this.hasAttribute("input")) return null === (t2 = this.ownerDocument) || void 0 === t2 ? void 0 : t2.getElementById(this.getAttribute("input"));
       if (this.parentNode) {
         const t3 = "trix-input-".concat(this.trixId);
         this.setAttribute("input", t3);
@@ -13475,30 +13120,25 @@
       this.defaultValue = t2, null === (e2 = this.editor) || void 0 === e2 || e2.loadHTML(this.defaultValue);
     }
     notify(t2, e2) {
-      if (this.editorController)
-        return b("trix-".concat(t2), { onElement: this, attributes: e2 });
+      if (this.editorController) return b("trix-".concat(t2), { onElement: this, attributes: e2 });
     }
     setInputElementValue(t2) {
       this.inputElement && (this.inputElement.value = t2);
     }
     connectedCallback() {
-      this.hasAttribute("data-trix-internal") || (wn(this), function(t2) {
-        if (!t2.hasAttribute("role"))
-          t2.setAttribute("role", "textbox");
+      this.hasAttribute("data-trix-internal") || (Tn(this), function(t2) {
+        if (!t2.hasAttribute("role")) t2.setAttribute("role", "textbox");
       }(this), function(t2) {
-        if (t2.hasAttribute("aria-label") || t2.hasAttribute("aria-labelledby"))
-          return;
+        if (t2.hasAttribute("aria-label") || t2.hasAttribute("aria-labelledby")) return;
         const e2 = function() {
           const e3 = Array.from(t2.labels).map((e4) => {
-            if (!e4.contains(t2))
-              return e4.textContent;
+            if (!e4.contains(t2)) return e4.textContent;
           }).filter((t3) => t3), i2 = e3.join(" ");
           return i2 ? t2.setAttribute("aria-label", i2) : t2.removeAttribute("aria-label");
         };
         e2(), f("focus", { onElement: t2, withCallback: e2 });
-      }(this), this.editorController || (b("trix-before-initialize", { onElement: this }), this.editorController = new kn({ editorElement: this, html: this.defaultValue = this.value }), requestAnimationFrame(() => b("trix-initialize", { onElement: this }))), this.editorController.registerSelectionManager(), this.registerResetListener(), this.registerClickListener(), function(t2) {
-        if (!document.querySelector(":focus") && t2.hasAttribute("autofocus") && document.querySelector("[autofocus]") === t2)
-          t2.focus();
+      }(this), this.editorController || (b("trix-before-initialize", { onElement: this }), this.editorController = new Rn({ editorElement: this, html: this.defaultValue = this.value }), requestAnimationFrame(() => b("trix-initialize", { onElement: this }))), this.editorController.registerSelectionManager(), this.registerResetListener(), this.registerClickListener(), function(t2) {
+        if (!document.querySelector(":focus") && t2.hasAttribute("autofocus") && document.querySelector("[autofocus]") === t2) t2.focus();
       }(this));
     }
     disconnectedCallback() {
@@ -13518,14 +13158,11 @@
       return window.removeEventListener("click", this.clickListener, false);
     }
     resetBubbled(t2) {
-      if (!t2.defaultPrevented && t2.target === this.form)
-        return this.reset();
+      if (!t2.defaultPrevented && t2.target === this.form) return this.reset();
     }
     clickBubbled(t2) {
-      if (t2.defaultPrevented)
-        return;
-      if (this.contains(t2.target))
-        return;
+      if (t2.defaultPrevented) return;
+      if (this.contains(t2.target)) return;
       const e2 = A(t2.target, { matchingSelector: "label" });
       return e2 && Array.from(this.labels).includes(e2) ? this.focus() : void 0;
     }
@@ -13533,9 +13170,9 @@
       this.value = this.defaultValue;
     }
   };
-  var Nn = { VERSION: t, config: V, core: ci, models: Di, views: wi, controllers: Rn, observers: En, operations: Sn, elements: Object.freeze({ __proto__: null, TrixEditorElement: In, TrixToolbarElement: Ln }), filters: Object.freeze({ __proto__: null, Filter: bi, attachmentGalleryFilter: vi }) };
-  Object.assign(Nn, Di), window.Trix = Nn, setTimeout(function() {
-    customElements.get("trix-toolbar") || customElements.define("trix-toolbar", Ln), customElements.get("trix-editor") || customElements.define("trix-editor", In);
+  var On = { VERSION: t, config: V, core: ci, models: Di, views: wi, controllers: En, observers: Sn, operations: Ln, elements: Object.freeze({ __proto__: null, TrixEditorElement: Nn, TrixToolbarElement: Dn }), filters: Object.freeze({ __proto__: null, Filter: bi, attachmentGalleryFilter: vi }) };
+  Object.assign(On, Di), window.Trix = On, setTimeout(function() {
+    customElements.get("trix-toolbar") || customElements.define("trix-toolbar", Dn), customElements.get("trix-editor") || customElements.define("trix-editor", Nn);
   }, 0);
 
   // node_modules/@rails/actiontext/app/assets/javascripts/actiontext.esm.js
@@ -13766,8 +13403,7 @@
         }
         return x2.join("");
       }
-      if (hex(md51("hello")) !== "5d41402abc4b2a76b9719d911017c592")
-        ;
+      if (hex(md51("hello")) !== "5d41402abc4b2a76b9719d911017c592") ;
       if (typeof ArrayBuffer !== "undefined" && !ArrayBuffer.prototype.slice) {
         (function() {
           function clamp(val, length) {
@@ -14364,24 +14000,46 @@
     }
     start() {
       this.directUpload.create(this.directUploadDidComplete.bind(this));
+      this.dispatch("start");
     }
     directUploadWillStoreFileWithXHR(xhr) {
       xhr.upload.addEventListener("progress", (event) => {
         const progress = event.loaded / event.total * 100;
         this.attachment.setUploadProgress(progress);
+        if (progress) {
+          this.dispatch("progress", {
+            progress
+          });
+        }
       });
     }
     directUploadDidComplete(error2, attributes) {
       if (error2) {
-        throw new Error(`Direct upload failed: ${error2}`);
+        this.dispatchError(error2);
+      } else {
+        this.attachment.setAttributes({
+          sgid: attributes.attachable_sgid,
+          url: this.createBlobUrl(attributes.signed_id, attributes.filename)
+        });
+        this.dispatch("end");
       }
-      this.attachment.setAttributes({
-        sgid: attributes.attachable_sgid,
-        url: this.createBlobUrl(attributes.signed_id, attributes.filename)
-      });
     }
     createBlobUrl(signedId, filename) {
       return this.blobUrlTemplate.replace(":signed_id", signedId).replace(":filename", encodeURIComponent(filename));
+    }
+    dispatch(name, detail = {}) {
+      detail.attachment = this.attachment;
+      return dispatchEvent2(this.element, `direct-upload:${name}`, {
+        detail
+      });
+    }
+    dispatchError(error2) {
+      const event = this.dispatch("error", {
+        error: error2
+      });
+      if (!event.defaultPrevented) {
+        alert(error2);
+      }
     }
     get directUploadUrl() {
       return this.element.dataset.directUploadUrl;
@@ -14432,8 +14090,7 @@
     visit: () => visit
   });
   (function(prototype) {
-    if (typeof prototype.requestSubmit == "function")
-      return;
+    if (typeof prototype.requestSubmit == "function") return;
     prototype.requestSubmit = function(submitter) {
       if (submitter) {
         validateSubmitter(submitter, this);
@@ -14469,8 +14126,7 @@
     }
   }
   (function() {
-    if ("submitter" in Event.prototype)
-      return;
+    if ("submitter" in Event.prototype) return;
     let prototype = window.Event.prototype;
     if ("SubmitEvent" in window) {
       const prototypeOfSubmitEvent = window.SubmitEvent.prototype;
@@ -14822,8 +14478,7 @@
   }
   function getAttribute(attributeName, ...elements) {
     for (const value of elements.map((element) => element?.getAttribute(attributeName))) {
-      if (typeof value == "string")
-        return value;
+      if (typeof value == "string") return value;
     }
     return null;
   }
@@ -14913,8 +14568,7 @@
   function doesNotTargetIFrame(anchor) {
     if (anchor.hasAttribute("target")) {
       for (const element of document.getElementsByName(anchor.target)) {
-        if (element instanceof HTMLIFrameElement)
-          return false;
+        if (element instanceof HTMLIFrameElement) return false;
       }
     }
     return true;
@@ -15121,8 +14775,7 @@
         target: this.target
       });
       this.url = event.detail.url;
-      if (event.defaultPrevented)
-        await requestInterception;
+      if (event.defaultPrevented) await requestInterception;
       return event;
     }
     #willDelegateErrorHandling(error2) {
@@ -15150,10 +14803,8 @@
   function entriesExcludingFiles(requestBody) {
     const entries = [];
     for (const [name, value] of requestBody) {
-      if (value instanceof File)
-        continue;
-      else
-        entries.push([name, value]);
+      if (value instanceof File) continue;
+      else entries.push([name, value]);
     }
     return entries;
   }
@@ -15232,8 +14883,7 @@
       this.#prefetched = { url, request, expire: new Date((/* @__PURE__ */ new Date()).getTime() + ttl) };
     }
     clear() {
-      if (this.#prefetchTimeout)
-        clearTimeout(this.#prefetchTimeout);
+      if (this.#prefetchTimeout) clearTimeout(this.#prefetchTimeout);
       this.#prefetched = null;
     }
   };
@@ -15373,8 +15023,7 @@
     }
     // Private
     setSubmitsWith() {
-      if (!this.submitter || !this.submitsWith)
-        return;
+      if (!this.submitter || !this.submitsWith) return;
       if (this.submitter.matches("button")) {
         this.originalSubmitText = this.submitter.innerHTML;
         this.submitter.innerHTML = this.submitsWith;
@@ -15385,8 +15034,7 @@
       }
     }
     resetSubmitterText() {
-      if (!this.submitter || !this.originalSubmitText)
-        return;
+      if (!this.submitter || !this.originalSubmitText) return;
       if (this.submitter.matches("button")) {
         this.submitter.innerHTML = this.originalSubmitText;
       } else if (this.submitter.matches("input")) {
@@ -15536,8 +15184,7 @@
     if (submitter?.hasAttribute("formtarget") || form.hasAttribute("target")) {
       const target = submitter?.getAttribute("formtarget") || form.target;
       for (const element of document.getElementsByName(target)) {
-        if (element instanceof HTMLIFrameElement)
-          return false;
+        if (element instanceof HTMLIFrameElement) return false;
       }
       return true;
     } else {
@@ -15601,8 +15248,7 @@
           const renderInterception = new Promise((resolve) => this.#resolveInterceptionPromise = resolve);
           const options = { resume: this.#resolveInterceptionPromise, render: this.renderer.renderElement, renderMethod: this.renderer.renderMethod };
           const immediateRender = this.delegate.allowsImmediateRender(snapshot, options);
-          if (!immediateRender)
-            await renderInterception;
+          if (!immediateRender) await renderInterception;
           await this.renderSnapshot(renderer);
           this.delegate.viewRenderedSnapshot(snapshot, isPreview, this.renderer.renderMethod);
           this.delegate.preloadOnLoadLinksForView(this.element);
@@ -15763,20 +15409,15 @@
       form.setAttribute("action", action.href);
       form.setAttribute("hidden", "");
       const method = link.getAttribute("data-turbo-method");
-      if (method)
-        form.setAttribute("method", method);
+      if (method) form.setAttribute("method", method);
       const turboFrame = link.getAttribute("data-turbo-frame");
-      if (turboFrame)
-        form.setAttribute("data-turbo-frame", turboFrame);
+      if (turboFrame) form.setAttribute("data-turbo-frame", turboFrame);
       const turboAction = getVisitAction(link);
-      if (turboAction)
-        form.setAttribute("data-turbo-action", turboAction);
+      if (turboAction) form.setAttribute("data-turbo-action", turboAction);
       const turboConfirm = link.getAttribute("data-turbo-confirm");
-      if (turboConfirm)
-        form.setAttribute("data-turbo-confirm", turboConfirm);
+      if (turboConfirm) form.setAttribute("data-turbo-confirm", turboConfirm);
       const turboStream = link.hasAttribute("data-turbo-stream");
-      if (turboStream)
-        form.setAttribute("data-turbo-stream", "");
+      if (turboStream) form.setAttribute("data-turbo-stream", "");
       this.delegate.submittedFormLinkToLocation(link, location2, form);
       document.body.appendChild(form);
       form.addEventListener("turbo:submit-end", () => form.remove(), { once: true });
@@ -15872,8 +15513,7 @@
     }
     // Bardo delegate
     enteringBardo(currentPermanentElement) {
-      if (this.#activeElement)
-        return;
+      if (this.#activeElement) return;
       if (currentPermanentElement.contains(this.currentSnapshot.activeElement)) {
         this.#activeElement = this.currentSnapshot.activeElement;
       }
@@ -16181,10 +15821,8 @@
       const clonedSelectElements = clonedElement.querySelectorAll("select");
       for (const [index, source] of selectElements.entries()) {
         const clone = clonedSelectElements[index];
-        for (const option of clone.selectedOptions)
-          option.selected = false;
-        for (const option of source.selectedOptions)
-          clone.options[option.index].selected = true;
+        for (const option of clone.selectedOptions) option.selected = false;
+        for (const option of source.selectedOptions) clone.options[option.index].selected = true;
       }
       for (const clonedPasswordInput of clonedElement.querySelectorAll('input[type="password"]')) {
         clonedPasswordInput.value = "";
@@ -16423,10 +16061,8 @@
       if (this.response) {
         const { statusCode, responseHTML } = this.response;
         this.render(async () => {
-          if (this.shouldCacheSnapshot)
-            this.cacheSnapshot();
-          if (this.view.renderPromise)
-            await this.view.renderPromise;
+          if (this.shouldCacheSnapshot) this.cacheSnapshot();
+          if (this.view.renderPromise) await this.view.renderPromise;
           if (isSuccessful(statusCode) && responseHTML != null) {
             const snapshot = PageSnapshot.fromHTMLString(responseHTML);
             await this.renderPageSnapshot(snapshot, false);
@@ -16465,8 +16101,7 @@
           if (this.isSamePage || this.isPageRefresh) {
             this.adapter.visitRendered(this);
           } else {
-            if (this.view.renderPromise)
-              await this.view.renderPromise;
+            if (this.view.renderPromise) await this.view.renderPromise;
             await this.renderPageSnapshot(snapshot, isPreview);
             this.adapter.visitRendered(this);
             if (!isPreview) {
@@ -16856,8 +16491,7 @@
       this.update(history.replaceState, location2, restorationIdentifier);
     }
     update(method, location2, restorationIdentifier = uuid()) {
-      if (method === history.pushState)
-        ++this.currentIndex;
+      if (method === history.pushState) ++this.currentIndex;
       const state = { turbo: { restorationIdentifier, restorationIndex: this.currentIndex } };
       method.call(history, state, "", location2.href);
       this.location = location2;
@@ -16922,8 +16556,7 @@
       this.eventTarget = eventTarget;
     }
     start() {
-      if (this.started)
-        return;
+      if (this.started) return;
       if (this.eventTarget.readyState === "loading") {
         this.eventTarget.addEventListener("DOMContentLoaded", this.#enable, { once: true });
       } else {
@@ -16931,8 +16564,7 @@
       }
     }
     stop() {
-      if (!this.started)
-        return;
+      if (!this.started) return;
       this.eventTarget.removeEventListener("mouseenter", this.#tryToPrefetchRequest, {
         capture: true,
         passive: true
@@ -16957,8 +16589,7 @@
       this.started = true;
     };
     #tryToPrefetchRequest = (event) => {
-      if (getMetaContent("turbo-prefetch") === "false")
-        return;
+      if (getMetaContent("turbo-prefetch") === "false") return;
       const target = event.target;
       const isLink = target.matches && target.matches("a[href]:not([target^=_]):not([download])");
       if (isLink && this.#isPrefetchable(target)) {
@@ -16978,8 +16609,7 @@
       }
     };
     #cancelRequestIfObsolete = (event) => {
-      if (event.target === this.#prefetchedLink)
-        this.#cancelPrefetchRequest();
+      if (event.target === this.#prefetchedLink) this.#cancelPrefetchRequest();
     };
     #cancelPrefetchRequest = () => {
       prefetchCache.clear();
@@ -17021,18 +16651,12 @@
     }
     #isPrefetchable(link) {
       const href = link.getAttribute("href");
-      if (!href)
-        return false;
-      if (unfetchableLink(link))
-        return false;
-      if (linkToTheSamePage(link))
-        return false;
-      if (linkOptsOut(link))
-        return false;
-      if (nonSafeLink(link))
-        return false;
-      if (eventPrevented(link))
-        return false;
+      if (!href) return false;
+      if (unfetchableLink(link)) return false;
+      if (linkToTheSamePage(link)) return false;
+      if (linkOptsOut(link)) return false;
+      if (nonSafeLink(link)) return false;
+      if (eventPrevented(link)) return false;
       return true;
     }
   };
@@ -17043,25 +16667,18 @@
     return link.pathname + link.search === document.location.pathname + document.location.search || link.href.startsWith("#");
   };
   var linkOptsOut = (link) => {
-    if (link.getAttribute("data-turbo-prefetch") === "false")
-      return true;
-    if (link.getAttribute("data-turbo") === "false")
-      return true;
+    if (link.getAttribute("data-turbo-prefetch") === "false") return true;
+    if (link.getAttribute("data-turbo") === "false") return true;
     const turboPrefetchParent = findClosestRecursively(link, "[data-turbo-prefetch]");
-    if (turboPrefetchParent && turboPrefetchParent.getAttribute("data-turbo-prefetch") === "false")
-      return true;
+    if (turboPrefetchParent && turboPrefetchParent.getAttribute("data-turbo-prefetch") === "false") return true;
     return false;
   };
   var nonSafeLink = (link) => {
     const turboMethod = link.getAttribute("data-turbo-method");
-    if (turboMethod && turboMethod.toLowerCase() !== "get")
-      return true;
-    if (isUJS(link))
-      return true;
-    if (link.hasAttribute("data-turbo-confirm"))
-      return true;
-    if (link.hasAttribute("data-turbo-stream"))
-      return true;
+    if (turboMethod && turboMethod.toLowerCase() !== "get") return true;
+    if (isUJS(link)) return true;
+    if (link.hasAttribute("data-turbo-confirm")) return true;
+    if (link.hasAttribute("data-turbo-stream")) return true;
     return false;
   };
   var isUJS = (link) => {
@@ -17348,8 +16965,7 @@
   function firstAutofocusableElementInStreams(nodeListOfStreamElements) {
     for (const streamElement of nodeListOfStreamElements) {
       const elementWithAutofocus = queryAutofocusableElement(streamElement.templateElement.content);
-      if (elementWithAutofocus)
-        return elementWithAutofocus;
+      if (elementWithAutofocus) return elementWithAutofocus;
     }
     return null;
   }
@@ -17448,7 +17064,7 @@
       return document.documentElement.querySelectorAll("script");
     }
   };
-  var Idiomorph = function() {
+  var Idiomorph = /* @__PURE__ */ function() {
     let EMPTY_SET = /* @__PURE__ */ new Set();
     let defaults = {
       morphStyle: "outerHTML",
@@ -17522,28 +17138,22 @@
       return ctx.ignoreActiveValue && possibleActiveElement === document.activeElement && possibleActiveElement !== document.body;
     }
     function morphOldNodeTo(oldNode, newContent, ctx) {
-      if (ctx.ignoreActive && oldNode === document.activeElement)
-        ;
+      if (ctx.ignoreActive && oldNode === document.activeElement) ;
       else if (newContent == null) {
-        if (ctx.callbacks.beforeNodeRemoved(oldNode) === false)
-          return oldNode;
+        if (ctx.callbacks.beforeNodeRemoved(oldNode) === false) return oldNode;
         oldNode.remove();
         ctx.callbacks.afterNodeRemoved(oldNode);
         return null;
       } else if (!isSoftMatch(oldNode, newContent)) {
-        if (ctx.callbacks.beforeNodeRemoved(oldNode) === false)
-          return oldNode;
-        if (ctx.callbacks.beforeNodeAdded(newContent) === false)
-          return oldNode;
+        if (ctx.callbacks.beforeNodeRemoved(oldNode) === false) return oldNode;
+        if (ctx.callbacks.beforeNodeAdded(newContent) === false) return oldNode;
         oldNode.parentElement.replaceChild(newContent, oldNode);
         ctx.callbacks.afterNodeAdded(newContent);
         ctx.callbacks.afterNodeRemoved(oldNode);
         return newContent;
       } else {
-        if (ctx.callbacks.beforeNodeMorphed(oldNode, newContent) === false)
-          return oldNode;
-        if (oldNode instanceof HTMLHeadElement && ctx.head.ignore)
-          ;
+        if (ctx.callbacks.beforeNodeMorphed(oldNode, newContent) === false) return oldNode;
+        if (oldNode instanceof HTMLHeadElement && ctx.head.ignore) ;
         else if (oldNode instanceof HTMLHeadElement && ctx.head.style !== "morph") {
           handleHeadElement(newContent, oldNode, ctx);
         } else {
@@ -17564,8 +17174,7 @@
         newChild = nextNewChild;
         nextNewChild = newChild.nextSibling;
         if (insertionPoint == null) {
-          if (ctx.callbacks.beforeNodeAdded(newChild) === false)
-            return;
+          if (ctx.callbacks.beforeNodeAdded(newChild) === false) return;
           oldParent.appendChild(newChild);
           ctx.callbacks.afterNodeAdded(newChild);
           removeIdsFromConsideration(ctx, newChild);
@@ -17591,8 +17200,7 @@
           removeIdsFromConsideration(ctx, newChild);
           continue;
         }
-        if (ctx.callbacks.beforeNodeAdded(newChild) === false)
-          return;
+        if (ctx.callbacks.beforeNodeAdded(newChild) === false) return;
         oldParent.insertBefore(newChild, insertionPoint);
         ctx.callbacks.afterNodeAdded(newChild);
         removeIdsFromConsideration(ctx, newChild);
@@ -17940,8 +17548,7 @@
     }
     function removeNode(tempNode, ctx) {
       removeIdsFromConsideration(ctx, tempNode);
-      if (ctx.callbacks.beforeNodeRemoved(tempNode) === false)
-        return;
+      if (ctx.callbacks.beforeNodeRemoved(tempNode) === false) return;
       tempNode.remove();
       ctx.callbacks.afterNodeRemoved(tempNode);
     }
@@ -18166,8 +17773,7 @@
   };
   var MorphRenderer = class extends PageRenderer {
     async render() {
-      if (this.willRender)
-        await this.#morphBody();
+      if (this.willRender) await this.#morphBody();
     }
     get renderMethod() {
       return "morph";
@@ -18296,8 +17902,7 @@
     touch(location2) {
       const key = toCacheKey(location2);
       const index = this.keys.indexOf(key);
-      if (index > -1)
-        this.keys.splice(index, 1);
+      if (index > -1) this.keys.splice(index, 1);
       this.keys.unshift(key);
       this.trim();
     }
@@ -18897,8 +18502,7 @@
       }
     }
     sourceURLChanged() {
-      if (this.#isIgnoringChangesTo("src"))
-        return;
+      if (this.#isIgnoringChangesTo("src")) return;
       if (this.element.isConnected) {
         this.complete = false;
       }
@@ -18916,8 +18520,7 @@
       return this.element.loaded;
     }
     completeChanged() {
-      if (this.#isIgnoringChangesTo("complete"))
-        return;
+      if (this.#isIgnoringChangesTo("complete")) return;
       this.#loadSourceURL();
     }
     loadingStyleChanged() {
@@ -18966,8 +18569,7 @@
     }
     submittedFormLinkToLocation(link, _location, form) {
       const frame = this.#findFrameElement(link);
-      if (frame)
-        form.setAttribute("data-turbo-frame", frame.id);
+      if (frame) form.setAttribute("data-turbo-frame", frame.id);
     }
     // Link interceptor delegate
     shouldInterceptLinkClick(element, _location, _event) {
@@ -19079,8 +18681,7 @@
       if (newFrameElement) {
         const snapshot = new Snapshot(newFrameElement);
         const renderer = new FrameRenderer(this, this.view.snapshot, snapshot, FrameRenderer.renderElement, false, false);
-        if (this.view.renderPromise)
-          await this.view.renderPromise;
+        if (this.view.renderPromise) await this.view.renderPromise;
         this.changeHistory();
         await this.view.render(renderer);
         this.complete = true;
@@ -19130,8 +18731,7 @@
               restorationIdentifier: this.restorationIdentifier,
               snapshot: pageSnapshot
             };
-            if (this.action)
-              options.action = this.action;
+            if (this.action) options.action = this.action;
             session.visit(frame.src, options);
           }
         };
@@ -19510,10 +19110,8 @@
   }
   (() => {
     let element = document.currentScript;
-    if (!element)
-      return;
-    if (element.hasAttribute("data-turbo-suppress-warning"))
-      return;
+    if (!element) return;
+    if (element.hasAttribute("data-turbo-suppress-warning")) return;
     element = element.parentElement;
     while (element) {
       if (element == document.body) {
@@ -19556,12 +19154,9 @@
 
   // node_modules/@hotwired/turbo-rails/app/javascript/turbo/snakeize.js
   function walk(obj) {
-    if (!obj || typeof obj !== "object")
-      return obj;
-    if (obj instanceof Date || obj instanceof RegExp)
-      return obj;
-    if (Array.isArray(obj))
-      return obj.map(walk);
+    if (!obj || typeof obj !== "object") return obj;
+    if (obj instanceof Date || obj instanceof RegExp) return obj;
+    if (Array.isArray(obj)) return obj.map(walk);
     return Object.keys(obj).reduce(function(acc, key) {
       var camel = key[0].toLowerCase() + key.slice(1).replace(/([A-Z]+)/g, function(m2, x2) {
         return "_" + x2.toLowerCase();
@@ -19583,8 +19178,7 @@
     }
     disconnectedCallback() {
       disconnectStreamSource(this);
-      if (this.subscription)
-        this.subscription.unsubscribe();
+      if (this.subscription) this.subscription.unsubscribe();
     }
     dispatchMessageEvent(data) {
       const event = new MessageEvent("message", { data });

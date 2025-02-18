@@ -82,12 +82,21 @@ module Administrate
       def order_from_params(params)
         Administrate::Order.new(
           params.fetch(:order, sort_by),
-          params.fetch(:direction, direction)
+          params.fetch(:direction, direction),
+          sorting_column: sorting_column(
+            associated_dashboard_attribute(params.fetch(:order, sort_by))
+          )
         )
       end
 
       def order
-        @order ||= Administrate::Order.new(sort_by, direction)
+        @order ||= Administrate::Order.new(
+          sort_by,
+          direction,
+          sorting_column: sorting_column(
+            associated_dashboard_attribute(sort_by)
+          )
+        )
       end
 
       private
@@ -107,6 +116,16 @@ module Administrate
 
       def display_candidate_resource(resource)
         associated_dashboard.display_resource(resource)
+      end
+
+      def sorting_column(dashboard_attribute)
+        return unless dashboard_attribute.try(:options)
+
+        dashboard_attribute.options.fetch(:sorting_column, nil)
+      end
+
+      def associated_dashboard_attribute(attribute)
+        associated_dashboard.attribute_types[attribute.to_sym] if attribute
       end
 
       def sort_by

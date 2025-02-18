@@ -1,9 +1,5 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
-# Set up Rails app. Run this script immediately after cloning the codebase.
-# https://github.com/thoughtbot/guides/tree/master/protocol
-
-# Exit if any subcommand fails
 set -e
 
 EXAMPLE_APP_PATH="spec/example_app"
@@ -16,23 +12,14 @@ if [ ! -e "$DB_CONFIG_PATH" ]; then
   exit 0
 fi
 
-# Set up Ruby dependencies via Bundler
 gem install bundler --conservative
-bundle check || bundle install
-
+bundle install
 bundle exec appraisal install
+yarn install
 
-# Set up configurable environment variables
 if [ ! -f .env ]; then
   cp .sample.env .env
 fi
 
-# Set up database and add any development seed data
-bundle exec rake db:setup dev:prime
-
-# Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
-mkdir -p .git/safe
-
-# Only if this isn't CI
-# if [ -z "$CI" ]; then
-# fi
+bin/rails log:clear tmp:clear
+bin/rails dev:prime

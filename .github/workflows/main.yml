@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: ['3.0', 3.1, 3.2, 3.3]
+        ruby: [3.2, 3.3, 3.4]
     env:
       PGHOST: localhost
       PGUSER: administrate
@@ -33,7 +33,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Ruby ${{ matrix.ruby }}
         uses: ruby/setup-ruby@v1
         with:
@@ -58,10 +58,64 @@ jobs:
         run: yarn run build && yarn run build:css
       - name: Run tests
         run: bundle exec rspec
-      - name: Appraise Rails 6.0
-        run: bundle exec appraisal rails60 rspec
-        if: ${{ matrix.ruby <= '3.0' }}
-      - name: Appraise Rails 6.1
-        run: bundle exec appraisal rails61 rspec
-      - name: Appraisal Rails 7.0
-        run: bundle exec appraisal rails70 rspec
+
+  appraisal:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: [3.1, 3.2, 3.3, 3.4]
+        appraisal: [rails61, rails70, rails80, pundit21]
+        include:
+          - ruby: '3.0'
+            appraisal: rails60
+        exclude:
+          - ruby: 3.1
+            appraisal: rails80
+    env:
+      PGHOST: localhost
+      PGUSER: administrate
+      PGPASSWORD: administrate
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: administrate
+          POSTGRES_DB: administrate_test
+          POSTGRES_PASSWORD: administrate
+        ports:
+           - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup the environment
+        run: cp .sample.env .env
+      - run: cp spec/example_app/config/database.yml.sample spec/example_app/config/database.yml
+      - name: Prepare main database schema
+        run: bin/generate-database-schema
+      - name: Set up Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - name: Set up JS
+        uses: actions/setup-node@v4
+        with:
+          cache: yarn
+      - name: Remove Ruby version specification
+        run: sed -i 's/^ruby\(.*\)//g' gemfiles/${{ matrix.appraisal }}.gemfile
+      - name: Install Ruby dependencies
+        run: bundle install
+        env:
+          BUNDLE_GEMFILE: gemfiles/${{ matrix.appraisal }}.gemfile
+      - name: Install JS dependencies
+        run: yarn install
+      - name: Build assets
+        run: yarn run build && yarn run build:css
+      - name: Run tests
+        run: bundle exec rspec
+        env:
+          BUNDLE_GEMFILE: gemfiles/${{ matrix.appraisal }}.gemfile

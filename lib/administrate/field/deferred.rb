@@ -56,6 +56,10 @@ module Administrate
         end
       end
 
+      def sortable?
+        options.fetch(:sortable, deferred_class.sortable?)
+      end
+
       def permitted_attribute(attr, opts = {})
         if options.key?(:foreign_key)
           Administrate.warn_of_deprecated_option(:foreign_key)

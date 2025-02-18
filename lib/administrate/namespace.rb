@@ -11,10 +11,16 @@ module Administrate
     end
 
     def routes
-      @routes ||= all_routes.select do |controller, _action|
-        controller.starts_with?("#{namespace}/")
-      end.map do |controller, action|
-        [controller.gsub(/^#{namespace}\//, ""), action]
+      @routes ||= begin
+        prefix = "#{namespace}/".freeze
+        Rails.application.routes.routes.filter_map do |route|
+          next unless route.defaults[:controller]&.start_with?(prefix)
+
+          [
+            route.defaults[:controller].delete_prefix(prefix),
+            route.defaults[:action]
+          ]
+        end
       end
     end
 
@@ -25,11 +31,5 @@ module Administrate
     private
 
     attr_reader :namespace
-
-    def all_routes
-      Rails.application.routes.routes.map do |route|
-        route.defaults.values_at(:controller, :action).map(&:to_s)
-      end
-    end
   end
 end

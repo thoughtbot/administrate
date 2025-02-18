@@ -20,13 +20,14 @@ class OrderDashboard < Administrate::BaseDashboard
           r.address_state,
           r.address_zip
         ].compact.join("\n")
-      }
+      },
+      sorting_column: :address_zip
     ),
     customer: Field::BelongsTo.with_options(order: "name"),
     line_items: Field::HasMany.with_options(
       collection_attributes: %i[product quantity unit_price total_price]
     ),
-    total_price: Field::Number.with_options(prefix: "$", decimals: 2),
+    total_price: Field::Number.with_options(prefix: "$", decimals: 2, sortable: false),
     shipped_at: Field::DateTime,
     payments: Field::HasMany
   }
