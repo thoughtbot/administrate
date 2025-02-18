@@ -6,22 +6,32 @@ describe Administrate::Field::DateTime do
   let(:formats) do
     {
       date: {
-        formats: {default: "%m/%d/%Y", short: "%b %d"},
+        formats: {
+          default: "%m/%d/%Y",
+          short: "%b %d",
+          administrate_default: "%m/%d, %Y"
+        },
         abbr_month_names: Array.new(13) { |i| "Dec" if i == 12 },
         abbr_day_names: Array.new(7) { |i| "Fri" if i == 5 }
       },
       time: {
-        formats: {default: "%a, %b %-d, %Y at %r", short: "%d %b %H:%M"}
+        formats: {
+          default: "%a, %b %-d, %Y at %r",
+          short: "%d %b %H:%M",
+          administrate_default: "%a, %b %-d, %Y, %r",
+          administrate_time_default: "%I:%M%p"
+        }
       }
     }
   end
 
   describe "#date" do
-    it "displays the date" do
-      with_translations(:en, formats) do
-        field = Administrate::Field::DateTime
-          .new(:start_date, start_date, :show)
-        expect(field.date).to eq("12/25/2015")
+    context "without `format` option" do
+      it "displays the date in the administrate default format" do
+        field = Administrate::Field::DateTime.new(:start_date, start_date, :show)
+        with_translations(:en, formats) do
+          expect(field.date).to eq("12/25, 2015")
+        end
       end
     end
 
@@ -90,11 +100,12 @@ describe Administrate::Field::DateTime do
   end
 
   describe "#datetime" do
-    it "displays the datetime" do
-      field = Administrate::Field::DateTime.new(:start_date, start_date, :show)
-
-      with_translations(:en, formats) do
-        expect(field.datetime).to eq("Fri, Dec 25, 2015 at 10:15:45 AM")
+    context "without `format` option" do
+      it "displays the datetime in the administrate default format" do
+        field = Administrate::Field::DateTime.new(:start_date, start_date, :show)
+        with_translations(:en, formats) do
+          expect(field.datetime).to eq("Fri, Dec 25, 2015, 10:15:45 AM")
+        end
       end
     end
 

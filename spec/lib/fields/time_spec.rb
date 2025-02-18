@@ -37,22 +37,23 @@ describe Administrate::Field::Time do
 
       expect(field.time).to eq("04:38PM")
     end
-  end
 
-  it "formats the time with localized AM/PM markers" do
-    time = DateTime.new(2021, 3, 26, 16, 38)
-    formats = {
-      time: {
-        am: "午前",
-        pm: "午後"
+    it "formats the time with localized AM/PM markers" do
+      time = DateTime.new(2021, 3, 26, 16, 38)
+      formats = {
+        time: {
+          am: "午前",
+          pm: "午後",
+          formats: {administrate_time_default: "%p%I:%M"}
+        }
       }
-    }
 
-    field = Administrate::Field::Time.new(:time, time, :index)
+      field = Administrate::Field::Time.new(:time, time, :index)
 
-    I18n.with_locale(:ja) do
-      with_translations(:ja, formats) do
-        expect(field.time).to eq("04:38午後")
+      I18n.with_locale(:ja) do
+        with_translations(:ja, formats) do
+          expect(field.time).to eq("午後04:38")
+        end
       end
     end
   end
@@ -60,7 +61,9 @@ describe Administrate::Field::Time do
   it "returns a missing translation message if the translation is not available" do
     time = DateTime.new(2021, 3, 26, 16, 38)
     field = Administrate::Field::Time.new(:time, time, :index)
-    formats = {}
+    formats = {
+      time: {formats: {administrate_time_default: "%I:%M%p"}}
+    }
 
     I18n.with_locale(:ja) do
       with_translations(:ja, formats) do

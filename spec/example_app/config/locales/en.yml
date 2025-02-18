@@ -5,6 +5,8 @@ en:
         "%m/%d/%Y"
       with_weekday:
         "%a %m/%d/%y"
+      administrate_default:
+        "%m/%d/%Y"
 
   helpers:
     label:
@@ -20,6 +22,10 @@ en:
         "%b %-d, %Y"
       short:
         "%B %d"
+      administrate_default:
+        "%a, %b %-d, %Y at %r"
+      administrate_time_default:
+        "%I:%M%p"
 
   titles:
     application: Administrate-prototype

@@ -13,7 +13,7 @@ module Administrate
       private
 
       def format
-        options.fetch(:format, :default)
+        options.fetch(:format, :administrate_default)
       end
 
       def timezone
