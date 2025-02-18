@@ -6,14 +6,23 @@ module Administrate
       def time
         I18n.localize(
           data,
-          format: format
+          format: format,
+          default: fallback_format
         )
       end
 
       private
 
       def format
-        options.fetch(:format, "%I:%M%p")
+        options.fetch(:format, default_format)
+      end
+
+      def default_format
+        :administrate_time_default
+      end
+
+      def fallback_format
+        "%I:%M%p"
       end
     end
   end
