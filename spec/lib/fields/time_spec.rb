@@ -38,4 +38,34 @@ describe Administrate::Field::Time do
       expect(field.time).to eq("04:38PM")
     end
   end
+
+  it "formats the time with localized AM/PM markers" do
+    time = DateTime.new(2021, 3, 26, 16, 38)
+    formats = {
+      time: {
+        am: "午前",
+        pm: "午後"
+      }
+    }
+
+    field = Administrate::Field::Time.new(:time, time, :index)
+
+    I18n.with_locale(:ja) do
+      with_translations(:ja, formats) do
+        expect(field.time).to eq("04:38午後")
+      end
+    end
+  end
+
+  it "returns a missing translation message if the translation is not available" do
+    time = DateTime.new(2021, 3, 26, 16, 38)
+    field = Administrate::Field::Time.new(:time, time, :index)
+    formats = {}
+
+    I18n.with_locale(:ja) do
+      with_translations(:ja, formats) do
+        expect(field.time).to eq("Translation missing: ja.time.pm")
+      end
+    end
+  end
 end

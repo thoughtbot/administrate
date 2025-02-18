@@ -32,6 +32,7 @@ customer_attributes = Array.new(100) do
     name: name,
     email: Faker::Internet.email(name: name),
     territory: countries.sample,
+    example_time: Faker::Time.between(from: "00:00:00", to: "23:59:59"),
     password: Faker::Internet.password
   }
 end
