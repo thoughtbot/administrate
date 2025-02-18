@@ -32,11 +32,6 @@ a,
   text-decoration-skip-ink: auto;
   transition: color $base-duration $base-timing;
 
-  /* stylelint-disable selector-no-qualifying-type */
-  &.link--danger {
-    color: $red;
-  }
-
   &:hover {
     color: mix($black, $action-color, 25%);
   }
@@ -44,6 +39,14 @@ a,
   &:focus {
     outline: $focus-outline;
     outline-offset: $focus-outline-offset;
+  }
+  /* stylelint-disable selector-no-qualifying-type */
+  &.link--danger {
+    color: $red;
+  }
+
+  &.link--danger:hover {
+    color: mix($black, $red, 20%);
   }
 }
 

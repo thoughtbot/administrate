@@ -2106,13 +2106,6 @@ a,
   transition: color 250ms ease-in-out;
   /* stylelint-disable selector-no-qualifying-type */
 }
-a.link--danger,
-.link:is(button,
-[type=button],
-[type=reset],
-[type=submit]).link--danger {
-  color: #d32f2f;
-}
 a:hover,
 .link:is(button,
 [type=button],
@@ -2127,6 +2120,20 @@ a:focus,
 [type=submit]):focus {
   outline: 3px solid rgba(25, 118, 210, 0.6);
   outline-offset: 1px;
+}
+a.link--danger,
+.link:is(button,
+[type=button],
+[type=reset],
+[type=submit]).link--danger {
+  color: #d32f2f;
+}
+a.link--danger:hover,
+.link:is(button,
+[type=button],
+[type=reset],
+[type=submit]).link--danger:hover {
+  color: #a92626;
 }
 
 hr {
@@ -2246,9 +2253,12 @@ button:not(.link):disabled:hover,
 .button--danger {
   background-color: #d32f2f;
 }
-.button--danger:hover {
+.button--danger:not(.link):hover {
   background-color: #a92626;
   color: #ffffff;
+}
+.button--danger:not(.link):disabled:hover {
+  background-color: #a92626;
 }
 
 .button--nav {
