@@ -6,21 +6,21 @@ module Administrate
       def date
         I18n.localize(
           data.in_time_zone(timezone).to_date,
-          format: format
+          format: format(type: :date)
         )
       end
 
       def datetime
         I18n.localize(
           data.in_time_zone(timezone),
-          format: format
+          format: format(type: :datetime)
         )
       end
 
       private
 
-      def format
-        options.fetch(:format, :administrate_default)
+      def format(type: :date)
+        options.fetch(:format, :"administrate_#{type}_default")
       end
 
       def timezone

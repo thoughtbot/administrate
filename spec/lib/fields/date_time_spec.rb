@@ -9,7 +9,7 @@ describe Administrate::Field::DateTime do
         formats: {
           default: "%m/%d/%Y",
           short: "%b %d",
-          administrate_default: "%m/%d, %Y"
+          administrate_date_default: "%m/%d, %Y"
         },
         abbr_month_names: Array.new(13) { |i| "Dec" if i == 12 },
         abbr_day_names: Array.new(7) { |i| "Fri" if i == 5 }
@@ -18,7 +18,7 @@ describe Administrate::Field::DateTime do
         formats: {
           default: "%a, %b %-d, %Y at %r",
           short: "%d %b %H:%M",
-          administrate_default: "%a, %b %-d, %Y, %r",
+          administrate_datetime_default: "%a, %b %-d, %Y, %r",
           administrate_time_default: "%I:%M%p"
         }
       }
