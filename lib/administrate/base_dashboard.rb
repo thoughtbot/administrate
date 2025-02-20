@@ -70,7 +70,7 @@ module Administrate
     end
 
     def permitted_attributes(action = nil)
-      attributes = form_attributes action
+      attributes = form_attributes(action)
 
       if attributes.is_a? Hash
         attributes = attributes.values.flatten
@@ -125,6 +125,8 @@ module Administrate
       end
       attribute_associated attributes
     end
+
+    attr_accessor :context
 
     private
 
