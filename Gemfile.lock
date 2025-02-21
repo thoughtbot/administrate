@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/nickcharlton/sack_race.git
+  revision: 4e38a69db3d2bb94efdd1bed1bde4866e89fd322
+  branch: initial-implementation
+  specs:
+    sack_race (0.1.0)
+
 PATH
   remote: .
   specs:
@@ -423,6 +430,7 @@ DEPENDENCIES
   pundit
   rack-timeout
   redcarpet
+  sack_race!
   selenium-webdriver
   sentry-rails
   sentry-ruby
