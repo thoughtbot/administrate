@@ -91,7 +91,7 @@ describe Administrate::Field::HasOne do
 
       prefixes = field._partial_prefixes
 
-      expect(prefixes).to eq(["fields/has_one", "fields/associative"])
+      expect(prefixes).to eq(["fields/has_one", "fields/associative", "fields/base"])
     end
   end
 

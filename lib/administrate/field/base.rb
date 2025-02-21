@@ -37,11 +37,12 @@ module Administrate
       end
 
       def self._partial_prefixes
-        @_partial_prefixes ||= begin
-          return local_partial_prefixes if superclass == Administrate::Field::Base
-
-          local_partial_prefixes + superclass._partial_prefixes
-        end
+        @_partial_prefixes ||=
+          if superclass.respond_to?(:_partial_prefixes)
+            local_partial_prefixes + superclass._partial_prefixes
+          else
+            local_partial_prefixes
+          end
       end
 
       def self.local_partial_prefixes

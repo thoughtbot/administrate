@@ -23,7 +23,7 @@ describe Administrate::Field::RichText do
 
       prefixes = field._partial_prefixes
 
-      expect(prefixes).to eq(["fields/rich_text"])
+      expect(prefixes).to eq(["fields/rich_text", "fields/base"])
     end
   end
 

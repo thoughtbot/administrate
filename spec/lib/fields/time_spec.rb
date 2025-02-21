@@ -10,7 +10,7 @@ describe Administrate::Field::Time do
 
       prefixes = field._partial_prefixes
 
-      expect(prefixes).to eq(["fields/time"])
+      expect(prefixes).to eq(["fields/time", "fields/base"])
     end
   end
 

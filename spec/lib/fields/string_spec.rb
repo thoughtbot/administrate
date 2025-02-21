@@ -12,7 +12,7 @@ describe Administrate::Field::String do
 
       prefixes = field._partial_prefixes
 
-      expect(prefixes).to eq(["fields/string"])
+      expect(prefixes).to eq(["fields/string", "fields/base"])
     end
   end
 

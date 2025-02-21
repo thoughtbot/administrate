@@ -14,7 +14,7 @@ describe Administrate::Field::Url do
 
       prefixes = field._partial_prefixes
 
-      expect(prefixes).to eq(["fields/url"])
+      expect(prefixes).to eq(["fields/url", "fields/base"])
     end
   end
 

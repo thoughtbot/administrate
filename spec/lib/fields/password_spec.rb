@@ -12,7 +12,7 @@ describe Administrate::Field::Password do
 
       prefixes = field._partial_prefixes
 
-      expect(prefixes).to eq(["fields/password"])
+      expect(prefixes).to eq(["fields/password", "fields/base"])
     end
   end
 

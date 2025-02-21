@@ -26,7 +26,7 @@ describe Administrate::Field::Polymorphic do
       prefixes = field._partial_prefixes
 
       expect(prefixes).to eq(
-        ["fields/polymorphic", "fields/belongs_to", "fields/associative"]
+        ["fields/polymorphic", "fields/belongs_to", "fields/associative", "fields/base"]
       )
     end
   end

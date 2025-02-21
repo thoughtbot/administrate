@@ -34,7 +34,7 @@ describe Administrate::Field::BelongsTo do
 
       prefixes = field._partial_prefixes
 
-      expect(prefixes).to eq(["fields/belongs_to", "fields/associative"])
+      expect(prefixes).to eq(["fields/belongs_to", "fields/associative", "fields/base"])
     end
   end
 

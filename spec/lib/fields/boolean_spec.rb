@@ -13,7 +13,7 @@ describe Administrate::Field::Boolean do
 
       prefixes = field._partial_prefixes
 
-      expect(prefixes).to eq(["fields/boolean"])
+      expect(prefixes).to eq(["fields/boolean", "fields/base"])
     end
   end
 

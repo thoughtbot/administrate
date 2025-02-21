@@ -8,7 +8,7 @@ describe Administrate::Field::Email do
 
       prefixes = field._partial_prefixes
 
-      expect(prefixes).to eq(["fields/email"])
+      expect(prefixes).to eq(["fields/email", "fields/base"])
     end
   end
 end

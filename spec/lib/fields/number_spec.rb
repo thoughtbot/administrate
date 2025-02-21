@@ -13,7 +13,7 @@ describe Administrate::Field::Number do
 
       prefixes = field._partial_prefixes
 
-      expect(prefixes).to eq(["fields/number"])
+      expect(prefixes).to eq(["fields/number", "fields/base"])
     end
   end
 

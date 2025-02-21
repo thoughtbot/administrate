@@ -24,7 +24,7 @@ describe Administrate::Field::HasMany do
 
       prefixes = field._partial_prefixes
 
-      expect(prefixes).to eq(["fields/has_many", "fields/associative"])
+      expect(prefixes).to eq(["fields/has_many", "fields/associative", "fields/base"])
     end
   end
 
