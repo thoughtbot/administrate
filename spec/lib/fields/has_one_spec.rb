@@ -77,7 +77,7 @@ describe Administrate::Field::HasOne do
     end
   end
 
-  describe "#_partial_prefixes" do
+  describe "#partial_prefixes" do
     it "returns a partial based on the page being rendered" do
       resource = double
       page = :show
@@ -89,7 +89,7 @@ describe Administrate::Field::HasOne do
         resource: resource
       )
 
-      prefixes = field._partial_prefixes
+      prefixes = field.partial_prefixes
 
       expect(prefixes).to eq(["fields/has_one", "fields/associative", "fields/base"])
     end

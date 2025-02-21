@@ -36,19 +36,16 @@ module Administrate
         attr
       end
 
-      def self._partial_prefixes
-        @_partial_prefixes ||=
-          if superclass.respond_to?(:_partial_prefixes)
-            local_partial_prefixes + superclass._partial_prefixes
-          else
-            local_partial_prefixes
+      def self.partial_prefixes
+        @partial_prefixes ||=
+          begin
+            prefixes = ["fields/#{field_type}"]
+            if superclass.respond_to?(:partial_prefixes)
+              prefixes += superclass.partial_prefixes
+            end
+            prefixes
           end
       end
-
-      def self.local_partial_prefixes
-        ["fields/#{field_type}"]
-      end
-      private_class_method :local_partial_prefixes
 
       def initialize(attribute, data, page, options = {})
         @attribute = attribute
@@ -84,8 +81,8 @@ module Administrate
         end
       end
 
-      def _partial_prefixes
-        self.class._partial_prefixes
+      def partial_prefixes
+        self.class.partial_prefixes
       end
 
       def required?

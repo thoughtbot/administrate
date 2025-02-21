@@ -13,7 +13,7 @@ describe Administrate::Field::RichText do
     )
   end
 
-  describe "#_partial_prefixes" do
+  describe "#partial_prefixes" do
     it "returns a partial based on the page being rendered" do
       page = :show
       action_text = ActionText::RichText.new(
@@ -21,7 +21,7 @@ describe Administrate::Field::RichText do
       )
       field = Administrate::Field::RichText.new(:document, action_text, page)
 
-      prefixes = field._partial_prefixes
+      prefixes = field.partial_prefixes
 
       expect(prefixes).to eq(["fields/rich_text", "fields/base"])
     end

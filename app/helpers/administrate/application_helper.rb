@@ -15,7 +15,7 @@ module Administrate
     end
 
     def find_partial_prefix(field)
-      field._partial_prefixes.detect do |prefix|
+      field.partial_prefixes.detect do |prefix|
         lookup_context.template_exists?(field.page, [prefix], true)
       end
     end

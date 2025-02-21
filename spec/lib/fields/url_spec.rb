@@ -7,12 +7,12 @@ describe Administrate::Field::Url do
     end
   end
 
-  describe "#_partial_prefixes" do
+  describe "#partial_prefixes" do
     it "returns a partial based on the page being rendered" do
       page = :show
       field = Administrate::Field::Url.new(:url, "https://thoughtbot.com", page)
 
-      prefixes = field._partial_prefixes
+      prefixes = field.partial_prefixes
 
       expect(prefixes).to eq(["fields/url", "fields/base"])
     end
