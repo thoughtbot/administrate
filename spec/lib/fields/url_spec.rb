@@ -1,3 +1,4 @@
+require "rails_helper"
 require "administrate/field/url"
 
 describe Administrate::Field::Url do
