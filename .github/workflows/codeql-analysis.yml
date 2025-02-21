@@ -31,6 +31,9 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
+          config: |
+            paths-ignore:
+              - 'app/assets/builds'
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
