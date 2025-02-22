@@ -38,14 +38,17 @@ module Administrate
 
       def self.partial_prefixes
         @partial_prefixes ||=
-          begin
-            prefixes = ["fields/#{field_type}"]
-            if superclass.respond_to?(:partial_prefixes)
-              prefixes += superclass.partial_prefixes
-            end
-            prefixes
+          if superclass.respond_to?(:partial_prefixes)
+            local_partial_prefixes + superclass.partial_prefixes
+          else
+            local_partial_prefixes
           end
       end
+
+      def self.local_partial_prefixes
+        ["fields/#{field_type}"]
+      end
+      private_class_method :local_partial_prefixes
 
       def initialize(attribute, data, page, options = {})
         @attribute = attribute
