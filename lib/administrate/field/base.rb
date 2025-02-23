@@ -48,7 +48,6 @@ module Administrate
       def self.local_partial_prefixes
         ["fields/#{field_type}"]
       end
-      private_class_method :local_partial_prefixes
 
       def initialize(attribute, data, page, options = {})
         @attribute = attribute
