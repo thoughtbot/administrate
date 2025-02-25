@@ -15,6 +15,25 @@
       search_term: search_term,
       resource_name: display_resource_name(page.resource_name)
     ) %>
+
+    <% if filters.any? %>
+      <div data-controller="tooltip">
+        <button data-tooltip-target="tooltip" popovertarget="search-tooltip" class="button--tooltip search__tooltip">
+          <svg role="img">
+            <use xlink:href="#icon-question-mark" />
+          </svg>
+        </button>
+
+        <div data-tooltip-target="popover" popover id="search-tooltip" role="tooltip" class="search__tooltip-popover search__tooltip-popover-positioning">
+          <p><strong>Use filters to refine your search</strong></p>
+          <ul>
+            <% filters.keys.each do |filter_key| %>
+            <li><%= filter_key %>:<span class="search__tooltip-popover-value">&lt;value&gt;</span></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 
   <div>
