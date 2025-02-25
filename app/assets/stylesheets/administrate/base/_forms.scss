@@ -105,3 +105,8 @@ select {
     outline-offset: $focus-outline-offset;
   }
 }
+
+.selectize-dropdown [data-selectable][data-value=""].option::after {
+  content: " ";
+  display: inline-block;
+}
