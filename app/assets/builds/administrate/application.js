@@ -21711,7 +21711,9 @@
   var import_jquery2 = __toESM(require_jquery());
   var select_controller_default = class extends Controller {
     connect() {
-      (0, import_jquery2.default)(this.element).selectize({});
+      (0, import_jquery2.default)(this.element).selectize({
+        allowEmptyOption: true
+      });
     }
   };
 
