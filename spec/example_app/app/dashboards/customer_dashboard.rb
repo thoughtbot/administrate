@@ -15,7 +15,7 @@ class CustomerDashboard < Administrate::BaseDashboard
     territory: Field::BelongsTo.with_options(
       searchable: true,
       searchable_fields: ["name"],
-      include_blank: true
+      include_blank: I18n.t("helpers.select.prompt")
     ),
     example_time: Field::Time,
     password: Field::Password
