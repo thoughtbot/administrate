@@ -26,15 +26,15 @@ describe Administrate::Field::BelongsTo do
     end
   end
 
-  describe "#to_partial_path" do
+  describe "#partial_prefixes" do
     it "returns a partial based on the page being rendered" do
       page = :show
       owner = double
       field = Administrate::Field::BelongsTo.new(:owner, owner, page)
 
-      path = field.to_partial_path
+      prefixes = field.partial_prefixes
 
-      expect(path).to eq("/fields/belongs_to/#{page}")
+      expect(prefixes).to eq(["fields/belongs_to", "fields/associative", "fields/base"])
     end
   end
 

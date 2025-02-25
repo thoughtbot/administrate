@@ -77,7 +77,7 @@ describe Administrate::Field::HasOne do
     end
   end
 
-  describe "#to_partial_path" do
+  describe "#partial_prefixes" do
     it "returns a partial based on the page being rendered" do
       resource = double
       page = :show
@@ -89,9 +89,9 @@ describe Administrate::Field::HasOne do
         resource: resource
       )
 
-      path = field.to_partial_path
+      prefixes = field.partial_prefixes
 
-      expect(path).to eq("/fields/has_one/#{page}")
+      expect(prefixes).to eq(["fields/has_one", "fields/associative", "fields/base"])
     end
   end
 

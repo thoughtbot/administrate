@@ -18,14 +18,16 @@ describe Administrate::Field::Polymorphic do
     end
   end
 
-  describe "#to_partial_path" do
+  describe "#partial_prefixes" do
     it "returns a partial based on the page being rendered" do
       page = :show
       field = Administrate::Field::Polymorphic.new(:foo, "hello", page)
 
-      path = field.to_partial_path
+      prefixes = field.partial_prefixes
 
-      expect(path).to eq("/fields/polymorphic/#{page}")
+      expect(prefixes).to eq(
+        ["fields/polymorphic", "fields/belongs_to", "fields/associative", "fields/base"]
+      )
     end
   end
 

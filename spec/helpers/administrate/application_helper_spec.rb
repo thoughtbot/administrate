@@ -1,6 +1,24 @@
 require "rails_helper"
+require "administrate/field/has_many"
+require "administrate/field/has_many_variant"
 
 RSpec.describe Administrate::ApplicationHelper do
+  describe "#find_partial_prefix" do
+    context "when the field has a partial" do
+      it "returns the prefix" do
+        field = Administrate::Field::HasMany.new(:name, "hello", :show)
+        expect(find_partial_prefix(field)).to eq("fields/has_many")
+      end
+    end
+
+    context "when the field does not have a partial and the superclass does" do
+      it "returns the superclass prefix" do
+        field = Administrate::Field::HasManyVariant.new(:name, "hello", :show)
+        expect(find_partial_prefix(field)).to eq("fields/has_many")
+      end
+    end
+  end
+
   describe "#display_resource_name" do
     it "defaults to the plural of the model name" do
       displayed = display_resource_name(:customer)

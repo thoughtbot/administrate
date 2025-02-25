@@ -16,15 +16,15 @@ describe Administrate::Field::HasMany do
     end
   end
 
-  describe "#to_partial_path" do
+  describe "#partial_prefixes" do
     it "returns a partial based on the page being rendered" do
       page = :show
       items = double
       field = Administrate::Field::HasMany.new(:items, items, page)
 
-      path = field.to_partial_path
+      prefixes = field.partial_prefixes
 
-      expect(path).to eq("/fields/has_many/#{page}")
+      expect(prefixes).to eq(["fields/has_many", "fields/associative", "fields/base"])
     end
   end
 
