@@ -1803,6 +1803,10 @@ trix-editor .attachment__metadata .attachment__size {
 }
 
 /* stylelint-disable scss/dollar-variable-empty-line-before */
+:root {
+  --base-timing: ease-in-out;
+}
+
 /* stylelint-enable scss/dollar-variable-empty-line-before */
 fieldset {
   background-color: transparent;
@@ -1862,7 +1866,7 @@ textarea {
   border: 1px solid #dfe0e1;
   border-radius: 4px;
   padding: 0.5em;
-  transition: border-color 250ms ease-in-out;
+  transition: border-color 250ms var(--base-timing);
   width: 100%;
 }
 [type=color]:hover,
@@ -2103,7 +2107,7 @@ a,
 [type=submit]) {
   color: #1976d2;
   text-decoration-skip-ink: auto;
-  transition: color 250ms ease-in-out;
+  transition: color 250ms var(--base-timing);
   /* stylelint-disable selector-no-qualifying-type */
 }
 a:hover,
@@ -2206,7 +2210,7 @@ button,
   line-height: 1;
   padding: 0.75em 1.5em;
   text-decoration: none;
-  transition: background-color 250ms ease-in-out;
+  transition: background-color 250ms var(--base-timing);
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
@@ -2272,7 +2276,7 @@ button:not(.link):disabled:hover,
 .cell-label__sort-indicator svg {
   fill: #7b808c;
   height: 13px;
-  transition: transform 250ms ease-in-out;
+  transition: transform 250ms var(--base-timing);
   width: 13px;
 }
 
@@ -2282,7 +2286,7 @@ button:not(.link):disabled:hover,
 .cell-label a {
   color: inherit;
   display: inline-block;
-  transition: color 250ms ease-in-out;
+  transition: color 250ms var(--base-timing);
   width: 100%;
 }
 .cell-label:hover a {
@@ -2473,7 +2477,7 @@ button:not(.link):disabled:hover,
   line-height: 1;
   margin-left: -0.6em;
   padding: 0.6em;
-  transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+  transition: background-color 250ms var(--base-timing), color 250ms var(--base-timing);
 }
 .navigation__link:not(:last-of-type) {
   margin-bottom: 0.75em;
@@ -2542,7 +2546,7 @@ button:not(.link):disabled:hover,
   fill: #adb5bd;
   height: 1rem;
   position: absolute;
-  transition: fill 250ms ease-in-out;
+  transition: fill 250ms var(--base-timing);
   width: 1rem;
 }
 .search__clear-icon:hover {
