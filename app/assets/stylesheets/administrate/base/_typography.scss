@@ -30,7 +30,7 @@ a,
 ) {
   color: $action-color;
   text-decoration-skip-ink: auto;
-  transition: color $base-duration var(--base-timing);
+  transition: color var(--base-duration) var(--base-timing);
 
   &:hover {
     color: mix($black, $action-color, 25%);
