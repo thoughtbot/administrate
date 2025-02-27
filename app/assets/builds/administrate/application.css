@@ -469,7 +469,7 @@ trix-toolbar .trix-button:not(:first-child) {
 
 trix-toolbar .trix-button.trix-active {
   background: #cbeefa;
-  color: rgb(0, 0, 0);
+  color: black;
 }
 
 trix-toolbar .trix-button:not(:disabled) {
@@ -653,21 +653,21 @@ trix-editor [data-trix-mutable]:not(.attachment__caption-editor) {
   user-select: none;
 }
 
-trix-editor [data-trix-mutable] ::-moz-selection, trix-editor [data-trix-mutable]::-moz-selection,
-trix-editor [data-trix-cursor-target]::-moz-selection {
+trix-editor [data-trix-mutable]::-moz-selection,
+trix-editor [data-trix-cursor-target]::-moz-selection, trix-editor [data-trix-mutable] ::-moz-selection {
   background: none;
 }
 
-trix-editor [data-trix-mutable] ::selection, trix-editor [data-trix-mutable]::selection,
-trix-editor [data-trix-cursor-target]::selection {
+trix-editor [data-trix-mutable]::selection,
+trix-editor [data-trix-cursor-target]::selection, trix-editor [data-trix-mutable] ::selection {
   background: none;
 }
 
-trix-editor [data-trix-mutable].attachment__caption-editor:focus::-moz-selection {
+trix-editor .attachment__caption-editor:focus[data-trix-mutable]::-moz-selection {
   background: highlight;
 }
 
-trix-editor [data-trix-mutable].attachment__caption-editor:focus::selection {
+trix-editor .attachment__caption-editor:focus[data-trix-mutable]::selection {
   background: highlight;
 }
 
@@ -1803,6 +1803,10 @@ trix-editor .attachment__metadata .attachment__size {
 }
 
 /* stylelint-disable scss/dollar-variable-empty-line-before */
+:root {
+  --base-timing: ease-in-out;
+}
+
 /* stylelint-enable scss/dollar-variable-empty-line-before */
 fieldset {
   background-color: transparent;
@@ -1862,7 +1866,7 @@ textarea {
   border: 1px solid #dfe0e1;
   border-radius: 4px;
   padding: 0.5em;
-  transition: border-color 250ms ease-in-out;
+  transition: border-color 250ms var(--base-timing);
   width: 100%;
 }
 [type=color]:hover,
@@ -2103,7 +2107,7 @@ a,
 [type=submit]) {
   color: #1976d2;
   text-decoration-skip-ink: auto;
-  transition: color 250ms ease-in-out;
+  transition: color 250ms var(--base-timing);
   /* stylelint-disable selector-no-qualifying-type */
 }
 a:hover,
@@ -2206,7 +2210,7 @@ button,
   line-height: 1;
   padding: 0.75em 1.5em;
   text-decoration: none;
-  transition: background-color 250ms ease-in-out;
+  transition: background-color 250ms var(--base-timing);
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
@@ -2290,7 +2294,7 @@ form.button_to .link {
 .cell-label__sort-indicator svg {
   color: #7b808c;
   height: 13px;
-  transition: transform 250ms ease-in-out;
+  transition: transform 250ms var(--base-timing);
   width: 13px;
 }
 
@@ -2300,7 +2304,7 @@ form.button_to .link {
 .cell-label a {
   color: inherit;
   display: inline-block;
-  transition: color 250ms ease-in-out;
+  transition: color 250ms var(--base-timing);
   width: 100%;
 }
 .cell-label:hover a {
@@ -2498,7 +2502,7 @@ form.button_to .link {
   line-height: 1;
   margin-left: -0.6em;
   padding: 0.6em;
-  transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+  transition: background-color 250ms var(--base-timing), color 250ms var(--base-timing);
 }
 .navigation__link:not(:last-of-type) {
   margin-bottom: 0.75em;
@@ -2566,7 +2570,7 @@ form.button_to .link {
   color: #adb5bd;
   height: 1rem;
   position: absolute;
-  transition: fill 250ms ease-in-out;
+  transition: fill 250ms var(--base-timing);
   width: 1rem;
 }
 .search__clear-icon:hover {
