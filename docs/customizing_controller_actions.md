@@ -125,3 +125,30 @@ def create
   end
 end
 ```
+
+## Validation Contexts
+
+You can customize the context when saving a resource in the controller.  
+For example, with the following settings, regular admins are required to input a name, but super admins can update the resource *without* a name.
+
+```ruby
+# Model
+validates :name, presence: true, on: :save_by_regular_admin
+
+# Controller
+def validation_contexts_on_create(resource)
+  if current_user.super_admin?
+    super + [:save_by_super_admin]
+  else
+    super + [:save_by_regular_admin]
+  end
+end
+
+def validation_contexts_on_update(resource)
+  if current_user.super_admin?
+    super + [:save_by_super_admin]
+  else
+    super + [:save_by_regular_admin]
+  end
+end
+```
