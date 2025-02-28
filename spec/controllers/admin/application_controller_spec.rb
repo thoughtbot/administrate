@@ -234,4 +234,38 @@ RSpec.describe Admin::ApplicationController, type: :controller do
       end
     end
   end
+
+  describe "validation contexts" do
+    render_views
+    controller(Admin::ProductsController) do
+      def validation_contexts_on_create(resource)
+        super + [:some_unclear_situation]
+      end
+
+      def validation_contexts_on_update(resource)
+        super + [:some_unclear_situation]
+      end
+    end
+
+    context "on create" do
+      it "raise a validation error due to custom validation context" do
+        params = attributes_for(:product)
+        post :create, params: {product: params}
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.body).to include("Product meta tag can&#39;t be blank")
+      end
+    end
+
+    context "on update" do
+      it "raise a validation error due to custom validation context" do
+        product = create(:product, product_meta_tag: nil)
+        params = {name: "New Name"}
+        put :update, params: {id: product.to_param, product: params}
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.body).to include("Product meta tag can&#39;t be blank")
+      end
+    end
+  end
 end
