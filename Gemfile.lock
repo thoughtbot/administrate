@@ -117,7 +117,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    cssbundling-rails (1.4.2)
+    cssbundling-rails (1.4.3)
       railties (>= 6.0.0)
     database_cleaner (2.1.0)
       database_cleaner-active_record (>= 2, < 3)
