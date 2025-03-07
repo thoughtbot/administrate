@@ -1,7 +1,5 @@
-GIT
-  remote: https://github.com/nickcharlton/sack_race.git
-  revision: 4e38a69db3d2bb94efdd1bed1bde4866e89fd322
-  branch: initial-implementation
+PATH
+  remote: ../../nickcharlton/sack_race
   specs:
     sack_race (0.1.0)
 

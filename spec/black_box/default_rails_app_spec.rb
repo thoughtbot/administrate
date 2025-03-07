@@ -4,11 +4,29 @@ RSpec.describe "with a Default Rails app" do
   it "works" do
     create_rails_application
 
+    session.run("bundle")
+
     # setup_post_model
     # add_administrate
     # generate_administrate_dashboards
 
-    # start_application
+    # Bundler.with_unbundled_env do
+    #   Dir.chdir session.directory do
+    #     system "bundle" # we need to bundle before we're able to run the server
+    #     process = SackRace::Process.new("bundle exec rails s", {verbose: true})
+
+    #     binding.irb
+    #   end
+    # end
+
+    Bundler.with_unbundled_env do
+      process = SackRace::Process.new("bundle exec rails s", {chdir: session.directory, verbose: true})
+      # process.add_handler(:ready, "Use Ctrl-C to stop\n")
+      # process.start
+
+      # process.wait_for_handler(:ready)
+      binding.irb
+    end
 
     # run_feature_tests
   end

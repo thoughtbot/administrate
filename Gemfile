@@ -38,7 +38,7 @@ group :test do
   gem "formulaic"
   gem "jet_black"
   gem "launchy"
-  gem "sack_race", github: "nickcharlton/sack_race", branch: "initial-implementation"
+  gem "sack_race", path: "../../nickcharlton/sack_race"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "timecop"
