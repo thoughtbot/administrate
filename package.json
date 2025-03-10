@@ -12,7 +12,7 @@
     "jquery": "^3.7.0",
     "sass": "^1.63.6",
     "selectize": "^0.12.6",
-    "trix": "^2.1.4"
+    "trix": "^2.1.12"
   },
   "devDependencies": {
     "@thoughtbot/stylelint-config": "^4.0.0",
