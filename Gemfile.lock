@@ -154,7 +154,7 @@ GEM
       reline
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (1.0.14)
+    i18n-tasks (1.0.15)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -163,6 +163,7 @@ GEM
       parser (>= 3.2.2.1)
       rails-i18n
       rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.8, >= 1.8.1)
       terminal-table (>= 1.5.1)
     image_processing (1.14.0)
       mini_magick (>= 4.9.5, < 6)
@@ -365,8 +366,8 @@ GEM
       lint_roller (~> 1.1)
       rubocop-performance (~> 1.23.0)
     stringio (3.1.5)
-    terminal-table (3.0.2)
-      unicode-display_width (>= 1.1.1, < 3)
+    terminal-table (4.0.0)
+      unicode-display_width (>= 1.1.1, < 4)
     thor (1.3.2)
     timecop (0.9.10)
     timeout (0.4.3)
@@ -374,7 +375,9 @@ GEM
       concurrent-ruby (~> 1.0)
     uglifier (4.2.1)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (2.6.0)
+    unicode-display_width (3.1.4)
+      unicode-emoji (~> 4.0, >= 4.0.4)
+    unicode-emoji (4.0.4)
     uri (1.0.3)
     useragent (0.16.11)
     webmock (3.25.1)
@@ -411,7 +414,7 @@ DEPENDENCIES
   formulaic
   front_matter_parser
   globalid
-  i18n-tasks (= 1.0.14)
+  i18n-tasks (= 1.0.15)
   image_processing
   jsbundling-rails (~> 1.3)
   kaminari-i18n
