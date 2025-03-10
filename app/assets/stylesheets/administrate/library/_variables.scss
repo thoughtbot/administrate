@@ -62,8 +62,11 @@ $flashes: (
 $base-border-color: $grey-1 !default;
 $base-border: 1px solid $base-border-color !default;
 
-// Transitions
-$base-duration: 250ms !default;
-$base-timing: ease-in-out !default;
+
+:root {
+  // Transitions
+  --base-duration: 250ms;
+  --base-timing: ease-in-out;
+}
 
 /* stylelint-enable scss/dollar-variable-empty-line-before */
