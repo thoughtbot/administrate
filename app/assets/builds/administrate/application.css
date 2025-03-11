@@ -1804,6 +1804,7 @@ trix-editor .attachment__metadata .attachment__size {
 
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 :root {
+  --base-border-color-hover: rgb(178.4 179.2 180);
   --base-duration: 250ms;
   --base-timing: ease-in-out;
 }
@@ -1885,7 +1886,7 @@ textarea {
 [type=week]:hover,
 input:not([type]):hover,
 textarea:hover {
-  border-color: #b2b3b4;
+  border-color: var(--base-border-color-hover);
 }
 [type=color]:focus,
 [type=date]:focus,
