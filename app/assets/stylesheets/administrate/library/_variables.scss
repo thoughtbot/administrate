@@ -64,6 +64,10 @@ $base-border: 1px solid $base-border-color !default;
 
 
 :root {
+  // Colors
+  // Eventually: color-mix(in srgb, var(--black) 20%, var(--base-border-color));
+  --base-border-color-hover: rgb(178.4 179.2 180);
+
   // Transitions
   --base-duration: 250ms;
   --base-timing: ease-in-out;
