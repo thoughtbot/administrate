@@ -60,7 +60,7 @@ textarea {
   width: 100%;
 
   &:hover {
-    border-color: mix($black, $base-border-color, 20%);
+    border-color: var(--base-border-color-hover);
   }
 
   &:focus {
