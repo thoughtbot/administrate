@@ -20,15 +20,18 @@ describe Administrate::Field::Polymorphic do
   end
 
   describe "#partial_prefixes" do
-    it "returns a partial based on the page being rendered" do
+    it "returns the partial prefixes based on the field class" do
       page = :show
       field = Administrate::Field::Polymorphic.new(:foo, "hello", page)
 
       prefixes = field.partial_prefixes
 
-      expect(prefixes).to eq(
-        ["fields/polymorphic", "fields/belongs_to", "fields/associative", "fields/base"]
-      )
+      expect(prefixes).to eq([
+        "fields/polymorphic/looks/default", "fields/polymorphic",
+        "fields/belongs_to/looks/default", "fields/belongs_to",
+        "fields/associative/looks/default", "fields/associative",
+        "fields/base/looks/default", "fields/base"
+      ])
     end
   end
 
