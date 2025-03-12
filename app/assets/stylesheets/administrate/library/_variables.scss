@@ -57,9 +57,6 @@ $flashes: (
   "success": $light-green
 ) !default;
 
-// Border
-$base-border: 1px solid var(--base-border-color) !default;
-
 
 :root {
   // Colors
@@ -67,6 +64,7 @@ $base-border: 1px solid var(--base-border-color) !default;
 
   // Border
   --base-border-color: var(--grey-1);
+  --base-border: 1px solid var(--base-border-color);
 
   // Eventually: color-mix(in srgb, var(--black) 20%, var(--base-border-color));
   --base-border-color-hover: rgb(178.4 179.2 180);

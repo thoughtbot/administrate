@@ -23,6 +23,6 @@
 }
 
 .attribute--nested {
-  border: $base-border;
+  border: var(--base-border);
   padding: $small-spacing;
 }

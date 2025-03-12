@@ -33,7 +33,7 @@
 }
 
 .field-unit--nested {
-  border: $base-border;
+  border: var(--base-border);
   margin-left: 7.5%;
   max-width: 60rem;
   padding: $small-spacing;
