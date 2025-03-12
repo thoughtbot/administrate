@@ -1805,6 +1805,7 @@ trix-editor .attachment__metadata .attachment__size {
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 :root {
   --grey-1: #dfe0e1;
+  --base-border-color: var(--grey-1);
   --base-border-color-hover: rgb(178.4 179.2 180);
   --base-duration: 250ms;
   --base-timing: ease-in-out;
@@ -1866,7 +1867,7 @@ input:not([type]),
 textarea {
   appearance: none;
   background-color: #ffffff;
-  border: 1px solid var(--grey-1);
+  border: 1px solid var(--base-border-color);
   border-radius: 4px;
   padding: 0.5em;
   transition: border-color var(--base-duration) var(--base-timing);
@@ -1940,7 +1941,7 @@ textarea:disabled {
 [type=week]:disabled:hover,
 input:not([type]):disabled:hover,
 textarea:disabled:hover {
-  border: 1px solid var(--grey-1);
+  border: 1px solid var(--base-border-color);
 }
 [type=color]::placeholder,
 [type=date]::placeholder,
@@ -2042,7 +2043,7 @@ thead {
 }
 
 tr {
-  border-bottom: 1px solid var(--grey-1);
+  border-bottom: 1px solid var(--base-border-color);
 }
 
 tbody tr:hover {
@@ -2144,7 +2145,7 @@ a.link--danger:hover,
 }
 
 hr {
-  border-bottom: 1px solid var(--grey-1);
+  border-bottom: 1px solid var(--base-border-color);
   border-left: 0;
   border-right: 0;
   border-top: 0;
@@ -2190,7 +2191,7 @@ hr {
 }
 
 .attribute--nested {
-  border: 1px solid var(--grey-1);
+  border: 1px solid var(--base-border-color);
   padding: 0.75em;
 }
 
@@ -2258,7 +2259,7 @@ form.button_to .link {
 
 .button--alt {
   background-color: transparent;
-  border: 1px solid var(--grey-1);
+  border: 1px solid var(--base-border-color);
   border-color: #1976d2;
   color: #1976d2;
 }
@@ -2376,7 +2377,7 @@ form.button_to .link {
 }
 
 .field-unit--nested {
-  border: 1px solid var(--grey-1);
+  border: 1px solid var(--base-border-color);
   margin-left: 7.5%;
   max-width: 60rem;
   padding: 0.75em;
@@ -2483,7 +2484,7 @@ form.button_to .link {
 
 .main-content__header {
   align-items: center;
-  border-bottom: 1px solid var(--grey-1);
+  border-bottom: 1px solid var(--base-border-color);
   display: flex;
 }
 
