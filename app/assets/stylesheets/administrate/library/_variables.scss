@@ -30,7 +30,6 @@ $light-green: #e6efc2 !default;
 $light-blue: #e5edf8 !default;
 
 $grey-0: #f6f7f7 !default;
-$grey-1: #dfe0e1 !default;
 $grey-2: #cfd8dc !default;
 $grey-5: #adb5bd !default;
 $grey-7: #293f54 !default;
@@ -59,12 +58,14 @@ $flashes: (
 ) !default;
 
 // Border
-$base-border-color: $grey-1 !default;
+$base-border-color: var(--grey-1) !default;
 $base-border: 1px solid $base-border-color !default;
 
 
 :root {
   // Colors
+  --grey-1: #dfe0e1;
+
   // Eventually: color-mix(in srgb, var(--black) 20%, var(--base-border-color));
   --base-border-color-hover: rgb(178.4 179.2 180);
 
