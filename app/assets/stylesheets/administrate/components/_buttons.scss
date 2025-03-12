@@ -52,7 +52,7 @@ form.button_to { /* stylelint-disable selector-no-qualifying-type, selector-clas
 
 .button--alt {
   background-color: transparent;
-  border: $base-border;
+  border: var(--base-border);
   border-color: $blue;
   color: $blue;
 }

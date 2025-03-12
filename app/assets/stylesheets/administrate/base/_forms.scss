@@ -53,7 +53,7 @@ input:not([type]),
 textarea {
   appearance: none;
   background-color: $white;
-  border: $base-border;
+  border: var(--base-border);
   border-radius: $base-border-radius;
   padding: 0.5em;
   transition: border-color var(--base-duration) var(--base-timing);
@@ -73,7 +73,7 @@ textarea {
     cursor: not-allowed;
 
     &:hover {
-      border: $base-border;
+      border: var(--base-border);
     }
   }
 

@@ -20,7 +20,7 @@
 
 .main-content__header {
   align-items: center;
-  border-bottom: $base-border;
+  border-bottom: var(--base-border);
   display: flex;
 }
 
