@@ -10,6 +10,14 @@ module Administrate
 
       attr_reader :resource
 
+      # RINSED made :dashboard public added attributes_for
+      attr_reader :dashboard
+
+      def attributes_for(action, attributes)
+        (attributes & attributes(action).map(&:attribute)).map(&method(:attribute_for))
+      end
+      # RINSED END
+
       def attributes(action = nil)
         action =
           case action
@@ -28,8 +36,12 @@ module Administrate
       end
 
       private
+      # RINSED made :dashboard public, added attributes_for
 
-      attr_reader :dashboard
+      def attribute_for(attribute)
+        attribute_field(dashboard, resource, attribute, :form)
+      end
+      # RINSED END
     end
   end
 end

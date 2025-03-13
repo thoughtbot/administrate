@@ -190,6 +190,9 @@ describe Administrate::Order do
       klass: double(reflect_on_association: nil),
       columns_hash: { column.to_s => :column_info },
       table_name: "table_name",
+      # RINSED
+      primary_key: "id",
+      # RINSED END
     )
   end
 
