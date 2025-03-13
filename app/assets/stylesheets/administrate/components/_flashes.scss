@@ -1,20 +1,125 @@
-@each $flash-type, $color in $flashes {
-  .flash-#{$flash-type} {
-    background-color: $color;
-    color: mix($black, $color, 60%);
-    display: block;
-    margin-bottom: $base-spacing * 0.5;
-    padding: $base-spacing * 0.5;
-    text-align: center;
+/* stylelint-disable scss/comment-no-empty */
+// Eventually:
+//
+// .flash {
+//   --flash-background-color: var(--flash-color);
+//   --flash-text-color: color-mix(in srgb, var(--black) 60%, var(--flash-color));
+//   --flash-link-color: color-mix(in srgb, var(--black) 70%, var(--flash-color));
+//   --flash-link-hover-color: color-mix(
+//     in srgb,
+//     var(--black) 90%,
+//     var(--flash-color)
+//   );
+//
+//   background-color: var(--flash-background-color);
+//   color: var(--flash-text-color);
+//   display: block;
+//   margin-bottom: 1em;
+//   padding: 1em;
+//   text-align: center;
+// }
+//
+// .flash a {
+//   color: var(--flash-link-color);
+//   text-decoration: underline;
+// }
+//
+// .flash a:focus,
+// .flash a:hover {
+//   color: var(--flash-link-hover-color);
+// }
+//
+// .flash-alert {
+//   --flash-color: var(--light-yellow);
+// }
+//
+// .flash-error {
+//   --flash-color: var(--light-red);
+// }
+//
+// .flash-notice {
+//   --flash-color: var(--light-blue);
+// }
+//
+// .flash-success {
+//   --flash-color: var(--light-green);
+// }
+/* stylelint-enable scss/comment-no-empty */
 
-    a {
-      color: mix($black, $color, 70%);
-      text-decoration: underline;
+/* stylelint-disable no-descending-specificity */
+.flash-alert {
+  background-color: var(--alert-background-color);
+  color: var(--alert-text-color);
+  display: block;
+  margin-bottom: $base-spacing * 0.5;
+  padding: $base-spacing * 0.5;
+  text-align: center;
 
-      &:focus,
-      &:hover {
-        color: mix($black, $color, 90%);
-      }
+  a {
+    color: var(--alert-link-color);
+    text-decoration: underline;
+
+    &:focus,
+    &:hover {
+      color: var(--alert-link-hover-color);
     }
   }
 }
+
+.flash-error {
+  background-color: var(--error-background-color);
+  color: var(--error-text-color);
+  display: block;
+  margin-bottom: $base-spacing * 0.5;
+  padding: $base-spacing * 0.5;
+  text-align: center;
+
+  a {
+    color: var(--error-link-color);
+    text-decoration: underline;
+
+    &:focus,
+    &:hover {
+      color: var(--error-link-hover-color);
+    }
+  }
+}
+
+.flash-notice {
+  background-color: var(--notice-background-color);
+  color: var(--notice-text-color);
+  display: block;
+  margin-bottom: $base-spacing * 0.5;
+  padding: $base-spacing * 0.5;
+  text-align: center;
+
+  a {
+    color: var(--notice-link-color);
+    text-decoration: underline;
+
+    &:focus,
+    &:hover {
+      color: var(--notice-link-hover-color);
+    }
+  }
+}
+
+.flash-success {
+  background-color: var(--success-background-color);
+  color: var(--success-text-color);
+  display: block;
+  margin-bottom: $base-spacing * 0.5;
+  padding: $base-spacing * 0.5;
+  text-align: center;
+
+  a {
+    color: var(--success-link-color);
+    text-decoration: underline;
+
+    &:focus,
+    &:hover {
+      color: var(--success-link-hover-color);
+    }
+  }
+}
+/* stylelint-enable no-descending-specificity */
