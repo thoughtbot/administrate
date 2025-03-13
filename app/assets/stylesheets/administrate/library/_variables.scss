@@ -24,10 +24,6 @@ $black: #000000 !default;
 
 $blue: #1976d2 !default;
 $red: #d32f2f !default;
-$light-yellow: #fff6bf !default;
-$light-red: #fbe3e4 !default;
-$light-green: #e6efc2 !default;
-$light-blue: #e5edf8 !default;
 
 $grey-0: #f6f7f7 !default;
 $grey-2: #cfd8dc !default;
@@ -49,18 +45,33 @@ $focus-outline-width: 3px;
 $focus-outline: $focus-outline-width solid $focus-outline-color;
 $focus-outline-offset: 1px;
 
-// Flash Colors
-$flashes: (
-  "alert": $light-yellow,
-  "error": $light-red,
-  "notice": $light-blue,
-  "success": $light-green
-) !default;
-
-
 :root {
   // Colors
   --grey-1: #dfe0e1;
+
+  // Flash Colors
+  // Note: all but the light-* colors can go away as soon as we feel like we
+  // can support color-mix. See commented code in `components/_flashes.scss`
+  --light-yellow: #fff6bf;
+  --alert-background-color: var(--light-yellow);
+  --alert-text-color: #66624c;
+  --alert-link-color: #1a1913;
+  --alert-link-hover-color: #1a1913;
+  --light-red: #fbe3e4;
+  --error-background-color: var(--light-red);
+  --error-text-color: #645b5b;
+  --error-link-color: #4b4444;
+  --error-link-hover-color: #191717;
+  --light-blue: #e5edf8;
+  --notice-background-color: var(--light-blue);
+  --notice-text-color: #5c5f63;
+  --notice-link-color: #45474a;
+  --notice-link-hover-color: #171819;
+  --light-green: #e6efc2;
+  --success-background-color: var(--light-green);
+  --success-text-color: #5c604e;
+  --success-link-color: #45483a;
+  --success-link-hover-color: #171813;
 
   // Border
   --base-border-color: var(--grey-1);
