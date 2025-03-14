@@ -33,6 +33,19 @@ describe Administrate::Generators::Views::FieldGenerator, :generator do
       end
     end
 
+    describe "administrate:views:field field_name --look=custom" do
+      it "copies the partials into a custom look directory" do
+        expected_contents = contents_for_field_template(:string, :show)
+
+        run_generator ["string", "--look=custom"]
+        contents = File.read(
+          file("app/views/fields/string/looks/custom/_show.html.erb")
+        )
+
+        expect(contents).to eq(expected_contents)
+      end
+    end
+
     describe "administrate:views:field all" do
       let(:field_types) do
         Dir.entries("app/views/fields").reject { |name| name[0] == "." }

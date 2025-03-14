@@ -2,7 +2,7 @@ require "administrate/base_dashboard"
 
 class PageDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
-    product: Field::BelongsTo,
+    product: Field::BelongsTo.with_options(look: :product_card),
     id: Field::Number,
     title: Field::String,
     body: Field::Text,
@@ -12,6 +12,7 @@ class PageDashboard < Administrate::BaseDashboard
 
   COLLECTION_ATTRIBUTES = %i[
     id
+    product
     title
   ].freeze
 
