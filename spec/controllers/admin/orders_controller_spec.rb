@@ -150,6 +150,7 @@ describe Admin::OrdersController, type: :controller do
         expect(locals[:resources]).to contain_exactly(order1, order3)
         expect(Administrate.deprecator).to have_received(:warn)
           .with(/`resolve_admin` method is deprecated/)
+          .at_least(:once)
       end
     end
 
