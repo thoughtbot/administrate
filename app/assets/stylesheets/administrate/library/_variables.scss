@@ -42,6 +42,9 @@ $action-color: $blue !default;
   --grey-1: #dfe0e1;
   --action-color: var(--blue);
 
+  // Eventually: color-mix(in srgb, var(--black) 20%, var(--action-color))
+  --action-color-active: #145ea8;
+
   // Background Colors
   --base-background-color: var(--grey-0);
 
