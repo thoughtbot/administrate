@@ -45,6 +45,10 @@ $base-background-color: $grey-0 !default;
   --grey-1: #dfe0e1;
   --action-color: var(--blue);
 
+  // Background Colors
+  // Eventually: color-mix(in srgb, var(--black) 5%, var(--base-background-color));
+  --base-background-color-alt: #eaebeb;
+
   // Focus
   --focus-outline-color: rgb(from var(--action-color) r g b / 40%);
   --focus-outline-width: 3px;
