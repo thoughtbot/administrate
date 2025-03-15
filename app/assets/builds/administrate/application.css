@@ -1810,6 +1810,7 @@ trix-editor .attachment__metadata .attachment__size {
   --focus-outline-color: rgb(from var(--action-color) r g b / 40%);
   --focus-outline-width: 3px;
   --focus-outline-offset: 1px;
+  --focus-outline: var(--focus-outline-width) solid var(--focus-outline-color);
   --light-yellow: #fff6bf;
   --alert-background-color: var(--light-yellow);
   --alert-text-color: #66624c;
@@ -2005,7 +2006,7 @@ select {
 [type=radio]:focus,
 [type=file]:focus,
 select:focus {
-  outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  outline: var(--focus-outline);
   outline-offset: var(--focus-outline-offset);
 }
 
@@ -2079,7 +2080,7 @@ tbody tr [role=link] {
   cursor: pointer;
 }
 tbody tr:focus {
-  outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  outline: var(--focus-outline);
   outline-offset: calc(-1 * var(--focus-outline-width));
 }
 
@@ -2152,7 +2153,7 @@ a:focus,
 [type=button],
 [type=reset],
 [type=submit]):focus {
-  outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  outline: var(--focus-outline);
   outline-offset: var(--focus-outline-offset);
 }
 a.link--danger,
@@ -2266,7 +2267,7 @@ button:not(.link):focus,
 [type=reset]:not(.link):focus,
 [type=submit]:not(.link):focus,
 .button:not(.link):focus {
-  outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  outline: var(--focus-outline);
   outline-offset: var(--focus-outline-offset);
 }
 button:not(.link):disabled:hover,
