@@ -1805,6 +1805,7 @@ trix-editor .attachment__metadata .attachment__size {
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 :root {
   --blue: #1976d2;
+  --grey-0: #f6f7f7;
   --grey-1: #dfe0e1;
   --action-color: var(--blue);
   --base-background-color-alt: #eaebeb;
@@ -2012,7 +2013,7 @@ select:focus {
 }
 
 html {
-  background-color: #f6f7f7;
+  background-color: var(--grey-0);
   box-sizing: border-box;
 }
 
@@ -2075,7 +2076,7 @@ tr {
 }
 
 tbody tr:hover {
-  background-color: #f6f7f7;
+  background-color: var(--grey-0);
 }
 tbody tr [role=link] {
   cursor: pointer;

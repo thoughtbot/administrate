@@ -25,7 +25,6 @@ $black: #000000 !default;
 $blue: #1976d2 !default;
 $red: #d32f2f !default;
 
-$grey-0: #f6f7f7 !default;
 $grey-2: #cfd8dc !default;
 $grey-5: #adb5bd !default;
 $grey-7: #293f54 !default;
@@ -37,11 +36,12 @@ $base-font-color: $grey-7 !default;
 $action-color: $blue !default;
 
 // Background Colors
-$base-background-color: $grey-0 !default;
+$base-background-color: var(--grey-0) !default;
 
 :root {
   // Colors
   --blue: #1976d2;
+  --grey-0: #f6f7f7;
   --grey-1: #dfe0e1;
   --action-color: var(--blue);
 
