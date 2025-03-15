@@ -21,7 +21,7 @@ $navigation-link-padding: 0.6em;
   }
 
   &:hover {
-    background-color: mix($black, $base-background-color, 5%);
+    background-color: var(--base-background-color-alt);
     border-radius: $base-border-radius;
     color: $base-font-color;
   }

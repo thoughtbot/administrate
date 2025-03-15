@@ -1807,6 +1807,7 @@ trix-editor .attachment__metadata .attachment__size {
   --blue: #1976d2;
   --grey-1: #dfe0e1;
   --action-color: var(--blue);
+  --base-background-color-alt: #eaebeb;
   --focus-outline-color: rgb(from var(--action-color) r g b / 40%);
   --focus-outline-width: 3px;
   --focus-outline-offset: 1px;
@@ -2543,7 +2544,7 @@ form.button_to .link {
   margin-bottom: 0.75em;
 }
 .navigation__link:hover {
-  background-color: #eaebeb;
+  background-color: var(--base-background-color-alt);
   border-radius: 4px;
   color: #293f54;
 }
