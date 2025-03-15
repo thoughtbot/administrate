@@ -102,6 +102,6 @@ select {
 select {
   &:focus {
     outline: $focus-outline;
-    outline-offset: $focus-outline-offset;
+    outline-offset: var(--focus-outline-offset);
   }
 }
