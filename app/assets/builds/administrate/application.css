@@ -1808,6 +1808,7 @@ trix-editor .attachment__metadata .attachment__size {
   --grey-0: #f6f7f7;
   --grey-1: #dfe0e1;
   --action-color: var(--blue);
+  --action-color-active: #145ea8;
   --base-background-color: var(--grey-0);
   --base-background-color-alt: #eaebeb;
   --focus-outline-color: rgb(from var(--action-color) r g b / 40%);
@@ -2149,7 +2150,7 @@ a:hover,
 [type=button],
 [type=reset],
 [type=submit]):hover {
-  color: #13599e;
+  color: var(--action-color-active);
 }
 a:focus,
 .link:is(button,
@@ -2262,7 +2263,7 @@ button:not(.link):hover,
 [type=reset]:not(.link):hover,
 [type=submit]:not(.link):hover,
 .button:not(.link):hover {
-  background-color: #145ea8;
+  background-color: var(--action-color-active);
   color: #ffffff;
 }
 button:not(.link):focus,
