@@ -28,7 +28,7 @@ tbody tr {
   }
 
   &:focus {
-    outline: $focus-outline;
+    outline: var(--focus-outline);
     outline-offset: calc(-1 * var(--focus-outline-width));
   }
 }

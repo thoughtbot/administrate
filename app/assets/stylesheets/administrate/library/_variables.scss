@@ -39,9 +39,6 @@ $action-color: $blue !default;
 // Background Colors
 $base-background-color: $grey-0 !default;
 
-// Focus
-$focus-outline: var(--focus-outline-width) solid var(--focus-outline-color);
-
 :root {
   // Colors
   --blue: #1976d2;
@@ -52,6 +49,7 @@ $focus-outline: var(--focus-outline-width) solid var(--focus-outline-color);
   --focus-outline-color: rgb(from var(--action-color) r g b / 40%);
   --focus-outline-width: 3px;
   --focus-outline-offset: 1px;
+  --focus-outline: var(--focus-outline-width) solid var(--focus-outline-color);
 
   // Flash Colors
   // Note: all but the light-* colors can go away as soon as we feel like we
