@@ -20,7 +20,7 @@ tr {
 
 tbody tr {
   &:hover {
-    background-color: $base-background-color;
+    background-color: var(--base-background-color);
   }
 
   [role="link"] {
