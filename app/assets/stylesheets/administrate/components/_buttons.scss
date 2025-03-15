@@ -28,7 +28,7 @@ button,
   }
 
   &:not(.link):hover {
-    background-color: mix($black, $action-color, 20%);
+    background-color: var(--action-color-active);
     color: $white;
   }
 

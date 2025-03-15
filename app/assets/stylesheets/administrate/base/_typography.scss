@@ -33,7 +33,7 @@ a,
   transition: color var(--base-duration) var(--base-timing);
 
   &:hover {
-    color: mix($black, $action-color, 25%);
+    color: var(--action-color-active);
   }
 
   &:focus {
