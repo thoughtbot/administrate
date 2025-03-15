@@ -37,7 +37,7 @@ a,
   }
 
   &:focus {
-    outline: $focus-outline;
+    outline: var(--focus-outline);
     outline-offset: var(--focus-outline-offset);
   }
   /* stylelint-disable selector-no-qualifying-type */
