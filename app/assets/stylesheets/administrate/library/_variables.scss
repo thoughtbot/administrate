@@ -40,15 +40,17 @@ $action-color: $blue !default;
 $base-background-color: $grey-0 !default;
 
 // Focus
-$focus-outline-color: transparentize($action-color, 0.4);
 $focus-outline-width: 3px;
-$focus-outline: $focus-outline-width solid $focus-outline-color;
+$focus-outline: $focus-outline-width solid var(--focus-outline-color);
 
 :root {
   // Colors
+  --blue: #1976d2;
   --grey-1: #dfe0e1;
+  --action-color: var(--blue);
 
   // Focus
+  --focus-outline-color: rgb(from var(--action-color) r g b / 40%);
   --focus-outline-offset: 1px;
 
   // Flash Colors
