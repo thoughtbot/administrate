@@ -35,9 +35,6 @@ $hint-grey: #7b808c !default;
 $base-font-color: $grey-7 !default;
 $action-color: $blue !default;
 
-// Background Colors
-$base-background-color: var(--grey-0) !default;
-
 :root {
   // Colors
   --blue: #1976d2;
@@ -46,6 +43,8 @@ $base-background-color: var(--grey-0) !default;
   --action-color: var(--blue);
 
   // Background Colors
+  --base-background-color: var(--grey-0);
+
   // Eventually: color-mix(in srgb, var(--black) 5%, var(--base-background-color));
   --base-background-color-alt: #eaebeb;
 
