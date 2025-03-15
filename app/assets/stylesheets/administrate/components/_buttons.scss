@@ -17,7 +17,7 @@ button,
   line-height: 1;
   padding: $small-spacing $base-spacing;
   text-decoration: none;
-  transition: background-color $base-duration $base-timing;
+  transition: background-color var(--base-duration) var(--base-timing);
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
@@ -33,8 +33,8 @@ button,
   }
 
   &:not(.link):focus {
-    outline: $focus-outline;
-    outline-offset: $focus-outline-offset;
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
   }
 
   &:not(.link):disabled:hover {
@@ -44,7 +44,7 @@ button,
 
 .button--alt {
   background-color: transparent;
-  border: $base-border;
+  border: var(--base-border);
   border-color: $blue;
   color: $blue;
 }

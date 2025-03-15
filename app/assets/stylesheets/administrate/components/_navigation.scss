@@ -13,15 +13,15 @@ $navigation-link-padding: 0.6em;
   line-height: 1;
   margin-left: -($navigation-link-padding);
   padding: $navigation-link-padding;
-  transition: background-color $base-duration $base-timing,
-              color $base-duration $base-timing;
+  transition: background-color var(--base-duration) var(--base-timing),
+              color var(--base-duration) var(--base-timing);
 
   &:not(:last-of-type) {
     margin-bottom: $small-spacing;
   }
 
   &:hover {
-    background-color: mix($black, $base-background-color, 5%);
+    background-color: var(--base-background-color-alt);
     border-radius: $base-border-radius;
     color: $base-font-color;
   }

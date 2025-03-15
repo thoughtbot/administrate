@@ -53,14 +53,14 @@ input:not([type]),
 textarea {
   appearance: none;
   background-color: $white;
-  border: $base-border;
+  border: var(--base-border);
   border-radius: $base-border-radius;
   padding: 0.5em;
-  transition: border-color $base-duration $base-timing;
+  transition: border-color var(--base-duration) var(--base-timing);
   width: 100%;
 
   &:hover {
-    border-color: mix($black, $base-border-color, 20%);
+    border-color: var(--base-border-color-hover);
   }
 
   &:focus {
@@ -73,7 +73,7 @@ textarea {
     cursor: not-allowed;
 
     &:hover {
-      border: $base-border;
+      border: var(--base-border);
     }
   }
 
@@ -101,7 +101,7 @@ select {
 [type="file"],
 select {
   &:focus {
-    outline: $focus-outline;
-    outline-offset: $focus-outline-offset;
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
   }
 }
