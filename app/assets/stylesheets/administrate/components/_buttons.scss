@@ -34,7 +34,7 @@ button,
 
   &:not(.link):focus {
     outline: $focus-outline;
-    outline-offset: $focus-outline-offset;
+    outline-offset: var(--focus-outline-offset);
   }
 
   &:not(.link):disabled:hover {

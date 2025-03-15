@@ -1805,6 +1805,7 @@ trix-editor .attachment__metadata .attachment__size {
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 :root {
   --grey-1: #dfe0e1;
+  --focus-outline-offset: 1px;
   --light-yellow: #fff6bf;
   --alert-background-color: var(--light-yellow);
   --alert-text-color: #66624c;
@@ -2001,7 +2002,7 @@ select {
 [type=file]:focus,
 select:focus {
   outline: 3px solid rgba(25, 118, 210, 0.6);
-  outline-offset: 1px;
+  outline-offset: var(--focus-outline-offset);
 }
 
 html {
@@ -2148,7 +2149,7 @@ a:focus,
 [type=reset],
 [type=submit]):focus {
   outline: 3px solid rgba(25, 118, 210, 0.6);
-  outline-offset: 1px;
+  outline-offset: var(--focus-outline-offset);
 }
 a.link--danger,
 .link:is(button,
@@ -2262,7 +2263,7 @@ button:not(.link):focus,
 [type=submit]:not(.link):focus,
 .button:not(.link):focus {
   outline: 3px solid rgba(25, 118, 210, 0.6);
-  outline-offset: 1px;
+  outline-offset: var(--focus-outline-offset);
 }
 button:not(.link):disabled:hover,
 [type=button]:not(.link):disabled:hover,
