@@ -29,7 +29,7 @@ tbody tr {
 
   &:focus {
     outline: $focus-outline;
-    outline-offset: -($focus-outline-width);
+    outline-offset: calc(-1 * var(--focus-outline-width));
   }
 }
 
