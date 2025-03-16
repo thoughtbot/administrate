@@ -1805,10 +1805,13 @@ trix-editor .attachment__metadata .attachment__size {
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 :root {
   --blue: #1976d2;
+  --red: #d32f2f;
   --grey-0: #f6f7f7;
   --grey-1: #dfe0e1;
   --grey-5: #adb5bd;
   --grey-7: #293f54;
+  --danger: var(--red);
+  --danger-color-active: #a92626;
   --hint-grey: #7b808c;
   --base-font-color: var(--grey-7);
   --action-color: var(--blue);
@@ -2176,7 +2179,7 @@ a.link--danger:hover,
 [type=button],
 [type=reset],
 [type=submit]).link--danger:hover {
-  color: #a92626;
+  color: var(--danger-color-active);
 }
 
 hr {
@@ -2303,11 +2306,11 @@ form.button_to .link {
   background-color: #d32f2f;
 }
 .button--danger:not(.link):hover {
-  background-color: #a92626;
+  background-color: var(--danger-color-active);
   color: #ffffff;
 }
 .button--danger:not(.link):disabled:hover {
-  background-color: #a92626;
+  background-color: var(--danger-color-active);
 }
 
 .button--nav {

@@ -46,7 +46,7 @@ a,
   }
 
   &.link--danger:hover {
-    color: mix($black, $red, 20%);
+    color: var(--danger-color-active);
   }
 }
 

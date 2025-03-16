@@ -61,12 +61,12 @@ form.button_to { /* stylelint-disable selector-no-qualifying-type, selector-clas
   background-color: $red;
 
   &:not(.link):hover {
-    background-color: mix($black, $red, 20%);
+    background-color: var(--danger-color-active);
     color: $white;
   }
 
   &:not(.link):disabled:hover {
-    background-color: mix($black, $red, 20%);
+    background-color: var(--danger-color-active);
   }
 }
 

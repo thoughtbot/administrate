@@ -28,10 +28,15 @@ $red: #d32f2f !default;
 :root {
   // Colors
   --blue: #1976d2;
+  --red: #d32f2f;
   --grey-0: #f6f7f7;
   --grey-1: #dfe0e1;
   --grey-5: #adb5bd;
   --grey-7: #293f54;
+  --danger: var(--red);
+
+  // Eventually: color-mix(in srgb, var(--black) 20%, var(--danger))
+  --danger-color-active: #a92626;
   --hint-grey: #7b808c;
   --base-font-color: var(--grey-7);
   --action-color: var(--blue);
