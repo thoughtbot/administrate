@@ -13,7 +13,7 @@ button,
   font-family: var(--base-font-family);
   font-size: var(--base-font-size);
   -webkit-font-smoothing: antialiased;
-  font-weight: $bold-font-weight;
+  font-weight: var(--bold-font-weight);
   line-height: 1;
   padding: $small-spacing $base-spacing;
   text-decoration: none;
