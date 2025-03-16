@@ -3,7 +3,7 @@
   margin-left: 5px;
 
   svg {
-    color: $hint-grey;
+    color: var(--hint-grey);
     height: 13px;
     transition: transform var(--base-duration) var(--base-timing);
     width: 13px;
