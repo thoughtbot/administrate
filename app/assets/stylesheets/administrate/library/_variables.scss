@@ -18,11 +18,9 @@ $base-border-radius: 4px !default;
 $base-spacing: $base-line-height * 1em !default;
 $small-spacing: $base-spacing * 0.5 !default;
 
-// Colors
-$white: #ffffff !default;
-
 :root {
   // Colors
+  --white: #ffffff;
   --black: #000000;
   --blue: #1976d2;
   --red: #d32f2f;
