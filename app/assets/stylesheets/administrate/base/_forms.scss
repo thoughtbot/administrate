@@ -20,7 +20,7 @@ label {
 input,
 select {
   display: block;
-  font-family: $base-font-family;
+  font-family: var(--base-font-family);
   font-size: $base-font-size;
 }
 
@@ -28,7 +28,7 @@ input,
 select,
 textarea {
   display: block;
-  font-family: $base-font-family;
+  font-family: var(--base-font-family);
   font-size: 16px;
 }
 

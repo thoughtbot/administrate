@@ -1,6 +1,6 @@
 body {
   color: var(--base-font-color);
-  font-family: $base-font-family;
+  font-family: var(--base-font-family);
   font-size: $base-font-size;
   line-height: $base-line-height;
 }

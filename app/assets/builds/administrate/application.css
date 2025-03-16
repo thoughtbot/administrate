@@ -1804,6 +1804,9 @@ trix-editor .attachment__metadata .attachment__size {
 
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 :root {
+  --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
+  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
   --white: #ffffff;
   --black: #000000;
   --blue: #1976d2;
@@ -1877,7 +1880,7 @@ label {
 input,
 select {
   display: block;
-  font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--base-font-family);
   font-size: 1em;
 }
 
@@ -1885,7 +1888,7 @@ input,
 select,
 textarea {
   display: block;
-  font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--base-font-family);
   font-size: 16px;
 }
 
@@ -2126,7 +2129,7 @@ td img {
 
 body {
   color: var(--base-font-color);
-  font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--base-font-family);
   font-size: 1em;
   line-height: 1.5;
 }
@@ -2137,7 +2140,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--base-font-family);
   font-size: 1em;
   line-height: 1.2;
   margin: 0;
@@ -2250,7 +2253,7 @@ button,
   color: var(--white);
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--base-font-family);
   font-size: 1em;
   -webkit-font-smoothing: antialiased;
   font-weight: 700;
