@@ -15,7 +15,7 @@ $search-icon-size: 1rem;
 }
 
 .search__eyeglass-icon {
-  fill: $grey-7;
+  fill: var(--grey-7);
   height: $search-icon-size;
   left: $search-icon-size;
   position: absolute;
