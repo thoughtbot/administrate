@@ -1804,6 +1804,7 @@ trix-editor .attachment__metadata .attachment__size {
 
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 :root {
+  --black: #000000;
   --blue: #1976d2;
   --red: #d32f2f;
   --grey-0: #f6f7f7;
@@ -1844,6 +1845,8 @@ trix-editor .attachment__metadata .attachment__size {
   --success-link-hover-color: #171813;
   --base-border-color: var(--grey-1);
   --base-border: 1px solid var(--base-border-color);
+  --main-content-shadow: 0 0 6px 0 rgb(from var(--black) r g b / 12%),
+                         0 2px 2px rgb(from var(--black) r g b / 20%);
   --base-border-color-hover: rgb(178.4 179.2 180);
   --base-duration: 250ms;
   --base-timing: ease-in-out;
@@ -2483,7 +2486,7 @@ button:not(.link):disabled:hover,
 .main-content {
   background-color: #ffffff;
   border-radius: 4px;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--main-content-shadow);
   flex: 1 1 100%;
   min-width: 800px;
   padding-bottom: 10vh;
