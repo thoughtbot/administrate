@@ -21,7 +21,7 @@ input,
 select {
   display: block;
   font-family: var(--base-font-family);
-  font-size: $base-font-size;
+  font-size: var(--base-font-size);
 }
 
 input,

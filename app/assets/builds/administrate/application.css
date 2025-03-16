@@ -1808,6 +1808,7 @@ trix-editor .attachment__metadata .attachment__size {
   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
   --heading-font-family: var(--base-font-family);
+  --base-font-size: 1em;
   --white: #ffffff;
   --black: #000000;
   --blue: #1976d2;
@@ -1882,7 +1883,7 @@ input,
 select {
   display: block;
   font-family: var(--base-font-family);
-  font-size: 1em;
+  font-size: var(--base-font-size);
 }
 
 input,
@@ -2131,7 +2132,7 @@ td img {
 body {
   color: var(--base-font-color);
   font-family: var(--base-font-family);
-  font-size: 1em;
+  font-size: var(--base-font-size);
   line-height: 1.5;
 }
 
@@ -2142,7 +2143,7 @@ h4,
 h5,
 h6 {
   font-family: var(--heading-font-family);
-  font-size: 1em;
+  font-size: var(--base-font-size);
   line-height: 1.2;
   margin: 0;
 }
@@ -2255,7 +2256,7 @@ button,
   cursor: pointer;
   display: inline-block;
   font-family: var(--base-font-family);
-  font-size: 1em;
+  font-size: var(--base-font-size);
   -webkit-font-smoothing: antialiased;
   font-weight: 700;
   line-height: 1;
