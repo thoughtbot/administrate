@@ -28,5 +28,5 @@ $navigation-link-padding: 0.6em;
 }
 
 .navigation__link--active {
-  font-weight: $bold-font-weight;
+  font-weight: var(--bold-font-weight);
 }

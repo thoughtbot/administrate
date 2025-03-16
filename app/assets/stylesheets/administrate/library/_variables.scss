@@ -1,7 +1,5 @@
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 
-$bold-font-weight: 700 !default;
-
 $base-line-height: 1.5 !default;
 $heading-line-height: 1.2 !default;
 
@@ -17,6 +15,7 @@ $small-spacing: $base-spacing * 0.5 !default;
   sans-serif;
   --heading-font-family: var(--base-font-family);
   --base-font-size: 1em;
+  --bold-font-weight: 700;
 
   // Colors
   --white: #ffffff;
