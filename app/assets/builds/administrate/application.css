@@ -2292,8 +2292,8 @@ button:not(.link):disabled:hover,
 .button--alt {
   background-color: transparent;
   border: var(--base-border);
-  border-color: #1976d2;
-  color: #1976d2;
+  border-color: var(--action-color);
+  color: var(--action-color);
 }
 
 .button--danger {
