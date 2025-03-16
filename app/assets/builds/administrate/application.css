@@ -1808,6 +1808,7 @@ trix-editor .attachment__metadata .attachment__size {
   --blue: #1976d2;
   --red: #d32f2f;
   --grey-0: #f6f7f7;
+  --grey-1: #f2f2f2;
   --grey-2: #dfe0e1;
   --grey-5: #adb5bd;
   --grey-7: #293f54;
@@ -1964,7 +1965,7 @@ textarea:focus {
 [type=week]:disabled,
 input:not([type]):disabled,
 textarea:disabled {
-  background-color: #f2f2f2;
+  background-color: var(--grey-1);
   cursor: not-allowed;
 }
 [type=color]:disabled:hover,
