@@ -42,7 +42,7 @@ a,
   }
   /* stylelint-disable selector-no-qualifying-type */
   &.link--danger {
-    color: $red;
+    color: var(--danger-color);
   }
 
   &.link--danger:hover {
