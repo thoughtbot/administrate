@@ -50,7 +50,7 @@ button,
 }
 
 .button--danger {
-  background-color: $red;
+  background-color: var(--danger-color);
 
   &:not(.link):hover {
     background-color: var(--danger-color-active);
