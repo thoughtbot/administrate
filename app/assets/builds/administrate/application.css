@@ -1807,6 +1807,7 @@ trix-editor .attachment__metadata .attachment__size {
   --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
+  --heading-font-family: var(--base-font-family);
   --white: #ffffff;
   --black: #000000;
   --blue: #1976d2;
@@ -2140,7 +2141,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--base-font-family);
+  font-family: var(--heading-font-family);
   font-size: 1em;
   line-height: 1.2;
   margin: 0;
