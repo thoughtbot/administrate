@@ -33,7 +33,7 @@ $search-icon-size: 1rem;
 }
 
 .search__clear-icon {
-  color: $grey-5;
+  color: var(--grey-5);
   height: $search-icon-size;
   position: absolute;
   transition: fill var(--base-duration) var(--base-timing);
@@ -49,7 +49,7 @@ $search-icon-size: 1rem;
   margin-right: 2rem;
 
   svg {
-    color: $grey-5;
+    color: var(--grey-5);
     height: 24px;
     width: 24px;
 
