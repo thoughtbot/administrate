@@ -50,7 +50,7 @@
 
 .field-unit--required {
   label::after {
-    color: $red;
+    color: var(--red);
     content: " *";
   }
 }

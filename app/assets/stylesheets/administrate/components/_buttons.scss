@@ -58,7 +58,7 @@ form.button_to { /* stylelint-disable selector-no-qualifying-type, selector-clas
 }
 
 .button--danger {
-  background-color: $red;
+  background-color: var(--danger-color);
 
   &:not(.link):hover {
     background-color: var(--danger-color-active);
