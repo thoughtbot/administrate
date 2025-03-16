@@ -1,10 +1,7 @@
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 
 // Typography
-$base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
-  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif !default;
-$heading-font-family: $base-font-family !default;
+$heading-font-family: var(--base-font-family) !default;
 
 $base-font-size: 1em !default;
 
@@ -19,6 +16,11 @@ $base-spacing: $base-line-height * 1em !default;
 $small-spacing: $base-spacing * 0.5 !default;
 
 :root {
+  // Typography
+  --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
+  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+
   // Colors
   --white: #ffffff;
   --black: #000000;

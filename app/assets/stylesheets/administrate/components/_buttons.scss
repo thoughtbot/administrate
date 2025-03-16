@@ -10,7 +10,7 @@ button,
   color: var(--white);
   cursor: pointer;
   display: inline-block;
-  font-family: $base-font-family;
+  font-family: var(--base-font-family);
   font-size: $base-font-size;
   -webkit-font-smoothing: antialiased;
   font-weight: $bold-font-weight;
