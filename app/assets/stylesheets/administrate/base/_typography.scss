@@ -28,7 +28,7 @@ a,
   [type="reset"],
   [type="submit"]
 ) {
-  color: $action-color;
+  color: var(--action-color);
   text-decoration-skip-ink: auto;
   transition: color var(--base-duration) var(--base-timing);
 

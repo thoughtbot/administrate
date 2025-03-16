@@ -64,7 +64,7 @@ textarea {
   }
 
   &:focus {
-    border-color: $action-color;
+    border-color: var(--action-color);
     outline: none;
   }
 
