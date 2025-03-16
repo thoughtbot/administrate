@@ -40,7 +40,7 @@ $search-icon-size: 1rem;
   width: $search-icon-size;
 
   &:hover {
-    color: $action-color;
+    color: var(--action-color);
   }
 }
 
@@ -54,7 +54,7 @@ $search-icon-size: 1rem;
     width: 24px;
 
     &:hover {
-      color: $action-color;
+      color: var(--action-color);
     }
   }
 }
