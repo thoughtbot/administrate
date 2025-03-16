@@ -4,7 +4,7 @@ button,
 [type="submit"],
 .button {
   appearance: none;
-  background-color: $action-color;
+  background-color: var(--action-color);
   border: 0;
   border-radius: $base-border-radius;
   color: $white;
@@ -38,7 +38,7 @@ button,
   }
 
   &:not(.link):disabled:hover {
-    background-color: $action-color;
+    background-color: var(--action-color);
   }
 }
 

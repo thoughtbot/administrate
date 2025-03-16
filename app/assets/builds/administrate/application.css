@@ -1936,7 +1936,7 @@ textarea:hover {
 [type=week]:focus,
 input:not([type]):focus,
 textarea:focus {
-  border-color: #1976d2;
+  border-color: var(--action-color);
   outline: none;
 }
 [type=color]:disabled,
@@ -2140,7 +2140,7 @@ a,
 [type=button],
 [type=reset],
 [type=submit]) {
-  color: #1976d2;
+  color: var(--action-color);
   text-decoration-skip-ink: auto;
   transition: color var(--base-duration) var(--base-timing);
   /* stylelint-disable selector-no-qualifying-type */
@@ -2232,7 +2232,7 @@ button,
 [type=submit],
 .button {
   appearance: none;
-  background-color: #1976d2;
+  background-color: var(--action-color);
   border: 0;
   border-radius: 4px;
   color: #ffffff;
@@ -2279,7 +2279,7 @@ button:not(.link):disabled:hover,
 [type=reset]:not(.link):disabled:hover,
 [type=submit]:not(.link):disabled:hover,
 .button:not(.link):disabled:hover {
-  background-color: #1976d2;
+  background-color: var(--action-color);
 }
 
 .button--alt {
@@ -2325,10 +2325,10 @@ button:not(.link):disabled:hover,
   width: 100%;
 }
 .cell-label:hover a {
-  color: #1976d2;
+  color: var(--action-color);
 }
 .cell-label:hover svg {
-  fill: #1976d2;
+  fill: var(--action-color);
   transform: rotate(180deg);
 }
 
@@ -2589,7 +2589,7 @@ button:not(.link):disabled:hover,
   width: 1rem;
 }
 .search__clear-icon:hover {
-  fill: #1976d2;
+  fill: var(--action-color);
 }
 
 /*# sourceMappingURL=application.css.map */
