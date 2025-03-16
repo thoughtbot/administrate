@@ -2203,6 +2203,7 @@ trix-editor .attachment__metadata .attachment__size {
   sans-serif;
   --heading-font-family: var(--base-font-family);
   --base-font-size: 1em;
+  --bold-font-weight: 700;
   --white: #ffffff;
   --black: #000000;
   --blue: #1976d2;
@@ -2262,14 +2263,14 @@ fieldset {
 }
 
 legend {
-  font-weight: 700;
+  font-weight: var(--bold-font-weight);
   margin: 0;
   padding: 0;
 }
 
 label {
   display: block;
-  font-weight: 700;
+  font-weight: var(--bold-font-weight);
   margin: 0;
 }
 
@@ -2462,7 +2463,7 @@ dl {
   margin-bottom: 0.75em;
 }
 dl dt {
-  font-weight: 700;
+  font-weight: var(--bold-font-weight);
   margin-top: 0.75em;
 }
 dl dd {
@@ -2481,7 +2482,7 @@ table a {
 }
 
 thead {
-  font-weight: 700;
+  font-weight: var(--bold-font-weight);
 }
 
 tr {
@@ -2652,7 +2653,7 @@ button,
   font-family: var(--base-font-family);
   font-size: var(--base-font-size);
   -webkit-font-smoothing: antialiased;
-  font-weight: 700;
+  font-weight: var(--bold-font-weight);
   line-height: 1;
   padding: 0.75em 1.5em;
   text-decoration: none;
@@ -2763,7 +2764,7 @@ form.button_to .link {
 
 .cell-label--asc,
 .cell-label--desc {
-  font-weight: 700;
+  font-weight: var(--bold-font-weight);
 }
 
 .cell-label__sort-indicator--desc {
@@ -2809,7 +2810,7 @@ form.button_to .link {
   margin-left: 2rem;
 }
 .field-unit__field .optgroup-header {
-  font-weight: 700;
+  font-weight: var(--bold-font-weight);
 }
 
 .field-unit__hint {
@@ -2964,7 +2965,7 @@ form.button_to .link {
 }
 
 .navigation__link--active {
-  font-weight: 700;
+  font-weight: var(--bold-font-weight);
 }
 
 .pagination {
@@ -2981,7 +2982,7 @@ form.button_to .link {
   margin: 0.75em;
 }
 .pagination .current {
-  font-weight: 700;
+  font-weight: var(--bold-font-weight);
 }
 
 .search {

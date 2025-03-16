@@ -11,7 +11,7 @@ table {
 }
 
 thead {
-  font-weight: $bold-font-weight;
+  font-weight: var(--bold-font-weight);
 }
 
 tr {
