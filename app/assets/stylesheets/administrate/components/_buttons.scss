@@ -53,12 +53,12 @@ button,
   background-color: $red;
 
   &:not(.link):hover {
-    background-color: mix($black, $red, 20%);
+    background-color: var(--danger-color-active);
     color: $white;
   }
 
   &:not(.link):disabled:hover {
-    background-color: mix($black, $red, 20%);
+    background-color: var(--danger-color-active);
   }
 }
 
