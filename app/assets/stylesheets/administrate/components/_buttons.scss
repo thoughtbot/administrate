@@ -7,7 +7,7 @@ button,
   background-color: var(--action-color);
   border: 0;
   border-radius: $base-border-radius;
-  color: $white;
+  color: var(--white);
   cursor: pointer;
   display: inline-block;
   font-family: $base-font-family;
@@ -29,7 +29,7 @@ button,
 
   &:not(.link):hover {
     background-color: var(--action-color-active);
-    color: $white;
+    color: var(--white);
   }
 
   &:not(.link):focus {
@@ -62,7 +62,7 @@ form.button_to { /* stylelint-disable selector-no-qualifying-type, selector-clas
 
   &:not(.link):hover {
     background-color: var(--danger-color-active);
-    color: $white;
+    color: var(--white);
   }
 
   &:not(.link):disabled:hover {
