@@ -8,7 +8,7 @@ $navigation-link-padding: 0.6em;
 
 .navigation__link {
   background-color: transparent;
-  color: $base-font-color;
+  color: var(--base-font-color);
   display: block;
   line-height: 1;
   margin-left: -($navigation-link-padding);
@@ -23,7 +23,7 @@ $navigation-link-padding: 0.6em;
   &:hover {
     background-color: var(--base-background-color-alt);
     border-radius: $base-border-radius;
-    color: $base-font-color;
+    color: var(--base-font-color);
   }
 }
 
