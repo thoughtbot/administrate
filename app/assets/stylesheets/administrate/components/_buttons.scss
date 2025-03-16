@@ -11,7 +11,7 @@ button,
   cursor: pointer;
   display: inline-block;
   font-family: var(--base-font-family);
-  font-size: $base-font-size;
+  font-size: var(--base-font-size);
   -webkit-font-smoothing: antialiased;
   font-weight: $bold-font-weight;
   line-height: 1;

@@ -1,7 +1,7 @@
 body {
   color: var(--base-font-color);
   font-family: var(--base-font-family);
-  font-size: $base-font-size;
+  font-size: var(--base-font-size);
   line-height: $base-line-height;
 }
 
@@ -12,7 +12,7 @@ h4,
 h5,
 h6 {
   font-family: var(--heading-font-family);
-  font-size: $base-font-size;
+  font-size: var(--base-font-size);
   line-height: $heading-line-height;
   margin: 0;
 }
