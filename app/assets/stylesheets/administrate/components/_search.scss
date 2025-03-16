@@ -60,8 +60,8 @@ $search-icon-size: 1rem;
 }
 
 .search__tooltip-popover {
-  background-color: $blue;
-  border-color: $blue;
+  background-color: var(--blue);
+  border-color: var(--blue);
   border-radius: $base-border-radius;
   color: $white;
   padding: 2rem;

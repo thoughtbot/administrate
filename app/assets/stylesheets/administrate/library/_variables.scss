@@ -24,6 +24,7 @@ $black: #000000 !default;
 
 :root {
   // Colors
+  --black: #000000;
   --blue: #1976d2;
   --red: #d32f2f;
   --grey-0: #f6f7f7;
@@ -80,6 +81,8 @@ $black: #000000 !default;
   // Border
   --base-border-color: var(--grey-1);
   --base-border: 1px solid var(--base-border-color);
+  --main-content-shadow: 0 0 6px 0 rgb(from var(--black) r g b / 12%),
+                         0 2px 2px rgb(from var(--black) r g b / 20%);
 
   // Eventually: color-mix(in srgb, var(--black) 20%, var(--base-border-color));
   --base-border-color-hover: rgb(178.4 179.2 180);
