@@ -27,18 +27,18 @@ $red: #d32f2f !default;
 
 $grey-2: #cfd8dc !default;
 $grey-5: #adb5bd !default;
-$grey-7: #293f54 !default;
 
 $hint-grey: #7b808c !default;
 
 // Font Colors
-$base-font-color: $grey-7 !default;
+$base-font-color: var(--grey-7) !default;
 
 :root {
   // Colors
   --blue: #1976d2;
   --grey-0: #f6f7f7;
   --grey-1: #dfe0e1;
+  --grey-7: #293f54;
   --action-color: var(--blue);
 
   // Eventually: color-mix(in srgb, var(--black) 20%, var(--action-color))

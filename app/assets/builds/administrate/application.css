@@ -1807,6 +1807,7 @@ trix-editor .attachment__metadata .attachment__size {
   --blue: #1976d2;
   --grey-0: #f6f7f7;
   --grey-1: #dfe0e1;
+  --grey-7: #293f54;
   --action-color: var(--blue);
   --action-color-active: #145ea8;
   --base-background-color: var(--grey-0);
@@ -2113,7 +2114,7 @@ td img {
 }
 
 body {
-  color: #293f54;
+  color: var(--grey-7);
   font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 1em;
   line-height: 1.5;
@@ -2536,7 +2537,7 @@ form.button_to .link {
 
 .navigation__link {
   background-color: transparent;
-  color: #293f54;
+  color: var(--grey-7);
   display: block;
   line-height: 1;
   margin-left: -0.6em;
@@ -2549,7 +2550,7 @@ form.button_to .link {
 .navigation__link:hover {
   background-color: var(--base-background-color-alt);
   border-radius: 4px;
-  color: #293f54;
+  color: var(--grey-7);
 }
 
 .navigation__link--active {
