@@ -1808,6 +1808,7 @@ trix-editor .attachment__metadata .attachment__size {
   --grey-0: #f6f7f7;
   --grey-1: #dfe0e1;
   --grey-7: #293f54;
+  --hint-grey: #7b808c;
   --base-font-color: var(--grey-7);
   --action-color: var(--blue);
   --action-color-active: #145ea8;
@@ -2196,7 +2197,7 @@ hr {
 }
 
 .attribute-label {
-  color: #7b808c;
+  color: var(--hint-grey);
   font-size: 0.8em;
   font-weight: 400;
   letter-spacing: 0.0357em;
@@ -2329,7 +2330,7 @@ form.button_to .link {
   margin-left: 5px;
 }
 .cell-label__sort-indicator svg {
-  color: #7b808c;
+  color: var(--hint-grey);
   height: 13px;
   transition: transform var(--base-duration) var(--base-timing);
   width: 13px;
