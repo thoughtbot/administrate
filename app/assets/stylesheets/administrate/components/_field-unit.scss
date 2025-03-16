@@ -51,7 +51,7 @@
 .field-unit--required {
   .field-unit__label {
     label::after {
-      color: $red;
+      color: var(--red);
       content: " *";
     }
   }
