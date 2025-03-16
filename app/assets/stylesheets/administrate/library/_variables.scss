@@ -1,8 +1,5 @@
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 
-// Typography
-$heading-font-family: var(--base-font-family) !default;
-
 $base-font-size: 1em !default;
 
 $bold-font-weight: 700 !default;
@@ -20,6 +17,7 @@ $small-spacing: $base-spacing * 0.5 !default;
   --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
+  --heading-font-family: var(--base-font-family);
 
   // Colors
   --white: #ffffff;
