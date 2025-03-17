@@ -27,7 +27,7 @@ The form will be rendered as nested_from to parent relationship.
         <% end %>
 
         <% attributes.each do |attribute| %>
-          <div class="field-unit field-unit--<%= attribute.html_class %>">
+          <div class="field-unit field-unit--<%= attribute.html_class %> field-unit--<%= requireness(attribute) %>">
             <%= render_field attribute, f: has_one_f %>
           </div>
           <% hint_key = "administrate.field_hints.#{field.name}.#{attribute.name}" %>

@@ -36,7 +36,9 @@ describe "edit form" do
       Product.human_attribute_name(:name),
       Product.human_attribute_name(:description),
       Product.human_attribute_name(:price),
-      Product.human_attribute_name(:image_url)
+      Product.human_attribute_name(:image_url),
+      ProductMetaTag.human_attribute_name(:meta_title),
+      ProductMetaTag.human_attribute_name(:meta_description)
     ]
 
     required_field_labels = find_all(".field-unit--required").map(&:text)
