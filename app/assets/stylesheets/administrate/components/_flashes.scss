@@ -14,8 +14,8 @@
 //   background-color: var(--flash-background-color);
 //   color: var(--flash-text-color);
 //   display: block;
-//   margin-bottom: 1em;
-//   padding: 1em;
+//   margin-bottom: calc(var(--base-spacing) * 0.5);
+//   padding: calc(var(--base-spacing) * 0.5);
 //   text-align: center;
 // }
 //
@@ -51,8 +51,8 @@
   background-color: var(--alert-background-color);
   color: var(--alert-text-color);
   display: block;
-  margin-bottom: $base-spacing * 0.5;
-  padding: $base-spacing * 0.5;
+  margin-bottom: calc(var(--base-spacing) * 0.5);
+  padding: calc(var(--base-spacing) * 0.5);
   text-align: center;
 
   a {
@@ -70,8 +70,8 @@
   background-color: var(--error-background-color);
   color: var(--error-text-color);
   display: block;
-  margin-bottom: $base-spacing * 0.5;
-  padding: $base-spacing * 0.5;
+  margin-bottom: calc(var(--base-spacing) * 0.5);
+  padding: calc(var(--base-spacing) * 0.5);
   text-align: center;
 
   a {
@@ -89,8 +89,8 @@
   background-color: var(--notice-background-color);
   color: var(--notice-text-color);
   display: block;
-  margin-bottom: $base-spacing * 0.5;
-  padding: $base-spacing * 0.5;
+  margin-bottom: calc(var(--base-spacing) * 0.5);
+  padding: calc(var(--base-spacing) * 0.5);
   text-align: center;
 
   a {
@@ -108,8 +108,8 @@
   background-color: var(--success-background-color);
   color: var(--success-text-color);
   display: block;
-  margin-bottom: $base-spacing * 0.5;
-  padding: $base-spacing * 0.5;
+  margin-bottom: calc(var(--base-spacing) * 0.5);
+  padding: calc(var(--base-spacing) * 0.5);
   text-align: center;
 
   a {
