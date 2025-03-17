@@ -9,6 +9,11 @@ $base-spacing: $base-line-height * 1em !default;
 $small-spacing: $base-spacing * 0.5 !default;
 
 :root {
+  --base-line-height: 1.5;
+
+  // Other Sizes
+  --base-spacing: calc(var(--base-line-height) * 1em);
+
   // Typography
   --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",

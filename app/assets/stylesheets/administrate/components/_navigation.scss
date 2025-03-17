@@ -2,7 +2,7 @@ $navigation-link-padding: 0.6em;
 
 .navigation {
   flex: 1 0 10rem;
-  padding: $base-spacing;
+  padding: var(--base-spacing);
   padding-left: 0;
 }
 

@@ -1804,6 +1804,8 @@ trix-editor .attachment__metadata .attachment__size {
 
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 :root {
+  --base-line-height: 1.5;
+  --base-spacing: calc(var(--base-line-height) * 1em);
   --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
@@ -2198,7 +2200,7 @@ hr {
   border-left: 0;
   border-right: 0;
   border-top: 0;
-  margin: 1.5em 0;
+  margin: var(--base-spacing) 0;
 }
 
 .app-container {
@@ -2208,7 +2210,7 @@ hr {
   margin-right: auto;
   max-width: 100rem;
   min-height: 100vh;
-  padding: 1.5em;
+  padding: var(--base-spacing);
 }
 
 .attribute-label {
@@ -2220,7 +2222,7 @@ hr {
   text-transform: uppercase;
   clear: left;
   float: left;
-  margin-bottom: 1.5em;
+  margin-bottom: var(--base-spacing);
   margin-top: 0.25em;
   text-align: right;
   width: calc(20% - 1rem);
@@ -2233,7 +2235,7 @@ hr {
 
 .attribute-data {
   float: left;
-  margin-bottom: 1.5em;
+  margin-bottom: var(--base-spacing);
   margin-left: 2rem;
   width: calc(80% - 1rem);
   word-break: break-word;
@@ -2261,7 +2263,7 @@ button,
   -webkit-font-smoothing: antialiased;
   font-weight: var(--bold-font-weight);
   line-height: 1;
-  padding: 0.75em 1.5em;
+  padding: 0.75em var(--base-spacing);
   text-decoration: none;
   transition: background-color var(--base-duration) var(--base-timing);
   user-select: none;
@@ -2319,7 +2321,7 @@ button:not(.link):disabled:hover,
 }
 
 .button--nav {
-  margin-bottom: 1.5em;
+  margin-bottom: var(--base-spacing);
 }
 
 .cell-label__sort-indicator {
@@ -2368,7 +2370,7 @@ button:not(.link):disabled:hover,
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 1.5em;
+  margin-bottom: var(--base-spacing);
   position: relative;
   width: 100%;
 }
@@ -2426,8 +2428,8 @@ button:not(.link):disabled:hover,
   background-color: var(--alert-background-color);
   color: var(--alert-text-color);
   display: block;
-  margin-bottom: 0.75em;
-  padding: 0.75em;
+  margin-bottom: calc(var(--base-spacing) * 0.5);
+  padding: calc(var(--base-spacing) * 0.5);
   text-align: center;
 }
 .flash-alert a {
@@ -2442,8 +2444,8 @@ button:not(.link):disabled:hover,
   background-color: var(--error-background-color);
   color: var(--error-text-color);
   display: block;
-  margin-bottom: 0.75em;
-  padding: 0.75em;
+  margin-bottom: calc(var(--base-spacing) * 0.5);
+  padding: calc(var(--base-spacing) * 0.5);
   text-align: center;
 }
 .flash-error a {
@@ -2458,8 +2460,8 @@ button:not(.link):disabled:hover,
   background-color: var(--notice-background-color);
   color: var(--notice-text-color);
   display: block;
-  margin-bottom: 0.75em;
-  padding: 0.75em;
+  margin-bottom: calc(var(--base-spacing) * 0.5);
+  padding: calc(var(--base-spacing) * 0.5);
   text-align: center;
 }
 .flash-notice a {
@@ -2474,8 +2476,8 @@ button:not(.link):disabled:hover,
   background-color: var(--success-background-color);
   color: var(--success-text-color);
   display: block;
-  margin-bottom: 0.75em;
-  padding: 0.75em;
+  margin-bottom: calc(var(--base-spacing) * 0.5);
+  padding: calc(var(--base-spacing) * 0.5);
   text-align: center;
 }
 .flash-success a {
@@ -2523,7 +2525,7 @@ button:not(.link):disabled:hover,
 
 .navigation {
   flex: 1 0 10rem;
-  padding: 1.5em;
+  padding: var(--base-spacing);
   padding-left: 0;
 }
 
@@ -2550,9 +2552,9 @@ button:not(.link):disabled:hover,
 }
 
 .pagination {
-  margin-top: 1.5em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  margin-top: var(--base-spacing);
+  padding-left: var(--base-spacing);
+  padding-right: var(--base-spacing);
   text-align: center;
 }
 .pagination .first,
