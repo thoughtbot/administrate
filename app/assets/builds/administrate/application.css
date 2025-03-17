@@ -1805,6 +1805,7 @@ trix-editor .attachment__metadata .attachment__size {
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 :root {
   --base-line-height: 1.5;
+  --heading-line-height: 1.2;
   --base-border-radius: 4px;
   --base-spacing: calc(var(--base-line-height) * 1em);
   --small-spacing: calc(var(--base-spacing) * 0.5);
@@ -2149,7 +2150,7 @@ h5,
 h6 {
   font-family: var(--heading-font-family);
   font-size: var(--base-font-size);
-  line-height: 1.2;
+  line-height: var(--heading-line-height);
   margin: 0;
 }
 

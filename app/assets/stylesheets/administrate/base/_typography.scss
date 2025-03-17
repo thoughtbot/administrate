@@ -13,7 +13,7 @@ h5,
 h6 {
   font-family: var(--heading-font-family);
   font-size: var(--base-font-size);
-  line-height: $heading-line-height;
+  line-height: var(--heading-line-height);
   margin: 0;
 }
 
