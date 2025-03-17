@@ -15,7 +15,7 @@ button,
   -webkit-font-smoothing: antialiased;
   font-weight: var(--bold-font-weight);
   line-height: 1;
-  padding: $small-spacing $base-spacing;
+  padding: $small-spacing var(--base-spacing);
   text-decoration: none;
   transition: background-color var(--base-duration) var(--base-timing);
   user-select: none;
@@ -71,7 +71,7 @@ form.button_to { /* stylelint-disable selector-no-qualifying-type, selector-clas
 }
 
 .button--nav {
-  margin-bottom: $base-spacing;
+  margin-bottom: var(--base-spacing);
 }
 
 .button--tooltip {

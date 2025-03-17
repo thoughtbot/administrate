@@ -1,7 +1,7 @@
 .pagination {
-  margin-top: $base-spacing;
-  padding-left: $base-spacing;
-  padding-right: $base-spacing;
+  margin-top: var(--base-spacing);
+  padding-left: var(--base-spacing);
+  padding-right: var(--base-spacing);
   text-align: center;
 
   .first,
