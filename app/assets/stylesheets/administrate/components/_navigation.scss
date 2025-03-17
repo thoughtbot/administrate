@@ -17,7 +17,7 @@ $navigation-link-padding: 0.6em;
               color var(--base-duration) var(--base-timing);
 
   &:not(:last-of-type) {
-    margin-bottom: $small-spacing;
+    margin-bottom: var(--small-spacing);
   }
 
   &:hover {
