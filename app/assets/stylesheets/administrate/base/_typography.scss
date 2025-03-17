@@ -2,7 +2,7 @@ body {
   color: var(--base-font-color);
   font-family: var(--base-font-family);
   font-size: var(--base-font-size);
-  line-height: $base-line-height;
+  line-height: var(--base-line-height);
 }
 
 h1,
