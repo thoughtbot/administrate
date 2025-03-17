@@ -4,7 +4,7 @@
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: $base-spacing;
+  margin-bottom: var(--base-spacing);
   position: relative;
   width: 100%;
 }
