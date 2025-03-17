@@ -15,7 +15,7 @@ button,
   -webkit-font-smoothing: antialiased;
   font-weight: var(--bold-font-weight);
   line-height: 1;
-  padding: $small-spacing var(--base-spacing);
+  padding: var(--small-spacing) var(--base-spacing);
   text-decoration: none;
   transition: background-color var(--base-duration) var(--base-timing);
   user-select: none;

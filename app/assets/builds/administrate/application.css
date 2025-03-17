@@ -1806,6 +1806,7 @@ trix-editor .attachment__metadata .attachment__size {
 :root {
   --base-line-height: 1.5;
   --base-spacing: calc(var(--base-line-height) * 1em);
+  --small-spacing: calc(var(--base-spacing) * 0.5);
   --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
@@ -2015,7 +2016,7 @@ textarea::placeholder {
 [type=checkbox],
 [type=radio] {
   display: inline;
-  margin-right: 0.375em;
+  margin-right: calc(var(--small-spacing) * 0.5);
 }
 
 [type=file] {
@@ -2068,11 +2069,11 @@ ol {
 }
 
 dl {
-  margin-bottom: 0.75em;
+  margin-bottom: var(--small-spacing);
 }
 dl dt {
   font-weight: var(--bold-font-weight);
-  margin-top: 0.75em;
+  margin-top: var(--small-spacing);
 }
 dl dd {
   margin: 0;
@@ -2152,7 +2153,7 @@ h6 {
 }
 
 p {
-  margin: 0 0 0.75em;
+  margin: 0 0 var(--small-spacing);
 }
 
 a,
@@ -2243,7 +2244,7 @@ hr {
 
 .attribute--nested {
   border: var(--base-border);
-  padding: 0.75em;
+  padding: var(--small-spacing);
 }
 
 button,
@@ -2263,7 +2264,7 @@ button,
   -webkit-font-smoothing: antialiased;
   font-weight: var(--bold-font-weight);
   line-height: 1;
-  padding: 0.75em var(--base-spacing);
+  padding: var(--small-spacing) var(--base-spacing);
   text-decoration: none;
   transition: background-color var(--base-duration) var(--base-timing);
   user-select: none;
@@ -2431,7 +2432,7 @@ form.button_to .link {
   border: var(--base-border);
   margin-left: 7.5%;
   max-width: 60rem;
-  padding: 0.75em;
+  padding: var(--small-spacing);
   width: 100%;
 }
 .field-unit--nested .field-unit__field {
@@ -2564,7 +2565,7 @@ form.button_to .link {
   transition: background-color var(--base-duration) var(--base-timing), color var(--base-duration) var(--base-timing);
 }
 .navigation__link:not(:last-of-type) {
-  margin-bottom: 0.75em;
+  margin-bottom: var(--small-spacing);
 }
 .navigation__link:hover {
   background-color: var(--base-background-color-alt);
@@ -2587,7 +2588,7 @@ form.button_to .link {
 .pagination .page,
 .pagination .next,
 .pagination .last {
-  margin: 0.75em;
+  margin: var(--small-spacing);
 }
 .pagination .current {
   font-weight: var(--bold-font-weight);
