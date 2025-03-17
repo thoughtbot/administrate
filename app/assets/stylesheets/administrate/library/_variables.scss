@@ -1,11 +1,9 @@
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 
-$base-line-height: 1.5 !default;
 $heading-line-height: 1.2 !default;
 
 // Other Sizes
 $base-border-radius: 4px !default;
-$base-spacing: $base-line-height * 1em !default;
 
 :root {
   --base-line-height: 1.5;
