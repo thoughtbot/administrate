@@ -1805,6 +1805,7 @@ trix-editor .attachment__metadata .attachment__size {
 /* stylelint-disable scss/dollar-variable-empty-line-before */
 :root {
   --base-line-height: 1.5;
+  --base-border-radius: 4px;
   --base-spacing: calc(var(--base-line-height) * 1em);
   --small-spacing: calc(var(--base-spacing) * 0.5);
   --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
@@ -1920,7 +1921,7 @@ textarea {
   appearance: none;
   background-color: var(--white);
   border: var(--base-border);
-  border-radius: 4px;
+  border-radius: var(--base-border-radius);
   padding: 0.5em;
   transition: border-color var(--base-duration) var(--base-timing);
   width: 100%;
@@ -2255,7 +2256,7 @@ button,
   appearance: none;
   background-color: var(--action-color);
   border: 0;
-  border-radius: 4px;
+  border-radius: var(--base-border-radius);
   color: var(--white);
   cursor: pointer;
   display: inline-block;
@@ -2521,7 +2522,7 @@ form.button_to .link {
 
 .main-content {
   background-color: var(--white);
-  border-radius: 4px;
+  border-radius: var(--base-border-radius);
   box-shadow: var(--main-content-shadow);
   flex: 1 1 100%;
   min-width: 800px;
@@ -2569,7 +2570,7 @@ form.button_to .link {
 }
 .navigation__link:hover {
   background-color: var(--base-background-color-alt);
-  border-radius: 4px;
+  border-radius: var(--base-border-radius);
   color: var(--base-font-color);
 }
 
@@ -2653,7 +2654,7 @@ form.button_to .link {
 .search__tooltip-popover {
   background-color: var(--blue);
   border-color: var(--blue);
-  border-radius: 4px;
+  border-radius: var(--base-border-radius);
   color: var(--white);
   padding: 2rem;
   width: max-content;

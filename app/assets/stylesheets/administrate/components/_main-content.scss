@@ -1,6 +1,6 @@
 .main-content {
   background-color: var(--white);
-  border-radius: $base-border-radius;
+  border-radius: var(--base-border-radius);
   box-shadow: var(--main-content-shadow);
   flex: 1 1 100%;
   min-width: 800px;
