@@ -2,13 +2,11 @@
 
 $heading-line-height: 1.2 !default;
 
-// Other Sizes
-$base-border-radius: 4px !default;
-
 :root {
   --base-line-height: 1.5;
 
   // Other Sizes
+  --base-border-radius: 4px;
   --base-spacing: calc(var(--base-line-height) * 1em);
   --small-spacing: calc(var(--base-spacing) * 0.5);
 

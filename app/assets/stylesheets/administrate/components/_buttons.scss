@@ -6,7 +6,7 @@ button,
   appearance: none;
   background-color: var(--action-color);
   border: 0;
-  border-radius: $base-border-radius;
+  border-radius: var(--base-border-radius);
   color: var(--white);
   cursor: pointer;
   display: inline-block;

@@ -54,7 +54,7 @@ textarea {
   appearance: none;
   background-color: var(--white);
   border: var(--base-border);
-  border-radius: $base-border-radius;
+  border-radius: var(--base-border-radius);
   padding: 0.5em;
   transition: border-color var(--base-duration) var(--base-timing);
   width: 100%;
