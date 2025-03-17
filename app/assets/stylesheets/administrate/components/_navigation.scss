@@ -22,7 +22,7 @@ $navigation-link-padding: 0.6em;
 
   &:hover {
     background-color: var(--base-background-color-alt);
-    border-radius: $base-border-radius;
+    border-radius: var(--base-border-radius);
     color: var(--base-font-color);
   }
 }
