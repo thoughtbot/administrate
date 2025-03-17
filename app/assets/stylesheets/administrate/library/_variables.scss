@@ -6,13 +6,13 @@ $heading-line-height: 1.2 !default;
 // Other Sizes
 $base-border-radius: 4px !default;
 $base-spacing: $base-line-height * 1em !default;
-$small-spacing: $base-spacing * 0.5 !default;
 
 :root {
   --base-line-height: 1.5;
 
   // Other Sizes
   --base-spacing: calc(var(--base-line-height) * 1em);
+  --small-spacing: calc(var(--base-spacing) * 0.5);
 
   // Typography
   --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",

@@ -85,7 +85,7 @@ textarea {
 [type="checkbox"],
 [type="radio"] {
   display: inline;
-  margin-right: $small-spacing * 0.5;
+  margin-right: calc(var(--small-spacing) * 0.5);
 }
 
 [type="file"] {

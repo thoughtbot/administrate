@@ -9,7 +9,7 @@
   .page,
   .next,
   .last {
-    margin: $small-spacing;
+    margin: var(--small-spacing);
   }
 
   .current {
