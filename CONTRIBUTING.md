@@ -82,6 +82,12 @@ This project uses:
 [stylelint]: https://stylelint.io
 [stylelint-config]: https://github.com/thoughtbot/stylelint-config
 
+## Icons
+
+We use [Feather][] for icons.
+
+[Feather]: https://feathericons.com
+
 ## Labels
 
 Issues and PRs are split into two levels of labels, at the higher level:

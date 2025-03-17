@@ -2270,7 +2270,7 @@ button:not(.link):disabled:hover,
   margin-left: 5px;
 }
 .cell-label__sort-indicator svg {
-  fill: #7b808c;
+  color: #7b808c;
   height: 13px;
   transition: transform 250ms ease-in-out;
   width: 13px;
@@ -2520,7 +2520,6 @@ button:not(.link):disabled:hover,
 }
 
 .search__eyeglass-icon {
-  fill: #293f54;
   height: 1rem;
   left: 1rem;
   position: absolute;
@@ -2539,14 +2538,14 @@ button:not(.link):disabled:hover,
 }
 
 .search__clear-icon {
-  fill: #adb5bd;
+  color: #adb5bd;
   height: 1rem;
   position: absolute;
   transition: fill 250ms ease-in-out;
   width: 1rem;
 }
 .search__clear-icon:hover {
-  fill: #1976d2;
+  color: #1976d2;
 }
 
 /*# sourceMappingURL=application.css.map */
