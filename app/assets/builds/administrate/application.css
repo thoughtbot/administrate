@@ -1809,6 +1809,7 @@ trix-editor .attachment__metadata .attachment__size {
   --base-border-radius: 4px;
   --base-spacing: calc(var(--base-line-height) * 1em);
   --small-spacing: calc(var(--base-spacing) * 0.5);
+  --navigation-link-padding: 0.6em;
   --search-icon-size: 1rem;
   --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -2563,8 +2564,8 @@ form.button_to .link {
   color: var(--base-font-color);
   display: block;
   line-height: 1;
-  margin-left: -0.6em;
-  padding: 0.6em;
+  margin-left: calc(var(--navigation-link-padding) * -1);
+  padding: var(--navigation-link-padding);
   transition: background-color var(--base-duration) var(--base-timing), color var(--base-duration) var(--base-timing);
 }
 .navigation__link:not(:last-of-type) {

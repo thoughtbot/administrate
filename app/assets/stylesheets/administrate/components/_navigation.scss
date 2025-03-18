@@ -1,5 +1,3 @@
-$navigation-link-padding: 0.6em;
-
 .navigation {
   flex: 1 0 10rem;
   padding: var(--base-spacing);
@@ -11,8 +9,8 @@ $navigation-link-padding: 0.6em;
   color: var(--base-font-color);
   display: block;
   line-height: 1;
-  margin-left: -($navigation-link-padding);
-  padding: $navigation-link-padding;
+  margin-left: calc(var(--navigation-link-padding) * -1);
+  padding: var(--navigation-link-padding);
   transition: background-color var(--base-duration) var(--base-timing),
               color var(--base-duration) var(--base-timing);
 
