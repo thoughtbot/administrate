@@ -1809,6 +1809,7 @@ trix-editor .attachment__metadata .attachment__size {
   --base-border-radius: 4px;
   --base-spacing: calc(var(--base-line-height) * 1em);
   --small-spacing: calc(var(--base-spacing) * 0.5);
+  --search-icon-size: 1rem;
   --base-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto",
   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
@@ -2606,34 +2607,34 @@ form.button_to .link {
 
 .search__input {
   border-radius: 100rem;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
+  padding-left: calc(var(--search-icon-size) * 2.5);
+  padding-right: calc(var(--search-icon-size) * 2.5);
 }
 
 .search__eyeglass-icon {
-  height: 1rem;
-  left: 1rem;
+  height: var(--search-icon-size);
+  left: var(--search-icon-size);
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 1rem;
+  width: var(--search-icon-size);
 }
 
 .search__clear-link {
-  height: 1rem;
+  height: var(--search-icon-size);
   position: absolute;
-  right: 0.75rem;
+  right: calc(var(--search-icon-size) * 0.75);
   top: 50%;
   transform: translateY(-50%);
-  width: 1rem;
+  width: var(--search-icon-size);
 }
 
 .search__clear-icon {
   color: var(--grey-5);
-  height: 1rem;
+  height: var(--search-icon-size);
   position: absolute;
   transition: fill var(--base-duration) var(--base-timing);
-  width: 1rem;
+  width: var(--search-icon-size);
 }
 .search__clear-icon:hover {
   color: var(--action-color);

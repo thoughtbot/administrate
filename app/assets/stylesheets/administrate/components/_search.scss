@@ -1,5 +1,3 @@
-$search-icon-size: 1rem;
-
 .search {
   margin-left: auto;
   margin-right: 2rem;
@@ -10,34 +8,34 @@ $search-icon-size: 1rem;
 
 .search__input {
   border-radius: 100rem;
-  padding-left: $search-icon-size * 2.5;
-  padding-right: $search-icon-size * 2.5;
+  padding-left: calc(var(--search-icon-size) * 2.5);
+  padding-right: calc(var(--search-icon-size) * 2.5);
 }
 
 .search__eyeglass-icon {
-  height: $search-icon-size;
-  left: $search-icon-size;
+  height: var(--search-icon-size);
+  left: var(--search-icon-size);
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: $search-icon-size;
+  width: var(--search-icon-size);
 }
 
 .search__clear-link {
-  height: $search-icon-size;
+  height: var(--search-icon-size);
   position: absolute;
-  right: $search-icon-size * 0.75;
+  right: calc(var(--search-icon-size) * 0.75);
   top: 50%;
   transform: translateY(-50%);
-  width: $search-icon-size;
+  width: var(--search-icon-size);
 }
 
 .search__clear-icon {
   color: var(--grey-5);
-  height: $search-icon-size;
+  height: var(--search-icon-size);
   position: absolute;
   transition: fill var(--base-duration) var(--base-timing);
-  width: $search-icon-size;
+  width: var(--search-icon-size);
 
   &:hover {
     color: var(--action-color);
