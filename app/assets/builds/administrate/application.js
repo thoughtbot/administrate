@@ -21711,7 +21711,23 @@
   var import_jquery2 = __toESM(require_jquery());
   var select_controller_default = class extends Controller {
     connect() {
-      (0, import_jquery2.default)(this.element).selectize({});
+      if (!this.selectize) {
+        const options = this.selectizeOptions || {};
+        const selectedValues = (0, import_jquery2.default)(this.element).val();
+        this.selectize = (0, import_jquery2.default)(this.element).selectize(options)[0].selectize;
+        this.selectize.setValue(selectedValues);
+      }
+    }
+    disconnect() {
+      if (this.selectize) {
+        const selectedValues = this.selectize.getValue();
+        if (!this.selectizeOptions) {
+          this.selectizeOptions = this.selectize.settings;
+        }
+        this.selectize.destroy();
+        this.selectize = null;
+        (0, import_jquery2.default)(this.element).val(selectedValues);
+      }
     }
   };
 

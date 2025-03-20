@@ -41,7 +41,7 @@ describe "customer edit page" do
 
     visit edit_admin_customer_path(customer)
 
-    find(".selectize-input #customer_kind-selectized").click
+    find(:xpath, "//div[contains(@class, 'selectize-input') and .//input[@id='customer_kind-selectized']]").click
     find(:xpath, "//div[@data-selectable and contains(., 'vip')]").click
 
     click_on "Update Customer"
