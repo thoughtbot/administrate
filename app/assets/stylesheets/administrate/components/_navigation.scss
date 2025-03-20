@@ -1,32 +1,30 @@
-$navigation-link-padding: 0.6em;
-
 .navigation {
   flex: 1 0 10rem;
-  padding: $base-spacing;
+  padding: var(--base-spacing);
   padding-left: 0;
 }
 
 .navigation__link {
   background-color: transparent;
-  color: $base-font-color;
+  color: var(--base-font-color);
   display: block;
   line-height: 1;
-  margin-left: -($navigation-link-padding);
-  padding: $navigation-link-padding;
-  transition: background-color $base-duration $base-timing,
-              color $base-duration $base-timing;
+  margin-left: calc(var(--navigation-link-padding) * -1);
+  padding: var(--navigation-link-padding);
+  transition: background-color var(--base-duration) var(--base-timing),
+              color var(--base-duration) var(--base-timing);
 
   &:not(:last-of-type) {
-    margin-bottom: $small-spacing;
+    margin-bottom: var(--small-spacing);
   }
 
   &:hover {
-    background-color: mix($black, $base-background-color, 5%);
-    border-radius: $base-border-radius;
-    color: $base-font-color;
+    background-color: var(--base-background-color-alt);
+    border-radius: var(--base-border-radius);
+    color: var(--base-font-color);
   }
 }
 
 .navigation__link--active {
-  font-weight: $bold-font-weight;
+  font-weight: var(--bold-font-weight);
 }
