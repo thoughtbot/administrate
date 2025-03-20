@@ -3,6 +3,8 @@ import $ from "jquery";
 
 export default class extends Controller {
   connect() {
-    $(this.element).selectize({});
+    $(this.element).selectize({
+      allowEmptyOption: true
+    });
   }
 };

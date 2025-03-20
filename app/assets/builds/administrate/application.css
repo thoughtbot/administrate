@@ -1975,6 +1975,11 @@ select:focus {
   outline-offset: 1px;
 }
 
+.selectize-dropdown [data-selectable][data-value=""].option::after {
+  content: " ";
+  display: inline-block;
+}
+
 html {
   background-color: #f6f7f7;
   box-sizing: border-box;
