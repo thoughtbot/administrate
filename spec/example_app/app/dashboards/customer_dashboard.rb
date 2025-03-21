@@ -21,8 +21,17 @@ class CustomerDashboard < Administrate::BaseDashboard
     password: Field::Password
   }
 
-  COLLECTION_ATTRIBUTES = ATTRIBUTE_TYPES.keys - %i[created_at updated_at]
+  COLLECTION_ATTRIBUTES = [
+    :name,
+    :email,
+    :email_subscriber,
+    :orders,
+    :territory,
+    :example_time
+  ]
+
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys - [:name]
+
   FORM_ATTRIBUTES = [
     :name,
     :email,
