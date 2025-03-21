@@ -15,7 +15,6 @@ $search-icon-size: 1rem;
 }
 
 .search__eyeglass-icon {
-  fill: $grey-7;
   height: $search-icon-size;
   left: $search-icon-size;
   position: absolute;
@@ -34,13 +33,13 @@ $search-icon-size: 1rem;
 }
 
 .search__clear-icon {
-  fill: $grey-5;
+  color: $grey-5;
   height: $search-icon-size;
   position: absolute;
   transition: fill $base-duration $base-timing;
   width: $search-icon-size;
 
   &:hover {
-    fill: $action-color;
+    color: $action-color;
   }
 }
