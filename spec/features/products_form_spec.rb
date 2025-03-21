@@ -108,7 +108,7 @@ describe "product form has_one relationship" do
       end
     end
 
-    it "displays hints on the has_many nested fields" do
+    it "displays hints on the has_one nested fields" do
       meta_description_hint = "A very meta description"
       product = create(:product)
 
@@ -116,7 +116,7 @@ describe "product form has_one relationship" do
         administrate: {
           field_hints: {
             product_meta_tag: {
-              meta_description: meta_description_hint,
+              meta_description: meta_description_hint
             }
           }
         }
