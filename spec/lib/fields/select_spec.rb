@@ -140,4 +140,66 @@ describe Administrate::Field::Select do
       expect(field.selectable_options).to eq([])
     end
   end
+
+  describe ":include_blank option" do
+    context "when given an include_blank option is true" do
+      it "returns include_blank and placeholder options with '---'" do
+        customer = create(:customer)
+        field = described_class.new(
+          :email_subscriber,
+          "yes",
+          :_page_,
+          resource: customer,
+          include_blank: true
+        )
+
+        tag_options = field.tag_options
+        html_options = field.html_options
+
+        expect(tag_options[:include_blank]).to eq("---")
+        expect(html_options[:placeholder]).to eq("---")
+        expect(html_options.dig(:data, :"selectize-required")).to be_nil
+      end
+    end
+
+    context "when given an include_blank option is a string" do
+      it "returns include_blank and placeholder options with the given string" do
+        customer = create(:customer)
+        field = described_class.new(
+          :email_subscriber,
+          "yes",
+          :_page_,
+          resource: customer,
+          include_blank: "Select an option"
+        )
+
+        tag_options = field.tag_options
+        html_options = field.html_options
+
+        expect(tag_options[:include_blank]).to eq("Select an option")
+        expect(html_options[:placeholder]).to eq("Select an option")
+        expect(html_options.dig(:data, :"selectize-required")).to be_nil
+      end
+    end
+
+    context "when given an include_blank option is false" do
+      it "returns include_blank and placeholder options with nil" do
+        customer = create(:customer)
+        field = described_class.new(
+          :email_subscriber,
+          "yes",
+          :_page_,
+          resource: customer,
+          include_blank: false
+        )
+
+        tag_options = field.tag_options
+        html_options = field.html_options
+
+        expect(tag_options[:include_blank]).to be_nil
+        expect(html_options[:placeholder]).to be_nil
+        expect(html_options.dig(:data, :"selectize-required")).to eq(true)
+      end
+    end
+  end
 end
