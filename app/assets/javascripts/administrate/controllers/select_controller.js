@@ -11,7 +11,7 @@ export default class extends Controller {
     }
   }
 
-  disconnect() {
+  teardown() {
     if (this.selectize) {
       const selectedValues = this.selectize.getValue();
       if (!this.selectizeOptions) {

@@ -21377,6 +21377,13 @@
   var application = Application.start();
   application.debug = false;
   window.Stimulus = application;
+  document.addEventListener("turbo:before-cache", function() {
+    application.controllers.forEach(function(controller) {
+      if (typeof controller.teardown === "function") {
+        controller.teardown();
+      }
+    });
+  });
 
   // app/assets/javascripts/administrate/controllers/select_controller.js
   var import_jquery2 = __toESM(require_jquery());
@@ -21389,7 +21396,7 @@
         this.selectize.setValue(selectedValues);
       }
     }
-    disconnect() {
+    teardown() {
       if (this.selectize) {
         const selectedValues = this.selectize.getValue();
         if (!this.selectizeOptions) {
