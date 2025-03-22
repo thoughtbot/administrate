@@ -21387,13 +21387,24 @@
 
   // app/assets/javascripts/administrate/controllers/select_controller.js
   var import_jquery2 = __toESM(require_jquery());
+  var default_options = {
+    allowEmptyOption: true,
+    deselectBehavior: "previous"
+  };
   var select_controller_default = class extends Controller {
     connect() {
       if (!this.selectize) {
-        const options = this.selectizeOptions || {};
+        const options = this.selectizeOptions || default_options;
         const selectedValues = (0, import_jquery2.default)(this.element).val();
         this.selectize = (0, import_jquery2.default)(this.element).selectize(options)[0].selectize;
         this.selectize.setValue(selectedValues);
+        if (this.element.getAttribute("data-selectize-required") === "true") {
+          this.selectize.on("change", (value) => {
+            if (value.length === 0) {
+              this.selectize.setValue(selectedValues);
+            }
+          });
+        }
       }
     }
     teardown() {
