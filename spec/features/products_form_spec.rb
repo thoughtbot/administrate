@@ -107,5 +107,25 @@ describe "product form has_one relationship" do
         expect(page).to have_css("legend", text: custom_label)
       end
     end
+
+    it "displays hints on the has_one nested fields" do
+      meta_description_hint = "A very meta description"
+      product = create(:product)
+
+      translations = {
+        administrate: {
+          field_hints: {
+            product_meta_tag: {
+              meta_description: meta_description_hint
+            }
+          }
+        }
+      }
+
+      with_translations(:en, translations) do
+        visit edit_admin_product_path(product)
+        expect(page).to have_css(".field-unit__hint", text: meta_description_hint)
+      end
+    end
   end
 end
