@@ -41,7 +41,14 @@
   transform: rotate(180deg);
 }
 
+.cell-label--action-button {
+  white-space: nowrap;
+  width: 1rem;
+}
+
 .cell-data--number,
 .cell-label--number {
   text-align: right;
+  white-space: nowrap;
+  width: 1rem;
 }
