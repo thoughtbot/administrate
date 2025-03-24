@@ -112,6 +112,23 @@ RSpec.describe Administrate::ApplicationHelper do
       end
       expect(requireness(release_year)).to eq("optional")
     end
+
+    context "when the resource is nested" do
+      it "returns 'required' if nested field is required" do
+        field = page.attributes.values.flatten.detect { |i| i.attribute == :product_meta_tag }
+        nested_field = field.nested_form.attributes.values.flatten.detect { |i| i.attribute == :meta_title }
+        expect(requireness(nested_field)).to eq("required")
+      end
+
+      it "returns 'optional' if nested field is not required" do
+        field = page.attributes.values.flatten.detect { |i| i.attribute == :product_meta_tag }
+        nested_field = field.nested_form.attributes.values.flatten.detect { |i| i.attribute == :meta_title }
+
+        allow_any_instance_of(ActiveRecord::Validations::PresenceValidator).to receive(:options).and_return({on: :any})
+
+        expect(requireness(nested_field)).to eq("optional")
+      end
+    end
   end
 
   describe "#sort_order" do
