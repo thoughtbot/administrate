@@ -1,7 +1,7 @@
 <%= render template: 'administrate/application/_collection_item_actions', locals: local_assigns %>
 
 <% if resource.class == Customer %>
-  <td>
+  <td class="cell-label--action-button">
     <%= link_to("Become", become_admin_customer_path(resource), class: "identity__become-action") %>
   </td>
 <% end %>
