@@ -63,6 +63,14 @@ module Administrate
       end
     end
 
+    def valid_filters
+      if @dashboard.class.const_defined?(:COLLECTION_FILTERS)
+        @dashboard.class.const_get(:COLLECTION_FILTERS).stringify_keys
+      else
+        {}
+      end
+    end
+
     private
 
     def apply_filter(filter, filter_param, resources)
@@ -114,14 +122,6 @@ module Administrate
       resources
         .left_joins(tables_to_join)
         .where(query_template, *query_values)
-    end
-
-    def valid_filters
-      if @dashboard.class.const_defined?(:COLLECTION_FILTERS)
-        @dashboard.class.const_get(:COLLECTION_FILTERS).stringify_keys
-      else
-        {}
-      end
     end
 
     def attribute_types

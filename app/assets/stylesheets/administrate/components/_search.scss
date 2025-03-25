@@ -43,3 +43,45 @@ $search-icon-size: 1rem;
     color: $action-color;
   }
 }
+
+.search__tooltip {
+  anchor-name: --tooltip-anchor;
+  margin-right: 2rem;
+
+  svg {
+    color: $grey-5;
+    height: 24px;
+    width: 24px;
+
+    &:hover {
+      color: $action-color;
+    }
+  }
+}
+
+.search__tooltip-popover {
+  background-color: $blue;
+  border-color: $blue;
+  border-radius: $base-border-radius;
+  color: $white;
+  padding: 2rem;
+  width: max-content;
+}
+
+
+/* We can remove this stylelint disable (and the css-anchor-positioning polyfill)
+   when position-anchor becomes widely available */
+
+/* stylelint-disable property-no-unknown */
+.search__tooltip-popover-positioning {
+  left: anchor(center);
+  margin: 1rem;
+  position: fixed;
+  position-anchor: --tooltip-anchor;
+  top: anchor(bottom);
+  transform: translateX(-50%);
+}
+
+.search__tooltip-popover-value {
+  opacity: 0.5;
+}

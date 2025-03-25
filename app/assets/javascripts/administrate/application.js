@@ -6,3 +6,4 @@ import "@hotwired/turbo-rails";
 import "selectize/dist/js/selectize.min.js";
 
 import "./controllers";
+import "./vendor/css-anchor-positioning";
