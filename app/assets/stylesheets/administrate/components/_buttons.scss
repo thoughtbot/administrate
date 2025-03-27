@@ -42,6 +42,14 @@ button,
   }
 }
 
+
+form.button_to { /* stylelint-disable selector-no-qualifying-type, selector-class-pattern */
+  .link {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .button--alt {
   background-color: transparent;
   border: $base-border;

@@ -2243,6 +2243,12 @@ button:not(.link):disabled:hover,
   background-color: #1976d2;
 }
 
+form.button_to { /* stylelint-disable selector-no-qualifying-type, selector-class-pattern */ }
+form.button_to .link {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .button--alt {
   background-color: transparent;
   border: 1px solid #dfe0e1;
@@ -2314,9 +2320,16 @@ button:not(.link):disabled:hover,
   transform: rotate(180deg);
 }
 
+.cell-label--action-button {
+  white-space: nowrap;
+  width: 1rem;
+}
+
 .cell-data--number,
 .cell-label--number {
   text-align: right;
+  white-space: nowrap;
+  width: 1rem;
 }
 
 .field-unit {
