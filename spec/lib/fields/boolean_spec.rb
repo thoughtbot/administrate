@@ -6,14 +6,17 @@ describe Administrate::Field::Boolean do
   include FieldMatchers
 
   describe "#partial_prefixes" do
-    it "returns a partial based on the page being rendered" do
+    it "returns the partial prefixes based on the field class" do
       page = :show
       boolean = double
       field = Administrate::Field::Boolean.new(:price, boolean, page)
 
       prefixes = field.partial_prefixes
 
-      expect(prefixes).to eq(["fields/boolean", "fields/base"])
+      expect(prefixes).to eq([
+        "fields/boolean/looks/default", "fields/boolean",
+        "fields/base/looks/default", "fields/base"
+      ])
     end
   end
 
