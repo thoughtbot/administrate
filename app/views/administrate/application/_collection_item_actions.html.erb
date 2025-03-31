@@ -1,5 +1,5 @@
 <% if existing_action?(collection_presenter.resource_name, :edit) %>
-  <td><%= link_to(
+  <td class="cell-label--action-button"><%= link_to(
     t("administrate.actions.edit"),
     [:edit, namespace, resource],
     class: "action-edit",
@@ -7,7 +7,7 @@
 <% end %>
 
 <% if existing_action?(collection_presenter.resource_name, :destroy) %>
-  <td><%= button_to(
+  <td class="cell-label--action-button"><%= button_to(
     t("administrate.actions.destroy"),
     [namespace, resource],
     class: "link link--danger",
