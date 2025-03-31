@@ -47,6 +47,7 @@ describe Administrate::Field::Polymorphic do
         def display_resource(*)
           :success
         end
+        attr_accessor :context
       end
 
       field = Administrate::Field::Polymorphic.new(:foo, Thing.new, :show)
