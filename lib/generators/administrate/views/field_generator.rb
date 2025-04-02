@@ -4,6 +4,13 @@ module Administrate
   module Generators
     module Views
       class FieldGenerator < Administrate::ViewGenerator
+        class_option(
+          :look,
+          type: :string,
+          desc: "Specify the look for the field",
+          default: ""
+        )
+
         def self.template_source_path
           File.expand_path(
             "../../../../../app/views/fields/",
@@ -30,6 +37,10 @@ module Administrate
 
         private
 
+        def look
+          options[:look]
+        end
+
         def copy_field_partials(resource_path)
           copy_field_partial(resource_path, :index)
           copy_field_partial(resource_path, :show)
@@ -38,10 +49,11 @@ module Administrate
 
         def copy_field_partial(resource_path, partial_name)
           template_file = "#{resource_path}/_#{partial_name}.html.erb"
+          looks_dir = look.present? ? "looks/#{look}/" : ""
 
           copy_file(
             template_file,
-            "app/views/fields/#{template_file}"
+            "app/views/fields/#{resource_path}/#{looks_dir}_#{partial_name}.html.erb"
           )
         end
       end

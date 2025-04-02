@@ -6,14 +6,17 @@ describe Administrate::Field::Number do
   include FieldMatchers
 
   describe "#partial_prefixes" do
-    it "returns a partial based on the page being rendered" do
+    it "returns the partial prefixes based on the field class" do
       page = :show
       number = double
       field = Administrate::Field::Number.new(:price, number, page)
 
       prefixes = field.partial_prefixes
 
-      expect(prefixes).to eq(["fields/number", "fields/base"])
+      expect(prefixes).to eq([
+        "fields/number/looks/default", "fields/number",
+        "fields/base/looks/default", "fields/base"
+      ])
     end
   end
 

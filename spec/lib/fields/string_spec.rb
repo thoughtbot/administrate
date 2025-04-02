@@ -6,13 +6,16 @@ describe Administrate::Field::String do
   include FieldMatchers
 
   describe "#partial_prefixes" do
-    it "returns a partial based on the page being rendered" do
+    it "returns the partial prefixes based on the field class" do
       page = :show
       field = Administrate::Field::String.new(:string, "hello", page)
 
       prefixes = field.partial_prefixes
 
-      expect(prefixes).to eq(["fields/string", "fields/base"])
+      expect(prefixes).to eq([
+        "fields/string/looks/default", "fields/string",
+        "fields/base/looks/default", "fields/base"
+      ])
     end
   end
 

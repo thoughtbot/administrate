@@ -1,0 +1,19 @@
+<% if field.data %>
+  <span style="display: flex; align-items: center; gap: 0.2em;">
+    <% if field.data.image_url.present? %>
+      <%= image_tag(
+        field.data.image_url,
+        alt: field.data.name,
+        style: 'max-height: 2em; max-width: 2em;',
+      ) %>
+    <% end %>
+    <% if accessible_action?(field.data, :show) %>
+      <%= link_to(
+        field.display_associated_resource,
+        [namespace, field.data],
+      ) %>
+    <% else %>
+      <%= field.display_associated_resource %>
+    <% end %>
+  </span>
+<% end %>
