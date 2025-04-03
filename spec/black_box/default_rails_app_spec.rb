@@ -1,34 +1,24 @@
 require "rails_helper"
+require "capybara/dsl"
 
 RSpec.describe "with a Default Rails app" do
-  it "works" do
-    create_rails_application
+  include Capybara::DSL
 
-    session.run("bundle")
+  it "works" do
+    setup_capybara
+    create_rails_application
 
     # setup_post_model
     # add_administrate
     # generate_administrate_dashboards
 
-    # Bundler.with_unbundled_env do
-    #   Dir.chdir session.directory do
-    #     system "bundle" # we need to bundle before we're able to run the server
-    #     process = SackRace::Process.new("bundle exec rails s", {verbose: true})
+    start_and_wait_for_ready
 
-    #     binding.irb
-    #   end
-    # end
+    visit("/")
 
-    Bundler.with_unbundled_env do
-      process = SackRace::Process.new("bundle exec rails s", {chdir: session.directory, verbose: true})
-      # process.add_handler(:ready, "Use Ctrl-C to stop\n")
-      # process.start
+    expect(page).to have_content("Rails version: 8.0.2")
 
-      # process.wait_for_handler(:ready)
-      binding.irb
-    end
-
-    # run_feature_tests
+    process.stop
   end
 
   def create_rails_application
@@ -42,12 +32,8 @@ RSpec.describe "with a Default Rails app" do
 
     rails_new_cmd = [
       "bundle exec rails new .",
-      "--skip-bundle",
       "--skip-test",
-      "--skip-coffee",
-      "--skip-turbolinks",
       "--skip-spring",
-      "--skip-bootsnap",
       "--force"
     ].join(" ")
 
@@ -57,5 +43,32 @@ RSpec.describe "with a Default Rails app" do
 
   def session
     @session ||= JetBlack::Session.new(options: {clean_bundler_env: true})
+  end
+
+  def setup_capybara
+    Capybara.current_driver = :chrome
+    Capybara.run_server = false
+    Capybara.app_host = "http://localhost:3000"
+  end
+
+  def start_and_wait_for_ready
+    Bundler.with_unbundled_env do
+      process.add_handler(:ready, "Use Ctrl-C to stop\n")
+      process.start
+      process.wait_for_handler(:ready)
+    end
+  end
+
+  def process
+    @process ||=
+      Bundler.with_unbundled_env do
+        SackRace::Process.new(
+          "bundle exec rails server",
+          {
+            chdir: session.directory,
+            verbose: true
+          }
+        )
+      end
   end
 end
