@@ -1,9 +1,6 @@
 require "rails_helper"
-require "capybara/dsl"
 
 RSpec.describe "with a Default Rails app" do
-  include Capybara::DSL
-
   it "works" do
     setup_capybara
     create_rails_application
@@ -11,6 +8,9 @@ RSpec.describe "with a Default Rails app" do
     # setup_post_model
     # add_administrate
     # generate_administrate_dashboards
+
+    # future: we don't handle the case where rails s fails to start because
+    # there's something already running
 
     start_and_wait_for_ready
 
@@ -43,12 +43,6 @@ RSpec.describe "with a Default Rails app" do
 
   def session
     @session ||= JetBlack::Session.new(options: {clean_bundler_env: true})
-  end
-
-  def setup_capybara
-    Capybara.current_driver = :chrome
-    Capybara.run_server = false
-    Capybara.app_host = "http://localhost:3000"
   end
 
   def start_and_wait_for_ready
