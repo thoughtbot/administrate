@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_13_130741) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_03_192516) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -94,6 +94,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_13_130741) do
     t.time "example_time"
     t.string "password"
     t.boolean "hidden", default: false, null: false
+    t.string "favourite_color"
   end
 
   create_table "line_items", id: :serial, force: :cascade do |t|
