@@ -32,9 +32,9 @@ describe "fields/rich_text/_form", type: :view do
     end
 
     expect(rendered).to have_field(
-      "trix_input_product", type: "hidden", with: product.banner.body.to_trix_html
+      "product_banner_trix_input_product", type: "hidden", with: product.banner.body.to_trix_html
     ).and(have_element(
-      "trix-editor", input: "trix_input_product"
+      "trix-editor", input: "product_banner_trix_input_product"
     ))
   end
 end
