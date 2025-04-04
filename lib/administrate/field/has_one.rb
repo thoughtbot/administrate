@@ -7,7 +7,6 @@ module Administrate
         resource_class = options[:resource_class]
         final_associated_class_name =
           if options.key?(:class_name)
-            Administrate.warn_of_deprecated_option(:class_name)
             options.fetch(:class_name)
           elsif resource_class
             associated_class_name(resource_class, attr)

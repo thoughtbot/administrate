@@ -133,7 +133,6 @@ module Administrate
         provided_class_name = attribute_types[attr].options[:class_name]
         unquoted_table_name =
           if provided_class_name
-            Administrate.warn_of_deprecated_option(:class_name)
             provided_class_name.constantize.table_name
           else
             @scoped_resource.reflect_on_association(attr).klass.table_name
