@@ -5,12 +5,7 @@ module Administrate
     class BelongsTo < Associative
       def self.permitted_attribute(attr, options = {})
         resource_class = options[:resource_class]
-        if resource_class
-          foreign_key_for(resource_class, attr)
-        else
-          Administrate.warn_of_missing_resource_class
-          :"#{attr}_id"
-        end
+        foreign_key_for(resource_class, attr)
       end
 
       def self.eager_load?

@@ -75,9 +75,6 @@ describe Administrate::Search do
     Administrate.send(:remove_const, :SearchSpecMocks)
   end
 
-  before { Administrate.deprecator.silenced = true }
-  after { Administrate.deprecator.silenced = false }
-
   describe "#run" do
     it "returns all records when no search term" do
       class User < ApplicationRecord; end
@@ -160,10 +157,6 @@ describe Administrate::Search do
     end
 
     context "when searching through associations" do
-      before do
-        allow(Administrate.deprecator).to receive(:warn)
-      end
-
       let(:scoped_object) { Administrate::SearchSpecMocks::Foo }
 
       let(:search) do

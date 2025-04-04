@@ -7,10 +7,6 @@ require "administrate/field/string"
 describe Administrate::Field::Deferred do
   describe "#permitted_attribute" do
     context "when given a `foreign_key` option" do
-      before do
-        allow(Administrate.deprecator).to receive(:warn)
-      end
-
       it "returns the value given" do
         deferred = Administrate::Field::Deferred.new(
           Administrate::Field::BelongsTo,
@@ -18,16 +14,6 @@ describe Administrate::Field::Deferred do
         )
         expect(deferred.permitted_attribute(:foo, resource_class: LineItem))
           .to eq(:bar)
-      end
-
-      it "triggers a deprecation warning" do
-        deferred = Administrate::Field::Deferred.new(
-          Administrate::Field::BelongsTo,
-          foreign_key: :bar
-        )
-        deferred.permitted_attribute(:foo, resource_class: LineItem)
-        expect(Administrate.deprecator).to have_received(:warn)
-          .with(/:foreign_key is deprecated/)
       end
     end
 

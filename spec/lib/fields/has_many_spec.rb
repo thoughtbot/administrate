@@ -48,8 +48,6 @@ describe Administrate::Field::HasMany do
     let(:dashboard_double) { double(collection_attributes: []) }
 
     before do
-      allow(Administrate.deprecator).to receive(:warn)
-
       stub_const("FooDashboard", Class.new)
       allow(FooDashboard).to receive(:new).and_return(dashboard_double)
     end
@@ -68,8 +66,6 @@ describe Administrate::Field::HasMany do
 
   describe "primary_key option" do
     before do
-      allow(Administrate.deprecator).to receive(:warn)
-
       stub_const("Foo", Class.new)
       stub_const("FooDashboard", Class.new)
       uuid = SecureRandom.uuid
@@ -92,18 +88,6 @@ describe Administrate::Field::HasMany do
       expect(Foo).to have_received(:all)
       expect(Foo).to have_received(:uuid)
       expect(Foo).not_to have_received(:id)
-    end
-
-    it "triggers a deprecation warning" do
-      association =
-        Administrate::Field::HasMany.with_options(
-          primary_key: "uuid", class_name: "Foo"
-        )
-      field = association.new(:customers, [], :show)
-      field.associated_resource_options
-
-      expect(Administrate.deprecator).to have_received(:warn)
-        .with(/:primary_key is deprecated/)
     end
   end
 

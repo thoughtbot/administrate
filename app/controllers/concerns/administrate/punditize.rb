@@ -41,15 +41,7 @@ module Administrate
             "Invalid #<#{policy_scope_class}> constructor is called")
         end
 
-        if policy_scope.respond_to? :resolve_admin
-          Administrate.deprecator.warn(
-            "Pundit policy scope `resolve_admin` method is deprecated. " \
-            "Please use a namespaced pundit policy instead."
-          )
-          policy_scope.resolve_admin
-        else
-          policy_scope.resolve
-        end
+        policy_scope.resolve
       end
 
       def pundit_model(record)

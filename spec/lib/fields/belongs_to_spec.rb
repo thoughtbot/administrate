@@ -99,10 +99,6 @@ describe Administrate::Field::BelongsTo do
   end
 
   describe "class_name option" do
-    before do
-      allow(Administrate.deprecator).to receive(:warn)
-    end
-
     it "determines the associated_class" do
       line_item = create(:line_item)
       field_class = Administrate::Field::BelongsTo.with_options(
@@ -175,8 +171,6 @@ describe Administrate::Field::BelongsTo do
 
   describe "primary_key option" do
     before do
-      allow(Administrate.deprecator).to receive(:warn)
-
       stub_const("Foo", Class.new)
       stub_const("FooDashboard", Class.new)
       uuid = SecureRandom.uuid
@@ -200,25 +194,9 @@ describe Administrate::Field::BelongsTo do
       expect(Foo).to have_received(:uuid)
       expect(Foo).not_to have_received(:id)
     end
-
-    it "triggers a deprecation warning" do
-      association =
-        Administrate::Field::BelongsTo.with_options(
-          primary_key: "uuid"
-        )
-      field = association.new(:foo, double(uuid: nil), :baz)
-      field.selected_option
-
-      expect(Administrate.deprecator).to have_received(:warn)
-        .with(/:primary_key is deprecated/)
-    end
   end
 
   describe "foreign_key option" do
-    before do
-      allow(Administrate.deprecator).to receive(:warn)
-    end
-
     it "determines what foreign key is used on the relationship for the form" do
       association = Administrate::Field::BelongsTo.with_options(
         foreign_key: "foo_uuid", class_name: "Foo"
@@ -226,18 +204,6 @@ describe Administrate::Field::BelongsTo do
       field = association.new(:customers, [], :show)
       permitted_attribute = field.permitted_attribute
       expect(permitted_attribute).to eq("foo_uuid")
-    end
-
-    it "triggers a deprecation warning" do
-      association = Administrate::Field::BelongsTo.with_options(
-        foreign_key: "foo_uuid", class_name: "Foo"
-      )
-      field = association.new(:customers, [], :show)
-
-      field.permitted_attribute
-
-      expect(Administrate.deprecator).to have_received(:warn)
-        .with(/:foreign_key is deprecated/)
     end
   end
 
