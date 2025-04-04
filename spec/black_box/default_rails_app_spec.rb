@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe "with a Default Rails app" do
   it "works" do
-    setup_capybara
     create_rails_application
     setup_post_model
     setup_administrate

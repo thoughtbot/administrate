@@ -35,12 +35,6 @@ module AcceptanceHelpers
       .to be_a_success.and have_stdout("create  app/dashboards/post_dashboard.rb")
   end
 
-  def setup_capybara
-    Capybara.current_driver = :chrome
-    Capybara.run_server = false
-    Capybara.app_host = "http://localhost:3000"
-  end
-
   def setup_post_model
     new_post_cmd = session.run([
       "bundle exec rails g model post",
@@ -62,4 +56,10 @@ RSpec.configure do |config|
   config.include Capybara::DSL, type: :black_box
   config.include Capybara::RSpecMatchers, type: :black_box
   config.include AcceptanceHelpers, type: :black_box
+
+  config.before(:each, type: :black_box) do
+    Capybara.current_driver = :chrome
+    Capybara.run_server = false
+    Capybara.app_host = "http://localhost:3000"
+  end
 end
