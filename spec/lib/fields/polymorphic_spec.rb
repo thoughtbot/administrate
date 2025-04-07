@@ -156,7 +156,7 @@ describe Administrate::Field::Polymorphic do
 
       expect(result).to eq(expected_result)
     ensure
-      remove_constants :Comment, :Artcile, :Recipe
+      remove_constants :Comment, :Article, :Recipe
     end
   end
 end
