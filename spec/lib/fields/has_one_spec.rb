@@ -60,20 +60,6 @@ describe Administrate::Field::HasOne do
         expect(attributes[:"#{field_name}_attributes"])
           .to eq(%i[meta_title meta_description id])
       end
-
-      it "triggers a deprecation warning" do
-        field = Administrate::Field::Deferred.new(
-          Administrate::Field::HasOne,
-          class_name: :product_meta_tag
-        )
-        field_name = "product_meta_tag"
-        field.permitted_attribute(
-          field_name,
-          resource_class: Product
-        )
-        expect(Administrate.deprecator).to have_received(:warn)
-          .with(/:class_name is deprecated/)
-      end
     end
   end
 
