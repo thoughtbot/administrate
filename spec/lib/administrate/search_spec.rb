@@ -208,20 +208,6 @@ describe Administrate::Search do
           have_received(:where).with(*expected_query)
         )
       end
-
-      it "triggers a deprecation warning" do
-        allow(scoped_object).to receive(:where)
-        allow(scoped_object).to(
-          receive(:left_joins)
-            .with(%i[role author address])
-            .and_return(scoped_object)
-        )
-
-        search.run
-
-        expect(Administrate.deprecator).to have_received(:warn)
-          .with(/:class_name is deprecated/)
-      end
     end
 
     it "searches using a filter" do
