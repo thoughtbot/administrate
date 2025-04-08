@@ -4,7 +4,7 @@ require "administrate/field/color"
 describe Administrate::Field::Color do
   describe "#color" do
     it "displays the color" do
-      field = described_class.new(:color,'#FF5733', :show)
+      field = described_class.new(:color, "#FF5733", :show)
 
       prefixes = field.partial_prefixes
 
