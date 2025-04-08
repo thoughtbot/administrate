@@ -18,7 +18,8 @@ class CustomerDashboard < Administrate::BaseDashboard
       include_blank: true
     ),
     example_time: Field::Time,
-    password: Field::Password
+    password: Field::Password,
+    favourite_color: Field::Color
   }
 
   COLLECTION_ATTRIBUTES = [
@@ -27,7 +28,8 @@ class CustomerDashboard < Administrate::BaseDashboard
     :email_subscriber,
     :orders,
     :territory,
-    :example_time
+    :example_time,
+    :favourite_color
   ]
 
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys - [:name]
@@ -39,7 +41,8 @@ class CustomerDashboard < Administrate::BaseDashboard
     :kind,
     :territory,
     :example_time,
-    :password
+    :password,
+    :favourite_color
   ].freeze
 
   COLLECTION_FILTERS = {
