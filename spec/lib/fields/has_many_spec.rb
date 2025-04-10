@@ -64,33 +64,6 @@ describe Administrate::Field::HasMany do
     end
   end
 
-  describe "primary_key option" do
-    before do
-      stub_const("Foo", Class.new)
-      stub_const("FooDashboard", Class.new)
-      uuid = SecureRandom.uuid
-      allow(Foo).to receive(:all).and_return([Foo])
-      allow(Foo).to receive(:uuid).and_return(uuid)
-      allow(Foo).to receive(:id).and_return(1)
-      allow_any_instance_of(FooDashboard).to(
-        receive(:display_resource).and_return(uuid)
-      )
-    end
-
-    it "is the key matching the associated foreign key" do
-      association =
-        Administrate::Field::HasMany.with_options(
-          primary_key: "uuid", class_name: "Foo"
-        )
-      field = association.new(:customers, [], :show)
-      field.associated_resource_options
-
-      expect(Foo).to have_received(:all)
-      expect(Foo).to have_received(:uuid)
-      expect(Foo).not_to have_received(:id)
-    end
-  end
-
   describe "#more_than_limit?" do
     it "returns true if record count > limit" do
       limit = Administrate::Field::HasMany::DEFAULT_LIMIT

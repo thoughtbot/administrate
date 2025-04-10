@@ -54,7 +54,7 @@ describe Administrate::Search do
           ATTRIBUTE_TYPES = {
             role: Administrate::Field::BelongsTo.with_options(
               searchable: true,
-              searchable_field: "name"
+              searchable_fields: ["name"]
             ),
             author: Administrate::Field::BelongsTo.with_options(
               searchable: true,
