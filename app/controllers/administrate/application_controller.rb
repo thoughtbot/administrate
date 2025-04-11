@@ -5,14 +5,13 @@ module Administrate
     def index
       authorize_resource(resource_class)
       search_term = params[:search].to_s.strip
-      authorized_scope = authorize_scope(scoped_resource)
-      resources = filter_resources(authorized_scope, search_term: search_term)
+      resources = filter_resources(scoped_resource, search_term: search_term)
       resources = apply_collection_includes(resources)
       resources = order.apply(resources)
       resources = paginate_resources(resources)
       page = Administrate::Page::Collection.new(dashboard, order: order)
       page.context = self
-      filters = Administrate::Search.new(authorized_scope, dashboard, search_term).valid_filters
+      filters = Administrate::Search.new(scoped_resource, dashboard, search_term).valid_filters
 
       render locals: {
         resources: resources,
@@ -210,16 +209,7 @@ module Administrate
     # @param param [ActiveSupport::Parameter]
     # @return [ActiveRecord::Base]
     def find_resource(param)
-      authorize_scope(scoped_resource).find(param)
-    end
-
-    # Override this if you want to authorize the scope.
-    # This will be used in all actions except for the `new` and `create` actions.
-    #
-    # @param scope [ActiveRecord::Relation]
-    # @return [ActiveRecord::Relation]
-    def authorize_scope(scope)
-      scope
+      scoped_resource.find(param)
     end
 
     # Override this if you have certain roles that require a subset.
