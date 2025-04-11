@@ -15,8 +15,8 @@ module Administrate
         []
       end
 
-      def authorize_scope(scope)
-        namespaced_scope = policy_namespace + [scope]
+      def scoped_resource
+        namespaced_scope = policy_namespace + [super]
         policy_scope!(pundit_user, namespaced_scope)
       end
 
