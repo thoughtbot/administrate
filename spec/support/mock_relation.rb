@@ -17,8 +17,7 @@ class MockRelation
     @data.first(n)
   end
 
-  def count(column = nil)
-    return @data.count if column == :all
-    @data.count(column)
+  def size
+    @data.size
   end
 end
