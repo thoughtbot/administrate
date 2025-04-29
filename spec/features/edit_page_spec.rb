@@ -104,4 +104,18 @@ describe "customer edit page" do
     customer.reload
     expect(customer.territory).to eq(country)
   end
+
+  it "allows selecting a resource and submitting the form", :js do
+    _blog_post = create(:blog_post, title: "How to Bake Bread")
+    _blog_post2 = create(:blog_post, title: "How to Play Guitar")
+    tag = create(:blog_tag)
+
+    visit edit_admin_blog_tag_path(tag)
+    find(".selectize-input").click
+    find(".selectize-input").fill_in(with: "Bake Bread")
+    find(".option", text: "How to Bake Bread").click
+    click_button "Update Tag"
+
+    expect(page).to have_content("How to Bake Bread")
+  end
 end
