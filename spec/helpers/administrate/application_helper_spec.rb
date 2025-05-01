@@ -1,6 +1,5 @@
 require "rails_helper"
 require "administrate/field/has_many"
-require "administrate/field/has_many_variant"
 
 RSpec.describe Administrate::ApplicationHelper do
   describe "#find_partial_prefix" do
@@ -13,7 +12,7 @@ RSpec.describe Administrate::ApplicationHelper do
 
     context "when the field does not have a partial and the superclass does" do
       it "returns the superclass prefix" do
-        field = Administrate::Field::HasManyVariant.new(:name, "hello", :show)
+        field = HasManyVariantField.new(:name, "hello", :show)
         expect(find_partial_prefix(field)).to eq("fields/has_many")
       end
     end
