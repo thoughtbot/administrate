@@ -1,4 +1,3 @@
-require "administrate/field/has_many_variant"
 require "administrate/base_dashboard"
 
 class CustomerDashboard < Administrate::BaseDashboard
@@ -9,7 +8,7 @@ class CustomerDashboard < Administrate::BaseDashboard
     lifetime_value: Field::Number.with_options(prefix: "$", decimals: 2, sortable: false),
     name: Field::String,
     orders: Field::HasMany.with_options(limit: 2, sort_by: :id),
-    log_entries: Field::HasManyVariant.with_options(limit: 2, sort_by: :id),
+    log_entries: HasManyVariantField.with_options(limit: 2, sort_by: :id),
     updated_at: Field::DateTime,
     kind: Field::Select,
     territory: Field::BelongsTo.with_options(
