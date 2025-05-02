@@ -28,3 +28,5 @@ pl:
     search:
       clear: Wyczyść wyszukiwanie
       label: Szukanie %{resource}
+    table:
+      actions: Akcje

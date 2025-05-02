@@ -28,3 +28,5 @@ en:
     search:
       clear: Clear search
       label: Search %{resource}
+    table:
+      actions: Actions

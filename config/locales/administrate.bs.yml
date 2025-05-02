@@ -27,3 +27,5 @@ bs:
     search:
       clear: Izbriši pretraživanje
       label: Pretraga %{resource}
+    table:
+      actions: Akcije
