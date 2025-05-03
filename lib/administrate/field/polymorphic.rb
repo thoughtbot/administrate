@@ -26,7 +26,9 @@ module Administrate
       private
 
       def associated_dashboard(klass = data.class)
-        "#{klass.name}Dashboard".constantize.new
+        "#{klass.name}Dashboard".constantize.new.tap do |d|
+          d.context = context
+        end
       end
 
       def classes
