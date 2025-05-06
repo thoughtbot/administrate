@@ -28,3 +28,5 @@ vi:
     search:
       clear: Tìm kiếm rõ ràng
       label: Tìm kiếm %{resource}
+    table:
+      actions: Hành động
