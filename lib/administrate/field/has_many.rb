@@ -72,7 +72,7 @@ module Administrate
       end
 
       def more_than_limit?
-        paginate? && data.count(:all) > limit
+        paginate? && data.size > limit
       end
 
       def data
