@@ -115,10 +115,6 @@ If neither is specified, sorting will be done using the foreign key.
 
 `:class_name` - Specifies the name of the associated class.
 
-`:primary_key` (deprecated) - Specifies the association's primary_key.
-
-`:foreign_key` (deprecated) - Specifies the name of the foreign key directly.
-
 **Field::HasMany**
 
 `:collection_attributes` - Set the columns to display in the show view.
@@ -140,10 +136,6 @@ If neither is specified, sorting will be done using the foreign key.
 For `HasMany` associations, sorting is based on the count, so this option is not referenced in the table views.  
 
 `:class_name` - Specifies the name of the associated class.
-
-`:primary_key` (deprecated) - Specifies object's primary_key.
-
-`:foreign_key` (deprecated) - Specifies the name of the foreign key directly.
 
 **Field::HasOne**
 

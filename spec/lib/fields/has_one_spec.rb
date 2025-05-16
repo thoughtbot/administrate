@@ -42,10 +42,6 @@ describe Administrate::Field::HasOne do
 
   describe ".permitted_attribute" do
     context "with custom class_name" do
-      before do
-        allow(Administrate.deprecator).to receive(:warn)
-      end
-
       it "returns attributes from correct dashboard" do
         field = Administrate::Field::Deferred.new(
           Administrate::Field::HasOne,
