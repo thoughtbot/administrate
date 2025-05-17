@@ -53,7 +53,9 @@ module Administrate
       private
 
       def associated_dashboard
-        "#{associated_class_name}Dashboard".constantize.new
+        "#{associated_class_name}Dashboard".constantize.new.tap do |d|
+          d.context = context
+        end
       end
 
       def primary_key
