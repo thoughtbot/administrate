@@ -69,7 +69,7 @@ to display a collection of resources in an HTML table.
     <% resources.each do |resource| %>
       <tr class="js-table-row"
           <% if accessible_action?(resource, :show) %>
-            <%= %(tabindex=0 role=link data-url=#{polymorphic_path([namespace, resource])}) %>
+            <%= %(tabindex=0 data-url=#{polymorphic_path([namespace, resource])}) %>
           <% end %>
           >
         <% collection_presenter.attributes_for(resource).each do |attribute| %>
