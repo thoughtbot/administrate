@@ -100,38 +100,4 @@ RSpec.describe Admin::ApplicationController, type: :controller do
         .to raise_error(Administrate::NotAuthorizedError)
     end
   end
-
-  describe "deprecated methods: show_action" do
-    controller(Administrate::ApplicationController) do
-      def index
-        show_action?(:index, Order)
-      end
-    end
-
-    it "triggers a deprecation warning" do
-      allow(Administrate.deprecator).to receive(:warn)
-      get :index
-      expect(Administrate.deprecator).to(
-        have_received(:warn)
-          .with(/`show_action\?` is deprecated/)
-      )
-    end
-  end
-
-  describe "deprecated methods: valid_action" do
-    controller(Administrate::ApplicationController) do
-      def index
-        valid_action?(:index, Order)
-      end
-    end
-
-    it "triggers a deprecation warning" do
-      allow(Administrate.deprecator).to receive(:warn)
-      get :index
-      expect(Administrate.deprecator).to(
-        have_received(:warn)
-          .with(/`valid_action\?` is deprecated/)
-      )
-    end
-  end
 end

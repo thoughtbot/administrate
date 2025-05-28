@@ -41,19 +41,8 @@ module Administrate
         end
       end
 
-      def searchable_field
-        Administrate.deprecator.warn(
-          "searchable_field is deprecated, use searchable_fields instead"
-        )
-        options.fetch(:searchable_field)
-      end
-
       def searchable_fields
-        if options.key?(:searchable_field)
-          [searchable_field]
-        else
-          options.fetch(:searchable_fields)
-        end
+        options.fetch(:searchable_fields)
       end
 
       def sortable?
@@ -61,12 +50,7 @@ module Administrate
       end
 
       def permitted_attribute(attr, opts = {})
-        if options.key?(:foreign_key)
-          Administrate.warn_of_deprecated_option(:foreign_key)
-          options.fetch(:foreign_key)
-        else
-          deferred_class.permitted_attribute(attr, options.merge(opts))
-        end
+        deferred_class.permitted_attribute(attr, options.merge(opts))
       end
 
       delegate :html_class, to: :deferred_class
