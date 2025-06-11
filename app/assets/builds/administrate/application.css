@@ -1963,6 +1963,22 @@ textarea::placeholder {
   width: 100%;
 }
 
+[type=color] {
+  padding: 0 0.5em;
+}
+
+.color-example {
+  display: flex;
+  align-items: center;
+}
+.color-example span {
+  width: 1em;
+  height: 1em;
+  line-height: 1.5em;
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
 select {
   width: 100%;
 }
