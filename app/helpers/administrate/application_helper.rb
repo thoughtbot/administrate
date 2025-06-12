@@ -52,7 +52,7 @@ module Administrate
         target.is_a?(ActiveRecord::Base) ? target.class : target
 
       existing_action?(target_class_or_class_name, action_name) &&
-        authorized_action?(target, action_name)
+        authorized_action?(target, action_name) || superclass_accessible_action?(target, action_name)
     end
 
     def display_resource_name(resource_name, opts = {})
@@ -96,6 +96,13 @@ module Administrate
     def default_resource_name(name, opts = {})
       resource_name = (opts[:singular] ? name.to_s : name.to_s.pluralize)
       resource_name.tr("/", "_").titleize
+    end
+
+    def superclass_accessible_action?(target, action_name)
+      return false unless target.is_a?(ActiveRecord::Base)
+      return false unless target.class.superclass <= target.class.base_class
+
+      accessible_action?(target.becomes(target.class.superclass), action_name)
     end
   end
 end
