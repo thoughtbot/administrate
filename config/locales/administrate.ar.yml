@@ -28,3 +28,5 @@ ar:
     search:
       clear: مسح البحث
       label: بحث %{resource}
+    table:
+      actions: العمليات
