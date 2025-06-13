@@ -469,7 +469,7 @@ trix-toolbar .trix-button:not(:first-child) {
 
 trix-toolbar .trix-button.trix-active {
   background: #cbeefa;
-  color: black;
+  color: rgb(0, 0, 0);
 }
 
 trix-toolbar .trix-button:not(:disabled) {
@@ -653,21 +653,21 @@ trix-editor [data-trix-mutable]:not(.attachment__caption-editor) {
   user-select: none;
 }
 
-trix-editor [data-trix-mutable]::-moz-selection,
-trix-editor [data-trix-cursor-target]::-moz-selection, trix-editor [data-trix-mutable] ::-moz-selection {
+trix-editor [data-trix-mutable] ::-moz-selection, trix-editor [data-trix-mutable]::-moz-selection,
+trix-editor [data-trix-cursor-target]::-moz-selection {
   background: none;
 }
 
-trix-editor [data-trix-mutable]::selection,
-trix-editor [data-trix-cursor-target]::selection, trix-editor [data-trix-mutable] ::selection {
+trix-editor [data-trix-mutable] ::selection, trix-editor [data-trix-mutable]::selection,
+trix-editor [data-trix-cursor-target]::selection {
   background: none;
 }
 
-trix-editor .attachment__caption-editor:focus[data-trix-mutable]::-moz-selection {
+trix-editor [data-trix-mutable].attachment__caption-editor:focus::-moz-selection {
   background: highlight;
 }
 
-trix-editor .attachment__caption-editor:focus[data-trix-mutable]::selection {
+trix-editor [data-trix-mutable].attachment__caption-editor:focus::selection {
   background: highlight;
 }
 

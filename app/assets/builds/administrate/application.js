@@ -15,13 +15,13 @@
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
   };
-  var __copyProps = (to, from, except, desc) => {
+  var __copyProps = (to2, from, except, desc) => {
     if (from && typeof from === "object" || typeof from === "function") {
       for (let key of __getOwnPropNames(from))
-        if (!__hasOwnProp.call(to, key) && key !== except)
-          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+        if (!__hasOwnProp.call(to2, key) && key !== except)
+          __defProp(to2, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
     }
-    return to;
+    return to2;
   };
   var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
     // If the importer is in node compatibility mode or this is not an ESM
@@ -2844,7 +2844,7 @@
         jQuery.event = {
           global: {},
           add: function(elem, types, handler, data, selector) {
-            var handleObjIn, eventHandle, tmp, events, t2, handleObj, special, handlers, type, namespaces, origType, elemData = dataPriv.get(elem);
+            var handleObjIn, eventHandle, tmp, events, t3, handleObj, special, handlers, type, namespaces, origType, elemData = dataPriv.get(elem);
             if (!acceptData(elem)) {
               return;
             }
@@ -2868,9 +2868,9 @@
               };
             }
             types = (types || "").match(rnothtmlwhite) || [""];
-            t2 = types.length;
-            while (t2--) {
-              tmp = rtypenamespace.exec(types[t2]) || [];
+            t3 = types.length;
+            while (t3--) {
+              tmp = rtypenamespace.exec(types[t3]) || [];
               type = origType = tmp[1];
               namespaces = (tmp[2] || "").split(".").sort();
               if (!type) {
@@ -2914,19 +2914,19 @@
           },
           // Detach an event or set of events from an element
           remove: function(elem, types, handler, selector, mappedTypes) {
-            var j2, origCount, tmp, events, t2, handleObj, special, handlers, type, namespaces, origType, elemData = dataPriv.hasData(elem) && dataPriv.get(elem);
+            var j2, origCount, tmp, events, t3, handleObj, special, handlers, type, namespaces, origType, elemData = dataPriv.hasData(elem) && dataPriv.get(elem);
             if (!elemData || !(events = elemData.events)) {
               return;
             }
             types = (types || "").match(rnothtmlwhite) || [""];
-            t2 = types.length;
-            while (t2--) {
-              tmp = rtypenamespace.exec(types[t2]) || [];
+            t3 = types.length;
+            while (t3--) {
+              tmp = rtypenamespace.exec(types[t3]) || [];
               type = origType = tmp[1];
               namespaces = (tmp[2] || "").split(".").sort();
               if (!type) {
                 for (type in events) {
-                  jQuery.event.remove(elem, type + types[t2], handler, selector, true);
+                  jQuery.event.remove(elem, type + types[t3], handler, selector, true);
                 }
                 continue;
               }
@@ -3730,19 +3730,19 @@
             // Only Firefox includes border widths
             // in computed dimensions. (gh-4529)
             reliableTrDimensions: function() {
-              var table, tr, trChild, trStyle;
+              var table, tr2, trChild, trStyle;
               if (reliableTrDimensionsVal == null) {
                 table = document2.createElement("table");
-                tr = document2.createElement("tr");
+                tr2 = document2.createElement("tr");
                 trChild = document2.createElement("div");
                 table.style.cssText = "position:absolute;left:-11111px;border-collapse:separate";
-                tr.style.cssText = "border:1px solid";
-                tr.style.height = "1px";
+                tr2.style.cssText = "border:1px solid";
+                tr2.style.height = "1px";
                 trChild.style.height = "9px";
                 trChild.style.display = "block";
-                documentElement.appendChild(table).appendChild(tr).appendChild(trChild);
-                trStyle = window2.getComputedStyle(tr);
-                reliableTrDimensionsVal = parseInt(trStyle.height, 10) + parseInt(trStyle.borderTopWidth, 10) + parseInt(trStyle.borderBottomWidth, 10) === tr.offsetHeight;
+                documentElement.appendChild(table).appendChild(tr2).appendChild(trChild);
+                trStyle = window2.getComputedStyle(tr2);
+                reliableTrDimensionsVal = parseInt(trStyle.height, 10) + parseInt(trStyle.borderTopWidth, 10) + parseInt(trStyle.borderBottomWidth, 10) === tr2.offsetHeight;
                 documentElement.removeChild(table);
               }
               return reliableTrDimensionsVal;
@@ -4492,8 +4492,8 @@
           return opt;
         };
         jQuery.fn.extend({
-          fadeTo: function(speed, to, easing, callback) {
-            return this.filter(isHiddenWithinTree).css("opacity", 0).show().end().animate({ opacity: to }, speed, easing, callback);
+          fadeTo: function(speed, to2, easing, callback) {
+            return this.filter(isHiddenWithinTree).css("opacity", 0).show().end().animate({ opacity: to2 }, speed, easing, callback);
           },
           animate: function(prop, speed, easing, callback) {
             var empty = jQuery.isEmptyObject(prop), optall = jQuery.speed(speed, easing, callback), doAnimation = function() {
@@ -7474,12 +7474,12 @@
           if (c3) for (d3 = 0, e3 = c3.length; d3 < e3; d3++) f3[c3[d3]] = a3.css(c3[d3]);
           else f3 = a3.css();
           b3.css(f3);
-        }, t2 = function(b3, c3) {
+        }, t3 = function(b3, c3) {
           return b3 ? (w2.$testInput || (w2.$testInput = a2("<span />").css({ position: "absolute", top: -99999, left: -99999, width: "auto", padding: 0, whiteSpace: "pre" }).appendTo("body")), w2.$testInput.text(b3), s2(c3, w2.$testInput, ["letterSpacing", "fontSize", "fontFamily", "fontWeight", "textTransform"]), w2.$testInput.width()) : 0;
         }, u2 = function(a3) {
           var b3 = null, c3 = function(c4, d3) {
             var e3, f3, g3, h3, i3, j3, k3, l3;
-            c4 = c4 || window.event || {}, d3 = d3 || {}, c4.metaKey || c4.altKey || (d3.force || false !== a3.data("grow")) && (e3 = a3.val(), c4.type && "keydown" === c4.type.toLowerCase() && (f3 = c4.keyCode, g3 = f3 >= 48 && f3 <= 57 || f3 >= 65 && f3 <= 90 || f3 >= 96 && f3 <= 111 || f3 >= 186 && f3 <= 222 || 32 === f3, 46 === f3 || 8 === f3 ? (l3 = r2(a3[0]), l3.length ? e3 = e3.substring(0, l3.start) + e3.substring(l3.start + l3.length) : 8 === f3 && l3.start ? e3 = e3.substring(0, l3.start - 1) + e3.substring(l3.start + 1) : 46 === f3 && void 0 !== l3.start && (e3 = e3.substring(0, l3.start) + e3.substring(l3.start + 1))) : g3 && (j3 = c4.shiftKey, k3 = String.fromCharCode(c4.keyCode), k3 = j3 ? k3.toUpperCase() : k3.toLowerCase(), e3 += k3)), h3 = a3.attr("placeholder"), !e3 && h3 && (e3 = h3), (i3 = t2(e3, a3) + 4) !== b3 && (b3 = i3, a3.width(i3), a3.triggerHandler("resize")));
+            c4 = c4 || window.event || {}, d3 = d3 || {}, c4.metaKey || c4.altKey || (d3.force || false !== a3.data("grow")) && (e3 = a3.val(), c4.type && "keydown" === c4.type.toLowerCase() && (f3 = c4.keyCode, g3 = f3 >= 48 && f3 <= 57 || f3 >= 65 && f3 <= 90 || f3 >= 96 && f3 <= 111 || f3 >= 186 && f3 <= 222 || 32 === f3, 46 === f3 || 8 === f3 ? (l3 = r2(a3[0]), l3.length ? e3 = e3.substring(0, l3.start) + e3.substring(l3.start + l3.length) : 8 === f3 && l3.start ? e3 = e3.substring(0, l3.start - 1) + e3.substring(l3.start + 1) : 46 === f3 && void 0 !== l3.start && (e3 = e3.substring(0, l3.start) + e3.substring(l3.start + 1))) : g3 && (j3 = c4.shiftKey, k3 = String.fromCharCode(c4.keyCode), k3 = j3 ? k3.toUpperCase() : k3.toLowerCase(), e3 += k3)), h3 = a3.attr("placeholder"), !e3 && h3 && (e3 = h3), (i3 = t3(e3, a3) + 4) !== b3 && (b3 = i3, a3.width(i3), a3.triggerHandler("resize")));
           };
           a3.on("keydown keyup update blur", c3), c3();
         }, v2 = function(a3) {
@@ -7503,7 +7503,7 @@
           b3 || (b3 = {});
           console.error("Selectize: " + a3), b3.explanation && (console.group && console.group(), console.error(b3.explanation), console.group && console.groupEnd());
         }("Dependency MicroPlugin is missing", { explanation: 'Make sure you either: (1) are using the "standalone" version of Selectize, or (2) require MicroPlugin before you load Selectize.' }), a2.extend(w2.prototype, { setup: function() {
-          var b3, c3, d3, e3, j3, k3, l3, m3, n3, o3, p3 = this, r3 = p3.settings, s3 = p3.eventNS, t3 = a2(window), v3 = a2(document), w3 = p3.$input;
+          var b3, c3, d3, e3, j3, k3, l3, m3, n3, o3, p3 = this, r3 = p3.settings, s3 = p3.eventNS, t4 = a2(window), v3 = a2(document), w3 = p3.$input;
           if (l3 = p3.settings.mode, m3 = w3.attr("class") || "", b3 = a2("<div>").addClass(r3.wrapperClass).addClass(m3).addClass(l3), c3 = a2("<div>").addClass(r3.inputClass).addClass("items").appendTo(b3), d3 = a2('<input type="text" autocomplete="off" />').appendTo(c3).attr("tabindex", w3.is(":disabled") ? "-1" : p3.tabIndex), k3 = a2(r3.dropdownParent || b3), e3 = a2("<div>").addClass(r3.dropdownClass).addClass(l3).hide().appendTo(k3), j3 = a2("<div>").addClass(r3.dropdownContentClass).appendTo(e3), (o3 = w3.attr("id")) && (d3.attr("id", o3 + "-selectized"), a2("label[for='" + o3 + "']").attr("for", o3 + "-selectized")), p3.settings.copyClassesToDropdown && e3.addClass(m3), b3.css({ width: w3[0].style.width }), p3.plugins.names.length && (n3 = "plugin-" + p3.plugins.names.join(" plugin-"), b3.addClass(n3), e3.addClass(n3)), (null === r3.maxItems || r3.maxItems > 1) && 1 === p3.tagType && w3.attr("multiple", "multiple"), p3.settings.placeholder && d3.attr("placeholder", r3.placeholder), !p3.settings.splitOn && p3.settings.delimiter) {
             var x2 = p3.settings.delimiter.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
             p3.settings.splitOn = new RegExp("\\s*" + x2 + "+\\s*");
@@ -7545,9 +7545,9 @@
               if (a3.target === p3.$dropdown[0] || a3.target.parentNode === p3.$dropdown[0]) return false;
               p3.$control.has(a3.target).length || a3.target === p3.$control[0] || p3.blur(a3.target);
             }
-          }), t3.on(["scroll" + s3, "resize" + s3].join(" "), function() {
+          }), t4.on(["scroll" + s3, "resize" + s3].join(" "), function() {
             p3.isOpen && p3.positionDropdown.apply(p3, arguments);
-          }), t3.on("mousemove" + s3, function() {
+          }), t4.on("mousemove" + s3, function() {
             p3.ignoreHover = false;
           }), this.revertSettings = { $children: w3.children().detach(), tabindex: w3.attr("tabindex") }, w3.attr("tabindex", -1).hide().after(p3.$wrapper), a2.isArray(r3.items) && (p3.setValue(r3.items), delete r3.items), i2 && w3.on("invalid" + s3, function(a3) {
             a3.preventDefault(), p3.isInvalid = true, p3.refreshState();
@@ -7719,7 +7719,7 @@
           if (b3 !== f3.lastQuery ? (f3.lastQuery = b3, d3 = f3.sifter.search(b3, a2.extend(h3, { score: e3 })), f3.currentResults = d3) : d3 = a2.extend(true, {}, f3.currentResults), g3.hideSelected) for (c3 = d3.items.length - 1; c3 >= 0; c3--) -1 !== f3.items.indexOf(k2(d3.items[c3].id)) && d3.items.splice(c3, 1);
           return d3;
         }, refreshOptions: function(b3) {
-          var c3, e3, f3, g3, h3, i3, j3, l3, m3, n3, o3, p3, q3, r3, s3, t3;
+          var c3, e3, f3, g3, h3, i3, j3, l3, m3, n3, o3, p3, q3, r3, s3, t4;
           void 0 === b3 && (b3 = true);
           var u3 = this, w3 = a2.trim(u3.$control_input.val()), x2 = u3.search(w3), y2 = u3.$dropdown_content, z2 = u3.$activeOption && k2(u3.$activeOption.attr("data-value"));
           for (g3 = x2.items.length, "number" == typeof u3.settings.maxOptions && (g3 = Math.min(g3, u3.settings.maxOptions)), h3 = {}, i3 = [], c3 = 0; c3 < g3; c3++) for (j3 = u3.options[x2.items[c3].id], l3 = u3.render("option", j3), m3 = j3[u3.settings.optgroupField] || "", n3 = a2.isArray(m3) ? m3 : [m3], e3 = 0, f3 = n3 && n3.length; e3 < f3; e3++) m3 = n3[e3], u3.optgroups.hasOwnProperty(m3) || (m3 = ""), h3.hasOwnProperty(m3) || (h3[m3] = document.createDocumentFragment(), i3.push(m3)), h3[m3].appendChild(l3);
@@ -7728,7 +7728,7 @@
           }), o3 = document.createDocumentFragment(), c3 = 0, g3 = i3.length; c3 < g3; c3++) m3 = i3[c3], u3.optgroups.hasOwnProperty(m3) && h3[m3].childNodes.length ? (p3 = document.createDocumentFragment(), p3.appendChild(u3.render("optgroup_header", u3.optgroups[m3])), p3.appendChild(h3[m3]), o3.appendChild(u3.render("optgroup", a2.extend({}, u3.optgroups[m3], { html: v2(p3), dom: p3 })))) : o3.appendChild(h3[m3]);
           if (y2.html(o3), u3.settings.highlight && (y2.removeHighlight(), x2.query.length && x2.tokens.length)) for (c3 = 0, g3 = x2.tokens.length; c3 < g3; c3++) d2(y2, x2.tokens[c3].regex);
           if (!u3.settings.hideSelected) for (c3 = 0, g3 = u3.items.length; c3 < g3; c3++) u3.getOption(u3.items[c3]).addClass("selected");
-          q3 = u3.canCreate(w3), q3 && (y2.prepend(u3.render("option_create", { input: w3 })), t3 = a2(y2[0].childNodes[0])), u3.hasOptions = x2.items.length > 0 || q3, u3.hasOptions ? (x2.items.length > 0 ? (s3 = z2 && u3.getOption(z2), s3 && s3.length ? r3 = s3 : "single" === u3.settings.mode && u3.items.length && (r3 = u3.getOption(u3.items[0])), r3 && r3.length || (r3 = t3 && !u3.settings.addPrecedence ? u3.getAdjacentOption(t3, 1) : y2.find("[data-selectable]:first"))) : r3 = t3, u3.setActiveOption(r3), b3 && !u3.isOpen && u3.open()) : (u3.setActiveOption(null), b3 && u3.isOpen && u3.close());
+          q3 = u3.canCreate(w3), q3 && (y2.prepend(u3.render("option_create", { input: w3 })), t4 = a2(y2[0].childNodes[0])), u3.hasOptions = x2.items.length > 0 || q3, u3.hasOptions ? (x2.items.length > 0 ? (s3 = z2 && u3.getOption(z2), s3 && s3.length ? r3 = s3 : "single" === u3.settings.mode && u3.items.length && (r3 = u3.getOption(u3.items[0])), r3 && r3.length || (r3 = t4 && !u3.settings.addPrecedence ? u3.getAdjacentOption(t4, 1) : y2.find("[data-selectable]:first"))) : r3 = t4, u3.setActiveOption(r3), b3 && !u3.isOpen && u3.open()) : (u3.setActiveOption(null), b3 && u3.isOpen && u3.close());
         }, addOption: function(b3) {
           var c3, d3, e3, f3 = this;
           if (a2.isArray(b3)) for (c3 = 0, d3 = b3.length; c3 < d3; c3++) f3.addOption(b3[c3]);
@@ -7950,7 +7950,7 @@
             var m4, n4, o3, p3, q3 = c4.options, r3 = {}, s3 = function(a3) {
               var b5 = e3 && a3.attr(e3);
               return "string" == typeof b5 && b5.length ? JSON.parse(b5) : null;
-            }, t3 = function(b5, e4) {
+            }, t4 = function(b5, e4) {
               b5 = a2(b5);
               var j4 = k2(b5.val());
               if (j4 || d3.allowEmptyOption) if (r3.hasOwnProperty(j4)) {
@@ -7965,8 +7965,8 @@
             };
             for (c4.maxItems = b4.attr("multiple") ? null : 1, p3 = b4.children(), m4 = 0, n4 = p3.length; m4 < n4; m4++) o3 = p3[m4].tagName.toLowerCase(), "optgroup" === o3 ? function(b5) {
               var d4, e4, f4, g4, i4;
-              for (b5 = a2(b5), f4 = b5.attr("label"), f4 && (g4 = s3(b5) || {}, g4[j3] = f4, g4[l3] = f4, g4[h3] = b5.prop("disabled"), c4.optgroups.push(g4)), i4 = a2("option", b5), d4 = 0, e4 = i4.length; d4 < e4; d4++) t3(i4[d4], f4);
-            }(p3[m4]) : "option" === o3 && t3(p3[m4]);
+              for (b5 = a2(b5), f4 = b5.attr("label"), f4 && (g4 = s3(b5) || {}, g4[j3] = f4, g4[l3] = f4, g4[h3] = b5.prop("disabled"), c4.optgroups.push(g4)), i4 = a2("option", b5), d4 = 0, e4 = i4.length; d4 < e4; d4++) t4(i4[d4], f4);
+            }(p3[m4]) : "option" === o3 && t4(p3[m4]);
           };
           return this.each(function() {
             if (!this.selectize) {
@@ -8111,97 +8111,98 @@
   window.$ = import_jquery.default;
 
   // node_modules/trix/dist/trix.esm.min.js
-  var t = "2.1.4";
+  var t = "2.1.15";
   var e = "[data-trix-attachment]";
   var i = { preview: { presentation: "gallery", caption: { name: true, size: true } }, file: { caption: { size: true } } };
-  var n = { default: { tagName: "div", parse: false }, quote: { tagName: "blockquote", nestable: true }, heading1: { tagName: "h1", terminal: true, breakOnReturn: true, group: false }, code: { tagName: "pre", terminal: true, htmlAttributes: ["language"], text: { plaintext: true } }, bulletList: { tagName: "ul", parse: false }, bullet: { tagName: "li", listAttribute: "bulletList", group: false, nestable: true, test(t2) {
-    return r(t2.parentNode) === n[this.listAttribute].tagName;
-  } }, numberList: { tagName: "ol", parse: false }, number: { tagName: "li", listAttribute: "numberList", group: false, nestable: true, test(t2) {
-    return r(t2.parentNode) === n[this.listAttribute].tagName;
+  var n = { default: { tagName: "div", parse: false }, quote: { tagName: "blockquote", nestable: true }, heading1: { tagName: "h1", terminal: true, breakOnReturn: true, group: false }, code: { tagName: "pre", terminal: true, htmlAttributes: ["language"], text: { plaintext: true } }, bulletList: { tagName: "ul", parse: false }, bullet: { tagName: "li", listAttribute: "bulletList", group: false, nestable: true, test(t3) {
+    return r(t3.parentNode) === n[this.listAttribute].tagName;
+  } }, numberList: { tagName: "ol", parse: false }, number: { tagName: "li", listAttribute: "numberList", group: false, nestable: true, test(t3) {
+    return r(t3.parentNode) === n[this.listAttribute].tagName;
   } }, attachmentGallery: { tagName: "div", exclusive: true, terminal: true, parse: false, group: false } };
-  var r = (t2) => {
+  var r = (t3) => {
     var e2;
-    return null == t2 || null === (e2 = t2.tagName) || void 0 === e2 ? void 0 : e2.toLowerCase();
+    return null == t3 || null === (e2 = t3.tagName) || void 0 === e2 ? void 0 : e2.toLowerCase();
   };
   var o = navigator.userAgent.match(/android\s([0-9]+.*Chrome)/i);
   var s = o && parseInt(o[1]);
-  var a = { composesExistingText: /Android.*Chrome/.test(navigator.userAgent), recentAndroid: s && s > 12, samsungAndroid: s && navigator.userAgent.match(/Android.*SM-/), forcesObjectResizing: /Trident.*rv:11/.test(navigator.userAgent), supportsInputEvents: "undefined" != typeof InputEvent && ["data", "getTargetRanges", "inputType"].every((t2) => t2 in InputEvent.prototype) };
-  var l = { attachFiles: "Attach Files", bold: "Bold", bullets: "Bullets", byte: "Byte", bytes: "Bytes", captionPlaceholder: "Add a caption\u2026", code: "Code", heading1: "Heading", indent: "Increase Level", italic: "Italic", link: "Link", numbers: "Numbers", outdent: "Decrease Level", quote: "Quote", redo: "Redo", remove: "Remove", strike: "Strikethrough", undo: "Undo", unlink: "Unlink", url: "URL", urlPlaceholder: "Enter a URL\u2026", GB: "GB", KB: "KB", MB: "MB", PB: "PB", TB: "TB" };
-  var c = [l.bytes, l.KB, l.MB, l.GB, l.TB, l.PB];
-  var u = { prefix: "IEC", precision: 2, formatter(t2) {
-    switch (t2) {
+  var a = { composesExistingText: /Android.*Chrome/.test(navigator.userAgent), recentAndroid: s && s > 12, samsungAndroid: s && navigator.userAgent.match(/Android.*SM-/), forcesObjectResizing: /Trident.*rv:11/.test(navigator.userAgent), supportsInputEvents: "undefined" != typeof InputEvent && ["data", "getTargetRanges", "inputType"].every((t3) => t3 in InputEvent.prototype) };
+  var l = { ADD_ATTR: ["language"], SAFE_FOR_XML: false, RETURN_DOM: true };
+  var c = { attachFiles: "Attach Files", bold: "Bold", bullets: "Bullets", byte: "Byte", bytes: "Bytes", captionPlaceholder: "Add a caption\u2026", code: "Code", heading1: "Heading", indent: "Increase Level", italic: "Italic", link: "Link", numbers: "Numbers", outdent: "Decrease Level", quote: "Quote", redo: "Redo", remove: "Remove", strike: "Strikethrough", undo: "Undo", unlink: "Unlink", url: "URL", urlPlaceholder: "Enter a URL\u2026", GB: "GB", KB: "KB", MB: "MB", PB: "PB", TB: "TB" };
+  var u = [c.bytes, c.KB, c.MB, c.GB, c.TB, c.PB];
+  var h = { prefix: "IEC", precision: 2, formatter(t3) {
+    switch (t3) {
       case 0:
-        return "0 ".concat(l.bytes);
+        return "0 ".concat(c.bytes);
       case 1:
-        return "1 ".concat(l.byte);
+        return "1 ".concat(c.byte);
       default:
         let e2;
         "SI" === this.prefix ? e2 = 1e3 : "IEC" === this.prefix && (e2 = 1024);
-        const i2 = Math.floor(Math.log(t2) / Math.log(e2)), n2 = (t2 / Math.pow(e2, i2)).toFixed(this.precision).replace(/0*$/, "").replace(/\.$/, "");
-        return "".concat(n2, " ").concat(c[i2]);
+        const i2 = Math.floor(Math.log(t3) / Math.log(e2)), n2 = (t3 / Math.pow(e2, i2)).toFixed(this.precision).replace(/0*$/, "").replace(/\.$/, "");
+        return "".concat(n2, " ").concat(u[i2]);
     }
   } };
-  var h = "\uFEFF";
-  var d = "\xA0";
-  var g = function(t2) {
-    for (const e2 in t2) {
-      const i2 = t2[e2];
+  var d = "\uFEFF";
+  var g = "\xA0";
+  var m = function(t3) {
+    for (const e2 in t3) {
+      const i2 = t3[e2];
       this[e2] = i2;
     }
     return this;
   };
-  var m = document.documentElement;
-  var p = m.matches;
-  var f = function(t2) {
+  var p = document.documentElement;
+  var f = p.matches;
+  var b = function(t3) {
     let { onElement: e2, matchingSelector: i2, withCallback: n2, inPhase: r2, preventDefault: o2, times: s2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-    const a2 = e2 || m, l2 = i2, c2 = "capturing" === r2, u2 = function(t3) {
+    const a2 = e2 || p, l2 = i2, c2 = "capturing" === r2, u2 = function(t4) {
       null != s2 && 0 == --s2 && u2.destroy();
-      const e3 = A(t3.target, { matchingSelector: l2 });
-      null != e3 && (null == n2 || n2.call(e3, t3, e3), o2 && t3.preventDefault());
+      const e3 = y(t4.target, { matchingSelector: l2 });
+      null != e3 && (null == n2 || n2.call(e3, t4, e3), o2 && t4.preventDefault());
     };
-    return u2.destroy = () => a2.removeEventListener(t2, u2, c2), a2.addEventListener(t2, u2, c2), u2;
+    return u2.destroy = () => a2.removeEventListener(t3, u2, c2), a2.addEventListener(t3, u2, c2), u2;
   };
-  var b = function(t2) {
+  var v = function(t3) {
     let { onElement: e2, bubbles: i2, cancelable: n2, attributes: r2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-    const o2 = null != e2 ? e2 : m;
+    const o2 = null != e2 ? e2 : p;
     i2 = false !== i2, n2 = false !== n2;
     const s2 = document.createEvent("Events");
-    return s2.initEvent(t2, i2, n2), null != r2 && g.call(s2, r2), o2.dispatchEvent(s2);
+    return s2.initEvent(t3, i2, n2), null != r2 && m.call(s2, r2), o2.dispatchEvent(s2);
   };
-  var v = function(t2, e2) {
-    if (1 === (null == t2 ? void 0 : t2.nodeType)) return p.call(t2, e2);
+  var A = function(t3, e2) {
+    if (1 === (null == t3 ? void 0 : t3.nodeType)) return f.call(t3, e2);
   };
-  var A = function(t2) {
+  var y = function(t3) {
     let { matchingSelector: e2, untilNode: i2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-    for (; t2 && t2.nodeType !== Node.ELEMENT_NODE; ) t2 = t2.parentNode;
-    if (null != t2) {
-      if (null == e2) return t2;
-      if (t2.closest && null == i2) return t2.closest(e2);
-      for (; t2 && t2 !== i2; ) {
-        if (v(t2, e2)) return t2;
-        t2 = t2.parentNode;
+    for (; t3 && t3.nodeType !== Node.ELEMENT_NODE; ) t3 = t3.parentNode;
+    if (null != t3) {
+      if (null == e2) return t3;
+      if (t3.closest && null == i2) return t3.closest(e2);
+      for (; t3 && t3 !== i2; ) {
+        if (A(t3, e2)) return t3;
+        t3 = t3.parentNode;
       }
     }
   };
-  var x = (t2) => document.activeElement !== t2 && y(t2, document.activeElement);
-  var y = function(t2, e2) {
-    if (t2 && e2) for (; e2; ) {
-      if (e2 === t2) return true;
+  var x = (t3) => document.activeElement !== t3 && C(t3, document.activeElement);
+  var C = function(t3, e2) {
+    if (t3 && e2) for (; e2; ) {
+      if (e2 === t3) return true;
       e2 = e2.parentNode;
     }
   };
-  var C = function(t2) {
+  var E = function(t3) {
     var e2;
-    if (null === (e2 = t2) || void 0 === e2 || !e2.parentNode) return;
+    if (null === (e2 = t3) || void 0 === e2 || !e2.parentNode) return;
     let i2 = 0;
-    for (t2 = t2.previousSibling; t2; ) i2++, t2 = t2.previousSibling;
+    for (t3 = t3.previousSibling; t3; ) i2++, t3 = t3.previousSibling;
     return i2;
   };
-  var k = (t2) => {
+  var S = (t3) => {
     var e2;
-    return null == t2 || null === (e2 = t2.parentNode) || void 0 === e2 ? void 0 : e2.removeChild(t2);
+    return null == t3 || null === (e2 = t3.parentNode) || void 0 === e2 ? void 0 : e2.removeChild(t3);
   };
-  var R = function(t2) {
+  var R = function(t3) {
     let { onlyNodesOfType: e2, usingFilter: i2, expandEntityReferences: n2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
     const r2 = (() => {
       switch (e2) {
@@ -8215,120 +8216,120 @@
           return NodeFilter.SHOW_ALL;
       }
     })();
-    return document.createTreeWalker(t2, r2, null != i2 ? i2 : null, true === n2);
+    return document.createTreeWalker(t3, r2, null != i2 ? i2 : null, true === n2);
   };
-  var E = (t2) => {
+  var k = (t3) => {
     var e2;
-    return null == t2 || null === (e2 = t2.tagName) || void 0 === e2 ? void 0 : e2.toLowerCase();
+    return null == t3 || null === (e2 = t3.tagName) || void 0 === e2 ? void 0 : e2.toLowerCase();
   };
-  var S = function(t2) {
+  var T = function(t3) {
     let e2, i2, n2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-    "object" == typeof t2 ? (n2 = t2, t2 = n2.tagName) : n2 = { attributes: n2 };
-    const r2 = document.createElement(t2);
+    "object" == typeof t3 ? (n2 = t3, t3 = n2.tagName) : n2 = { attributes: n2 };
+    const r2 = document.createElement(t3);
     if (null != n2.editable && (null == n2.attributes && (n2.attributes = {}), n2.attributes.contenteditable = n2.editable), n2.attributes) for (e2 in n2.attributes) i2 = n2.attributes[e2], r2.setAttribute(e2, i2);
     if (n2.style) for (e2 in n2.style) i2 = n2.style[e2], r2.style[e2] = i2;
     if (n2.data) for (e2 in n2.data) i2 = n2.data[e2], r2.dataset[e2] = i2;
-    return n2.className && n2.className.split(" ").forEach((t3) => {
-      r2.classList.add(t3);
-    }), n2.textContent && (r2.textContent = n2.textContent), n2.childNodes && [].concat(n2.childNodes).forEach((t3) => {
-      r2.appendChild(t3);
+    return n2.className && n2.className.split(" ").forEach((t4) => {
+      r2.classList.add(t4);
+    }), n2.textContent && (r2.textContent = n2.textContent), n2.childNodes && [].concat(n2.childNodes).forEach((t4) => {
+      r2.appendChild(t4);
     }), r2;
   };
-  var L;
-  var D = function() {
-    if (null != L) return L;
-    L = [];
-    for (const t2 in n) {
-      const e2 = n[t2];
-      e2.tagName && L.push(e2.tagName);
+  var w;
+  var L = function() {
+    if (null != w) return w;
+    w = [];
+    for (const t3 in n) {
+      const e2 = n[t3];
+      e2.tagName && w.push(e2.tagName);
     }
-    return L;
+    return w;
   };
-  var w = (t2) => B(null == t2 ? void 0 : t2.firstChild);
-  var T = function(t2) {
+  var D = (t3) => I(null == t3 ? void 0 : t3.firstChild);
+  var N = function(t3) {
     let { strict: e2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : { strict: true };
-    return e2 ? B(t2) : B(t2) || !B(t2.firstChild) && function(t3) {
-      return D().includes(E(t3)) && !D().includes(E(t3.firstChild));
-    }(t2);
+    return e2 ? I(t3) : I(t3) || !I(t3.firstChild) && function(t4) {
+      return L().includes(k(t4)) && !L().includes(k(t4.firstChild));
+    }(t3);
   };
-  var B = (t2) => F(t2) && "block" === (null == t2 ? void 0 : t2.data);
-  var F = (t2) => (null == t2 ? void 0 : t2.nodeType) === Node.COMMENT_NODE;
-  var P = function(t2) {
+  var I = (t3) => O(t3) && "block" === (null == t3 ? void 0 : t3.data);
+  var O = (t3) => (null == t3 ? void 0 : t3.nodeType) === Node.COMMENT_NODE;
+  var F = function(t3) {
     let { name: e2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-    if (t2) return O(t2) ? t2.data === h ? !e2 || t2.parentNode.dataset.trixCursorTarget === e2 : void 0 : P(t2.firstChild);
+    if (t3) return B(t3) ? t3.data === d ? !e2 || t3.parentNode.dataset.trixCursorTarget === e2 : void 0 : F(t3.firstChild);
   };
-  var I = (t2) => v(t2, e);
-  var N = (t2) => O(t2) && "" === (null == t2 ? void 0 : t2.data);
-  var O = (t2) => (null == t2 ? void 0 : t2.nodeType) === Node.TEXT_NODE;
-  var M = { level2Enabled: true, getLevel() {
+  var P = (t3) => A(t3, e);
+  var M = (t3) => B(t3) && "" === (null == t3 ? void 0 : t3.data);
+  var B = (t3) => (null == t3 ? void 0 : t3.nodeType) === Node.TEXT_NODE;
+  var _ = { level2Enabled: true, getLevel() {
     return this.level2Enabled && a.supportsInputEvents ? 2 : 0;
-  }, pickFiles(t2) {
-    const e2 = S("input", { type: "file", multiple: true, hidden: true, id: this.fileInputId });
+  }, pickFiles(t3) {
+    const e2 = T("input", { type: "file", multiple: true, hidden: true, id: this.fileInputId });
     e2.addEventListener("change", () => {
-      t2(e2.files), k(e2);
-    }), k(document.getElementById(this.fileInputId)), document.body.appendChild(e2), e2.click();
+      t3(e2.files), S(e2);
+    }), S(document.getElementById(this.fileInputId)), document.body.appendChild(e2), e2.click();
   } };
   var j = { removeBlankTableCells: false, tableCellSeparator: " | ", tableRowSeparator: "\n" };
-  var W = { bold: { tagName: "strong", inheritable: true, parser(t2) {
-    const e2 = window.getComputedStyle(t2);
+  var W = { bold: { tagName: "strong", inheritable: true, parser(t3) {
+    const e2 = window.getComputedStyle(t3);
     return "bold" === e2.fontWeight || e2.fontWeight >= 600;
-  } }, italic: { tagName: "em", inheritable: true, parser: (t2) => "italic" === window.getComputedStyle(t2).fontStyle }, href: { groupTagName: "a", parser(t2) {
-    const i2 = "a:not(".concat(e, ")"), n2 = t2.closest(i2);
+  } }, italic: { tagName: "em", inheritable: true, parser: (t3) => "italic" === window.getComputedStyle(t3).fontStyle }, href: { groupTagName: "a", parser(t3) {
+    const i2 = "a:not(".concat(e, ")"), n2 = t3.closest(i2);
     if (n2) return n2.getAttribute("href");
   } }, strike: { tagName: "del", inheritable: true }, frozen: { style: { backgroundColor: "highlight" } } };
-  var U = { getDefaultHTML: () => '<div class="trix-button-row">\n      <span class="trix-button-group trix-button-group--text-tools" data-trix-button-group="text-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-bold" data-trix-attribute="bold" data-trix-key="b" title="'.concat(l.bold, '" tabindex="-1">').concat(l.bold, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-italic" data-trix-attribute="italic" data-trix-key="i" title="').concat(l.italic, '" tabindex="-1">').concat(l.italic, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-strike" data-trix-attribute="strike" title="').concat(l.strike, '" tabindex="-1">').concat(l.strike, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-link" data-trix-attribute="href" data-trix-action="link" data-trix-key="k" title="').concat(l.link, '" tabindex="-1">').concat(l.link, '</button>\n      </span>\n\n      <span class="trix-button-group trix-button-group--block-tools" data-trix-button-group="block-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-heading-1" data-trix-attribute="heading1" title="').concat(l.heading1, '" tabindex="-1">').concat(l.heading1, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-quote" data-trix-attribute="quote" title="').concat(l.quote, '" tabindex="-1">').concat(l.quote, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-code" data-trix-attribute="code" title="').concat(l.code, '" tabindex="-1">').concat(l.code, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-bullet-list" data-trix-attribute="bullet" title="').concat(l.bullets, '" tabindex="-1">').concat(l.bullets, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-number-list" data-trix-attribute="number" title="').concat(l.numbers, '" tabindex="-1">').concat(l.numbers, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-decrease-nesting-level" data-trix-action="decreaseNestingLevel" title="').concat(l.outdent, '" tabindex="-1">').concat(l.outdent, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-increase-nesting-level" data-trix-action="increaseNestingLevel" title="').concat(l.indent, '" tabindex="-1">').concat(l.indent, '</button>\n      </span>\n\n      <span class="trix-button-group trix-button-group--file-tools" data-trix-button-group="file-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-attach" data-trix-action="attachFiles" title="').concat(l.attachFiles, '" tabindex="-1">').concat(l.attachFiles, '</button>\n      </span>\n\n      <span class="trix-button-group-spacer"></span>\n\n      <span class="trix-button-group trix-button-group--history-tools" data-trix-button-group="history-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-undo" data-trix-action="undo" data-trix-key="z" title="').concat(l.undo, '" tabindex="-1">').concat(l.undo, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-redo" data-trix-action="redo" data-trix-key="shift+z" title="').concat(l.redo, '" tabindex="-1">').concat(l.redo, '</button>\n      </span>\n    </div>\n\n    <div class="trix-dialogs" data-trix-dialogs>\n      <div class="trix-dialog trix-dialog--link" data-trix-dialog="href" data-trix-dialog-attribute="href">\n        <div class="trix-dialog__link-fields">\n          <input type="url" name="href" class="trix-input trix-input--dialog" placeholder="').concat(l.urlPlaceholder, '" aria-label="').concat(l.url, '" required data-trix-input>\n          <div class="trix-button-group">\n            <input type="button" class="trix-button trix-button--dialog" value="').concat(l.link, '" data-trix-method="setAttribute">\n            <input type="button" class="trix-button trix-button--dialog" value="').concat(l.unlink, '" data-trix-method="removeAttribute">\n          </div>\n        </div>\n      </div>\n    </div>') };
-  var q = { interval: 5e3 };
-  var V = Object.freeze({ __proto__: null, attachments: i, blockAttributes: n, browser: a, css: { attachment: "attachment", attachmentCaption: "attachment__caption", attachmentCaptionEditor: "attachment__caption-editor", attachmentMetadata: "attachment__metadata", attachmentMetadataContainer: "attachment__metadata-container", attachmentName: "attachment__name", attachmentProgress: "attachment__progress", attachmentSize: "attachment__size", attachmentToolbar: "attachment__toolbar", attachmentGallery: "attachment-gallery" }, fileSize: u, input: M, keyNames: { 8: "backspace", 9: "tab", 13: "return", 27: "escape", 37: "left", 39: "right", 46: "delete", 68: "d", 72: "h", 79: "o" }, lang: l, parser: j, textAttributes: W, toolbar: U, undo: q });
-  var H = class {
-    static proxyMethod(t2) {
-      const { name: e2, toMethod: i2, toProperty: n2, optional: r2 } = z(t2);
+  var U = { getDefaultHTML: () => '<div class="trix-button-row">\n      <span class="trix-button-group trix-button-group--text-tools" data-trix-button-group="text-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-bold" data-trix-attribute="bold" data-trix-key="b" title="'.concat(c.bold, '" tabindex="-1">').concat(c.bold, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-italic" data-trix-attribute="italic" data-trix-key="i" title="').concat(c.italic, '" tabindex="-1">').concat(c.italic, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-strike" data-trix-attribute="strike" title="').concat(c.strike, '" tabindex="-1">').concat(c.strike, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-link" data-trix-attribute="href" data-trix-action="link" data-trix-key="k" title="').concat(c.link, '" tabindex="-1">').concat(c.link, '</button>\n      </span>\n\n      <span class="trix-button-group trix-button-group--block-tools" data-trix-button-group="block-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-heading-1" data-trix-attribute="heading1" title="').concat(c.heading1, '" tabindex="-1">').concat(c.heading1, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-quote" data-trix-attribute="quote" title="').concat(c.quote, '" tabindex="-1">').concat(c.quote, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-code" data-trix-attribute="code" title="').concat(c.code, '" tabindex="-1">').concat(c.code, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-bullet-list" data-trix-attribute="bullet" title="').concat(c.bullets, '" tabindex="-1">').concat(c.bullets, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-number-list" data-trix-attribute="number" title="').concat(c.numbers, '" tabindex="-1">').concat(c.numbers, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-decrease-nesting-level" data-trix-action="decreaseNestingLevel" title="').concat(c.outdent, '" tabindex="-1">').concat(c.outdent, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-increase-nesting-level" data-trix-action="increaseNestingLevel" title="').concat(c.indent, '" tabindex="-1">').concat(c.indent, '</button>\n      </span>\n\n      <span class="trix-button-group trix-button-group--file-tools" data-trix-button-group="file-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-attach" data-trix-action="attachFiles" title="').concat(c.attachFiles, '" tabindex="-1">').concat(c.attachFiles, '</button>\n      </span>\n\n      <span class="trix-button-group-spacer"></span>\n\n      <span class="trix-button-group trix-button-group--history-tools" data-trix-button-group="history-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-undo" data-trix-action="undo" data-trix-key="z" title="').concat(c.undo, '" tabindex="-1">').concat(c.undo, '</button>\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-redo" data-trix-action="redo" data-trix-key="shift+z" title="').concat(c.redo, '" tabindex="-1">').concat(c.redo, '</button>\n      </span>\n    </div>\n\n    <div class="trix-dialogs" data-trix-dialogs>\n      <div class="trix-dialog trix-dialog--link" data-trix-dialog="href" data-trix-dialog-attribute="href">\n        <div class="trix-dialog__link-fields">\n          <input type="url" name="href" class="trix-input trix-input--dialog" placeholder="').concat(c.urlPlaceholder, '" aria-label="').concat(c.url, '" data-trix-validate-href required data-trix-input>\n          <div class="trix-button-group">\n            <input type="button" class="trix-button trix-button--dialog" value="').concat(c.link, '" data-trix-method="setAttribute">\n            <input type="button" class="trix-button trix-button--dialog" value="').concat(c.unlink, '" data-trix-method="removeAttribute">\n          </div>\n        </div>\n      </div>\n    </div>') };
+  var V = { interval: 5e3 };
+  var z = Object.freeze({ __proto__: null, attachments: i, blockAttributes: n, browser: a, css: { attachment: "attachment", attachmentCaption: "attachment__caption", attachmentCaptionEditor: "attachment__caption-editor", attachmentMetadata: "attachment__metadata", attachmentMetadataContainer: "attachment__metadata-container", attachmentName: "attachment__name", attachmentProgress: "attachment__progress", attachmentSize: "attachment__size", attachmentToolbar: "attachment__toolbar", attachmentGallery: "attachment-gallery" }, dompurify: l, fileSize: h, input: _, keyNames: { 8: "backspace", 9: "tab", 13: "return", 27: "escape", 37: "left", 39: "right", 46: "delete", 68: "d", 72: "h", 79: "o" }, lang: c, parser: j, textAttributes: W, toolbar: U, undo: V });
+  var q = class {
+    static proxyMethod(t3) {
+      const { name: e2, toMethod: i2, toProperty: n2, optional: r2 } = H(t3);
       this.prototype[e2] = function() {
-        let t3, o2;
+        let t4, o2;
         var s2, a2;
         i2 ? o2 = r2 ? null === (s2 = this[i2]) || void 0 === s2 ? void 0 : s2.call(this) : this[i2]() : n2 && (o2 = this[n2]);
-        return r2 ? (t3 = null === (a2 = o2) || void 0 === a2 ? void 0 : a2[e2], t3 ? _.call(t3, o2, arguments) : void 0) : (t3 = o2[e2], _.call(t3, o2, arguments));
+        return r2 ? (t4 = null === (a2 = o2) || void 0 === a2 ? void 0 : a2[e2], t4 ? J.call(t4, o2, arguments) : void 0) : (t4 = o2[e2], J.call(t4, o2, arguments));
       };
     }
   };
-  var z = function(t2) {
-    const e2 = t2.match(J);
-    if (!e2) throw new Error("can't parse @proxyMethod expression: ".concat(t2));
+  var H = function(t3) {
+    const e2 = t3.match(K);
+    if (!e2) throw new Error("can't parse @proxyMethod expression: ".concat(t3));
     const i2 = { name: e2[4] };
     return null != e2[2] ? i2.toMethod = e2[1] : i2.toProperty = e2[1], null != e2[3] && (i2.optional = true), i2;
   };
-  var { apply: _ } = Function.prototype;
-  var J = new RegExp("^(.+?)(\\(\\))?(\\?)?\\.(.+?)$");
-  var K;
+  var { apply: J } = Function.prototype;
+  var K = new RegExp("^(.+?)(\\(\\))?(\\?)?\\.(.+?)$");
   var G;
-  var $2;
-  var X = class extends H {
+  var Y;
+  var X;
+  var $2 = class extends q {
     static box() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
-      return t2 instanceof this ? t2 : this.fromUCS2String(null == t2 ? void 0 : t2.toString());
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+      return t3 instanceof this ? t3 : this.fromUCS2String(null == t3 ? void 0 : t3.toString());
     }
-    static fromUCS2String(t2) {
-      return new this(t2, tt(t2));
+    static fromUCS2String(t3) {
+      return new this(t3, et(t3));
     }
-    static fromCodepoints(t2) {
-      return new this(et(t2), t2);
+    static fromCodepoints(t3) {
+      return new this(it(t3), t3);
     }
-    constructor(t2, e2) {
-      super(...arguments), this.ucs2String = t2, this.codepoints = e2, this.length = this.codepoints.length, this.ucs2Length = this.ucs2String.length;
+    constructor(t3, e2) {
+      super(...arguments), this.ucs2String = t3, this.codepoints = e2, this.length = this.codepoints.length, this.ucs2Length = this.ucs2String.length;
     }
-    offsetToUCS2Offset(t2) {
-      return et(this.codepoints.slice(0, Math.max(0, t2))).length;
+    offsetToUCS2Offset(t3) {
+      return it(this.codepoints.slice(0, Math.max(0, t3))).length;
     }
-    offsetFromUCS2Offset(t2) {
-      return tt(this.ucs2String.slice(0, Math.max(0, t2))).length;
+    offsetFromUCS2Offset(t3) {
+      return et(this.ucs2String.slice(0, Math.max(0, t3))).length;
     }
     slice() {
       return this.constructor.fromCodepoints(this.codepoints.slice(...arguments));
     }
-    charAt(t2) {
-      return this.slice(t2, t2 + 1);
+    charAt(t3) {
+      return this.slice(t3, t3 + 1);
     }
-    isEqualTo(t2) {
-      return this.constructor.box(t2).ucs2String === this.ucs2String;
+    isEqualTo(t3) {
+      return this.constructor.box(t3).ucs2String === this.ucs2String;
     }
     toJSON() {
       return this.ucs2String;
@@ -8340,54 +8341,54 @@
       return this.ucs2String;
     }
   };
-  var Y = 1 === (null === (K = Array.from) || void 0 === K ? void 0 : K.call(Array, "\u{1F47C}").length);
-  var Q = null != (null === (G = " ".codePointAt) || void 0 === G ? void 0 : G.call(" ", 0));
-  var Z = " \u{1F47C}" === (null === ($2 = String.fromCodePoint) || void 0 === $2 ? void 0 : $2.call(String, 32, 128124));
-  var tt;
+  var Z = 1 === (null === (G = Array.from) || void 0 === G ? void 0 : G.call(Array, "\u{1F47C}").length);
+  var Q = null != (null === (Y = " ".codePointAt) || void 0 === Y ? void 0 : Y.call(" ", 0));
+  var tt = " \u{1F47C}" === (null === (X = String.fromCodePoint) || void 0 === X ? void 0 : X.call(String, 32, 128124));
   var et;
-  tt = Y && Q ? (t2) => Array.from(t2).map((t3) => t3.codePointAt(0)) : function(t2) {
+  var it;
+  et = Z && Q ? (t3) => Array.from(t3).map((t4) => t4.codePointAt(0)) : function(t3) {
     const e2 = [];
     let i2 = 0;
-    const { length: n2 } = t2;
+    const { length: n2 } = t3;
     for (; i2 < n2; ) {
-      let r2 = t2.charCodeAt(i2++);
+      let r2 = t3.charCodeAt(i2++);
       if (55296 <= r2 && r2 <= 56319 && i2 < n2) {
-        const e3 = t2.charCodeAt(i2++);
+        const e3 = t3.charCodeAt(i2++);
         56320 == (64512 & e3) ? r2 = ((1023 & r2) << 10) + (1023 & e3) + 65536 : i2--;
       }
       e2.push(r2);
     }
     return e2;
-  }, et = Z ? (t2) => String.fromCodePoint(...Array.from(t2 || [])) : function(t2) {
+  }, it = tt ? (t3) => String.fromCodePoint(...Array.from(t3 || [])) : function(t3) {
     return (() => {
       const e2 = [];
-      return Array.from(t2).forEach((t3) => {
+      return Array.from(t3).forEach((t4) => {
         let i2 = "";
-        t3 > 65535 && (t3 -= 65536, i2 += String.fromCharCode(t3 >>> 10 & 1023 | 55296), t3 = 56320 | 1023 & t3), e2.push(i2 + String.fromCharCode(t3));
+        t4 > 65535 && (t4 -= 65536, i2 += String.fromCharCode(t4 >>> 10 & 1023 | 55296), t4 = 56320 | 1023 & t4), e2.push(i2 + String.fromCharCode(t4));
       }), e2;
     })().join("");
   };
-  var it = 0;
-  var nt = class extends H {
-    static fromJSONString(t2) {
-      return this.fromJSON(JSON.parse(t2));
+  var nt = 0;
+  var rt = class extends q {
+    static fromJSONString(t3) {
+      return this.fromJSON(JSON.parse(t3));
     }
     constructor() {
-      super(...arguments), this.id = ++it;
+      super(...arguments), this.id = ++nt;
     }
-    hasSameConstructorAs(t2) {
-      return this.constructor === (null == t2 ? void 0 : t2.constructor);
+    hasSameConstructorAs(t3) {
+      return this.constructor === (null == t3 ? void 0 : t3.constructor);
     }
-    isEqualTo(t2) {
-      return this === t2;
+    isEqualTo(t3) {
+      return this === t3;
     }
     inspect() {
-      const t2 = [], e2 = this.contentsForInspection() || {};
+      const t3 = [], e2 = this.contentsForInspection() || {};
       for (const i2 in e2) {
         const n2 = e2[i2];
-        t2.push("".concat(i2, "=").concat(n2));
+        t3.push("".concat(i2, "=").concat(n2));
       }
-      return "#<".concat(this.constructor.name, ":").concat(this.id).concat(t2.length ? " ".concat(t2.join(", ")) : "", ">");
+      return "#<".concat(this.constructor.name, ":").concat(this.id).concat(t3.length ? " ".concat(t3.join(", ")) : "", ">");
     }
     contentsForInspection() {
     }
@@ -8395,122 +8396,125 @@
       return JSON.stringify(this);
     }
     toUTF16String() {
-      return X.box(this);
+      return $2.box(this);
     }
     getCacheKey() {
       return this.id.toString();
     }
   };
-  var rt = function() {
-    let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [], e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
-    if (t2.length !== e2.length) return false;
-    for (let i2 = 0; i2 < t2.length; i2++) {
-      if (t2[i2] !== e2[i2]) return false;
+  var ot = function() {
+    let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [], e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
+    if (t3.length !== e2.length) return false;
+    for (let i2 = 0; i2 < t3.length; i2++) {
+      if (t3[i2] !== e2[i2]) return false;
     }
     return true;
   };
-  var ot = function(t2) {
-    const e2 = t2.slice(0);
+  var st = function(t3) {
+    const e2 = t3.slice(0);
     for (var i2 = arguments.length, n2 = new Array(i2 > 1 ? i2 - 1 : 0), r2 = 1; r2 < i2; r2++) n2[r2 - 1] = arguments[r2];
     return e2.splice(...n2), e2;
   };
-  var st = /[\u05BE\u05C0\u05C3\u05D0-\u05EA\u05F0-\u05F4\u061B\u061F\u0621-\u063A\u0640-\u064A\u066D\u0671-\u06B7\u06BA-\u06BE\u06C0-\u06CE\u06D0-\u06D5\u06E5\u06E6\u200F\u202B\u202E\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE72\uFE74\uFE76-\uFEFC]/;
-  var at = function() {
-    const t2 = S("input", { dir: "auto", name: "x", dirName: "x.dir" }), e2 = S("textarea", { dir: "auto", name: "y", dirName: "y.dir" }), i2 = S("form");
-    i2.appendChild(t2), i2.appendChild(e2);
+  var at = /[\u05BE\u05C0\u05C3\u05D0-\u05EA\u05F0-\u05F4\u061B\u061F\u0621-\u063A\u0640-\u064A\u066D\u0671-\u06B7\u06BA-\u06BE\u06C0-\u06CE\u06D0-\u06D5\u06E5\u06E6\u200F\u202B\u202E\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE72\uFE74\uFE76-\uFEFC]/;
+  var lt = function() {
+    const t3 = T("input", { dir: "auto", name: "x", dirName: "x.dir" }), e2 = T("textarea", { dir: "auto", name: "y", dirName: "y.dir" }), i2 = T("form");
+    i2.appendChild(t3), i2.appendChild(e2);
     const n2 = function() {
       try {
         return new FormData(i2).has(e2.dirName);
-      } catch (t3) {
+      } catch (t4) {
         return false;
       }
     }(), r2 = function() {
       try {
-        return t2.matches(":dir(ltr),:dir(rtl)");
-      } catch (t3) {
+        return t3.matches(":dir(ltr),:dir(rtl)");
+      } catch (t4) {
         return false;
       }
     }();
-    return n2 ? function(t3) {
-      return e2.value = t3, new FormData(i2).get(e2.dirName);
+    return n2 ? function(t4) {
+      return e2.value = t4, new FormData(i2).get(e2.dirName);
     } : r2 ? function(e3) {
-      return t2.value = e3, t2.matches(":dir(rtl)") ? "rtl" : "ltr";
-    } : function(t3) {
-      const e3 = t3.trim().charAt(0);
-      return st.test(e3) ? "rtl" : "ltr";
+      return t3.value = e3, t3.matches(":dir(rtl)") ? "rtl" : "ltr";
+    } : function(t4) {
+      const e3 = t4.trim().charAt(0);
+      return at.test(e3) ? "rtl" : "ltr";
     };
   }();
-  var lt = null;
   var ct = null;
   var ut = null;
   var ht = null;
-  var dt = () => (lt || (lt = ft().concat(mt())), lt);
-  var gt = (t2) => n[t2];
-  var mt = () => (ct || (ct = Object.keys(n)), ct);
-  var pt = (t2) => W[t2];
-  var ft = () => (ut || (ut = Object.keys(W)), ut);
-  var bt = function(t2, e2) {
-    vt(t2).textContent = e2.replace(/%t/g, t2);
+  var dt = null;
+  var gt = () => (ct || (ct = bt().concat(pt())), ct);
+  var mt = (t3) => n[t3];
+  var pt = () => (ut || (ut = Object.keys(n)), ut);
+  var ft = (t3) => W[t3];
+  var bt = () => (ht || (ht = Object.keys(W)), ht);
+  var vt = function(t3, e2) {
+    At(t3).textContent = e2.replace(/%t/g, t3);
   };
-  var vt = function(t2) {
+  var At = function(t3) {
     const e2 = document.createElement("style");
-    e2.setAttribute("type", "text/css"), e2.setAttribute("data-tag-name", t2.toLowerCase());
-    const i2 = At();
+    e2.setAttribute("type", "text/css"), e2.setAttribute("data-tag-name", t3.toLowerCase());
+    const i2 = yt();
     return i2 && e2.setAttribute("nonce", i2), document.head.insertBefore(e2, document.head.firstChild), e2;
   };
-  var At = function() {
-    const t2 = xt("trix-csp-nonce") || xt("csp-nonce");
-    if (t2) return t2.getAttribute("content");
-  };
-  var xt = (t2) => document.head.querySelector("meta[name=".concat(t2, "]"));
-  var yt = { "application/x-trix-feature-detection": "test" };
-  var Ct = function(t2) {
-    const e2 = t2.getData("text/plain"), i2 = t2.getData("text/html");
-    if (!e2 || !i2) return null == e2 ? void 0 : e2.length;
-    {
-      const { body: t3 } = new DOMParser().parseFromString(i2, "text/html");
-      if (t3.textContent === e2) return !t3.querySelector("*");
+  var yt = function() {
+    const t3 = xt("trix-csp-nonce") || xt("csp-nonce");
+    if (t3) {
+      const { nonce: e2, content: i2 } = t3;
+      return "" == e2 ? i2 : e2;
     }
   };
-  var kt = /Mac|^iP/.test(navigator.platform) ? (t2) => t2.metaKey : (t2) => t2.ctrlKey;
-  var Rt = (t2) => setTimeout(t2, 1);
-  var Et = function() {
-    let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+  var xt = (t3) => document.head.querySelector("meta[name=".concat(t3, "]"));
+  var Ct = { "application/x-trix-feature-detection": "test" };
+  var Et = function(t3) {
+    const e2 = t3.getData("text/plain"), i2 = t3.getData("text/html");
+    if (!e2 || !i2) return null == e2 ? void 0 : e2.length;
+    {
+      const { body: t4 } = new DOMParser().parseFromString(i2, "text/html");
+      if (t4.textContent === e2) return !t4.querySelector("*");
+    }
+  };
+  var St = /Mac|^iP/.test(navigator.platform) ? (t3) => t3.metaKey : (t3) => t3.ctrlKey;
+  var Rt = (t3) => setTimeout(t3, 1);
+  var kt = function() {
+    let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
     const e2 = {};
-    for (const i2 in t2) {
-      const n2 = t2[i2];
+    for (const i2 in t3) {
+      const n2 = t3[i2];
       e2[i2] = n2;
     }
     return e2;
   };
-  var St = function() {
-    let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}, e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-    if (Object.keys(t2).length !== Object.keys(e2).length) return false;
-    for (const i2 in t2) {
-      if (t2[i2] !== e2[i2]) return false;
+  var Tt = function() {
+    let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}, e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+    if (Object.keys(t3).length !== Object.keys(e2).length) return false;
+    for (const i2 in t3) {
+      if (t3[i2] !== e2[i2]) return false;
     }
     return true;
   };
-  var Lt = function(t2) {
-    if (null != t2) return Array.isArray(t2) || (t2 = [t2, t2]), [Tt(t2[0]), Tt(null != t2[1] ? t2[1] : t2[0])];
+  var wt = function(t3) {
+    if (null != t3) return Array.isArray(t3) || (t3 = [t3, t3]), [Nt(t3[0]), Nt(null != t3[1] ? t3[1] : t3[0])];
   };
-  var Dt = function(t2) {
-    if (null == t2) return;
-    const [e2, i2] = Lt(t2);
-    return Bt(e2, i2);
+  var Lt = function(t3) {
+    if (null == t3) return;
+    const [e2, i2] = wt(t3);
+    return It(e2, i2);
   };
-  var wt = function(t2, e2) {
-    if (null == t2 || null == e2) return;
-    const [i2, n2] = Lt(t2), [r2, o2] = Lt(e2);
-    return Bt(i2, r2) && Bt(n2, o2);
+  var Dt = function(t3, e2) {
+    if (null == t3 || null == e2) return;
+    const [i2, n2] = wt(t3), [r2, o2] = wt(e2);
+    return It(i2, r2) && It(n2, o2);
   };
-  var Tt = function(t2) {
-    return "number" == typeof t2 ? t2 : Et(t2);
+  var Nt = function(t3) {
+    return "number" == typeof t3 ? t3 : kt(t3);
   };
-  var Bt = function(t2, e2) {
-    return "number" == typeof t2 ? t2 === e2 : St(t2, e2);
+  var It = function(t3, e2) {
+    return "number" == typeof t3 ? t3 === e2 : Tt(t3, e2);
   };
-  var Ft = class extends H {
+  var Ot = class extends q {
     constructor() {
       super(...arguments), this.update = this.update.bind(this), this.selectionManagers = [];
     }
@@ -8520,14 +8524,14 @@
     stop() {
       if (this.started) return this.started = false, document.removeEventListener("selectionchange", this.update, true);
     }
-    registerSelectionManager(t2) {
-      if (!this.selectionManagers.includes(t2)) return this.selectionManagers.push(t2), this.start();
+    registerSelectionManager(t3) {
+      if (!this.selectionManagers.includes(t3)) return this.selectionManagers.push(t3), this.start();
     }
-    unregisterSelectionManager(t2) {
-      if (this.selectionManagers = this.selectionManagers.filter((e2) => e2 !== t2), 0 === this.selectionManagers.length) return this.stop();
+    unregisterSelectionManager(t3) {
+      if (this.selectionManagers = this.selectionManagers.filter((e2) => e2 !== t3), 0 === this.selectionManagers.length) return this.stop();
     }
     notifySelectionManagersOfSelectionChange() {
-      return this.selectionManagers.map((t2) => t2.selectionDidChange());
+      return this.selectionManagers.map((t3) => t3.selectionDidChange());
     }
     update() {
       this.notifySelectionManagersOfSelectionChange();
@@ -8536,103 +8540,103 @@
       this.update();
     }
   };
-  var Pt = new Ft();
-  var It = function() {
-    const t2 = window.getSelection();
-    if (t2.rangeCount > 0) return t2;
+  var Ft = new Ot();
+  var Pt = function() {
+    const t3 = window.getSelection();
+    if (t3.rangeCount > 0) return t3;
   };
-  var Nt = function() {
-    var t2;
-    const e2 = null === (t2 = It()) || void 0 === t2 ? void 0 : t2.getRangeAt(0);
-    if (e2 && !Mt(e2)) return e2;
+  var Mt = function() {
+    var t3;
+    const e2 = null === (t3 = Pt()) || void 0 === t3 ? void 0 : t3.getRangeAt(0);
+    if (e2 && !_t(e2)) return e2;
   };
-  var Ot = function(t2) {
+  var Bt = function(t3) {
     const e2 = window.getSelection();
-    return e2.removeAllRanges(), e2.addRange(t2), Pt.update();
+    return e2.removeAllRanges(), e2.addRange(t3), Ft.update();
   };
-  var Mt = (t2) => jt(t2.startContainer) || jt(t2.endContainer);
-  var jt = (t2) => !Object.getPrototypeOf(t2);
-  var Wt = (t2) => t2.replace(new RegExp("".concat(h), "g"), "").replace(new RegExp("".concat(d), "g"), " ");
-  var Ut = new RegExp("[^\\S".concat(d, "]"));
-  var qt = (t2) => t2.replace(new RegExp("".concat(Ut.source), "g"), " ").replace(/\ {2,}/g, " ");
-  var Vt = function(t2, e2) {
-    if (t2.isEqualTo(e2)) return ["", ""];
-    const i2 = Ht(t2, e2), { length: n2 } = i2.utf16String;
+  var _t = (t3) => jt(t3.startContainer) || jt(t3.endContainer);
+  var jt = (t3) => !Object.getPrototypeOf(t3);
+  var Wt = (t3) => t3.replace(new RegExp("".concat(d), "g"), "").replace(new RegExp("".concat(g), "g"), " ");
+  var Ut = new RegExp("[^\\S".concat(g, "]"));
+  var Vt = (t3) => t3.replace(new RegExp("".concat(Ut.source), "g"), " ").replace(/\ {2,}/g, " ");
+  var zt = function(t3, e2) {
+    if (t3.isEqualTo(e2)) return ["", ""];
+    const i2 = qt(t3, e2), { length: n2 } = i2.utf16String;
     let r2;
     if (n2) {
-      const { offset: o2 } = i2, s2 = t2.codepoints.slice(0, o2).concat(t2.codepoints.slice(o2 + n2));
-      r2 = Ht(e2, X.fromCodepoints(s2));
-    } else r2 = Ht(e2, t2);
+      const { offset: o2 } = i2, s2 = t3.codepoints.slice(0, o2).concat(t3.codepoints.slice(o2 + n2));
+      r2 = qt(e2, $2.fromCodepoints(s2));
+    } else r2 = qt(e2, t3);
     return [i2.utf16String.toString(), r2.utf16String.toString()];
   };
-  var Ht = function(t2, e2) {
-    let i2 = 0, n2 = t2.length, r2 = e2.length;
-    for (; i2 < n2 && t2.charAt(i2).isEqualTo(e2.charAt(i2)); ) i2++;
-    for (; n2 > i2 + 1 && t2.charAt(n2 - 1).isEqualTo(e2.charAt(r2 - 1)); ) n2--, r2--;
-    return { utf16String: t2.slice(i2, n2), offset: i2 };
+  var qt = function(t3, e2) {
+    let i2 = 0, n2 = t3.length, r2 = e2.length;
+    for (; i2 < n2 && t3.charAt(i2).isEqualTo(e2.charAt(i2)); ) i2++;
+    for (; n2 > i2 + 1 && t3.charAt(n2 - 1).isEqualTo(e2.charAt(r2 - 1)); ) n2--, r2--;
+    return { utf16String: t3.slice(i2, n2), offset: i2 };
   };
-  var zt = class _zt extends nt {
+  var Ht = class _Ht extends rt {
     static fromCommonAttributesOfObjects() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
-      if (!t2.length) return new this();
-      let e2 = Gt(t2[0]), i2 = e2.getKeys();
-      return t2.slice(1).forEach((t3) => {
-        i2 = e2.getKeysCommonToHash(Gt(t3)), e2 = e2.slice(i2);
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
+      if (!t3.length) return new this();
+      let e2 = Yt(t3[0]), i2 = e2.getKeys();
+      return t3.slice(1).forEach((t4) => {
+        i2 = e2.getKeysCommonToHash(Yt(t4)), e2 = e2.slice(i2);
       }), e2;
     }
-    static box(t2) {
-      return Gt(t2);
+    static box(t3) {
+      return Yt(t3);
     }
     constructor() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-      super(...arguments), this.values = Kt(t2);
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+      super(...arguments), this.values = Gt(t3);
     }
-    add(t2, e2) {
-      return this.merge(_t(t2, e2));
+    add(t3, e2) {
+      return this.merge(Jt(t3, e2));
     }
-    remove(t2) {
-      return new _zt(Kt(this.values, t2));
+    remove(t3) {
+      return new _Ht(Gt(this.values, t3));
     }
-    get(t2) {
-      return this.values[t2];
+    get(t3) {
+      return this.values[t3];
     }
-    has(t2) {
-      return t2 in this.values;
+    has(t3) {
+      return t3 in this.values;
     }
-    merge(t2) {
-      return new _zt(Jt(this.values, $t(t2)));
+    merge(t3) {
+      return new _Ht(Kt(this.values, Xt(t3)));
     }
-    slice(t2) {
+    slice(t3) {
       const e2 = {};
-      return Array.from(t2).forEach((t3) => {
-        this.has(t3) && (e2[t3] = this.values[t3]);
-      }), new _zt(e2);
+      return Array.from(t3).forEach((t4) => {
+        this.has(t4) && (e2[t4] = this.values[t4]);
+      }), new _Ht(e2);
     }
     getKeys() {
       return Object.keys(this.values);
     }
-    getKeysCommonToHash(t2) {
-      return t2 = Gt(t2), this.getKeys().filter((e2) => this.values[e2] === t2.values[e2]);
+    getKeysCommonToHash(t3) {
+      return t3 = Yt(t3), this.getKeys().filter((e2) => this.values[e2] === t3.values[e2]);
     }
-    isEqualTo(t2) {
-      return rt(this.toArray(), Gt(t2).toArray());
+    isEqualTo(t3) {
+      return ot(this.toArray(), Yt(t3).toArray());
     }
     isEmpty() {
       return 0 === this.getKeys().length;
     }
     toArray() {
       if (!this.array) {
-        const t2 = [];
+        const t3 = [];
         for (const e2 in this.values) {
           const i2 = this.values[e2];
-          t2.push(t2.push(e2, i2));
+          t3.push(t3.push(e2, i2));
         }
-        this.array = t2.slice(0);
+        this.array = t3.slice(0);
       }
       return this.array;
     }
     toObject() {
-      return Kt(this.values);
+      return Gt(this.values);
     }
     toJSON() {
       return this.toObject();
@@ -8641,48 +8645,48 @@
       return { values: JSON.stringify(this.values) };
     }
   };
-  var _t = function(t2, e2) {
+  var Jt = function(t3, e2) {
     const i2 = {};
-    return i2[t2] = e2, i2;
+    return i2[t3] = e2, i2;
   };
-  var Jt = function(t2, e2) {
-    const i2 = Kt(t2);
-    for (const t3 in e2) {
-      const n2 = e2[t3];
-      i2[t3] = n2;
+  var Kt = function(t3, e2) {
+    const i2 = Gt(t3);
+    for (const t4 in e2) {
+      const n2 = e2[t4];
+      i2[t4] = n2;
     }
     return i2;
   };
-  var Kt = function(t2, e2) {
+  var Gt = function(t3, e2) {
     const i2 = {};
-    return Object.keys(t2).sort().forEach((n2) => {
-      n2 !== e2 && (i2[n2] = t2[n2]);
+    return Object.keys(t3).sort().forEach((n2) => {
+      n2 !== e2 && (i2[n2] = t3[n2]);
     }), i2;
   };
-  var Gt = function(t2) {
-    return t2 instanceof zt ? t2 : new zt(t2);
+  var Yt = function(t3) {
+    return t3 instanceof Ht ? t3 : new Ht(t3);
   };
-  var $t = function(t2) {
-    return t2 instanceof zt ? t2.values : t2;
+  var Xt = function(t3) {
+    return t3 instanceof Ht ? t3.values : t3;
   };
-  var Xt = class {
+  var $t = class {
     static groupObjects() {
-      let t2, e2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [], { depth: i2, asTree: n2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+      let t3, e2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [], { depth: i2, asTree: n2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
       n2 && null == i2 && (i2 = 0);
       const r2 = [];
       return Array.from(e2).forEach((e3) => {
         var o2;
-        if (t2) {
+        if (t3) {
           var s2, a2, l2;
-          if (null !== (s2 = e3.canBeGrouped) && void 0 !== s2 && s2.call(e3, i2) && null !== (a2 = (l2 = t2[t2.length - 1]).canBeGroupedWith) && void 0 !== a2 && a2.call(l2, e3, i2)) return void t2.push(e3);
-          r2.push(new this(t2, { depth: i2, asTree: n2 })), t2 = null;
+          if (null !== (s2 = e3.canBeGrouped) && void 0 !== s2 && s2.call(e3, i2) && null !== (a2 = (l2 = t3[t3.length - 1]).canBeGroupedWith) && void 0 !== a2 && a2.call(l2, e3, i2)) return void t3.push(e3);
+          r2.push(new this(t3, { depth: i2, asTree: n2 })), t3 = null;
         }
-        null !== (o2 = e3.canBeGrouped) && void 0 !== o2 && o2.call(e3, i2) ? t2 = [e3] : r2.push(e3);
-      }), t2 && r2.push(new this(t2, { depth: i2, asTree: n2 })), r2;
+        null !== (o2 = e3.canBeGrouped) && void 0 !== o2 && o2.call(e3, i2) ? t3 = [e3] : r2.push(e3);
+      }), t3 && r2.push(new this(t3, { depth: i2, asTree: n2 })), r2;
     }
     constructor() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [], { depth: e2, asTree: i2 } = arguments.length > 1 ? arguments[1] : void 0;
-      this.objects = t2, i2 && (this.depth = e2, this.objects = this.constructor.groupObjects(this.objects, { asTree: i2, depth: this.depth + 1 }));
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [], { depth: e2, asTree: i2 } = arguments.length > 1 ? arguments[1] : void 0;
+      this.objects = t3, i2 && (this.depth = e2, this.objects = this.constructor.groupObjects(this.objects, { asTree: i2, depth: this.depth + 1 }));
     }
     getObjects() {
       return this.objects;
@@ -8691,46 +8695,46 @@
       return this.depth;
     }
     getCacheKey() {
-      const t2 = ["objectGroup"];
+      const t3 = ["objectGroup"];
       return Array.from(this.getObjects()).forEach((e2) => {
-        t2.push(e2.getCacheKey());
-      }), t2.join("/");
+        t3.push(e2.getCacheKey());
+      }), t3.join("/");
     }
   };
-  var Yt = class extends H {
+  var Zt = class extends q {
     constructor() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
-      super(...arguments), this.objects = {}, Array.from(t2).forEach((t3) => {
-        const e2 = JSON.stringify(t3);
-        null == this.objects[e2] && (this.objects[e2] = t3);
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
+      super(...arguments), this.objects = {}, Array.from(t3).forEach((t4) => {
+        const e2 = JSON.stringify(t4);
+        null == this.objects[e2] && (this.objects[e2] = t4);
       });
     }
-    find(t2) {
-      const e2 = JSON.stringify(t2);
+    find(t3) {
+      const e2 = JSON.stringify(t3);
       return this.objects[e2];
     }
   };
   var Qt = class {
-    constructor(t2) {
-      this.reset(t2);
+    constructor(t3) {
+      this.reset(t3);
     }
-    add(t2) {
-      const e2 = Zt(t2);
-      this.elements[e2] = t2;
+    add(t3) {
+      const e2 = te(t3);
+      this.elements[e2] = t3;
     }
-    remove(t2) {
-      const e2 = Zt(t2), i2 = this.elements[e2];
+    remove(t3) {
+      const e2 = te(t3), i2 = this.elements[e2];
       if (i2) return delete this.elements[e2], i2;
     }
     reset() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
-      return this.elements = {}, Array.from(t2).forEach((t3) => {
-        this.add(t3);
-      }), t2;
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
+      return this.elements = {}, Array.from(t3).forEach((t4) => {
+        this.add(t4);
+      }), t3;
     }
   };
-  var Zt = (t2) => t2.dataset.trixStoreKey;
-  var te = class extends H {
+  var te = (t3) => t3.dataset.trixStoreKey;
+  var ee = class extends q {
     isPerforming() {
       return true === this.performing;
     }
@@ -8744,63 +8748,63 @@
       return this.performed && !this.succeeded;
     }
     getPromise() {
-      return this.promise || (this.promise = new Promise((t2, e2) => (this.performing = true, this.perform((i2, n2) => {
-        this.succeeded = i2, this.performing = false, this.performed = true, this.succeeded ? t2(n2) : e2(n2);
+      return this.promise || (this.promise = new Promise((t3, e2) => (this.performing = true, this.perform((i2, n2) => {
+        this.succeeded = i2, this.performing = false, this.performed = true, this.succeeded ? t3(n2) : e2(n2);
       })))), this.promise;
     }
-    perform(t2) {
-      return t2(false);
+    perform(t3) {
+      return t3(false);
     }
     release() {
-      var t2, e2;
-      null === (t2 = this.promise) || void 0 === t2 || null === (e2 = t2.cancel) || void 0 === e2 || e2.call(t2), this.promise = null, this.performing = null, this.performed = null, this.succeeded = null;
+      var t3, e2;
+      null === (t3 = this.promise) || void 0 === t3 || null === (e2 = t3.cancel) || void 0 === e2 || e2.call(t3), this.promise = null, this.performing = null, this.performed = null, this.succeeded = null;
     }
   };
-  te.proxyMethod("getPromise().then"), te.proxyMethod("getPromise().catch");
-  var ee = class extends H {
-    constructor(t2) {
+  ee.proxyMethod("getPromise().then"), ee.proxyMethod("getPromise().catch");
+  var ie = class extends q {
+    constructor(t3) {
       let e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-      super(...arguments), this.object = t2, this.options = e2, this.childViews = [], this.rootView = this;
+      super(...arguments), this.object = t3, this.options = e2, this.childViews = [], this.rootView = this;
     }
     getNodes() {
-      return this.nodes || (this.nodes = this.createNodes()), this.nodes.map((t2) => t2.cloneNode(true));
+      return this.nodes || (this.nodes = this.createNodes()), this.nodes.map((t3) => t3.cloneNode(true));
     }
     invalidate() {
-      var t2;
-      return this.nodes = null, this.childViews = [], null === (t2 = this.parentView) || void 0 === t2 ? void 0 : t2.invalidate();
+      var t3;
+      return this.nodes = null, this.childViews = [], null === (t3 = this.parentView) || void 0 === t3 ? void 0 : t3.invalidate();
     }
-    invalidateViewForObject(t2) {
+    invalidateViewForObject(t3) {
       var e2;
-      return null === (e2 = this.findViewForObject(t2)) || void 0 === e2 ? void 0 : e2.invalidate();
+      return null === (e2 = this.findViewForObject(t3)) || void 0 === e2 ? void 0 : e2.invalidate();
     }
-    findOrCreateCachedChildView(t2, e2, i2) {
+    findOrCreateCachedChildView(t3, e2, i2) {
       let n2 = this.getCachedViewForObject(e2);
       return n2 ? this.recordChildView(n2) : (n2 = this.createChildView(...arguments), this.cacheViewForObject(n2, e2)), n2;
     }
-    createChildView(t2, e2) {
+    createChildView(t3, e2) {
       let i2 = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
-      e2 instanceof Xt && (i2.viewClass = t2, t2 = ie);
-      const n2 = new t2(e2, i2);
+      e2 instanceof $t && (i2.viewClass = t3, t3 = ne);
+      const n2 = new t3(e2, i2);
       return this.recordChildView(n2);
     }
-    recordChildView(t2) {
-      return t2.parentView = this, t2.rootView = this.rootView, this.childViews.push(t2), t2;
+    recordChildView(t3) {
+      return t3.parentView = this, t3.rootView = this.rootView, this.childViews.push(t3), t3;
     }
     getAllChildViews() {
-      let t2 = [];
+      let t3 = [];
       return this.childViews.forEach((e2) => {
-        t2.push(e2), t2 = t2.concat(e2.getAllChildViews());
-      }), t2;
+        t3.push(e2), t3 = t3.concat(e2.getAllChildViews());
+      }), t3;
     }
     findElement() {
       return this.findElementForObject(this.object);
     }
-    findElementForObject(t2) {
-      const e2 = null == t2 ? void 0 : t2.id;
+    findElementForObject(t3) {
+      const e2 = null == t3 ? void 0 : t3.id;
       if (e2) return this.rootView.element.querySelector("[data-trix-id='".concat(e2, "']"));
     }
-    findViewForObject(t2) {
-      for (const e2 of this.getAllChildViews()) if (e2.object === t2) return e2;
+    findViewForObject(t3) {
+      for (const e2 of this.getAllChildViews()) if (e2.object === t3) return e2;
     }
     getViewCache() {
       return this.rootView !== this ? this.rootView.getViewCache() : this.isViewCachingEnabled() ? (this.viewCache || (this.viewCache = {}), this.viewCache) : void 0;
@@ -8814,62 +8818,427 @@
     disableViewCaching() {
       this.shouldCacheViews = false;
     }
-    getCachedViewForObject(t2) {
+    getCachedViewForObject(t3) {
       var e2;
-      return null === (e2 = this.getViewCache()) || void 0 === e2 ? void 0 : e2[t2.getCacheKey()];
+      return null === (e2 = this.getViewCache()) || void 0 === e2 ? void 0 : e2[t3.getCacheKey()];
     }
-    cacheViewForObject(t2, e2) {
+    cacheViewForObject(t3, e2) {
       const i2 = this.getViewCache();
-      i2 && (i2[e2.getCacheKey()] = t2);
+      i2 && (i2[e2.getCacheKey()] = t3);
     }
     garbageCollectCachedViews() {
-      const t2 = this.getViewCache();
-      if (t2) {
-        const e2 = this.getAllChildViews().concat(this).map((t3) => t3.object.getCacheKey());
-        for (const i2 in t2) e2.includes(i2) || delete t2[i2];
+      const t3 = this.getViewCache();
+      if (t3) {
+        const e2 = this.getAllChildViews().concat(this).map((t4) => t4.object.getCacheKey());
+        for (const i2 in t3) e2.includes(i2) || delete t3[i2];
       }
     }
   };
-  var ie = class extends ee {
+  var ne = class extends ie {
     constructor() {
       super(...arguments), this.objectGroup = this.object, this.viewClass = this.options.viewClass, delete this.options.viewClass;
     }
     getChildViews() {
-      return this.childViews.length || Array.from(this.objectGroup.getObjects()).forEach((t2) => {
-        this.findOrCreateCachedChildView(this.viewClass, t2, this.options);
+      return this.childViews.length || Array.from(this.objectGroup.getObjects()).forEach((t3) => {
+        this.findOrCreateCachedChildView(this.viewClass, t3, this.options);
       }), this.childViews;
     }
     createNodes() {
-      const t2 = this.createContainerElement();
+      const t3 = this.createContainerElement();
       return this.getChildViews().forEach((e2) => {
         Array.from(e2.getNodes()).forEach((e3) => {
-          t2.appendChild(e3);
+          t3.appendChild(e3);
         });
-      }), [t2];
+      }), [t3];
     }
     createContainerElement() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.objectGroup.getDepth();
-      return this.getChildViews()[0].createContainerElement(t2);
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.objectGroup.getDepth();
+      return this.getChildViews()[0].createContainerElement(t3);
     }
   };
-  var ne = "style href src width height language class".split(" ");
-  var re = "javascript:".split(" ");
-  var oe = "script iframe form noscript".split(" ");
-  var se = class extends H {
-    static setHTML(t2, e2) {
-      const i2 = new this(e2).sanitize(), n2 = i2.getHTML ? i2.getHTML() : i2.outerHTML;
-      t2.innerHTML = n2;
+  var { entries: re, setPrototypeOf: oe, isFrozen: se, getPrototypeOf: ae, getOwnPropertyDescriptor: le } = Object;
+  var { freeze: ce, seal: ue, create: he } = Object;
+  var { apply: de, construct: ge } = "undefined" != typeof Reflect && Reflect;
+  ce || (ce = function(t3) {
+    return t3;
+  }), ue || (ue = function(t3) {
+    return t3;
+  }), de || (de = function(t3, e2, i2) {
+    return t3.apply(e2, i2);
+  }), ge || (ge = function(t3, e2) {
+    return new t3(...e2);
+  });
+  var me = Le(Array.prototype.forEach);
+  var pe = Le(Array.prototype.lastIndexOf);
+  var fe = Le(Array.prototype.pop);
+  var be = Le(Array.prototype.push);
+  var ve = Le(Array.prototype.splice);
+  var Ae = Le(String.prototype.toLowerCase);
+  var ye = Le(String.prototype.toString);
+  var xe = Le(String.prototype.match);
+  var Ce = Le(String.prototype.replace);
+  var Ee = Le(String.prototype.indexOf);
+  var Se = Le(String.prototype.trim);
+  var Re = Le(Object.prototype.hasOwnProperty);
+  var ke = Le(RegExp.prototype.test);
+  var Te = (we = TypeError, function() {
+    for (var t3 = arguments.length, e2 = new Array(t3), i2 = 0; i2 < t3; i2++) e2[i2] = arguments[i2];
+    return ge(we, e2);
+  });
+  var we;
+  function Le(t3) {
+    return function(e2) {
+      e2 instanceof RegExp && (e2.lastIndex = 0);
+      for (var i2 = arguments.length, n2 = new Array(i2 > 1 ? i2 - 1 : 0), r2 = 1; r2 < i2; r2++) n2[r2 - 1] = arguments[r2];
+      return de(t3, e2, n2);
+    };
+  }
+  function De(t3, e2) {
+    let i2 = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : Ae;
+    oe && oe(t3, null);
+    let n2 = e2.length;
+    for (; n2--; ) {
+      let r2 = e2[n2];
+      if ("string" == typeof r2) {
+        const t4 = i2(r2);
+        t4 !== r2 && (se(e2) || (e2[n2] = t4), r2 = t4);
+      }
+      t3[r2] = true;
     }
-    static sanitize(t2, e2) {
-      const i2 = new this(t2, e2);
+    return t3;
+  }
+  function Ne(t3) {
+    for (let e2 = 0; e2 < t3.length; e2++) {
+      Re(t3, e2) || (t3[e2] = null);
+    }
+    return t3;
+  }
+  function Ie(t3) {
+    const e2 = he(null);
+    for (const [i2, n2] of re(t3)) {
+      Re(t3, i2) && (Array.isArray(n2) ? e2[i2] = Ne(n2) : n2 && "object" == typeof n2 && n2.constructor === Object ? e2[i2] = Ie(n2) : e2[i2] = n2);
+    }
+    return e2;
+  }
+  function Oe(t3, e2) {
+    for (; null !== t3; ) {
+      const i2 = le(t3, e2);
+      if (i2) {
+        if (i2.get) return Le(i2.get);
+        if ("function" == typeof i2.value) return Le(i2.value);
+      }
+      t3 = ae(t3);
+    }
+    return function() {
+      return null;
+    };
+  }
+  var Fe = ce(["a", "abbr", "acronym", "address", "area", "article", "aside", "audio", "b", "bdi", "bdo", "big", "blink", "blockquote", "body", "br", "button", "canvas", "caption", "center", "cite", "code", "col", "colgroup", "content", "data", "datalist", "dd", "decorator", "del", "details", "dfn", "dialog", "dir", "div", "dl", "dt", "element", "em", "fieldset", "figcaption", "figure", "font", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hgroup", "hr", "html", "i", "img", "input", "ins", "kbd", "label", "legend", "li", "main", "map", "mark", "marquee", "menu", "menuitem", "meter", "nav", "nobr", "ol", "optgroup", "option", "output", "p", "picture", "pre", "progress", "q", "rp", "rt", "ruby", "s", "samp", "section", "select", "shadow", "small", "source", "spacer", "span", "strike", "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "template", "textarea", "tfoot", "th", "thead", "time", "tr", "track", "tt", "u", "ul", "var", "video", "wbr"]);
+  var Pe = ce(["svg", "a", "altglyph", "altglyphdef", "altglyphitem", "animatecolor", "animatemotion", "animatetransform", "circle", "clippath", "defs", "desc", "ellipse", "filter", "font", "g", "glyph", "glyphref", "hkern", "image", "line", "lineargradient", "marker", "mask", "metadata", "mpath", "path", "pattern", "polygon", "polyline", "radialgradient", "rect", "stop", "style", "switch", "symbol", "text", "textpath", "title", "tref", "tspan", "view", "vkern"]);
+  var Me = ce(["feBlend", "feColorMatrix", "feComponentTransfer", "feComposite", "feConvolveMatrix", "feDiffuseLighting", "feDisplacementMap", "feDistantLight", "feDropShadow", "feFlood", "feFuncA", "feFuncB", "feFuncG", "feFuncR", "feGaussianBlur", "feImage", "feMerge", "feMergeNode", "feMorphology", "feOffset", "fePointLight", "feSpecularLighting", "feSpotLight", "feTile", "feTurbulence"]);
+  var Be = ce(["animate", "color-profile", "cursor", "discard", "font-face", "font-face-format", "font-face-name", "font-face-src", "font-face-uri", "foreignobject", "hatch", "hatchpath", "mesh", "meshgradient", "meshpatch", "meshrow", "missing-glyph", "script", "set", "solidcolor", "unknown", "use"]);
+  var _e = ce(["math", "menclose", "merror", "mfenced", "mfrac", "mglyph", "mi", "mlabeledtr", "mmultiscripts", "mn", "mo", "mover", "mpadded", "mphantom", "mroot", "mrow", "ms", "mspace", "msqrt", "mstyle", "msub", "msup", "msubsup", "mtable", "mtd", "mtext", "mtr", "munder", "munderover", "mprescripts"]);
+  var je = ce(["maction", "maligngroup", "malignmark", "mlongdiv", "mscarries", "mscarry", "msgroup", "mstack", "msline", "msrow", "semantics", "annotation", "annotation-xml", "mprescripts", "none"]);
+  var We = ce(["#text"]);
+  var Ue = ce(["accept", "action", "align", "alt", "autocapitalize", "autocomplete", "autopictureinpicture", "autoplay", "background", "bgcolor", "border", "capture", "cellpadding", "cellspacing", "checked", "cite", "class", "clear", "color", "cols", "colspan", "controls", "controlslist", "coords", "crossorigin", "datetime", "decoding", "default", "dir", "disabled", "disablepictureinpicture", "disableremoteplayback", "download", "draggable", "enctype", "enterkeyhint", "face", "for", "headers", "height", "hidden", "high", "href", "hreflang", "id", "inputmode", "integrity", "ismap", "kind", "label", "lang", "list", "loading", "loop", "low", "max", "maxlength", "media", "method", "min", "minlength", "multiple", "muted", "name", "nonce", "noshade", "novalidate", "nowrap", "open", "optimum", "pattern", "placeholder", "playsinline", "popover", "popovertarget", "popovertargetaction", "poster", "preload", "pubdate", "radiogroup", "readonly", "rel", "required", "rev", "reversed", "role", "rows", "rowspan", "spellcheck", "scope", "selected", "shape", "size", "sizes", "span", "srclang", "start", "src", "srcset", "step", "style", "summary", "tabindex", "title", "translate", "type", "usemap", "valign", "value", "width", "wrap", "xmlns", "slot"]);
+  var Ve = ce(["accent-height", "accumulate", "additive", "alignment-baseline", "amplitude", "ascent", "attributename", "attributetype", "azimuth", "basefrequency", "baseline-shift", "begin", "bias", "by", "class", "clip", "clippathunits", "clip-path", "clip-rule", "color", "color-interpolation", "color-interpolation-filters", "color-profile", "color-rendering", "cx", "cy", "d", "dx", "dy", "diffuseconstant", "direction", "display", "divisor", "dur", "edgemode", "elevation", "end", "exponent", "fill", "fill-opacity", "fill-rule", "filter", "filterunits", "flood-color", "flood-opacity", "font-family", "font-size", "font-size-adjust", "font-stretch", "font-style", "font-variant", "font-weight", "fx", "fy", "g1", "g2", "glyph-name", "glyphref", "gradientunits", "gradienttransform", "height", "href", "id", "image-rendering", "in", "in2", "intercept", "k", "k1", "k2", "k3", "k4", "kerning", "keypoints", "keysplines", "keytimes", "lang", "lengthadjust", "letter-spacing", "kernelmatrix", "kernelunitlength", "lighting-color", "local", "marker-end", "marker-mid", "marker-start", "markerheight", "markerunits", "markerwidth", "maskcontentunits", "maskunits", "max", "mask", "media", "method", "mode", "min", "name", "numoctaves", "offset", "operator", "opacity", "order", "orient", "orientation", "origin", "overflow", "paint-order", "path", "pathlength", "patterncontentunits", "patterntransform", "patternunits", "points", "preservealpha", "preserveaspectratio", "primitiveunits", "r", "rx", "ry", "radius", "refx", "refy", "repeatcount", "repeatdur", "restart", "result", "rotate", "scale", "seed", "shape-rendering", "slope", "specularconstant", "specularexponent", "spreadmethod", "startoffset", "stddeviation", "stitchtiles", "stop-color", "stop-opacity", "stroke-dasharray", "stroke-dashoffset", "stroke-linecap", "stroke-linejoin", "stroke-miterlimit", "stroke-opacity", "stroke", "stroke-width", "style", "surfacescale", "systemlanguage", "tabindex", "tablevalues", "targetx", "targety", "transform", "transform-origin", "text-anchor", "text-decoration", "text-rendering", "textlength", "type", "u1", "u2", "unicode", "values", "viewbox", "visibility", "version", "vert-adv-y", "vert-origin-x", "vert-origin-y", "width", "word-spacing", "wrap", "writing-mode", "xchannelselector", "ychannelselector", "x", "x1", "x2", "xmlns", "y", "y1", "y2", "z", "zoomandpan"]);
+  var ze = ce(["accent", "accentunder", "align", "bevelled", "close", "columnsalign", "columnlines", "columnspan", "denomalign", "depth", "dir", "display", "displaystyle", "encoding", "fence", "frame", "height", "href", "id", "largeop", "length", "linethickness", "lspace", "lquote", "mathbackground", "mathcolor", "mathsize", "mathvariant", "maxsize", "minsize", "movablelimits", "notation", "numalign", "open", "rowalign", "rowlines", "rowspacing", "rowspan", "rspace", "rquote", "scriptlevel", "scriptminsize", "scriptsizemultiplier", "selection", "separator", "separators", "stretchy", "subscriptshift", "supscriptshift", "symmetric", "voffset", "width", "xmlns"]);
+  var qe = ce(["xlink:href", "xml:id", "xlink:title", "xml:space", "xmlns:xlink"]);
+  var He = ue(/\{\{[\w\W]*|[\w\W]*\}\}/gm);
+  var Je = ue(/<%[\w\W]*|[\w\W]*%>/gm);
+  var Ke = ue(/\$\{[\w\W]*/gm);
+  var Ge = ue(/^data-[\-\w.\u00B7-\uFFFF]+$/);
+  var Ye = ue(/^aria-[\-\w]+$/);
+  var Xe = ue(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i);
+  var $e = ue(/^(?:\w+script|data):/i);
+  var Ze = ue(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g);
+  var Qe = ue(/^html$/i);
+  var ti = ue(/^[a-z][.\w]*(-[.\w]+)+$/i);
+  var ei = Object.freeze({ __proto__: null, ARIA_ATTR: Ye, ATTR_WHITESPACE: Ze, CUSTOM_ELEMENT: ti, DATA_ATTR: Ge, DOCTYPE_NAME: Qe, ERB_EXPR: Je, IS_ALLOWED_URI: Xe, IS_SCRIPT_OR_DATA: $e, MUSTACHE_EXPR: He, TMPLIT_EXPR: Ke });
+  var ii = 1;
+  var ni = 3;
+  var ri = 7;
+  var oi = 8;
+  var si = 9;
+  var ai = function() {
+    return "undefined" == typeof window ? null : window;
+  };
+  var li = function t2() {
+    let e2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : ai();
+    const i2 = (e3) => t2(e3);
+    if (i2.version = "3.2.5", i2.removed = [], !e2 || !e2.document || e2.document.nodeType !== si || !e2.Element) return i2.isSupported = false, i2;
+    let { document: n2 } = e2;
+    const r2 = n2, o2 = r2.currentScript, { DocumentFragment: s2, HTMLTemplateElement: a2, Node: l2, Element: c2, NodeFilter: u2, NamedNodeMap: h2 = e2.NamedNodeMap || e2.MozNamedAttrMap, HTMLFormElement: d2, DOMParser: g2, trustedTypes: m2 } = e2, p2 = c2.prototype, f2 = Oe(p2, "cloneNode"), b2 = Oe(p2, "remove"), v2 = Oe(p2, "nextSibling"), A2 = Oe(p2, "childNodes"), y2 = Oe(p2, "parentNode");
+    if ("function" == typeof a2) {
+      const t3 = n2.createElement("template");
+      t3.content && t3.content.ownerDocument && (n2 = t3.content.ownerDocument);
+    }
+    let x2, C2 = "";
+    const { implementation: E2, createNodeIterator: S2, createDocumentFragment: R2, getElementsByTagName: k2 } = n2, { importNode: T2 } = r2;
+    let w2 = { afterSanitizeAttributes: [], afterSanitizeElements: [], afterSanitizeShadowDOM: [], beforeSanitizeAttributes: [], beforeSanitizeElements: [], beforeSanitizeShadowDOM: [], uponSanitizeAttribute: [], uponSanitizeElement: [], uponSanitizeShadowNode: [] };
+    i2.isSupported = "function" == typeof re && "function" == typeof y2 && E2 && void 0 !== E2.createHTMLDocument;
+    const { MUSTACHE_EXPR: L2, ERB_EXPR: D2, TMPLIT_EXPR: N2, DATA_ATTR: I2, ARIA_ATTR: O2, IS_SCRIPT_OR_DATA: F2, ATTR_WHITESPACE: P2, CUSTOM_ELEMENT: M2 } = ei;
+    let { IS_ALLOWED_URI: B2 } = ei, _3 = null;
+    const j2 = De({}, [...Fe, ...Pe, ...Me, ..._e, ...We]);
+    let W2 = null;
+    const U2 = De({}, [...Ue, ...Ve, ...ze, ...qe]);
+    let V2 = Object.seal(he(null, { tagNameCheck: { writable: true, configurable: false, enumerable: true, value: null }, attributeNameCheck: { writable: true, configurable: false, enumerable: true, value: null }, allowCustomizedBuiltInElements: { writable: true, configurable: false, enumerable: true, value: false } })), z2 = null, q2 = null, H3 = true, J2 = true, K2 = false, G2 = true, Y2 = false, X2 = true, $5 = false, Z3 = false, Q2 = false, tt2 = false, et2 = false, it2 = false, nt2 = true, rt2 = false, ot2 = true, st2 = false, at2 = {}, lt2 = null;
+    const ct2 = De({}, ["annotation-xml", "audio", "colgroup", "desc", "foreignobject", "head", "iframe", "math", "mi", "mn", "mo", "ms", "mtext", "noembed", "noframes", "noscript", "plaintext", "script", "style", "svg", "template", "thead", "title", "video", "xmp"]);
+    let ut2 = null;
+    const ht2 = De({}, ["audio", "video", "img", "source", "image", "track"]);
+    let dt2 = null;
+    const gt2 = De({}, ["alt", "class", "for", "id", "label", "name", "pattern", "placeholder", "role", "summary", "title", "value", "style", "xmlns"]), mt2 = "http://www.w3.org/1998/Math/MathML", pt2 = "http://www.w3.org/2000/svg", ft2 = "http://www.w3.org/1999/xhtml";
+    let bt2 = ft2, vt2 = false, At2 = null;
+    const yt2 = De({}, [mt2, pt2, ft2], ye);
+    let xt2 = De({}, ["mi", "mo", "mn", "ms", "mtext"]), Ct2 = De({}, ["annotation-xml"]);
+    const Et2 = De({}, ["title", "style", "font", "a", "script"]);
+    let St2 = null;
+    const Rt2 = ["application/xhtml+xml", "text/html"];
+    let kt2 = null, Tt2 = null;
+    const wt2 = n2.createElement("form"), Lt2 = function(t3) {
+      return t3 instanceof RegExp || t3 instanceof Function;
+    }, Dt2 = function() {
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+      if (!Tt2 || Tt2 !== t3) {
+        if (t3 && "object" == typeof t3 || (t3 = {}), t3 = Ie(t3), St2 = -1 === Rt2.indexOf(t3.PARSER_MEDIA_TYPE) ? "text/html" : t3.PARSER_MEDIA_TYPE, kt2 = "application/xhtml+xml" === St2 ? ye : Ae, _3 = Re(t3, "ALLOWED_TAGS") ? De({}, t3.ALLOWED_TAGS, kt2) : j2, W2 = Re(t3, "ALLOWED_ATTR") ? De({}, t3.ALLOWED_ATTR, kt2) : U2, At2 = Re(t3, "ALLOWED_NAMESPACES") ? De({}, t3.ALLOWED_NAMESPACES, ye) : yt2, dt2 = Re(t3, "ADD_URI_SAFE_ATTR") ? De(Ie(gt2), t3.ADD_URI_SAFE_ATTR, kt2) : gt2, ut2 = Re(t3, "ADD_DATA_URI_TAGS") ? De(Ie(ht2), t3.ADD_DATA_URI_TAGS, kt2) : ht2, lt2 = Re(t3, "FORBID_CONTENTS") ? De({}, t3.FORBID_CONTENTS, kt2) : ct2, z2 = Re(t3, "FORBID_TAGS") ? De({}, t3.FORBID_TAGS, kt2) : {}, q2 = Re(t3, "FORBID_ATTR") ? De({}, t3.FORBID_ATTR, kt2) : {}, at2 = !!Re(t3, "USE_PROFILES") && t3.USE_PROFILES, H3 = false !== t3.ALLOW_ARIA_ATTR, J2 = false !== t3.ALLOW_DATA_ATTR, K2 = t3.ALLOW_UNKNOWN_PROTOCOLS || false, G2 = false !== t3.ALLOW_SELF_CLOSE_IN_ATTR, Y2 = t3.SAFE_FOR_TEMPLATES || false, X2 = false !== t3.SAFE_FOR_XML, $5 = t3.WHOLE_DOCUMENT || false, tt2 = t3.RETURN_DOM || false, et2 = t3.RETURN_DOM_FRAGMENT || false, it2 = t3.RETURN_TRUSTED_TYPE || false, Q2 = t3.FORCE_BODY || false, nt2 = false !== t3.SANITIZE_DOM, rt2 = t3.SANITIZE_NAMED_PROPS || false, ot2 = false !== t3.KEEP_CONTENT, st2 = t3.IN_PLACE || false, B2 = t3.ALLOWED_URI_REGEXP || Xe, bt2 = t3.NAMESPACE || ft2, xt2 = t3.MATHML_TEXT_INTEGRATION_POINTS || xt2, Ct2 = t3.HTML_INTEGRATION_POINTS || Ct2, V2 = t3.CUSTOM_ELEMENT_HANDLING || {}, t3.CUSTOM_ELEMENT_HANDLING && Lt2(t3.CUSTOM_ELEMENT_HANDLING.tagNameCheck) && (V2.tagNameCheck = t3.CUSTOM_ELEMENT_HANDLING.tagNameCheck), t3.CUSTOM_ELEMENT_HANDLING && Lt2(t3.CUSTOM_ELEMENT_HANDLING.attributeNameCheck) && (V2.attributeNameCheck = t3.CUSTOM_ELEMENT_HANDLING.attributeNameCheck), t3.CUSTOM_ELEMENT_HANDLING && "boolean" == typeof t3.CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements && (V2.allowCustomizedBuiltInElements = t3.CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements), Y2 && (J2 = false), et2 && (tt2 = true), at2 && (_3 = De({}, We), W2 = [], true === at2.html && (De(_3, Fe), De(W2, Ue)), true === at2.svg && (De(_3, Pe), De(W2, Ve), De(W2, qe)), true === at2.svgFilters && (De(_3, Me), De(W2, Ve), De(W2, qe)), true === at2.mathMl && (De(_3, _e), De(W2, ze), De(W2, qe))), t3.ADD_TAGS && (_3 === j2 && (_3 = Ie(_3)), De(_3, t3.ADD_TAGS, kt2)), t3.ADD_ATTR && (W2 === U2 && (W2 = Ie(W2)), De(W2, t3.ADD_ATTR, kt2)), t3.ADD_URI_SAFE_ATTR && De(dt2, t3.ADD_URI_SAFE_ATTR, kt2), t3.FORBID_CONTENTS && (lt2 === ct2 && (lt2 = Ie(lt2)), De(lt2, t3.FORBID_CONTENTS, kt2)), ot2 && (_3["#text"] = true), $5 && De(_3, ["html", "head", "body"]), _3.table && (De(_3, ["tbody"]), delete z2.tbody), t3.TRUSTED_TYPES_POLICY) {
+          if ("function" != typeof t3.TRUSTED_TYPES_POLICY.createHTML) throw Te('TRUSTED_TYPES_POLICY configuration option must provide a "createHTML" hook.');
+          if ("function" != typeof t3.TRUSTED_TYPES_POLICY.createScriptURL) throw Te('TRUSTED_TYPES_POLICY configuration option must provide a "createScriptURL" hook.');
+          x2 = t3.TRUSTED_TYPES_POLICY, C2 = x2.createHTML("");
+        } else void 0 === x2 && (x2 = function(t4, e3) {
+          if ("object" != typeof t4 || "function" != typeof t4.createPolicy) return null;
+          let i3 = null;
+          const n3 = "data-tt-policy-suffix";
+          e3 && e3.hasAttribute(n3) && (i3 = e3.getAttribute(n3));
+          const r3 = "dompurify" + (i3 ? "#" + i3 : "");
+          try {
+            return t4.createPolicy(r3, { createHTML: (t5) => t5, createScriptURL: (t5) => t5 });
+          } catch (t5) {
+            return console.warn("TrustedTypes policy " + r3 + " could not be created."), null;
+          }
+        }(m2, o2)), null !== x2 && "string" == typeof C2 && (C2 = x2.createHTML(""));
+        ce && ce(t3), Tt2 = t3;
+      }
+    }, Nt2 = De({}, [...Pe, ...Me, ...Be]), It2 = De({}, [..._e, ...je]), Ot2 = function(t3) {
+      be(i2.removed, { element: t3 });
+      try {
+        y2(t3).removeChild(t3);
+      } catch (e3) {
+        b2(t3);
+      }
+    }, Ft2 = function(t3, e3) {
+      try {
+        be(i2.removed, { attribute: e3.getAttributeNode(t3), from: e3 });
+      } catch (t4) {
+        be(i2.removed, { attribute: null, from: e3 });
+      }
+      if (e3.removeAttribute(t3), "is" === t3) if (tt2 || et2) try {
+        Ot2(e3);
+      } catch (t4) {
+      }
+      else try {
+        e3.setAttribute(t3, "");
+      } catch (t4) {
+      }
+    }, Pt2 = function(t3) {
+      let e3 = null, i3 = null;
+      if (Q2) t3 = "<remove></remove>" + t3;
+      else {
+        const e4 = xe(t3, /^[\r\n\t ]+/);
+        i3 = e4 && e4[0];
+      }
+      "application/xhtml+xml" === St2 && bt2 === ft2 && (t3 = '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>' + t3 + "</body></html>");
+      const r3 = x2 ? x2.createHTML(t3) : t3;
+      if (bt2 === ft2) try {
+        e3 = new g2().parseFromString(r3, St2);
+      } catch (t4) {
+      }
+      if (!e3 || !e3.documentElement) {
+        e3 = E2.createDocument(bt2, "template", null);
+        try {
+          e3.documentElement.innerHTML = vt2 ? C2 : r3;
+        } catch (t4) {
+        }
+      }
+      const o3 = e3.body || e3.documentElement;
+      return t3 && i3 && o3.insertBefore(n2.createTextNode(i3), o3.childNodes[0] || null), bt2 === ft2 ? k2.call(e3, $5 ? "html" : "body")[0] : $5 ? e3.documentElement : o3;
+    }, Mt2 = function(t3) {
+      return S2.call(t3.ownerDocument || t3, t3, u2.SHOW_ELEMENT | u2.SHOW_COMMENT | u2.SHOW_TEXT | u2.SHOW_PROCESSING_INSTRUCTION | u2.SHOW_CDATA_SECTION, null);
+    }, Bt2 = function(t3) {
+      return t3 instanceof d2 && ("string" != typeof t3.nodeName || "string" != typeof t3.textContent || "function" != typeof t3.removeChild || !(t3.attributes instanceof h2) || "function" != typeof t3.removeAttribute || "function" != typeof t3.setAttribute || "string" != typeof t3.namespaceURI || "function" != typeof t3.insertBefore || "function" != typeof t3.hasChildNodes);
+    }, _t2 = function(t3) {
+      return "function" == typeof l2 && t3 instanceof l2;
+    };
+    function jt2(t3, e3, n3) {
+      me(t3, (t4) => {
+        t4.call(i2, e3, n3, Tt2);
+      });
+    }
+    const Wt2 = function(t3) {
+      let e3 = null;
+      if (jt2(w2.beforeSanitizeElements, t3, null), Bt2(t3)) return Ot2(t3), true;
+      const n3 = kt2(t3.nodeName);
+      if (jt2(w2.uponSanitizeElement, t3, { tagName: n3, allowedTags: _3 }), t3.hasChildNodes() && !_t2(t3.firstElementChild) && ke(/<[/\w!]/g, t3.innerHTML) && ke(/<[/\w!]/g, t3.textContent)) return Ot2(t3), true;
+      if (t3.nodeType === ri) return Ot2(t3), true;
+      if (X2 && t3.nodeType === oi && ke(/<[/\w]/g, t3.data)) return Ot2(t3), true;
+      if (!_3[n3] || z2[n3]) {
+        if (!z2[n3] && Vt2(n3)) {
+          if (V2.tagNameCheck instanceof RegExp && ke(V2.tagNameCheck, n3)) return false;
+          if (V2.tagNameCheck instanceof Function && V2.tagNameCheck(n3)) return false;
+        }
+        if (ot2 && !lt2[n3]) {
+          const e4 = y2(t3) || t3.parentNode, i3 = A2(t3) || t3.childNodes;
+          if (i3 && e4) {
+            for (let n4 = i3.length - 1; n4 >= 0; --n4) {
+              const r3 = f2(i3[n4], true);
+              r3.__removalCount = (t3.__removalCount || 0) + 1, e4.insertBefore(r3, v2(t3));
+            }
+          }
+        }
+        return Ot2(t3), true;
+      }
+      return t3 instanceof c2 && !function(t4) {
+        let e4 = y2(t4);
+        e4 && e4.tagName || (e4 = { namespaceURI: bt2, tagName: "template" });
+        const i3 = Ae(t4.tagName), n4 = Ae(e4.tagName);
+        return !!At2[t4.namespaceURI] && (t4.namespaceURI === pt2 ? e4.namespaceURI === ft2 ? "svg" === i3 : e4.namespaceURI === mt2 ? "svg" === i3 && ("annotation-xml" === n4 || xt2[n4]) : Boolean(Nt2[i3]) : t4.namespaceURI === mt2 ? e4.namespaceURI === ft2 ? "math" === i3 : e4.namespaceURI === pt2 ? "math" === i3 && Ct2[n4] : Boolean(It2[i3]) : t4.namespaceURI === ft2 ? !(e4.namespaceURI === pt2 && !Ct2[n4]) && !(e4.namespaceURI === mt2 && !xt2[n4]) && !It2[i3] && (Et2[i3] || !Nt2[i3]) : !("application/xhtml+xml" !== St2 || !At2[t4.namespaceURI]));
+      }(t3) ? (Ot2(t3), true) : "noscript" !== n3 && "noembed" !== n3 && "noframes" !== n3 || !ke(/<\/no(script|embed|frames)/i, t3.innerHTML) ? (Y2 && t3.nodeType === ni && (e3 = t3.textContent, me([L2, D2, N2], (t4) => {
+        e3 = Ce(e3, t4, " ");
+      }), t3.textContent !== e3 && (be(i2.removed, { element: t3.cloneNode() }), t3.textContent = e3)), jt2(w2.afterSanitizeElements, t3, null), false) : (Ot2(t3), true);
+    }, Ut2 = function(t3, e3, i3) {
+      if (nt2 && ("id" === e3 || "name" === e3) && (i3 in n2 || i3 in wt2)) return false;
+      if (J2 && !q2[e3] && ke(I2, e3)) ;
+      else if (H3 && ke(O2, e3)) ;
+      else if (!W2[e3] || q2[e3]) {
+        if (!(Vt2(t3) && (V2.tagNameCheck instanceof RegExp && ke(V2.tagNameCheck, t3) || V2.tagNameCheck instanceof Function && V2.tagNameCheck(t3)) && (V2.attributeNameCheck instanceof RegExp && ke(V2.attributeNameCheck, e3) || V2.attributeNameCheck instanceof Function && V2.attributeNameCheck(e3)) || "is" === e3 && V2.allowCustomizedBuiltInElements && (V2.tagNameCheck instanceof RegExp && ke(V2.tagNameCheck, i3) || V2.tagNameCheck instanceof Function && V2.tagNameCheck(i3)))) return false;
+      } else if (dt2[e3]) ;
+      else if (ke(B2, Ce(i3, P2, ""))) ;
+      else if ("src" !== e3 && "xlink:href" !== e3 && "href" !== e3 || "script" === t3 || 0 !== Ee(i3, "data:") || !ut2[t3]) {
+        if (K2 && !ke(F2, Ce(i3, P2, ""))) ;
+        else if (i3) return false;
+      } else ;
+      return true;
+    }, Vt2 = function(t3) {
+      return "annotation-xml" !== t3 && xe(t3, M2);
+    }, zt2 = function(t3) {
+      jt2(w2.beforeSanitizeAttributes, t3, null);
+      const { attributes: e3 } = t3;
+      if (!e3 || Bt2(t3)) return;
+      const n3 = { attrName: "", attrValue: "", keepAttr: true, allowedAttributes: W2, forceKeepAttr: void 0 };
+      let r3 = e3.length;
+      for (; r3--; ) {
+        const o3 = e3[r3], { name: s3, namespaceURI: a3, value: l3 } = o3, c3 = kt2(s3);
+        let u3 = "value" === s3 ? l3 : Se(l3);
+        if (n3.attrName = c3, n3.attrValue = u3, n3.keepAttr = true, n3.forceKeepAttr = void 0, jt2(w2.uponSanitizeAttribute, t3, n3), u3 = n3.attrValue, !rt2 || "id" !== c3 && "name" !== c3 || (Ft2(s3, t3), u3 = "user-content-" + u3), X2 && ke(/((--!?|])>)|<\/(style|title)/i, u3)) {
+          Ft2(s3, t3);
+          continue;
+        }
+        if (n3.forceKeepAttr) continue;
+        if (Ft2(s3, t3), !n3.keepAttr) continue;
+        if (!G2 && ke(/\/>/i, u3)) {
+          Ft2(s3, t3);
+          continue;
+        }
+        Y2 && me([L2, D2, N2], (t4) => {
+          u3 = Ce(u3, t4, " ");
+        });
+        const h3 = kt2(t3.nodeName);
+        if (Ut2(h3, c3, u3)) {
+          if (x2 && "object" == typeof m2 && "function" == typeof m2.getAttributeType) if (a3) ;
+          else switch (m2.getAttributeType(h3, c3)) {
+            case "TrustedHTML":
+              u3 = x2.createHTML(u3);
+              break;
+            case "TrustedScriptURL":
+              u3 = x2.createScriptURL(u3);
+          }
+          try {
+            a3 ? t3.setAttributeNS(a3, s3, u3) : t3.setAttribute(s3, u3), Bt2(t3) ? Ot2(t3) : fe(i2.removed);
+          } catch (t4) {
+          }
+        }
+      }
+      jt2(w2.afterSanitizeAttributes, t3, null);
+    }, qt2 = function t3(e3) {
+      let i3 = null;
+      const n3 = Mt2(e3);
+      for (jt2(w2.beforeSanitizeShadowDOM, e3, null); i3 = n3.nextNode(); ) jt2(w2.uponSanitizeShadowNode, i3, null), Wt2(i3), zt2(i3), i3.content instanceof s2 && t3(i3.content);
+      jt2(w2.afterSanitizeShadowDOM, e3, null);
+    };
+    return i2.sanitize = function(t3) {
+      let e3 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, n3 = null, o3 = null, a3 = null, c3 = null;
+      if (vt2 = !t3, vt2 && (t3 = "<!-->"), "string" != typeof t3 && !_t2(t3)) {
+        if ("function" != typeof t3.toString) throw Te("toString is not a function");
+        if ("string" != typeof (t3 = t3.toString())) throw Te("dirty is not a string, aborting");
+      }
+      if (!i2.isSupported) return t3;
+      if (Z3 || Dt2(e3), i2.removed = [], "string" == typeof t3 && (st2 = false), st2) {
+        if (t3.nodeName) {
+          const e4 = kt2(t3.nodeName);
+          if (!_3[e4] || z2[e4]) throw Te("root node is forbidden and cannot be sanitized in-place");
+        }
+      } else if (t3 instanceof l2) n3 = Pt2("<!---->"), o3 = n3.ownerDocument.importNode(t3, true), o3.nodeType === ii && "BODY" === o3.nodeName || "HTML" === o3.nodeName ? n3 = o3 : n3.appendChild(o3);
+      else {
+        if (!tt2 && !Y2 && !$5 && -1 === t3.indexOf("<")) return x2 && it2 ? x2.createHTML(t3) : t3;
+        if (n3 = Pt2(t3), !n3) return tt2 ? null : it2 ? C2 : "";
+      }
+      n3 && Q2 && Ot2(n3.firstChild);
+      const u3 = Mt2(st2 ? t3 : n3);
+      for (; a3 = u3.nextNode(); ) Wt2(a3), zt2(a3), a3.content instanceof s2 && qt2(a3.content);
+      if (st2) return t3;
+      if (tt2) {
+        if (et2) for (c3 = R2.call(n3.ownerDocument); n3.firstChild; ) c3.appendChild(n3.firstChild);
+        else c3 = n3;
+        return (W2.shadowroot || W2.shadowrootmode) && (c3 = T2.call(r2, c3, true)), c3;
+      }
+      let h3 = $5 ? n3.outerHTML : n3.innerHTML;
+      return $5 && _3["!doctype"] && n3.ownerDocument && n3.ownerDocument.doctype && n3.ownerDocument.doctype.name && ke(Qe, n3.ownerDocument.doctype.name) && (h3 = "<!DOCTYPE " + n3.ownerDocument.doctype.name + ">\n" + h3), Y2 && me([L2, D2, N2], (t4) => {
+        h3 = Ce(h3, t4, " ");
+      }), x2 && it2 ? x2.createHTML(h3) : h3;
+    }, i2.setConfig = function() {
+      Dt2(arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}), Z3 = true;
+    }, i2.clearConfig = function() {
+      Tt2 = null, Z3 = false;
+    }, i2.isValidAttribute = function(t3, e3, i3) {
+      Tt2 || Dt2({});
+      const n3 = kt2(t3), r3 = kt2(e3);
+      return Ut2(n3, r3, i3);
+    }, i2.addHook = function(t3, e3) {
+      "function" == typeof e3 && be(w2[t3], e3);
+    }, i2.removeHook = function(t3, e3) {
+      if (void 0 !== e3) {
+        const i3 = pe(w2[t3], e3);
+        return -1 === i3 ? void 0 : ve(w2[t3], i3, 1)[0];
+      }
+      return fe(w2[t3]);
+    }, i2.removeHooks = function(t3) {
+      w2[t3] = [];
+    }, i2.removeAllHooks = function() {
+      w2 = { afterSanitizeAttributes: [], afterSanitizeElements: [], afterSanitizeShadowDOM: [], beforeSanitizeAttributes: [], beforeSanitizeElements: [], beforeSanitizeShadowDOM: [], uponSanitizeAttribute: [], uponSanitizeElement: [], uponSanitizeShadowNode: [] };
+    }, i2;
+  }();
+  li.addHook("uponSanitizeAttribute", function(t3, e2) {
+    /^data-trix-/.test(e2.attrName) && (e2.forceKeepAttr = true);
+  });
+  var ci = "style href src width height language class".split(" ");
+  var ui = "javascript:".split(" ");
+  var hi = "script iframe form noscript".split(" ");
+  var di = class extends q {
+    static setHTML(t3, e2, i2) {
+      const n2 = new this(e2, i2).sanitize(), r2 = n2.getHTML ? n2.getHTML() : n2.outerHTML;
+      t3.innerHTML = r2;
+    }
+    static sanitize(t3, e2) {
+      const i2 = new this(t3, e2);
       return i2.sanitize(), i2;
     }
-    constructor(t2) {
-      let { allowedAttributes: e2, forbiddenProtocols: i2, forbiddenElements: n2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-      super(...arguments), this.allowedAttributes = e2 || ne, this.forbiddenProtocols = i2 || re, this.forbiddenElements = n2 || oe, this.body = ae(t2);
+    constructor(t3) {
+      let { allowedAttributes: e2, forbiddenProtocols: i2, forbiddenElements: n2, purifyOptions: r2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+      super(...arguments), this.allowedAttributes = e2 || ci, this.forbiddenProtocols = i2 || ui, this.forbiddenElements = n2 || hi, this.purifyOptions = r2 || {}, this.body = gi(t3);
     }
     sanitize() {
-      return this.sanitizeElements(), this.normalizeListElementNesting();
+      this.sanitizeElements(), this.normalizeListElementNesting();
+      const t3 = Object.assign({}, l, this.purifyOptions);
+      return li.setConfig(t3), this.body = li.sanitize(this.body), this.body;
     }
     getHTML() {
       return this.body.innerHTML;
@@ -8878,9 +9247,9 @@
       return this.body;
     }
     sanitizeElements() {
-      const t2 = R(this.body), e2 = [];
-      for (; t2.nextNode(); ) {
-        const i2 = t2.currentNode;
+      const t3 = R(this.body), e2 = [];
+      for (; t3.nextNode(); ) {
+        const i2 = t3.currentNode;
         switch (i2.nodeType) {
           case Node.ELEMENT_NODE:
             this.elementIsRemovable(i2) ? e2.push(i2) : this.sanitizeElement(i2);
@@ -8889,40 +9258,40 @@
             e2.push(i2);
         }
       }
-      return e2.forEach((t3) => k(t3)), this.body;
+      return e2.forEach((t4) => S(t4)), this.body;
     }
-    sanitizeElement(t2) {
-      return t2.hasAttribute("href") && this.forbiddenProtocols.includes(t2.protocol) && t2.removeAttribute("href"), Array.from(t2.attributes).forEach((e2) => {
+    sanitizeElement(t3) {
+      return t3.hasAttribute("href") && this.forbiddenProtocols.includes(t3.protocol) && t3.removeAttribute("href"), Array.from(t3.attributes).forEach((e2) => {
         let { name: i2 } = e2;
-        this.allowedAttributes.includes(i2) || 0 === i2.indexOf("data-trix") || t2.removeAttribute(i2);
-      }), t2;
+        this.allowedAttributes.includes(i2) || 0 === i2.indexOf("data-trix") || t3.removeAttribute(i2);
+      }), t3;
     }
     normalizeListElementNesting() {
-      return Array.from(this.body.querySelectorAll("ul,ol")).forEach((t2) => {
-        const e2 = t2.previousElementSibling;
-        e2 && "li" === E(e2) && e2.appendChild(t2);
+      return Array.from(this.body.querySelectorAll("ul,ol")).forEach((t3) => {
+        const e2 = t3.previousElementSibling;
+        e2 && "li" === k(e2) && e2.appendChild(t3);
       }), this.body;
     }
-    elementIsRemovable(t2) {
-      if ((null == t2 ? void 0 : t2.nodeType) === Node.ELEMENT_NODE) return this.elementIsForbidden(t2) || this.elementIsntSerializable(t2);
+    elementIsRemovable(t3) {
+      if ((null == t3 ? void 0 : t3.nodeType) === Node.ELEMENT_NODE) return this.elementIsForbidden(t3) || this.elementIsntSerializable(t3);
     }
-    elementIsForbidden(t2) {
-      return this.forbiddenElements.includes(E(t2));
+    elementIsForbidden(t3) {
+      return this.forbiddenElements.includes(k(t3));
     }
-    elementIsntSerializable(t2) {
-      return "false" === t2.getAttribute("data-trix-serialize") && !I(t2);
+    elementIsntSerializable(t3) {
+      return "false" === t3.getAttribute("data-trix-serialize") && !P(t3);
     }
   };
-  var ae = function() {
-    let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
-    t2 = t2.replace(/<\/html[^>]*>[^]*$/i, "</html>");
+  var gi = function() {
+    let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+    t3 = t3.replace(/<\/html[^>]*>[^]*$/i, "</html>");
     const e2 = document.implementation.createHTMLDocument("");
-    return e2.documentElement.innerHTML = t2, Array.from(e2.head.querySelectorAll("style")).forEach((t3) => {
-      e2.body.appendChild(t3);
+    return e2.documentElement.innerHTML = t3, Array.from(e2.head.querySelectorAll("style")).forEach((t4) => {
+      e2.body.appendChild(t4);
     }), e2.body;
   };
-  var { css: le } = V;
-  var ce = class extends ee {
+  var { css: mi } = z;
+  var pi = class extends ie {
     constructor() {
       super(...arguments), this.attachment = this.object, this.attachment.uploadProgressDelegate = this, this.attachmentPiece = this.options.piece;
     }
@@ -8930,291 +9299,291 @@
       return [];
     }
     createNodes() {
-      let t2;
-      const e2 = t2 = S({ tagName: "figure", className: this.getClassName(), data: this.getData(), editable: false }), i2 = this.getHref();
-      return i2 && (t2 = S({ tagName: "a", editable: false, attributes: { href: i2, tabindex: -1 } }), e2.appendChild(t2)), this.attachment.hasContent() ? se.setHTML(t2, this.attachment.getContent()) : this.createContentNodes().forEach((e3) => {
-        t2.appendChild(e3);
-      }), t2.appendChild(this.createCaptionElement()), this.attachment.isPending() && (this.progressElement = S({ tagName: "progress", attributes: { class: le.attachmentProgress, value: this.attachment.getUploadProgress(), max: 100 }, data: { trixMutable: true, trixStoreKey: ["progressElement", this.attachment.id].join("/") } }), e2.appendChild(this.progressElement)), [ue("left"), e2, ue("right")];
+      let t3;
+      const e2 = t3 = T({ tagName: "figure", className: this.getClassName(), data: this.getData(), editable: false }), i2 = this.getHref();
+      return i2 && (t3 = T({ tagName: "a", editable: false, attributes: { href: i2, tabindex: -1 } }), e2.appendChild(t3)), this.attachment.hasContent() ? di.setHTML(t3, this.attachment.getContent()) : this.createContentNodes().forEach((e3) => {
+        t3.appendChild(e3);
+      }), t3.appendChild(this.createCaptionElement()), this.attachment.isPending() && (this.progressElement = T({ tagName: "progress", attributes: { class: mi.attachmentProgress, value: this.attachment.getUploadProgress(), max: 100 }, data: { trixMutable: true, trixStoreKey: ["progressElement", this.attachment.id].join("/") } }), e2.appendChild(this.progressElement)), [fi("left"), e2, fi("right")];
     }
     createCaptionElement() {
-      const t2 = S({ tagName: "figcaption", className: le.attachmentCaption }), e2 = this.attachmentPiece.getCaption();
-      if (e2) t2.classList.add("".concat(le.attachmentCaption, "--edited")), t2.textContent = e2;
+      const t3 = T({ tagName: "figcaption", className: mi.attachmentCaption }), e2 = this.attachmentPiece.getCaption();
+      if (e2) t3.classList.add("".concat(mi.attachmentCaption, "--edited")), t3.textContent = e2;
       else {
         let e3, i2;
         const n2 = this.getCaptionConfig();
         if (n2.name && (e3 = this.attachment.getFilename()), n2.size && (i2 = this.attachment.getFormattedFilesize()), e3) {
-          const i3 = S({ tagName: "span", className: le.attachmentName, textContent: e3 });
-          t2.appendChild(i3);
+          const i3 = T({ tagName: "span", className: mi.attachmentName, textContent: e3 });
+          t3.appendChild(i3);
         }
         if (i2) {
-          e3 && t2.appendChild(document.createTextNode(" "));
-          const n3 = S({ tagName: "span", className: le.attachmentSize, textContent: i2 });
-          t2.appendChild(n3);
+          e3 && t3.appendChild(document.createTextNode(" "));
+          const n3 = T({ tagName: "span", className: mi.attachmentSize, textContent: i2 });
+          t3.appendChild(n3);
         }
       }
-      return t2;
+      return t3;
     }
     getClassName() {
-      const t2 = [le.attachment, "".concat(le.attachment, "--").concat(this.attachment.getType())], e2 = this.attachment.getExtension();
-      return e2 && t2.push("".concat(le.attachment, "--").concat(e2)), t2.join(" ");
+      const t3 = [mi.attachment, "".concat(mi.attachment, "--").concat(this.attachment.getType())], e2 = this.attachment.getExtension();
+      return e2 && t3.push("".concat(mi.attachment, "--").concat(e2)), t3.join(" ");
     }
     getData() {
-      const t2 = { trixAttachment: JSON.stringify(this.attachment), trixContentType: this.attachment.getContentType(), trixId: this.attachment.id }, { attributes: e2 } = this.attachmentPiece;
-      return e2.isEmpty() || (t2.trixAttributes = JSON.stringify(e2)), this.attachment.isPending() && (t2.trixSerialize = false), t2;
+      const t3 = { trixAttachment: JSON.stringify(this.attachment), trixContentType: this.attachment.getContentType(), trixId: this.attachment.id }, { attributes: e2 } = this.attachmentPiece;
+      return e2.isEmpty() || (t3.trixAttributes = JSON.stringify(e2)), this.attachment.isPending() && (t3.trixSerialize = false), t3;
     }
     getHref() {
-      if (!he(this.attachment.getContent(), "a")) return this.attachment.getHref();
+      if (!bi(this.attachment.getContent(), "a")) return this.attachment.getHref();
     }
     getCaptionConfig() {
-      var t2;
-      const e2 = this.attachment.getType(), n2 = Et(null === (t2 = i[e2]) || void 0 === t2 ? void 0 : t2.caption);
+      var t3;
+      const e2 = this.attachment.getType(), n2 = kt(null === (t3 = i[e2]) || void 0 === t3 ? void 0 : t3.caption);
       return "file" === e2 && (n2.name = true), n2;
     }
     findProgressElement() {
-      var t2;
-      return null === (t2 = this.findElement()) || void 0 === t2 ? void 0 : t2.querySelector("progress");
+      var t3;
+      return null === (t3 = this.findElement()) || void 0 === t3 ? void 0 : t3.querySelector("progress");
     }
     attachmentDidChangeUploadProgress() {
-      const t2 = this.attachment.getUploadProgress(), e2 = this.findProgressElement();
-      e2 && (e2.value = t2);
+      const t3 = this.attachment.getUploadProgress(), e2 = this.findProgressElement();
+      e2 && (e2.value = t3);
     }
   };
-  var ue = (t2) => S({ tagName: "span", textContent: h, data: { trixCursorTarget: t2, trixSerialize: false } });
-  var he = function(t2, e2) {
-    const i2 = S("div");
-    return se.setHTML(i2, t2 || ""), i2.querySelector(e2);
+  var fi = (t3) => T({ tagName: "span", textContent: d, data: { trixCursorTarget: t3, trixSerialize: false } });
+  var bi = function(t3, e2) {
+    const i2 = T("div");
+    return di.setHTML(i2, t3 || ""), i2.querySelector(e2);
   };
-  var de = class extends ce {
+  var vi = class extends pi {
     constructor() {
       super(...arguments), this.attachment.previewDelegate = this;
     }
     createContentNodes() {
-      return this.image = S({ tagName: "img", attributes: { src: "" }, data: { trixMutable: true } }), this.refresh(this.image), [this.image];
+      return this.image = T({ tagName: "img", attributes: { src: "" }, data: { trixMutable: true } }), this.refresh(this.image), [this.image];
     }
     createCaptionElement() {
-      const t2 = super.createCaptionElement(...arguments);
-      return t2.textContent || t2.setAttribute("data-trix-placeholder", l.captionPlaceholder), t2;
+      const t3 = super.createCaptionElement(...arguments);
+      return t3.textContent || t3.setAttribute("data-trix-placeholder", c.captionPlaceholder), t3;
     }
-    refresh(t2) {
+    refresh(t3) {
       var e2;
-      t2 || (t2 = null === (e2 = this.findElement()) || void 0 === e2 ? void 0 : e2.querySelector("img"));
-      if (t2) return this.updateAttributesForImage(t2);
+      t3 || (t3 = null === (e2 = this.findElement()) || void 0 === e2 ? void 0 : e2.querySelector("img"));
+      if (t3) return this.updateAttributesForImage(t3);
     }
-    updateAttributesForImage(t2) {
+    updateAttributesForImage(t3) {
       const e2 = this.attachment.getURL(), i2 = this.attachment.getPreviewURL();
-      if (t2.src = i2 || e2, i2 === e2) t2.removeAttribute("data-trix-serialized-attributes");
+      if (t3.src = i2 || e2, i2 === e2) t3.removeAttribute("data-trix-serialized-attributes");
       else {
         const i3 = JSON.stringify({ src: e2 });
-        t2.setAttribute("data-trix-serialized-attributes", i3);
+        t3.setAttribute("data-trix-serialized-attributes", i3);
       }
       const n2 = this.attachment.getWidth(), r2 = this.attachment.getHeight();
-      null != n2 && (t2.width = n2), null != r2 && (t2.height = r2);
-      const o2 = ["imageElement", this.attachment.id, t2.src, t2.width, t2.height].join("/");
-      t2.dataset.trixStoreKey = o2;
+      null != n2 && (t3.width = n2), null != r2 && (t3.height = r2);
+      const o2 = ["imageElement", this.attachment.id, t3.src, t3.width, t3.height].join("/");
+      t3.dataset.trixStoreKey = o2;
     }
     attachmentDidChangeAttributes() {
       return this.refresh(this.image), this.refresh();
     }
   };
-  var ge = class extends ee {
+  var Ai = class extends ie {
     constructor() {
       super(...arguments), this.piece = this.object, this.attributes = this.piece.getAttributes(), this.textConfig = this.options.textConfig, this.context = this.options.context, this.piece.attachment ? this.attachment = this.piece.attachment : this.string = this.piece.toString();
     }
     createNodes() {
-      let t2 = this.attachment ? this.createAttachmentNodes() : this.createStringNodes();
+      let t3 = this.attachment ? this.createAttachmentNodes() : this.createStringNodes();
       const e2 = this.createElement();
       if (e2) {
-        const i2 = function(t3) {
-          for (; null !== (e3 = t3) && void 0 !== e3 && e3.firstElementChild; ) {
+        const i2 = function(t4) {
+          for (; null !== (e3 = t4) && void 0 !== e3 && e3.firstElementChild; ) {
             var e3;
-            t3 = t3.firstElementChild;
+            t4 = t4.firstElementChild;
           }
-          return t3;
+          return t4;
         }(e2);
-        Array.from(t2).forEach((t3) => {
-          i2.appendChild(t3);
-        }), t2 = [e2];
+        Array.from(t3).forEach((t4) => {
+          i2.appendChild(t4);
+        }), t3 = [e2];
       }
-      return t2;
+      return t3;
     }
     createAttachmentNodes() {
-      const t2 = this.attachment.isPreviewable() ? de : ce;
-      return this.createChildView(t2, this.piece.attachment, { piece: this.piece }).getNodes();
+      const t3 = this.attachment.isPreviewable() ? vi : pi;
+      return this.createChildView(t3, this.piece.attachment, { piece: this.piece }).getNodes();
     }
     createStringNodes() {
-      var t2;
-      if (null !== (t2 = this.textConfig) && void 0 !== t2 && t2.plaintext) return [document.createTextNode(this.string)];
+      var t3;
+      if (null !== (t3 = this.textConfig) && void 0 !== t3 && t3.plaintext) return [document.createTextNode(this.string)];
       {
-        const t3 = [], e2 = this.string.split("\n");
+        const t4 = [], e2 = this.string.split("\n");
         for (let i2 = 0; i2 < e2.length; i2++) {
           const n2 = e2[i2];
           if (i2 > 0) {
-            const e3 = S("br");
-            t3.push(e3);
+            const e3 = T("br");
+            t4.push(e3);
           }
           if (n2.length) {
             const e3 = document.createTextNode(this.preserveSpaces(n2));
-            t3.push(e3);
+            t4.push(e3);
           }
         }
-        return t3;
+        return t4;
       }
     }
     createElement() {
-      let t2, e2, i2;
+      let t3, e2, i2;
       const n2 = {};
       for (e2 in this.attributes) {
         i2 = this.attributes[e2];
-        const o2 = pt(e2);
+        const o2 = ft(e2);
         if (o2) {
           if (o2.tagName) {
             var r2;
-            const e3 = S(o2.tagName);
-            r2 ? (r2.appendChild(e3), r2 = e3) : t2 = r2 = e3;
+            const e3 = T(o2.tagName);
+            r2 ? (r2.appendChild(e3), r2 = e3) : t3 = r2 = e3;
           }
           if (o2.styleProperty && (n2[o2.styleProperty] = i2), o2.style) for (e2 in o2.style) i2 = o2.style[e2], n2[e2] = i2;
         }
       }
-      if (Object.keys(n2).length) for (e2 in t2 || (t2 = S("span")), n2) i2 = n2[e2], t2.style[e2] = i2;
-      return t2;
+      if (Object.keys(n2).length) for (e2 in t3 || (t3 = T("span")), n2) i2 = n2[e2], t3.style[e2] = i2;
+      return t3;
     }
     createContainerElement() {
-      for (const t2 in this.attributes) {
-        const e2 = this.attributes[t2], i2 = pt(t2);
+      for (const t3 in this.attributes) {
+        const e2 = this.attributes[t3], i2 = ft(t3);
         if (i2 && i2.groupTagName) {
           const n2 = {};
-          return n2[t2] = e2, S(i2.groupTagName, n2);
+          return n2[t3] = e2, T(i2.groupTagName, n2);
         }
       }
     }
-    preserveSpaces(t2) {
-      return this.context.isLast && (t2 = t2.replace(/\ $/, d)), t2 = t2.replace(/(\S)\ {3}(\S)/g, "$1 ".concat(d, " $2")).replace(/\ {2}/g, "".concat(d, " ")).replace(/\ {2}/g, " ".concat(d)), (this.context.isFirst || this.context.followsWhitespace) && (t2 = t2.replace(/^\ /, d)), t2;
+    preserveSpaces(t3) {
+      return this.context.isLast && (t3 = t3.replace(/\ $/, g)), t3 = t3.replace(/(\S)\ {3}(\S)/g, "$1 ".concat(g, " $2")).replace(/\ {2}/g, "".concat(g, " ")).replace(/\ {2}/g, " ".concat(g)), (this.context.isFirst || this.context.followsWhitespace) && (t3 = t3.replace(/^\ /, g)), t3;
     }
   };
-  var me = class extends ee {
+  var yi = class extends ie {
     constructor() {
       super(...arguments), this.text = this.object, this.textConfig = this.options.textConfig;
     }
     createNodes() {
-      const t2 = [], e2 = Xt.groupObjects(this.getPieces()), i2 = e2.length - 1;
+      const t3 = [], e2 = $t.groupObjects(this.getPieces()), i2 = e2.length - 1;
       for (let r2 = 0; r2 < e2.length; r2++) {
         const o2 = e2[r2], s2 = {};
-        0 === r2 && (s2.isFirst = true), r2 === i2 && (s2.isLast = true), pe(n2) && (s2.followsWhitespace = true);
-        const a2 = this.findOrCreateCachedChildView(ge, o2, { textConfig: this.textConfig, context: s2 });
-        t2.push(...Array.from(a2.getNodes() || []));
+        0 === r2 && (s2.isFirst = true), r2 === i2 && (s2.isLast = true), xi(n2) && (s2.followsWhitespace = true);
+        const a2 = this.findOrCreateCachedChildView(Ai, o2, { textConfig: this.textConfig, context: s2 });
+        t3.push(...Array.from(a2.getNodes() || []));
         var n2 = o2;
       }
-      return t2;
+      return t3;
     }
     getPieces() {
-      return Array.from(this.text.getPieces()).filter((t2) => !t2.hasAttribute("blockBreak"));
+      return Array.from(this.text.getPieces()).filter((t3) => !t3.hasAttribute("blockBreak"));
     }
   };
-  var pe = (t2) => /\s$/.test(null == t2 ? void 0 : t2.toString());
-  var { css: fe } = V;
-  var be = class extends ee {
+  var xi = (t3) => /\s$/.test(null == t3 ? void 0 : t3.toString());
+  var { css: Ci } = z;
+  var Ei = class extends ie {
     constructor() {
       super(...arguments), this.block = this.object, this.attributes = this.block.getAttributes();
     }
     createNodes() {
-      const t2 = [document.createComment("block")];
-      if (this.block.isEmpty()) t2.push(S("br"));
+      const t3 = [document.createComment("block")];
+      if (this.block.isEmpty()) t3.push(T("br"));
       else {
         var e2;
-        const i2 = null === (e2 = gt(this.block.getLastAttribute())) || void 0 === e2 ? void 0 : e2.text, n2 = this.findOrCreateCachedChildView(me, this.block.text, { textConfig: i2 });
-        t2.push(...Array.from(n2.getNodes() || [])), this.shouldAddExtraNewlineElement() && t2.push(S("br"));
+        const i2 = null === (e2 = mt(this.block.getLastAttribute())) || void 0 === e2 ? void 0 : e2.text, n2 = this.findOrCreateCachedChildView(yi, this.block.text, { textConfig: i2 });
+        t3.push(...Array.from(n2.getNodes() || [])), this.shouldAddExtraNewlineElement() && t3.push(T("br"));
       }
-      if (this.attributes.length) return t2;
+      if (this.attributes.length) return t3;
       {
         let e3;
         const { tagName: i2 } = n.default;
         this.block.isRTL() && (e3 = { dir: "rtl" });
-        const r2 = S({ tagName: i2, attributes: e3 });
-        return t2.forEach((t3) => r2.appendChild(t3)), [r2];
+        const r2 = T({ tagName: i2, attributes: e3 });
+        return t3.forEach((t4) => r2.appendChild(t4)), [r2];
       }
     }
-    createContainerElement(t2) {
+    createContainerElement(t3) {
       const e2 = {};
       let i2;
-      const n2 = this.attributes[t2], { tagName: r2, htmlAttributes: o2 = [] } = gt(n2);
-      if (0 === t2 && this.block.isRTL() && Object.assign(e2, { dir: "rtl" }), "attachmentGallery" === n2) {
-        const t3 = this.block.getBlockBreakPosition();
-        i2 = "".concat(fe.attachmentGallery, " ").concat(fe.attachmentGallery, "--").concat(t3);
+      const n2 = this.attributes[t3], { tagName: r2, htmlAttributes: o2 = [] } = mt(n2);
+      if (0 === t3 && this.block.isRTL() && Object.assign(e2, { dir: "rtl" }), "attachmentGallery" === n2) {
+        const t4 = this.block.getBlockBreakPosition();
+        i2 = "".concat(Ci.attachmentGallery, " ").concat(Ci.attachmentGallery, "--").concat(t4);
       }
-      return Object.entries(this.block.htmlAttributes).forEach((t3) => {
-        let [i3, n3] = t3;
+      return Object.entries(this.block.htmlAttributes).forEach((t4) => {
+        let [i3, n3] = t4;
         o2.includes(i3) && (e2[i3] = n3);
-      }), S({ tagName: r2, className: i2, attributes: e2 });
+      }), T({ tagName: r2, className: i2, attributes: e2 });
     }
     shouldAddExtraNewlineElement() {
       return /\n\n$/.test(this.block.toString());
     }
   };
-  var ve = class extends ee {
-    static render(t2) {
-      const e2 = S("div"), i2 = new this(t2, { element: e2 });
+  var Si = class extends ie {
+    static render(t3) {
+      const e2 = T("div"), i2 = new this(t3, { element: e2 });
       return i2.render(), i2.sync(), e2;
     }
     constructor() {
       super(...arguments), this.element = this.options.element, this.elementStore = new Qt(), this.setDocument(this.object);
     }
-    setDocument(t2) {
-      t2.isEqualTo(this.document) || (this.document = this.object = t2);
+    setDocument(t3) {
+      t3.isEqualTo(this.document) || (this.document = this.object = t3);
     }
     render() {
-      if (this.childViews = [], this.shadowElement = S("div"), !this.document.isEmpty()) {
-        const t2 = Xt.groupObjects(this.document.getBlocks(), { asTree: true });
-        Array.from(t2).forEach((t3) => {
-          const e2 = this.findOrCreateCachedChildView(be, t3);
-          Array.from(e2.getNodes()).map((t4) => this.shadowElement.appendChild(t4));
+      if (this.childViews = [], this.shadowElement = T("div"), !this.document.isEmpty()) {
+        const t3 = $t.groupObjects(this.document.getBlocks(), { asTree: true });
+        Array.from(t3).forEach((t4) => {
+          const e2 = this.findOrCreateCachedChildView(Ei, t4);
+          Array.from(e2.getNodes()).map((t5) => this.shadowElement.appendChild(t5));
         });
       }
     }
     isSynced() {
-      return xe(this.shadowElement, this.element);
+      return ki(this.shadowElement, this.element);
     }
     sync() {
-      const t2 = this.createDocumentFragmentForSync();
+      const t3 = this.createDocumentFragmentForSync();
       for (; this.element.lastChild; ) this.element.removeChild(this.element.lastChild);
-      return this.element.appendChild(t2), this.didSync();
+      return this.element.appendChild(t3), this.didSync();
     }
     didSync() {
-      return this.elementStore.reset(Ae(this.element)), Rt(() => this.garbageCollectCachedViews());
+      return this.elementStore.reset(Ri(this.element)), Rt(() => this.garbageCollectCachedViews());
     }
     createDocumentFragmentForSync() {
-      const t2 = document.createDocumentFragment();
+      const t3 = document.createDocumentFragment();
       return Array.from(this.shadowElement.childNodes).forEach((e2) => {
-        t2.appendChild(e2.cloneNode(true));
-      }), Array.from(Ae(t2)).forEach((t3) => {
-        const e2 = this.elementStore.remove(t3);
-        e2 && t3.parentNode.replaceChild(e2, t3);
-      }), t2;
+        t3.appendChild(e2.cloneNode(true));
+      }), Array.from(Ri(t3)).forEach((t4) => {
+        const e2 = this.elementStore.remove(t4);
+        e2 && t4.parentNode.replaceChild(e2, t4);
+      }), t3;
     }
   };
-  var Ae = (t2) => t2.querySelectorAll("[data-trix-store-key]");
-  var xe = (t2, e2) => ye(t2.innerHTML) === ye(e2.innerHTML);
-  var ye = (t2) => t2.replace(/&nbsp;/g, " ");
-  function Ce(t2) {
+  var Ri = (t3) => t3.querySelectorAll("[data-trix-store-key]");
+  var ki = (t3, e2) => Ti(t3.innerHTML) === Ti(e2.innerHTML);
+  var Ti = (t3) => t3.replace(/&nbsp;/g, " ");
+  function wi(t3) {
     var e2, i2;
     function n2(e3, i3) {
       try {
-        var o2 = t2[e3](i3), s2 = o2.value, a2 = s2 instanceof ke;
+        var o2 = t3[e3](i3), s2 = o2.value, a2 = s2 instanceof Li;
         Promise.resolve(a2 ? s2.v : s2).then(function(i4) {
           if (a2) {
             var l2 = "return" === e3 ? "return" : "next";
             if (!s2.k || i4.done) return n2(l2, i4);
-            i4 = t2[l2](i4).value;
+            i4 = t3[l2](i4).value;
           }
           r2(o2.done ? "return" : "normal", i4);
-        }, function(t3) {
-          n2("throw", t3);
+        }, function(t4) {
+          n2("throw", t4);
         });
-      } catch (t3) {
-        r2("throw", t3);
+      } catch (t4) {
+        r2("throw", t4);
       }
     }
-    function r2(t3, r3) {
-      switch (t3) {
+    function r2(t4, r3) {
+      switch (t4) {
         case "return":
           e2.resolve({ value: r3, done: true });
           break;
@@ -9226,67 +9595,97 @@
       }
       (e2 = e2.next) ? n2(e2.key, e2.arg) : i2 = null;
     }
-    this._invoke = function(t3, r3) {
+    this._invoke = function(t4, r3) {
       return new Promise(function(o2, s2) {
-        var a2 = { key: t3, arg: r3, resolve: o2, reject: s2, next: null };
-        i2 ? i2 = i2.next = a2 : (e2 = i2 = a2, n2(t3, r3));
+        var a2 = { key: t4, arg: r3, resolve: o2, reject: s2, next: null };
+        i2 ? i2 = i2.next = a2 : (e2 = i2 = a2, n2(t4, r3));
       });
-    }, "function" != typeof t2.return && (this.return = void 0);
+    }, "function" != typeof t3.return && (this.return = void 0);
   }
-  function ke(t2, e2) {
-    this.v = t2, this.k = e2;
+  function Li(t3, e2) {
+    this.v = t3, this.k = e2;
   }
-  function Re(t2, e2, i2) {
-    return (e2 = Ee(e2)) in t2 ? Object.defineProperty(t2, e2, { value: i2, enumerable: true, configurable: true, writable: true }) : t2[e2] = i2, t2;
+  function Di(t3, e2, i2) {
+    return (e2 = Ni(e2)) in t3 ? Object.defineProperty(t3, e2, { value: i2, enumerable: true, configurable: true, writable: true }) : t3[e2] = i2, t3;
   }
-  function Ee(t2) {
-    var e2 = function(t3, e3) {
-      if ("object" != typeof t3 || null === t3) return t3;
-      var i2 = t3[Symbol.toPrimitive];
+  function Ni(t3) {
+    var e2 = function(t4, e3) {
+      if ("object" != typeof t4 || null === t4) return t4;
+      var i2 = t4[Symbol.toPrimitive];
       if (void 0 !== i2) {
-        var n2 = i2.call(t3, e3 || "default");
+        var n2 = i2.call(t4, e3 || "default");
         if ("object" != typeof n2) return n2;
         throw new TypeError("@@toPrimitive must return a primitive value.");
       }
-      return ("string" === e3 ? String : Number)(t3);
-    }(t2, "string");
+      return ("string" === e3 ? String : Number)(t4);
+    }(t3, "string");
     return "symbol" == typeof e2 ? e2 : String(e2);
   }
-  Ce.prototype["function" == typeof Symbol && Symbol.asyncIterator || "@@asyncIterator"] = function() {
+  wi.prototype["function" == typeof Symbol && Symbol.asyncIterator || "@@asyncIterator"] = function() {
     return this;
-  }, Ce.prototype.next = function(t2) {
-    return this._invoke("next", t2);
-  }, Ce.prototype.throw = function(t2) {
-    return this._invoke("throw", t2);
-  }, Ce.prototype.return = function(t2) {
-    return this._invoke("return", t2);
+  }, wi.prototype.next = function(t3) {
+    return this._invoke("next", t3);
+  }, wi.prototype.throw = function(t3) {
+    return this._invoke("throw", t3);
+  }, wi.prototype.return = function(t3) {
+    return this._invoke("return", t3);
   };
-  var Se = class extends nt {
-    static registerType(t2, e2) {
-      e2.type = t2, this.types[t2] = e2;
+  function Ii(t3, e2) {
+    return Pi(t3, Fi(t3, e2, "get"));
+  }
+  function Oi(t3, e2, i2) {
+    return Mi(t3, Fi(t3, e2, "set"), i2), i2;
+  }
+  function Fi(t3, e2, i2) {
+    if (!e2.has(t3)) throw new TypeError("attempted to " + i2 + " private field on non-instance");
+    return e2.get(t3);
+  }
+  function Pi(t3, e2) {
+    return e2.get ? e2.get.call(t3) : e2.value;
+  }
+  function Mi(t3, e2, i2) {
+    if (e2.set) e2.set.call(t3, i2);
+    else {
+      if (!e2.writable) throw new TypeError("attempted to set read only private field");
+      e2.value = i2;
     }
-    static fromJSON(t2) {
-      const e2 = this.types[t2.type];
-      if (e2) return e2.fromJSON(t2);
+  }
+  function Bi(t3, e2, i2) {
+    if (!e2.has(t3)) throw new TypeError("attempted to get private field on non-instance");
+    return i2;
+  }
+  function _i(t3, e2) {
+    if (e2.has(t3)) throw new TypeError("Cannot initialize the same private elements twice on an object");
+  }
+  function ji(t3, e2, i2) {
+    _i(t3, e2), e2.set(t3, i2);
+  }
+  var Wi = class extends rt {
+    static registerType(t3, e2) {
+      e2.type = t3, this.types[t3] = e2;
     }
-    constructor(t2) {
+    static fromJSON(t3) {
+      const e2 = this.types[t3.type];
+      if (e2) return e2.fromJSON(t3);
+    }
+    constructor(t3) {
       let e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-      super(...arguments), this.attributes = zt.box(e2);
+      super(...arguments), this.attributes = Ht.box(e2);
     }
-    copyWithAttributes(t2) {
-      return new this.constructor(this.getValue(), t2);
+    copyWithAttributes(t3) {
+      return new this.constructor(this.getValue(), t3);
     }
-    copyWithAdditionalAttributes(t2) {
-      return this.copyWithAttributes(this.attributes.merge(t2));
+    copyWithAdditionalAttributes(t3) {
+      return this.copyWithAttributes(this.attributes.merge(t3));
     }
-    copyWithoutAttribute(t2) {
-      return this.copyWithAttributes(this.attributes.remove(t2));
+    copyWithoutAttribute(t3) {
+      return this.copyWithAttributes(this.attributes.remove(t3));
     }
     copy() {
       return this.copyWithAttributes(this.attributes);
     }
-    getAttribute(t2) {
-      return this.attributes.get(t2);
+    getAttribute(t3) {
+      return this.attributes.get(t3);
     }
     getAttributesHash() {
       return this.attributes;
@@ -9294,20 +9693,20 @@
     getAttributes() {
       return this.attributes.toObject();
     }
-    hasAttribute(t2) {
-      return this.attributes.has(t2);
+    hasAttribute(t3) {
+      return this.attributes.has(t3);
     }
-    hasSameStringValueAsPiece(t2) {
-      return t2 && this.toString() === t2.toString();
+    hasSameStringValueAsPiece(t3) {
+      return t3 && this.toString() === t3.toString();
     }
-    hasSameAttributesAsPiece(t2) {
-      return t2 && (this.attributes === t2.attributes || this.attributes.isEqualTo(t2.attributes));
+    hasSameAttributesAsPiece(t3) {
+      return t3 && (this.attributes === t3.attributes || this.attributes.isEqualTo(t3.attributes));
     }
     isBlockBreak() {
       return false;
     }
-    isEqualTo(t2) {
-      return super.isEqualTo(...arguments) || this.hasSameConstructorAs(t2) && this.hasSameStringValueAsPiece(t2) && this.hasSameAttributesAsPiece(t2);
+    isEqualTo(t3) {
+      return super.isEqualTo(...arguments) || this.hasSameConstructorAs(t3) && this.hasSameStringValueAsPiece(t3) && this.hasSameAttributesAsPiece(t3);
     }
     isEmpty() {
       return 0 === this.length;
@@ -9324,53 +9723,53 @@
     canBeGrouped() {
       return this.hasAttribute("href");
     }
-    canBeGroupedWith(t2) {
-      return this.getAttribute("href") === t2.getAttribute("href");
+    canBeGroupedWith(t3) {
+      return this.getAttribute("href") === t3.getAttribute("href");
     }
     getLength() {
       return this.length;
     }
-    canBeConsolidatedWith(t2) {
+    canBeConsolidatedWith(t3) {
       return false;
     }
   };
-  Re(Se, "types", {});
-  var Le = class extends te {
-    constructor(t2) {
-      super(...arguments), this.url = t2;
+  Di(Wi, "types", {});
+  var Ui = class extends ee {
+    constructor(t3) {
+      super(...arguments), this.url = t3;
     }
-    perform(t2) {
+    perform(t3) {
       const e2 = new Image();
-      e2.onload = () => (e2.width = this.width = e2.naturalWidth, e2.height = this.height = e2.naturalHeight, t2(true, e2)), e2.onerror = () => t2(false), e2.src = this.url;
+      e2.onload = () => (e2.width = this.width = e2.naturalWidth, e2.height = this.height = e2.naturalHeight, t3(true, e2)), e2.onerror = () => t3(false), e2.src = this.url;
     }
   };
-  var De = class _De extends nt {
-    static attachmentForFile(t2) {
-      const e2 = new this(this.attributesForFile(t2));
-      return e2.setFile(t2), e2;
+  var Vi = class _Vi extends rt {
+    static attachmentForFile(t3) {
+      const e2 = new this(this.attributesForFile(t3));
+      return e2.setFile(t3), e2;
     }
-    static attributesForFile(t2) {
-      return new zt({ filename: t2.name, filesize: t2.size, contentType: t2.type });
+    static attributesForFile(t3) {
+      return new Ht({ filename: t3.name, filesize: t3.size, contentType: t3.type });
     }
-    static fromJSON(t2) {
-      return new this(t2);
+    static fromJSON(t3) {
+      return new this(t3);
     }
     constructor() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-      super(t2), this.releaseFile = this.releaseFile.bind(this), this.attributes = zt.box(t2), this.didChangeAttributes();
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+      super(t3), this.releaseFile = this.releaseFile.bind(this), this.attributes = Ht.box(t3), this.didChangeAttributes();
     }
-    getAttribute(t2) {
-      return this.attributes.get(t2);
+    getAttribute(t3) {
+      return this.attributes.get(t3);
     }
-    hasAttribute(t2) {
-      return this.attributes.has(t2);
+    hasAttribute(t3) {
+      return this.attributes.has(t3);
     }
     getAttributes() {
       return this.attributes.toObject();
     }
     setAttributes() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-      const e2 = this.attributes.merge(t2);
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+      const e2 = this.attributes.merge(t3);
       var i2, n2, r2, o2;
       if (!this.attributes.isEqualTo(e2)) return this.attributes = e2, this.didChangeAttributes(), null === (i2 = this.previewDelegate) || void 0 === i2 || null === (n2 = i2.attachmentDidChangeAttributes) || void 0 === n2 || n2.call(i2, this), null === (r2 = this.delegate) || void 0 === r2 || null === (o2 = r2.attachmentDidChangeAttributes) || void 0 === o2 ? void 0 : o2.call(r2, this);
     }
@@ -9381,7 +9780,7 @@
       return null != this.file && !(this.getURL() || this.getHref());
     }
     isPreviewable() {
-      return this.attributes.has("previewable") ? this.attributes.get("previewable") : _De.previewablePattern.test(this.getContentType());
+      return this.attributes.has("previewable") ? this.attributes.get("previewable") : _Vi.previewablePattern.test(this.getContentType());
     }
     getType() {
       return this.hasContent() ? "content" : this.isPreviewable() ? "preview" : "file";
@@ -9399,12 +9798,12 @@
       return this.attributes.get("filesize");
     }
     getFormattedFilesize() {
-      const t2 = this.attributes.get("filesize");
-      return "number" == typeof t2 ? u.formatter(t2) : "";
+      const t3 = this.attributes.get("filesize");
+      return "number" == typeof t3 ? h.formatter(t3) : "";
     }
     getExtension() {
-      var t2;
-      return null === (t2 = this.getFilename().match(/\.(\w+)$/)) || void 0 === t2 ? void 0 : t2[1].toLowerCase();
+      var t3;
+      return null === (t3 = this.getFilename().match(/\.(\w+)$/)) || void 0 === t3 ? void 0 : t3[1].toLowerCase();
     }
     getContentType() {
       return this.attributes.get("contentType");
@@ -9424,8 +9823,8 @@
     getFile() {
       return this.file;
     }
-    setFile(t2) {
-      if (this.file = t2, this.isPreviewable()) return this.preloadFile();
+    setFile(t3) {
+      if (this.file = t3, this.isPreviewable()) return this.preloadFile();
     }
     releaseFile() {
       this.releasePreloadedFile(), this.file = null;
@@ -9433,9 +9832,9 @@
     getUploadProgress() {
       return null != this.uploadProgress ? this.uploadProgress : 0;
     }
-    setUploadProgress(t2) {
+    setUploadProgress(t3) {
       var e2, i2;
-      if (this.uploadProgress !== t2) return this.uploadProgress = t2, null === (e2 = this.uploadProgressDelegate) || void 0 === e2 || null === (i2 = e2.attachmentDidChangeUploadProgress) || void 0 === i2 ? void 0 : i2.call(e2, this);
+      if (this.uploadProgress !== t3) return this.uploadProgress = t3, null === (e2 = this.uploadProgressDelegate) || void 0 === e2 || null === (i2 = e2.attachmentDidChangeUploadProgress) || void 0 === i2 ? void 0 : i2.call(e2, this);
     }
     toJSON() {
       return this.getAttributes();
@@ -9446,9 +9845,9 @@
     getPreviewURL() {
       return this.previewURL || this.preloadingURL;
     }
-    setPreviewURL(t2) {
+    setPreviewURL(t3) {
       var e2, i2, n2, r2;
-      if (t2 !== this.getPreviewURL()) return this.previewURL = t2, null === (e2 = this.previewDelegate) || void 0 === e2 || null === (i2 = e2.attachmentDidChangeAttributes) || void 0 === i2 || i2.call(e2, this), null === (n2 = this.delegate) || void 0 === n2 || null === (r2 = n2.attachmentDidChangePreviewURL) || void 0 === r2 ? void 0 : r2.call(n2, this);
+      if (t3 !== this.getPreviewURL()) return this.previewURL = t3, null === (e2 = this.previewDelegate) || void 0 === e2 || null === (i2 = e2.attachmentDidChangeAttributes) || void 0 === i2 || i2.call(e2, this), null === (n2 = this.delegate) || void 0 === n2 || null === (r2 = n2.attachmentDidChangePreviewURL) || void 0 === r2 ? void 0 : r2.call(n2, this);
     }
     preloadURL() {
       return this.preload(this.getURL(), this.releaseFile);
@@ -9459,30 +9858,30 @@
     releasePreloadedFile() {
       this.fileObjectURL && (URL.revokeObjectURL(this.fileObjectURL), this.fileObjectURL = null);
     }
-    preload(t2, e2) {
-      if (t2 && t2 !== this.getPreviewURL()) {
-        this.preloadingURL = t2;
-        return new Le(t2).then((i2) => {
+    preload(t3, e2) {
+      if (t3 && t3 !== this.getPreviewURL()) {
+        this.preloadingURL = t3;
+        return new Ui(t3).then((i2) => {
           let { width: n2, height: r2 } = i2;
-          return this.getWidth() && this.getHeight() || this.setAttributes({ width: n2, height: r2 }), this.preloadingURL = null, this.setPreviewURL(t2), null == e2 ? void 0 : e2();
+          return this.getWidth() && this.getHeight() || this.setAttributes({ width: n2, height: r2 }), this.preloadingURL = null, this.setPreviewURL(t3), null == e2 ? void 0 : e2();
         }).catch(() => (this.preloadingURL = null, null == e2 ? void 0 : e2()));
       }
     }
   };
-  Re(De, "previewablePattern", /^image(\/(gif|png|webp|jpe?g)|$)/);
-  var we = class _we extends Se {
-    static fromJSON(t2) {
-      return new this(De.fromJSON(t2.attachment), t2.attributes);
+  Di(Vi, "previewablePattern", /^image(\/(gif|png|webp|jpe?g)|$)/);
+  var zi = class _zi extends Wi {
+    static fromJSON(t3) {
+      return new this(Vi.fromJSON(t3.attachment), t3.attributes);
     }
-    constructor(t2) {
-      super(...arguments), this.attachment = t2, this.length = 1, this.ensureAttachmentExclusivelyHasAttribute("href"), this.attachment.hasContent() || this.removeProhibitedAttributes();
+    constructor(t3) {
+      super(...arguments), this.attachment = t3, this.length = 1, this.ensureAttachmentExclusivelyHasAttribute("href"), this.attachment.hasContent() || this.removeProhibitedAttributes();
     }
-    ensureAttachmentExclusivelyHasAttribute(t2) {
-      this.hasAttribute(t2) && (this.attachment.hasAttribute(t2) || this.attachment.setAttributes(this.attributes.slice([t2])), this.attributes = this.attributes.remove(t2));
+    ensureAttachmentExclusivelyHasAttribute(t3) {
+      this.hasAttribute(t3) && (this.attachment.hasAttribute(t3) || this.attachment.setAttributes(this.attributes.slice([t3])), this.attributes = this.attributes.remove(t3));
     }
     removeProhibitedAttributes() {
-      const t2 = this.attributes.slice(_we.permittedAttributes);
-      t2.isEqualTo(this.attributes) || (this.attributes = t2);
+      const t3 = this.attributes.slice(_zi.permittedAttributes);
+      t3.isEqualTo(this.attributes) || (this.attributes = t3);
     }
     getValue() {
       return this.attachment;
@@ -9493,16 +9892,16 @@
     getCaption() {
       return this.attributes.get("caption") || "";
     }
-    isEqualTo(t2) {
+    isEqualTo(t3) {
       var e2;
-      return super.isEqualTo(t2) && this.attachment.id === (null == t2 || null === (e2 = t2.attachment) || void 0 === e2 ? void 0 : e2.id);
+      return super.isEqualTo(t3) && this.attachment.id === (null == t3 || null === (e2 = t3.attachment) || void 0 === e2 ? void 0 : e2.id);
     }
     toString() {
       return "\uFFFC";
     }
     toJSON() {
-      const t2 = super.toJSON(...arguments);
-      return t2.attachment = this.attachment, t2;
+      const t3 = super.toJSON(...arguments);
+      return t3.attachment = this.attachment, t3;
     }
     getCacheKey() {
       return [super.getCacheKey(...arguments), this.attachment.getCacheKey()].join("/");
@@ -9511,13 +9910,13 @@
       return JSON.stringify(this.toString());
     }
   };
-  Re(we, "permittedAttributes", ["caption", "presentation"]), Se.registerType("attachment", we);
-  var Te = class extends Se {
-    static fromJSON(t2) {
-      return new this(t2.string, t2.attributes);
+  Di(zi, "permittedAttributes", ["caption", "presentation"]), Wi.registerType("attachment", zi);
+  var qi = class extends Wi {
+    static fromJSON(t3) {
+      return new this(t3.string, t3.attributes);
     }
-    constructor(t2) {
-      super(...arguments), this.string = ((t3) => t3.replace(/\r\n?/g, "\n"))(t2), this.length = this.string.length;
+    constructor(t3) {
+      super(...arguments), this.string = ((t4) => t4.replace(/\r\n?/g, "\n"))(t3), this.length = this.string.length;
     }
     getValue() {
       return this.string;
@@ -9529,127 +9928,127 @@
       return "\n" === this.toString() && true === this.getAttribute("blockBreak");
     }
     toJSON() {
-      const t2 = super.toJSON(...arguments);
-      return t2.string = this.string, t2;
+      const t3 = super.toJSON(...arguments);
+      return t3.string = this.string, t3;
     }
-    canBeConsolidatedWith(t2) {
-      return t2 && this.hasSameConstructorAs(t2) && this.hasSameAttributesAsPiece(t2);
+    canBeConsolidatedWith(t3) {
+      return t3 && this.hasSameConstructorAs(t3) && this.hasSameAttributesAsPiece(t3);
     }
-    consolidateWith(t2) {
-      return new this.constructor(this.toString() + t2.toString(), this.attributes);
+    consolidateWith(t3) {
+      return new this.constructor(this.toString() + t3.toString(), this.attributes);
     }
-    splitAtOffset(t2) {
+    splitAtOffset(t3) {
       let e2, i2;
-      return 0 === t2 ? (e2 = null, i2 = this) : t2 === this.length ? (e2 = this, i2 = null) : (e2 = new this.constructor(this.string.slice(0, t2), this.attributes), i2 = new this.constructor(this.string.slice(t2), this.attributes)), [e2, i2];
+      return 0 === t3 ? (e2 = null, i2 = this) : t3 === this.length ? (e2 = this, i2 = null) : (e2 = new this.constructor(this.string.slice(0, t3), this.attributes), i2 = new this.constructor(this.string.slice(t3), this.attributes)), [e2, i2];
     }
     toConsole() {
-      let { string: t2 } = this;
-      return t2.length > 15 && (t2 = t2.slice(0, 14) + "\u2026"), JSON.stringify(t2.toString());
+      let { string: t3 } = this;
+      return t3.length > 15 && (t3 = t3.slice(0, 14) + "\u2026"), JSON.stringify(t3.toString());
     }
   };
-  Se.registerType("string", Te);
-  var Be = class extends nt {
-    static box(t2) {
-      return t2 instanceof this ? t2 : new this(t2);
+  Wi.registerType("string", qi);
+  var Hi = class extends rt {
+    static box(t3) {
+      return t3 instanceof this ? t3 : new this(t3);
     }
     constructor() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
-      super(...arguments), this.objects = t2.slice(0), this.length = this.objects.length;
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
+      super(...arguments), this.objects = t3.slice(0), this.length = this.objects.length;
     }
-    indexOf(t2) {
-      return this.objects.indexOf(t2);
+    indexOf(t3) {
+      return this.objects.indexOf(t3);
     }
     splice() {
-      for (var t2 = arguments.length, e2 = new Array(t2), i2 = 0; i2 < t2; i2++) e2[i2] = arguments[i2];
-      return new this.constructor(ot(this.objects, ...e2));
+      for (var t3 = arguments.length, e2 = new Array(t3), i2 = 0; i2 < t3; i2++) e2[i2] = arguments[i2];
+      return new this.constructor(st(this.objects, ...e2));
     }
-    eachObject(t2) {
-      return this.objects.map((e2, i2) => t2(e2, i2));
+    eachObject(t3) {
+      return this.objects.map((e2, i2) => t3(e2, i2));
     }
-    insertObjectAtIndex(t2, e2) {
-      return this.splice(e2, 0, t2);
+    insertObjectAtIndex(t3, e2) {
+      return this.splice(e2, 0, t3);
     }
-    insertSplittableListAtIndex(t2, e2) {
-      return this.splice(e2, 0, ...t2.objects);
+    insertSplittableListAtIndex(t3, e2) {
+      return this.splice(e2, 0, ...t3.objects);
     }
-    insertSplittableListAtPosition(t2, e2) {
+    insertSplittableListAtPosition(t3, e2) {
       const [i2, n2] = this.splitObjectAtPosition(e2);
-      return new this.constructor(i2).insertSplittableListAtIndex(t2, n2);
+      return new this.constructor(i2).insertSplittableListAtIndex(t3, n2);
     }
-    editObjectAtIndex(t2, e2) {
-      return this.replaceObjectAtIndex(e2(this.objects[t2]), t2);
+    editObjectAtIndex(t3, e2) {
+      return this.replaceObjectAtIndex(e2(this.objects[t3]), t3);
     }
-    replaceObjectAtIndex(t2, e2) {
-      return this.splice(e2, 1, t2);
+    replaceObjectAtIndex(t3, e2) {
+      return this.splice(e2, 1, t3);
     }
-    removeObjectAtIndex(t2) {
-      return this.splice(t2, 1);
+    removeObjectAtIndex(t3) {
+      return this.splice(t3, 1);
     }
-    getObjectAtIndex(t2) {
-      return this.objects[t2];
+    getObjectAtIndex(t3) {
+      return this.objects[t3];
     }
-    getSplittableListInRange(t2) {
-      const [e2, i2, n2] = this.splitObjectsAtRange(t2);
+    getSplittableListInRange(t3) {
+      const [e2, i2, n2] = this.splitObjectsAtRange(t3);
       return new this.constructor(e2.slice(i2, n2 + 1));
     }
-    selectSplittableList(t2) {
-      const e2 = this.objects.filter((e3) => t2(e3));
+    selectSplittableList(t3) {
+      const e2 = this.objects.filter((e3) => t3(e3));
       return new this.constructor(e2);
     }
-    removeObjectsInRange(t2) {
-      const [e2, i2, n2] = this.splitObjectsAtRange(t2);
+    removeObjectsInRange(t3) {
+      const [e2, i2, n2] = this.splitObjectsAtRange(t3);
       return new this.constructor(e2).splice(i2, n2 - i2 + 1);
     }
-    transformObjectsInRange(t2, e2) {
-      const [i2, n2, r2] = this.splitObjectsAtRange(t2), o2 = i2.map((t3, i3) => n2 <= i3 && i3 <= r2 ? e2(t3) : t3);
+    transformObjectsInRange(t3, e2) {
+      const [i2, n2, r2] = this.splitObjectsAtRange(t3), o2 = i2.map((t4, i3) => n2 <= i3 && i3 <= r2 ? e2(t4) : t4);
       return new this.constructor(o2);
     }
-    splitObjectsAtRange(t2) {
-      let e2, [i2, n2, r2] = this.splitObjectAtPosition(Pe(t2));
-      return [i2, e2] = new this.constructor(i2).splitObjectAtPosition(Ie(t2) + r2), [i2, n2, e2 - 1];
+    splitObjectsAtRange(t3) {
+      let e2, [i2, n2, r2] = this.splitObjectAtPosition(Ki(t3));
+      return [i2, e2] = new this.constructor(i2).splitObjectAtPosition(Gi(t3) + r2), [i2, n2, e2 - 1];
     }
-    getObjectAtPosition(t2) {
-      const { index: e2 } = this.findIndexAndOffsetAtPosition(t2);
+    getObjectAtPosition(t3) {
+      const { index: e2 } = this.findIndexAndOffsetAtPosition(t3);
       return this.objects[e2];
     }
-    splitObjectAtPosition(t2) {
+    splitObjectAtPosition(t3) {
       let e2, i2;
-      const { index: n2, offset: r2 } = this.findIndexAndOffsetAtPosition(t2), o2 = this.objects.slice(0);
+      const { index: n2, offset: r2 } = this.findIndexAndOffsetAtPosition(t3), o2 = this.objects.slice(0);
       if (null != n2) if (0 === r2) e2 = n2, i2 = 0;
       else {
-        const t3 = this.getObjectAtIndex(n2), [s2, a2] = t3.splitAtOffset(r2);
+        const t4 = this.getObjectAtIndex(n2), [s2, a2] = t4.splitAtOffset(r2);
         o2.splice(n2, 1, s2, a2), e2 = n2 + 1, i2 = s2.getLength() - r2;
       }
       else e2 = o2.length, i2 = 0;
       return [o2, e2, i2];
     }
     consolidate() {
-      const t2 = [];
+      const t3 = [];
       let e2 = this.objects[0];
       return this.objects.slice(1).forEach((i2) => {
         var n2, r2;
-        null !== (n2 = (r2 = e2).canBeConsolidatedWith) && void 0 !== n2 && n2.call(r2, i2) ? e2 = e2.consolidateWith(i2) : (t2.push(e2), e2 = i2);
-      }), e2 && t2.push(e2), new this.constructor(t2);
+        null !== (n2 = (r2 = e2).canBeConsolidatedWith) && void 0 !== n2 && n2.call(r2, i2) ? e2 = e2.consolidateWith(i2) : (t3.push(e2), e2 = i2);
+      }), e2 && t3.push(e2), new this.constructor(t3);
     }
-    consolidateFromIndexToIndex(t2, e2) {
-      const i2 = this.objects.slice(0).slice(t2, e2 + 1), n2 = new this.constructor(i2).consolidate().toArray();
-      return this.splice(t2, i2.length, ...n2);
+    consolidateFromIndexToIndex(t3, e2) {
+      const i2 = this.objects.slice(0).slice(t3, e2 + 1), n2 = new this.constructor(i2).consolidate().toArray();
+      return this.splice(t3, i2.length, ...n2);
     }
-    findIndexAndOffsetAtPosition(t2) {
+    findIndexAndOffsetAtPosition(t3) {
       let e2, i2 = 0;
       for (e2 = 0; e2 < this.objects.length; e2++) {
         const n2 = i2 + this.objects[e2].getLength();
-        if (i2 <= t2 && t2 < n2) return { index: e2, offset: t2 - i2 };
+        if (i2 <= t3 && t3 < n2) return { index: e2, offset: t3 - i2 };
         i2 = n2;
       }
       return { index: null, offset: null };
     }
-    findPositionAtIndexAndOffset(t2, e2) {
+    findPositionAtIndexAndOffset(t3, e2) {
       let i2 = 0;
       for (let n2 = 0; n2 < this.objects.length; n2++) {
         const r2 = this.objects[n2];
-        if (n2 < t2) i2 += r2.getLength();
-        else if (n2 === t2) {
+        if (n2 < t3) i2 += r2.getLength();
+        else if (n2 === t3) {
           i2 += e2;
           break;
         }
@@ -9657,7 +10056,7 @@
       return i2;
     }
     getEndPosition() {
-      return null == this.endPosition && (this.endPosition = 0, this.objects.forEach((t2) => this.endPosition += t2.getLength())), this.endPosition;
+      return null == this.endPosition && (this.endPosition = 0, this.objects.forEach((t3) => this.endPosition += t3.getLength())), this.endPosition;
     }
     toString() {
       return this.objects.join("");
@@ -9668,141 +10067,141 @@
     toJSON() {
       return this.toArray();
     }
-    isEqualTo(t2) {
-      return super.isEqualTo(...arguments) || Fe(this.objects, null == t2 ? void 0 : t2.objects);
+    isEqualTo(t3) {
+      return super.isEqualTo(...arguments) || Ji(this.objects, null == t3 ? void 0 : t3.objects);
     }
     contentsForInspection() {
-      return { objects: "[".concat(this.objects.map((t2) => t2.inspect()).join(", "), "]") };
+      return { objects: "[".concat(this.objects.map((t3) => t3.inspect()).join(", "), "]") };
     }
   };
-  var Fe = function(t2) {
+  var Ji = function(t3) {
     let e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
-    if (t2.length !== e2.length) return false;
+    if (t3.length !== e2.length) return false;
     let i2 = true;
-    for (let n2 = 0; n2 < t2.length; n2++) {
-      const r2 = t2[n2];
+    for (let n2 = 0; n2 < t3.length; n2++) {
+      const r2 = t3[n2];
       i2 && !r2.isEqualTo(e2[n2]) && (i2 = false);
     }
     return i2;
   };
-  var Pe = (t2) => t2[0];
-  var Ie = (t2) => t2[1];
-  var Ne = class extends nt {
-    static textForAttachmentWithAttributes(t2, e2) {
-      return new this([new we(t2, e2)]);
+  var Ki = (t3) => t3[0];
+  var Gi = (t3) => t3[1];
+  var Yi = class extends rt {
+    static textForAttachmentWithAttributes(t3, e2) {
+      return new this([new zi(t3, e2)]);
     }
-    static textForStringWithAttributes(t2, e2) {
-      return new this([new Te(t2, e2)]);
+    static textForStringWithAttributes(t3, e2) {
+      return new this([new qi(t3, e2)]);
     }
-    static fromJSON(t2) {
-      return new this(Array.from(t2).map((t3) => Se.fromJSON(t3)));
+    static fromJSON(t3) {
+      return new this(Array.from(t3).map((t4) => Wi.fromJSON(t4)));
     }
     constructor() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
       super(...arguments);
-      const e2 = t2.filter((t3) => !t3.isEmpty());
-      this.pieceList = new Be(e2);
+      const e2 = t3.filter((t4) => !t4.isEmpty());
+      this.pieceList = new Hi(e2);
     }
     copy() {
       return this.copyWithPieceList(this.pieceList);
     }
-    copyWithPieceList(t2) {
-      return new this.constructor(t2.consolidate().toArray());
+    copyWithPieceList(t3) {
+      return new this.constructor(t3.consolidate().toArray());
     }
-    copyUsingObjectMap(t2) {
-      const e2 = this.getPieces().map((e3) => t2.find(e3) || e3);
+    copyUsingObjectMap(t3) {
+      const e2 = this.getPieces().map((e3) => t3.find(e3) || e3);
       return new this.constructor(e2);
     }
-    appendText(t2) {
-      return this.insertTextAtPosition(t2, this.getLength());
+    appendText(t3) {
+      return this.insertTextAtPosition(t3, this.getLength());
     }
-    insertTextAtPosition(t2, e2) {
-      return this.copyWithPieceList(this.pieceList.insertSplittableListAtPosition(t2.pieceList, e2));
+    insertTextAtPosition(t3, e2) {
+      return this.copyWithPieceList(this.pieceList.insertSplittableListAtPosition(t3.pieceList, e2));
     }
-    removeTextAtRange(t2) {
-      return this.copyWithPieceList(this.pieceList.removeObjectsInRange(t2));
+    removeTextAtRange(t3) {
+      return this.copyWithPieceList(this.pieceList.removeObjectsInRange(t3));
     }
-    replaceTextAtRange(t2, e2) {
-      return this.removeTextAtRange(e2).insertTextAtPosition(t2, e2[0]);
+    replaceTextAtRange(t3, e2) {
+      return this.removeTextAtRange(e2).insertTextAtPosition(t3, e2[0]);
     }
-    moveTextFromRangeToPosition(t2, e2) {
-      if (t2[0] <= e2 && e2 <= t2[1]) return;
-      const i2 = this.getTextAtRange(t2), n2 = i2.getLength();
-      return t2[0] < e2 && (e2 -= n2), this.removeTextAtRange(t2).insertTextAtPosition(i2, e2);
+    moveTextFromRangeToPosition(t3, e2) {
+      if (t3[0] <= e2 && e2 <= t3[1]) return;
+      const i2 = this.getTextAtRange(t3), n2 = i2.getLength();
+      return t3[0] < e2 && (e2 -= n2), this.removeTextAtRange(t3).insertTextAtPosition(i2, e2);
     }
-    addAttributeAtRange(t2, e2, i2) {
+    addAttributeAtRange(t3, e2, i2) {
       const n2 = {};
-      return n2[t2] = e2, this.addAttributesAtRange(n2, i2);
+      return n2[t3] = e2, this.addAttributesAtRange(n2, i2);
     }
-    addAttributesAtRange(t2, e2) {
-      return this.copyWithPieceList(this.pieceList.transformObjectsInRange(e2, (e3) => e3.copyWithAdditionalAttributes(t2)));
+    addAttributesAtRange(t3, e2) {
+      return this.copyWithPieceList(this.pieceList.transformObjectsInRange(e2, (e3) => e3.copyWithAdditionalAttributes(t3)));
     }
-    removeAttributeAtRange(t2, e2) {
-      return this.copyWithPieceList(this.pieceList.transformObjectsInRange(e2, (e3) => e3.copyWithoutAttribute(t2)));
+    removeAttributeAtRange(t3, e2) {
+      return this.copyWithPieceList(this.pieceList.transformObjectsInRange(e2, (e3) => e3.copyWithoutAttribute(t3)));
     }
-    setAttributesAtRange(t2, e2) {
-      return this.copyWithPieceList(this.pieceList.transformObjectsInRange(e2, (e3) => e3.copyWithAttributes(t2)));
+    setAttributesAtRange(t3, e2) {
+      return this.copyWithPieceList(this.pieceList.transformObjectsInRange(e2, (e3) => e3.copyWithAttributes(t3)));
     }
-    getAttributesAtPosition(t2) {
+    getAttributesAtPosition(t3) {
       var e2;
-      return (null === (e2 = this.pieceList.getObjectAtPosition(t2)) || void 0 === e2 ? void 0 : e2.getAttributes()) || {};
+      return (null === (e2 = this.pieceList.getObjectAtPosition(t3)) || void 0 === e2 ? void 0 : e2.getAttributes()) || {};
     }
     getCommonAttributes() {
-      const t2 = Array.from(this.pieceList.toArray()).map((t3) => t3.getAttributes());
-      return zt.fromCommonAttributesOfObjects(t2).toObject();
+      const t3 = Array.from(this.pieceList.toArray()).map((t4) => t4.getAttributes());
+      return Ht.fromCommonAttributesOfObjects(t3).toObject();
     }
-    getCommonAttributesAtRange(t2) {
-      return this.getTextAtRange(t2).getCommonAttributes() || {};
+    getCommonAttributesAtRange(t3) {
+      return this.getTextAtRange(t3).getCommonAttributes() || {};
     }
-    getExpandedRangeForAttributeAtOffset(t2, e2) {
+    getExpandedRangeForAttributeAtOffset(t3, e2) {
       let i2, n2 = i2 = e2;
       const r2 = this.getLength();
-      for (; n2 > 0 && this.getCommonAttributesAtRange([n2 - 1, i2])[t2]; ) n2--;
-      for (; i2 < r2 && this.getCommonAttributesAtRange([e2, i2 + 1])[t2]; ) i2++;
+      for (; n2 > 0 && this.getCommonAttributesAtRange([n2 - 1, i2])[t3]; ) n2--;
+      for (; i2 < r2 && this.getCommonAttributesAtRange([e2, i2 + 1])[t3]; ) i2++;
       return [n2, i2];
     }
-    getTextAtRange(t2) {
-      return this.copyWithPieceList(this.pieceList.getSplittableListInRange(t2));
+    getTextAtRange(t3) {
+      return this.copyWithPieceList(this.pieceList.getSplittableListInRange(t3));
     }
-    getStringAtRange(t2) {
-      return this.pieceList.getSplittableListInRange(t2).toString();
+    getStringAtRange(t3) {
+      return this.pieceList.getSplittableListInRange(t3).toString();
     }
-    getStringAtPosition(t2) {
-      return this.getStringAtRange([t2, t2 + 1]);
+    getStringAtPosition(t3) {
+      return this.getStringAtRange([t3, t3 + 1]);
     }
-    startsWithString(t2) {
-      return this.getStringAtRange([0, t2.length]) === t2;
+    startsWithString(t3) {
+      return this.getStringAtRange([0, t3.length]) === t3;
     }
-    endsWithString(t2) {
+    endsWithString(t3) {
       const e2 = this.getLength();
-      return this.getStringAtRange([e2 - t2.length, e2]) === t2;
+      return this.getStringAtRange([e2 - t3.length, e2]) === t3;
     }
     getAttachmentPieces() {
-      return this.pieceList.toArray().filter((t2) => !!t2.attachment);
+      return this.pieceList.toArray().filter((t3) => !!t3.attachment);
     }
     getAttachments() {
-      return this.getAttachmentPieces().map((t2) => t2.attachment);
+      return this.getAttachmentPieces().map((t3) => t3.attachment);
     }
-    getAttachmentAndPositionById(t2) {
+    getAttachmentAndPositionById(t3) {
       let e2 = 0;
       for (const n2 of this.pieceList.toArray()) {
         var i2;
-        if ((null === (i2 = n2.attachment) || void 0 === i2 ? void 0 : i2.id) === t2) return { attachment: n2.attachment, position: e2 };
+        if ((null === (i2 = n2.attachment) || void 0 === i2 ? void 0 : i2.id) === t3) return { attachment: n2.attachment, position: e2 };
         e2 += n2.length;
       }
       return { attachment: null, position: null };
     }
-    getAttachmentById(t2) {
-      const { attachment: e2 } = this.getAttachmentAndPositionById(t2);
+    getAttachmentById(t3) {
+      const { attachment: e2 } = this.getAttachmentAndPositionById(t3);
       return e2;
     }
-    getRangeOfAttachment(t2) {
-      const e2 = this.getAttachmentAndPositionById(t2.id), i2 = e2.position;
-      if (t2 = e2.attachment) return [i2, i2 + 1];
+    getRangeOfAttachment(t3) {
+      const e2 = this.getAttachmentAndPositionById(t3.id), i2 = e2.position;
+      if (t3 = e2.attachment) return [i2, i2 + 1];
     }
-    updateAttributesForAttachment(t2, e2) {
+    updateAttributesForAttachment(t3, e2) {
       const i2 = this.getRangeOfAttachment(e2);
-      return i2 ? this.addAttributesAtRange(t2, i2) : this;
+      return i2 ? this.addAttributesAtRange(t3, i2) : this;
     }
     getLength() {
       return this.pieceList.getEndPosition();
@@ -9810,28 +10209,28 @@
     isEmpty() {
       return 0 === this.getLength();
     }
-    isEqualTo(t2) {
+    isEqualTo(t3) {
       var e2;
-      return super.isEqualTo(t2) || (null == t2 || null === (e2 = t2.pieceList) || void 0 === e2 ? void 0 : e2.isEqualTo(this.pieceList));
+      return super.isEqualTo(t3) || (null == t3 || null === (e2 = t3.pieceList) || void 0 === e2 ? void 0 : e2.isEqualTo(this.pieceList));
     }
     isBlockBreak() {
       return 1 === this.getLength() && this.pieceList.getObjectAtIndex(0).isBlockBreak();
     }
-    eachPiece(t2) {
-      return this.pieceList.eachObject(t2);
+    eachPiece(t3) {
+      return this.pieceList.eachObject(t3);
     }
     getPieces() {
       return this.pieceList.toArray();
     }
-    getPieceAtPosition(t2) {
-      return this.pieceList.getObjectAtPosition(t2);
+    getPieceAtPosition(t3) {
+      return this.pieceList.getObjectAtPosition(t3);
     }
     contentsForInspection() {
       return { pieceList: this.pieceList.inspect() };
     }
     toSerializableText() {
-      const t2 = this.pieceList.selectSplittableList((t3) => t3.isSerializable());
-      return this.copyWithPieceList(t2);
+      const t3 = this.pieceList.selectSplittableList((t4) => t4.isSerializable());
+      return this.copyWithPieceList(t3);
     }
     toString() {
       return this.pieceList.toString();
@@ -9840,61 +10239,61 @@
       return this.pieceList.toJSON();
     }
     toConsole() {
-      return JSON.stringify(this.pieceList.toArray().map((t2) => JSON.parse(t2.toConsole())));
+      return JSON.stringify(this.pieceList.toArray().map((t3) => JSON.parse(t3.toConsole())));
     }
     getDirection() {
-      return at(this.toString());
+      return lt(this.toString());
     }
     isRTL() {
       return "rtl" === this.getDirection();
     }
   };
-  var Oe = class _Oe extends nt {
-    static fromJSON(t2) {
-      return new this(Ne.fromJSON(t2.text), t2.attributes, t2.htmlAttributes);
+  var Xi = class _Xi extends rt {
+    static fromJSON(t3) {
+      return new this(Yi.fromJSON(t3.text), t3.attributes, t3.htmlAttributes);
     }
-    constructor(t2, e2, i2) {
-      super(...arguments), this.text = Me(t2 || new Ne()), this.attributes = e2 || [], this.htmlAttributes = i2 || {};
+    constructor(t3, e2, i2) {
+      super(...arguments), this.text = $i(t3 || new Yi()), this.attributes = e2 || [], this.htmlAttributes = i2 || {};
     }
     isEmpty() {
       return this.text.isBlockBreak();
     }
-    isEqualTo(t2) {
-      return !!super.isEqualTo(t2) || this.text.isEqualTo(null == t2 ? void 0 : t2.text) && rt(this.attributes, null == t2 ? void 0 : t2.attributes) && St(this.htmlAttributes, null == t2 ? void 0 : t2.htmlAttributes);
+    isEqualTo(t3) {
+      return !!super.isEqualTo(t3) || this.text.isEqualTo(null == t3 ? void 0 : t3.text) && ot(this.attributes, null == t3 ? void 0 : t3.attributes) && Tt(this.htmlAttributes, null == t3 ? void 0 : t3.htmlAttributes);
     }
-    copyWithText(t2) {
-      return new _Oe(t2, this.attributes, this.htmlAttributes);
+    copyWithText(t3) {
+      return new _Xi(t3, this.attributes, this.htmlAttributes);
     }
     copyWithoutText() {
       return this.copyWithText(null);
     }
-    copyWithAttributes(t2) {
-      return new _Oe(this.text, t2, this.htmlAttributes);
+    copyWithAttributes(t3) {
+      return new _Xi(this.text, t3, this.htmlAttributes);
     }
     copyWithoutAttributes() {
       return this.copyWithAttributes(null);
     }
-    copyUsingObjectMap(t2) {
-      const e2 = t2.find(this.text);
-      return e2 ? this.copyWithText(e2) : this.copyWithText(this.text.copyUsingObjectMap(t2));
+    copyUsingObjectMap(t3) {
+      const e2 = t3.find(this.text);
+      return e2 ? this.copyWithText(e2) : this.copyWithText(this.text.copyUsingObjectMap(t3));
     }
-    addAttribute(t2) {
-      const e2 = this.attributes.concat(He(t2));
+    addAttribute(t3) {
+      const e2 = this.attributes.concat(rn(t3));
       return this.copyWithAttributes(e2);
     }
-    addHTMLAttribute(t2, e2) {
-      const i2 = Object.assign({}, this.htmlAttributes, { [t2]: e2 });
-      return new _Oe(this.text, this.attributes, i2);
+    addHTMLAttribute(t3, e2) {
+      const i2 = Object.assign({}, this.htmlAttributes, { [t3]: e2 });
+      return new _Xi(this.text, this.attributes, i2);
     }
-    removeAttribute(t2) {
-      const { listAttribute: e2 } = gt(t2), i2 = _e(_e(this.attributes, t2), e2);
+    removeAttribute(t3) {
+      const { listAttribute: e2 } = mt(t3), i2 = sn(sn(this.attributes, t3), e2);
       return this.copyWithAttributes(i2);
     }
     removeLastAttribute() {
       return this.removeAttribute(this.getLastAttribute());
     }
     getLastAttribute() {
-      return ze(this.attributes);
+      return on(this.attributes);
     }
     getAttributes() {
       return this.attributes.slice(0);
@@ -9902,55 +10301,55 @@
     getAttributeLevel() {
       return this.attributes.length;
     }
-    getAttributeAtLevel(t2) {
-      return this.attributes[t2 - 1];
+    getAttributeAtLevel(t3) {
+      return this.attributes[t3 - 1];
     }
-    hasAttribute(t2) {
-      return this.attributes.includes(t2);
+    hasAttribute(t3) {
+      return this.attributes.includes(t3);
     }
     hasAttributes() {
       return this.getAttributeLevel() > 0;
     }
     getLastNestableAttribute() {
-      return ze(this.getNestableAttributes());
+      return on(this.getNestableAttributes());
     }
     getNestableAttributes() {
-      return this.attributes.filter((t2) => gt(t2).nestable);
+      return this.attributes.filter((t3) => mt(t3).nestable);
     }
     getNestingLevel() {
       return this.getNestableAttributes().length;
     }
     decreaseNestingLevel() {
-      const t2 = this.getLastNestableAttribute();
-      return t2 ? this.removeAttribute(t2) : this;
+      const t3 = this.getLastNestableAttribute();
+      return t3 ? this.removeAttribute(t3) : this;
     }
     increaseNestingLevel() {
-      const t2 = this.getLastNestableAttribute();
-      if (t2) {
-        const e2 = this.attributes.lastIndexOf(t2), i2 = ot(this.attributes, e2 + 1, 0, ...He(t2));
+      const t3 = this.getLastNestableAttribute();
+      if (t3) {
+        const e2 = this.attributes.lastIndexOf(t3), i2 = st(this.attributes, e2 + 1, 0, ...rn(t3));
         return this.copyWithAttributes(i2);
       }
       return this;
     }
     getListItemAttributes() {
-      return this.attributes.filter((t2) => gt(t2).listAttribute);
+      return this.attributes.filter((t3) => mt(t3).listAttribute);
     }
     isListItem() {
-      var t2;
-      return null === (t2 = gt(this.getLastAttribute())) || void 0 === t2 ? void 0 : t2.listAttribute;
+      var t3;
+      return null === (t3 = mt(this.getLastAttribute())) || void 0 === t3 ? void 0 : t3.listAttribute;
     }
     isTerminalBlock() {
-      var t2;
-      return null === (t2 = gt(this.getLastAttribute())) || void 0 === t2 ? void 0 : t2.terminal;
+      var t3;
+      return null === (t3 = mt(this.getLastAttribute())) || void 0 === t3 ? void 0 : t3.terminal;
     }
     breaksOnReturn() {
-      var t2;
-      return null === (t2 = gt(this.getLastAttribute())) || void 0 === t2 ? void 0 : t2.breakOnReturn;
+      var t3;
+      return null === (t3 = mt(this.getLastAttribute())) || void 0 === t3 ? void 0 : t3.breakOnReturn;
     }
-    findLineBreakInDirectionFromPosition(t2, e2) {
+    findLineBreakInDirectionFromPosition(t3, e2) {
       const i2 = this.toString();
       let n2;
-      switch (t2) {
+      switch (t3) {
         case "forward":
           n2 = i2.indexOf("\n", e2);
           break;
@@ -9977,294 +10376,294 @@
     getLength() {
       return this.text.getLength();
     }
-    canBeConsolidatedWith(t2) {
-      return !this.hasAttributes() && !t2.hasAttributes() && this.getDirection() === t2.getDirection();
+    canBeConsolidatedWith(t3) {
+      return !this.hasAttributes() && !t3.hasAttributes() && this.getDirection() === t3.getDirection();
     }
-    consolidateWith(t2) {
-      const e2 = Ne.textForStringWithAttributes("\n"), i2 = this.getTextWithoutBlockBreak().appendText(e2);
-      return this.copyWithText(i2.appendText(t2.text));
+    consolidateWith(t3) {
+      const e2 = Yi.textForStringWithAttributes("\n"), i2 = this.getTextWithoutBlockBreak().appendText(e2);
+      return this.copyWithText(i2.appendText(t3.text));
     }
-    splitAtOffset(t2) {
+    splitAtOffset(t3) {
       let e2, i2;
-      return 0 === t2 ? (e2 = null, i2 = this) : t2 === this.getLength() ? (e2 = this, i2 = null) : (e2 = this.copyWithText(this.text.getTextAtRange([0, t2])), i2 = this.copyWithText(this.text.getTextAtRange([t2, this.getLength()]))), [e2, i2];
+      return 0 === t3 ? (e2 = null, i2 = this) : t3 === this.getLength() ? (e2 = this, i2 = null) : (e2 = this.copyWithText(this.text.getTextAtRange([0, t3])), i2 = this.copyWithText(this.text.getTextAtRange([t3, this.getLength()]))), [e2, i2];
     }
     getBlockBreakPosition() {
       return this.text.getLength() - 1;
     }
     getTextWithoutBlockBreak() {
-      return qe(this.text) ? this.text.getTextAtRange([0, this.getBlockBreakPosition()]) : this.text.copy();
+      return en(this.text) ? this.text.getTextAtRange([0, this.getBlockBreakPosition()]) : this.text.copy();
     }
-    canBeGrouped(t2) {
-      return this.attributes[t2];
+    canBeGrouped(t3) {
+      return this.attributes[t3];
     }
-    canBeGroupedWith(t2, e2) {
-      const i2 = t2.getAttributes(), r2 = i2[e2], o2 = this.attributes[e2];
-      return o2 === r2 && !(false === gt(o2).group && !(() => {
-        if (!ht) {
-          ht = [];
-          for (const t3 in n) {
-            const { listAttribute: e3 } = n[t3];
-            null != e3 && ht.push(e3);
+    canBeGroupedWith(t3, e2) {
+      const i2 = t3.getAttributes(), r2 = i2[e2], o2 = this.attributes[e2];
+      return o2 === r2 && !(false === mt(o2).group && !(() => {
+        if (!dt) {
+          dt = [];
+          for (const t4 in n) {
+            const { listAttribute: e3 } = n[t4];
+            null != e3 && dt.push(e3);
           }
         }
-        return ht;
-      })().includes(i2[e2 + 1])) && (this.getDirection() === t2.getDirection() || t2.isEmpty());
+        return dt;
+      })().includes(i2[e2 + 1])) && (this.getDirection() === t3.getDirection() || t3.isEmpty());
     }
   };
-  var Me = function(t2) {
-    return t2 = je(t2), t2 = Ue(t2);
+  var $i = function(t3) {
+    return t3 = Zi(t3), t3 = tn(t3);
   };
-  var je = function(t2) {
+  var Zi = function(t3) {
     let e2 = false;
-    const i2 = t2.getPieces();
+    const i2 = t3.getPieces();
     let n2 = i2.slice(0, i2.length - 1);
     const r2 = i2[i2.length - 1];
-    return r2 ? (n2 = n2.map((t3) => t3.isBlockBreak() ? (e2 = true, Ve(t3)) : t3), e2 ? new Ne([...n2, r2]) : t2) : t2;
+    return r2 ? (n2 = n2.map((t4) => t4.isBlockBreak() ? (e2 = true, nn(t4)) : t4), e2 ? new Yi([...n2, r2]) : t3) : t3;
   };
-  var We = Ne.textForStringWithAttributes("\n", { blockBreak: true });
-  var Ue = function(t2) {
-    return qe(t2) ? t2 : t2.appendText(We);
+  var Qi = Yi.textForStringWithAttributes("\n", { blockBreak: true });
+  var tn = function(t3) {
+    return en(t3) ? t3 : t3.appendText(Qi);
   };
-  var qe = function(t2) {
-    const e2 = t2.getLength();
+  var en = function(t3) {
+    const e2 = t3.getLength();
     if (0 === e2) return false;
-    return t2.getTextAtRange([e2 - 1, e2]).isBlockBreak();
+    return t3.getTextAtRange([e2 - 1, e2]).isBlockBreak();
   };
-  var Ve = (t2) => t2.copyWithoutAttribute("blockBreak");
-  var He = function(t2) {
-    const { listAttribute: e2 } = gt(t2);
-    return e2 ? [e2, t2] : [t2];
+  var nn = (t3) => t3.copyWithoutAttribute("blockBreak");
+  var rn = function(t3) {
+    const { listAttribute: e2 } = mt(t3);
+    return e2 ? [e2, t3] : [t3];
   };
-  var ze = (t2) => t2.slice(-1)[0];
-  var _e = function(t2, e2) {
-    const i2 = t2.lastIndexOf(e2);
-    return -1 === i2 ? t2 : ot(t2, i2, 1);
+  var on = (t3) => t3.slice(-1)[0];
+  var sn = function(t3, e2) {
+    const i2 = t3.lastIndexOf(e2);
+    return -1 === i2 ? t3 : st(t3, i2, 1);
   };
-  var Je = class extends nt {
-    static fromJSON(t2) {
-      return new this(Array.from(t2).map((t3) => Oe.fromJSON(t3)));
+  var an = class extends rt {
+    static fromJSON(t3) {
+      return new this(Array.from(t3).map((t4) => Xi.fromJSON(t4)));
     }
-    static fromString(t2, e2) {
-      const i2 = Ne.textForStringWithAttributes(t2, e2);
-      return new this([new Oe(i2)]);
+    static fromString(t3, e2) {
+      const i2 = Yi.textForStringWithAttributes(t3, e2);
+      return new this([new Xi(i2)]);
     }
     constructor() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
-      super(...arguments), 0 === t2.length && (t2 = [new Oe()]), this.blockList = Be.box(t2);
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
+      super(...arguments), 0 === t3.length && (t3 = [new Xi()]), this.blockList = Hi.box(t3);
     }
     isEmpty() {
-      const t2 = this.getBlockAtIndex(0);
-      return 1 === this.blockList.length && t2.isEmpty() && !t2.hasAttributes();
+      const t3 = this.getBlockAtIndex(0);
+      return 1 === this.blockList.length && t3.isEmpty() && !t3.hasAttributes();
     }
     copy() {
-      const t2 = (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}).consolidateBlocks ? this.blockList.consolidate().toArray() : this.blockList.toArray();
-      return new this.constructor(t2);
+      const t3 = (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}).consolidateBlocks ? this.blockList.consolidate().toArray() : this.blockList.toArray();
+      return new this.constructor(t3);
     }
-    copyUsingObjectsFromDocument(t2) {
-      const e2 = new Yt(t2.getObjects());
+    copyUsingObjectsFromDocument(t3) {
+      const e2 = new Zt(t3.getObjects());
       return this.copyUsingObjectMap(e2);
     }
-    copyUsingObjectMap(t2) {
-      const e2 = this.getBlocks().map((e3) => t2.find(e3) || e3.copyUsingObjectMap(t2));
+    copyUsingObjectMap(t3) {
+      const e2 = this.getBlocks().map((e3) => t3.find(e3) || e3.copyUsingObjectMap(t3));
       return new this.constructor(e2);
     }
     copyWithBaseBlockAttributes() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
       const e2 = this.getBlocks().map((e3) => {
-        const i2 = t2.concat(e3.getAttributes());
+        const i2 = t3.concat(e3.getAttributes());
         return e3.copyWithAttributes(i2);
       });
       return new this.constructor(e2);
     }
-    replaceBlock(t2, e2) {
-      const i2 = this.blockList.indexOf(t2);
+    replaceBlock(t3, e2) {
+      const i2 = this.blockList.indexOf(t3);
       return -1 === i2 ? this : new this.constructor(this.blockList.replaceObjectAtIndex(e2, i2));
     }
-    insertDocumentAtRange(t2, e2) {
-      const { blockList: i2 } = t2;
-      e2 = Lt(e2);
+    insertDocumentAtRange(t3, e2) {
+      const { blockList: i2 } = t3;
+      e2 = wt(e2);
       let [n2] = e2;
       const { index: r2, offset: o2 } = this.locationFromPosition(n2);
       let s2 = this;
       const a2 = this.getBlockAtPosition(n2);
-      return Dt(e2) && a2.isEmpty() && !a2.hasAttributes() ? s2 = new this.constructor(s2.blockList.removeObjectAtIndex(r2)) : a2.getBlockBreakPosition() === o2 && n2++, s2 = s2.removeTextAtRange(e2), new this.constructor(s2.blockList.insertSplittableListAtPosition(i2, n2));
+      return Lt(e2) && a2.isEmpty() && !a2.hasAttributes() ? s2 = new this.constructor(s2.blockList.removeObjectAtIndex(r2)) : a2.getBlockBreakPosition() === o2 && n2++, s2 = s2.removeTextAtRange(e2), new this.constructor(s2.blockList.insertSplittableListAtPosition(i2, n2));
     }
-    mergeDocumentAtRange(t2, e2) {
+    mergeDocumentAtRange(t3, e2) {
       let i2, n2;
-      e2 = Lt(e2);
-      const [r2] = e2, o2 = this.locationFromPosition(r2), s2 = this.getBlockAtIndex(o2.index).getAttributes(), a2 = t2.getBaseBlockAttributes(), l2 = s2.slice(-a2.length);
-      if (rt(a2, l2)) {
+      e2 = wt(e2);
+      const [r2] = e2, o2 = this.locationFromPosition(r2), s2 = this.getBlockAtIndex(o2.index).getAttributes(), a2 = t3.getBaseBlockAttributes(), l2 = s2.slice(-a2.length);
+      if (ot(a2, l2)) {
         const e3 = s2.slice(0, -a2.length);
-        i2 = t2.copyWithBaseBlockAttributes(e3);
-      } else i2 = t2.copy({ consolidateBlocks: true }).copyWithBaseBlockAttributes(s2);
+        i2 = t3.copyWithBaseBlockAttributes(e3);
+      } else i2 = t3.copy({ consolidateBlocks: true }).copyWithBaseBlockAttributes(s2);
       const c2 = i2.getBlockCount(), u2 = i2.getBlockAtIndex(0);
-      if (rt(s2, u2.getAttributes())) {
-        const t3 = u2.getTextWithoutBlockBreak();
-        if (n2 = this.insertTextAtRange(t3, e2), c2 > 1) {
+      if (ot(s2, u2.getAttributes())) {
+        const t4 = u2.getTextWithoutBlockBreak();
+        if (n2 = this.insertTextAtRange(t4, e2), c2 > 1) {
           i2 = new this.constructor(i2.getBlocks().slice(1));
-          const e3 = r2 + t3.getLength();
+          const e3 = r2 + t4.getLength();
           n2 = n2.insertDocumentAtRange(i2, e3);
         }
       } else n2 = this.insertDocumentAtRange(i2, e2);
       return n2;
     }
-    insertTextAtRange(t2, e2) {
-      e2 = Lt(e2);
+    insertTextAtRange(t3, e2) {
+      e2 = wt(e2);
       const [i2] = e2, { index: n2, offset: r2 } = this.locationFromPosition(i2), o2 = this.removeTextAtRange(e2);
-      return new this.constructor(o2.blockList.editObjectAtIndex(n2, (e3) => e3.copyWithText(e3.text.insertTextAtPosition(t2, r2))));
+      return new this.constructor(o2.blockList.editObjectAtIndex(n2, (e3) => e3.copyWithText(e3.text.insertTextAtPosition(t3, r2))));
     }
-    removeTextAtRange(t2) {
+    removeTextAtRange(t3) {
       let e2;
-      t2 = Lt(t2);
-      const [i2, n2] = t2;
-      if (Dt(t2)) return this;
-      const [r2, o2] = Array.from(this.locationRangeFromRange(t2)), s2 = r2.index, a2 = r2.offset, l2 = this.getBlockAtIndex(s2), c2 = o2.index, u2 = o2.offset, h2 = this.getBlockAtIndex(c2);
-      if (n2 - i2 == 1 && l2.getBlockBreakPosition() === a2 && h2.getBlockBreakPosition() !== u2 && "\n" === h2.text.getStringAtPosition(u2)) e2 = this.blockList.editObjectAtIndex(c2, (t3) => t3.copyWithText(t3.text.removeTextAtRange([u2, u2 + 1])));
+      t3 = wt(t3);
+      const [i2, n2] = t3;
+      if (Lt(t3)) return this;
+      const [r2, o2] = Array.from(this.locationRangeFromRange(t3)), s2 = r2.index, a2 = r2.offset, l2 = this.getBlockAtIndex(s2), c2 = o2.index, u2 = o2.offset, h2 = this.getBlockAtIndex(c2);
+      if (n2 - i2 == 1 && l2.getBlockBreakPosition() === a2 && h2.getBlockBreakPosition() !== u2 && "\n" === h2.text.getStringAtPosition(u2)) e2 = this.blockList.editObjectAtIndex(c2, (t4) => t4.copyWithText(t4.text.removeTextAtRange([u2, u2 + 1])));
       else {
-        let t3;
+        let t4;
         const i3 = l2.text.getTextAtRange([0, a2]), n3 = h2.text.getTextAtRange([u2, h2.getLength()]), r3 = i3.appendText(n3);
-        t3 = s2 !== c2 && 0 === a2 && l2.getAttributeLevel() >= h2.getAttributeLevel() ? h2.copyWithText(r3) : l2.copyWithText(r3);
+        t4 = s2 !== c2 && 0 === a2 && l2.getAttributeLevel() >= h2.getAttributeLevel() ? h2.copyWithText(r3) : l2.copyWithText(r3);
         const o3 = c2 + 1 - s2;
-        e2 = this.blockList.splice(s2, o3, t3);
+        e2 = this.blockList.splice(s2, o3, t4);
       }
       return new this.constructor(e2);
     }
-    moveTextFromRangeToPosition(t2, e2) {
+    moveTextFromRangeToPosition(t3, e2) {
       let i2;
-      t2 = Lt(t2);
-      const [n2, r2] = t2;
+      t3 = wt(t3);
+      const [n2, r2] = t3;
       if (n2 <= e2 && e2 <= r2) return this;
-      let o2 = this.getDocumentAtRange(t2), s2 = this.removeTextAtRange(t2);
+      let o2 = this.getDocumentAtRange(t3), s2 = this.removeTextAtRange(t3);
       const a2 = n2 < e2;
       a2 && (e2 -= o2.getLength());
       const [l2, ...c2] = o2.getBlocks();
       return 0 === c2.length ? (i2 = l2.getTextWithoutBlockBreak(), a2 && (e2 += 1)) : i2 = l2.text, s2 = s2.insertTextAtRange(i2, e2), 0 === c2.length ? s2 : (o2 = new this.constructor(c2), e2 += i2.getLength(), s2.insertDocumentAtRange(o2, e2));
     }
-    addAttributeAtRange(t2, e2, i2) {
+    addAttributeAtRange(t3, e2, i2) {
       let { blockList: n2 } = this;
       return this.eachBlockAtRange(i2, (i3, r2, o2) => n2 = n2.editObjectAtIndex(o2, function() {
-        return gt(t2) ? i3.addAttribute(t2, e2) : r2[0] === r2[1] ? i3 : i3.copyWithText(i3.text.addAttributeAtRange(t2, e2, r2));
+        return mt(t3) ? i3.addAttribute(t3, e2) : r2[0] === r2[1] ? i3 : i3.copyWithText(i3.text.addAttributeAtRange(t3, e2, r2));
       })), new this.constructor(n2);
     }
-    addAttribute(t2, e2) {
+    addAttribute(t3, e2) {
       let { blockList: i2 } = this;
-      return this.eachBlock((n2, r2) => i2 = i2.editObjectAtIndex(r2, () => n2.addAttribute(t2, e2))), new this.constructor(i2);
+      return this.eachBlock((n2, r2) => i2 = i2.editObjectAtIndex(r2, () => n2.addAttribute(t3, e2))), new this.constructor(i2);
     }
-    removeAttributeAtRange(t2, e2) {
+    removeAttributeAtRange(t3, e2) {
       let { blockList: i2 } = this;
       return this.eachBlockAtRange(e2, function(e3, n2, r2) {
-        gt(t2) ? i2 = i2.editObjectAtIndex(r2, () => e3.removeAttribute(t2)) : n2[0] !== n2[1] && (i2 = i2.editObjectAtIndex(r2, () => e3.copyWithText(e3.text.removeAttributeAtRange(t2, n2))));
+        mt(t3) ? i2 = i2.editObjectAtIndex(r2, () => e3.removeAttribute(t3)) : n2[0] !== n2[1] && (i2 = i2.editObjectAtIndex(r2, () => e3.copyWithText(e3.text.removeAttributeAtRange(t3, n2))));
       }), new this.constructor(i2);
     }
-    updateAttributesForAttachment(t2, e2) {
+    updateAttributesForAttachment(t3, e2) {
       const i2 = this.getRangeOfAttachment(e2), [n2] = Array.from(i2), { index: r2 } = this.locationFromPosition(n2), o2 = this.getTextAtIndex(r2);
-      return new this.constructor(this.blockList.editObjectAtIndex(r2, (i3) => i3.copyWithText(o2.updateAttributesForAttachment(t2, e2))));
+      return new this.constructor(this.blockList.editObjectAtIndex(r2, (i3) => i3.copyWithText(o2.updateAttributesForAttachment(t3, e2))));
     }
-    removeAttributeForAttachment(t2, e2) {
+    removeAttributeForAttachment(t3, e2) {
       const i2 = this.getRangeOfAttachment(e2);
-      return this.removeAttributeAtRange(t2, i2);
+      return this.removeAttributeAtRange(t3, i2);
     }
-    setHTMLAttributeAtPosition(t2, e2, i2) {
-      const n2 = this.getBlockAtPosition(t2), r2 = n2.addHTMLAttribute(e2, i2);
+    setHTMLAttributeAtPosition(t3, e2, i2) {
+      const n2 = this.getBlockAtPosition(t3), r2 = n2.addHTMLAttribute(e2, i2);
       return this.replaceBlock(n2, r2);
     }
-    insertBlockBreakAtRange(t2) {
+    insertBlockBreakAtRange(t3) {
       let e2;
-      t2 = Lt(t2);
-      const [i2] = t2, { offset: n2 } = this.locationFromPosition(i2), r2 = this.removeTextAtRange(t2);
-      return 0 === n2 && (e2 = [new Oe()]), new this.constructor(r2.blockList.insertSplittableListAtPosition(new Be(e2), i2));
+      t3 = wt(t3);
+      const [i2] = t3, { offset: n2 } = this.locationFromPosition(i2), r2 = this.removeTextAtRange(t3);
+      return 0 === n2 && (e2 = [new Xi()]), new this.constructor(r2.blockList.insertSplittableListAtPosition(new Hi(e2), i2));
     }
-    applyBlockAttributeAtRange(t2, e2, i2) {
+    applyBlockAttributeAtRange(t3, e2, i2) {
       const n2 = this.expandRangeToLineBreaksAndSplitBlocks(i2);
       let r2 = n2.document;
       i2 = n2.range;
-      const o2 = gt(t2);
+      const o2 = mt(t3);
       if (o2.listAttribute) {
-        r2 = r2.removeLastListAttributeAtRange(i2, { exceptAttributeName: t2 });
+        r2 = r2.removeLastListAttributeAtRange(i2, { exceptAttributeName: t3 });
         const e3 = r2.convertLineBreaksToBlockBreaksInRange(i2);
         r2 = e3.document, i2 = e3.range;
       } else r2 = o2.exclusive ? r2.removeBlockAttributesAtRange(i2) : o2.terminal ? r2.removeLastTerminalAttributeAtRange(i2) : r2.consolidateBlocksAtRange(i2);
-      return r2.addAttributeAtRange(t2, e2, i2);
+      return r2.addAttributeAtRange(t3, e2, i2);
     }
-    removeLastListAttributeAtRange(t2) {
+    removeLastListAttributeAtRange(t3) {
       let e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, { blockList: i2 } = this;
-      return this.eachBlockAtRange(t2, function(t3, n2, r2) {
-        const o2 = t3.getLastAttribute();
-        o2 && gt(o2).listAttribute && o2 !== e2.exceptAttributeName && (i2 = i2.editObjectAtIndex(r2, () => t3.removeAttribute(o2)));
+      return this.eachBlockAtRange(t3, function(t4, n2, r2) {
+        const o2 = t4.getLastAttribute();
+        o2 && mt(o2).listAttribute && o2 !== e2.exceptAttributeName && (i2 = i2.editObjectAtIndex(r2, () => t4.removeAttribute(o2)));
       }), new this.constructor(i2);
     }
-    removeLastTerminalAttributeAtRange(t2) {
+    removeLastTerminalAttributeAtRange(t3) {
       let { blockList: e2 } = this;
-      return this.eachBlockAtRange(t2, function(t3, i2, n2) {
-        const r2 = t3.getLastAttribute();
-        r2 && gt(r2).terminal && (e2 = e2.editObjectAtIndex(n2, () => t3.removeAttribute(r2)));
+      return this.eachBlockAtRange(t3, function(t4, i2, n2) {
+        const r2 = t4.getLastAttribute();
+        r2 && mt(r2).terminal && (e2 = e2.editObjectAtIndex(n2, () => t4.removeAttribute(r2)));
       }), new this.constructor(e2);
     }
-    removeBlockAttributesAtRange(t2) {
+    removeBlockAttributesAtRange(t3) {
       let { blockList: e2 } = this;
-      return this.eachBlockAtRange(t2, function(t3, i2, n2) {
-        t3.hasAttributes() && (e2 = e2.editObjectAtIndex(n2, () => t3.copyWithoutAttributes()));
+      return this.eachBlockAtRange(t3, function(t4, i2, n2) {
+        t4.hasAttributes() && (e2 = e2.editObjectAtIndex(n2, () => t4.copyWithoutAttributes()));
       }), new this.constructor(e2);
     }
-    expandRangeToLineBreaksAndSplitBlocks(t2) {
+    expandRangeToLineBreaksAndSplitBlocks(t3) {
       let e2;
-      t2 = Lt(t2);
-      let [i2, n2] = t2;
+      t3 = wt(t3);
+      let [i2, n2] = t3;
       const r2 = this.locationFromPosition(i2), o2 = this.locationFromPosition(n2);
       let s2 = this;
       const a2 = s2.getBlockAtIndex(r2.index);
       if (r2.offset = a2.findLineBreakInDirectionFromPosition("backward", r2.offset), null != r2.offset && (e2 = s2.positionFromLocation(r2), s2 = s2.insertBlockBreakAtRange([e2, e2 + 1]), o2.index += 1, o2.offset -= s2.getBlockAtIndex(r2.index).getLength(), r2.index += 1), r2.offset = 0, 0 === o2.offset && o2.index > r2.index) o2.index -= 1, o2.offset = s2.getBlockAtIndex(o2.index).getBlockBreakPosition();
       else {
-        const t3 = s2.getBlockAtIndex(o2.index);
-        "\n" === t3.text.getStringAtRange([o2.offset - 1, o2.offset]) ? o2.offset -= 1 : o2.offset = t3.findLineBreakInDirectionFromPosition("forward", o2.offset), o2.offset !== t3.getBlockBreakPosition() && (e2 = s2.positionFromLocation(o2), s2 = s2.insertBlockBreakAtRange([e2, e2 + 1]));
+        const t4 = s2.getBlockAtIndex(o2.index);
+        "\n" === t4.text.getStringAtRange([o2.offset - 1, o2.offset]) ? o2.offset -= 1 : o2.offset = t4.findLineBreakInDirectionFromPosition("forward", o2.offset), o2.offset !== t4.getBlockBreakPosition() && (e2 = s2.positionFromLocation(o2), s2 = s2.insertBlockBreakAtRange([e2, e2 + 1]));
       }
-      return i2 = s2.positionFromLocation(r2), n2 = s2.positionFromLocation(o2), { document: s2, range: t2 = Lt([i2, n2]) };
+      return i2 = s2.positionFromLocation(r2), n2 = s2.positionFromLocation(o2), { document: s2, range: t3 = wt([i2, n2]) };
     }
-    convertLineBreaksToBlockBreaksInRange(t2) {
-      t2 = Lt(t2);
-      let [e2] = t2;
-      const i2 = this.getStringAtRange(t2).slice(0, -1);
+    convertLineBreaksToBlockBreaksInRange(t3) {
+      t3 = wt(t3);
+      let [e2] = t3;
+      const i2 = this.getStringAtRange(t3).slice(0, -1);
       let n2 = this;
-      return i2.replace(/.*?\n/g, function(t3) {
-        e2 += t3.length, n2 = n2.insertBlockBreakAtRange([e2 - 1, e2]);
-      }), { document: n2, range: t2 };
+      return i2.replace(/.*?\n/g, function(t4) {
+        e2 += t4.length, n2 = n2.insertBlockBreakAtRange([e2 - 1, e2]);
+      }), { document: n2, range: t3 };
     }
-    consolidateBlocksAtRange(t2) {
-      t2 = Lt(t2);
-      const [e2, i2] = t2, n2 = this.locationFromPosition(e2).index, r2 = this.locationFromPosition(i2).index;
+    consolidateBlocksAtRange(t3) {
+      t3 = wt(t3);
+      const [e2, i2] = t3, n2 = this.locationFromPosition(e2).index, r2 = this.locationFromPosition(i2).index;
       return new this.constructor(this.blockList.consolidateFromIndexToIndex(n2, r2));
     }
-    getDocumentAtRange(t2) {
-      t2 = Lt(t2);
-      const e2 = this.blockList.getSplittableListInRange(t2).toArray();
+    getDocumentAtRange(t3) {
+      t3 = wt(t3);
+      const e2 = this.blockList.getSplittableListInRange(t3).toArray();
       return new this.constructor(e2);
     }
-    getStringAtRange(t2) {
+    getStringAtRange(t3) {
       let e2;
-      const i2 = t2 = Lt(t2);
-      return i2[i2.length - 1] !== this.getLength() && (e2 = -1), this.getDocumentAtRange(t2).toString().slice(0, e2);
+      const i2 = t3 = wt(t3);
+      return i2[i2.length - 1] !== this.getLength() && (e2 = -1), this.getDocumentAtRange(t3).toString().slice(0, e2);
     }
-    getBlockAtIndex(t2) {
-      return this.blockList.getObjectAtIndex(t2);
+    getBlockAtIndex(t3) {
+      return this.blockList.getObjectAtIndex(t3);
     }
-    getBlockAtPosition(t2) {
-      const { index: e2 } = this.locationFromPosition(t2);
+    getBlockAtPosition(t3) {
+      const { index: e2 } = this.locationFromPosition(t3);
       return this.getBlockAtIndex(e2);
     }
-    getTextAtIndex(t2) {
+    getTextAtIndex(t3) {
       var e2;
-      return null === (e2 = this.getBlockAtIndex(t2)) || void 0 === e2 ? void 0 : e2.text;
+      return null === (e2 = this.getBlockAtIndex(t3)) || void 0 === e2 ? void 0 : e2.text;
     }
-    getTextAtPosition(t2) {
-      const { index: e2 } = this.locationFromPosition(t2);
+    getTextAtPosition(t3) {
+      const { index: e2 } = this.locationFromPosition(t3);
       return this.getTextAtIndex(e2);
     }
-    getPieceAtPosition(t2) {
-      const { index: e2, offset: i2 } = this.locationFromPosition(t2);
+    getPieceAtPosition(t3) {
+      const { index: e2, offset: i2 } = this.locationFromPosition(t3);
       return this.getTextAtIndex(e2).getPieceAtPosition(i2);
     }
-    getCharacterAtPosition(t2) {
-      const { index: e2, offset: i2 } = this.locationFromPosition(t2);
+    getCharacterAtPosition(t3) {
+      const { index: e2, offset: i2 } = this.locationFromPosition(t3);
       return this.getTextAtIndex(e2).getStringAtRange([i2, i2 + 1]);
     }
     getLength() {
@@ -10279,16 +10678,16 @@
     getEditCount() {
       return this.editCount;
     }
-    eachBlock(t2) {
-      return this.blockList.eachObject(t2);
+    eachBlock(t3) {
+      return this.blockList.eachObject(t3);
     }
-    eachBlockAtRange(t2, e2) {
+    eachBlockAtRange(t3, e2) {
       let i2, n2;
-      t2 = Lt(t2);
-      const [r2, o2] = t2, s2 = this.locationFromPosition(r2), a2 = this.locationFromPosition(o2);
+      t3 = wt(t3);
+      const [r2, o2] = t3, s2 = this.locationFromPosition(r2), a2 = this.locationFromPosition(o2);
       if (s2.index === a2.index) return i2 = this.getBlockAtIndex(s2.index), n2 = [s2.offset, a2.offset], e2(i2, n2, s2.index);
-      for (let t3 = s2.index; t3 <= a2.index; t3++) if (i2 = this.getBlockAtIndex(t3), i2) {
-        switch (t3) {
+      for (let t4 = s2.index; t4 <= a2.index; t4++) if (i2 = this.getBlockAtIndex(t4), i2) {
+        switch (t4) {
           case s2.index:
             n2 = [s2.offset, i2.text.getLength()];
             break;
@@ -10298,134 +10697,134 @@
           default:
             n2 = [0, i2.text.getLength()];
         }
-        e2(i2, n2, t3);
+        e2(i2, n2, t4);
       }
     }
-    getCommonAttributesAtRange(t2) {
-      t2 = Lt(t2);
-      const [e2] = t2;
-      if (Dt(t2)) return this.getCommonAttributesAtPosition(e2);
+    getCommonAttributesAtRange(t3) {
+      t3 = wt(t3);
+      const [e2] = t3;
+      if (Lt(t3)) return this.getCommonAttributesAtPosition(e2);
       {
         const e3 = [], i2 = [];
-        return this.eachBlockAtRange(t2, function(t3, n2) {
-          if (n2[0] !== n2[1]) return e3.push(t3.text.getCommonAttributesAtRange(n2)), i2.push(Ke(t3));
-        }), zt.fromCommonAttributesOfObjects(e3).merge(zt.fromCommonAttributesOfObjects(i2)).toObject();
+        return this.eachBlockAtRange(t3, function(t4, n2) {
+          if (n2[0] !== n2[1]) return e3.push(t4.text.getCommonAttributesAtRange(n2)), i2.push(ln(t4));
+        }), Ht.fromCommonAttributesOfObjects(e3).merge(Ht.fromCommonAttributesOfObjects(i2)).toObject();
       }
     }
-    getCommonAttributesAtPosition(t2) {
+    getCommonAttributesAtPosition(t3) {
       let e2, i2;
-      const { index: n2, offset: r2 } = this.locationFromPosition(t2), o2 = this.getBlockAtIndex(n2);
+      const { index: n2, offset: r2 } = this.locationFromPosition(t3), o2 = this.getBlockAtIndex(n2);
       if (!o2) return {};
-      const s2 = Ke(o2), a2 = o2.text.getAttributesAtPosition(r2), l2 = o2.text.getAttributesAtPosition(r2 - 1), c2 = Object.keys(W).filter((t3) => W[t3].inheritable);
+      const s2 = ln(o2), a2 = o2.text.getAttributesAtPosition(r2), l2 = o2.text.getAttributesAtPosition(r2 - 1), c2 = Object.keys(W).filter((t4) => W[t4].inheritable);
       for (e2 in l2) i2 = l2[e2], (i2 === a2[e2] || c2.includes(e2)) && (s2[e2] = i2);
       return s2;
     }
-    getRangeOfCommonAttributeAtPosition(t2, e2) {
-      const { index: i2, offset: n2 } = this.locationFromPosition(e2), r2 = this.getTextAtIndex(i2), [o2, s2] = Array.from(r2.getExpandedRangeForAttributeAtOffset(t2, n2)), a2 = this.positionFromLocation({ index: i2, offset: o2 }), l2 = this.positionFromLocation({ index: i2, offset: s2 });
-      return Lt([a2, l2]);
+    getRangeOfCommonAttributeAtPosition(t3, e2) {
+      const { index: i2, offset: n2 } = this.locationFromPosition(e2), r2 = this.getTextAtIndex(i2), [o2, s2] = Array.from(r2.getExpandedRangeForAttributeAtOffset(t3, n2)), a2 = this.positionFromLocation({ index: i2, offset: o2 }), l2 = this.positionFromLocation({ index: i2, offset: s2 });
+      return wt([a2, l2]);
     }
     getBaseBlockAttributes() {
-      let t2 = this.getBlockAtIndex(0).getAttributes();
+      let t3 = this.getBlockAtIndex(0).getAttributes();
       for (let e2 = 1; e2 < this.getBlockCount(); e2++) {
-        const i2 = this.getBlockAtIndex(e2).getAttributes(), n2 = Math.min(t2.length, i2.length);
-        t2 = (() => {
+        const i2 = this.getBlockAtIndex(e2).getAttributes(), n2 = Math.min(t3.length, i2.length);
+        t3 = (() => {
           const e3 = [];
-          for (let r2 = 0; r2 < n2 && i2[r2] === t2[r2]; r2++) e3.push(i2[r2]);
+          for (let r2 = 0; r2 < n2 && i2[r2] === t3[r2]; r2++) e3.push(i2[r2]);
           return e3;
         })();
       }
-      return t2;
+      return t3;
     }
-    getAttachmentById(t2) {
-      for (const e2 of this.getAttachments()) if (e2.id === t2) return e2;
+    getAttachmentById(t3) {
+      for (const e2 of this.getAttachments()) if (e2.id === t3) return e2;
     }
     getAttachmentPieces() {
-      let t2 = [];
+      let t3 = [];
       return this.blockList.eachObject((e2) => {
         let { text: i2 } = e2;
-        return t2 = t2.concat(i2.getAttachmentPieces());
-      }), t2;
+        return t3 = t3.concat(i2.getAttachmentPieces());
+      }), t3;
     }
     getAttachments() {
-      return this.getAttachmentPieces().map((t2) => t2.attachment);
+      return this.getAttachmentPieces().map((t3) => t3.attachment);
     }
-    getRangeOfAttachment(t2) {
+    getRangeOfAttachment(t3) {
       let e2 = 0;
       const i2 = this.blockList.toArray();
       for (let n2 = 0; n2 < i2.length; n2++) {
-        const { text: r2 } = i2[n2], o2 = r2.getRangeOfAttachment(t2);
-        if (o2) return Lt([e2 + o2[0], e2 + o2[1]]);
+        const { text: r2 } = i2[n2], o2 = r2.getRangeOfAttachment(t3);
+        if (o2) return wt([e2 + o2[0], e2 + o2[1]]);
         e2 += r2.getLength();
       }
     }
-    getLocationRangeOfAttachment(t2) {
-      const e2 = this.getRangeOfAttachment(t2);
+    getLocationRangeOfAttachment(t3) {
+      const e2 = this.getRangeOfAttachment(t3);
       return this.locationRangeFromRange(e2);
     }
-    getAttachmentPieceForAttachment(t2) {
-      for (const e2 of this.getAttachmentPieces()) if (e2.attachment === t2) return e2;
+    getAttachmentPieceForAttachment(t3) {
+      for (const e2 of this.getAttachmentPieces()) if (e2.attachment === t3) return e2;
     }
-    findRangesForBlockAttribute(t2) {
+    findRangesForBlockAttribute(t3) {
       let e2 = 0;
       const i2 = [];
       return this.getBlocks().forEach((n2) => {
         const r2 = n2.getLength();
-        n2.hasAttribute(t2) && i2.push([e2, e2 + r2]), e2 += r2;
+        n2.hasAttribute(t3) && i2.push([e2, e2 + r2]), e2 += r2;
       }), i2;
     }
-    findRangesForTextAttribute(t2) {
+    findRangesForTextAttribute(t3) {
       let { withValue: e2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, i2 = 0, n2 = [];
       const r2 = [];
       return this.getPieces().forEach((o2) => {
         const s2 = o2.getLength();
         (function(i3) {
-          return e2 ? i3.getAttribute(t2) === e2 : i3.hasAttribute(t2);
+          return e2 ? i3.getAttribute(t3) === e2 : i3.hasAttribute(t3);
         })(o2) && (n2[1] === i2 ? n2[1] = i2 + s2 : r2.push(n2 = [i2, i2 + s2])), i2 += s2;
       }), r2;
     }
-    locationFromPosition(t2) {
-      const e2 = this.blockList.findIndexAndOffsetAtPosition(Math.max(0, t2));
+    locationFromPosition(t3) {
+      const e2 = this.blockList.findIndexAndOffsetAtPosition(Math.max(0, t3));
       if (null != e2.index) return e2;
       {
-        const t3 = this.getBlocks();
-        return { index: t3.length - 1, offset: t3[t3.length - 1].getLength() };
+        const t4 = this.getBlocks();
+        return { index: t4.length - 1, offset: t4[t4.length - 1].getLength() };
       }
     }
-    positionFromLocation(t2) {
-      return this.blockList.findPositionAtIndexAndOffset(t2.index, t2.offset);
+    positionFromLocation(t3) {
+      return this.blockList.findPositionAtIndexAndOffset(t3.index, t3.offset);
     }
-    locationRangeFromPosition(t2) {
-      return Lt(this.locationFromPosition(t2));
+    locationRangeFromPosition(t3) {
+      return wt(this.locationFromPosition(t3));
     }
-    locationRangeFromRange(t2) {
-      if (!(t2 = Lt(t2))) return;
-      const [e2, i2] = Array.from(t2), n2 = this.locationFromPosition(e2), r2 = this.locationFromPosition(i2);
-      return Lt([n2, r2]);
+    locationRangeFromRange(t3) {
+      if (!(t3 = wt(t3))) return;
+      const [e2, i2] = Array.from(t3), n2 = this.locationFromPosition(e2), r2 = this.locationFromPosition(i2);
+      return wt([n2, r2]);
     }
-    rangeFromLocationRange(t2) {
+    rangeFromLocationRange(t3) {
       let e2;
-      t2 = Lt(t2);
-      const i2 = this.positionFromLocation(t2[0]);
-      return Dt(t2) || (e2 = this.positionFromLocation(t2[1])), Lt([i2, e2]);
+      t3 = wt(t3);
+      const i2 = this.positionFromLocation(t3[0]);
+      return Lt(t3) || (e2 = this.positionFromLocation(t3[1])), wt([i2, e2]);
     }
-    isEqualTo(t2) {
-      return this.blockList.isEqualTo(null == t2 ? void 0 : t2.blockList);
+    isEqualTo(t3) {
+      return this.blockList.isEqualTo(null == t3 ? void 0 : t3.blockList);
     }
     getTexts() {
-      return this.getBlocks().map((t2) => t2.text);
+      return this.getBlocks().map((t3) => t3.text);
     }
     getPieces() {
-      const t2 = [];
+      const t3 = [];
       return Array.from(this.getTexts()).forEach((e2) => {
-        t2.push(...Array.from(e2.getPieces() || []));
-      }), t2;
+        t3.push(...Array.from(e2.getPieces() || []));
+      }), t3;
     }
     getObjects() {
       return this.getBlocks().concat(this.getTexts()).concat(this.getPieces());
     }
     toSerializableDocument() {
-      const t2 = [];
-      return this.blockList.eachObject((e2) => t2.push(e2.copyWithText(e2.text.toSerializableText()))), new this.constructor(t2);
+      const t3 = [];
+      return this.blockList.eachObject((e2) => t3.push(e2.copyWithText(e2.text.toSerializableText()))), new this.constructor(t3);
     }
     toString() {
       return this.blockList.toString();
@@ -10434,344 +10833,344 @@
       return this.blockList.toJSON();
     }
     toConsole() {
-      return JSON.stringify(this.blockList.toArray().map((t2) => JSON.parse(t2.text.toConsole())));
+      return JSON.stringify(this.blockList.toArray().map((t3) => JSON.parse(t3.text.toConsole())));
     }
   };
-  var Ke = function(t2) {
-    const e2 = {}, i2 = t2.getLastAttribute();
+  var ln = function(t3) {
+    const e2 = {}, i2 = t3.getLastAttribute();
     return i2 && (e2[i2] = true), e2;
   };
-  var Ge = function(t2) {
+  var cn = function(t3) {
     let e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-    return { string: t2 = Wt(t2), attributes: e2, type: "string" };
+    return { string: t3 = Wt(t3), attributes: e2, type: "string" };
   };
-  var $e = (t2, e2) => {
+  var un = (t3, e2) => {
     try {
-      return JSON.parse(t2.getAttribute("data-trix-".concat(e2)));
-    } catch (t3) {
+      return JSON.parse(t3.getAttribute("data-trix-".concat(e2)));
+    } catch (t4) {
       return {};
     }
   };
-  var Xe = class extends H {
-    static parse(t2, e2) {
-      const i2 = new this(t2, e2);
+  var hn = class extends q {
+    static parse(t3, e2) {
+      const i2 = new this(t3, e2);
       return i2.parse(), i2;
     }
-    constructor(t2) {
-      let { referenceElement: e2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-      super(...arguments), this.html = t2, this.referenceElement = e2, this.blocks = [], this.blockElements = [], this.processedElements = [];
+    constructor(t3) {
+      let { referenceElement: e2, purifyOptions: i2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+      super(...arguments), this.html = t3, this.referenceElement = e2, this.purifyOptions = i2, this.blocks = [], this.blockElements = [], this.processedElements = [];
     }
     getDocument() {
-      return Je.fromJSON(this.blocks);
+      return an.fromJSON(this.blocks);
     }
     parse() {
       try {
-        this.createHiddenContainer(), se.setHTML(this.containerElement, this.html);
-        const t2 = R(this.containerElement, { usingFilter: ti });
-        for (; t2.nextNode(); ) this.processNode(t2.currentNode);
+        this.createHiddenContainer(), di.setHTML(this.containerElement, this.html, { purifyOptions: this.purifyOptions });
+        const t3 = R(this.containerElement, { usingFilter: pn });
+        for (; t3.nextNode(); ) this.processNode(t3.currentNode);
         return this.translateBlockElementMarginsToNewlines();
       } finally {
         this.removeHiddenContainer();
       }
     }
     createHiddenContainer() {
-      return this.referenceElement ? (this.containerElement = this.referenceElement.cloneNode(false), this.containerElement.removeAttribute("id"), this.containerElement.setAttribute("data-trix-internal", ""), this.containerElement.style.display = "none", this.referenceElement.parentNode.insertBefore(this.containerElement, this.referenceElement.nextSibling)) : (this.containerElement = S({ tagName: "div", style: { display: "none" } }), document.body.appendChild(this.containerElement));
+      return this.referenceElement ? (this.containerElement = this.referenceElement.cloneNode(false), this.containerElement.removeAttribute("id"), this.containerElement.setAttribute("data-trix-internal", ""), this.containerElement.style.display = "none", this.referenceElement.parentNode.insertBefore(this.containerElement, this.referenceElement.nextSibling)) : (this.containerElement = T({ tagName: "div", style: { display: "none" } }), document.body.appendChild(this.containerElement));
     }
     removeHiddenContainer() {
-      return k(this.containerElement);
+      return S(this.containerElement);
     }
-    processNode(t2) {
-      switch (t2.nodeType) {
+    processNode(t3) {
+      switch (t3.nodeType) {
         case Node.TEXT_NODE:
-          if (!this.isInsignificantTextNode(t2)) return this.appendBlockForTextNode(t2), this.processTextNode(t2);
+          if (!this.isInsignificantTextNode(t3)) return this.appendBlockForTextNode(t3), this.processTextNode(t3);
           break;
         case Node.ELEMENT_NODE:
-          return this.appendBlockForElement(t2), this.processElement(t2);
+          return this.appendBlockForElement(t3), this.processElement(t3);
       }
     }
-    appendBlockForTextNode(t2) {
-      const e2 = t2.parentNode;
-      if (e2 === this.currentBlockElement && this.isBlockElement(t2.previousSibling)) return this.appendStringWithAttributes("\n");
+    appendBlockForTextNode(t3) {
+      const e2 = t3.parentNode;
+      if (e2 === this.currentBlockElement && this.isBlockElement(t3.previousSibling)) return this.appendStringWithAttributes("\n");
       if (e2 === this.containerElement || this.isBlockElement(e2)) {
         var i2;
-        const t3 = this.getBlockAttributes(e2), n2 = this.getBlockHTMLAttributes(e2);
-        rt(t3, null === (i2 = this.currentBlock) || void 0 === i2 ? void 0 : i2.attributes) || (this.currentBlock = this.appendBlockForAttributesWithElement(t3, e2, n2), this.currentBlockElement = e2);
+        const t4 = this.getBlockAttributes(e2), n2 = this.getBlockHTMLAttributes(e2);
+        ot(t4, null === (i2 = this.currentBlock) || void 0 === i2 ? void 0 : i2.attributes) || (this.currentBlock = this.appendBlockForAttributesWithElement(t4, e2, n2), this.currentBlockElement = e2);
       }
     }
-    appendBlockForElement(t2) {
-      const e2 = this.isBlockElement(t2), i2 = y(this.currentBlockElement, t2);
-      if (e2 && !this.isBlockElement(t2.firstChild)) {
-        if (!this.isInsignificantTextNode(t2.firstChild) || !this.isBlockElement(t2.firstElementChild)) {
-          const e3 = this.getBlockAttributes(t2), n2 = this.getBlockHTMLAttributes(t2);
-          if (t2.firstChild) {
-            if (i2 && rt(e3, this.currentBlock.attributes)) return this.appendStringWithAttributes("\n");
-            this.currentBlock = this.appendBlockForAttributesWithElement(e3, t2, n2), this.currentBlockElement = t2;
+    appendBlockForElement(t3) {
+      const e2 = this.isBlockElement(t3), i2 = C(this.currentBlockElement, t3);
+      if (e2 && !this.isBlockElement(t3.firstChild)) {
+        if (!this.isInsignificantTextNode(t3.firstChild) || !this.isBlockElement(t3.firstElementChild)) {
+          const e3 = this.getBlockAttributes(t3), n2 = this.getBlockHTMLAttributes(t3);
+          if (t3.firstChild) {
+            if (i2 && ot(e3, this.currentBlock.attributes)) return this.appendStringWithAttributes("\n");
+            this.currentBlock = this.appendBlockForAttributesWithElement(e3, t3, n2), this.currentBlockElement = t3;
           }
         }
       } else if (this.currentBlockElement && !i2 && !e2) {
-        const e3 = this.findParentBlockElement(t2);
+        const e3 = this.findParentBlockElement(t3);
         if (e3) return this.appendBlockForElement(e3);
         this.currentBlock = this.appendEmptyBlock(), this.currentBlockElement = null;
       }
     }
-    findParentBlockElement(t2) {
-      let { parentElement: e2 } = t2;
+    findParentBlockElement(t3) {
+      let { parentElement: e2 } = t3;
       for (; e2 && e2 !== this.containerElement; ) {
         if (this.isBlockElement(e2) && this.blockElements.includes(e2)) return e2;
         e2 = e2.parentElement;
       }
       return null;
     }
-    processTextNode(t2) {
-      let e2 = t2.data;
+    processTextNode(t3) {
+      let e2 = t3.data;
       var i2;
-      Ye(t2.parentNode) || (e2 = qt(e2), ni(null === (i2 = t2.previousSibling) || void 0 === i2 ? void 0 : i2.textContent) && (e2 = ei(e2)));
-      return this.appendStringWithAttributes(e2, this.getTextAttributes(t2.parentNode));
+      dn(t3.parentNode) || (e2 = Vt(e2), vn(null === (i2 = t3.previousSibling) || void 0 === i2 ? void 0 : i2.textContent) && (e2 = fn(e2)));
+      return this.appendStringWithAttributes(e2, this.getTextAttributes(t3.parentNode));
     }
-    processElement(t2) {
+    processElement(t3) {
       let e2;
-      if (I(t2)) {
-        if (e2 = $e(t2, "attachment"), Object.keys(e2).length) {
-          const i2 = this.getTextAttributes(t2);
-          this.appendAttachmentWithAttributes(e2, i2), t2.innerHTML = "";
+      if (P(t3)) {
+        if (e2 = un(t3, "attachment"), Object.keys(e2).length) {
+          const i2 = this.getTextAttributes(t3);
+          this.appendAttachmentWithAttributes(e2, i2), t3.innerHTML = "";
         }
-        return this.processedElements.push(t2);
+        return this.processedElements.push(t3);
       }
-      switch (E(t2)) {
+      switch (k(t3)) {
         case "br":
-          return this.isExtraBR(t2) || this.isBlockElement(t2.nextSibling) || this.appendStringWithAttributes("\n", this.getTextAttributes(t2)), this.processedElements.push(t2);
+          return this.isExtraBR(t3) || this.isBlockElement(t3.nextSibling) || this.appendStringWithAttributes("\n", this.getTextAttributes(t3)), this.processedElements.push(t3);
         case "img":
-          e2 = { url: t2.getAttribute("src"), contentType: "image" };
-          const i2 = ((t3) => {
-            const e3 = t3.getAttribute("width"), i3 = t3.getAttribute("height"), n2 = {};
+          e2 = { url: t3.getAttribute("src"), contentType: "image" };
+          const i2 = ((t4) => {
+            const e3 = t4.getAttribute("width"), i3 = t4.getAttribute("height"), n2 = {};
             return e3 && (n2.width = parseInt(e3, 10)), i3 && (n2.height = parseInt(i3, 10)), n2;
-          })(t2);
-          for (const t3 in i2) {
-            const n2 = i2[t3];
-            e2[t3] = n2;
+          })(t3);
+          for (const t4 in i2) {
+            const n2 = i2[t4];
+            e2[t4] = n2;
           }
-          return this.appendAttachmentWithAttributes(e2, this.getTextAttributes(t2)), this.processedElements.push(t2);
+          return this.appendAttachmentWithAttributes(e2, this.getTextAttributes(t3)), this.processedElements.push(t3);
         case "tr":
-          if (this.needsTableSeparator(t2)) return this.appendStringWithAttributes(j.tableRowSeparator);
+          if (this.needsTableSeparator(t3)) return this.appendStringWithAttributes(j.tableRowSeparator);
           break;
         case "td":
-          if (this.needsTableSeparator(t2)) return this.appendStringWithAttributes(j.tableCellSeparator);
+          if (this.needsTableSeparator(t3)) return this.appendStringWithAttributes(j.tableCellSeparator);
       }
     }
-    appendBlockForAttributesWithElement(t2, e2) {
+    appendBlockForAttributesWithElement(t3, e2) {
       let i2 = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
       this.blockElements.push(e2);
       const n2 = function() {
         return { text: [], attributes: arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}, htmlAttributes: arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {} };
-      }(t2, i2);
+      }(t3, i2);
       return this.blocks.push(n2), n2;
     }
     appendEmptyBlock() {
       return this.appendBlockForAttributesWithElement([], null);
     }
-    appendStringWithAttributes(t2, e2) {
-      return this.appendPiece(Ge(t2, e2));
+    appendStringWithAttributes(t3, e2) {
+      return this.appendPiece(cn(t3, e2));
     }
-    appendAttachmentWithAttributes(t2, e2) {
-      return this.appendPiece(function(t3) {
-        return { attachment: t3, attributes: arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, type: "attachment" };
-      }(t2, e2));
+    appendAttachmentWithAttributes(t3, e2) {
+      return this.appendPiece(function(t4) {
+        return { attachment: t4, attributes: arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, type: "attachment" };
+      }(t3, e2));
     }
-    appendPiece(t2) {
-      return 0 === this.blocks.length && this.appendEmptyBlock(), this.blocks[this.blocks.length - 1].text.push(t2);
+    appendPiece(t3) {
+      return 0 === this.blocks.length && this.appendEmptyBlock(), this.blocks[this.blocks.length - 1].text.push(t3);
     }
-    appendStringToTextAtIndex(t2, e2) {
+    appendStringToTextAtIndex(t3, e2) {
       const { text: i2 } = this.blocks[e2], n2 = i2[i2.length - 1];
-      if ("string" !== (null == n2 ? void 0 : n2.type)) return i2.push(Ge(t2));
-      n2.string += t2;
+      if ("string" !== (null == n2 ? void 0 : n2.type)) return i2.push(cn(t3));
+      n2.string += t3;
     }
-    prependStringToTextAtIndex(t2, e2) {
+    prependStringToTextAtIndex(t3, e2) {
       const { text: i2 } = this.blocks[e2], n2 = i2[0];
-      if ("string" !== (null == n2 ? void 0 : n2.type)) return i2.unshift(Ge(t2));
-      n2.string = t2 + n2.string;
+      if ("string" !== (null == n2 ? void 0 : n2.type)) return i2.unshift(cn(t3));
+      n2.string = t3 + n2.string;
     }
-    getTextAttributes(t2) {
+    getTextAttributes(t3) {
       let e2;
       const i2 = {};
       for (const n2 in W) {
         const r2 = W[n2];
-        if (r2.tagName && A(t2, { matchingSelector: r2.tagName, untilNode: this.containerElement })) i2[n2] = true;
+        if (r2.tagName && y(t3, { matchingSelector: r2.tagName, untilNode: this.containerElement })) i2[n2] = true;
         else if (r2.parser) {
-          if (e2 = r2.parser(t2), e2) {
+          if (e2 = r2.parser(t3), e2) {
             let o2 = false;
-            for (const i3 of this.findBlockElementAncestors(t2)) if (r2.parser(i3) === e2) {
+            for (const i3 of this.findBlockElementAncestors(t3)) if (r2.parser(i3) === e2) {
               o2 = true;
               break;
             }
             o2 || (i2[n2] = e2);
           }
-        } else r2.styleProperty && (e2 = t2.style[r2.styleProperty], e2 && (i2[n2] = e2));
+        } else r2.styleProperty && (e2 = t3.style[r2.styleProperty], e2 && (i2[n2] = e2));
       }
-      if (I(t2)) {
-        const n2 = $e(t2, "attributes");
-        for (const t3 in n2) e2 = n2[t3], i2[t3] = e2;
+      if (P(t3)) {
+        const n2 = un(t3, "attributes");
+        for (const t4 in n2) e2 = n2[t4], i2[t4] = e2;
       }
       return i2;
     }
-    getBlockAttributes(t2) {
+    getBlockAttributes(t3) {
       const e2 = [];
-      for (; t2 && t2 !== this.containerElement; ) {
+      for (; t3 && t3 !== this.containerElement; ) {
         for (const r2 in n) {
           const o2 = n[r2];
           var i2;
           if (false !== o2.parse) {
-            if (E(t2) === o2.tagName) (null !== (i2 = o2.test) && void 0 !== i2 && i2.call(o2, t2) || !o2.test) && (e2.push(r2), o2.listAttribute && e2.push(o2.listAttribute));
+            if (k(t3) === o2.tagName) (null !== (i2 = o2.test) && void 0 !== i2 && i2.call(o2, t3) || !o2.test) && (e2.push(r2), o2.listAttribute && e2.push(o2.listAttribute));
           }
         }
-        t2 = t2.parentNode;
+        t3 = t3.parentNode;
       }
       return e2.reverse();
     }
-    getBlockHTMLAttributes(t2) {
-      const e2 = {}, i2 = Object.values(n).find((e3) => e3.tagName === E(t2));
+    getBlockHTMLAttributes(t3) {
+      const e2 = {}, i2 = Object.values(n).find((e3) => e3.tagName === k(t3));
       return ((null == i2 ? void 0 : i2.htmlAttributes) || []).forEach((i3) => {
-        t2.hasAttribute(i3) && (e2[i3] = t2.getAttribute(i3));
+        t3.hasAttribute(i3) && (e2[i3] = t3.getAttribute(i3));
       }), e2;
     }
-    findBlockElementAncestors(t2) {
+    findBlockElementAncestors(t3) {
       const e2 = [];
-      for (; t2 && t2 !== this.containerElement; ) {
-        const i2 = E(t2);
-        D().includes(i2) && e2.push(t2), t2 = t2.parentNode;
+      for (; t3 && t3 !== this.containerElement; ) {
+        const i2 = k(t3);
+        L().includes(i2) && e2.push(t3), t3 = t3.parentNode;
       }
       return e2;
     }
-    isBlockElement(t2) {
-      if ((null == t2 ? void 0 : t2.nodeType) === Node.ELEMENT_NODE && !I(t2) && !A(t2, { matchingSelector: "td", untilNode: this.containerElement })) return D().includes(E(t2)) || "block" === window.getComputedStyle(t2).display;
+    isBlockElement(t3) {
+      if ((null == t3 ? void 0 : t3.nodeType) === Node.ELEMENT_NODE && !P(t3) && !y(t3, { matchingSelector: "td", untilNode: this.containerElement })) return L().includes(k(t3)) || "block" === window.getComputedStyle(t3).display;
     }
-    isInsignificantTextNode(t2) {
-      if ((null == t2 ? void 0 : t2.nodeType) !== Node.TEXT_NODE) return;
-      if (!ii(t2.data)) return;
-      const { parentNode: e2, previousSibling: i2, nextSibling: n2 } = t2;
-      return Qe(e2.previousSibling) && !this.isBlockElement(e2.previousSibling) || Ye(e2) ? void 0 : !i2 || this.isBlockElement(i2) || !n2 || this.isBlockElement(n2);
+    isInsignificantTextNode(t3) {
+      if ((null == t3 ? void 0 : t3.nodeType) !== Node.TEXT_NODE) return;
+      if (!bn(t3.data)) return;
+      const { parentNode: e2, previousSibling: i2, nextSibling: n2 } = t3;
+      return gn(e2.previousSibling) && !this.isBlockElement(e2.previousSibling) || dn(e2) ? void 0 : !i2 || this.isBlockElement(i2) || !n2 || this.isBlockElement(n2);
     }
-    isExtraBR(t2) {
-      return "br" === E(t2) && this.isBlockElement(t2.parentNode) && t2.parentNode.lastChild === t2;
+    isExtraBR(t3) {
+      return "br" === k(t3) && this.isBlockElement(t3.parentNode) && t3.parentNode.lastChild === t3;
     }
-    needsTableSeparator(t2) {
+    needsTableSeparator(t3) {
       if (j.removeBlankTableCells) {
         var e2;
-        const i2 = null === (e2 = t2.previousSibling) || void 0 === e2 ? void 0 : e2.textContent;
+        const i2 = null === (e2 = t3.previousSibling) || void 0 === e2 ? void 0 : e2.textContent;
         return i2 && /\S/.test(i2);
       }
-      return t2.previousSibling;
+      return t3.previousSibling;
     }
     translateBlockElementMarginsToNewlines() {
-      const t2 = this.getMarginOfDefaultBlockElement();
+      const t3 = this.getMarginOfDefaultBlockElement();
       for (let e2 = 0; e2 < this.blocks.length; e2++) {
         const i2 = this.getMarginOfBlockElementAtIndex(e2);
-        i2 && (i2.top > 2 * t2.top && this.prependStringToTextAtIndex("\n", e2), i2.bottom > 2 * t2.bottom && this.appendStringToTextAtIndex("\n", e2));
+        i2 && (i2.top > 2 * t3.top && this.prependStringToTextAtIndex("\n", e2), i2.bottom > 2 * t3.bottom && this.appendStringToTextAtIndex("\n", e2));
       }
     }
-    getMarginOfBlockElementAtIndex(t2) {
-      const e2 = this.blockElements[t2];
-      if (e2 && e2.textContent && !D().includes(E(e2)) && !this.processedElements.includes(e2)) return Ze(e2);
+    getMarginOfBlockElementAtIndex(t3) {
+      const e2 = this.blockElements[t3];
+      if (e2 && e2.textContent && !L().includes(k(e2)) && !this.processedElements.includes(e2)) return mn(e2);
     }
     getMarginOfDefaultBlockElement() {
-      const t2 = S(n.default.tagName);
-      return this.containerElement.appendChild(t2), Ze(t2);
+      const t3 = T(n.default.tagName);
+      return this.containerElement.appendChild(t3), mn(t3);
     }
   };
-  var Ye = function(t2) {
-    const { whiteSpace: e2 } = window.getComputedStyle(t2);
+  var dn = function(t3) {
+    const { whiteSpace: e2 } = window.getComputedStyle(t3);
     return ["pre", "pre-wrap", "pre-line"].includes(e2);
   };
-  var Qe = (t2) => t2 && !ni(t2.textContent);
-  var Ze = function(t2) {
-    const e2 = window.getComputedStyle(t2);
+  var gn = (t3) => t3 && !vn(t3.textContent);
+  var mn = function(t3) {
+    const e2 = window.getComputedStyle(t3);
     if ("block" === e2.display) return { top: parseInt(e2.marginTop), bottom: parseInt(e2.marginBottom) };
   };
-  var ti = function(t2) {
-    return "style" === E(t2) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+  var pn = function(t3) {
+    return "style" === k(t3) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
   };
-  var ei = (t2) => t2.replace(new RegExp("^".concat(Ut.source, "+")), "");
-  var ii = (t2) => new RegExp("^".concat(Ut.source, "*$")).test(t2);
-  var ni = (t2) => /\s$/.test(t2);
-  var ri = ["contenteditable", "data-trix-id", "data-trix-store-key", "data-trix-mutable", "data-trix-placeholder", "tabindex"];
-  var oi = "data-trix-serialized-attributes";
-  var si = "[".concat(oi, "]");
-  var ai = new RegExp("<!--block-->", "g");
-  var li = { "application/json": function(t2) {
+  var fn = (t3) => t3.replace(new RegExp("^".concat(Ut.source, "+")), "");
+  var bn = (t3) => new RegExp("^".concat(Ut.source, "*$")).test(t3);
+  var vn = (t3) => /\s$/.test(t3);
+  var An = ["contenteditable", "data-trix-id", "data-trix-store-key", "data-trix-mutable", "data-trix-placeholder", "tabindex"];
+  var yn = "data-trix-serialized-attributes";
+  var xn = "[".concat(yn, "]");
+  var Cn = new RegExp("<!--block-->", "g");
+  var En = { "application/json": function(t3) {
     let e2;
-    if (t2 instanceof Je) e2 = t2;
+    if (t3 instanceof an) e2 = t3;
     else {
-      if (!(t2 instanceof HTMLElement)) throw new Error("unserializable object");
-      e2 = Xe.parse(t2.innerHTML).getDocument();
+      if (!(t3 instanceof HTMLElement)) throw new Error("unserializable object");
+      e2 = hn.parse(t3.innerHTML).getDocument();
     }
     return e2.toSerializableDocument().toJSONString();
-  }, "text/html": function(t2) {
+  }, "text/html": function(t3) {
     let e2;
-    if (t2 instanceof Je) e2 = ve.render(t2);
+    if (t3 instanceof an) e2 = Si.render(t3);
     else {
-      if (!(t2 instanceof HTMLElement)) throw new Error("unserializable object");
-      e2 = t2.cloneNode(true);
+      if (!(t3 instanceof HTMLElement)) throw new Error("unserializable object");
+      e2 = t3.cloneNode(true);
     }
-    return Array.from(e2.querySelectorAll("[data-trix-serialize=false]")).forEach((t3) => {
-      k(t3);
-    }), ri.forEach((t3) => {
-      Array.from(e2.querySelectorAll("[".concat(t3, "]"))).forEach((e3) => {
-        e3.removeAttribute(t3);
+    return Array.from(e2.querySelectorAll("[data-trix-serialize=false]")).forEach((t4) => {
+      S(t4);
+    }), An.forEach((t4) => {
+      Array.from(e2.querySelectorAll("[".concat(t4, "]"))).forEach((e3) => {
+        e3.removeAttribute(t4);
       });
-    }), Array.from(e2.querySelectorAll(si)).forEach((t3) => {
+    }), Array.from(e2.querySelectorAll(xn)).forEach((t4) => {
       try {
-        const e3 = JSON.parse(t3.getAttribute(oi));
-        t3.removeAttribute(oi);
+        const e3 = JSON.parse(t4.getAttribute(yn));
+        t4.removeAttribute(yn);
         for (const i2 in e3) {
           const n2 = e3[i2];
-          t3.setAttribute(i2, n2);
+          t4.setAttribute(i2, n2);
         }
-      } catch (t4) {
+      } catch (t5) {
       }
-    }), e2.innerHTML.replace(ai, "");
+    }), e2.innerHTML.replace(Cn, "");
   } };
-  var ci = Object.freeze({ __proto__: null });
-  var ui = class extends H {
-    constructor(t2, e2) {
-      super(...arguments), this.attachmentManager = t2, this.attachment = e2, this.id = this.attachment.id, this.file = this.attachment.file;
+  var Sn = Object.freeze({ __proto__: null });
+  var Rn = class extends q {
+    constructor(t3, e2) {
+      super(...arguments), this.attachmentManager = t3, this.attachment = e2, this.id = this.attachment.id, this.file = this.attachment.file;
     }
     remove() {
       return this.attachmentManager.requestRemovalOfAttachment(this.attachment);
     }
   };
-  ui.proxyMethod("attachment.getAttribute"), ui.proxyMethod("attachment.hasAttribute"), ui.proxyMethod("attachment.setAttribute"), ui.proxyMethod("attachment.getAttributes"), ui.proxyMethod("attachment.setAttributes"), ui.proxyMethod("attachment.isPending"), ui.proxyMethod("attachment.isPreviewable"), ui.proxyMethod("attachment.getURL"), ui.proxyMethod("attachment.getHref"), ui.proxyMethod("attachment.getFilename"), ui.proxyMethod("attachment.getFilesize"), ui.proxyMethod("attachment.getFormattedFilesize"), ui.proxyMethod("attachment.getExtension"), ui.proxyMethod("attachment.getContentType"), ui.proxyMethod("attachment.getFile"), ui.proxyMethod("attachment.setFile"), ui.proxyMethod("attachment.releaseFile"), ui.proxyMethod("attachment.getUploadProgress"), ui.proxyMethod("attachment.setUploadProgress");
-  var hi = class extends H {
+  Rn.proxyMethod("attachment.getAttribute"), Rn.proxyMethod("attachment.hasAttribute"), Rn.proxyMethod("attachment.setAttribute"), Rn.proxyMethod("attachment.getAttributes"), Rn.proxyMethod("attachment.setAttributes"), Rn.proxyMethod("attachment.isPending"), Rn.proxyMethod("attachment.isPreviewable"), Rn.proxyMethod("attachment.getURL"), Rn.proxyMethod("attachment.getHref"), Rn.proxyMethod("attachment.getFilename"), Rn.proxyMethod("attachment.getFilesize"), Rn.proxyMethod("attachment.getFormattedFilesize"), Rn.proxyMethod("attachment.getExtension"), Rn.proxyMethod("attachment.getContentType"), Rn.proxyMethod("attachment.getFile"), Rn.proxyMethod("attachment.setFile"), Rn.proxyMethod("attachment.releaseFile"), Rn.proxyMethod("attachment.getUploadProgress"), Rn.proxyMethod("attachment.setUploadProgress");
+  var kn = class extends q {
     constructor() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
-      super(...arguments), this.managedAttachments = {}, Array.from(t2).forEach((t3) => {
-        this.manageAttachment(t3);
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
+      super(...arguments), this.managedAttachments = {}, Array.from(t3).forEach((t4) => {
+        this.manageAttachment(t4);
       });
     }
     getAttachments() {
-      const t2 = [];
+      const t3 = [];
       for (const e2 in this.managedAttachments) {
         const i2 = this.managedAttachments[e2];
-        t2.push(i2);
+        t3.push(i2);
       }
-      return t2;
+      return t3;
     }
-    manageAttachment(t2) {
-      return this.managedAttachments[t2.id] || (this.managedAttachments[t2.id] = new ui(this, t2)), this.managedAttachments[t2.id];
+    manageAttachment(t3) {
+      return this.managedAttachments[t3.id] || (this.managedAttachments[t3.id] = new Rn(this, t3)), this.managedAttachments[t3.id];
     }
-    attachmentIsManaged(t2) {
-      return t2.id in this.managedAttachments;
+    attachmentIsManaged(t3) {
+      return t3.id in this.managedAttachments;
     }
-    requestRemovalOfAttachment(t2) {
+    requestRemovalOfAttachment(t3) {
       var e2, i2;
-      if (this.attachmentIsManaged(t2)) return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.attachmentManagerDidRequestRemovalOfAttachment) || void 0 === i2 ? void 0 : i2.call(e2, t2);
+      if (this.attachmentIsManaged(t3)) return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.attachmentManagerDidRequestRemovalOfAttachment) || void 0 === i2 ? void 0 : i2.call(e2, t3);
     }
-    unmanageAttachment(t2) {
-      const e2 = this.managedAttachments[t2.id];
-      return delete this.managedAttachments[t2.id], e2;
+    unmanageAttachment(t3) {
+      const e2 = this.managedAttachments[t3.id];
+      return delete this.managedAttachments[t3.id], e2;
     }
   };
-  var di = class {
-    constructor(t2) {
-      this.composition = t2, this.document = this.composition.document;
+  var Tn = class {
+    constructor(t3) {
+      this.composition = t3, this.document = this.composition.document;
       const e2 = this.composition.getSelectedRange();
       this.startPosition = e2[0], this.endPosition = e2[1], this.startLocation = this.document.locationFromPosition(this.startPosition), this.endLocation = this.document.locationFromPosition(this.endPosition), this.block = this.document.getBlockAtIndex(this.endLocation.index), this.breaksOnReturn = this.block.breaksOnReturn(), this.previousCharacter = this.block.text.getStringAtPosition(this.endLocation.offset - 1), this.nextCharacter = this.block.text.getStringAtPosition(this.endLocation.offset);
     }
@@ -10791,126 +11190,126 @@
       return this.block.hasAttributes() && !this.block.isListItem() && this.block.isEmpty();
     }
   };
-  var gi = class extends H {
+  var wn = class extends q {
     constructor() {
-      super(...arguments), this.document = new Je(), this.attachments = [], this.currentAttributes = {}, this.revision = 0;
+      super(...arguments), this.document = new an(), this.attachments = [], this.currentAttributes = {}, this.revision = 0;
     }
-    setDocument(t2) {
+    setDocument(t3) {
       var e2, i2;
-      if (!t2.isEqualTo(this.document)) return this.document = t2, this.refreshAttachments(), this.revision++, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionDidChangeDocument) || void 0 === i2 ? void 0 : i2.call(e2, t2);
+      if (!t3.isEqualTo(this.document)) return this.document = t3, this.refreshAttachments(), this.revision++, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionDidChangeDocument) || void 0 === i2 ? void 0 : i2.call(e2, t3);
     }
     getSnapshot() {
       return { document: this.document, selectedRange: this.getSelectedRange() };
     }
-    loadSnapshot(t2) {
+    loadSnapshot(t3) {
       var e2, i2, n2, r2;
-      let { document: o2, selectedRange: s2 } = t2;
-      return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionWillLoadSnapshot) || void 0 === i2 || i2.call(e2), this.setDocument(null != o2 ? o2 : new Je()), this.setSelection(null != s2 ? s2 : [0, 0]), null === (n2 = this.delegate) || void 0 === n2 || null === (r2 = n2.compositionDidLoadSnapshot) || void 0 === r2 ? void 0 : r2.call(n2);
+      let { document: o2, selectedRange: s2 } = t3;
+      return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionWillLoadSnapshot) || void 0 === i2 || i2.call(e2), this.setDocument(null != o2 ? o2 : new an()), this.setSelection(null != s2 ? s2 : [0, 0]), null === (n2 = this.delegate) || void 0 === n2 || null === (r2 = n2.compositionDidLoadSnapshot) || void 0 === r2 ? void 0 : r2.call(n2);
     }
-    insertText(t2) {
+    insertText(t3) {
       let { updatePosition: e2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : { updatePosition: true };
       const i2 = this.getSelectedRange();
-      this.setDocument(this.document.insertTextAtRange(t2, i2));
-      const n2 = i2[0], r2 = n2 + t2.getLength();
+      this.setDocument(this.document.insertTextAtRange(t3, i2));
+      const n2 = i2[0], r2 = n2 + t3.getLength();
       return e2 && this.setSelection(r2), this.notifyDelegateOfInsertionAtRange([n2, r2]);
     }
     insertBlock() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : new Oe();
-      const e2 = new Je([t2]);
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : new Xi();
+      const e2 = new an([t3]);
       return this.insertDocument(e2);
     }
     insertDocument() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : new Je();
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : new an();
       const e2 = this.getSelectedRange();
-      this.setDocument(this.document.insertDocumentAtRange(t2, e2));
-      const i2 = e2[0], n2 = i2 + t2.getLength();
+      this.setDocument(this.document.insertDocumentAtRange(t3, e2));
+      const i2 = e2[0], n2 = i2 + t3.getLength();
       return this.setSelection(n2), this.notifyDelegateOfInsertionAtRange([i2, n2]);
     }
-    insertString(t2, e2) {
-      const i2 = this.getCurrentTextAttributes(), n2 = Ne.textForStringWithAttributes(t2, i2);
+    insertString(t3, e2) {
+      const i2 = this.getCurrentTextAttributes(), n2 = Yi.textForStringWithAttributes(t3, i2);
       return this.insertText(n2, e2);
     }
     insertBlockBreak() {
-      const t2 = this.getSelectedRange();
-      this.setDocument(this.document.insertBlockBreakAtRange(t2));
-      const e2 = t2[0], i2 = e2 + 1;
+      const t3 = this.getSelectedRange();
+      this.setDocument(this.document.insertBlockBreakAtRange(t3));
+      const e2 = t3[0], i2 = e2 + 1;
       return this.setSelection(i2), this.notifyDelegateOfInsertionAtRange([e2, i2]);
     }
     insertLineBreak() {
-      const t2 = new di(this);
-      if (t2.shouldDecreaseListLevel()) return this.decreaseListLevel(), this.setSelection(t2.startPosition);
-      if (t2.shouldPrependListItem()) {
-        const e2 = new Je([t2.block.copyWithoutText()]);
+      const t3 = new Tn(this);
+      if (t3.shouldDecreaseListLevel()) return this.decreaseListLevel(), this.setSelection(t3.startPosition);
+      if (t3.shouldPrependListItem()) {
+        const e2 = new an([t3.block.copyWithoutText()]);
         return this.insertDocument(e2);
       }
-      return t2.shouldInsertBlockBreak() ? this.insertBlockBreak() : t2.shouldRemoveLastBlockAttribute() ? this.removeLastBlockAttribute() : t2.shouldBreakFormattedBlock() ? this.breakFormattedBlock(t2) : this.insertString("\n");
+      return t3.shouldInsertBlockBreak() ? this.insertBlockBreak() : t3.shouldRemoveLastBlockAttribute() ? this.removeLastBlockAttribute() : t3.shouldBreakFormattedBlock() ? this.breakFormattedBlock(t3) : this.insertString("\n");
     }
-    insertHTML(t2) {
-      const e2 = Xe.parse(t2).getDocument(), i2 = this.getSelectedRange();
+    insertHTML(t3) {
+      const e2 = hn.parse(t3, { purifyOptions: { SAFE_FOR_XML: true } }).getDocument(), i2 = this.getSelectedRange();
       this.setDocument(this.document.mergeDocumentAtRange(e2, i2));
       const n2 = i2[0], r2 = n2 + e2.getLength() - 1;
       return this.setSelection(r2), this.notifyDelegateOfInsertionAtRange([n2, r2]);
     }
-    replaceHTML(t2) {
-      const e2 = Xe.parse(t2).getDocument().copyUsingObjectsFromDocument(this.document), i2 = this.getLocationRange({ strict: false }), n2 = this.document.rangeFromLocationRange(i2);
+    replaceHTML(t3) {
+      const e2 = hn.parse(t3).getDocument().copyUsingObjectsFromDocument(this.document), i2 = this.getLocationRange({ strict: false }), n2 = this.document.rangeFromLocationRange(i2);
       return this.setDocument(e2), this.setSelection(n2);
     }
-    insertFile(t2) {
-      return this.insertFiles([t2]);
+    insertFile(t3) {
+      return this.insertFiles([t3]);
     }
-    insertFiles(t2) {
+    insertFiles(t3) {
       const e2 = [];
-      return Array.from(t2).forEach((t3) => {
+      return Array.from(t3).forEach((t4) => {
         var i2;
-        if (null !== (i2 = this.delegate) && void 0 !== i2 && i2.compositionShouldAcceptFile(t3)) {
-          const i3 = De.attachmentForFile(t3);
+        if (null !== (i2 = this.delegate) && void 0 !== i2 && i2.compositionShouldAcceptFile(t4)) {
+          const i3 = Vi.attachmentForFile(t4);
           e2.push(i3);
         }
       }), this.insertAttachments(e2);
     }
-    insertAttachment(t2) {
-      return this.insertAttachments([t2]);
+    insertAttachment(t3) {
+      return this.insertAttachments([t3]);
     }
-    insertAttachments(t2) {
-      let e2 = new Ne();
-      return Array.from(t2).forEach((t3) => {
+    insertAttachments(t3) {
+      let e2 = new Yi();
+      return Array.from(t3).forEach((t4) => {
         var n2;
-        const r2 = t3.getType(), o2 = null === (n2 = i[r2]) || void 0 === n2 ? void 0 : n2.presentation, s2 = this.getCurrentTextAttributes();
+        const r2 = t4.getType(), o2 = null === (n2 = i[r2]) || void 0 === n2 ? void 0 : n2.presentation, s2 = this.getCurrentTextAttributes();
         o2 && (s2.presentation = o2);
-        const a2 = Ne.textForAttachmentWithAttributes(t3, s2);
+        const a2 = Yi.textForAttachmentWithAttributes(t4, s2);
         e2 = e2.appendText(a2);
       }), this.insertText(e2);
     }
-    shouldManageDeletingInDirection(t2) {
+    shouldManageDeletingInDirection(t3) {
       const e2 = this.getLocationRange();
-      if (Dt(e2)) {
-        if ("backward" === t2 && 0 === e2[0].offset) return true;
-        if (this.shouldManageMovingCursorInDirection(t2)) return true;
+      if (Lt(e2)) {
+        if ("backward" === t3 && 0 === e2[0].offset) return true;
+        if (this.shouldManageMovingCursorInDirection(t3)) return true;
       } else if (e2[0].index !== e2[1].index) return true;
       return false;
     }
-    deleteInDirection(t2) {
+    deleteInDirection(t3) {
       let e2, i2, n2, { length: r2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
       const o2 = this.getLocationRange();
       let s2 = this.getSelectedRange();
-      const a2 = Dt(s2);
-      if (a2 ? i2 = "backward" === t2 && 0 === o2[0].offset : n2 = o2[0].index !== o2[1].index, i2 && this.canDecreaseBlockAttributeLevel()) {
-        const t3 = this.getBlock();
-        if (t3.isListItem() ? this.decreaseListLevel() : this.decreaseBlockAttributeLevel(), this.setSelection(s2[0]), t3.isEmpty()) return false;
+      const a2 = Lt(s2);
+      if (a2 ? i2 = "backward" === t3 && 0 === o2[0].offset : n2 = o2[0].index !== o2[1].index, i2 && this.canDecreaseBlockAttributeLevel()) {
+        const t4 = this.getBlock();
+        if (t4.isListItem() ? this.decreaseListLevel() : this.decreaseBlockAttributeLevel(), this.setSelection(s2[0]), t4.isEmpty()) return false;
       }
-      return a2 && (s2 = this.getExpandedRangeInDirection(t2, { length: r2 }), "backward" === t2 && (e2 = this.getAttachmentAtRange(s2))), e2 ? (this.editAttachment(e2), false) : (this.setDocument(this.document.removeTextAtRange(s2)), this.setSelection(s2[0]), !i2 && !n2 && void 0);
+      return a2 && (s2 = this.getExpandedRangeInDirection(t3, { length: r2 }), "backward" === t3 && (e2 = this.getAttachmentAtRange(s2))), e2 ? (this.editAttachment(e2), false) : (this.setDocument(this.document.removeTextAtRange(s2)), this.setSelection(s2[0]), !i2 && !n2 && void 0);
     }
-    moveTextFromRange(t2) {
+    moveTextFromRange(t3) {
       const [e2] = Array.from(this.getSelectedRange());
-      return this.setDocument(this.document.moveTextFromRangeToPosition(t2, e2)), this.setSelection(e2);
+      return this.setDocument(this.document.moveTextFromRangeToPosition(t3, e2)), this.setSelection(e2);
     }
-    removeAttachment(t2) {
-      const e2 = this.document.getRangeOfAttachment(t2);
+    removeAttachment(t3) {
+      const e2 = this.document.getRangeOfAttachment(t3);
       if (e2) return this.stopEditingAttachment(), this.setDocument(this.document.removeTextAtRange(e2)), this.setSelection(e2[0]);
     }
     removeLastBlockAttribute() {
-      const [t2, e2] = Array.from(this.getSelectedRange()), i2 = this.document.getBlockAtPosition(e2);
-      return this.removeCurrentAttribute(i2.getLastAttribute()), this.setSelection(t2);
+      const [t3, e2] = Array.from(this.getSelectedRange()), i2 = this.document.getBlockAtPosition(e2);
+      return this.removeCurrentAttribute(i2.getLastAttribute()), this.setSelection(t3);
     }
     insertPlaceholder() {
       return this.placeholderPosition = this.getPosition(), this.insertString(" ");
@@ -10921,129 +11320,129 @@
     forgetPlaceholder() {
       this.placeholderPosition = null;
     }
-    hasCurrentAttribute(t2) {
-      const e2 = this.currentAttributes[t2];
+    hasCurrentAttribute(t3) {
+      const e2 = this.currentAttributes[t3];
       return null != e2 && false !== e2;
     }
-    toggleCurrentAttribute(t2) {
-      const e2 = !this.currentAttributes[t2];
-      return e2 ? this.setCurrentAttribute(t2, e2) : this.removeCurrentAttribute(t2);
+    toggleCurrentAttribute(t3) {
+      const e2 = !this.currentAttributes[t3];
+      return e2 ? this.setCurrentAttribute(t3, e2) : this.removeCurrentAttribute(t3);
     }
-    canSetCurrentAttribute(t2) {
-      return gt(t2) ? this.canSetCurrentBlockAttribute(t2) : this.canSetCurrentTextAttribute(t2);
+    canSetCurrentAttribute(t3) {
+      return mt(t3) ? this.canSetCurrentBlockAttribute(t3) : this.canSetCurrentTextAttribute(t3);
     }
-    canSetCurrentTextAttribute(t2) {
+    canSetCurrentTextAttribute(t3) {
       const e2 = this.getSelectedDocument();
       if (e2) {
-        for (const t3 of Array.from(e2.getAttachments())) if (!t3.hasContent()) return false;
+        for (const t4 of Array.from(e2.getAttachments())) if (!t4.hasContent()) return false;
         return true;
       }
     }
-    canSetCurrentBlockAttribute(t2) {
+    canSetCurrentBlockAttribute(t3) {
       const e2 = this.getBlock();
       if (e2) return !e2.isTerminalBlock();
     }
-    setCurrentAttribute(t2, e2) {
-      return gt(t2) ? this.setBlockAttribute(t2, e2) : (this.setTextAttribute(t2, e2), this.currentAttributes[t2] = e2, this.notifyDelegateOfCurrentAttributesChange());
+    setCurrentAttribute(t3, e2) {
+      return mt(t3) ? this.setBlockAttribute(t3, e2) : (this.setTextAttribute(t3, e2), this.currentAttributes[t3] = e2, this.notifyDelegateOfCurrentAttributesChange());
     }
-    setHTMLAtributeAtPosition(t2, e2, i2) {
+    setHTMLAtributeAtPosition(t3, e2, i2) {
       var n2;
-      const r2 = this.document.getBlockAtPosition(t2), o2 = null === (n2 = gt(r2.getLastAttribute())) || void 0 === n2 ? void 0 : n2.htmlAttributes;
+      const r2 = this.document.getBlockAtPosition(t3), o2 = null === (n2 = mt(r2.getLastAttribute())) || void 0 === n2 ? void 0 : n2.htmlAttributes;
       if (r2 && null != o2 && o2.includes(e2)) {
-        const n3 = this.document.setHTMLAttributeAtPosition(t2, e2, i2);
+        const n3 = this.document.setHTMLAttributeAtPosition(t3, e2, i2);
         this.setDocument(n3);
       }
     }
-    setTextAttribute(t2, e2) {
+    setTextAttribute(t3, e2) {
       const i2 = this.getSelectedRange();
       if (!i2) return;
       const [n2, r2] = Array.from(i2);
-      if (n2 !== r2) return this.setDocument(this.document.addAttributeAtRange(t2, e2, i2));
-      if ("href" === t2) {
-        const t3 = Ne.textForStringWithAttributes(e2, { href: e2 });
-        return this.insertText(t3);
+      if (n2 !== r2) return this.setDocument(this.document.addAttributeAtRange(t3, e2, i2));
+      if ("href" === t3) {
+        const t4 = Yi.textForStringWithAttributes(e2, { href: e2 });
+        return this.insertText(t4);
       }
     }
-    setBlockAttribute(t2, e2) {
+    setBlockAttribute(t3, e2) {
       const i2 = this.getSelectedRange();
-      if (this.canSetCurrentAttribute(t2)) return this.setDocument(this.document.applyBlockAttributeAtRange(t2, e2, i2)), this.setSelection(i2);
+      if (this.canSetCurrentAttribute(t3)) return this.setDocument(this.document.applyBlockAttributeAtRange(t3, e2, i2)), this.setSelection(i2);
     }
-    removeCurrentAttribute(t2) {
-      return gt(t2) ? (this.removeBlockAttribute(t2), this.updateCurrentAttributes()) : (this.removeTextAttribute(t2), delete this.currentAttributes[t2], this.notifyDelegateOfCurrentAttributesChange());
+    removeCurrentAttribute(t3) {
+      return mt(t3) ? (this.removeBlockAttribute(t3), this.updateCurrentAttributes()) : (this.removeTextAttribute(t3), delete this.currentAttributes[t3], this.notifyDelegateOfCurrentAttributesChange());
     }
-    removeTextAttribute(t2) {
+    removeTextAttribute(t3) {
       const e2 = this.getSelectedRange();
-      if (e2) return this.setDocument(this.document.removeAttributeAtRange(t2, e2));
+      if (e2) return this.setDocument(this.document.removeAttributeAtRange(t3, e2));
     }
-    removeBlockAttribute(t2) {
+    removeBlockAttribute(t3) {
       const e2 = this.getSelectedRange();
-      if (e2) return this.setDocument(this.document.removeAttributeAtRange(t2, e2));
+      if (e2) return this.setDocument(this.document.removeAttributeAtRange(t3, e2));
     }
     canDecreaseNestingLevel() {
-      var t2;
-      return (null === (t2 = this.getBlock()) || void 0 === t2 ? void 0 : t2.getNestingLevel()) > 0;
+      var t3;
+      return (null === (t3 = this.getBlock()) || void 0 === t3 ? void 0 : t3.getNestingLevel()) > 0;
     }
     canIncreaseNestingLevel() {
-      var t2;
+      var t3;
       const e2 = this.getBlock();
       if (e2) {
-        if (null === (t2 = gt(e2.getLastNestableAttribute())) || void 0 === t2 || !t2.listAttribute) return e2.getNestingLevel() > 0;
+        if (null === (t3 = mt(e2.getLastNestableAttribute())) || void 0 === t3 || !t3.listAttribute) return e2.getNestingLevel() > 0;
         {
-          const t3 = this.getPreviousBlock();
-          if (t3) return function() {
-            let t4 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
-            return rt((arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : []).slice(0, t4.length), t4);
-          }(t3.getListItemAttributes(), e2.getListItemAttributes());
+          const t4 = this.getPreviousBlock();
+          if (t4) return function() {
+            let t5 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
+            return ot((arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : []).slice(0, t5.length), t5);
+          }(t4.getListItemAttributes(), e2.getListItemAttributes());
         }
       }
     }
     decreaseNestingLevel() {
-      const t2 = this.getBlock();
-      if (t2) return this.setDocument(this.document.replaceBlock(t2, t2.decreaseNestingLevel()));
+      const t3 = this.getBlock();
+      if (t3) return this.setDocument(this.document.replaceBlock(t3, t3.decreaseNestingLevel()));
     }
     increaseNestingLevel() {
-      const t2 = this.getBlock();
-      if (t2) return this.setDocument(this.document.replaceBlock(t2, t2.increaseNestingLevel()));
+      const t3 = this.getBlock();
+      if (t3) return this.setDocument(this.document.replaceBlock(t3, t3.increaseNestingLevel()));
     }
     canDecreaseBlockAttributeLevel() {
-      var t2;
-      return (null === (t2 = this.getBlock()) || void 0 === t2 ? void 0 : t2.getAttributeLevel()) > 0;
+      var t3;
+      return (null === (t3 = this.getBlock()) || void 0 === t3 ? void 0 : t3.getAttributeLevel()) > 0;
     }
     decreaseBlockAttributeLevel() {
-      var t2;
-      const e2 = null === (t2 = this.getBlock()) || void 0 === t2 ? void 0 : t2.getLastAttribute();
+      var t3;
+      const e2 = null === (t3 = this.getBlock()) || void 0 === t3 ? void 0 : t3.getLastAttribute();
       if (e2) return this.removeCurrentAttribute(e2);
     }
     decreaseListLevel() {
-      let [t2] = Array.from(this.getSelectedRange());
-      const { index: e2 } = this.document.locationFromPosition(t2);
+      let [t3] = Array.from(this.getSelectedRange());
+      const { index: e2 } = this.document.locationFromPosition(t3);
       let i2 = e2;
       const n2 = this.getBlock().getAttributeLevel();
       let r2 = this.document.getBlockAtIndex(i2 + 1);
       for (; r2 && r2.isListItem() && !(r2.getAttributeLevel() <= n2); ) i2++, r2 = this.document.getBlockAtIndex(i2 + 1);
-      t2 = this.document.positionFromLocation({ index: e2, offset: 0 });
+      t3 = this.document.positionFromLocation({ index: e2, offset: 0 });
       const o2 = this.document.positionFromLocation({ index: i2, offset: 0 });
-      return this.setDocument(this.document.removeLastListAttributeAtRange([t2, o2]));
+      return this.setDocument(this.document.removeLastListAttributeAtRange([t3, o2]));
     }
     updateCurrentAttributes() {
-      const t2 = this.getSelectedRange({ ignoreLock: true });
-      if (t2) {
-        const e2 = this.document.getCommonAttributesAtRange(t2);
-        if (Array.from(dt()).forEach((t3) => {
-          e2[t3] || this.canSetCurrentAttribute(t3) || (e2[t3] = false);
-        }), !St(e2, this.currentAttributes)) return this.currentAttributes = e2, this.notifyDelegateOfCurrentAttributesChange();
+      const t3 = this.getSelectedRange({ ignoreLock: true });
+      if (t3) {
+        const e2 = this.document.getCommonAttributesAtRange(t3);
+        if (Array.from(gt()).forEach((t4) => {
+          e2[t4] || this.canSetCurrentAttribute(t4) || (e2[t4] = false);
+        }), !Tt(e2, this.currentAttributes)) return this.currentAttributes = e2, this.notifyDelegateOfCurrentAttributesChange();
       }
     }
     getCurrentAttributes() {
-      return g.call({}, this.currentAttributes);
+      return m.call({}, this.currentAttributes);
     }
     getCurrentTextAttributes() {
-      const t2 = {};
+      const t3 = {};
       for (const e2 in this.currentAttributes) {
         const i2 = this.currentAttributes[e2];
-        false !== i2 && pt(e2) && (t2[e2] = i2);
+        false !== i2 && ft(e2) && (t3[e2] = i2);
       }
-      return t2;
+      return t3;
     }
     freezeSelection() {
       return this.setCurrentAttribute("frozen", true);
@@ -11054,29 +11453,29 @@
     hasFrozenSelection() {
       return this.hasCurrentAttribute("frozen");
     }
-    setSelection(t2) {
+    setSelection(t3) {
       var e2;
-      const i2 = this.document.locationRangeFromRange(t2);
+      const i2 = this.document.locationRangeFromRange(t3);
       return null === (e2 = this.delegate) || void 0 === e2 ? void 0 : e2.compositionDidRequestChangingSelectionToLocationRange(i2);
     }
     getSelectedRange() {
-      const t2 = this.getLocationRange();
-      if (t2) return this.document.rangeFromLocationRange(t2);
+      const t3 = this.getLocationRange();
+      if (t3) return this.document.rangeFromLocationRange(t3);
     }
-    setSelectedRange(t2) {
-      const e2 = this.document.locationRangeFromRange(t2);
+    setSelectedRange(t3) {
+      const e2 = this.document.locationRangeFromRange(t3);
       return this.getSelectionManager().setLocationRange(e2);
     }
     getPosition() {
-      const t2 = this.getLocationRange();
-      if (t2) return this.document.positionFromLocation(t2[0]);
+      const t3 = this.getLocationRange();
+      if (t3) return this.document.positionFromLocation(t3[0]);
     }
-    getLocationRange(t2) {
-      return this.targetLocationRange ? this.targetLocationRange : this.getSelectionManager().getLocationRange(t2) || Lt({ index: 0, offset: 0 });
+    getLocationRange(t3) {
+      return this.targetLocationRange ? this.targetLocationRange : this.getSelectionManager().getLocationRange(t3) || wt({ index: 0, offset: 0 });
     }
-    withTargetLocationRange(t2, e2) {
+    withTargetLocationRange(t3, e2) {
       let i2;
-      this.targetLocationRange = t2;
+      this.targetLocationRange = t3;
       try {
         i2 = e2();
       } finally {
@@ -11084,181 +11483,181 @@
       }
       return i2;
     }
-    withTargetRange(t2, e2) {
-      const i2 = this.document.locationRangeFromRange(t2);
+    withTargetRange(t3, e2) {
+      const i2 = this.document.locationRangeFromRange(t3);
       return this.withTargetLocationRange(i2, e2);
     }
-    withTargetDOMRange(t2, e2) {
-      const i2 = this.createLocationRangeFromDOMRange(t2, { strict: false });
+    withTargetDOMRange(t3, e2) {
+      const i2 = this.createLocationRangeFromDOMRange(t3, { strict: false });
       return this.withTargetLocationRange(i2, e2);
     }
-    getExpandedRangeInDirection(t2) {
+    getExpandedRangeInDirection(t3) {
       let { length: e2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, [i2, n2] = Array.from(this.getSelectedRange());
-      return "backward" === t2 ? e2 ? i2 -= e2 : i2 = this.translateUTF16PositionFromOffset(i2, -1) : e2 ? n2 += e2 : n2 = this.translateUTF16PositionFromOffset(n2, 1), Lt([i2, n2]);
+      return "backward" === t3 ? e2 ? i2 -= e2 : i2 = this.translateUTF16PositionFromOffset(i2, -1) : e2 ? n2 += e2 : n2 = this.translateUTF16PositionFromOffset(n2, 1), wt([i2, n2]);
     }
-    shouldManageMovingCursorInDirection(t2) {
+    shouldManageMovingCursorInDirection(t3) {
       if (this.editingAttachment) return true;
-      const e2 = this.getExpandedRangeInDirection(t2);
+      const e2 = this.getExpandedRangeInDirection(t3);
       return null != this.getAttachmentAtRange(e2);
     }
-    moveCursorInDirection(t2) {
+    moveCursorInDirection(t3) {
       let e2, i2;
       if (this.editingAttachment) i2 = this.document.getRangeOfAttachment(this.editingAttachment);
       else {
         const n2 = this.getSelectedRange();
-        i2 = this.getExpandedRangeInDirection(t2), e2 = !wt(n2, i2);
+        i2 = this.getExpandedRangeInDirection(t3), e2 = !Dt(n2, i2);
       }
-      if ("backward" === t2 ? this.setSelectedRange(i2[0]) : this.setSelectedRange(i2[1]), e2) {
-        const t3 = this.getAttachmentAtRange(i2);
-        if (t3) return this.editAttachment(t3);
+      if ("backward" === t3 ? this.setSelectedRange(i2[0]) : this.setSelectedRange(i2[1]), e2) {
+        const t4 = this.getAttachmentAtRange(i2);
+        if (t4) return this.editAttachment(t4);
       }
     }
-    expandSelectionInDirection(t2) {
+    expandSelectionInDirection(t3) {
       let { length: e2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-      const i2 = this.getExpandedRangeInDirection(t2, { length: e2 });
+      const i2 = this.getExpandedRangeInDirection(t3, { length: e2 });
       return this.setSelectedRange(i2);
     }
     expandSelectionForEditing() {
       if (this.hasCurrentAttribute("href")) return this.expandSelectionAroundCommonAttribute("href");
     }
-    expandSelectionAroundCommonAttribute(t2) {
-      const e2 = this.getPosition(), i2 = this.document.getRangeOfCommonAttributeAtPosition(t2, e2);
+    expandSelectionAroundCommonAttribute(t3) {
+      const e2 = this.getPosition(), i2 = this.document.getRangeOfCommonAttributeAtPosition(t3, e2);
       return this.setSelectedRange(i2);
     }
     selectionContainsAttachments() {
-      var t2;
-      return (null === (t2 = this.getSelectedAttachments()) || void 0 === t2 ? void 0 : t2.length) > 0;
+      var t3;
+      return (null === (t3 = this.getSelectedAttachments()) || void 0 === t3 ? void 0 : t3.length) > 0;
     }
     selectionIsInCursorTarget() {
       return this.editingAttachment || this.positionIsCursorTarget(this.getPosition());
     }
-    positionIsCursorTarget(t2) {
-      const e2 = this.document.locationFromPosition(t2);
+    positionIsCursorTarget(t3) {
+      const e2 = this.document.locationFromPosition(t3);
       if (e2) return this.locationIsCursorTarget(e2);
     }
-    positionIsBlockBreak(t2) {
+    positionIsBlockBreak(t3) {
       var e2;
-      return null === (e2 = this.document.getPieceAtPosition(t2)) || void 0 === e2 ? void 0 : e2.isBlockBreak();
+      return null === (e2 = this.document.getPieceAtPosition(t3)) || void 0 === e2 ? void 0 : e2.isBlockBreak();
     }
     getSelectedDocument() {
-      const t2 = this.getSelectedRange();
-      if (t2) return this.document.getDocumentAtRange(t2);
+      const t3 = this.getSelectedRange();
+      if (t3) return this.document.getDocumentAtRange(t3);
     }
     getSelectedAttachments() {
-      var t2;
-      return null === (t2 = this.getSelectedDocument()) || void 0 === t2 ? void 0 : t2.getAttachments();
+      var t3;
+      return null === (t3 = this.getSelectedDocument()) || void 0 === t3 ? void 0 : t3.getAttachments();
     }
     getAttachments() {
       return this.attachments.slice(0);
     }
     refreshAttachments() {
-      const t2 = this.document.getAttachments(), { added: e2, removed: i2 } = function() {
-        let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [], e3 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
+      const t3 = this.document.getAttachments(), { added: e2, removed: i2 } = function() {
+        let t4 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [], e3 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
         const i3 = [], n2 = [], r2 = /* @__PURE__ */ new Set();
-        t3.forEach((t4) => {
-          r2.add(t4);
+        t4.forEach((t5) => {
+          r2.add(t5);
         });
         const o2 = /* @__PURE__ */ new Set();
-        return e3.forEach((t4) => {
-          o2.add(t4), r2.has(t4) || i3.push(t4);
-        }), t3.forEach((t4) => {
-          o2.has(t4) || n2.push(t4);
+        return e3.forEach((t5) => {
+          o2.add(t5), r2.has(t5) || i3.push(t5);
+        }), t4.forEach((t5) => {
+          o2.has(t5) || n2.push(t5);
         }), { added: i3, removed: n2 };
-      }(this.attachments, t2);
-      return this.attachments = t2, Array.from(i2).forEach((t3) => {
+      }(this.attachments, t3);
+      return this.attachments = t3, Array.from(i2).forEach((t4) => {
         var e3, i3;
-        t3.delegate = null, null === (e3 = this.delegate) || void 0 === e3 || null === (i3 = e3.compositionDidRemoveAttachment) || void 0 === i3 || i3.call(e3, t3);
+        t4.delegate = null, null === (e3 = this.delegate) || void 0 === e3 || null === (i3 = e3.compositionDidRemoveAttachment) || void 0 === i3 || i3.call(e3, t4);
       }), (() => {
-        const t3 = [];
+        const t4 = [];
         return Array.from(e2).forEach((e3) => {
           var i3, n2;
-          e3.delegate = this, t3.push(null === (i3 = this.delegate) || void 0 === i3 || null === (n2 = i3.compositionDidAddAttachment) || void 0 === n2 ? void 0 : n2.call(i3, e3));
-        }), t3;
+          e3.delegate = this, t4.push(null === (i3 = this.delegate) || void 0 === i3 || null === (n2 = i3.compositionDidAddAttachment) || void 0 === n2 ? void 0 : n2.call(i3, e3));
+        }), t4;
       })();
     }
-    attachmentDidChangeAttributes(t2) {
+    attachmentDidChangeAttributes(t3) {
       var e2, i2;
-      return this.revision++, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionDidEditAttachment) || void 0 === i2 ? void 0 : i2.call(e2, t2);
+      return this.revision++, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionDidEditAttachment) || void 0 === i2 ? void 0 : i2.call(e2, t3);
     }
-    attachmentDidChangePreviewURL(t2) {
+    attachmentDidChangePreviewURL(t3) {
       var e2, i2;
-      return this.revision++, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionDidChangeAttachmentPreviewURL) || void 0 === i2 ? void 0 : i2.call(e2, t2);
+      return this.revision++, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionDidChangeAttachmentPreviewURL) || void 0 === i2 ? void 0 : i2.call(e2, t3);
     }
-    editAttachment(t2, e2) {
+    editAttachment(t3, e2) {
       var i2, n2;
-      if (t2 !== this.editingAttachment) return this.stopEditingAttachment(), this.editingAttachment = t2, null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.compositionDidStartEditingAttachment) || void 0 === n2 ? void 0 : n2.call(i2, this.editingAttachment, e2);
+      if (t3 !== this.editingAttachment) return this.stopEditingAttachment(), this.editingAttachment = t3, null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.compositionDidStartEditingAttachment) || void 0 === n2 ? void 0 : n2.call(i2, this.editingAttachment, e2);
     }
     stopEditingAttachment() {
-      var t2, e2;
-      this.editingAttachment && (null === (t2 = this.delegate) || void 0 === t2 || null === (e2 = t2.compositionDidStopEditingAttachment) || void 0 === e2 || e2.call(t2, this.editingAttachment), this.editingAttachment = null);
+      var t3, e2;
+      this.editingAttachment && (null === (t3 = this.delegate) || void 0 === t3 || null === (e2 = t3.compositionDidStopEditingAttachment) || void 0 === e2 || e2.call(t3, this.editingAttachment), this.editingAttachment = null);
     }
-    updateAttributesForAttachment(t2, e2) {
-      return this.setDocument(this.document.updateAttributesForAttachment(t2, e2));
+    updateAttributesForAttachment(t3, e2) {
+      return this.setDocument(this.document.updateAttributesForAttachment(t3, e2));
     }
-    removeAttributeForAttachment(t2, e2) {
-      return this.setDocument(this.document.removeAttributeForAttachment(t2, e2));
+    removeAttributeForAttachment(t3, e2) {
+      return this.setDocument(this.document.removeAttributeForAttachment(t3, e2));
     }
-    breakFormattedBlock(t2) {
-      let { document: e2 } = t2;
-      const { block: i2 } = t2;
-      let n2 = t2.startPosition, r2 = [n2 - 1, n2];
-      i2.getBlockBreakPosition() === t2.startLocation.offset ? (i2.breaksOnReturn() && "\n" === t2.nextCharacter ? n2 += 1 : e2 = e2.removeTextAtRange(r2), r2 = [n2, n2]) : "\n" === t2.nextCharacter ? "\n" === t2.previousCharacter ? r2 = [n2 - 1, n2 + 1] : (r2 = [n2, n2 + 1], n2 += 1) : t2.startLocation.offset - 1 != 0 && (n2 += 1);
-      const o2 = new Je([i2.removeLastAttribute().copyWithoutText()]);
+    breakFormattedBlock(t3) {
+      let { document: e2 } = t3;
+      const { block: i2 } = t3;
+      let n2 = t3.startPosition, r2 = [n2 - 1, n2];
+      i2.getBlockBreakPosition() === t3.startLocation.offset ? (i2.breaksOnReturn() && "\n" === t3.nextCharacter ? n2 += 1 : e2 = e2.removeTextAtRange(r2), r2 = [n2, n2]) : "\n" === t3.nextCharacter ? "\n" === t3.previousCharacter ? r2 = [n2 - 1, n2 + 1] : (r2 = [n2, n2 + 1], n2 += 1) : t3.startLocation.offset - 1 != 0 && (n2 += 1);
+      const o2 = new an([i2.removeLastAttribute().copyWithoutText()]);
       return this.setDocument(e2.insertDocumentAtRange(o2, r2)), this.setSelection(n2);
     }
     getPreviousBlock() {
-      const t2 = this.getLocationRange();
-      if (t2) {
-        const { index: e2 } = t2[0];
+      const t3 = this.getLocationRange();
+      if (t3) {
+        const { index: e2 } = t3[0];
         if (e2 > 0) return this.document.getBlockAtIndex(e2 - 1);
       }
     }
     getBlock() {
-      const t2 = this.getLocationRange();
-      if (t2) return this.document.getBlockAtIndex(t2[0].index);
+      const t3 = this.getLocationRange();
+      if (t3) return this.document.getBlockAtIndex(t3[0].index);
     }
-    getAttachmentAtRange(t2) {
-      const e2 = this.document.getDocumentAtRange(t2);
+    getAttachmentAtRange(t3) {
+      const e2 = this.document.getDocumentAtRange(t3);
       if (e2.toString() === "".concat("\uFFFC", "\n")) return e2.getAttachments()[0];
     }
     notifyDelegateOfCurrentAttributesChange() {
-      var t2, e2;
-      return null === (t2 = this.delegate) || void 0 === t2 || null === (e2 = t2.compositionDidChangeCurrentAttributes) || void 0 === e2 ? void 0 : e2.call(t2, this.currentAttributes);
+      var t3, e2;
+      return null === (t3 = this.delegate) || void 0 === t3 || null === (e2 = t3.compositionDidChangeCurrentAttributes) || void 0 === e2 ? void 0 : e2.call(t3, this.currentAttributes);
     }
-    notifyDelegateOfInsertionAtRange(t2) {
+    notifyDelegateOfInsertionAtRange(t3) {
       var e2, i2;
-      return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionDidPerformInsertionAtRange) || void 0 === i2 ? void 0 : i2.call(e2, t2);
+      return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionDidPerformInsertionAtRange) || void 0 === i2 ? void 0 : i2.call(e2, t3);
     }
-    translateUTF16PositionFromOffset(t2, e2) {
-      const i2 = this.document.toUTF16String(), n2 = i2.offsetFromUCS2Offset(t2);
+    translateUTF16PositionFromOffset(t3, e2) {
+      const i2 = this.document.toUTF16String(), n2 = i2.offsetFromUCS2Offset(t3);
       return i2.offsetToUCS2Offset(n2 + e2);
     }
   };
-  gi.proxyMethod("getSelectionManager().getPointRange"), gi.proxyMethod("getSelectionManager().setLocationRangeFromPointRange"), gi.proxyMethod("getSelectionManager().createLocationRangeFromDOMRange"), gi.proxyMethod("getSelectionManager().locationIsCursorTarget"), gi.proxyMethod("getSelectionManager().selectionIsExpanded"), gi.proxyMethod("delegate?.getSelectionManager");
-  var mi = class extends H {
-    constructor(t2) {
-      super(...arguments), this.composition = t2, this.undoEntries = [], this.redoEntries = [];
+  wn.proxyMethod("getSelectionManager().getPointRange"), wn.proxyMethod("getSelectionManager().setLocationRangeFromPointRange"), wn.proxyMethod("getSelectionManager().createLocationRangeFromDOMRange"), wn.proxyMethod("getSelectionManager().locationIsCursorTarget"), wn.proxyMethod("getSelectionManager().selectionIsExpanded"), wn.proxyMethod("delegate?.getSelectionManager");
+  var Ln = class extends q {
+    constructor(t3) {
+      super(...arguments), this.composition = t3, this.undoEntries = [], this.redoEntries = [];
     }
-    recordUndoEntry(t2) {
+    recordUndoEntry(t3) {
       let { context: e2, consolidatable: i2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
       const n2 = this.undoEntries.slice(-1)[0];
-      if (!i2 || !pi(n2, t2, e2)) {
-        const i3 = this.createEntry({ description: t2, context: e2 });
+      if (!i2 || !Dn(n2, t3, e2)) {
+        const i3 = this.createEntry({ description: t3, context: e2 });
         this.undoEntries.push(i3), this.redoEntries = [];
       }
     }
     undo() {
-      const t2 = this.undoEntries.pop();
-      if (t2) {
-        const e2 = this.createEntry(t2);
-        return this.redoEntries.push(e2), this.composition.loadSnapshot(t2.snapshot);
+      const t3 = this.undoEntries.pop();
+      if (t3) {
+        const e2 = this.createEntry(t3);
+        return this.redoEntries.push(e2), this.composition.loadSnapshot(t3.snapshot);
       }
     }
     redo() {
-      const t2 = this.redoEntries.pop();
-      if (t2) {
-        const e2 = this.createEntry(t2);
-        return this.undoEntries.push(e2), this.composition.loadSnapshot(t2.snapshot);
+      const t3 = this.redoEntries.pop();
+      if (t3) {
+        const e2 = this.createEntry(t3);
+        return this.undoEntries.push(e2), this.composition.loadSnapshot(t3.snapshot);
       }
     }
     canUndo() {
@@ -11268,15 +11667,15 @@
       return this.redoEntries.length > 0;
     }
     createEntry() {
-      let { description: t2, context: e2 } = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-      return { description: null == t2 ? void 0 : t2.toString(), context: JSON.stringify(e2), snapshot: this.composition.getSnapshot() };
+      let { description: t3, context: e2 } = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+      return { description: null == t3 ? void 0 : t3.toString(), context: JSON.stringify(e2), snapshot: this.composition.getSnapshot() };
     }
   };
-  var pi = (t2, e2, i2) => (null == t2 ? void 0 : t2.description) === (null == e2 ? void 0 : e2.toString()) && (null == t2 ? void 0 : t2.context) === JSON.stringify(i2);
-  var fi = "attachmentGallery";
-  var bi = class {
-    constructor(t2) {
-      this.document = t2.document, this.selectedRange = t2.selectedRange;
+  var Dn = (t3, e2, i2) => (null == t3 ? void 0 : t3.description) === (null == e2 ? void 0 : e2.toString()) && (null == t3 ? void 0 : t3.context) === JSON.stringify(i2);
+  var Nn = "attachmentGallery";
+  var In = class {
+    constructor(t3) {
+      this.document = t3.document, this.selectedRange = t3.selectedRange;
     }
     perform() {
       return this.removeBlockAttribute(), this.applyBlockAttribute();
@@ -11285,16 +11684,16 @@
       return { document: this.document, selectedRange: this.selectedRange };
     }
     removeBlockAttribute() {
-      return this.findRangesOfBlocks().map((t2) => this.document = this.document.removeAttributeAtRange(fi, t2));
+      return this.findRangesOfBlocks().map((t3) => this.document = this.document.removeAttributeAtRange(Nn, t3));
     }
     applyBlockAttribute() {
-      let t2 = 0;
+      let t3 = 0;
       this.findRangesOfPieces().forEach((e2) => {
-        e2[1] - e2[0] > 1 && (e2[0] += t2, e2[1] += t2, "\n" !== this.document.getCharacterAtPosition(e2[1]) && (this.document = this.document.insertBlockBreakAtRange(e2[1]), e2[1] < this.selectedRange[1] && this.moveSelectedRangeForward(), e2[1]++, t2++), 0 !== e2[0] && "\n" !== this.document.getCharacterAtPosition(e2[0] - 1) && (this.document = this.document.insertBlockBreakAtRange(e2[0]), e2[0] < this.selectedRange[0] && this.moveSelectedRangeForward(), e2[0]++, t2++), this.document = this.document.applyBlockAttributeAtRange(fi, true, e2));
+        e2[1] - e2[0] > 1 && (e2[0] += t3, e2[1] += t3, "\n" !== this.document.getCharacterAtPosition(e2[1]) && (this.document = this.document.insertBlockBreakAtRange(e2[1]), e2[1] < this.selectedRange[1] && this.moveSelectedRangeForward(), e2[1]++, t3++), 0 !== e2[0] && "\n" !== this.document.getCharacterAtPosition(e2[0] - 1) && (this.document = this.document.insertBlockBreakAtRange(e2[0]), e2[0] < this.selectedRange[0] && this.moveSelectedRangeForward(), e2[0]++, t3++), this.document = this.document.applyBlockAttributeAtRange(Nn, true, e2));
       });
     }
     findRangesOfBlocks() {
-      return this.document.findRangesForBlockAttribute(fi);
+      return this.document.findRangesForBlockAttribute(Nn);
     }
     findRangesOfPieces() {
       return this.document.findRangesForTextAttribute("presentation", { withValue: "gallery" });
@@ -11303,29 +11702,29 @@
       this.selectedRange[0] += 1, this.selectedRange[1] += 1;
     }
   };
-  var vi = function(t2) {
-    const e2 = new bi(t2);
+  var On = function(t3) {
+    const e2 = new In(t3);
     return e2.perform(), e2.getSnapshot();
   };
-  var Ai = [vi];
-  var xi = class {
-    constructor(t2, e2, i2) {
-      this.insertFiles = this.insertFiles.bind(this), this.composition = t2, this.selectionManager = e2, this.element = i2, this.undoManager = new mi(this.composition), this.filters = Ai.slice(0);
+  var Fn = [On];
+  var Pn = class {
+    constructor(t3, e2, i2) {
+      this.insertFiles = this.insertFiles.bind(this), this.composition = t3, this.selectionManager = e2, this.element = i2, this.undoManager = new Ln(this.composition), this.filters = Fn.slice(0);
     }
-    loadDocument(t2) {
-      return this.loadSnapshot({ document: t2, selectedRange: [0, 0] });
+    loadDocument(t3) {
+      return this.loadSnapshot({ document: t3, selectedRange: [0, 0] });
     }
     loadHTML() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
-      const e2 = Xe.parse(t2, { referenceElement: this.element }).getDocument();
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+      const e2 = hn.parse(t3, { referenceElement: this.element }).getDocument();
       return this.loadDocument(e2);
     }
-    loadJSON(t2) {
-      let { document: e2, selectedRange: i2 } = t2;
-      return e2 = Je.fromJSON(e2), this.loadSnapshot({ document: e2, selectedRange: i2 });
+    loadJSON(t3) {
+      let { document: e2, selectedRange: i2 } = t3;
+      return e2 = an.fromJSON(e2), this.loadSnapshot({ document: e2, selectedRange: i2 });
     }
-    loadSnapshot(t2) {
-      return this.undoManager = new mi(this.composition), this.composition.loadSnapshot(t2);
+    loadSnapshot(t3) {
+      return this.undoManager = new Ln(this.composition), this.composition.loadSnapshot(t3);
     }
     getDocument() {
       return this.composition.document;
@@ -11339,32 +11738,32 @@
     toJSON() {
       return this.getSnapshot();
     }
-    deleteInDirection(t2) {
-      return this.composition.deleteInDirection(t2);
+    deleteInDirection(t3) {
+      return this.composition.deleteInDirection(t3);
     }
-    insertAttachment(t2) {
-      return this.composition.insertAttachment(t2);
+    insertAttachment(t3) {
+      return this.composition.insertAttachment(t3);
     }
-    insertAttachments(t2) {
-      return this.composition.insertAttachments(t2);
+    insertAttachments(t3) {
+      return this.composition.insertAttachments(t3);
     }
-    insertDocument(t2) {
-      return this.composition.insertDocument(t2);
+    insertDocument(t3) {
+      return this.composition.insertDocument(t3);
     }
-    insertFile(t2) {
-      return this.composition.insertFile(t2);
+    insertFile(t3) {
+      return this.composition.insertFile(t3);
     }
-    insertFiles(t2) {
-      return this.composition.insertFiles(t2);
+    insertFiles(t3) {
+      return this.composition.insertFiles(t3);
     }
-    insertHTML(t2) {
-      return this.composition.insertHTML(t2);
+    insertHTML(t3) {
+      return this.composition.insertHTML(t3);
     }
-    insertString(t2) {
-      return this.composition.insertString(t2);
+    insertString(t3) {
+      return this.composition.insertString(t3);
     }
-    insertText(t2) {
-      return this.composition.insertText(t2);
+    insertText(t3) {
+      return this.composition.insertText(t3);
     }
     insertLineBreak() {
       return this.composition.insertLineBreak();
@@ -11375,34 +11774,34 @@
     getPosition() {
       return this.composition.getPosition();
     }
-    getClientRectAtPosition(t2) {
-      const e2 = this.getDocument().locationRangeFromRange([t2, t2 + 1]);
+    getClientRectAtPosition(t3) {
+      const e2 = this.getDocument().locationRangeFromRange([t3, t3 + 1]);
       return this.selectionManager.getClientRectAtLocationRange(e2);
     }
-    expandSelectionInDirection(t2) {
-      return this.composition.expandSelectionInDirection(t2);
+    expandSelectionInDirection(t3) {
+      return this.composition.expandSelectionInDirection(t3);
     }
-    moveCursorInDirection(t2) {
-      return this.composition.moveCursorInDirection(t2);
+    moveCursorInDirection(t3) {
+      return this.composition.moveCursorInDirection(t3);
     }
-    setSelectedRange(t2) {
-      return this.composition.setSelectedRange(t2);
+    setSelectedRange(t3) {
+      return this.composition.setSelectedRange(t3);
     }
-    activateAttribute(t2) {
+    activateAttribute(t3) {
       let e2 = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
-      return this.composition.setCurrentAttribute(t2, e2);
+      return this.composition.setCurrentAttribute(t3, e2);
     }
-    attributeIsActive(t2) {
-      return this.composition.hasCurrentAttribute(t2);
+    attributeIsActive(t3) {
+      return this.composition.hasCurrentAttribute(t3);
     }
-    canActivateAttribute(t2) {
-      return this.composition.canSetCurrentAttribute(t2);
+    canActivateAttribute(t3) {
+      return this.composition.canSetCurrentAttribute(t3);
     }
-    deactivateAttribute(t2) {
-      return this.composition.removeCurrentAttribute(t2);
+    deactivateAttribute(t3) {
+      return this.composition.removeCurrentAttribute(t3);
     }
-    setHTMLAtributeAtPosition(t2, e2, i2) {
-      this.composition.setHTMLAtributeAtPosition(t2, e2, i2);
+    setHTMLAtributeAtPosition(t3, e2, i2) {
+      this.composition.setHTMLAtributeAtPosition(t3, e2, i2);
     }
     canDecreaseNestingLevel() {
       return this.composition.canDecreaseNestingLevel();
@@ -11422,9 +11821,9 @@
     canUndo() {
       return this.undoManager.canUndo();
     }
-    recordUndoEntry(t2) {
+    recordUndoEntry(t3) {
       let { context: e2, consolidatable: i2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-      return this.undoManager.recordUndoEntry(t2, { context: e2, consolidatable: i2 });
+      return this.undoManager.recordUndoEntry(t3, { context: e2, consolidatable: i2 });
     }
     redo() {
       if (this.canRedo()) return this.undoManager.redo();
@@ -11433,317 +11832,317 @@
       if (this.canUndo()) return this.undoManager.undo();
     }
   };
-  var yi = class {
-    constructor(t2) {
-      this.element = t2;
+  var Mn = class {
+    constructor(t3) {
+      this.element = t3;
     }
-    findLocationFromContainerAndOffset(t2, e2) {
+    findLocationFromContainerAndOffset(t3, e2) {
       let { strict: i2 } = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : { strict: true }, n2 = 0, r2 = false;
-      const o2 = { index: 0, offset: 0 }, s2 = this.findAttachmentElementParentForNode(t2);
-      s2 && (t2 = s2.parentNode, e2 = C(s2));
-      const a2 = R(this.element, { usingFilter: Ei });
+      const o2 = { index: 0, offset: 0 }, s2 = this.findAttachmentElementParentForNode(t3);
+      s2 && (t3 = s2.parentNode, e2 = E(s2));
+      const a2 = R(this.element, { usingFilter: Wn });
       for (; a2.nextNode(); ) {
         const s3 = a2.currentNode;
-        if (s3 === t2 && O(t2)) {
-          P(s3) || (o2.offset += e2);
+        if (s3 === t3 && B(t3)) {
+          F(s3) || (o2.offset += e2);
           break;
         }
-        if (s3.parentNode === t2) {
+        if (s3.parentNode === t3) {
           if (n2++ === e2) break;
-        } else if (!y(t2, s3) && n2 > 0) break;
-        T(s3, { strict: i2 }) ? (r2 && o2.index++, o2.offset = 0, r2 = true) : o2.offset += Ci(s3);
+        } else if (!C(t3, s3) && n2 > 0) break;
+        N(s3, { strict: i2 }) ? (r2 && o2.index++, o2.offset = 0, r2 = true) : o2.offset += Bn(s3);
       }
       return o2;
     }
-    findContainerAndOffsetFromLocation(t2) {
+    findContainerAndOffsetFromLocation(t3) {
       let e2, i2;
-      if (0 === t2.index && 0 === t2.offset) {
-        for (e2 = this.element, i2 = 0; e2.firstChild; ) if (e2 = e2.firstChild, w(e2)) {
+      if (0 === t3.index && 0 === t3.offset) {
+        for (e2 = this.element, i2 = 0; e2.firstChild; ) if (e2 = e2.firstChild, D(e2)) {
           i2 = 1;
           break;
         }
         return [e2, i2];
       }
-      let [n2, r2] = this.findNodeAndOffsetFromLocation(t2);
+      let [n2, r2] = this.findNodeAndOffsetFromLocation(t3);
       if (n2) {
-        if (O(n2)) 0 === Ci(n2) ? (e2 = n2.parentNode.parentNode, i2 = C(n2.parentNode), P(n2, { name: "right" }) && i2++) : (e2 = n2, i2 = t2.offset - r2);
+        if (B(n2)) 0 === Bn(n2) ? (e2 = n2.parentNode.parentNode, i2 = E(n2.parentNode), F(n2, { name: "right" }) && i2++) : (e2 = n2, i2 = t3.offset - r2);
         else {
-          if (e2 = n2.parentNode, !T(n2.previousSibling) && !w(e2)) for (; n2 === e2.lastChild && (n2 = e2, e2 = e2.parentNode, !w(e2)); ) ;
-          i2 = C(n2), 0 !== t2.offset && i2++;
+          if (e2 = n2.parentNode, !N(n2.previousSibling) && !D(e2)) for (; n2 === e2.lastChild && (n2 = e2, e2 = e2.parentNode, !D(e2)); ) ;
+          i2 = E(n2), 0 !== t3.offset && i2++;
         }
         return [e2, i2];
       }
     }
-    findNodeAndOffsetFromLocation(t2) {
+    findNodeAndOffsetFromLocation(t3) {
       let e2, i2, n2 = 0;
-      for (const r2 of this.getSignificantNodesForIndex(t2.index)) {
-        const o2 = Ci(r2);
-        if (t2.offset <= n2 + o2) if (O(r2)) {
-          if (e2 = r2, i2 = n2, t2.offset === i2 && P(e2)) break;
+      for (const r2 of this.getSignificantNodesForIndex(t3.index)) {
+        const o2 = Bn(r2);
+        if (t3.offset <= n2 + o2) if (B(r2)) {
+          if (e2 = r2, i2 = n2, t3.offset === i2 && F(e2)) break;
         } else e2 || (e2 = r2, i2 = n2);
-        if (n2 += o2, n2 > t2.offset) break;
+        if (n2 += o2, n2 > t3.offset) break;
       }
       return [e2, i2];
     }
-    findAttachmentElementParentForNode(t2) {
-      for (; t2 && t2 !== this.element; ) {
-        if (I(t2)) return t2;
-        t2 = t2.parentNode;
+    findAttachmentElementParentForNode(t3) {
+      for (; t3 && t3 !== this.element; ) {
+        if (P(t3)) return t3;
+        t3 = t3.parentNode;
       }
     }
-    getSignificantNodesForIndex(t2) {
-      const e2 = [], i2 = R(this.element, { usingFilter: ki });
+    getSignificantNodesForIndex(t3) {
+      const e2 = [], i2 = R(this.element, { usingFilter: _n });
       let n2 = false;
       for (; i2.nextNode(); ) {
         const o2 = i2.currentNode;
         var r2;
-        if (B(o2)) {
-          if (null != r2 ? r2++ : r2 = 0, r2 === t2) n2 = true;
+        if (I(o2)) {
+          if (null != r2 ? r2++ : r2 = 0, r2 === t3) n2 = true;
           else if (n2) break;
         } else n2 && e2.push(o2);
       }
       return e2;
     }
   };
-  var Ci = function(t2) {
-    if (t2.nodeType === Node.TEXT_NODE) {
-      if (P(t2)) return 0;
-      return t2.textContent.length;
+  var Bn = function(t3) {
+    if (t3.nodeType === Node.TEXT_NODE) {
+      if (F(t3)) return 0;
+      return t3.textContent.length;
     }
-    return "br" === E(t2) || I(t2) ? 1 : 0;
+    return "br" === k(t3) || P(t3) ? 1 : 0;
   };
-  var ki = function(t2) {
-    return Ri(t2) === NodeFilter.FILTER_ACCEPT ? Ei(t2) : NodeFilter.FILTER_REJECT;
+  var _n = function(t3) {
+    return jn(t3) === NodeFilter.FILTER_ACCEPT ? Wn(t3) : NodeFilter.FILTER_REJECT;
   };
-  var Ri = function(t2) {
-    return N(t2) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+  var jn = function(t3) {
+    return M(t3) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
   };
-  var Ei = function(t2) {
-    return I(t2.parentNode) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+  var Wn = function(t3) {
+    return P(t3.parentNode) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
   };
-  var Si = class {
-    createDOMRangeFromPoint(t2) {
-      let e2, { x: i2, y: n2 } = t2;
+  var Un = class {
+    createDOMRangeFromPoint(t3) {
+      let e2, { x: i2, y: n2 } = t3;
       if (document.caretPositionFromPoint) {
-        const { offsetNode: t3, offset: r2 } = document.caretPositionFromPoint(i2, n2);
-        return e2 = document.createRange(), e2.setStart(t3, r2), e2;
+        const { offsetNode: t4, offset: r2 } = document.caretPositionFromPoint(i2, n2);
+        return e2 = document.createRange(), e2.setStart(t4, r2), e2;
       }
       if (document.caretRangeFromPoint) return document.caretRangeFromPoint(i2, n2);
       if (document.body.createTextRange) {
-        const t3 = Nt();
+        const t4 = Mt();
         try {
-          const t4 = document.body.createTextRange();
-          t4.moveToPoint(i2, n2), t4.select();
-        } catch (t4) {
+          const t5 = document.body.createTextRange();
+          t5.moveToPoint(i2, n2), t5.select();
+        } catch (t5) {
         }
-        return e2 = Nt(), Ot(t3), e2;
+        return e2 = Mt(), Bt(t4), e2;
       }
     }
-    getClientRectsForDOMRange(t2) {
-      const e2 = Array.from(t2.getClientRects());
+    getClientRectsForDOMRange(t3) {
+      const e2 = Array.from(t3.getClientRects());
       return [e2[0], e2[e2.length - 1]];
     }
   };
-  var Li = class extends H {
-    constructor(t2) {
-      super(...arguments), this.didMouseDown = this.didMouseDown.bind(this), this.selectionDidChange = this.selectionDidChange.bind(this), this.element = t2, this.locationMapper = new yi(this.element), this.pointMapper = new Si(), this.lockCount = 0, f("mousedown", { onElement: this.element, withCallback: this.didMouseDown });
+  var Vn = class extends q {
+    constructor(t3) {
+      super(...arguments), this.didMouseDown = this.didMouseDown.bind(this), this.selectionDidChange = this.selectionDidChange.bind(this), this.element = t3, this.locationMapper = new Mn(this.element), this.pointMapper = new Un(), this.lockCount = 0, b("mousedown", { onElement: this.element, withCallback: this.didMouseDown });
     }
     getLocationRange() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-      return false === t2.strict ? this.createLocationRangeFromDOMRange(Nt()) : t2.ignoreLock ? this.currentLocationRange : this.lockedLocationRange ? this.lockedLocationRange : this.currentLocationRange;
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+      return false === t3.strict ? this.createLocationRangeFromDOMRange(Mt()) : t3.ignoreLock ? this.currentLocationRange : this.lockedLocationRange ? this.lockedLocationRange : this.currentLocationRange;
     }
-    setLocationRange(t2) {
+    setLocationRange(t3) {
       if (this.lockedLocationRange) return;
-      t2 = Lt(t2);
-      const e2 = this.createDOMRangeFromLocationRange(t2);
-      e2 && (Ot(e2), this.updateCurrentLocationRange(t2));
+      t3 = wt(t3);
+      const e2 = this.createDOMRangeFromLocationRange(t3);
+      e2 && (Bt(e2), this.updateCurrentLocationRange(t3));
     }
-    setLocationRangeFromPointRange(t2) {
-      t2 = Lt(t2);
-      const e2 = this.getLocationAtPoint(t2[0]), i2 = this.getLocationAtPoint(t2[1]);
+    setLocationRangeFromPointRange(t3) {
+      t3 = wt(t3);
+      const e2 = this.getLocationAtPoint(t3[0]), i2 = this.getLocationAtPoint(t3[1]);
       this.setLocationRange([e2, i2]);
     }
-    getClientRectAtLocationRange(t2) {
-      const e2 = this.createDOMRangeFromLocationRange(t2);
+    getClientRectAtLocationRange(t3) {
+      const e2 = this.createDOMRangeFromLocationRange(t3);
       if (e2) return this.getClientRectsForDOMRange(e2)[1];
     }
-    locationIsCursorTarget(t2) {
-      const e2 = Array.from(this.findNodeAndOffsetFromLocation(t2))[0];
-      return P(e2);
+    locationIsCursorTarget(t3) {
+      const e2 = Array.from(this.findNodeAndOffsetFromLocation(t3))[0];
+      return F(e2);
     }
     lock() {
       0 == this.lockCount++ && (this.updateCurrentLocationRange(), this.lockedLocationRange = this.getLocationRange());
     }
     unlock() {
       if (0 == --this.lockCount) {
-        const { lockedLocationRange: t2 } = this;
-        if (this.lockedLocationRange = null, null != t2) return this.setLocationRange(t2);
+        const { lockedLocationRange: t3 } = this;
+        if (this.lockedLocationRange = null, null != t3) return this.setLocationRange(t3);
       }
     }
     clearSelection() {
-      var t2;
-      return null === (t2 = It()) || void 0 === t2 ? void 0 : t2.removeAllRanges();
+      var t3;
+      return null === (t3 = Pt()) || void 0 === t3 ? void 0 : t3.removeAllRanges();
     }
     selectionIsCollapsed() {
-      var t2;
-      return true === (null === (t2 = Nt()) || void 0 === t2 ? void 0 : t2.collapsed);
+      var t3;
+      return true === (null === (t3 = Mt()) || void 0 === t3 ? void 0 : t3.collapsed);
     }
     selectionIsExpanded() {
       return !this.selectionIsCollapsed();
     }
-    createLocationRangeFromDOMRange(t2, e2) {
-      if (null == t2 || !this.domRangeWithinElement(t2)) return;
-      const i2 = this.findLocationFromContainerAndOffset(t2.startContainer, t2.startOffset, e2);
+    createLocationRangeFromDOMRange(t3, e2) {
+      if (null == t3 || !this.domRangeWithinElement(t3)) return;
+      const i2 = this.findLocationFromContainerAndOffset(t3.startContainer, t3.startOffset, e2);
       if (!i2) return;
-      const n2 = t2.collapsed ? void 0 : this.findLocationFromContainerAndOffset(t2.endContainer, t2.endOffset, e2);
-      return Lt([i2, n2]);
+      const n2 = t3.collapsed ? void 0 : this.findLocationFromContainerAndOffset(t3.endContainer, t3.endOffset, e2);
+      return wt([i2, n2]);
     }
     didMouseDown() {
       return this.pauseTemporarily();
     }
     pauseTemporarily() {
-      let t2;
+      let t3;
       this.paused = true;
       const e2 = () => {
-        if (this.paused = false, clearTimeout(i2), Array.from(t2).forEach((t3) => {
-          t3.destroy();
-        }), y(document, this.element)) return this.selectionDidChange();
+        if (this.paused = false, clearTimeout(i2), Array.from(t3).forEach((t4) => {
+          t4.destroy();
+        }), C(document, this.element)) return this.selectionDidChange();
       }, i2 = setTimeout(e2, 200);
-      t2 = ["mousemove", "keydown"].map((t3) => f(t3, { onElement: document, withCallback: e2 }));
+      t3 = ["mousemove", "keydown"].map((t4) => b(t4, { onElement: document, withCallback: e2 }));
     }
     selectionDidChange() {
       if (!this.paused && !x(this.element)) return this.updateCurrentLocationRange();
     }
-    updateCurrentLocationRange(t2) {
+    updateCurrentLocationRange(t3) {
       var e2, i2;
-      if ((null != t2 ? t2 : t2 = this.createLocationRangeFromDOMRange(Nt())) && !wt(t2, this.currentLocationRange)) return this.currentLocationRange = t2, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.locationRangeDidChange) || void 0 === i2 ? void 0 : i2.call(e2, this.currentLocationRange.slice(0));
+      if ((null != t3 ? t3 : t3 = this.createLocationRangeFromDOMRange(Mt())) && !Dt(t3, this.currentLocationRange)) return this.currentLocationRange = t3, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.locationRangeDidChange) || void 0 === i2 ? void 0 : i2.call(e2, this.currentLocationRange.slice(0));
     }
-    createDOMRangeFromLocationRange(t2) {
-      const e2 = this.findContainerAndOffsetFromLocation(t2[0]), i2 = Dt(t2) ? e2 : this.findContainerAndOffsetFromLocation(t2[1]) || e2;
+    createDOMRangeFromLocationRange(t3) {
+      const e2 = this.findContainerAndOffsetFromLocation(t3[0]), i2 = Lt(t3) ? e2 : this.findContainerAndOffsetFromLocation(t3[1]) || e2;
       if (null != e2 && null != i2) {
-        const t3 = document.createRange();
-        return t3.setStart(...Array.from(e2 || [])), t3.setEnd(...Array.from(i2 || [])), t3;
+        const t4 = document.createRange();
+        return t4.setStart(...Array.from(e2 || [])), t4.setEnd(...Array.from(i2 || [])), t4;
       }
     }
-    getLocationAtPoint(t2) {
-      const e2 = this.createDOMRangeFromPoint(t2);
+    getLocationAtPoint(t3) {
+      const e2 = this.createDOMRangeFromPoint(t3);
       var i2;
       if (e2) return null === (i2 = this.createLocationRangeFromDOMRange(e2)) || void 0 === i2 ? void 0 : i2[0];
     }
-    domRangeWithinElement(t2) {
-      return t2.collapsed ? y(this.element, t2.startContainer) : y(this.element, t2.startContainer) && y(this.element, t2.endContainer);
+    domRangeWithinElement(t3) {
+      return t3.collapsed ? C(this.element, t3.startContainer) : C(this.element, t3.startContainer) && C(this.element, t3.endContainer);
     }
   };
-  Li.proxyMethod("locationMapper.findLocationFromContainerAndOffset"), Li.proxyMethod("locationMapper.findContainerAndOffsetFromLocation"), Li.proxyMethod("locationMapper.findNodeAndOffsetFromLocation"), Li.proxyMethod("pointMapper.createDOMRangeFromPoint"), Li.proxyMethod("pointMapper.getClientRectsForDOMRange");
-  var Di = Object.freeze({ __proto__: null, Attachment: De, AttachmentManager: hi, AttachmentPiece: we, Block: Oe, Composition: gi, Document: Je, Editor: xi, HTMLParser: Xe, HTMLSanitizer: se, LineBreakInsertion: di, LocationMapper: yi, ManagedAttachment: ui, Piece: Se, PointMapper: Si, SelectionManager: Li, SplittableList: Be, StringPiece: Te, Text: Ne, UndoManager: mi });
-  var wi = Object.freeze({ __proto__: null, ObjectView: ee, AttachmentView: ce, BlockView: be, DocumentView: ve, PieceView: ge, PreviewableAttachmentView: de, TextView: me });
-  var { lang: Ti, css: Bi, keyNames: Fi } = V;
-  var Pi = function(t2) {
+  Vn.proxyMethod("locationMapper.findLocationFromContainerAndOffset"), Vn.proxyMethod("locationMapper.findContainerAndOffsetFromLocation"), Vn.proxyMethod("locationMapper.findNodeAndOffsetFromLocation"), Vn.proxyMethod("pointMapper.createDOMRangeFromPoint"), Vn.proxyMethod("pointMapper.getClientRectsForDOMRange");
+  var zn = Object.freeze({ __proto__: null, Attachment: Vi, AttachmentManager: kn, AttachmentPiece: zi, Block: Xi, Composition: wn, Document: an, Editor: Pn, HTMLParser: hn, HTMLSanitizer: di, LineBreakInsertion: Tn, LocationMapper: Mn, ManagedAttachment: Rn, Piece: Wi, PointMapper: Un, SelectionManager: Vn, SplittableList: Hi, StringPiece: qi, Text: Yi, UndoManager: Ln });
+  var qn = Object.freeze({ __proto__: null, ObjectView: ie, AttachmentView: pi, BlockView: Ei, DocumentView: Si, PieceView: Ai, PreviewableAttachmentView: vi, TextView: yi });
+  var { lang: Hn, css: Jn, keyNames: Kn } = z;
+  var Gn = function(t3) {
     return function() {
-      const e2 = t2.apply(this, arguments);
+      const e2 = t3.apply(this, arguments);
       e2.do(), this.undos || (this.undos = []), this.undos.push(e2.undo);
     };
   };
-  var Ii = class extends H {
-    constructor(t2, e2, i2) {
+  var Yn = class extends q {
+    constructor(t3, e2, i2) {
       let n2 = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {};
-      super(...arguments), Re(this, "makeElementMutable", Pi(() => ({ do: () => {
+      super(...arguments), Di(this, "makeElementMutable", Gn(() => ({ do: () => {
         this.element.dataset.trixMutable = true;
-      }, undo: () => delete this.element.dataset.trixMutable }))), Re(this, "addToolbar", Pi(() => {
-        const t3 = S({ tagName: "div", className: Bi.attachmentToolbar, data: { trixMutable: true }, childNodes: S({ tagName: "div", className: "trix-button-row", childNodes: S({ tagName: "span", className: "trix-button-group trix-button-group--actions", childNodes: S({ tagName: "button", className: "trix-button trix-button--remove", textContent: Ti.remove, attributes: { title: Ti.remove }, data: { trixAction: "remove" } }) }) }) });
-        return this.attachment.isPreviewable() && t3.appendChild(S({ tagName: "div", className: Bi.attachmentMetadataContainer, childNodes: S({ tagName: "span", className: Bi.attachmentMetadata, childNodes: [S({ tagName: "span", className: Bi.attachmentName, textContent: this.attachment.getFilename(), attributes: { title: this.attachment.getFilename() } }), S({ tagName: "span", className: Bi.attachmentSize, textContent: this.attachment.getFormattedFilesize() })] }) })), f("click", { onElement: t3, withCallback: this.didClickToolbar }), f("click", { onElement: t3, matchingSelector: "[data-trix-action]", withCallback: this.didClickActionButton }), b("trix-attachment-before-toolbar", { onElement: this.element, attributes: { toolbar: t3, attachment: this.attachment } }), { do: () => this.element.appendChild(t3), undo: () => k(t3) };
-      })), Re(this, "installCaptionEditor", Pi(() => {
-        const t3 = S({ tagName: "textarea", className: Bi.attachmentCaptionEditor, attributes: { placeholder: Ti.captionPlaceholder }, data: { trixMutable: true } });
-        t3.value = this.attachmentPiece.getCaption();
-        const e3 = t3.cloneNode();
+      }, undo: () => delete this.element.dataset.trixMutable }))), Di(this, "addToolbar", Gn(() => {
+        const t4 = T({ tagName: "div", className: Jn.attachmentToolbar, data: { trixMutable: true }, childNodes: T({ tagName: "div", className: "trix-button-row", childNodes: T({ tagName: "span", className: "trix-button-group trix-button-group--actions", childNodes: T({ tagName: "button", className: "trix-button trix-button--remove", textContent: Hn.remove, attributes: { title: Hn.remove }, data: { trixAction: "remove" } }) }) }) });
+        return this.attachment.isPreviewable() && t4.appendChild(T({ tagName: "div", className: Jn.attachmentMetadataContainer, childNodes: T({ tagName: "span", className: Jn.attachmentMetadata, childNodes: [T({ tagName: "span", className: Jn.attachmentName, textContent: this.attachment.getFilename(), attributes: { title: this.attachment.getFilename() } }), T({ tagName: "span", className: Jn.attachmentSize, textContent: this.attachment.getFormattedFilesize() })] }) })), b("click", { onElement: t4, withCallback: this.didClickToolbar }), b("click", { onElement: t4, matchingSelector: "[data-trix-action]", withCallback: this.didClickActionButton }), v("trix-attachment-before-toolbar", { onElement: this.element, attributes: { toolbar: t4, attachment: this.attachment } }), { do: () => this.element.appendChild(t4), undo: () => S(t4) };
+      })), Di(this, "installCaptionEditor", Gn(() => {
+        const t4 = T({ tagName: "textarea", className: Jn.attachmentCaptionEditor, attributes: { placeholder: Hn.captionPlaceholder }, data: { trixMutable: true } });
+        t4.value = this.attachmentPiece.getCaption();
+        const e3 = t4.cloneNode();
         e3.classList.add("trix-autoresize-clone"), e3.tabIndex = -1;
         const i3 = function() {
-          e3.value = t3.value, t3.style.height = e3.scrollHeight + "px";
+          e3.value = t4.value, t4.style.height = e3.scrollHeight + "px";
         };
-        f("input", { onElement: t3, withCallback: i3 }), f("input", { onElement: t3, withCallback: this.didInputCaption }), f("keydown", { onElement: t3, withCallback: this.didKeyDownCaption }), f("change", { onElement: t3, withCallback: this.didChangeCaption }), f("blur", { onElement: t3, withCallback: this.didBlurCaption });
+        b("input", { onElement: t4, withCallback: i3 }), b("input", { onElement: t4, withCallback: this.didInputCaption }), b("keydown", { onElement: t4, withCallback: this.didKeyDownCaption }), b("change", { onElement: t4, withCallback: this.didChangeCaption }), b("blur", { onElement: t4, withCallback: this.didBlurCaption });
         const n3 = this.element.querySelector("figcaption"), r2 = n3.cloneNode();
         return { do: () => {
-          if (n3.style.display = "none", r2.appendChild(t3), r2.appendChild(e3), r2.classList.add("".concat(Bi.attachmentCaption, "--editing")), n3.parentElement.insertBefore(r2, n3), i3(), this.options.editCaption) return Rt(() => t3.focus());
+          if (n3.style.display = "none", r2.appendChild(t4), r2.appendChild(e3), r2.classList.add("".concat(Jn.attachmentCaption, "--editing")), n3.parentElement.insertBefore(r2, n3), i3(), this.options.editCaption) return Rt(() => t4.focus());
         }, undo() {
-          k(r2), n3.style.display = null;
+          S(r2), n3.style.display = null;
         } };
-      })), this.didClickToolbar = this.didClickToolbar.bind(this), this.didClickActionButton = this.didClickActionButton.bind(this), this.didKeyDownCaption = this.didKeyDownCaption.bind(this), this.didInputCaption = this.didInputCaption.bind(this), this.didChangeCaption = this.didChangeCaption.bind(this), this.didBlurCaption = this.didBlurCaption.bind(this), this.attachmentPiece = t2, this.element = e2, this.container = i2, this.options = n2, this.attachment = this.attachmentPiece.attachment, "a" === E(this.element) && (this.element = this.element.firstChild), this.install();
+      })), this.didClickToolbar = this.didClickToolbar.bind(this), this.didClickActionButton = this.didClickActionButton.bind(this), this.didKeyDownCaption = this.didKeyDownCaption.bind(this), this.didInputCaption = this.didInputCaption.bind(this), this.didChangeCaption = this.didChangeCaption.bind(this), this.didBlurCaption = this.didBlurCaption.bind(this), this.attachmentPiece = t3, this.element = e2, this.container = i2, this.options = n2, this.attachment = this.attachmentPiece.attachment, "a" === k(this.element) && (this.element = this.element.firstChild), this.install();
     }
     install() {
       this.makeElementMutable(), this.addToolbar(), this.attachment.isPreviewable() && this.installCaptionEditor();
     }
     uninstall() {
-      var t2;
+      var t3;
       let e2 = this.undos.pop();
       for (this.savePendingCaption(); e2; ) e2(), e2 = this.undos.pop();
-      null === (t2 = this.delegate) || void 0 === t2 || t2.didUninstallAttachmentEditor(this);
+      null === (t3 = this.delegate) || void 0 === t3 || t3.didUninstallAttachmentEditor(this);
     }
     savePendingCaption() {
       if (null != this.pendingCaption) {
         const r2 = this.pendingCaption;
-        var t2, e2, i2, n2;
-        if (this.pendingCaption = null, r2) null === (t2 = this.delegate) || void 0 === t2 || null === (e2 = t2.attachmentEditorDidRequestUpdatingAttributesForAttachment) || void 0 === e2 || e2.call(t2, { caption: r2 }, this.attachment);
+        var t3, e2, i2, n2;
+        if (this.pendingCaption = null, r2) null === (t3 = this.delegate) || void 0 === t3 || null === (e2 = t3.attachmentEditorDidRequestUpdatingAttributesForAttachment) || void 0 === e2 || e2.call(t3, { caption: r2 }, this.attachment);
         else null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.attachmentEditorDidRequestRemovingAttributeForAttachment) || void 0 === n2 || n2.call(i2, "caption", this.attachment);
       }
     }
-    didClickToolbar(t2) {
-      return t2.preventDefault(), t2.stopPropagation();
+    didClickToolbar(t3) {
+      return t3.preventDefault(), t3.stopPropagation();
     }
-    didClickActionButton(t2) {
+    didClickActionButton(t3) {
       var e2;
-      if ("remove" === t2.target.getAttribute("data-trix-action")) return null === (e2 = this.delegate) || void 0 === e2 ? void 0 : e2.attachmentEditorDidRequestRemovalOfAttachment(this.attachment);
+      if ("remove" === t3.target.getAttribute("data-trix-action")) return null === (e2 = this.delegate) || void 0 === e2 ? void 0 : e2.attachmentEditorDidRequestRemovalOfAttachment(this.attachment);
     }
-    didKeyDownCaption(t2) {
+    didKeyDownCaption(t3) {
       var e2, i2;
-      if ("return" === Fi[t2.keyCode]) return t2.preventDefault(), this.savePendingCaption(), null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.attachmentEditorDidRequestDeselectingAttachment) || void 0 === i2 ? void 0 : i2.call(e2, this.attachment);
+      if ("return" === Kn[t3.keyCode]) return t3.preventDefault(), this.savePendingCaption(), null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.attachmentEditorDidRequestDeselectingAttachment) || void 0 === i2 ? void 0 : i2.call(e2, this.attachment);
     }
-    didInputCaption(t2) {
-      this.pendingCaption = t2.target.value.replace(/\s/g, " ").trim();
+    didInputCaption(t3) {
+      this.pendingCaption = t3.target.value.replace(/\s/g, " ").trim();
     }
-    didChangeCaption(t2) {
+    didChangeCaption(t3) {
       return this.savePendingCaption();
     }
-    didBlurCaption(t2) {
+    didBlurCaption(t3) {
       return this.savePendingCaption();
     }
   };
-  var Ni = class extends H {
-    constructor(t2, i2) {
-      super(...arguments), this.didFocus = this.didFocus.bind(this), this.didBlur = this.didBlur.bind(this), this.didClickAttachment = this.didClickAttachment.bind(this), this.element = t2, this.composition = i2, this.documentView = new ve(this.composition.document, { element: this.element }), f("focus", { onElement: this.element, withCallback: this.didFocus }), f("blur", { onElement: this.element, withCallback: this.didBlur }), f("click", { onElement: this.element, matchingSelector: "a[contenteditable=false]", preventDefault: true }), f("mousedown", { onElement: this.element, matchingSelector: e, withCallback: this.didClickAttachment }), f("click", { onElement: this.element, matchingSelector: "a".concat(e), preventDefault: true });
+  var Xn = class extends q {
+    constructor(t3, i2) {
+      super(...arguments), this.didFocus = this.didFocus.bind(this), this.didBlur = this.didBlur.bind(this), this.didClickAttachment = this.didClickAttachment.bind(this), this.element = t3, this.composition = i2, this.documentView = new Si(this.composition.document, { element: this.element }), b("focus", { onElement: this.element, withCallback: this.didFocus }), b("blur", { onElement: this.element, withCallback: this.didBlur }), b("click", { onElement: this.element, matchingSelector: "a[contenteditable=false]", preventDefault: true }), b("mousedown", { onElement: this.element, matchingSelector: e, withCallback: this.didClickAttachment }), b("click", { onElement: this.element, matchingSelector: "a".concat(e), preventDefault: true });
     }
-    didFocus(t2) {
+    didFocus(t3) {
       var e2;
       const i2 = () => {
-        var t3, e3;
-        if (!this.focused) return this.focused = true, null === (t3 = this.delegate) || void 0 === t3 || null === (e3 = t3.compositionControllerDidFocus) || void 0 === e3 ? void 0 : e3.call(t3);
+        var t4, e3;
+        if (!this.focused) return this.focused = true, null === (t4 = this.delegate) || void 0 === t4 || null === (e3 = t4.compositionControllerDidFocus) || void 0 === e3 ? void 0 : e3.call(t4);
       };
       return (null === (e2 = this.blurPromise) || void 0 === e2 ? void 0 : e2.then(i2)) || i2();
     }
-    didBlur(t2) {
-      this.blurPromise = new Promise((t3) => Rt(() => {
+    didBlur(t3) {
+      this.blurPromise = new Promise((t4) => Rt(() => {
         var e2, i2;
         x(this.element) || (this.focused = null, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionControllerDidBlur) || void 0 === i2 || i2.call(e2));
-        return this.blurPromise = null, t3();
+        return this.blurPromise = null, t4();
       }));
     }
-    didClickAttachment(t2, e2) {
+    didClickAttachment(t3, e2) {
       var i2, n2;
-      const r2 = this.findAttachmentForElement(e2), o2 = !!A(t2.target, { matchingSelector: "figcaption" });
+      const r2 = this.findAttachmentForElement(e2), o2 = !!y(t3.target, { matchingSelector: "figcaption" });
       return null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.compositionControllerDidSelectAttachment) || void 0 === n2 ? void 0 : n2.call(i2, r2, { editCaption: o2 });
     }
     getSerializableElement() {
       return this.isEditingAttachment() ? this.documentView.shadowElement : this.element;
     }
     render() {
-      var t2, e2, i2, n2, r2, o2;
+      var t3, e2, i2, n2, r2, o2;
       (this.revision !== this.composition.revision && (this.documentView.setDocument(this.composition.document), this.documentView.render(), this.revision = this.composition.revision), this.canSyncDocumentView() && !this.documentView.isSynced()) && (null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.compositionControllerWillSyncDocumentView) || void 0 === n2 || n2.call(i2), this.documentView.sync(), null === (r2 = this.delegate) || void 0 === r2 || null === (o2 = r2.compositionControllerDidSyncDocumentView) || void 0 === o2 || o2.call(r2));
-      return null === (t2 = this.delegate) || void 0 === t2 || null === (e2 = t2.compositionControllerDidRender) || void 0 === e2 ? void 0 : e2.call(t2);
+      return null === (t3 = this.delegate) || void 0 === t3 || null === (e2 = t3.compositionControllerDidRender) || void 0 === e2 ? void 0 : e2.call(t3);
     }
-    rerenderViewForObject(t2) {
-      return this.invalidateViewForObject(t2), this.render();
+    rerenderViewForObject(t3) {
+      return this.invalidateViewForObject(t3), this.render();
     }
-    invalidateViewForObject(t2) {
-      return this.documentView.invalidateViewForObject(t2);
+    invalidateViewForObject(t3) {
+      return this.documentView.invalidateViewForObject(t3);
     }
     isViewCachingEnabled() {
       return this.documentView.isViewCachingEnabled();
@@ -11760,92 +12159,92 @@
     isEditingAttachment() {
       return !!this.attachmentEditor;
     }
-    installAttachmentEditorForAttachment(t2, e2) {
+    installAttachmentEditorForAttachment(t3, e2) {
       var i2;
-      if ((null === (i2 = this.attachmentEditor) || void 0 === i2 ? void 0 : i2.attachment) === t2) return;
-      const n2 = this.documentView.findElementForObject(t2);
+      if ((null === (i2 = this.attachmentEditor) || void 0 === i2 ? void 0 : i2.attachment) === t3) return;
+      const n2 = this.documentView.findElementForObject(t3);
       if (!n2) return;
       this.uninstallAttachmentEditor();
-      const r2 = this.composition.document.getAttachmentPieceForAttachment(t2);
-      this.attachmentEditor = new Ii(r2, n2, this.element, e2), this.attachmentEditor.delegate = this;
+      const r2 = this.composition.document.getAttachmentPieceForAttachment(t3);
+      this.attachmentEditor = new Yn(r2, n2, this.element, e2), this.attachmentEditor.delegate = this;
     }
     uninstallAttachmentEditor() {
-      var t2;
-      return null === (t2 = this.attachmentEditor) || void 0 === t2 ? void 0 : t2.uninstall();
+      var t3;
+      return null === (t3 = this.attachmentEditor) || void 0 === t3 ? void 0 : t3.uninstall();
     }
     didUninstallAttachmentEditor() {
       return this.attachmentEditor = null, this.render();
     }
-    attachmentEditorDidRequestUpdatingAttributesForAttachment(t2, e2) {
+    attachmentEditorDidRequestUpdatingAttributesForAttachment(t3, e2) {
       var i2, n2;
-      return null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.compositionControllerWillUpdateAttachment) || void 0 === n2 || n2.call(i2, e2), this.composition.updateAttributesForAttachment(t2, e2);
+      return null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.compositionControllerWillUpdateAttachment) || void 0 === n2 || n2.call(i2, e2), this.composition.updateAttributesForAttachment(t3, e2);
     }
-    attachmentEditorDidRequestRemovingAttributeForAttachment(t2, e2) {
+    attachmentEditorDidRequestRemovingAttributeForAttachment(t3, e2) {
       var i2, n2;
-      return null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.compositionControllerWillUpdateAttachment) || void 0 === n2 || n2.call(i2, e2), this.composition.removeAttributeForAttachment(t2, e2);
+      return null === (i2 = this.delegate) || void 0 === i2 || null === (n2 = i2.compositionControllerWillUpdateAttachment) || void 0 === n2 || n2.call(i2, e2), this.composition.removeAttributeForAttachment(t3, e2);
     }
-    attachmentEditorDidRequestRemovalOfAttachment(t2) {
+    attachmentEditorDidRequestRemovalOfAttachment(t3) {
       var e2, i2;
-      return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionControllerDidRequestRemovalOfAttachment) || void 0 === i2 ? void 0 : i2.call(e2, t2);
+      return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionControllerDidRequestRemovalOfAttachment) || void 0 === i2 ? void 0 : i2.call(e2, t3);
     }
-    attachmentEditorDidRequestDeselectingAttachment(t2) {
+    attachmentEditorDidRequestDeselectingAttachment(t3) {
       var e2, i2;
-      return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionControllerDidRequestDeselectingAttachment) || void 0 === i2 ? void 0 : i2.call(e2, t2);
+      return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.compositionControllerDidRequestDeselectingAttachment) || void 0 === i2 ? void 0 : i2.call(e2, t3);
     }
     canSyncDocumentView() {
       return !this.isEditingAttachment();
     }
-    findAttachmentForElement(t2) {
-      return this.composition.document.getAttachmentById(parseInt(t2.dataset.trixId, 10));
+    findAttachmentForElement(t3) {
+      return this.composition.document.getAttachmentById(parseInt(t3.dataset.trixId, 10));
     }
   };
-  var Oi = class extends H {
+  var $n = class extends q {
   };
-  var Mi = "data-trix-mutable";
-  var ji = "[".concat(Mi, "]");
-  var Wi = { attributes: true, childList: true, characterData: true, characterDataOldValue: true, subtree: true };
-  var Ui = class extends H {
-    constructor(t2) {
-      super(t2), this.didMutate = this.didMutate.bind(this), this.element = t2, this.observer = new window.MutationObserver(this.didMutate), this.start();
+  var Zn = "data-trix-mutable";
+  var Qn = "[".concat(Zn, "]");
+  var tr = { attributes: true, childList: true, characterData: true, characterDataOldValue: true, subtree: true };
+  var er = class extends q {
+    constructor(t3) {
+      super(t3), this.didMutate = this.didMutate.bind(this), this.element = t3, this.observer = new window.MutationObserver(this.didMutate), this.start();
     }
     start() {
-      return this.reset(), this.observer.observe(this.element, Wi);
+      return this.reset(), this.observer.observe(this.element, tr);
     }
     stop() {
       return this.observer.disconnect();
     }
-    didMutate(t2) {
+    didMutate(t3) {
       var e2, i2;
-      if (this.mutations.push(...Array.from(this.findSignificantMutations(t2) || [])), this.mutations.length) return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.elementDidMutate) || void 0 === i2 || i2.call(e2, this.getMutationSummary()), this.reset();
+      if (this.mutations.push(...Array.from(this.findSignificantMutations(t3) || [])), this.mutations.length) return null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.elementDidMutate) || void 0 === i2 || i2.call(e2, this.getMutationSummary()), this.reset();
     }
     reset() {
       this.mutations = [];
     }
-    findSignificantMutations(t2) {
-      return t2.filter((t3) => this.mutationIsSignificant(t3));
+    findSignificantMutations(t3) {
+      return t3.filter((t4) => this.mutationIsSignificant(t4));
     }
-    mutationIsSignificant(t2) {
-      if (this.nodeIsMutable(t2.target)) return false;
-      for (const e2 of Array.from(this.nodesModifiedByMutation(t2))) if (this.nodeIsSignificant(e2)) return true;
+    mutationIsSignificant(t3) {
+      if (this.nodeIsMutable(t3.target)) return false;
+      for (const e2 of Array.from(this.nodesModifiedByMutation(t3))) if (this.nodeIsSignificant(e2)) return true;
       return false;
     }
-    nodeIsSignificant(t2) {
-      return t2 !== this.element && !this.nodeIsMutable(t2) && !N(t2);
+    nodeIsSignificant(t3) {
+      return t3 !== this.element && !this.nodeIsMutable(t3) && !M(t3);
     }
-    nodeIsMutable(t2) {
-      return A(t2, { matchingSelector: ji });
+    nodeIsMutable(t3) {
+      return y(t3, { matchingSelector: Qn });
     }
-    nodesModifiedByMutation(t2) {
+    nodesModifiedByMutation(t3) {
       const e2 = [];
-      switch (t2.type) {
+      switch (t3.type) {
         case "attributes":
-          t2.attributeName !== Mi && e2.push(t2.target);
+          t3.attributeName !== Zn && e2.push(t3.target);
           break;
         case "characterData":
-          e2.push(t2.target.parentNode), e2.push(t2.target);
+          e2.push(t3.target.parentNode), e2.push(t3.target);
           break;
         case "childList":
-          e2.push(...Array.from(t2.addedNodes || [])), e2.push(...Array.from(t2.removedNodes || []));
+          e2.push(...Array.from(t3.addedNodes || [])), e2.push(...Array.from(t3.removedNodes || []));
       }
       return e2;
     }
@@ -11853,102 +12252,103 @@
       return this.getTextMutationSummary();
     }
     getTextMutationSummary() {
-      const { additions: t2, deletions: e2 } = this.getTextChangesFromCharacterData(), i2 = this.getTextChangesFromChildList();
+      const { additions: t3, deletions: e2 } = this.getTextChangesFromCharacterData(), i2 = this.getTextChangesFromChildList();
       Array.from(i2.additions).forEach((e3) => {
-        Array.from(t2).includes(e3) || t2.push(e3);
+        Array.from(t3).includes(e3) || t3.push(e3);
       }), e2.push(...Array.from(i2.deletions || []));
-      const n2 = {}, r2 = t2.join("");
+      const n2 = {}, r2 = t3.join("");
       r2 && (n2.textAdded = r2);
       const o2 = e2.join("");
       return o2 && (n2.textDeleted = o2), n2;
     }
-    getMutationsByType(t2) {
-      return Array.from(this.mutations).filter((e2) => e2.type === t2);
+    getMutationsByType(t3) {
+      return Array.from(this.mutations).filter((e2) => e2.type === t3);
     }
     getTextChangesFromChildList() {
-      let t2, e2;
+      let t3, e2;
       const i2 = [], n2 = [];
-      Array.from(this.getMutationsByType("childList")).forEach((t3) => {
-        i2.push(...Array.from(t3.addedNodes || [])), n2.push(...Array.from(t3.removedNodes || []));
+      Array.from(this.getMutationsByType("childList")).forEach((t4) => {
+        i2.push(...Array.from(t4.addedNodes || [])), n2.push(...Array.from(t4.removedNodes || []));
       });
-      0 === i2.length && 1 === n2.length && B(n2[0]) ? (t2 = [], e2 = ["\n"]) : (t2 = qi(i2), e2 = qi(n2));
-      return { additions: t2.filter((t3, i3) => t3 !== e2[i3]).map(Wt), deletions: e2.filter((e3, i3) => e3 !== t2[i3]).map(Wt) };
+      0 === i2.length && 1 === n2.length && I(n2[0]) ? (t3 = [], e2 = ["\n"]) : (t3 = ir(i2), e2 = ir(n2));
+      const r2 = t3.filter((t4, i3) => t4 !== e2[i3]).map(Wt), o2 = e2.filter((e3, i3) => e3 !== t3[i3]).map(Wt);
+      return { additions: r2, deletions: o2 };
     }
     getTextChangesFromCharacterData() {
-      let t2, e2;
+      let t3, e2;
       const i2 = this.getMutationsByType("characterData");
       if (i2.length) {
-        const n2 = i2[0], r2 = i2[i2.length - 1], o2 = function(t3, e3) {
+        const n2 = i2[0], r2 = i2[i2.length - 1], o2 = function(t4, e3) {
           let i3, n3;
-          return t3 = X.box(t3), (e3 = X.box(e3)).length < t3.length ? [n3, i3] = Vt(t3, e3) : [i3, n3] = Vt(e3, t3), { added: i3, removed: n3 };
+          return t4 = $2.box(t4), (e3 = $2.box(e3)).length < t4.length ? [n3, i3] = zt(t4, e3) : [i3, n3] = zt(e3, t4), { added: i3, removed: n3 };
         }(Wt(n2.oldValue), Wt(r2.target.data));
-        t2 = o2.added, e2 = o2.removed;
+        t3 = o2.added, e2 = o2.removed;
       }
-      return { additions: t2 ? [t2] : [], deletions: e2 ? [e2] : [] };
+      return { additions: t3 ? [t3] : [], deletions: e2 ? [e2] : [] };
     }
   };
-  var qi = function() {
-    let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
+  var ir = function() {
+    let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
     const e2 = [];
-    for (const i2 of Array.from(t2)) switch (i2.nodeType) {
+    for (const i2 of Array.from(t3)) switch (i2.nodeType) {
       case Node.TEXT_NODE:
         e2.push(i2.data);
         break;
       case Node.ELEMENT_NODE:
-        "br" === E(i2) ? e2.push("\n") : e2.push(...Array.from(qi(i2.childNodes) || []));
+        "br" === k(i2) ? e2.push("\n") : e2.push(...Array.from(ir(i2.childNodes) || []));
     }
     return e2;
   };
-  var Vi = class extends te {
-    constructor(t2) {
-      super(...arguments), this.file = t2;
+  var nr = class extends ee {
+    constructor(t3) {
+      super(...arguments), this.file = t3;
     }
-    perform(t2) {
+    perform(t3) {
       const e2 = new FileReader();
-      return e2.onerror = () => t2(false), e2.onload = () => {
+      return e2.onerror = () => t3(false), e2.onload = () => {
         e2.onerror = null;
         try {
           e2.abort();
-        } catch (t3) {
+        } catch (t4) {
         }
-        return t2(true, this.file);
+        return t3(true, this.file);
       }, e2.readAsArrayBuffer(this.file);
     }
   };
-  var Hi = class {
-    constructor(t2) {
-      this.element = t2;
+  var rr = class {
+    constructor(t3) {
+      this.element = t3;
     }
-    shouldIgnore(t2) {
-      return !!a.samsungAndroid && (this.previousEvent = this.event, this.event = t2, this.checkSamsungKeyboardBuggyModeStart(), this.checkSamsungKeyboardBuggyModeEnd(), this.buggyMode);
+    shouldIgnore(t3) {
+      return !!a.samsungAndroid && (this.previousEvent = this.event, this.event = t3, this.checkSamsungKeyboardBuggyModeStart(), this.checkSamsungKeyboardBuggyModeEnd(), this.buggyMode);
     }
     checkSamsungKeyboardBuggyModeStart() {
-      this.insertingLongTextAfterUnidentifiedChar() && zi(this.element.innerText, this.event.data) && (this.buggyMode = true, this.event.preventDefault());
+      this.insertingLongTextAfterUnidentifiedChar() && or(this.element.innerText, this.event.data) && (this.buggyMode = true, this.event.preventDefault());
     }
     checkSamsungKeyboardBuggyModeEnd() {
       this.buggyMode && "insertText" !== this.event.inputType && (this.buggyMode = false);
     }
     insertingLongTextAfterUnidentifiedChar() {
-      var t2;
-      return this.isBeforeInputInsertText() && this.previousEventWasUnidentifiedKeydown() && (null === (t2 = this.event.data) || void 0 === t2 ? void 0 : t2.length) > 50;
+      var t3;
+      return this.isBeforeInputInsertText() && this.previousEventWasUnidentifiedKeydown() && (null === (t3 = this.event.data) || void 0 === t3 ? void 0 : t3.length) > 50;
     }
     isBeforeInputInsertText() {
       return "beforeinput" === this.event.type && "insertText" === this.event.inputType;
     }
     previousEventWasUnidentifiedKeydown() {
-      var t2, e2;
-      return "keydown" === (null === (t2 = this.previousEvent) || void 0 === t2 ? void 0 : t2.type) && "Unidentified" === (null === (e2 = this.previousEvent) || void 0 === e2 ? void 0 : e2.key);
+      var t3, e2;
+      return "keydown" === (null === (t3 = this.previousEvent) || void 0 === t3 ? void 0 : t3.type) && "Unidentified" === (null === (e2 = this.previousEvent) || void 0 === e2 ? void 0 : e2.key);
     }
   };
-  var zi = (t2, e2) => Ji(t2) === Ji(e2);
-  var _i = new RegExp("(".concat("\uFFFC", "|").concat(h, "|").concat(d, "|\\s)+"), "g");
-  var Ji = (t2) => t2.replace(_i, " ").trim();
-  var Ki = class extends H {
-    constructor(t2) {
-      super(...arguments), this.element = t2, this.mutationObserver = new Ui(this.element), this.mutationObserver.delegate = this, this.flakyKeyboardDetector = new Hi(this.element);
-      for (const t3 in this.constructor.events) f(t3, { onElement: this.element, withCallback: this.handlerFor(t3) });
+  var or = (t3, e2) => ar(t3) === ar(e2);
+  var sr = new RegExp("(".concat("\uFFFC", "|").concat(d, "|").concat(g, "|\\s)+"), "g");
+  var ar = (t3) => t3.replace(sr, " ").trim();
+  var lr = class extends q {
+    constructor(t3) {
+      super(...arguments), this.element = t3, this.mutationObserver = new er(this.element), this.mutationObserver.delegate = this, this.flakyKeyboardDetector = new rr(this.element);
+      for (const t4 in this.constructor.events) b(t4, { onElement: this.element, withCallback: this.handlerFor(t4) });
     }
-    elementDidMutate(t2) {
+    elementDidMutate(t3) {
     }
     editorWillSyncDocumentView() {
       return this.mutationObserver.stop();
@@ -11957,59 +12357,59 @@
       return this.mutationObserver.start();
     }
     requestRender() {
-      var t2, e2;
-      return null === (t2 = this.delegate) || void 0 === t2 || null === (e2 = t2.inputControllerDidRequestRender) || void 0 === e2 ? void 0 : e2.call(t2);
+      var t3, e2;
+      return null === (t3 = this.delegate) || void 0 === t3 || null === (e2 = t3.inputControllerDidRequestRender) || void 0 === e2 ? void 0 : e2.call(t3);
     }
     requestReparse() {
-      var t2, e2;
-      return null === (t2 = this.delegate) || void 0 === t2 || null === (e2 = t2.inputControllerDidRequestReparse) || void 0 === e2 || e2.call(t2), this.requestRender();
+      var t3, e2;
+      return null === (t3 = this.delegate) || void 0 === t3 || null === (e2 = t3.inputControllerDidRequestReparse) || void 0 === e2 || e2.call(t3), this.requestRender();
     }
-    attachFiles(t2) {
-      const e2 = Array.from(t2).map((t3) => new Vi(t3));
-      return Promise.all(e2).then((t3) => {
+    attachFiles(t3) {
+      const e2 = Array.from(t3).map((t4) => new nr(t4));
+      return Promise.all(e2).then((t4) => {
         this.handleInput(function() {
           var e3, i2;
-          return null === (e3 = this.delegate) || void 0 === e3 || e3.inputControllerWillAttachFiles(), null === (i2 = this.responder) || void 0 === i2 || i2.insertFiles(t3), this.requestRender();
+          return null === (e3 = this.delegate) || void 0 === e3 || e3.inputControllerWillAttachFiles(), null === (i2 = this.responder) || void 0 === i2 || i2.insertFiles(t4), this.requestRender();
         });
       });
     }
-    handlerFor(t2) {
+    handlerFor(t3) {
       return (e2) => {
         e2.defaultPrevented || this.handleInput(() => {
           if (!x(this.element)) {
             if (this.flakyKeyboardDetector.shouldIgnore(e2)) return;
-            this.eventName = t2, this.constructor.events[t2].call(this, e2);
+            this.eventName = t3, this.constructor.events[t3].call(this, e2);
           }
         });
       };
     }
-    handleInput(t2) {
+    handleInput(t3) {
       try {
         var e2;
-        null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillHandleInput(), t2.call(this);
+        null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillHandleInput(), t3.call(this);
       } finally {
         var i2;
         null === (i2 = this.delegate) || void 0 === i2 || i2.inputControllerDidHandleInput();
       }
     }
-    createLinkHTML(t2, e2) {
+    createLinkHTML(t3, e2) {
       const i2 = document.createElement("a");
-      return i2.href = t2, i2.textContent = e2 || t2, i2.outerHTML;
+      return i2.href = t3, i2.textContent = e2 || t3, i2.outerHTML;
     }
   };
-  var Gi;
-  Re(Ki, "events", {});
-  var { browser: $i, keyNames: Xi } = V;
-  var Yi = 0;
-  var Qi = class extends Ki {
+  var cr;
+  Di(lr, "events", {});
+  var { browser: ur, keyNames: hr } = z;
+  var dr = 0;
+  var gr = class extends lr {
     constructor() {
       super(...arguments), this.resetInputSummary();
     }
     setInputSummary() {
-      let t2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+      let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
       this.inputSummary.eventName = this.eventName;
-      for (const e2 in t2) {
-        const i2 = t2[e2];
+      for (const e2 in t3) {
+        const i2 = t3[e2];
         this.inputSummary[e2] = i2;
       }
       return this.inputSummary;
@@ -12018,157 +12418,157 @@
       this.inputSummary = {};
     }
     reset() {
-      return this.resetInputSummary(), Pt.reset();
+      return this.resetInputSummary(), Ft.reset();
     }
-    elementDidMutate(t2) {
+    elementDidMutate(t3) {
       var e2, i2;
       return this.isComposing() ? null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.inputControllerDidAllowUnhandledInput) || void 0 === i2 ? void 0 : i2.call(e2) : this.handleInput(function() {
-        return this.mutationIsSignificant(t2) && (this.mutationIsExpected(t2) ? this.requestRender() : this.requestReparse()), this.reset();
+        return this.mutationIsSignificant(t3) && (this.mutationIsExpected(t3) ? this.requestRender() : this.requestReparse()), this.reset();
       });
     }
-    mutationIsExpected(t2) {
-      let { textAdded: e2, textDeleted: i2 } = t2;
+    mutationIsExpected(t3) {
+      let { textAdded: e2, textDeleted: i2 } = t3;
       if (this.inputSummary.preferDocument) return true;
       const n2 = null != e2 ? e2 === this.inputSummary.textAdded : !this.inputSummary.textAdded, r2 = null != i2 ? this.inputSummary.didDelete : !this.inputSummary.didDelete, o2 = ["\n", " \n"].includes(e2) && !n2, s2 = "\n" === i2 && !r2;
       if (o2 && !s2 || s2 && !o2) {
-        const t3 = this.getSelectedRange();
-        if (t3) {
+        const t4 = this.getSelectedRange();
+        if (t4) {
           var a2;
           const i3 = o2 ? e2.replace(/\n$/, "").length || -1 : (null == e2 ? void 0 : e2.length) || 1;
-          if (null !== (a2 = this.responder) && void 0 !== a2 && a2.positionIsBlockBreak(t3[1] + i3)) return true;
+          if (null !== (a2 = this.responder) && void 0 !== a2 && a2.positionIsBlockBreak(t4[1] + i3)) return true;
         }
       }
       return n2 && r2;
     }
-    mutationIsSignificant(t2) {
+    mutationIsSignificant(t3) {
       var e2;
-      const i2 = Object.keys(t2).length > 0, n2 = "" === (null === (e2 = this.compositionInput) || void 0 === e2 ? void 0 : e2.getEndData());
+      const i2 = Object.keys(t3).length > 0, n2 = "" === (null === (e2 = this.compositionInput) || void 0 === e2 ? void 0 : e2.getEndData());
       return i2 || !n2;
     }
     getCompositionInput() {
       if (this.isComposing()) return this.compositionInput;
-      this.compositionInput = new rn(this);
+      this.compositionInput = new vr(this);
     }
     isComposing() {
       return this.compositionInput && !this.compositionInput.isEnded();
     }
-    deleteInDirection(t2, e2) {
+    deleteInDirection(t3, e2) {
       var i2;
-      return false !== (null === (i2 = this.responder) || void 0 === i2 ? void 0 : i2.deleteInDirection(t2)) ? this.setInputSummary({ didDelete: true }) : e2 ? (e2.preventDefault(), this.requestRender()) : void 0;
+      return false !== (null === (i2 = this.responder) || void 0 === i2 ? void 0 : i2.deleteInDirection(t3)) ? this.setInputSummary({ didDelete: true }) : e2 ? (e2.preventDefault(), this.requestRender()) : void 0;
     }
-    serializeSelectionToDataTransfer(t2) {
+    serializeSelectionToDataTransfer(t3) {
       var e2;
-      if (!function(t3) {
-        if (null == t3 || !t3.setData) return false;
-        for (const e3 in yt) {
-          const i3 = yt[e3];
+      if (!function(t4) {
+        if (null == t4 || !t4.setData) return false;
+        for (const e3 in Ct) {
+          const i3 = Ct[e3];
           try {
-            if (t3.setData(e3, i3), !t3.getData(e3) === i3) return false;
-          } catch (t4) {
+            if (t4.setData(e3, i3), !t4.getData(e3) === i3) return false;
+          } catch (t5) {
             return false;
           }
         }
         return true;
-      }(t2)) return;
+      }(t3)) return;
       const i2 = null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.getSelectedDocument().toSerializableDocument();
-      return t2.setData("application/x-trix-document", JSON.stringify(i2)), t2.setData("text/html", ve.render(i2).innerHTML), t2.setData("text/plain", i2.toString().replace(/\n$/, "")), true;
+      return t3.setData("application/x-trix-document", JSON.stringify(i2)), t3.setData("text/html", Si.render(i2).innerHTML), t3.setData("text/plain", i2.toString().replace(/\n$/, "")), true;
     }
-    canAcceptDataTransfer(t2) {
+    canAcceptDataTransfer(t3) {
       const e2 = {};
-      return Array.from((null == t2 ? void 0 : t2.types) || []).forEach((t3) => {
-        e2[t3] = true;
+      return Array.from((null == t3 ? void 0 : t3.types) || []).forEach((t4) => {
+        e2[t4] = true;
       }), e2.Files || e2["application/x-trix-document"] || e2["text/html"] || e2["text/plain"];
     }
-    getPastedHTMLUsingHiddenElement(t2) {
-      const e2 = this.getSelectedRange(), i2 = { position: "absolute", left: "".concat(window.pageXOffset, "px"), top: "".concat(window.pageYOffset, "px"), opacity: 0 }, n2 = S({ style: i2, tagName: "div", editable: true });
+    getPastedHTMLUsingHiddenElement(t3) {
+      const e2 = this.getSelectedRange(), i2 = { position: "absolute", left: "".concat(window.pageXOffset, "px"), top: "".concat(window.pageYOffset, "px"), opacity: 0 }, n2 = T({ style: i2, tagName: "div", editable: true });
       return document.body.appendChild(n2), n2.focus(), requestAnimationFrame(() => {
         const i3 = n2.innerHTML;
-        return k(n2), this.setSelectedRange(e2), t2(i3);
+        return S(n2), this.setSelectedRange(e2), t3(i3);
       });
     }
   };
-  Re(Qi, "events", { keydown(t2) {
+  Di(gr, "events", { keydown(t3) {
     this.isComposing() || this.resetInputSummary(), this.inputSummary.didInput = true;
-    const e2 = Xi[t2.keyCode];
+    const e2 = hr[t3.keyCode];
     if (e2) {
       var i2;
       let n3 = this.keys;
       ["ctrl", "alt", "shift", "meta"].forEach((e3) => {
         var i3;
-        t2["".concat(e3, "Key")] && ("ctrl" === e3 && (e3 = "control"), n3 = null === (i3 = n3) || void 0 === i3 ? void 0 : i3[e3]);
-      }), null != (null === (i2 = n3) || void 0 === i2 ? void 0 : i2[e2]) && (this.setInputSummary({ keyName: e2 }), Pt.reset(), n3[e2].call(this, t2));
+        t3["".concat(e3, "Key")] && ("ctrl" === e3 && (e3 = "control"), n3 = null === (i3 = n3) || void 0 === i3 ? void 0 : i3[e3]);
+      }), null != (null === (i2 = n3) || void 0 === i2 ? void 0 : i2[e2]) && (this.setInputSummary({ keyName: e2 }), Ft.reset(), n3[e2].call(this, t3));
     }
-    if (kt(t2)) {
-      const e3 = String.fromCharCode(t2.keyCode).toLowerCase();
+    if (St(t3)) {
+      const e3 = String.fromCharCode(t3.keyCode).toLowerCase();
       if (e3) {
         var n2;
         const i3 = ["alt", "shift"].map((e4) => {
-          if (t2["".concat(e4, "Key")]) return e4;
-        }).filter((t3) => t3);
-        i3.push(e3), null !== (n2 = this.delegate) && void 0 !== n2 && n2.inputControllerDidReceiveKeyboardCommand(i3) && t2.preventDefault();
+          if (t3["".concat(e4, "Key")]) return e4;
+        }).filter((t4) => t4);
+        i3.push(e3), null !== (n2 = this.delegate) && void 0 !== n2 && n2.inputControllerDidReceiveKeyboardCommand(i3) && t3.preventDefault();
       }
     }
-  }, keypress(t2) {
+  }, keypress(t3) {
     if (null != this.inputSummary.eventName) return;
-    if (t2.metaKey) return;
-    if (t2.ctrlKey && !t2.altKey) return;
-    const e2 = en(t2);
+    if (t3.metaKey) return;
+    if (t3.ctrlKey && !t3.altKey) return;
+    const e2 = fr(t3);
     var i2, n2;
     return e2 ? (null === (i2 = this.delegate) || void 0 === i2 || i2.inputControllerWillPerformTyping(), null === (n2 = this.responder) || void 0 === n2 || n2.insertString(e2), this.setInputSummary({ textAdded: e2, didDelete: this.selectionIsExpanded() })) : void 0;
-  }, textInput(t2) {
-    const { data: e2 } = t2, { textAdded: i2 } = this.inputSummary;
+  }, textInput(t3) {
+    const { data: e2 } = t3, { textAdded: i2 } = this.inputSummary;
     if (i2 && i2 !== e2 && i2.toUpperCase() === e2) {
       var n2;
-      const t3 = this.getSelectedRange();
-      return this.setSelectedRange([t3[0], t3[1] + i2.length]), null === (n2 = this.responder) || void 0 === n2 || n2.insertString(e2), this.setInputSummary({ textAdded: e2 }), this.setSelectedRange(t3);
+      const t4 = this.getSelectedRange();
+      return this.setSelectedRange([t4[0], t4[1] + i2.length]), null === (n2 = this.responder) || void 0 === n2 || n2.insertString(e2), this.setInputSummary({ textAdded: e2 }), this.setSelectedRange(t4);
     }
-  }, dragenter(t2) {
-    t2.preventDefault();
-  }, dragstart(t2) {
+  }, dragenter(t3) {
+    t3.preventDefault();
+  }, dragstart(t3) {
     var e2, i2;
-    return this.serializeSelectionToDataTransfer(t2.dataTransfer), this.draggedRange = this.getSelectedRange(), null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.inputControllerDidStartDrag) || void 0 === i2 ? void 0 : i2.call(e2);
-  }, dragover(t2) {
-    if (this.draggedRange || this.canAcceptDataTransfer(t2.dataTransfer)) {
-      t2.preventDefault();
-      const n2 = { x: t2.clientX, y: t2.clientY };
+    return this.serializeSelectionToDataTransfer(t3.dataTransfer), this.draggedRange = this.getSelectedRange(), null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.inputControllerDidStartDrag) || void 0 === i2 ? void 0 : i2.call(e2);
+  }, dragover(t3) {
+    if (this.draggedRange || this.canAcceptDataTransfer(t3.dataTransfer)) {
+      t3.preventDefault();
+      const n2 = { x: t3.clientX, y: t3.clientY };
       var e2, i2;
-      if (!St(n2, this.draggingPoint)) return this.draggingPoint = n2, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.inputControllerDidReceiveDragOverPoint) || void 0 === i2 ? void 0 : i2.call(e2, this.draggingPoint);
+      if (!Tt(n2, this.draggingPoint)) return this.draggingPoint = n2, null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.inputControllerDidReceiveDragOverPoint) || void 0 === i2 ? void 0 : i2.call(e2, this.draggingPoint);
     }
-  }, dragend(t2) {
+  }, dragend(t3) {
     var e2, i2;
     null === (e2 = this.delegate) || void 0 === e2 || null === (i2 = e2.inputControllerDidCancelDrag) || void 0 === i2 || i2.call(e2), this.draggedRange = null, this.draggingPoint = null;
-  }, drop(t2) {
+  }, drop(t3) {
     var e2, i2;
-    t2.preventDefault();
-    const n2 = null === (e2 = t2.dataTransfer) || void 0 === e2 ? void 0 : e2.files, r2 = t2.dataTransfer.getData("application/x-trix-document"), o2 = { x: t2.clientX, y: t2.clientY };
+    t3.preventDefault();
+    const n2 = null === (e2 = t3.dataTransfer) || void 0 === e2 ? void 0 : e2.files, r2 = t3.dataTransfer.getData("application/x-trix-document"), o2 = { x: t3.clientX, y: t3.clientY };
     if (null === (i2 = this.responder) || void 0 === i2 || i2.setLocationRangeFromPointRange(o2), null != n2 && n2.length) this.attachFiles(n2);
     else if (this.draggedRange) {
       var s2, a2;
       null === (s2 = this.delegate) || void 0 === s2 || s2.inputControllerWillMoveText(), null === (a2 = this.responder) || void 0 === a2 || a2.moveTextFromRange(this.draggedRange), this.draggedRange = null, this.requestRender();
     } else if (r2) {
       var l2;
-      const t3 = Je.fromJSONString(r2);
-      null === (l2 = this.responder) || void 0 === l2 || l2.insertDocument(t3), this.requestRender();
+      const t4 = an.fromJSONString(r2);
+      null === (l2 = this.responder) || void 0 === l2 || l2.insertDocument(t4), this.requestRender();
     }
     this.draggedRange = null, this.draggingPoint = null;
-  }, cut(t2) {
+  }, cut(t3) {
     var e2, i2;
-    if (null !== (e2 = this.responder) && void 0 !== e2 && e2.selectionIsExpanded() && (this.serializeSelectionToDataTransfer(t2.clipboardData) && t2.preventDefault(), null === (i2 = this.delegate) || void 0 === i2 || i2.inputControllerWillCutText(), this.deleteInDirection("backward"), t2.defaultPrevented)) return this.requestRender();
-  }, copy(t2) {
+    if (null !== (e2 = this.responder) && void 0 !== e2 && e2.selectionIsExpanded() && (this.serializeSelectionToDataTransfer(t3.clipboardData) && t3.preventDefault(), null === (i2 = this.delegate) || void 0 === i2 || i2.inputControllerWillCutText(), this.deleteInDirection("backward"), t3.defaultPrevented)) return this.requestRender();
+  }, copy(t3) {
     var e2;
-    null !== (e2 = this.responder) && void 0 !== e2 && e2.selectionIsExpanded() && this.serializeSelectionToDataTransfer(t2.clipboardData) && t2.preventDefault();
-  }, paste(t2) {
-    const e2 = t2.clipboardData || t2.testClipboardData, i2 = { clipboard: e2 };
-    if (!e2 || nn(t2)) return void this.getPastedHTMLUsingHiddenElement((t3) => {
+    null !== (e2 = this.responder) && void 0 !== e2 && e2.selectionIsExpanded() && this.serializeSelectionToDataTransfer(t3.clipboardData) && t3.preventDefault();
+  }, paste(t3) {
+    const e2 = t3.clipboardData || t3.testClipboardData, i2 = { clipboard: e2 };
+    if (!e2 || br(t3)) return void this.getPastedHTMLUsingHiddenElement((t4) => {
       var e3, n3, r3;
-      return i2.type = "text/html", i2.html = t3, null === (e3 = this.delegate) || void 0 === e3 || e3.inputControllerWillPaste(i2), null === (n3 = this.responder) || void 0 === n3 || n3.insertHTML(i2.html), this.requestRender(), null === (r3 = this.delegate) || void 0 === r3 ? void 0 : r3.inputControllerDidPaste(i2);
+      return i2.type = "text/html", i2.html = t4, null === (e3 = this.delegate) || void 0 === e3 || e3.inputControllerWillPaste(i2), null === (n3 = this.responder) || void 0 === n3 || n3.insertHTML(i2.html), this.requestRender(), null === (r3 = this.delegate) || void 0 === r3 ? void 0 : r3.inputControllerDidPaste(i2);
     });
     const n2 = e2.getData("URL"), r2 = e2.getData("text/html"), o2 = e2.getData("public.url-name");
     if (n2) {
       var s2, a2, l2;
-      let t3;
-      i2.type = "text/html", t3 = o2 ? qt(o2).trim() : n2, i2.html = this.createLinkHTML(n2, t3), null === (s2 = this.delegate) || void 0 === s2 || s2.inputControllerWillPaste(i2), this.setInputSummary({ textAdded: t3, didDelete: this.selectionIsExpanded() }), null === (a2 = this.responder) || void 0 === a2 || a2.insertHTML(i2.html), this.requestRender(), null === (l2 = this.delegate) || void 0 === l2 || l2.inputControllerDidPaste(i2);
-    } else if (Ct(e2)) {
+      let t4;
+      i2.type = "text/html", t4 = o2 ? Vt(o2).trim() : n2, i2.html = this.createLinkHTML(n2, t4), null === (s2 = this.delegate) || void 0 === s2 || s2.inputControllerWillPaste(i2), this.setInputSummary({ textAdded: t4, didDelete: this.selectionIsExpanded() }), null === (a2 = this.responder) || void 0 === a2 || a2.insertHTML(i2.html), this.requestRender(), null === (l2 = this.delegate) || void 0 === l2 || l2.inputControllerDidPaste(i2);
+    } else if (Et(e2)) {
       var c2, u2, h2;
       i2.type = "text/plain", i2.string = e2.getData("text/plain"), null === (c2 = this.delegate) || void 0 === c2 || c2.inputControllerWillPaste(i2), this.setInputSummary({ textAdded: i2.string, didDelete: this.selectionIsExpanded() }), null === (u2 = this.responder) || void 0 === u2 || u2.insertString(i2.string), this.requestRender(), null === (h2 = this.delegate) || void 0 === h2 || h2.inputControllerDidPaste(i2);
     } else if (r2) {
@@ -12176,115 +12576,115 @@
       i2.type = "text/html", i2.html = r2, null === (d2 = this.delegate) || void 0 === d2 || d2.inputControllerWillPaste(i2), null === (g2 = this.responder) || void 0 === g2 || g2.insertHTML(i2.html), this.requestRender(), null === (m2 = this.delegate) || void 0 === m2 || m2.inputControllerDidPaste(i2);
     } else if (Array.from(e2.types).includes("Files")) {
       var p2, f2;
-      const t3 = null === (p2 = e2.items) || void 0 === p2 || null === (p2 = p2[0]) || void 0 === p2 || null === (f2 = p2.getAsFile) || void 0 === f2 ? void 0 : f2.call(p2);
-      if (t3) {
+      const t4 = null === (p2 = e2.items) || void 0 === p2 || null === (p2 = p2[0]) || void 0 === p2 || null === (f2 = p2.getAsFile) || void 0 === f2 ? void 0 : f2.call(p2);
+      if (t4) {
         var b2, v2, A2;
-        const e3 = Zi(t3);
-        !t3.name && e3 && (t3.name = "pasted-file-".concat(++Yi, ".").concat(e3)), i2.type = "File", i2.file = t3, null === (b2 = this.delegate) || void 0 === b2 || b2.inputControllerWillAttachFiles(), null === (v2 = this.responder) || void 0 === v2 || v2.insertFile(i2.file), this.requestRender(), null === (A2 = this.delegate) || void 0 === A2 || A2.inputControllerDidPaste(i2);
+        const e3 = mr(t4);
+        !t4.name && e3 && (t4.name = "pasted-file-".concat(++dr, ".").concat(e3)), i2.type = "File", i2.file = t4, null === (b2 = this.delegate) || void 0 === b2 || b2.inputControllerWillAttachFiles(), null === (v2 = this.responder) || void 0 === v2 || v2.insertFile(i2.file), this.requestRender(), null === (A2 = this.delegate) || void 0 === A2 || A2.inputControllerDidPaste(i2);
       }
     }
-    t2.preventDefault();
-  }, compositionstart(t2) {
-    return this.getCompositionInput().start(t2.data);
-  }, compositionupdate(t2) {
-    return this.getCompositionInput().update(t2.data);
-  }, compositionend(t2) {
-    return this.getCompositionInput().end(t2.data);
-  }, beforeinput(t2) {
+    t3.preventDefault();
+  }, compositionstart(t3) {
+    return this.getCompositionInput().start(t3.data);
+  }, compositionupdate(t3) {
+    return this.getCompositionInput().update(t3.data);
+  }, compositionend(t3) {
+    return this.getCompositionInput().end(t3.data);
+  }, beforeinput(t3) {
     this.inputSummary.didInput = true;
-  }, input(t2) {
-    return this.inputSummary.didInput = true, t2.stopPropagation();
-  } }), Re(Qi, "keys", { backspace(t2) {
+  }, input(t3) {
+    return this.inputSummary.didInput = true, t3.stopPropagation();
+  } }), Di(gr, "keys", { backspace(t3) {
     var e2;
-    return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), this.deleteInDirection("backward", t2);
-  }, delete(t2) {
+    return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), this.deleteInDirection("backward", t3);
+  }, delete(t3) {
     var e2;
-    return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), this.deleteInDirection("forward", t2);
-  }, return(t2) {
+    return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), this.deleteInDirection("forward", t3);
+  }, return(t3) {
     var e2, i2;
     return this.setInputSummary({ preferDocument: true }), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), null === (i2 = this.responder) || void 0 === i2 ? void 0 : i2.insertLineBreak();
-  }, tab(t2) {
+  }, tab(t3) {
     var e2, i2;
-    null !== (e2 = this.responder) && void 0 !== e2 && e2.canIncreaseNestingLevel() && (null === (i2 = this.responder) || void 0 === i2 || i2.increaseNestingLevel(), this.requestRender(), t2.preventDefault());
-  }, left(t2) {
+    null !== (e2 = this.responder) && void 0 !== e2 && e2.canIncreaseNestingLevel() && (null === (i2 = this.responder) || void 0 === i2 || i2.increaseNestingLevel(), this.requestRender(), t3.preventDefault());
+  }, left(t3) {
     var e2;
-    if (this.selectionIsInCursorTarget()) return t2.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("backward");
-  }, right(t2) {
+    if (this.selectionIsInCursorTarget()) return t3.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("backward");
+  }, right(t3) {
     var e2;
-    if (this.selectionIsInCursorTarget()) return t2.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("forward");
-  }, control: { d(t2) {
+    if (this.selectionIsInCursorTarget()) return t3.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("forward");
+  }, control: { d(t3) {
     var e2;
-    return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), this.deleteInDirection("forward", t2);
-  }, h(t2) {
+    return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), this.deleteInDirection("forward", t3);
+  }, h(t3) {
     var e2;
-    return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), this.deleteInDirection("backward", t2);
-  }, o(t2) {
+    return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), this.deleteInDirection("backward", t3);
+  }, o(t3) {
     var e2, i2;
-    return t2.preventDefault(), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), null === (i2 = this.responder) || void 0 === i2 || i2.insertString("\n", { updatePosition: false }), this.requestRender();
-  } }, shift: { return(t2) {
+    return t3.preventDefault(), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), null === (i2 = this.responder) || void 0 === i2 || i2.insertString("\n", { updatePosition: false }), this.requestRender();
+  } }, shift: { return(t3) {
     var e2, i2;
-    null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), null === (i2 = this.responder) || void 0 === i2 || i2.insertString("\n"), this.requestRender(), t2.preventDefault();
-  }, tab(t2) {
+    null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), null === (i2 = this.responder) || void 0 === i2 || i2.insertString("\n"), this.requestRender(), t3.preventDefault();
+  }, tab(t3) {
     var e2, i2;
-    null !== (e2 = this.responder) && void 0 !== e2 && e2.canDecreaseNestingLevel() && (null === (i2 = this.responder) || void 0 === i2 || i2.decreaseNestingLevel(), this.requestRender(), t2.preventDefault());
-  }, left(t2) {
-    if (this.selectionIsInCursorTarget()) return t2.preventDefault(), this.expandSelectionInDirection("backward");
-  }, right(t2) {
-    if (this.selectionIsInCursorTarget()) return t2.preventDefault(), this.expandSelectionInDirection("forward");
-  } }, alt: { backspace(t2) {
+    null !== (e2 = this.responder) && void 0 !== e2 && e2.canDecreaseNestingLevel() && (null === (i2 = this.responder) || void 0 === i2 || i2.decreaseNestingLevel(), this.requestRender(), t3.preventDefault());
+  }, left(t3) {
+    if (this.selectionIsInCursorTarget()) return t3.preventDefault(), this.expandSelectionInDirection("backward");
+  }, right(t3) {
+    if (this.selectionIsInCursorTarget()) return t3.preventDefault(), this.expandSelectionInDirection("forward");
+  } }, alt: { backspace(t3) {
     var e2;
     return this.setInputSummary({ preferDocument: false }), null === (e2 = this.delegate) || void 0 === e2 ? void 0 : e2.inputControllerWillPerformTyping();
-  } }, meta: { backspace(t2) {
+  } }, meta: { backspace(t3) {
     var e2;
     return this.setInputSummary({ preferDocument: false }), null === (e2 = this.delegate) || void 0 === e2 ? void 0 : e2.inputControllerWillPerformTyping();
-  } } }), Qi.proxyMethod("responder?.getSelectedRange"), Qi.proxyMethod("responder?.setSelectedRange"), Qi.proxyMethod("responder?.expandSelectionInDirection"), Qi.proxyMethod("responder?.selectionIsInCursorTarget"), Qi.proxyMethod("responder?.selectionIsExpanded");
-  var Zi = (t2) => {
+  } } }), gr.proxyMethod("responder?.getSelectedRange"), gr.proxyMethod("responder?.setSelectedRange"), gr.proxyMethod("responder?.expandSelectionInDirection"), gr.proxyMethod("responder?.selectionIsInCursorTarget"), gr.proxyMethod("responder?.selectionIsExpanded");
+  var mr = (t3) => {
     var e2;
-    return null === (e2 = t2.type) || void 0 === e2 || null === (e2 = e2.match(/\/(\w+)$/)) || void 0 === e2 ? void 0 : e2[1];
+    return null === (e2 = t3.type) || void 0 === e2 || null === (e2 = e2.match(/\/(\w+)$/)) || void 0 === e2 ? void 0 : e2[1];
   };
-  var tn = !(null === (Gi = " ".codePointAt) || void 0 === Gi || !Gi.call(" ", 0));
-  var en = function(t2) {
-    if (t2.key && tn && t2.key.codePointAt(0) === t2.keyCode) return t2.key;
+  var pr = !(null === (cr = " ".codePointAt) || void 0 === cr || !cr.call(" ", 0));
+  var fr = function(t3) {
+    if (t3.key && pr && t3.key.codePointAt(0) === t3.keyCode) return t3.key;
     {
       let e2;
-      if (null === t2.which ? e2 = t2.keyCode : 0 !== t2.which && 0 !== t2.charCode && (e2 = t2.charCode), null != e2 && "escape" !== Xi[e2]) return X.fromCodepoints([e2]).toString();
+      if (null === t3.which ? e2 = t3.keyCode : 0 !== t3.which && 0 !== t3.charCode && (e2 = t3.charCode), null != e2 && "escape" !== hr[e2]) return $2.fromCodepoints([e2]).toString();
     }
   };
-  var nn = function(t2) {
-    const e2 = t2.clipboardData;
+  var br = function(t3) {
+    const e2 = t3.clipboardData;
     if (e2) {
       if (e2.types.includes("text/html")) {
-        for (const t3 of e2.types) {
-          const i2 = /^CorePasteboardFlavorType/.test(t3), n2 = /^dyn\./.test(t3) && e2.getData(t3);
+        for (const t4 of e2.types) {
+          const i2 = /^CorePasteboardFlavorType/.test(t4), n2 = /^dyn\./.test(t4) && e2.getData(t4);
           if (i2 || n2) return true;
         }
         return false;
       }
       {
-        const t3 = e2.types.includes("com.apple.webarchive"), i2 = e2.types.includes("com.apple.flat-rtfd");
-        return t3 || i2;
+        const t4 = e2.types.includes("com.apple.webarchive"), i2 = e2.types.includes("com.apple.flat-rtfd");
+        return t4 || i2;
       }
     }
   };
-  var rn = class extends H {
-    constructor(t2) {
-      super(...arguments), this.inputController = t2, this.responder = this.inputController.responder, this.delegate = this.inputController.delegate, this.inputSummary = this.inputController.inputSummary, this.data = {};
+  var vr = class extends q {
+    constructor(t3) {
+      super(...arguments), this.inputController = t3, this.responder = this.inputController.responder, this.delegate = this.inputController.delegate, this.inputSummary = this.inputController.inputSummary, this.data = {};
     }
-    start(t2) {
-      if (this.data.start = t2, this.isSignificant()) {
+    start(t3) {
+      if (this.data.start = t3, this.isSignificant()) {
         var e2, i2;
         if ("keypress" === this.inputSummary.eventName && this.inputSummary.textAdded) null === (i2 = this.responder) || void 0 === i2 || i2.deleteInDirection("left");
         this.selectionIsExpanded() || (this.insertPlaceholder(), this.requestRender()), this.range = null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.getSelectedRange();
       }
     }
-    update(t2) {
-      if (this.data.update = t2, this.isSignificant()) {
-        const t3 = this.selectPlaceholder();
-        t3 && (this.forgetPlaceholder(), this.range = t3);
+    update(t3) {
+      if (this.data.update = t3, this.isSignificant()) {
+        const t4 = this.selectPlaceholder();
+        t4 && (this.forgetPlaceholder(), this.range = t4);
       }
     }
-    end(t2) {
-      return this.data.end = t2, this.isSignificant() ? (this.forgetPlaceholder(), this.canApplyToDocument() ? (this.setInputSummary({ preferDocument: true, didInput: false }), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), null === (i2 = this.responder) || void 0 === i2 || i2.setSelectedRange(this.range), null === (n2 = this.responder) || void 0 === n2 || n2.insertString(this.data.end), null === (r2 = this.responder) || void 0 === r2 ? void 0 : r2.setSelectedRange(this.range[0] + this.data.end.length)) : null != this.data.start || null != this.data.update ? (this.requestReparse(), this.inputController.reset()) : void 0) : this.inputController.reset();
+    end(t3) {
+      return this.data.end = t3, this.isSignificant() ? (this.forgetPlaceholder(), this.canApplyToDocument() ? (this.setInputSummary({ preferDocument: true, didInput: false }), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), null === (i2 = this.responder) || void 0 === i2 || i2.setSelectedRange(this.range), null === (n2 = this.responder) || void 0 === n2 || n2.insertString(this.data.end), null === (r2 = this.responder) || void 0 === r2 ? void 0 : r2.setSelectedRange(this.range[0] + this.data.end.length)) : null != this.data.start || null != this.data.update ? (this.requestReparse(), this.inputController.reset()) : void 0) : this.inputController.reset();
       var e2, i2, n2, r2;
     }
     getEndData() {
@@ -12294,82 +12694,82 @@
       return null != this.getEndData();
     }
     isSignificant() {
-      return !$i.composesExistingText || this.inputSummary.didInput;
+      return !ur.composesExistingText || this.inputSummary.didInput;
     }
     canApplyToDocument() {
-      var t2, e2;
-      return 0 === (null === (t2 = this.data.start) || void 0 === t2 ? void 0 : t2.length) && (null === (e2 = this.data.end) || void 0 === e2 ? void 0 : e2.length) > 0 && this.range;
+      var t3, e2;
+      return 0 === (null === (t3 = this.data.start) || void 0 === t3 ? void 0 : t3.length) && (null === (e2 = this.data.end) || void 0 === e2 ? void 0 : e2.length) > 0 && this.range;
     }
   };
-  rn.proxyMethod("inputController.setInputSummary"), rn.proxyMethod("inputController.requestRender"), rn.proxyMethod("inputController.requestReparse"), rn.proxyMethod("responder?.selectionIsExpanded"), rn.proxyMethod("responder?.insertPlaceholder"), rn.proxyMethod("responder?.selectPlaceholder"), rn.proxyMethod("responder?.forgetPlaceholder");
-  var on = class extends Ki {
+  vr.proxyMethod("inputController.setInputSummary"), vr.proxyMethod("inputController.requestRender"), vr.proxyMethod("inputController.requestReparse"), vr.proxyMethod("responder?.selectionIsExpanded"), vr.proxyMethod("responder?.insertPlaceholder"), vr.proxyMethod("responder?.selectPlaceholder"), vr.proxyMethod("responder?.forgetPlaceholder");
+  var Ar = class extends lr {
     constructor() {
       super(...arguments), this.render = this.render.bind(this);
     }
     elementDidMutate() {
-      return this.scheduledRender ? this.composing ? null === (t2 = this.delegate) || void 0 === t2 || null === (e2 = t2.inputControllerDidAllowUnhandledInput) || void 0 === e2 ? void 0 : e2.call(t2) : void 0 : this.reparse();
-      var t2, e2;
+      return this.scheduledRender ? this.composing ? null === (t3 = this.delegate) || void 0 === t3 || null === (e2 = t3.inputControllerDidAllowUnhandledInput) || void 0 === e2 ? void 0 : e2.call(t3) : void 0 : this.reparse();
+      var t3, e2;
     }
     scheduleRender() {
       return this.scheduledRender ? this.scheduledRender : this.scheduledRender = requestAnimationFrame(this.render);
     }
     render() {
-      var t2, e2;
+      var t3, e2;
       (cancelAnimationFrame(this.scheduledRender), this.scheduledRender = null, this.composing) || (null === (e2 = this.delegate) || void 0 === e2 || e2.render());
-      null === (t2 = this.afterRender) || void 0 === t2 || t2.call(this), this.afterRender = null;
+      null === (t3 = this.afterRender) || void 0 === t3 || t3.call(this), this.afterRender = null;
     }
     reparse() {
-      var t2;
-      return null === (t2 = this.delegate) || void 0 === t2 ? void 0 : t2.reparse();
+      var t3;
+      return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.reparse();
     }
     insertString() {
-      var t2;
+      var t3;
       let e2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "", i2 = arguments.length > 1 ? arguments[1] : void 0;
-      return null === (t2 = this.delegate) || void 0 === t2 || t2.inputControllerWillPerformTyping(), this.withTargetDOMRange(function() {
-        var t3;
-        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertString(e2, i2);
+      return null === (t3 = this.delegate) || void 0 === t3 || t3.inputControllerWillPerformTyping(), this.withTargetDOMRange(function() {
+        var t4;
+        return null === (t4 = this.responder) || void 0 === t4 ? void 0 : t4.insertString(e2, i2);
       });
     }
-    toggleAttributeIfSupported(t2) {
+    toggleAttributeIfSupported(t3) {
       var e2;
-      if (dt().includes(t2)) return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformFormatting(t2), this.withTargetDOMRange(function() {
+      if (gt().includes(t3)) return null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformFormatting(t3), this.withTargetDOMRange(function() {
         var e3;
-        return null === (e3 = this.responder) || void 0 === e3 ? void 0 : e3.toggleCurrentAttribute(t2);
+        return null === (e3 = this.responder) || void 0 === e3 ? void 0 : e3.toggleCurrentAttribute(t3);
       });
     }
-    activateAttributeIfSupported(t2, e2) {
+    activateAttributeIfSupported(t3, e2) {
       var i2;
-      if (dt().includes(t2)) return null === (i2 = this.delegate) || void 0 === i2 || i2.inputControllerWillPerformFormatting(t2), this.withTargetDOMRange(function() {
+      if (gt().includes(t3)) return null === (i2 = this.delegate) || void 0 === i2 || i2.inputControllerWillPerformFormatting(t3), this.withTargetDOMRange(function() {
         var i3;
-        return null === (i3 = this.responder) || void 0 === i3 ? void 0 : i3.setCurrentAttribute(t2, e2);
+        return null === (i3 = this.responder) || void 0 === i3 ? void 0 : i3.setCurrentAttribute(t3, e2);
       });
     }
-    deleteInDirection(t2) {
+    deleteInDirection(t3) {
       let { recordUndoEntry: e2 } = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : { recordUndoEntry: true };
       var i2;
       e2 && (null === (i2 = this.delegate) || void 0 === i2 || i2.inputControllerWillPerformTyping());
       const n2 = () => {
         var e3;
-        return null === (e3 = this.responder) || void 0 === e3 ? void 0 : e3.deleteInDirection(t2);
+        return null === (e3 = this.responder) || void 0 === e3 ? void 0 : e3.deleteInDirection(t3);
       }, r2 = this.getTargetDOMRange({ minLength: this.composing ? 1 : 2 });
       return r2 ? this.withTargetDOMRange(r2, n2) : n2();
     }
-    withTargetDOMRange(t2, e2) {
+    withTargetDOMRange(t3, e2) {
       var i2;
-      return "function" == typeof t2 && (e2 = t2, t2 = this.getTargetDOMRange()), t2 ? null === (i2 = this.responder) || void 0 === i2 ? void 0 : i2.withTargetDOMRange(t2, e2.bind(this)) : (Pt.reset(), e2.call(this));
+      return "function" == typeof t3 && (e2 = t3, t3 = this.getTargetDOMRange()), t3 ? null === (i2 = this.responder) || void 0 === i2 ? void 0 : i2.withTargetDOMRange(t3, e2.bind(this)) : (Ft.reset(), e2.call(this));
     }
     getTargetDOMRange() {
-      var t2, e2;
+      var t3, e2;
       let { minLength: i2 } = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : { minLength: 0 };
-      const n2 = null === (t2 = (e2 = this.event).getTargetRanges) || void 0 === t2 ? void 0 : t2.call(e2);
+      const n2 = null === (t3 = (e2 = this.event).getTargetRanges) || void 0 === t3 ? void 0 : t3.call(e2);
       if (n2 && n2.length) {
-        const t3 = sn(n2[0]);
-        if (0 === i2 || t3.toString().length >= i2) return t3;
+        const t4 = yr(n2[0]);
+        if (0 === i2 || t4.toString().length >= i2) return t4;
       }
     }
-    withEvent(t2, e2) {
+    withEvent(t3, e2) {
       let i2;
-      this.event = t2;
+      this.event = t3;
       try {
         i2 = e2.call(this);
       } finally {
@@ -12378,77 +12778,78 @@
       return i2;
     }
   };
-  Re(on, "events", { keydown(t2) {
-    if (kt(t2)) {
+  Di(Ar, "events", { keydown(t3) {
+    if (St(t3)) {
       var e2;
-      const i2 = hn(t2);
-      null !== (e2 = this.delegate) && void 0 !== e2 && e2.inputControllerDidReceiveKeyboardCommand(i2) && t2.preventDefault();
+      const i2 = Rr(t3);
+      null !== (e2 = this.delegate) && void 0 !== e2 && e2.inputControllerDidReceiveKeyboardCommand(i2) && t3.preventDefault();
     } else {
-      let e3 = t2.key;
-      t2.altKey && (e3 += "+Alt"), t2.shiftKey && (e3 += "+Shift");
+      let e3 = t3.key;
+      t3.altKey && (e3 += "+Alt"), t3.shiftKey && (e3 += "+Shift");
       const i2 = this.constructor.keys[e3];
-      if (i2) return this.withEvent(t2, i2);
+      if (i2) return this.withEvent(t3, i2);
     }
-  }, paste(t2) {
+  }, paste(t3) {
     var e2;
     let i2;
-    const n2 = null === (e2 = t2.clipboardData) || void 0 === e2 ? void 0 : e2.getData("URL");
-    return cn(t2) ? (t2.preventDefault(), this.attachFiles(t2.clipboardData.files)) : un(t2) ? (t2.preventDefault(), i2 = { type: "text/plain", string: t2.clipboardData.getData("text/plain") }, null === (r2 = this.delegate) || void 0 === r2 || r2.inputControllerWillPaste(i2), null === (o2 = this.responder) || void 0 === o2 || o2.insertString(i2.string), this.render(), null === (s2 = this.delegate) || void 0 === s2 ? void 0 : s2.inputControllerDidPaste(i2)) : n2 ? (t2.preventDefault(), i2 = { type: "text/html", html: this.createLinkHTML(n2) }, null === (a2 = this.delegate) || void 0 === a2 || a2.inputControllerWillPaste(i2), null === (l2 = this.responder) || void 0 === l2 || l2.insertHTML(i2.html), this.render(), null === (c2 = this.delegate) || void 0 === c2 ? void 0 : c2.inputControllerDidPaste(i2)) : void 0;
+    const n2 = null === (e2 = t3.clipboardData) || void 0 === e2 ? void 0 : e2.getData("URL");
+    return Er(t3) ? (t3.preventDefault(), this.attachFiles(t3.clipboardData.files)) : Sr(t3) ? (t3.preventDefault(), i2 = { type: "text/plain", string: t3.clipboardData.getData("text/plain") }, null === (r2 = this.delegate) || void 0 === r2 || r2.inputControllerWillPaste(i2), null === (o2 = this.responder) || void 0 === o2 || o2.insertString(i2.string), this.render(), null === (s2 = this.delegate) || void 0 === s2 ? void 0 : s2.inputControllerDidPaste(i2)) : n2 ? (t3.preventDefault(), i2 = { type: "text/html", html: this.createLinkHTML(n2) }, null === (a2 = this.delegate) || void 0 === a2 || a2.inputControllerWillPaste(i2), null === (l2 = this.responder) || void 0 === l2 || l2.insertHTML(i2.html), this.render(), null === (c2 = this.delegate) || void 0 === c2 ? void 0 : c2.inputControllerDidPaste(i2)) : void 0;
     var r2, o2, s2, a2, l2, c2;
-  }, beforeinput(t2) {
-    const e2 = this.constructor.inputTypes[t2.inputType];
-    e2 && (this.withEvent(t2, e2), this.scheduleRender());
-  }, input(t2) {
-    Pt.reset();
-  }, dragstart(t2) {
+  }, beforeinput(t3) {
+    const e2 = this.constructor.inputTypes[t3.inputType], i2 = (n2 = t3, !(!/iPhone|iPad/.test(navigator.userAgent) || n2.inputType && "insertParagraph" !== n2.inputType));
+    var n2;
+    e2 && (this.withEvent(t3, e2), i2 || this.scheduleRender()), i2 && this.render();
+  }, input(t3) {
+    Ft.reset();
+  }, dragstart(t3) {
     var e2, i2;
-    null !== (e2 = this.responder) && void 0 !== e2 && e2.selectionContainsAttachments() && (t2.dataTransfer.setData("application/x-trix-dragging", true), this.dragging = { range: null === (i2 = this.responder) || void 0 === i2 ? void 0 : i2.getSelectedRange(), point: dn(t2) });
-  }, dragenter(t2) {
-    an(t2) && t2.preventDefault();
-  }, dragover(t2) {
+    null !== (e2 = this.responder) && void 0 !== e2 && e2.selectionContainsAttachments() && (t3.dataTransfer.setData("application/x-trix-dragging", true), this.dragging = { range: null === (i2 = this.responder) || void 0 === i2 ? void 0 : i2.getSelectedRange(), point: kr(t3) });
+  }, dragenter(t3) {
+    xr(t3) && t3.preventDefault();
+  }, dragover(t3) {
     if (this.dragging) {
-      t2.preventDefault();
-      const i2 = dn(t2);
+      t3.preventDefault();
+      const i2 = kr(t3);
       var e2;
-      if (!St(i2, this.dragging.point)) return this.dragging.point = i2, null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.setLocationRangeFromPointRange(i2);
-    } else an(t2) && t2.preventDefault();
-  }, drop(t2) {
+      if (!Tt(i2, this.dragging.point)) return this.dragging.point = i2, null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.setLocationRangeFromPointRange(i2);
+    } else xr(t3) && t3.preventDefault();
+  }, drop(t3) {
     var e2, i2;
-    if (this.dragging) return t2.preventDefault(), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillMoveText(), null === (i2 = this.responder) || void 0 === i2 || i2.moveTextFromRange(this.dragging.range), this.dragging = null, this.scheduleRender();
-    if (an(t2)) {
+    if (this.dragging) return t3.preventDefault(), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillMoveText(), null === (i2 = this.responder) || void 0 === i2 || i2.moveTextFromRange(this.dragging.range), this.dragging = null, this.scheduleRender();
+    if (xr(t3)) {
       var n2;
-      t2.preventDefault();
-      const e3 = dn(t2);
-      return null === (n2 = this.responder) || void 0 === n2 || n2.setLocationRangeFromPointRange(e3), this.attachFiles(t2.dataTransfer.files);
+      t3.preventDefault();
+      const e3 = kr(t3);
+      return null === (n2 = this.responder) || void 0 === n2 || n2.setLocationRangeFromPointRange(e3), this.attachFiles(t3.dataTransfer.files);
     }
   }, dragend() {
-    var t2;
-    this.dragging && (null === (t2 = this.responder) || void 0 === t2 || t2.setSelectedRange(this.dragging.range), this.dragging = null);
-  }, compositionend(t2) {
+    var t3;
+    this.dragging && (null === (t3 = this.responder) || void 0 === t3 || t3.setSelectedRange(this.dragging.range), this.dragging = null);
+  }, compositionend(t3) {
     this.composing && (this.composing = false, a.recentAndroid || this.scheduleRender());
-  } }), Re(on, "keys", { ArrowLeft() {
-    var t2, e2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.shouldManageMovingCursorInDirection("backward")) return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("backward");
+  } }), Di(Ar, "keys", { ArrowLeft() {
+    var t3, e2;
+    if (null !== (t3 = this.responder) && void 0 !== t3 && t3.shouldManageMovingCursorInDirection("backward")) return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("backward");
   }, ArrowRight() {
-    var t2, e2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.shouldManageMovingCursorInDirection("forward")) return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("forward");
+    var t3, e2;
+    if (null !== (t3 = this.responder) && void 0 !== t3 && t3.shouldManageMovingCursorInDirection("forward")) return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 ? void 0 : e2.moveCursorInDirection("forward");
   }, Backspace() {
-    var t2, e2, i2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.shouldManageDeletingInDirection("backward")) return this.event.preventDefault(), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), null === (i2 = this.responder) || void 0 === i2 || i2.deleteInDirection("backward"), this.render();
+    var t3, e2, i2;
+    if (null !== (t3 = this.responder) && void 0 !== t3 && t3.shouldManageDeletingInDirection("backward")) return this.event.preventDefault(), null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillPerformTyping(), null === (i2 = this.responder) || void 0 === i2 || i2.deleteInDirection("backward"), this.render();
   }, Tab() {
-    var t2, e2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.canIncreaseNestingLevel()) return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 || e2.increaseNestingLevel(), this.render();
+    var t3, e2;
+    if (null !== (t3 = this.responder) && void 0 !== t3 && t3.canIncreaseNestingLevel()) return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 || e2.increaseNestingLevel(), this.render();
   }, "Tab+Shift"() {
-    var t2, e2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.canDecreaseNestingLevel()) return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 || e2.decreaseNestingLevel(), this.render();
-  } }), Re(on, "inputTypes", { deleteByComposition() {
+    var t3, e2;
+    if (null !== (t3 = this.responder) && void 0 !== t3 && t3.canDecreaseNestingLevel()) return this.event.preventDefault(), null === (e2 = this.responder) || void 0 === e2 || e2.decreaseNestingLevel(), this.render();
+  } }), Di(Ar, "inputTypes", { deleteByComposition() {
     return this.deleteInDirection("backward", { recordUndoEntry: false });
   }, deleteByCut() {
     return this.deleteInDirection("backward");
   }, deleteByDrag() {
     return this.event.preventDefault(), this.withTargetDOMRange(function() {
-      var t2;
-      this.deleteByDragRange = null === (t2 = this.responder) || void 0 === t2 ? void 0 : t2.getSelectedRange();
+      var t3;
+      this.deleteByDragRange = null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.getSelectedRange();
     });
   }, deleteCompositionText() {
     return this.deleteInDirection("backward", { recordUndoEntry: false });
@@ -12481,10 +12882,10 @@
   }, formatFontName() {
     return this.activateAttributeIfSupported("font", this.event.data);
   }, formatIndent() {
-    var t2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.canIncreaseNestingLevel()) return this.withTargetDOMRange(function() {
-      var t3;
-      return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.increaseNestingLevel();
+    var t3;
+    if (null !== (t3 = this.responder) && void 0 !== t3 && t3.canIncreaseNestingLevel()) return this.withTargetDOMRange(function() {
+      var t4;
+      return null === (t4 = this.responder) || void 0 === t4 ? void 0 : t4.increaseNestingLevel();
     });
   }, formatItalic() {
     return this.toggleAttributeIfSupported("italic");
@@ -12497,15 +12898,15 @@
   }, formatJustifyRight() {
     return this.toggleAttributeIfSupported("justifyRight");
   }, formatOutdent() {
-    var t2;
-    if (null !== (t2 = this.responder) && void 0 !== t2 && t2.canDecreaseNestingLevel()) return this.withTargetDOMRange(function() {
-      var t3;
-      return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.decreaseNestingLevel();
+    var t3;
+    if (null !== (t3 = this.responder) && void 0 !== t3 && t3.canDecreaseNestingLevel()) return this.withTargetDOMRange(function() {
+      var t4;
+      return null === (t4 = this.responder) || void 0 === t4 ? void 0 : t4.decreaseNestingLevel();
     });
   }, formatRemove() {
     this.withTargetDOMRange(function() {
-      for (const i2 in null === (t2 = this.responder) || void 0 === t2 ? void 0 : t2.getCurrentAttributes()) {
-        var t2, e2;
+      for (const i2 in null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.getCurrentAttributes()) {
+        var t3, e2;
         null === (e2 = this.responder) || void 0 === e2 || e2.removeCurrentAttribute(i2);
       }
     });
@@ -12522,62 +12923,62 @@
   }, formatUnderline() {
     return this.toggleAttributeIfSupported("underline");
   }, historyRedo() {
-    var t2;
-    return null === (t2 = this.delegate) || void 0 === t2 ? void 0 : t2.inputControllerWillPerformRedo();
+    var t3;
+    return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerWillPerformRedo();
   }, historyUndo() {
-    var t2;
-    return null === (t2 = this.delegate) || void 0 === t2 ? void 0 : t2.inputControllerWillPerformUndo();
+    var t3;
+    return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerWillPerformUndo();
   }, insertCompositionText() {
     return this.composing = true, this.insertString(this.event.data);
   }, insertFromComposition() {
     return this.composing = false, this.insertString(this.event.data);
   }, insertFromDrop() {
-    const t2 = this.deleteByDragRange;
+    const t3 = this.deleteByDragRange;
     var e2;
-    if (t2) return this.deleteByDragRange = null, null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillMoveText(), this.withTargetDOMRange(function() {
+    if (t3) return this.deleteByDragRange = null, null === (e2 = this.delegate) || void 0 === e2 || e2.inputControllerWillMoveText(), this.withTargetDOMRange(function() {
       var e3;
-      return null === (e3 = this.responder) || void 0 === e3 ? void 0 : e3.moveTextFromRange(t2);
+      return null === (e3 = this.responder) || void 0 === e3 ? void 0 : e3.moveTextFromRange(t3);
     });
   }, insertFromPaste() {
-    const { dataTransfer: t2 } = this.event, e2 = { dataTransfer: t2 }, i2 = t2.getData("URL"), n2 = t2.getData("text/html");
+    const { dataTransfer: t3 } = this.event, e2 = { dataTransfer: t3 }, i2 = t3.getData("URL"), n2 = t3.getData("text/html");
     if (i2) {
       var r2;
       let n3;
       this.event.preventDefault(), e2.type = "text/html";
-      const o3 = t2.getData("public.url-name");
-      n3 = o3 ? qt(o3).trim() : i2, e2.html = this.createLinkHTML(i2, n3), null === (r2 = this.delegate) || void 0 === r2 || r2.inputControllerWillPaste(e2), this.withTargetDOMRange(function() {
-        var t3;
-        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertHTML(e2.html);
+      const o3 = t3.getData("public.url-name");
+      n3 = o3 ? Vt(o3).trim() : i2, e2.html = this.createLinkHTML(i2, n3), null === (r2 = this.delegate) || void 0 === r2 || r2.inputControllerWillPaste(e2), this.withTargetDOMRange(function() {
+        var t4;
+        return null === (t4 = this.responder) || void 0 === t4 ? void 0 : t4.insertHTML(e2.html);
       }), this.afterRender = () => {
-        var t3;
-        return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerDidPaste(e2);
+        var t4;
+        return null === (t4 = this.delegate) || void 0 === t4 ? void 0 : t4.inputControllerDidPaste(e2);
       };
-    } else if (Ct(t2)) {
+    } else if (Et(t3)) {
       var o2;
-      e2.type = "text/plain", e2.string = t2.getData("text/plain"), null === (o2 = this.delegate) || void 0 === o2 || o2.inputControllerWillPaste(e2), this.withTargetDOMRange(function() {
-        var t3;
-        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertString(e2.string);
+      e2.type = "text/plain", e2.string = t3.getData("text/plain"), null === (o2 = this.delegate) || void 0 === o2 || o2.inputControllerWillPaste(e2), this.withTargetDOMRange(function() {
+        var t4;
+        return null === (t4 = this.responder) || void 0 === t4 ? void 0 : t4.insertString(e2.string);
       }), this.afterRender = () => {
-        var t3;
-        return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerDidPaste(e2);
+        var t4;
+        return null === (t4 = this.delegate) || void 0 === t4 ? void 0 : t4.inputControllerDidPaste(e2);
       };
-    } else if (ln(this.event)) {
+    } else if (Cr(this.event)) {
       var s2;
-      e2.type = "File", e2.file = t2.files[0], null === (s2 = this.delegate) || void 0 === s2 || s2.inputControllerWillPaste(e2), this.withTargetDOMRange(function() {
-        var t3;
-        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertFile(e2.file);
+      e2.type = "File", e2.file = t3.files[0], null === (s2 = this.delegate) || void 0 === s2 || s2.inputControllerWillPaste(e2), this.withTargetDOMRange(function() {
+        var t4;
+        return null === (t4 = this.responder) || void 0 === t4 ? void 0 : t4.insertFile(e2.file);
       }), this.afterRender = () => {
-        var t3;
-        return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerDidPaste(e2);
+        var t4;
+        return null === (t4 = this.delegate) || void 0 === t4 ? void 0 : t4.inputControllerDidPaste(e2);
       };
     } else if (n2) {
       var a2;
       this.event.preventDefault(), e2.type = "text/html", e2.html = n2, null === (a2 = this.delegate) || void 0 === a2 || a2.inputControllerWillPaste(e2), this.withTargetDOMRange(function() {
-        var t3;
-        return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertHTML(e2.html);
+        var t4;
+        return null === (t4 = this.responder) || void 0 === t4 ? void 0 : t4.insertHTML(e2.html);
       }), this.afterRender = () => {
-        var t3;
-        return null === (t3 = this.delegate) || void 0 === t3 ? void 0 : t3.inputControllerDidPaste(e2);
+        var t4;
+        return null === (t4 = this.delegate) || void 0 === t4 ? void 0 : t4.inputControllerDidPaste(e2);
       };
     }
   }, insertFromYank() {
@@ -12589,178 +12990,181 @@
   }, insertOrderedList() {
     return this.toggleAttributeIfSupported("number");
   }, insertParagraph() {
-    var t2;
-    return null === (t2 = this.delegate) || void 0 === t2 || t2.inputControllerWillPerformTyping(), this.withTargetDOMRange(function() {
-      var t3;
-      return null === (t3 = this.responder) || void 0 === t3 ? void 0 : t3.insertLineBreak();
+    var t3;
+    return null === (t3 = this.delegate) || void 0 === t3 || t3.inputControllerWillPerformTyping(), this.withTargetDOMRange(function() {
+      var t4;
+      return null === (t4 = this.responder) || void 0 === t4 ? void 0 : t4.insertLineBreak();
     });
   }, insertReplacementText() {
-    const t2 = this.event.dataTransfer.getData("text/plain"), e2 = this.event.getTargetRanges()[0];
+    const t3 = this.event.dataTransfer.getData("text/plain"), e2 = this.event.getTargetRanges()[0];
     this.withTargetDOMRange(e2, () => {
-      this.insertString(t2, { updatePosition: false });
+      this.insertString(t3, { updatePosition: false });
     });
   }, insertText() {
-    var t2;
-    return this.insertString(this.event.data || (null === (t2 = this.event.dataTransfer) || void 0 === t2 ? void 0 : t2.getData("text/plain")));
+    var t3;
+    return this.insertString(this.event.data || (null === (t3 = this.event.dataTransfer) || void 0 === t3 ? void 0 : t3.getData("text/plain")));
   }, insertTranspose() {
     return this.insertString(this.event.data);
   }, insertUnorderedList() {
     return this.toggleAttributeIfSupported("bullet");
   } });
-  var sn = function(t2) {
+  var yr = function(t3) {
     const e2 = document.createRange();
-    return e2.setStart(t2.startContainer, t2.startOffset), e2.setEnd(t2.endContainer, t2.endOffset), e2;
+    return e2.setStart(t3.startContainer, t3.startOffset), e2.setEnd(t3.endContainer, t3.endOffset), e2;
   };
-  var an = (t2) => {
+  var xr = (t3) => {
     var e2;
-    return Array.from((null === (e2 = t2.dataTransfer) || void 0 === e2 ? void 0 : e2.types) || []).includes("Files");
+    return Array.from((null === (e2 = t3.dataTransfer) || void 0 === e2 ? void 0 : e2.types) || []).includes("Files");
   };
-  var ln = (t2) => {
+  var Cr = (t3) => {
     var e2;
-    return (null === (e2 = t2.dataTransfer.files) || void 0 === e2 ? void 0 : e2[0]) && !cn(t2) && !((t3) => {
-      let { dataTransfer: e3 } = t3;
+    return (null === (e2 = t3.dataTransfer.files) || void 0 === e2 ? void 0 : e2[0]) && !Er(t3) && !((t4) => {
+      let { dataTransfer: e3 } = t4;
       return e3.types.includes("Files") && e3.types.includes("text/html") && e3.getData("text/html").includes("urn:schemas-microsoft-com:office:office");
-    })(t2);
+    })(t3);
   };
-  var cn = function(t2) {
-    const e2 = t2.clipboardData;
+  var Er = function(t3) {
+    const e2 = t3.clipboardData;
     if (e2) {
-      return Array.from(e2.types).filter((t3) => t3.match(/file/i)).length === e2.types.length && e2.files.length >= 1;
+      return Array.from(e2.types).filter((t4) => t4.match(/file/i)).length === e2.types.length && e2.files.length >= 1;
     }
   };
-  var un = function(t2) {
-    const e2 = t2.clipboardData;
+  var Sr = function(t3) {
+    const e2 = t3.clipboardData;
     if (e2) return e2.types.includes("text/plain") && 1 === e2.types.length;
   };
-  var hn = function(t2) {
+  var Rr = function(t3) {
     const e2 = [];
-    return t2.altKey && e2.push("alt"), t2.shiftKey && e2.push("shift"), e2.push(t2.key), e2;
+    return t3.altKey && e2.push("alt"), t3.shiftKey && e2.push("shift"), e2.push(t3.key), e2;
   };
-  var dn = (t2) => ({ x: t2.clientX, y: t2.clientY });
-  var gn = "[data-trix-attribute]";
-  var mn = "[data-trix-action]";
-  var pn = "".concat(gn, ", ").concat(mn);
-  var fn = "[data-trix-dialog]";
-  var bn = "".concat(fn, "[data-trix-active]");
-  var vn = "".concat(fn, " [data-trix-method]");
-  var An = "".concat(fn, " [data-trix-input]");
-  var xn = (t2, e2) => (e2 || (e2 = Cn(t2)), t2.querySelector("[data-trix-input][name='".concat(e2, "']")));
-  var yn = (t2) => t2.getAttribute("data-trix-action");
-  var Cn = (t2) => t2.getAttribute("data-trix-attribute") || t2.getAttribute("data-trix-dialog-attribute");
-  var kn = class extends H {
-    constructor(t2) {
-      super(t2), this.didClickActionButton = this.didClickActionButton.bind(this), this.didClickAttributeButton = this.didClickAttributeButton.bind(this), this.didClickDialogButton = this.didClickDialogButton.bind(this), this.didKeyDownDialogInput = this.didKeyDownDialogInput.bind(this), this.element = t2, this.attributes = {}, this.actions = {}, this.resetDialogInputs(), f("mousedown", { onElement: this.element, matchingSelector: mn, withCallback: this.didClickActionButton }), f("mousedown", { onElement: this.element, matchingSelector: gn, withCallback: this.didClickAttributeButton }), f("click", { onElement: this.element, matchingSelector: pn, preventDefault: true }), f("click", { onElement: this.element, matchingSelector: vn, withCallback: this.didClickDialogButton }), f("keydown", { onElement: this.element, matchingSelector: An, withCallback: this.didKeyDownDialogInput });
+  var kr = (t3) => ({ x: t3.clientX, y: t3.clientY });
+  var Tr = "[data-trix-attribute]";
+  var wr = "[data-trix-action]";
+  var Lr = "".concat(Tr, ", ").concat(wr);
+  var Dr = "[data-trix-dialog]";
+  var Nr = "".concat(Dr, "[data-trix-active]");
+  var Ir = "".concat(Dr, " [data-trix-method]");
+  var Or = "".concat(Dr, " [data-trix-input]");
+  var Fr = (t3, e2) => (e2 || (e2 = Mr(t3)), t3.querySelector("[data-trix-input][name='".concat(e2, "']")));
+  var Pr = (t3) => t3.getAttribute("data-trix-action");
+  var Mr = (t3) => t3.getAttribute("data-trix-attribute") || t3.getAttribute("data-trix-dialog-attribute");
+  var Br = class extends q {
+    constructor(t3) {
+      super(t3), this.didClickActionButton = this.didClickActionButton.bind(this), this.didClickAttributeButton = this.didClickAttributeButton.bind(this), this.didClickDialogButton = this.didClickDialogButton.bind(this), this.didKeyDownDialogInput = this.didKeyDownDialogInput.bind(this), this.element = t3, this.attributes = {}, this.actions = {}, this.resetDialogInputs(), b("mousedown", { onElement: this.element, matchingSelector: wr, withCallback: this.didClickActionButton }), b("mousedown", { onElement: this.element, matchingSelector: Tr, withCallback: this.didClickAttributeButton }), b("click", { onElement: this.element, matchingSelector: Lr, preventDefault: true }), b("click", { onElement: this.element, matchingSelector: Ir, withCallback: this.didClickDialogButton }), b("keydown", { onElement: this.element, matchingSelector: Or, withCallback: this.didKeyDownDialogInput });
     }
-    didClickActionButton(t2, e2) {
+    didClickActionButton(t3, e2) {
       var i2;
-      null === (i2 = this.delegate) || void 0 === i2 || i2.toolbarDidClickButton(), t2.preventDefault();
-      const n2 = yn(e2);
+      null === (i2 = this.delegate) || void 0 === i2 || i2.toolbarDidClickButton(), t3.preventDefault();
+      const n2 = Pr(e2);
       return this.getDialog(n2) ? this.toggleDialog(n2) : null === (r2 = this.delegate) || void 0 === r2 ? void 0 : r2.toolbarDidInvokeAction(n2, e2);
       var r2;
     }
-    didClickAttributeButton(t2, e2) {
+    didClickAttributeButton(t3, e2) {
       var i2;
-      null === (i2 = this.delegate) || void 0 === i2 || i2.toolbarDidClickButton(), t2.preventDefault();
-      const n2 = Cn(e2);
+      null === (i2 = this.delegate) || void 0 === i2 || i2.toolbarDidClickButton(), t3.preventDefault();
+      const n2 = Mr(e2);
       var r2;
       this.getDialog(n2) ? this.toggleDialog(n2) : null === (r2 = this.delegate) || void 0 === r2 || r2.toolbarDidToggleAttribute(n2);
       return this.refreshAttributeButtons();
     }
-    didClickDialogButton(t2, e2) {
-      const i2 = A(e2, { matchingSelector: fn });
+    didClickDialogButton(t3, e2) {
+      const i2 = y(e2, { matchingSelector: Dr });
       return this[e2.getAttribute("data-trix-method")].call(this, i2);
     }
-    didKeyDownDialogInput(t2, e2) {
-      if (13 === t2.keyCode) {
-        t2.preventDefault();
+    didKeyDownDialogInput(t3, e2) {
+      if (13 === t3.keyCode) {
+        t3.preventDefault();
         const i2 = e2.getAttribute("name"), n2 = this.getDialog(i2);
         this.setAttribute(n2);
       }
-      if (27 === t2.keyCode) return t2.preventDefault(), this.hideDialog();
+      if (27 === t3.keyCode) return t3.preventDefault(), this.hideDialog();
     }
-    updateActions(t2) {
-      return this.actions = t2, this.refreshActionButtons();
+    updateActions(t3) {
+      return this.actions = t3, this.refreshActionButtons();
     }
     refreshActionButtons() {
-      return this.eachActionButton((t2, e2) => {
-        t2.disabled = false === this.actions[e2];
+      return this.eachActionButton((t3, e2) => {
+        t3.disabled = false === this.actions[e2];
       });
     }
-    eachActionButton(t2) {
-      return Array.from(this.element.querySelectorAll(mn)).map((e2) => t2(e2, yn(e2)));
+    eachActionButton(t3) {
+      return Array.from(this.element.querySelectorAll(wr)).map((e2) => t3(e2, Pr(e2)));
     }
-    updateAttributes(t2) {
-      return this.attributes = t2, this.refreshAttributeButtons();
+    updateAttributes(t3) {
+      return this.attributes = t3, this.refreshAttributeButtons();
     }
     refreshAttributeButtons() {
-      return this.eachAttributeButton((t2, e2) => (t2.disabled = false === this.attributes[e2], this.attributes[e2] || this.dialogIsVisible(e2) ? (t2.setAttribute("data-trix-active", ""), t2.classList.add("trix-active")) : (t2.removeAttribute("data-trix-active"), t2.classList.remove("trix-active"))));
+      return this.eachAttributeButton((t3, e2) => (t3.disabled = false === this.attributes[e2], this.attributes[e2] || this.dialogIsVisible(e2) ? (t3.setAttribute("data-trix-active", ""), t3.classList.add("trix-active")) : (t3.removeAttribute("data-trix-active"), t3.classList.remove("trix-active"))));
     }
-    eachAttributeButton(t2) {
-      return Array.from(this.element.querySelectorAll(gn)).map((e2) => t2(e2, Cn(e2)));
+    eachAttributeButton(t3) {
+      return Array.from(this.element.querySelectorAll(Tr)).map((e2) => t3(e2, Mr(e2)));
     }
-    applyKeyboardCommand(t2) {
-      const e2 = JSON.stringify(t2.sort());
-      for (const t3 of Array.from(this.element.querySelectorAll("[data-trix-key]"))) {
-        const i2 = t3.getAttribute("data-trix-key").split("+");
-        if (JSON.stringify(i2.sort()) === e2) return b("mousedown", { onElement: t3 }), true;
+    applyKeyboardCommand(t3) {
+      const e2 = JSON.stringify(t3.sort());
+      for (const t4 of Array.from(this.element.querySelectorAll("[data-trix-key]"))) {
+        const i2 = t4.getAttribute("data-trix-key").split("+");
+        if (JSON.stringify(i2.sort()) === e2) return v("mousedown", { onElement: t4 }), true;
       }
       return false;
     }
-    dialogIsVisible(t2) {
-      const e2 = this.getDialog(t2);
+    dialogIsVisible(t3) {
+      const e2 = this.getDialog(t3);
       if (e2) return e2.hasAttribute("data-trix-active");
     }
-    toggleDialog(t2) {
-      return this.dialogIsVisible(t2) ? this.hideDialog() : this.showDialog(t2);
+    toggleDialog(t3) {
+      return this.dialogIsVisible(t3) ? this.hideDialog() : this.showDialog(t3);
     }
-    showDialog(t2) {
+    showDialog(t3) {
       var e2, i2;
       this.hideDialog(), null === (e2 = this.delegate) || void 0 === e2 || e2.toolbarWillShowDialog();
-      const n2 = this.getDialog(t2);
-      n2.setAttribute("data-trix-active", ""), n2.classList.add("trix-active"), Array.from(n2.querySelectorAll("input[disabled]")).forEach((t3) => {
-        t3.removeAttribute("disabled");
+      const n2 = this.getDialog(t3);
+      n2.setAttribute("data-trix-active", ""), n2.classList.add("trix-active"), Array.from(n2.querySelectorAll("input[disabled]")).forEach((t4) => {
+        t4.removeAttribute("disabled");
       });
-      const r2 = Cn(n2);
+      const r2 = Mr(n2);
       if (r2) {
-        const e3 = xn(n2, t2);
+        const e3 = Fr(n2, t3);
         e3 && (e3.value = this.attributes[r2] || "", e3.select());
       }
-      return null === (i2 = this.delegate) || void 0 === i2 ? void 0 : i2.toolbarDidShowDialog(t2);
+      return null === (i2 = this.delegate) || void 0 === i2 ? void 0 : i2.toolbarDidShowDialog(t3);
     }
-    setAttribute(t2) {
-      const e2 = Cn(t2), i2 = xn(t2, e2);
-      return i2.willValidate && !i2.checkValidity() ? (i2.setAttribute("data-trix-validate", ""), i2.classList.add("trix-validate"), i2.focus()) : (null === (n2 = this.delegate) || void 0 === n2 || n2.toolbarDidUpdateAttribute(e2, i2.value), this.hideDialog());
-      var n2;
-    }
-    removeAttribute(t2) {
+    setAttribute(t3) {
       var e2;
-      const i2 = Cn(t2);
+      const i2 = Mr(t3), n2 = Fr(t3, i2);
+      return !n2.willValidate || (n2.setCustomValidity(""), n2.checkValidity() && this.isSafeAttribute(n2)) ? (null === (e2 = this.delegate) || void 0 === e2 || e2.toolbarDidUpdateAttribute(i2, n2.value), this.hideDialog()) : (n2.setCustomValidity("Invalid value"), n2.setAttribute("data-trix-validate", ""), n2.classList.add("trix-validate"), n2.focus());
+    }
+    isSafeAttribute(t3) {
+      return !t3.hasAttribute("data-trix-validate-href") || li.isValidAttribute("a", "href", t3.value);
+    }
+    removeAttribute(t3) {
+      var e2;
+      const i2 = Mr(t3);
       return null === (e2 = this.delegate) || void 0 === e2 || e2.toolbarDidRemoveAttribute(i2), this.hideDialog();
     }
     hideDialog() {
-      const t2 = this.element.querySelector(bn);
+      const t3 = this.element.querySelector(Nr);
       var e2;
-      if (t2) return t2.removeAttribute("data-trix-active"), t2.classList.remove("trix-active"), this.resetDialogInputs(), null === (e2 = this.delegate) || void 0 === e2 ? void 0 : e2.toolbarDidHideDialog(((t3) => t3.getAttribute("data-trix-dialog"))(t2));
+      if (t3) return t3.removeAttribute("data-trix-active"), t3.classList.remove("trix-active"), this.resetDialogInputs(), null === (e2 = this.delegate) || void 0 === e2 ? void 0 : e2.toolbarDidHideDialog(((t4) => t4.getAttribute("data-trix-dialog"))(t3));
     }
     resetDialogInputs() {
-      Array.from(this.element.querySelectorAll(An)).forEach((t2) => {
-        t2.setAttribute("disabled", "disabled"), t2.removeAttribute("data-trix-validate"), t2.classList.remove("trix-validate");
+      Array.from(this.element.querySelectorAll(Or)).forEach((t3) => {
+        t3.setAttribute("disabled", "disabled"), t3.removeAttribute("data-trix-validate"), t3.classList.remove("trix-validate");
       });
     }
-    getDialog(t2) {
-      return this.element.querySelector("[data-trix-dialog=".concat(t2, "]"));
+    getDialog(t3) {
+      return this.element.querySelector("[data-trix-dialog=".concat(t3, "]"));
     }
   };
-  var Rn = class extends Oi {
-    constructor(t2) {
-      let { editorElement: e2, document: i2, html: n2 } = t2;
-      super(...arguments), this.editorElement = e2, this.selectionManager = new Li(this.editorElement), this.selectionManager.delegate = this, this.composition = new gi(), this.composition.delegate = this, this.attachmentManager = new hi(this.composition.getAttachments()), this.attachmentManager.delegate = this, this.inputController = 2 === M.getLevel() ? new on(this.editorElement) : new Qi(this.editorElement), this.inputController.delegate = this, this.inputController.responder = this.composition, this.compositionController = new Ni(this.editorElement, this.composition), this.compositionController.delegate = this, this.toolbarController = new kn(this.editorElement.toolbarElement), this.toolbarController.delegate = this, this.editor = new xi(this.composition, this.selectionManager, this.editorElement), i2 ? this.editor.loadDocument(i2) : this.editor.loadHTML(n2);
+  var _r = class extends $n {
+    constructor(t3) {
+      let { editorElement: e2, document: i2, html: n2 } = t3;
+      super(...arguments), this.editorElement = e2, this.selectionManager = new Vn(this.editorElement), this.selectionManager.delegate = this, this.composition = new wn(), this.composition.delegate = this, this.attachmentManager = new kn(this.composition.getAttachments()), this.attachmentManager.delegate = this, this.inputController = 2 === _.getLevel() ? new Ar(this.editorElement) : new gr(this.editorElement), this.inputController.delegate = this, this.inputController.responder = this.composition, this.compositionController = new Xn(this.editorElement, this.composition), this.compositionController.delegate = this, this.toolbarController = new Br(this.editorElement.toolbarElement), this.toolbarController.delegate = this, this.editor = new Pn(this.composition, this.selectionManager, this.editorElement), i2 ? this.editor.loadDocument(i2) : this.editor.loadHTML(n2);
     }
     registerSelectionManager() {
-      return Pt.registerSelectionManager(this.selectionManager);
+      return Ft.registerSelectionManager(this.selectionManager);
     }
     unregisterSelectionManager() {
-      return Pt.unregisterSelectionManager(this.selectionManager);
+      return Ft.unregisterSelectionManager(this.selectionManager);
     }
     render() {
       return this.compositionController.render();
@@ -12768,42 +13172,42 @@
     reparse() {
       return this.composition.replaceHTML(this.editorElement.innerHTML);
     }
-    compositionDidChangeDocument(t2) {
+    compositionDidChangeDocument(t3) {
       if (this.notifyEditorElement("document-change"), !this.handlingInput) return this.render();
     }
-    compositionDidChangeCurrentAttributes(t2) {
-      return this.currentAttributes = t2, this.toolbarController.updateAttributes(this.currentAttributes), this.updateCurrentActions(), this.notifyEditorElement("attributes-change", { attributes: this.currentAttributes });
+    compositionDidChangeCurrentAttributes(t3) {
+      return this.currentAttributes = t3, this.toolbarController.updateAttributes(this.currentAttributes), this.updateCurrentActions(), this.notifyEditorElement("attributes-change", { attributes: this.currentAttributes });
     }
-    compositionDidPerformInsertionAtRange(t2) {
-      this.pasting && (this.pastedRange = t2);
+    compositionDidPerformInsertionAtRange(t3) {
+      this.pasting && (this.pastedRange = t3);
     }
-    compositionShouldAcceptFile(t2) {
-      return this.notifyEditorElement("file-accept", { file: t2 });
+    compositionShouldAcceptFile(t3) {
+      return this.notifyEditorElement("file-accept", { file: t3 });
     }
-    compositionDidAddAttachment(t2) {
-      const e2 = this.attachmentManager.manageAttachment(t2);
+    compositionDidAddAttachment(t3) {
+      const e2 = this.attachmentManager.manageAttachment(t3);
       return this.notifyEditorElement("attachment-add", { attachment: e2 });
     }
-    compositionDidEditAttachment(t2) {
-      this.compositionController.rerenderViewForObject(t2);
-      const e2 = this.attachmentManager.manageAttachment(t2);
+    compositionDidEditAttachment(t3) {
+      this.compositionController.rerenderViewForObject(t3);
+      const e2 = this.attachmentManager.manageAttachment(t3);
       return this.notifyEditorElement("attachment-edit", { attachment: e2 }), this.notifyEditorElement("change");
     }
-    compositionDidChangeAttachmentPreviewURL(t2) {
-      return this.compositionController.invalidateViewForObject(t2), this.notifyEditorElement("change");
+    compositionDidChangeAttachmentPreviewURL(t3) {
+      return this.compositionController.invalidateViewForObject(t3), this.notifyEditorElement("change");
     }
-    compositionDidRemoveAttachment(t2) {
-      const e2 = this.attachmentManager.unmanageAttachment(t2);
+    compositionDidRemoveAttachment(t3) {
+      const e2 = this.attachmentManager.unmanageAttachment(t3);
       return this.notifyEditorElement("attachment-remove", { attachment: e2 });
     }
-    compositionDidStartEditingAttachment(t2, e2) {
-      return this.attachmentLocationRange = this.composition.document.getLocationRangeOfAttachment(t2), this.compositionController.installAttachmentEditorForAttachment(t2, e2), this.selectionManager.setLocationRange(this.attachmentLocationRange);
+    compositionDidStartEditingAttachment(t3, e2) {
+      return this.attachmentLocationRange = this.composition.document.getLocationRangeOfAttachment(t3), this.compositionController.installAttachmentEditorForAttachment(t3, e2), this.selectionManager.setLocationRange(this.attachmentLocationRange);
     }
-    compositionDidStopEditingAttachment(t2) {
+    compositionDidStopEditingAttachment(t3) {
       this.compositionController.uninstallAttachmentEditor(), this.attachmentLocationRange = null;
     }
-    compositionDidRequestChangingSelectionToLocationRange(t2) {
-      if (!this.loadingSnapshot || this.isFocused()) return this.requestedLocationRange = t2, this.compositionRevisionWhenLocationRangeRequested = this.composition.revision, this.handlingInput ? void 0 : this.render();
+    compositionDidRequestChangingSelectionToLocationRange(t3) {
+      if (!this.loadingSnapshot || this.isFocused()) return this.requestedLocationRange = t3, this.compositionRevisionWhenLocationRangeRequested = this.composition.revision, this.handlingInput ? void 0 : this.render();
     }
     compositionWillLoadSnapshot() {
       this.loadingSnapshot = true;
@@ -12814,8 +13218,8 @@
     getSelectionManager() {
       return this.selectionManager;
     }
-    attachmentManagerDidRequestRemovalOfAttachment(t2) {
-      return this.removeAttachment(t2);
+    attachmentManagerDidRequestRemovalOfAttachment(t3) {
+      return this.removeAttachment(t3);
     }
     compositionControllerWillSyncDocumentView() {
       return this.inputController.editorWillSyncDocumentView(), this.selectionManager.lock(), this.selectionManager.clearSelection();
@@ -12832,18 +13236,18 @@
     compositionControllerDidBlur() {
       return this.notifyEditorElement("blur");
     }
-    compositionControllerDidSelectAttachment(t2, e2) {
-      return this.toolbarController.hideDialog(), this.composition.editAttachment(t2, e2);
+    compositionControllerDidSelectAttachment(t3, e2) {
+      return this.toolbarController.hideDialog(), this.composition.editAttachment(t3, e2);
     }
-    compositionControllerDidRequestDeselectingAttachment(t2) {
-      const e2 = this.attachmentLocationRange || this.composition.document.getLocationRangeOfAttachment(t2);
+    compositionControllerDidRequestDeselectingAttachment(t3) {
+      const e2 = this.attachmentLocationRange || this.composition.document.getLocationRangeOfAttachment(t3);
       return this.selectionManager.setLocationRange(e2[1]);
     }
-    compositionControllerWillUpdateAttachment(t2) {
-      return this.editor.recordUndoEntry("Edit Attachment", { context: t2.id, consolidatable: true });
+    compositionControllerWillUpdateAttachment(t3) {
+      return this.editor.recordUndoEntry("Edit Attachment", { context: t3.id, consolidatable: true });
     }
-    compositionControllerDidRequestRemovalOfAttachment(t2) {
-      return this.removeAttachment(t2);
+    compositionControllerDidRequestRemovalOfAttachment(t3) {
+      return this.removeAttachment(t3);
     }
     inputControllerWillHandleInput() {
       this.handlingInput = true, this.requestedRender = false;
@@ -12863,17 +13267,17 @@
     inputControllerWillPerformTyping() {
       return this.recordTypingUndoEntry();
     }
-    inputControllerWillPerformFormatting(t2) {
-      return this.recordFormattingUndoEntry(t2);
+    inputControllerWillPerformFormatting(t3) {
+      return this.recordFormattingUndoEntry(t3);
     }
     inputControllerWillCutText() {
       return this.editor.recordUndoEntry("Cut");
     }
-    inputControllerWillPaste(t2) {
-      return this.editor.recordUndoEntry("Paste"), this.pasting = true, this.notifyEditorElement("before-paste", { paste: t2 });
+    inputControllerWillPaste(t3) {
+      return this.editor.recordUndoEntry("Paste"), this.pasting = true, this.notifyEditorElement("before-paste", { paste: t3 });
     }
-    inputControllerDidPaste(t2) {
-      return t2.range = this.pastedRange, this.pastedRange = null, this.pasting = null, this.notifyEditorElement("paste", { paste: t2 });
+    inputControllerDidPaste(t3) {
+      return t3.range = this.pastedRange, this.pastedRange = null, this.pasting = null, this.notifyEditorElement("paste", { paste: t3 });
     }
     inputControllerWillMoveText() {
       return this.editor.recordUndoEntry("Move");
@@ -12887,44 +13291,44 @@
     inputControllerWillPerformRedo() {
       return this.editor.redo();
     }
-    inputControllerDidReceiveKeyboardCommand(t2) {
-      return this.toolbarController.applyKeyboardCommand(t2);
+    inputControllerDidReceiveKeyboardCommand(t3) {
+      return this.toolbarController.applyKeyboardCommand(t3);
     }
     inputControllerDidStartDrag() {
       this.locationRangeBeforeDrag = this.selectionManager.getLocationRange();
     }
-    inputControllerDidReceiveDragOverPoint(t2) {
-      return this.selectionManager.setLocationRangeFromPointRange(t2);
+    inputControllerDidReceiveDragOverPoint(t3) {
+      return this.selectionManager.setLocationRangeFromPointRange(t3);
     }
     inputControllerDidCancelDrag() {
       this.selectionManager.setLocationRange(this.locationRangeBeforeDrag), this.locationRangeBeforeDrag = null;
     }
-    locationRangeDidChange(t2) {
-      return this.composition.updateCurrentAttributes(), this.updateCurrentActions(), this.attachmentLocationRange && !wt(this.attachmentLocationRange, t2) && this.composition.stopEditingAttachment(), this.notifyEditorElement("selection-change");
+    locationRangeDidChange(t3) {
+      return this.composition.updateCurrentAttributes(), this.updateCurrentActions(), this.attachmentLocationRange && !Dt(this.attachmentLocationRange, t3) && this.composition.stopEditingAttachment(), this.notifyEditorElement("selection-change");
     }
     toolbarDidClickButton() {
       if (!this.getLocationRange()) return this.setLocationRange({ index: 0, offset: 0 });
     }
-    toolbarDidInvokeAction(t2, e2) {
-      return this.invokeAction(t2, e2);
+    toolbarDidInvokeAction(t3, e2) {
+      return this.invokeAction(t3, e2);
     }
-    toolbarDidToggleAttribute(t2) {
-      if (this.recordFormattingUndoEntry(t2), this.composition.toggleCurrentAttribute(t2), this.render(), !this.selectionFrozen) return this.editorElement.focus();
+    toolbarDidToggleAttribute(t3) {
+      if (this.recordFormattingUndoEntry(t3), this.composition.toggleCurrentAttribute(t3), this.render(), !this.selectionFrozen) return this.editorElement.focus();
     }
-    toolbarDidUpdateAttribute(t2, e2) {
-      if (this.recordFormattingUndoEntry(t2), this.composition.setCurrentAttribute(t2, e2), this.render(), !this.selectionFrozen) return this.editorElement.focus();
+    toolbarDidUpdateAttribute(t3, e2) {
+      if (this.recordFormattingUndoEntry(t3), this.composition.setCurrentAttribute(t3, e2), this.render(), !this.selectionFrozen) return this.editorElement.focus();
     }
-    toolbarDidRemoveAttribute(t2) {
-      if (this.recordFormattingUndoEntry(t2), this.composition.removeCurrentAttribute(t2), this.render(), !this.selectionFrozen) return this.editorElement.focus();
+    toolbarDidRemoveAttribute(t3) {
+      if (this.recordFormattingUndoEntry(t3), this.composition.removeCurrentAttribute(t3), this.render(), !this.selectionFrozen) return this.editorElement.focus();
     }
-    toolbarWillShowDialog(t2) {
+    toolbarWillShowDialog(t3) {
       return this.composition.expandSelectionForEditing(), this.freezeSelection();
     }
-    toolbarDidShowDialog(t2) {
-      return this.notifyEditorElement("toolbar-dialog-show", { dialogName: t2 });
+    toolbarDidShowDialog(t3) {
+      return this.notifyEditorElement("toolbar-dialog-show", { dialogName: t3 });
     }
-    toolbarDidHideDialog(t2) {
-      return this.thawSelection(), this.editorElement.focus(), this.notifyEditorElement("toolbar-dialog-hide", { dialogName: t2 });
+    toolbarDidHideDialog(t3) {
+      return this.thawSelection(), this.editorElement.focus(), this.notifyEditorElement("toolbar-dialog-hide", { dialogName: t3 });
     }
     freezeSelection() {
       if (!this.selectionFrozen) return this.selectionManager.lock(), this.composition.freezeSelection(), this.selectionFrozen = true, this.render();
@@ -12932,44 +13336,44 @@
     thawSelection() {
       if (this.selectionFrozen) return this.composition.thawSelection(), this.selectionManager.unlock(), this.selectionFrozen = false, this.render();
     }
-    canInvokeAction(t2) {
-      return !!this.actionIsExternal(t2) || !(null === (e2 = this.actions[t2]) || void 0 === e2 || null === (e2 = e2.test) || void 0 === e2 || !e2.call(this));
+    canInvokeAction(t3) {
+      return !!this.actionIsExternal(t3) || !(null === (e2 = this.actions[t3]) || void 0 === e2 || null === (e2 = e2.test) || void 0 === e2 || !e2.call(this));
       var e2;
     }
-    invokeAction(t2, e2) {
-      return this.actionIsExternal(t2) ? this.notifyEditorElement("action-invoke", { actionName: t2, invokingElement: e2 }) : null === (i2 = this.actions[t2]) || void 0 === i2 || null === (i2 = i2.perform) || void 0 === i2 ? void 0 : i2.call(this);
+    invokeAction(t3, e2) {
+      return this.actionIsExternal(t3) ? this.notifyEditorElement("action-invoke", { actionName: t3, invokingElement: e2 }) : null === (i2 = this.actions[t3]) || void 0 === i2 || null === (i2 = i2.perform) || void 0 === i2 ? void 0 : i2.call(this);
       var i2;
     }
-    actionIsExternal(t2) {
-      return /^x-./.test(t2);
+    actionIsExternal(t3) {
+      return /^x-./.test(t3);
     }
     getCurrentActions() {
-      const t2 = {};
-      for (const e2 in this.actions) t2[e2] = this.canInvokeAction(e2);
-      return t2;
+      const t3 = {};
+      for (const e2 in this.actions) t3[e2] = this.canInvokeAction(e2);
+      return t3;
     }
     updateCurrentActions() {
-      const t2 = this.getCurrentActions();
-      if (!St(t2, this.currentActions)) return this.currentActions = t2, this.toolbarController.updateActions(this.currentActions), this.notifyEditorElement("actions-change", { actions: this.currentActions });
+      const t3 = this.getCurrentActions();
+      if (!Tt(t3, this.currentActions)) return this.currentActions = t3, this.toolbarController.updateActions(this.currentActions), this.notifyEditorElement("actions-change", { actions: this.currentActions });
     }
     runEditorFilters() {
-      let t2 = this.composition.getSnapshot();
+      let t3 = this.composition.getSnapshot();
       if (Array.from(this.editor.filters).forEach((e3) => {
-        const { document: i3, selectedRange: n2 } = t2;
-        t2 = e3.call(this.editor, t2) || {}, t2.document || (t2.document = i3), t2.selectedRange || (t2.selectedRange = n2);
-      }), e2 = t2, i2 = this.composition.getSnapshot(), !wt(e2.selectedRange, i2.selectedRange) || !e2.document.isEqualTo(i2.document)) return this.composition.loadSnapshot(t2);
+        const { document: i3, selectedRange: n2 } = t3;
+        t3 = e3.call(this.editor, t3) || {}, t3.document || (t3.document = i3), t3.selectedRange || (t3.selectedRange = n2);
+      }), e2 = t3, i2 = this.composition.getSnapshot(), !Dt(e2.selectedRange, i2.selectedRange) || !e2.document.isEqualTo(i2.document)) return this.composition.loadSnapshot(t3);
       var e2, i2;
     }
     updateInputElement() {
-      const t2 = function(t3, e2) {
-        const i2 = li[e2];
-        if (i2) return i2(t3);
+      const t3 = function(t4, e2) {
+        const i2 = En[e2];
+        if (i2) return i2(t4);
         throw new Error("unknown content type: ".concat(e2));
       }(this.compositionController.getSerializableElement(), "text/html");
-      return this.editorElement.setInputElementValue(t2);
+      return this.editorElement.setFormValue(t3);
     }
-    notifyEditorElement(t2, e2) {
-      switch (t2) {
+    notifyEditorElement(t3, e2) {
+      switch (t3) {
         case "document-change":
           this.documentChangedSinceLastRender = true;
           break;
@@ -12982,32 +13386,32 @@
         case "attachment-remove":
           this.updateInputElement();
       }
-      return this.editorElement.notify(t2, e2);
+      return this.editorElement.notify(t3, e2);
     }
-    removeAttachment(t2) {
-      return this.editor.recordUndoEntry("Delete Attachment"), this.composition.removeAttachment(t2), this.render();
+    removeAttachment(t3) {
+      return this.editor.recordUndoEntry("Delete Attachment"), this.composition.removeAttachment(t3), this.render();
     }
-    recordFormattingUndoEntry(t2) {
-      const e2 = gt(t2), i2 = this.selectionManager.getLocationRange();
-      if (e2 || !Dt(i2)) return this.editor.recordUndoEntry("Formatting", { context: this.getUndoContext(), consolidatable: true });
+    recordFormattingUndoEntry(t3) {
+      const e2 = mt(t3), i2 = this.selectionManager.getLocationRange();
+      if (e2 || !Lt(i2)) return this.editor.recordUndoEntry("Formatting", { context: this.getUndoContext(), consolidatable: true });
     }
     recordTypingUndoEntry() {
       return this.editor.recordUndoEntry("Typing", { context: this.getUndoContext(this.currentAttributes), consolidatable: true });
     }
     getUndoContext() {
-      for (var t2 = arguments.length, e2 = new Array(t2), i2 = 0; i2 < t2; i2++) e2[i2] = arguments[i2];
+      for (var t3 = arguments.length, e2 = new Array(t3), i2 = 0; i2 < t3; i2++) e2[i2] = arguments[i2];
       return [this.getLocationContext(), this.getTimeContext(), ...Array.from(e2)];
     }
     getLocationContext() {
-      const t2 = this.selectionManager.getLocationRange();
-      return Dt(t2) ? t2[0].index : t2;
+      const t3 = this.selectionManager.getLocationRange();
+      return Lt(t3) ? t3[0].index : t3;
     }
     getTimeContext() {
-      return q.interval > 0 ? Math.floor((/* @__PURE__ */ new Date()).getTime() / q.interval) : 0;
+      return V.interval > 0 ? Math.floor((/* @__PURE__ */ new Date()).getTime() / V.interval) : 0;
     }
     isFocused() {
-      var t2;
-      return this.editorElement === (null === (t2 = this.editorElement.ownerDocument) || void 0 === t2 ? void 0 : t2.activeElement);
+      var t3;
+      return this.editorElement === (null === (t3 = this.editorElement.ownerDocument) || void 0 === t3 ? void 0 : t3.activeElement);
     }
     isFocusedInvisibly() {
       return this.isFocused() && !this.getLocationRange();
@@ -13016,7 +13420,7 @@
       return this.constructor.actions;
     }
   };
-  Re(Rn, "actions", { undo: { test() {
+  Di(_r, "actions", { undo: { test() {
     return this.editor.canUndo();
   }, perform() {
     return this.editor.undo();
@@ -13035,144 +13439,287 @@
   }, perform() {
     return this.editor.decreaseNestingLevel() && this.render();
   } }, attachFiles: { test: () => true, perform() {
-    return M.pickFiles(this.editor.insertFiles);
-  } } }), Rn.proxyMethod("getSelectionManager().setLocationRange"), Rn.proxyMethod("getSelectionManager().getLocationRange");
-  var En = Object.freeze({ __proto__: null, AttachmentEditorController: Ii, CompositionController: Ni, Controller: Oi, EditorController: Rn, InputController: Ki, Level0InputController: Qi, Level2InputController: on, ToolbarController: kn });
-  var Sn = Object.freeze({ __proto__: null, MutationObserver: Ui, SelectionChangeObserver: Ft });
-  var Ln = Object.freeze({ __proto__: null, FileVerificationOperation: Vi, ImagePreloadOperation: Le });
-  bt("trix-toolbar", "%t {\n  display: block;\n}\n\n%t {\n  white-space: nowrap;\n}\n\n%t [data-trix-dialog] {\n  display: none;\n}\n\n%t [data-trix-dialog][data-trix-active] {\n  display: block;\n}\n\n%t [data-trix-dialog] [data-trix-validate]:invalid {\n  background-color: #ffdddd;\n}");
-  var Dn = class extends HTMLElement {
+    return _.pickFiles(this.editor.insertFiles);
+  } } }), _r.proxyMethod("getSelectionManager().setLocationRange"), _r.proxyMethod("getSelectionManager().getLocationRange");
+  var jr = Object.freeze({ __proto__: null, AttachmentEditorController: Yn, CompositionController: Xn, Controller: $n, EditorController: _r, InputController: lr, Level0InputController: gr, Level2InputController: Ar, ToolbarController: Br });
+  var Wr = Object.freeze({ __proto__: null, MutationObserver: er, SelectionChangeObserver: Ot });
+  var Ur = Object.freeze({ __proto__: null, FileVerificationOperation: nr, ImagePreloadOperation: Ui });
+  vt("trix-toolbar", "%t {\n  display: block;\n}\n\n%t {\n  white-space: nowrap;\n}\n\n%t [data-trix-dialog] {\n  display: none;\n}\n\n%t [data-trix-dialog][data-trix-active] {\n  display: block;\n}\n\n%t [data-trix-dialog] [data-trix-validate]:invalid {\n  background-color: #ffdddd;\n}");
+  var Vr = class extends HTMLElement {
     connectedCallback() {
       "" === this.innerHTML && (this.innerHTML = U.getDefaultHTML());
     }
   };
-  var wn = 0;
-  var Tn = function(t2) {
-    if (!t2.hasAttribute("contenteditable")) return t2.setAttribute("contenteditable", ""), function(t3) {
+  var zr = 0;
+  var qr = function(t3) {
+    if (!t3.hasAttribute("contenteditable")) return t3.setAttribute("contenteditable", ""), function(t4) {
       let e2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-      return e2.times = 1, f(t3, e2);
-    }("focus", { onElement: t2, withCallback: () => Bn(t2) });
+      return e2.times = 1, b(t4, e2);
+    }("focus", { onElement: t3, withCallback: () => Hr(t3) });
   };
-  var Bn = function(t2) {
-    return Fn(t2), Pn(t2);
+  var Hr = function(t3) {
+    return Jr(t3), Kr(t3);
   };
-  var Fn = function(t2) {
+  var Jr = function(t3) {
     var e2, i2;
-    if (null !== (e2 = (i2 = document).queryCommandSupported) && void 0 !== e2 && e2.call(i2, "enableObjectResizing")) return document.execCommand("enableObjectResizing", false, false), f("mscontrolselect", { onElement: t2, preventDefault: true });
+    if (null !== (e2 = (i2 = document).queryCommandSupported) && void 0 !== e2 && e2.call(i2, "enableObjectResizing")) return document.execCommand("enableObjectResizing", false, false), b("mscontrolselect", { onElement: t3, preventDefault: true });
   };
-  var Pn = function(t2) {
+  var Kr = function(t3) {
     var e2, i2;
     if (null !== (e2 = (i2 = document).queryCommandSupported) && void 0 !== e2 && e2.call(i2, "DefaultParagraphSeparator")) {
-      const { tagName: t3 } = n.default;
-      if (["div", "p"].includes(t3)) return document.execCommand("DefaultParagraphSeparator", false, t3);
+      const { tagName: t4 } = n.default;
+      if (["div", "p"].includes(t4)) return document.execCommand("DefaultParagraphSeparator", false, t4);
     }
   };
-  var In = a.forcesObjectResizing ? { display: "inline", width: "auto" } : { display: "inline-block", width: "1px" };
-  bt("trix-editor", "%t {\n    display: block;\n}\n\n%t:empty:not(:focus)::before {\n    content: attr(placeholder);\n    color: graytext;\n    cursor: text;\n    pointer-events: none;\n    white-space: pre-line;\n}\n\n%t a[contenteditable=false] {\n    cursor: text;\n}\n\n%t img {\n    max-width: 100%;\n    height: auto;\n}\n\n%t ".concat(e, " figcaption textarea {\n    resize: none;\n}\n\n%t ").concat(e, " figcaption textarea.trix-autoresize-clone {\n    position: absolute;\n    left: -9999px;\n    max-height: 0px;\n}\n\n%t ").concat(e, " figcaption[data-trix-placeholder]:empty::before {\n    content: attr(data-trix-placeholder);\n    color: graytext;\n}\n\n%t [data-trix-cursor-target] {\n    display: ").concat(In.display, " !important;\n    width: ").concat(In.width, " !important;\n    padding: 0 !important;\n    margin: 0 !important;\n    border: none !important;\n}\n\n%t [data-trix-cursor-target=left] {\n    vertical-align: top !important;\n    margin-left: -1px !important;\n}\n\n%t [data-trix-cursor-target=right] {\n    vertical-align: bottom !important;\n    margin-right: -1px !important;\n}"));
-  var Nn = class extends HTMLElement {
-    get trixId() {
-      return this.hasAttribute("trix-id") ? this.getAttribute("trix-id") : (this.setAttribute("trix-id", ++wn), this.trixId);
+  var Gr = a.forcesObjectResizing ? { display: "inline", width: "auto" } : { display: "inline-block", width: "1px" };
+  vt("trix-editor", "%t {\n    display: block;\n}\n\n%t:empty::before {\n    content: attr(placeholder);\n    color: graytext;\n    cursor: text;\n    pointer-events: none;\n    white-space: pre-line;\n}\n\n%t a[contenteditable=false] {\n    cursor: text;\n}\n\n%t img {\n    max-width: 100%;\n    height: auto;\n}\n\n%t ".concat(e, " figcaption textarea {\n    resize: none;\n}\n\n%t ").concat(e, " figcaption textarea.trix-autoresize-clone {\n    position: absolute;\n    left: -9999px;\n    max-height: 0px;\n}\n\n%t ").concat(e, " figcaption[data-trix-placeholder]:empty::before {\n    content: attr(data-trix-placeholder);\n    color: graytext;\n}\n\n%t [data-trix-cursor-target] {\n    display: ").concat(Gr.display, " !important;\n    width: ").concat(Gr.width, " !important;\n    padding: 0 !important;\n    margin: 0 !important;\n    border: none !important;\n}\n\n%t [data-trix-cursor-target=left] {\n    vertical-align: top !important;\n    margin-left: -1px !important;\n}\n\n%t [data-trix-cursor-target=right] {\n    vertical-align: bottom !important;\n    margin-right: -1px !important;\n}"));
+  var Yr = /* @__PURE__ */ new WeakMap();
+  var Xr = /* @__PURE__ */ new WeakSet();
+  var $r = class {
+    constructor(t3) {
+      var e2, i2;
+      _i(e2 = this, i2 = Xr), i2.add(e2), ji(this, Yr, { writable: true, value: void 0 }), this.element = t3, Oi(this, Yr, t3.attachInternals());
+    }
+    connectedCallback() {
+      Bi(this, Xr, Zr).call(this);
+    }
+    disconnectedCallback() {
     }
     get labels() {
-      const t2 = [];
-      this.id && this.ownerDocument && t2.push(...Array.from(this.ownerDocument.querySelectorAll("label[for='".concat(this.id, "']")) || []));
-      const e2 = A(this, { matchingSelector: "label" });
-      return e2 && [this, null].includes(e2.control) && t2.push(e2), t2;
+      return Ii(this, Yr).labels;
+    }
+    get disabled() {
+      var t3;
+      return null === (t3 = this.element.inputElement) || void 0 === t3 ? void 0 : t3.disabled;
+    }
+    set disabled(t3) {
+      this.element.toggleAttribute("disabled", t3);
+    }
+    get required() {
+      return this.element.hasAttribute("required");
+    }
+    set required(t3) {
+      this.element.toggleAttribute("required", t3), Bi(this, Xr, Zr).call(this);
+    }
+    get validity() {
+      return Ii(this, Yr).validity;
+    }
+    get validationMessage() {
+      return Ii(this, Yr).validationMessage;
+    }
+    get willValidate() {
+      return Ii(this, Yr).willValidate;
+    }
+    setFormValue(t3) {
+      Bi(this, Xr, Zr).call(this);
+    }
+    checkValidity() {
+      return Ii(this, Yr).checkValidity();
+    }
+    reportValidity() {
+      return Ii(this, Yr).reportValidity();
+    }
+    setCustomValidity(t3) {
+      Bi(this, Xr, Zr).call(this, t3);
+    }
+  };
+  function Zr() {
+    let t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+    const { required: e2, value: i2 } = this.element, n2 = e2 && !i2, r2 = !!t3, o2 = T("input", { required: e2 }), s2 = t3 || o2.validationMessage;
+    Ii(this, Yr).setValidity({ valueMissing: n2, customError: r2 }, s2);
+  }
+  var Qr = /* @__PURE__ */ new WeakMap();
+  var to = /* @__PURE__ */ new WeakMap();
+  var eo = /* @__PURE__ */ new WeakMap();
+  var io = class {
+    constructor(t3) {
+      ji(this, Qr, { writable: true, value: void 0 }), ji(this, to, { writable: true, value: (t4) => {
+        t4.defaultPrevented || t4.target === this.element.form && this.element.reset();
+      } }), ji(this, eo, { writable: true, value: (t4) => {
+        if (t4.defaultPrevented) return;
+        if (this.element.contains(t4.target)) return;
+        const e2 = y(t4.target, { matchingSelector: "label" });
+        e2 && Array.from(this.labels).includes(e2) && this.element.focus();
+      } }), this.element = t3;
+    }
+    connectedCallback() {
+      Oi(this, Qr, function(t3) {
+        if (t3.hasAttribute("aria-label") || t3.hasAttribute("aria-labelledby")) return;
+        const e2 = function() {
+          const e3 = Array.from(t3.labels).map((e4) => {
+            if (!e4.contains(t3)) return e4.textContent;
+          }).filter((t4) => t4), i2 = e3.join(" ");
+          return i2 ? t3.setAttribute("aria-label", i2) : t3.removeAttribute("aria-label");
+        };
+        return e2(), b("focus", { onElement: t3, withCallback: e2 });
+      }(this.element)), window.addEventListener("reset", Ii(this, to), false), window.addEventListener("click", Ii(this, eo), false);
+    }
+    disconnectedCallback() {
+      var t3;
+      null === (t3 = Ii(this, Qr)) || void 0 === t3 || t3.destroy(), window.removeEventListener("reset", Ii(this, to), false), window.removeEventListener("click", Ii(this, eo), false);
+    }
+    get labels() {
+      const t3 = [];
+      this.element.id && this.element.ownerDocument && t3.push(...Array.from(this.element.ownerDocument.querySelectorAll("label[for='".concat(this.element.id, "']")) || []));
+      const e2 = y(this.element, { matchingSelector: "label" });
+      return e2 && [this.element, null].includes(e2.control) && t3.push(e2), t3;
+    }
+    get disabled() {
+      return console.warn("This browser does not support the [disabled] attribute for trix-editor elements."), false;
+    }
+    set disabled(t3) {
+      console.warn("This browser does not support the [disabled] attribute for trix-editor elements.");
+    }
+    get required() {
+      return console.warn("This browser does not support the [required] attribute for trix-editor elements."), false;
+    }
+    set required(t3) {
+      console.warn("This browser does not support the [required] attribute for trix-editor elements.");
+    }
+    get validity() {
+      return console.warn("This browser does not support the validity property for trix-editor elements."), null;
+    }
+    get validationMessage() {
+      return console.warn("This browser does not support the validationMessage property for trix-editor elements."), "";
+    }
+    get willValidate() {
+      return console.warn("This browser does not support the willValidate property for trix-editor elements."), false;
+    }
+    setFormValue(t3) {
+    }
+    checkValidity() {
+      return console.warn("This browser does not support checkValidity() for trix-editor elements."), true;
+    }
+    reportValidity() {
+      return console.warn("This browser does not support reportValidity() for trix-editor elements."), true;
+    }
+    setCustomValidity(t3) {
+      console.warn("This browser does not support setCustomValidity(validationMessage) for trix-editor elements.");
+    }
+  };
+  var no = /* @__PURE__ */ new WeakMap();
+  var ro = class extends HTMLElement {
+    constructor() {
+      super(), ji(this, no, { writable: true, value: void 0 }), Oi(this, no, this.constructor.formAssociated ? new $r(this) : new io(this));
+    }
+    get trixId() {
+      return this.hasAttribute("trix-id") ? this.getAttribute("trix-id") : (this.setAttribute("trix-id", ++zr), this.trixId);
+    }
+    get labels() {
+      return Ii(this, no).labels;
+    }
+    get disabled() {
+      return Ii(this, no).disabled;
+    }
+    set disabled(t3) {
+      Ii(this, no).disabled = t3;
+    }
+    get required() {
+      return Ii(this, no).required;
+    }
+    set required(t3) {
+      Ii(this, no).required = t3;
+    }
+    get validity() {
+      return Ii(this, no).validity;
+    }
+    get validationMessage() {
+      return Ii(this, no).validationMessage;
+    }
+    get willValidate() {
+      return Ii(this, no).willValidate;
+    }
+    get type() {
+      return this.localName;
     }
     get toolbarElement() {
-      var t2;
-      if (this.hasAttribute("toolbar")) return null === (t2 = this.ownerDocument) || void 0 === t2 ? void 0 : t2.getElementById(this.getAttribute("toolbar"));
+      var t3;
+      if (this.hasAttribute("toolbar")) return null === (t3 = this.ownerDocument) || void 0 === t3 ? void 0 : t3.getElementById(this.getAttribute("toolbar"));
       if (this.parentNode) {
-        const t3 = "trix-toolbar-".concat(this.trixId);
-        this.setAttribute("toolbar", t3);
-        const e2 = S("trix-toolbar", { id: t3 });
-        return this.parentNode.insertBefore(e2, this), e2;
+        const t4 = "trix-toolbar-".concat(this.trixId);
+        return this.setAttribute("toolbar", t4), this.internalToolbar = T("trix-toolbar", { id: t4 }), this.parentNode.insertBefore(this.internalToolbar, this), this.internalToolbar;
       }
     }
     get form() {
-      var t2;
-      return null === (t2 = this.inputElement) || void 0 === t2 ? void 0 : t2.form;
+      var t3;
+      return null === (t3 = this.inputElement) || void 0 === t3 ? void 0 : t3.form;
     }
     get inputElement() {
-      var t2;
-      if (this.hasAttribute("input")) return null === (t2 = this.ownerDocument) || void 0 === t2 ? void 0 : t2.getElementById(this.getAttribute("input"));
+      var t3;
+      if (this.hasAttribute("input")) return null === (t3 = this.ownerDocument) || void 0 === t3 ? void 0 : t3.getElementById(this.getAttribute("input"));
       if (this.parentNode) {
-        const t3 = "trix-input-".concat(this.trixId);
-        this.setAttribute("input", t3);
-        const e2 = S("input", { type: "hidden", id: t3 });
+        const t4 = "trix-input-".concat(this.trixId);
+        this.setAttribute("input", t4);
+        const e2 = T("input", { type: "hidden", id: t4 });
         return this.parentNode.insertBefore(e2, this.nextElementSibling), e2;
       }
     }
     get editor() {
-      var t2;
-      return null === (t2 = this.editorController) || void 0 === t2 ? void 0 : t2.editor;
+      var t3;
+      return null === (t3 = this.editorController) || void 0 === t3 ? void 0 : t3.editor;
     }
     get name() {
-      var t2;
-      return null === (t2 = this.inputElement) || void 0 === t2 ? void 0 : t2.name;
+      var t3;
+      return null === (t3 = this.inputElement) || void 0 === t3 ? void 0 : t3.name;
     }
     get value() {
-      var t2;
-      return null === (t2 = this.inputElement) || void 0 === t2 ? void 0 : t2.value;
+      var t3;
+      return null === (t3 = this.inputElement) || void 0 === t3 ? void 0 : t3.value;
     }
-    set value(t2) {
+    set value(t3) {
       var e2;
-      this.defaultValue = t2, null === (e2 = this.editor) || void 0 === e2 || e2.loadHTML(this.defaultValue);
+      this.defaultValue = t3, null === (e2 = this.editor) || void 0 === e2 || e2.loadHTML(this.defaultValue);
     }
-    notify(t2, e2) {
-      if (this.editorController) return b("trix-".concat(t2), { onElement: this, attributes: e2 });
+    attributeChangedCallback(t3, e2, i2) {
+      "connected" === t3 && this.isConnected && null != e2 && e2 !== i2 && requestAnimationFrame(() => this.reconnect());
     }
-    setInputElementValue(t2) {
-      this.inputElement && (this.inputElement.value = t2);
+    notify(t3, e2) {
+      if (this.editorController) return v("trix-".concat(t3), { onElement: this, attributes: e2 });
+    }
+    setFormValue(t3) {
+      this.inputElement && (this.inputElement.value = t3, Ii(this, no).setFormValue(t3));
     }
     connectedCallback() {
-      this.hasAttribute("data-trix-internal") || (Tn(this), function(t2) {
-        if (!t2.hasAttribute("role")) t2.setAttribute("role", "textbox");
-      }(this), function(t2) {
-        if (t2.hasAttribute("aria-label") || t2.hasAttribute("aria-labelledby")) return;
-        const e2 = function() {
-          const e3 = Array.from(t2.labels).map((e4) => {
-            if (!e4.contains(t2)) return e4.textContent;
-          }).filter((t3) => t3), i2 = e3.join(" ");
-          return i2 ? t2.setAttribute("aria-label", i2) : t2.removeAttribute("aria-label");
-        };
-        e2(), f("focus", { onElement: t2, withCallback: e2 });
-      }(this), this.editorController || (b("trix-before-initialize", { onElement: this }), this.editorController = new Rn({ editorElement: this, html: this.defaultValue = this.value }), requestAnimationFrame(() => b("trix-initialize", { onElement: this }))), this.editorController.registerSelectionManager(), this.registerResetListener(), this.registerClickListener(), function(t2) {
-        if (!document.querySelector(":focus") && t2.hasAttribute("autofocus") && document.querySelector("[autofocus]") === t2) t2.focus();
+      this.hasAttribute("data-trix-internal") || (qr(this), function(t3) {
+        if (!t3.hasAttribute("role")) t3.setAttribute("role", "textbox");
+      }(this), this.editorController || (v("trix-before-initialize", { onElement: this }), this.editorController = new _r({ editorElement: this, html: this.defaultValue = this.value }), requestAnimationFrame(() => v("trix-initialize", { onElement: this }))), this.editorController.registerSelectionManager(), Ii(this, no).connectedCallback(), this.toggleAttribute("connected", true), function(t3) {
+        if (!document.querySelector(":focus") && t3.hasAttribute("autofocus") && document.querySelector("[autofocus]") === t3) t3.focus();
       }(this));
     }
     disconnectedCallback() {
-      var t2;
-      return null === (t2 = this.editorController) || void 0 === t2 || t2.unregisterSelectionManager(), this.unregisterResetListener(), this.unregisterClickListener();
+      var t3;
+      null === (t3 = this.editorController) || void 0 === t3 || t3.unregisterSelectionManager(), Ii(this, no).disconnectedCallback(), this.toggleAttribute("connected", false);
     }
-    registerResetListener() {
-      return this.resetListener = this.resetBubbled.bind(this), window.addEventListener("reset", this.resetListener, false);
+    reconnect() {
+      this.removeInternalToolbar(), this.disconnectedCallback(), this.connectedCallback();
     }
-    unregisterResetListener() {
-      return window.removeEventListener("reset", this.resetListener, false);
+    removeInternalToolbar() {
+      var t3;
+      null === (t3 = this.internalToolbar) || void 0 === t3 || t3.remove(), this.internalToolbar = null;
     }
-    registerClickListener() {
-      return this.clickListener = this.clickBubbled.bind(this), window.addEventListener("click", this.clickListener, false);
+    checkValidity() {
+      return Ii(this, no).checkValidity();
     }
-    unregisterClickListener() {
-      return window.removeEventListener("click", this.clickListener, false);
+    reportValidity() {
+      return Ii(this, no).reportValidity();
     }
-    resetBubbled(t2) {
-      if (!t2.defaultPrevented && t2.target === this.form) return this.reset();
+    setCustomValidity(t3) {
+      Ii(this, no).setCustomValidity(t3);
     }
-    clickBubbled(t2) {
-      if (t2.defaultPrevented) return;
-      if (this.contains(t2.target)) return;
-      const e2 = A(t2.target, { matchingSelector: "label" });
-      return e2 && Array.from(this.labels).includes(e2) ? this.focus() : void 0;
+    formDisabledCallback(t3) {
+      this.inputElement && (this.inputElement.disabled = t3), this.toggleAttribute("contenteditable", !t3);
+    }
+    formResetCallback() {
+      this.reset();
     }
     reset() {
       this.value = this.defaultValue;
     }
   };
-  var On = { VERSION: t, config: V, core: ci, models: Di, views: wi, controllers: En, observers: Sn, operations: Ln, elements: Object.freeze({ __proto__: null, TrixEditorElement: Nn, TrixToolbarElement: Dn }), filters: Object.freeze({ __proto__: null, Filter: bi, attachmentGalleryFilter: vi }) };
-  Object.assign(On, Di), window.Trix = On, setTimeout(function() {
-    customElements.get("trix-toolbar") || customElements.define("trix-toolbar", Dn), customElements.get("trix-editor") || customElements.define("trix-editor", Nn);
+  Di(ro, "formAssociated", "ElementInternals" in window), Di(ro, "observedAttributes", ["connected"]);
+  var oo = { VERSION: t, config: z, core: Sn, models: zn, views: qn, controllers: jr, observers: Wr, operations: Ur, elements: Object.freeze({ __proto__: null, TrixEditorElement: ro, TrixToolbarElement: Vr }), filters: Object.freeze({ __proto__: null, Filter: In, attachmentGalleryFilter: On }) };
+  Object.assign(oo, zn), window.Trix = oo, setTimeout(function() {
+    customElements.get("trix-toolbar") || customElements.define("trix-toolbar", Vr), customElements.get("trix-editor") || customElements.define("trix-editor", ro);
   }, 0);
 
   // node_modules/@rails/actiontext/app/assets/javascripts/actiontext.esm.js
@@ -13413,10 +13960,10 @@
             }
             return Math.min(val, length);
           }
-          ArrayBuffer.prototype.slice = function(from, to) {
+          ArrayBuffer.prototype.slice = function(from, to2) {
             var length = this.byteLength, begin = clamp(from, length), end = length, num, target, targetArray, sourceArray;
-            if (to !== undefined$1) {
-              end = clamp(to, length);
+            if (to2 !== undefined$1) {
+              end = clamp(to2, length);
             }
             if (begin > end) {
               return new ArrayBuffer(0);
@@ -17211,91 +17758,91 @@
         removeNode(tempNode, ctx);
       }
     }
-    function ignoreAttribute(attr, to, updateType, ctx) {
-      if (attr === "value" && ctx.ignoreActiveValue && to === document.activeElement) {
+    function ignoreAttribute(attr, to2, updateType, ctx) {
+      if (attr === "value" && ctx.ignoreActiveValue && to2 === document.activeElement) {
         return true;
       }
-      return ctx.callbacks.beforeAttributeUpdated(attr, to, updateType) === false;
+      return ctx.callbacks.beforeAttributeUpdated(attr, to2, updateType) === false;
     }
-    function syncNodeFrom(from, to, ctx) {
+    function syncNodeFrom(from, to2, ctx) {
       let type = from.nodeType;
       if (type === 1) {
         const fromAttributes = from.attributes;
-        const toAttributes = to.attributes;
+        const toAttributes = to2.attributes;
         for (const fromAttribute of fromAttributes) {
-          if (ignoreAttribute(fromAttribute.name, to, "update", ctx)) {
+          if (ignoreAttribute(fromAttribute.name, to2, "update", ctx)) {
             continue;
           }
-          if (to.getAttribute(fromAttribute.name) !== fromAttribute.value) {
-            to.setAttribute(fromAttribute.name, fromAttribute.value);
+          if (to2.getAttribute(fromAttribute.name) !== fromAttribute.value) {
+            to2.setAttribute(fromAttribute.name, fromAttribute.value);
           }
         }
         for (let i2 = toAttributes.length - 1; 0 <= i2; i2--) {
           const toAttribute = toAttributes[i2];
-          if (ignoreAttribute(toAttribute.name, to, "remove", ctx)) {
+          if (ignoreAttribute(toAttribute.name, to2, "remove", ctx)) {
             continue;
           }
           if (!from.hasAttribute(toAttribute.name)) {
-            to.removeAttribute(toAttribute.name);
+            to2.removeAttribute(toAttribute.name);
           }
         }
       }
       if (type === 8 || type === 3) {
-        if (to.nodeValue !== from.nodeValue) {
-          to.nodeValue = from.nodeValue;
+        if (to2.nodeValue !== from.nodeValue) {
+          to2.nodeValue = from.nodeValue;
         }
       }
-      if (!ignoreValueOfActiveElement(to, ctx)) {
-        syncInputValue(from, to, ctx);
+      if (!ignoreValueOfActiveElement(to2, ctx)) {
+        syncInputValue(from, to2, ctx);
       }
     }
-    function syncBooleanAttribute(from, to, attributeName, ctx) {
-      if (from[attributeName] !== to[attributeName]) {
-        let ignoreUpdate = ignoreAttribute(attributeName, to, "update", ctx);
+    function syncBooleanAttribute(from, to2, attributeName, ctx) {
+      if (from[attributeName] !== to2[attributeName]) {
+        let ignoreUpdate = ignoreAttribute(attributeName, to2, "update", ctx);
         if (!ignoreUpdate) {
-          to[attributeName] = from[attributeName];
+          to2[attributeName] = from[attributeName];
         }
         if (from[attributeName]) {
           if (!ignoreUpdate) {
-            to.setAttribute(attributeName, from[attributeName]);
+            to2.setAttribute(attributeName, from[attributeName]);
           }
         } else {
-          if (!ignoreAttribute(attributeName, to, "remove", ctx)) {
-            to.removeAttribute(attributeName);
+          if (!ignoreAttribute(attributeName, to2, "remove", ctx)) {
+            to2.removeAttribute(attributeName);
           }
         }
       }
     }
-    function syncInputValue(from, to, ctx) {
-      if (from instanceof HTMLInputElement && to instanceof HTMLInputElement && from.type !== "file") {
+    function syncInputValue(from, to2, ctx) {
+      if (from instanceof HTMLInputElement && to2 instanceof HTMLInputElement && from.type !== "file") {
         let fromValue = from.value;
-        let toValue = to.value;
-        syncBooleanAttribute(from, to, "checked", ctx);
-        syncBooleanAttribute(from, to, "disabled", ctx);
+        let toValue = to2.value;
+        syncBooleanAttribute(from, to2, "checked", ctx);
+        syncBooleanAttribute(from, to2, "disabled", ctx);
         if (!from.hasAttribute("value")) {
-          if (!ignoreAttribute("value", to, "remove", ctx)) {
-            to.value = "";
-            to.removeAttribute("value");
+          if (!ignoreAttribute("value", to2, "remove", ctx)) {
+            to2.value = "";
+            to2.removeAttribute("value");
           }
         } else if (fromValue !== toValue) {
-          if (!ignoreAttribute("value", to, "update", ctx)) {
-            to.setAttribute("value", fromValue);
-            to.value = fromValue;
+          if (!ignoreAttribute("value", to2, "update", ctx)) {
+            to2.setAttribute("value", fromValue);
+            to2.value = fromValue;
           }
         }
       } else if (from instanceof HTMLOptionElement) {
-        syncBooleanAttribute(from, to, "selected", ctx);
-      } else if (from instanceof HTMLTextAreaElement && to instanceof HTMLTextAreaElement) {
+        syncBooleanAttribute(from, to2, "selected", ctx);
+      } else if (from instanceof HTMLTextAreaElement && to2 instanceof HTMLTextAreaElement) {
         let fromValue = from.value;
-        let toValue = to.value;
-        if (ignoreAttribute("value", to, "update", ctx)) {
+        let toValue = to2.value;
+        if (ignoreAttribute("value", to2, "update", ctx)) {
           return;
         }
         if (fromValue !== toValue) {
-          to.value = fromValue;
+          to2.value = fromValue;
         }
-        if (to.firstChild && to.firstChild.nodeValue !== fromValue) {
-          to.firstChild.nodeValue = fromValue;
+        if (to2.firstChild && to2.firstChild.nodeValue !== fromValue) {
+          to2.firstChild.nodeValue = fromValue;
         }
       }
     }
@@ -21777,21 +22324,21 @@
   var fa = Object.defineProperty;
   var da = Object.defineProperties;
   var ma = Object.getOwnPropertyDescriptors;
-  var Mr = Object.getOwnPropertySymbols;
+  var Mr2 = Object.getOwnPropertySymbols;
   var ga = Object.prototype.hasOwnProperty;
   var ba = Object.prototype.propertyIsEnumerable;
-  var Nr = (e2, t2, n2) => t2 in e2 ? fa(e2, t2, { enumerable: true, configurable: true, writable: true, value: n2 }) : e2[t2] = n2;
-  var _2 = (e2, t2) => {
-    for (var n2 in t2 || (t2 = {}))
-      ga.call(t2, n2) && Nr(e2, n2, t2[n2]);
-    if (Mr)
-      for (var n2 of Mr(t2))
-        ba.call(t2, n2) && Nr(e2, n2, t2[n2]);
+  var Nr2 = (e2, t3, n2) => t3 in e2 ? fa(e2, t3, { enumerable: true, configurable: true, writable: true, value: n2 }) : e2[t3] = n2;
+  var _2 = (e2, t3) => {
+    for (var n2 in t3 || (t3 = {}))
+      ga.call(t3, n2) && Nr2(e2, n2, t3[n2]);
+    if (Mr2)
+      for (var n2 of Mr2(t3))
+        ba.call(t3, n2) && Nr2(e2, n2, t3[n2]);
     return e2;
   };
-  var Z2 = (e2, t2) => da(e2, ma(t2));
-  var ya = (e2, t2) => () => (t2 || e2((t2 = { exports: {} }).exports, t2), t2.exports);
-  var H2 = (e2, t2, n2) => new Promise((r2, i2) => {
+  var Z2 = (e2, t3) => da(e2, ma(t3));
+  var ya = (e2, t3) => () => (t3 || e2((t3 = { exports: {} }).exports, t3), t3.exports);
+  var H2 = (e2, t3, n2) => new Promise((r2, i2) => {
     var o2 = (l2) => {
       try {
         c2(n2.next(l2));
@@ -21805,15 +22352,15 @@
         i2(a2);
       }
     }, c2 = (l2) => l2.done ? r2(l2.value) : Promise.resolve(l2.value).then(o2, s2);
-    c2((n2 = n2.apply(e2, t2)).next());
+    c2((n2 = n2.apply(e2, t3)).next());
   });
-  var Qg = ya((Rr) => {
-    const Gn = Math.min, lt2 = Math.max, Zt2 = Math.round, Mt2 = Math.floor, $e2 = (e2) => ({
+  var Qg = ya((Rr2) => {
+    const Gn2 = Math.min, lt2 = Math.max, Zt2 = Math.round, Mt2 = Math.floor, $e2 = (e2) => ({
       x: e2,
       y: e2
     });
-    function ka(e2, t2) {
-      return typeof e2 == "function" ? e2(t2) : e2;
+    function ka(e2, t3) {
+      return typeof e2 == "function" ? e2(t3) : e2;
     }
     function xa(e2) {
       return _2({
@@ -21833,7 +22380,7 @@
     }
     function Jt2(e2) {
       const {
-        x: t2,
+        x: t3,
         y: n2,
         width: r2,
         height: i2
@@ -21842,17 +22389,17 @@
         width: r2,
         height: i2,
         top: n2,
-        left: t2,
-        right: t2 + r2,
+        left: t3,
+        right: t3 + r2,
         bottom: n2 + i2,
-        x: t2,
+        x: t3,
         y: n2
       };
     }
-    function va(e2, t2) {
+    function va(e2, t3) {
       return H2(this, null, function* () {
         var n2;
-        t2 === void 0 && (t2 = {});
+        t3 === void 0 && (t3 = {});
         const {
           x: r2,
           y: i2,
@@ -21866,7 +22413,7 @@
           elementContext: h2 = "floating",
           altBoundary: d2 = false,
           padding: m2 = 0
-        } = ka(t2, e2), w2 = wa(m2), C2 = c2[d2 ? h2 === "floating" ? "reference" : "floating" : h2], b2 = Jt2(yield o2.getClippingRect({
+        } = ka(t3, e2), w2 = wa(m2), C2 = c2[d2 ? h2 === "floating" ? "reference" : "floating" : h2], b2 = Jt2(yield o2.getClippingRect({
           element: (n2 = yield o2.isElement == null ? void 0 : o2.isElement(C2)) == null || n2 ? C2 : C2.contextElement || (yield o2.getDocumentElement == null ? void 0 : o2.getDocumentElement(c2.floating)),
           boundary: a2,
           rootBoundary: u2,
@@ -21900,17 +22447,17 @@
       return typeof window != "undefined";
     }
     function bt2(e2) {
-      return ro(e2) ? (e2.nodeName || "").toLowerCase() : "#document";
+      return ro2(e2) ? (e2.nodeName || "").toLowerCase() : "#document";
     }
     function pe2(e2) {
-      var t2;
-      return (e2 == null || (t2 = e2.ownerDocument) == null ? void 0 : t2.defaultView) || window;
+      var t3;
+      return (e2 == null || (t3 = e2.ownerDocument) == null ? void 0 : t3.defaultView) || window;
     }
     function Pe2(e2) {
-      var t2;
-      return (t2 = (ro(e2) ? e2.ownerDocument : e2.document) || window.document) == null ? void 0 : t2.documentElement;
+      var t3;
+      return (t3 = (ro2(e2) ? e2.ownerDocument : e2.document) || window.document) == null ? void 0 : t3.documentElement;
     }
-    function ro(e2) {
+    function ro2(e2) {
       return hn2() ? e2 instanceof Node || e2 instanceof pe2(e2).Node : false;
     }
     function we2(e2) {
@@ -21919,46 +22466,46 @@
     function _e2(e2) {
       return hn2() ? e2 instanceof HTMLElement || e2 instanceof pe2(e2).HTMLElement : false;
     }
-    function Dr(e2) {
+    function Dr2(e2) {
       return !hn2() || typeof ShadowRoot == "undefined" ? false : e2 instanceof ShadowRoot || e2 instanceof pe2(e2).ShadowRoot;
     }
     function It2(e2) {
       const {
-        overflow: t2,
+        overflow: t3,
         overflowX: n2,
         overflowY: r2,
         display: i2
       } = ve2(e2);
-      return /auto|scroll|overlay|hidden|clip/.test(t2 + r2 + n2) && !["inline", "contents"].includes(i2);
+      return /auto|scroll|overlay|hidden|clip/.test(t3 + r2 + n2) && !["inline", "contents"].includes(i2);
     }
     function Sa(e2) {
       return ["table", "td", "th"].includes(bt2(e2));
     }
     function pn2(e2) {
-      return [":popover-open", ":modal"].some((t2) => {
+      return [":popover-open", ":modal"].some((t3) => {
         try {
-          return e2.matches(t2);
+          return e2.matches(t3);
         } catch (n2) {
           return false;
         }
       });
     }
-    function ur(e2) {
-      const t2 = hr(), n2 = we2(e2) ? ve2(e2) : e2;
-      return n2.transform !== "none" || n2.perspective !== "none" || (n2.containerType ? n2.containerType !== "normal" : false) || !t2 && (n2.backdropFilter ? n2.backdropFilter !== "none" : false) || !t2 && (n2.filter ? n2.filter !== "none" : false) || ["transform", "perspective", "filter"].some((r2) => (n2.willChange || "").includes(r2)) || ["paint", "layout", "strict", "content"].some((r2) => (n2.contain || "").includes(r2));
+    function ur2(e2) {
+      const t3 = hr2(), n2 = we2(e2) ? ve2(e2) : e2;
+      return n2.transform !== "none" || n2.perspective !== "none" || (n2.containerType ? n2.containerType !== "normal" : false) || !t3 && (n2.backdropFilter ? n2.backdropFilter !== "none" : false) || !t3 && (n2.filter ? n2.filter !== "none" : false) || ["transform", "perspective", "filter"].some((r2) => (n2.willChange || "").includes(r2)) || ["paint", "layout", "strict", "content"].some((r2) => (n2.contain || "").includes(r2));
     }
     function Ca(e2) {
-      let t2 = We2(e2);
-      for (; _e2(t2) && !pt2(t2); ) {
-        if (ur(t2))
-          return t2;
-        if (pn2(t2))
+      let t3 = We2(e2);
+      for (; _e2(t3) && !pt2(t3); ) {
+        if (ur2(t3))
+          return t3;
+        if (pn2(t3))
           return null;
-        t2 = We2(t2);
+        t3 = We2(t3);
       }
       return null;
     }
-    function hr() {
+    function hr2() {
       return typeof CSS == "undefined" || !CSS.supports ? false : CSS.supports("-webkit-backdrop-filter", "none");
     }
     function pt2(e2) {
@@ -21979,35 +22526,35 @@
     function We2(e2) {
       if (bt2(e2) === "html")
         return e2;
-      const t2 = (
+      const t3 = (
         // Step into the shadow DOM of the parent of a slotted node.
         e2.assignedSlot || // DOM Element detected.
         e2.parentNode || // ShadowRoot detected.
-        Dr(e2) && e2.host || // Fallback.
+        Dr2(e2) && e2.host || // Fallback.
         Pe2(e2)
       );
-      return Dr(t2) ? t2.host : t2;
+      return Dr2(t3) ? t3.host : t3;
     }
-    function io(e2) {
-      const t2 = We2(e2);
-      return pt2(t2) ? e2.ownerDocument ? e2.ownerDocument.body : e2.body : _e2(t2) && It2(t2) ? t2 : io(t2);
+    function io2(e2) {
+      const t3 = We2(e2);
+      return pt2(t3) ? e2.ownerDocument ? e2.ownerDocument.body : e2.body : _e2(t3) && It2(t3) ? t3 : io2(t3);
     }
-    function Lt2(e2, t2, n2) {
+    function Lt2(e2, t3, n2) {
       var r2;
-      t2 === void 0 && (t2 = []), n2 === void 0 && (n2 = true);
-      const i2 = io(e2), o2 = i2 === ((r2 = e2.ownerDocument) == null ? void 0 : r2.body), s2 = pe2(i2);
+      t3 === void 0 && (t3 = []), n2 === void 0 && (n2 = true);
+      const i2 = io2(e2), o2 = i2 === ((r2 = e2.ownerDocument) == null ? void 0 : r2.body), s2 = pe2(i2);
       if (o2) {
-        const c2 = Vn(s2);
-        return t2.concat(s2, s2.visualViewport || [], It2(i2) ? i2 : [], c2 && n2 ? Lt2(c2) : []);
+        const c2 = Vn2(s2);
+        return t3.concat(s2, s2.visualViewport || [], It2(i2) ? i2 : [], c2 && n2 ? Lt2(c2) : []);
       }
-      return t2.concat(i2, Lt2(i2, [], n2));
+      return t3.concat(i2, Lt2(i2, [], n2));
     }
-    function Vn(e2) {
+    function Vn2(e2) {
       return e2.parent && Object.getPrototypeOf(e2.parent) ? e2.frameElement : null;
     }
-    function oo(e2) {
-      const t2 = ve2(e2);
-      let n2 = parseFloat(t2.width) || 0, r2 = parseFloat(t2.height) || 0;
+    function oo2(e2) {
+      const t3 = ve2(e2);
+      let n2 = parseFloat(t3.width) || 0, r2 = parseFloat(t3.height) || 0;
       const i2 = _e2(e2), o2 = i2 ? e2.offsetWidth : n2, s2 = i2 ? e2.offsetHeight : r2, c2 = Zt2(n2) !== o2 || Zt2(r2) !== s2;
       return c2 && (n2 = o2, r2 = s2), {
         width: n2,
@@ -22015,18 +22562,18 @@
         $: c2
       };
     }
-    function pr(e2) {
+    function pr2(e2) {
       return we2(e2) ? e2 : e2.contextElement;
     }
     function ct2(e2) {
-      const t2 = pr(e2);
-      if (!_e2(t2))
+      const t3 = pr2(e2);
+      if (!_e2(t3))
         return $e2(1);
-      const n2 = t2.getBoundingClientRect(), {
+      const n2 = t3.getBoundingClientRect(), {
         width: r2,
         height: i2,
         $: o2
-      } = oo(t2);
+      } = oo2(t3);
       let s2 = (o2 ? Zt2(n2.width) : n2.width) / r2, c2 = (o2 ? Zt2(n2.height) : n2.height) / i2;
       return (!s2 || !Number.isFinite(s2)) && (s2 = 1), (!c2 || !Number.isFinite(c2)) && (c2 = 1), {
         x: s2,
@@ -22035,28 +22582,28 @@
     }
     const Ta = /* @__PURE__ */ $e2(0);
     function so(e2) {
-      const t2 = pe2(e2);
-      return !hr() || !t2.visualViewport ? Ta : {
-        x: t2.visualViewport.offsetLeft,
-        y: t2.visualViewport.offsetTop
+      const t3 = pe2(e2);
+      return !hr2() || !t3.visualViewport ? Ta : {
+        x: t3.visualViewport.offsetLeft,
+        y: t3.visualViewport.offsetTop
       };
     }
-    function Aa(e2, t2, n2) {
-      return t2 === void 0 && (t2 = false), !n2 || t2 && n2 !== pe2(e2) ? false : t2;
+    function Aa(e2, t3, n2) {
+      return t3 === void 0 && (t3 = false), !n2 || t3 && n2 !== pe2(e2) ? false : t3;
     }
-    function Qe2(e2, t2, n2, r2) {
-      t2 === void 0 && (t2 = false), n2 === void 0 && (n2 = false);
-      const i2 = e2.getBoundingClientRect(), o2 = pr(e2);
+    function Qe2(e2, t3, n2, r2) {
+      t3 === void 0 && (t3 = false), n2 === void 0 && (n2 = false);
+      const i2 = e2.getBoundingClientRect(), o2 = pr2(e2);
       let s2 = $e2(1);
-      t2 && (r2 ? we2(r2) && (s2 = ct2(r2)) : s2 = ct2(e2));
+      t3 && (r2 ? we2(r2) && (s2 = ct2(r2)) : s2 = ct2(e2));
       const c2 = Aa(o2, n2, r2) ? so(o2) : $e2(0);
       let l2 = (i2.left + c2.x) / s2.x, a2 = (i2.top + c2.y) / s2.y, u2 = i2.width / s2.x, h2 = i2.height / s2.y;
       if (o2) {
         const d2 = pe2(o2), m2 = r2 && we2(r2) ? pe2(r2) : r2;
-        let w2 = d2, k2 = Vn(w2);
+        let w2 = d2, k2 = Vn2(w2);
         for (; k2 && r2 && m2 !== w2; ) {
           const C2 = ct2(k2), b2 = k2.getBoundingClientRect(), x2 = ve2(k2), T2 = b2.left + (k2.clientLeft + parseFloat(x2.paddingLeft)) * C2.x, v2 = b2.top + (k2.clientTop + parseFloat(x2.paddingTop)) * C2.y;
-          l2 *= C2.x, a2 *= C2.y, u2 *= C2.x, h2 *= C2.y, l2 += T2, a2 += v2, w2 = pe2(k2), k2 = Vn(w2);
+          l2 *= C2.x, a2 *= C2.y, u2 *= C2.x, h2 *= C2.y, l2 += T2, a2 += v2, w2 = pe2(k2), k2 = Vn2(w2);
         }
       }
       return Jt2({
@@ -22066,16 +22613,16 @@
         y: a2
       });
     }
-    function fr(e2, t2) {
+    function fr2(e2, t3) {
       const n2 = fn2(e2).scrollLeft;
-      return t2 ? t2.left + n2 : Qe2(Pe2(e2)).left + n2;
+      return t3 ? t3.left + n2 : Qe2(Pe2(e2)).left + n2;
     }
-    function ao(e2, t2, n2) {
+    function ao(e2, t3, n2) {
       n2 === void 0 && (n2 = false);
-      const r2 = e2.getBoundingClientRect(), i2 = r2.left + t2.scrollLeft - (n2 ? 0 : (
+      const r2 = e2.getBoundingClientRect(), i2 = r2.left + t3.scrollLeft - (n2 ? 0 : (
         // RTL <body> scrollbar.
-        fr(e2, r2)
-      )), o2 = r2.top + t2.scrollTop;
+        fr2(e2, r2)
+      )), o2 = r2.top + t3.scrollTop;
       return {
         x: i2,
         y: o2
@@ -22083,12 +22630,12 @@
     }
     function Oa(e2) {
       let {
-        elements: t2,
+        elements: t3,
         rect: n2,
         offsetParent: r2,
         strategy: i2
       } = e2;
-      const o2 = i2 === "fixed", s2 = Pe2(r2), c2 = t2 ? pn2(t2.floating) : false;
+      const o2 = i2 === "fixed", s2 = Pe2(r2), c2 = t3 ? pn2(t3.floating) : false;
       if (r2 === s2 || c2 && o2)
         return n2;
       let l2 = {
@@ -22112,23 +22659,23 @@
       return Array.from(e2.getClientRects());
     }
     function La(e2) {
-      const t2 = Pe2(e2), n2 = fn2(e2), r2 = e2.ownerDocument.body, i2 = lt2(t2.scrollWidth, t2.clientWidth, r2.scrollWidth, r2.clientWidth), o2 = lt2(t2.scrollHeight, t2.clientHeight, r2.scrollHeight, r2.clientHeight);
-      let s2 = -n2.scrollLeft + fr(e2);
+      const t3 = Pe2(e2), n2 = fn2(e2), r2 = e2.ownerDocument.body, i2 = lt2(t3.scrollWidth, t3.clientWidth, r2.scrollWidth, r2.clientWidth), o2 = lt2(t3.scrollHeight, t3.clientHeight, r2.scrollHeight, r2.clientHeight);
+      let s2 = -n2.scrollLeft + fr2(e2);
       const c2 = -n2.scrollTop;
-      return ve2(r2).direction === "rtl" && (s2 += lt2(t2.clientWidth, r2.clientWidth) - i2), {
+      return ve2(r2).direction === "rtl" && (s2 += lt2(t3.clientWidth, r2.clientWidth) - i2), {
         width: i2,
         height: o2,
         x: s2,
         y: c2
       };
     }
-    function $a(e2, t2) {
+    function $a(e2, t3) {
       const n2 = pe2(e2), r2 = Pe2(e2), i2 = n2.visualViewport;
       let o2 = r2.clientWidth, s2 = r2.clientHeight, c2 = 0, l2 = 0;
       if (i2) {
         o2 = i2.width, s2 = i2.height;
-        const a2 = hr();
-        (!a2 || a2 && t2 === "fixed") && (c2 = i2.offsetLeft, l2 = i2.offsetTop);
+        const a2 = hr2();
+        (!a2 || a2 && t3 === "fixed") && (c2 = i2.offsetLeft, l2 = i2.offsetTop);
       }
       return {
         width: o2,
@@ -22137,8 +22684,8 @@
         y: l2
       };
     }
-    function _a(e2, t2) {
-      const n2 = Qe2(e2, true, t2 === "fixed"), r2 = n2.top + e2.clientTop, i2 = n2.left + e2.clientLeft, o2 = _e2(e2) ? ct2(e2) : $e2(1), s2 = e2.clientWidth * o2.x, c2 = e2.clientHeight * o2.y, l2 = i2 * o2.x, a2 = r2 * o2.y;
+    function _a(e2, t3) {
+      const n2 = Qe2(e2, true, t3 === "fixed"), r2 = n2.top + e2.clientTop, i2 = n2.left + e2.clientLeft, o2 = _e2(e2) ? ct2(e2) : $e2(1), s2 = e2.clientWidth * o2.x, c2 = e2.clientHeight * o2.y, l2 = i2 * o2.x, a2 = r2 * o2.y;
       return {
         width: s2,
         height: c2,
@@ -22146,53 +22693,53 @@
         y: a2
       };
     }
-    function jr(e2, t2, n2) {
+    function jr2(e2, t3, n2) {
       let r2;
-      if (t2 === "viewport")
+      if (t3 === "viewport")
         r2 = $a(e2, n2);
-      else if (t2 === "document")
+      else if (t3 === "document")
         r2 = La(Pe2(e2));
-      else if (we2(t2))
-        r2 = _a(t2, n2);
+      else if (we2(t3))
+        r2 = _a(t3, n2);
       else {
         const i2 = so(e2);
         r2 = {
-          x: t2.x - i2.x,
-          y: t2.y - i2.y,
-          width: t2.width,
-          height: t2.height
+          x: t3.x - i2.x,
+          y: t3.y - i2.y,
+          width: t3.width,
+          height: t3.height
         };
       }
       return Jt2(r2);
     }
-    function lo(e2, t2) {
+    function lo(e2, t3) {
       const n2 = We2(e2);
-      return n2 === t2 || !we2(n2) || pt2(n2) ? false : ve2(n2).position === "fixed" || lo(n2, t2);
+      return n2 === t3 || !we2(n2) || pt2(n2) ? false : ve2(n2).position === "fixed" || lo(n2, t3);
     }
-    function Pa(e2, t2) {
-      const n2 = t2.get(e2);
+    function Pa(e2, t3) {
+      const n2 = t3.get(e2);
       if (n2)
         return n2;
       let r2 = Lt2(e2, [], false).filter((c2) => we2(c2) && bt2(c2) !== "body"), i2 = null;
       const o2 = ve2(e2).position === "fixed";
       let s2 = o2 ? We2(e2) : e2;
       for (; we2(s2) && !pt2(s2); ) {
-        const c2 = ve2(s2), l2 = ur(s2);
+        const c2 = ve2(s2), l2 = ur2(s2);
         !l2 && c2.position === "fixed" && (i2 = null), (o2 ? !l2 && !i2 : !l2 && c2.position === "static" && !!i2 && ["absolute", "fixed"].includes(i2.position) || It2(s2) && !l2 && lo(e2, s2)) ? r2 = r2.filter((u2) => u2 !== s2) : i2 = c2, s2 = We2(s2);
       }
-      return t2.set(e2, r2), r2;
+      return t3.set(e2, r2), r2;
     }
     function za(e2) {
       let {
-        element: t2,
+        element: t3,
         boundary: n2,
         rootBoundary: r2,
         strategy: i2
       } = e2;
-      const s2 = [...n2 === "clippingAncestors" ? pn2(t2) ? [] : Pa(t2, this._c) : [].concat(n2), r2], c2 = s2[0], l2 = s2.reduce((a2, u2) => {
-        const h2 = jr(t2, u2, i2);
-        return a2.top = lt2(h2.top, a2.top), a2.right = Gn(h2.right, a2.right), a2.bottom = Gn(h2.bottom, a2.bottom), a2.left = lt2(h2.left, a2.left), a2;
-      }, jr(t2, c2, i2));
+      const s2 = [...n2 === "clippingAncestors" ? pn2(t3) ? [] : Pa(t3, this._c) : [].concat(n2), r2], c2 = s2[0], l2 = s2.reduce((a2, u2) => {
+        const h2 = jr2(t3, u2, i2);
+        return a2.top = lt2(h2.top, a2.top), a2.right = Gn2(h2.right, a2.right), a2.bottom = Gn2(h2.bottom, a2.bottom), a2.left = lt2(h2.left, a2.left), a2;
+      }, jr2(t3, c2, i2));
       return {
         width: l2.right - l2.left,
         height: l2.bottom - l2.top,
@@ -22202,26 +22749,26 @@
     }
     function Ia(e2) {
       const {
-        width: t2,
+        width: t3,
         height: n2
-      } = oo(e2);
+      } = oo2(e2);
       return {
-        width: t2,
+        width: t3,
         height: n2
       };
     }
-    function Ra(e2, t2, n2) {
-      const r2 = _e2(t2), i2 = Pe2(t2), o2 = n2 === "fixed", s2 = Qe2(e2, true, o2, t2);
+    function Ra(e2, t3, n2) {
+      const r2 = _e2(t3), i2 = Pe2(t3), o2 = n2 === "fixed", s2 = Qe2(e2, true, o2, t3);
       let c2 = {
         scrollLeft: 0,
         scrollTop: 0
       };
       const l2 = $e2(0);
       if (r2 || !r2 && !o2)
-        if ((bt2(t2) !== "body" || It2(i2)) && (c2 = fn2(t2)), r2) {
-          const d2 = Qe2(t2, true, o2, t2);
-          l2.x = d2.x + t2.clientLeft, l2.y = d2.y + t2.clientTop;
-        } else i2 && (l2.x = fr(i2));
+        if ((bt2(t3) !== "body" || It2(i2)) && (c2 = fn2(t3)), r2) {
+          const d2 = Qe2(t3, true, o2, t3);
+          l2.x = d2.x + t3.clientLeft, l2.y = d2.y + t3.clientTop;
+        } else i2 && (l2.x = fr2(i2));
       const a2 = i2 && !r2 && !o2 ? ao(i2, c2) : $e2(0), u2 = s2.left + c2.scrollLeft - l2.x - a2.x, h2 = s2.top + c2.scrollTop - l2.y - a2.y;
       return {
         x: u2,
@@ -22233,15 +22780,15 @@
     function Sn2(e2) {
       return ve2(e2).position === "static";
     }
-    function Fr(e2, t2) {
+    function Fr2(e2, t3) {
       if (!_e2(e2) || ve2(e2).position === "fixed")
         return null;
-      if (t2)
-        return t2(e2);
+      if (t3)
+        return t3(e2);
       let n2 = e2.offsetParent;
       return Pe2(e2) === n2 && (n2 = n2.ownerDocument.body), n2;
     }
-    function co(e2, t2) {
+    function co(e2, t3) {
       const n2 = pe2(e2);
       if (pn2(e2))
         return n2;
@@ -22254,16 +22801,16 @@
         }
         return n2;
       }
-      let r2 = Fr(e2, t2);
+      let r2 = Fr2(e2, t3);
       for (; r2 && Sa(r2) && Sn2(r2); )
-        r2 = Fr(r2, t2);
-      return r2 && pt2(r2) && Sn2(r2) && !ur(r2) ? n2 : r2 || Ca(e2) || n2;
+        r2 = Fr2(r2, t3);
+      return r2 && pt2(r2) && Sn2(r2) && !ur2(r2) ? n2 : r2 || Ca(e2) || n2;
     }
     const Ma = function(e2) {
       return H2(this, null, function* () {
-        const t2 = this.getOffsetParent || co, n2 = this.getDimensions, r2 = yield n2(e2.floating);
+        const t3 = this.getOffsetParent || co, n2 = this.getDimensions, r2 = yield n2(e2.floating);
         return {
-          reference: Ra(e2.reference, yield t2(e2.floating), e2.strategy),
+          reference: Ra(e2.reference, yield t3(e2.floating), e2.strategy),
           floating: {
             x: 0,
             y: 0,
@@ -22288,7 +22835,7 @@
       isElement: we2,
       isRTL: Na
     };
-    function Da(e2, t2) {
+    function Da(e2, t3) {
       let n2 = null, r2;
       const i2 = Pe2(e2);
       function o2() {
@@ -22303,11 +22850,11 @@
           width: h2,
           height: d2
         } = e2.getBoundingClientRect();
-        if (c2 || t2(), !h2 || !d2)
+        if (c2 || t3(), !h2 || !d2)
           return;
         const m2 = Mt2(u2), w2 = Mt2(i2.clientWidth - (a2 + h2)), k2 = Mt2(i2.clientHeight - (u2 + d2)), C2 = Mt2(a2), x2 = {
           rootMargin: -m2 + "px " + -w2 + "px " + -k2 + "px " + -C2 + "px",
-          threshold: lt2(0, Gn(1, l2)) || 1
+          threshold: lt2(0, Gn2(1, l2)) || 1
         };
         let T2 = true;
         function v2(A2) {
@@ -22333,7 +22880,7 @@
       }
       return s2(true), o2;
     }
-    function uo(e2, t2, n2, r2) {
+    function uo(e2, t3, n2, r2) {
       r2 === void 0 && (r2 = {});
       const {
         ancestorScroll: i2 = true,
@@ -22341,7 +22888,7 @@
         elementResize: s2 = typeof ResizeObserver == "function",
         layoutShift: c2 = typeof IntersectionObserver == "function",
         animationFrame: l2 = false
-      } = r2, a2 = pr(e2), u2 = i2 || o2 ? [...a2 ? Lt2(a2) : [], ...Lt2(t2)] : [];
+      } = r2, a2 = pr2(e2), u2 = i2 || o2 ? [...a2 ? Lt2(a2) : [], ...Lt2(t3)] : [];
       u2.forEach((b2) => {
         i2 && b2.addEventListener("scroll", n2, {
           passive: true
@@ -22351,11 +22898,11 @@
       let d2 = -1, m2 = null;
       s2 && (m2 = new ResizeObserver((b2) => {
         let [x2] = b2;
-        x2 && x2.target === a2 && m2 && (m2.unobserve(t2), cancelAnimationFrame(d2), d2 = requestAnimationFrame(() => {
+        x2 && x2.target === a2 && m2 && (m2.unobserve(t3), cancelAnimationFrame(d2), d2 = requestAnimationFrame(() => {
           var T2;
-          (T2 = m2) == null || T2.observe(t2);
+          (T2 = m2) == null || T2.observe(t3);
         })), n2();
-      }), a2 && !l2 && m2.observe(a2), m2.observe(t2));
+      }), a2 && !l2 && m2.observe(a2), m2.observe(t3));
       let w2, k2 = l2 ? Qe2(e2) : null;
       l2 && C2();
       function C2() {
@@ -22378,14 +22925,14 @@
       e2 >= 65 && e2 <= 70 || // A .. F
       e2 >= 97 && e2 <= 102;
     }
-    function dr(e2) {
+    function dr2(e2) {
       return e2 >= 65 && e2 <= 90;
     }
     function Ba(e2) {
       return e2 >= 97 && e2 <= 122;
     }
     function Wa(e2) {
-      return dr(e2) || Ba(e2);
+      return dr2(e2) || Ba(e2);
     }
     function Ha(e2) {
       return e2 >= 128;
@@ -22405,113 +22952,113 @@
     function Xe2(e2) {
       return tn2(e2) || e2 === 32 || e2 === 9;
     }
-    function Le2(e2, t2) {
-      return !(e2 !== 92 || tn2(t2) || t2 === Fa);
+    function Le2(e2, t3) {
+      return !(e2 !== 92 || tn2(t3) || t3 === Fa);
     }
-    function qt2(e2, t2, n2) {
-      return e2 === 45 ? en2(t2) || t2 === 45 || Le2(t2, n2) : en2(e2) ? true : e2 === 92 ? Le2(e2, t2) : false;
+    function qt2(e2, t3, n2) {
+      return e2 === 45 ? en2(t3) || t3 === 45 || Le2(t3, n2) : en2(e2) ? true : e2 === 92 ? Le2(e2, t3) : false;
     }
-    function Cn2(e2, t2, n2) {
-      return e2 === 43 || e2 === 45 ? Q2(t2) ? 2 : t2 === 46 && Q2(n2) ? 3 : 0 : e2 === 46 ? Q2(t2) ? 2 : 0 : Q2(e2) ? 1 : 0;
+    function Cn2(e2, t3, n2) {
+      return e2 === 43 || e2 === 45 ? Q2(t3) ? 2 : t3 === 46 && Q2(n2) ? 3 : 0 : e2 === 46 ? Q2(t3) ? 2 : 0 : Q2(e2) ? 1 : 0;
     }
     function po(e2) {
       return e2 === 65279 || e2 === 65534 ? 1 : 0;
     }
-    const Kn = new Array(128), qa = 128, Gt2 = 130, fo = 131, mr = 132, mo = 133;
-    for (let e2 = 0; e2 < Kn.length; e2++)
-      Kn[e2] = Xe2(e2) && Gt2 || Q2(e2) && fo || en2(e2) && mr || Ua(e2) && mo || e2 || qa;
+    const Kn2 = new Array(128), qa = 128, Gt2 = 130, fo = 131, mr2 = 132, mo = 133;
+    for (let e2 = 0; e2 < Kn2.length; e2++)
+      Kn2[e2] = Xe2(e2) && Gt2 || Q2(e2) && fo || en2(e2) && mr2 || Ua(e2) && mo || e2 || qa;
     function Tn2(e2) {
-      return e2 < 128 ? Kn[e2] : mr;
+      return e2 < 128 ? Kn2[e2] : mr2;
     }
-    function ut2(e2, t2) {
-      return t2 < e2.length ? e2.charCodeAt(t2) : 0;
+    function ut2(e2, t3) {
+      return t3 < e2.length ? e2.charCodeAt(t3) : 0;
     }
-    function Yn(e2, t2, n2) {
-      return n2 === 13 && ut2(e2, t2 + 1) === 10 ? 2 : 1;
+    function Yn2(e2, t3, n2) {
+      return n2 === 13 && ut2(e2, t3 + 1) === 10 ? 2 : 1;
     }
-    function ht2(e2, t2, n2) {
-      let r2 = e2.charCodeAt(t2);
-      return dr(r2) && (r2 = r2 | 32), r2 === n2;
+    function ht2(e2, t3, n2) {
+      let r2 = e2.charCodeAt(t3);
+      return dr2(r2) && (r2 = r2 | 32), r2 === n2;
     }
-    function $t2(e2, t2, n2, r2) {
-      if (n2 - t2 !== r2.length || t2 < 0 || n2 > e2.length)
+    function $t2(e2, t3, n2, r2) {
+      if (n2 - t3 !== r2.length || t3 < 0 || n2 > e2.length)
         return false;
-      for (let i2 = t2; i2 < n2; i2++) {
-        const o2 = r2.charCodeAt(i2 - t2);
+      for (let i2 = t3; i2 < n2; i2++) {
+        const o2 = r2.charCodeAt(i2 - t3);
         let s2 = e2.charCodeAt(i2);
-        if (dr(s2) && (s2 = s2 | 32), s2 !== o2)
+        if (dr2(s2) && (s2 = s2 | 32), s2 !== o2)
           return false;
       }
       return true;
     }
-    function Ga(e2, t2) {
-      for (; t2 >= 0 && Xe2(e2.charCodeAt(t2)); t2--)
+    function Ga(e2, t3) {
+      for (; t3 >= 0 && Xe2(e2.charCodeAt(t3)); t3--)
         ;
-      return t2 + 1;
+      return t3 + 1;
     }
-    function Nt2(e2, t2) {
-      for (; t2 < e2.length && Xe2(e2.charCodeAt(t2)); t2++)
+    function Nt2(e2, t3) {
+      for (; t3 < e2.length && Xe2(e2.charCodeAt(t3)); t3++)
         ;
-      return t2;
+      return t3;
     }
-    function An2(e2, t2) {
-      for (; t2 < e2.length && Q2(e2.charCodeAt(t2)); t2++)
+    function An2(e2, t3) {
+      for (; t3 < e2.length && Q2(e2.charCodeAt(t3)); t3++)
         ;
-      return t2;
+      return t3;
     }
-    function ft2(e2, t2) {
-      if (t2 += 2, He2(ut2(e2, t2 - 1))) {
-        for (const r2 = Math.min(e2.length, t2 + 5); t2 < r2 && He2(ut2(e2, t2)); t2++)
+    function ft2(e2, t3) {
+      if (t3 += 2, He2(ut2(e2, t3 - 1))) {
+        for (const r2 = Math.min(e2.length, t3 + 5); t3 < r2 && He2(ut2(e2, t3)); t3++)
           ;
-        const n2 = ut2(e2, t2);
-        Xe2(n2) && (t2 += Yn(e2, t2, n2));
+        const n2 = ut2(e2, t3);
+        Xe2(n2) && (t3 += Yn2(e2, t3, n2));
       }
-      return t2;
+      return t3;
     }
-    function Dt2(e2, t2) {
-      for (; t2 < e2.length; t2++) {
-        const n2 = e2.charCodeAt(t2);
+    function Dt2(e2, t3) {
+      for (; t3 < e2.length; t3++) {
+        const n2 = e2.charCodeAt(t3);
         if (!ho(n2)) {
-          if (Le2(n2, ut2(e2, t2 + 1))) {
-            t2 = ft2(e2, t2) - 1;
+          if (Le2(n2, ut2(e2, t3 + 1))) {
+            t3 = ft2(e2, t3) - 1;
             continue;
           }
           break;
         }
       }
-      return t2;
+      return t3;
     }
-    function mn2(e2, t2) {
-      let n2 = e2.charCodeAt(t2);
-      if ((n2 === 43 || n2 === 45) && (n2 = e2.charCodeAt(t2 += 1)), Q2(n2) && (t2 = An2(e2, t2 + 1), n2 = e2.charCodeAt(t2)), n2 === 46 && Q2(e2.charCodeAt(t2 + 1)) && (t2 += 2, t2 = An2(e2, t2)), ht2(
+    function mn2(e2, t3) {
+      let n2 = e2.charCodeAt(t3);
+      if ((n2 === 43 || n2 === 45) && (n2 = e2.charCodeAt(t3 += 1)), Q2(n2) && (t3 = An2(e2, t3 + 1), n2 = e2.charCodeAt(t3)), n2 === 46 && Q2(e2.charCodeAt(t3 + 1)) && (t3 += 2, t3 = An2(e2, t3)), ht2(
         e2,
-        t2,
+        t3,
         101
         /* e */
       )) {
         let r2 = 0;
-        n2 = e2.charCodeAt(t2 + 1), (n2 === 45 || n2 === 43) && (r2 = 1, n2 = e2.charCodeAt(t2 + 2)), Q2(n2) && (t2 = An2(e2, t2 + 1 + r2 + 1));
+        n2 = e2.charCodeAt(t3 + 1), (n2 === 45 || n2 === 43) && (r2 = 1, n2 = e2.charCodeAt(t3 + 2)), Q2(n2) && (t3 = An2(e2, t3 + 1 + r2 + 1));
       }
-      return t2;
+      return t3;
     }
-    function On2(e2, t2) {
-      for (; t2 < e2.length; t2++) {
-        const n2 = e2.charCodeAt(t2);
+    function On2(e2, t3) {
+      for (; t3 < e2.length; t3++) {
+        const n2 = e2.charCodeAt(t3);
         if (n2 === 41) {
-          t2++;
+          t3++;
           break;
         }
-        Le2(n2, ut2(e2, t2 + 1)) && (t2 = ft2(e2, t2));
+        Le2(n2, ut2(e2, t3 + 1)) && (t3 = ft2(e2, t3));
       }
-      return t2;
+      return t3;
     }
     function go(e2) {
       if (e2.length === 1 && !He2(e2.charCodeAt(0)))
         return e2[0];
-      let t2 = parseInt(e2, 16);
-      return (t2 === 0 || // If this number is zero,
-      t2 >= 55296 && t2 <= 57343 || // or is for a surrogate,
-      t2 > 1114111) && (t2 = 65533), String.fromCodePoint(t2);
+      let t3 = parseInt(e2, 16);
+      return (t3 === 0 || // If this number is zero,
+      t3 >= 55296 && t3 <= 57343 || // or is for a surrogate,
+      t3 > 1114111) && (t3 = 65533), String.fromCodePoint(t3);
     }
     const bo = [
       "EOF-token",
@@ -22541,16 +23088,16 @@
       "}-token",
       "comment-token"
     ], Va = 16 * 1024;
-    function nn2(e2 = null, t2) {
-      return e2 === null || e2.length < t2 ? new Uint32Array(Math.max(t2 + 1024, Va)) : e2;
+    function nn2(e2 = null, t3) {
+      return e2 === null || e2.length < t3 ? new Uint32Array(Math.max(t3 + 1024, Va)) : e2;
     }
-    const Br = 10, Ka = 12, Wr = 13;
-    function Hr(e2) {
-      const t2 = e2.source, n2 = t2.length, r2 = t2.length > 0 ? po(t2.charCodeAt(0)) : 0, i2 = nn2(e2.lines, n2), o2 = nn2(e2.columns, n2);
+    const Br2 = 10, Ka = 12, Wr2 = 13;
+    function Hr2(e2) {
+      const t3 = e2.source, n2 = t3.length, r2 = t3.length > 0 ? po(t3.charCodeAt(0)) : 0, i2 = nn2(e2.lines, n2), o2 = nn2(e2.columns, n2);
       let s2 = e2.startLine, c2 = e2.startColumn;
       for (let l2 = r2; l2 < n2; l2++) {
-        const a2 = t2.charCodeAt(l2);
-        i2[l2] = s2, o2[l2] = c2++, (a2 === Br || a2 === Wr || a2 === Ka) && (a2 === Wr && l2 + 1 < n2 && t2.charCodeAt(l2 + 1) === Br && (l2++, i2[l2] = s2, o2[l2] = c2), s2++, c2 = 1);
+        const a2 = t3.charCodeAt(l2);
+        i2[l2] = s2, o2[l2] = c2++, (a2 === Br2 || a2 === Wr2 || a2 === Ka) && (a2 === Wr2 && l2 + 1 < n2 && t3.charCodeAt(l2 + 1) === Br2 && (l2++, i2[l2] = s2, o2[l2] = c2), s2++, c2 = 1);
       }
       i2[n2] = s2, o2[n2] = c2, e2.lines = i2, e2.columns = o2, e2.computed = true;
     }
@@ -22558,24 +23105,24 @@
       constructor() {
         this.lines = null, this.columns = null, this.computed = false;
       }
-      setSource(t2, n2 = 0, r2 = 1, i2 = 1) {
-        this.source = t2, this.startOffset = n2, this.startLine = r2, this.startColumn = i2, this.computed = false;
+      setSource(t3, n2 = 0, r2 = 1, i2 = 1) {
+        this.source = t3, this.startOffset = n2, this.startLine = r2, this.startColumn = i2, this.computed = false;
       }
-      getLocation(t2, n2) {
-        return this.computed || Hr(this), {
+      getLocation(t3, n2) {
+        return this.computed || Hr2(this), {
           source: n2,
-          offset: this.startOffset + t2,
-          line: this.lines[t2],
-          column: this.columns[t2]
+          offset: this.startOffset + t3,
+          line: this.lines[t3],
+          column: this.columns[t3]
         };
       }
-      getLocationRange(t2, n2, r2) {
-        return this.computed || Hr(this), {
+      getLocationRange(t3, n2, r2) {
+        return this.computed || Hr2(this), {
           source: r2,
           start: {
-            offset: this.startOffset + t2,
-            line: this.lines[t2],
-            column: this.columns[t2]
+            offset: this.startOffset + t3,
+            line: this.lines[t3],
+            column: this.columns[t3]
           },
           end: {
             offset: this.startOffset + n2,
@@ -22592,18 +23139,18 @@
       [V2, ue2]
     ]);
     class Xa {
-      constructor(t2, n2) {
-        this.setSource(t2, n2);
+      constructor(t3, n2) {
+        this.setSource(t3, n2);
       }
       reset() {
         this.eof = false, this.tokenIndex = -1, this.tokenType = 0, this.tokenStart = this.firstCharOffset, this.tokenEnd = this.firstCharOffset;
       }
-      setSource(t2 = "", n2 = () => {
+      setSource(t3 = "", n2 = () => {
       }) {
-        t2 = String(t2 || "");
-        const r2 = t2.length, i2 = nn2(this.offsetAndType, t2.length + 1), o2 = nn2(this.balance, t2.length + 1);
+        t3 = String(t3 || "");
+        const r2 = t3.length, i2 = nn2(this.offsetAndType, t3.length + 1), o2 = nn2(this.balance, t3.length + 1);
         let s2 = 0, c2 = 0, l2 = 0, a2 = -1;
-        for (this.offsetAndType = null, this.balance = null, n2(t2, (u2, h2, d2) => {
+        for (this.offsetAndType = null, this.balance = null, n2(t3, (u2, h2, d2) => {
           switch (u2) {
             default:
               o2[s2] = r2;
@@ -22626,67 +23173,67 @@
           const u2 = l2 & de2;
           l2 = o2[u2], o2[u2] = r2;
         }
-        this.source = t2, this.firstCharOffset = a2 === -1 ? 0 : a2, this.tokenCount = s2, this.offsetAndType = i2, this.balance = o2, this.reset(), this.next();
+        this.source = t3, this.firstCharOffset = a2 === -1 ? 0 : a2, this.tokenCount = s2, this.offsetAndType = i2, this.balance = o2, this.reset(), this.next();
       }
-      lookupType(t2) {
-        return t2 += this.tokenIndex, t2 < this.tokenCount ? this.offsetAndType[t2] >> Ae2 : De2;
+      lookupType(t3) {
+        return t3 += this.tokenIndex, t3 < this.tokenCount ? this.offsetAndType[t3] >> Ae2 : De2;
       }
-      lookupTypeNonSC(t2) {
+      lookupTypeNonSC(t3) {
         for (let n2 = this.tokenIndex; n2 < this.tokenCount; n2++) {
           const r2 = this.offsetAndType[n2] >> Ae2;
-          if (r2 !== W2 && r2 !== X2 && t2-- === 0)
+          if (r2 !== W2 && r2 !== X2 && t3-- === 0)
             return r2;
         }
         return De2;
       }
-      lookupOffset(t2) {
-        return t2 += this.tokenIndex, t2 < this.tokenCount ? this.offsetAndType[t2 - 1] & de2 : this.source.length;
+      lookupOffset(t3) {
+        return t3 += this.tokenIndex, t3 < this.tokenCount ? this.offsetAndType[t3 - 1] & de2 : this.source.length;
       }
-      lookupOffsetNonSC(t2) {
+      lookupOffsetNonSC(t3) {
         for (let n2 = this.tokenIndex; n2 < this.tokenCount; n2++) {
           const r2 = this.offsetAndType[n2] >> Ae2;
-          if (r2 !== W2 && r2 !== X2 && t2-- === 0)
+          if (r2 !== W2 && r2 !== X2 && t3-- === 0)
             return n2 - this.tokenIndex;
         }
         return De2;
       }
-      lookupValue(t2, n2) {
-        return t2 += this.tokenIndex, t2 < this.tokenCount ? $t2(
+      lookupValue(t3, n2) {
+        return t3 += this.tokenIndex, t3 < this.tokenCount ? $t2(
           this.source,
-          this.offsetAndType[t2 - 1] & de2,
-          this.offsetAndType[t2] & de2,
+          this.offsetAndType[t3 - 1] & de2,
+          this.offsetAndType[t3] & de2,
           n2
         ) : false;
       }
-      getTokenStart(t2) {
-        return t2 === this.tokenIndex ? this.tokenStart : t2 > 0 ? t2 < this.tokenCount ? this.offsetAndType[t2 - 1] & de2 : this.offsetAndType[this.tokenCount] & de2 : this.firstCharOffset;
+      getTokenStart(t3) {
+        return t3 === this.tokenIndex ? this.tokenStart : t3 > 0 ? t3 < this.tokenCount ? this.offsetAndType[t3 - 1] & de2 : this.offsetAndType[this.tokenCount] & de2 : this.firstCharOffset;
       }
-      substrToCursor(t2) {
-        return this.source.substring(t2, this.tokenStart);
+      substrToCursor(t3) {
+        return this.source.substring(t3, this.tokenStart);
       }
-      isBalanceEdge(t2) {
-        return this.balance[this.tokenIndex] < t2;
+      isBalanceEdge(t3) {
+        return this.balance[this.tokenIndex] < t3;
       }
-      isDelim(t2, n2) {
-        return n2 ? this.lookupType(n2) === I2 && this.source.charCodeAt(this.lookupOffset(n2)) === t2 : this.tokenType === I2 && this.source.charCodeAt(this.tokenStart) === t2;
+      isDelim(t3, n2) {
+        return n2 ? this.lookupType(n2) === I2 && this.source.charCodeAt(this.lookupOffset(n2)) === t3 : this.tokenType === I2 && this.source.charCodeAt(this.tokenStart) === t3;
       }
-      skip(t2) {
-        let n2 = this.tokenIndex + t2;
+      skip(t3) {
+        let n2 = this.tokenIndex + t3;
         n2 < this.tokenCount ? (this.tokenIndex = n2, this.tokenStart = this.offsetAndType[n2 - 1] & de2, n2 = this.offsetAndType[n2], this.tokenType = n2 >> Ae2, this.tokenEnd = n2 & de2) : (this.tokenIndex = this.tokenCount, this.next());
       }
       next() {
-        let t2 = this.tokenIndex + 1;
-        t2 < this.tokenCount ? (this.tokenIndex = t2, this.tokenStart = this.tokenEnd, t2 = this.offsetAndType[t2], this.tokenType = t2 >> Ae2, this.tokenEnd = t2 & de2) : (this.eof = true, this.tokenIndex = this.tokenCount, this.tokenType = De2, this.tokenStart = this.tokenEnd = this.source.length);
+        let t3 = this.tokenIndex + 1;
+        t3 < this.tokenCount ? (this.tokenIndex = t3, this.tokenStart = this.tokenEnd, t3 = this.offsetAndType[t3], this.tokenType = t3 >> Ae2, this.tokenEnd = t3 & de2) : (this.eof = true, this.tokenIndex = this.tokenCount, this.tokenType = De2, this.tokenStart = this.tokenEnd = this.source.length);
       }
       skipSC() {
         for (; this.tokenType === W2 || this.tokenType === X2; )
           this.next();
       }
-      skipUntilBalanced(t2, n2) {
-        let r2 = t2, i2, o2;
+      skipUntilBalanced(t3, n2) {
+        let r2 = t3, i2, o2;
         e:
           for (; r2 < this.tokenCount; r2++) {
-            if (i2 = this.balance[r2], i2 < t2)
+            if (i2 = this.balance[r2], i2 < t3)
               break e;
             switch (o2 = r2 > 0 ? this.offsetAndType[r2 - 1] & de2 : this.firstCharOffset, n2(this.source.charCodeAt(o2))) {
               case 1:
@@ -22700,25 +23247,25 @@
           }
         this.skip(r2 - this.tokenIndex);
       }
-      forEachToken(t2) {
+      forEachToken(t3) {
         for (let n2 = 0, r2 = this.firstCharOffset; n2 < this.tokenCount; n2++) {
           const i2 = r2, o2 = this.offsetAndType[n2], s2 = o2 & de2, c2 = o2 >> Ae2;
-          r2 = s2, t2(c2, i2, s2, n2);
+          r2 = s2, t3(c2, i2, s2, n2);
         }
       }
       dump() {
-        const t2 = new Array(this.tokenCount);
+        const t3 = new Array(this.tokenCount);
         return this.forEachToken((n2, r2, i2, o2) => {
-          t2[o2] = {
+          t3[o2] = {
             idx: o2,
             type: bo[n2],
             chunk: this.source.substring(r2, i2),
             balance: this.balance[o2]
           };
-        }), t2;
+        }), t3;
       }
     }
-    function gn2(e2, t2) {
+    function gn2(e2, t3) {
       function n2(h2) {
         return h2 < c2 ? e2.charCodeAt(h2) : 0;
       }
@@ -22758,7 +23305,7 @@
               return;
             case Gt2:
               if (tn2(d2)) {
-                a2 += Yn(e2, a2, d2), u2 = dn2;
+                a2 += Yn2(e2, a2, d2), u2 = dn2;
                 return;
               }
               break;
@@ -22766,7 +23313,7 @@
               if (a2 === e2.length - 1)
                 break;
               const m2 = n2(a2 + 1);
-              tn2(m2) ? a2 += Yn(e2, a2 + 1, m2) : Le2(d2, m2) && (a2 = ft2(e2, a2) - 1);
+              tn2(m2) ? a2 += Yn2(e2, a2 + 1, m2) : Le2(d2, m2) && (a2 = ft2(e2, a2) - 1);
               break;
           }
         }
@@ -22870,58 +23417,58 @@
           case fo:
             r2();
             break;
-          case mr:
+          case mr2:
             i2();
             break;
           default:
             u2 = I2, a2++;
         }
-        t2(u2, l2, l2 = a2);
+        t3(u2, l2, l2 = a2);
       }
     }
     let nt2 = null;
     class q2 {
-      static createItem(t2) {
+      static createItem(t3) {
         return {
           prev: null,
           next: null,
-          data: t2
+          data: t3
         };
       }
       constructor() {
         this.head = null, this.tail = null, this.cursor = null;
       }
-      createItem(t2) {
-        return q2.createItem(t2);
+      createItem(t3) {
+        return q2.createItem(t3);
       }
       // cursor helpers
-      allocateCursor(t2, n2) {
+      allocateCursor(t3, n2) {
         let r2;
-        return nt2 !== null ? (r2 = nt2, nt2 = nt2.cursor, r2.prev = t2, r2.next = n2, r2.cursor = this.cursor) : r2 = {
-          prev: t2,
+        return nt2 !== null ? (r2 = nt2, nt2 = nt2.cursor, r2.prev = t3, r2.next = n2, r2.cursor = this.cursor) : r2 = {
+          prev: t3,
           next: n2,
           cursor: this.cursor
         }, this.cursor = r2, r2;
       }
       releaseCursor() {
-        const { cursor: t2 } = this;
-        this.cursor = t2.cursor, t2.prev = null, t2.next = null, t2.cursor = nt2, nt2 = t2;
+        const { cursor: t3 } = this;
+        this.cursor = t3.cursor, t3.prev = null, t3.next = null, t3.cursor = nt2, nt2 = t3;
       }
-      updateCursors(t2, n2, r2, i2) {
+      updateCursors(t3, n2, r2, i2) {
         let { cursor: o2 } = this;
         for (; o2 !== null; )
-          o2.prev === t2 && (o2.prev = n2), o2.next === r2 && (o2.next = i2), o2 = o2.cursor;
+          o2.prev === t3 && (o2.prev = n2), o2.next === r2 && (o2.next = i2), o2 = o2.cursor;
       }
       *[Symbol.iterator]() {
-        for (let t2 = this.head; t2 !== null; t2 = t2.next)
-          yield t2.data;
+        for (let t3 = this.head; t3 !== null; t3 = t3.next)
+          yield t3.data;
       }
       // getters
       get size() {
-        let t2 = 0;
+        let t3 = 0;
         for (let n2 = this.head; n2 !== null; n2 = n2.next)
-          t2++;
-        return t2;
+          t3++;
+        return t3;
       }
       get isEmpty() {
         return this.head === null;
@@ -22933,10 +23480,10 @@
         return this.tail && this.tail.data;
       }
       // convertors
-      fromArray(t2) {
+      fromArray(t3) {
         let n2 = null;
         this.head = null;
-        for (let r2 of t2) {
+        for (let r2 of t3) {
           const i2 = q2.createItem(r2);
           n2 !== null ? n2.next = i2 : this.head = i2, i2.prev = n2, n2 = i2;
         }
@@ -22949,56 +23496,56 @@
         return [...this];
       }
       // array-like methods
-      forEach(t2, n2 = this) {
+      forEach(t3, n2 = this) {
         const r2 = this.allocateCursor(null, this.head);
         for (; r2.next !== null; ) {
           const i2 = r2.next;
-          r2.next = i2.next, t2.call(n2, i2.data, i2, this);
+          r2.next = i2.next, t3.call(n2, i2.data, i2, this);
         }
         this.releaseCursor();
       }
-      forEachRight(t2, n2 = this) {
+      forEachRight(t3, n2 = this) {
         const r2 = this.allocateCursor(this.tail, null);
         for (; r2.prev !== null; ) {
           const i2 = r2.prev;
-          r2.prev = i2.prev, t2.call(n2, i2.data, i2, this);
+          r2.prev = i2.prev, t3.call(n2, i2.data, i2, this);
         }
         this.releaseCursor();
       }
-      reduce(t2, n2, r2 = this) {
+      reduce(t3, n2, r2 = this) {
         let i2 = this.allocateCursor(null, this.head), o2 = n2, s2;
         for (; i2.next !== null; )
-          s2 = i2.next, i2.next = s2.next, o2 = t2.call(r2, o2, s2.data, s2, this);
+          s2 = i2.next, i2.next = s2.next, o2 = t3.call(r2, o2, s2.data, s2, this);
         return this.releaseCursor(), o2;
       }
-      reduceRight(t2, n2, r2 = this) {
+      reduceRight(t3, n2, r2 = this) {
         let i2 = this.allocateCursor(this.tail, null), o2 = n2, s2;
         for (; i2.prev !== null; )
-          s2 = i2.prev, i2.prev = s2.prev, o2 = t2.call(r2, o2, s2.data, s2, this);
+          s2 = i2.prev, i2.prev = s2.prev, o2 = t3.call(r2, o2, s2.data, s2, this);
         return this.releaseCursor(), o2;
       }
-      some(t2, n2 = this) {
+      some(t3, n2 = this) {
         for (let r2 = this.head; r2 !== null; r2 = r2.next)
-          if (t2.call(n2, r2.data, r2, this))
+          if (t3.call(n2, r2.data, r2, this))
             return true;
         return false;
       }
-      map(t2, n2 = this) {
+      map(t3, n2 = this) {
         const r2 = new q2();
         for (let i2 = this.head; i2 !== null; i2 = i2.next)
-          r2.appendData(t2.call(n2, i2.data, i2, this));
+          r2.appendData(t3.call(n2, i2.data, i2, this));
         return r2;
       }
-      filter(t2, n2 = this) {
+      filter(t3, n2 = this) {
         const r2 = new q2();
         for (let i2 = this.head; i2 !== null; i2 = i2.next)
-          t2.call(n2, i2.data, i2, this) && r2.appendData(i2.data);
+          t3.call(n2, i2.data, i2, this) && r2.appendData(i2.data);
         return r2;
       }
-      nextUntil(t2, n2, r2 = this) {
-        if (t2 === null)
+      nextUntil(t3, n2, r2 = this) {
+        if (t3 === null)
           return;
-        const i2 = this.allocateCursor(null, t2);
+        const i2 = this.allocateCursor(null, t3);
         for (; i2.next !== null; ) {
           const o2 = i2.next;
           if (i2.next = o2.next, n2.call(r2, o2.data, o2, this))
@@ -23006,10 +23553,10 @@
         }
         this.releaseCursor();
       }
-      prevUntil(t2, n2, r2 = this) {
-        if (t2 === null)
+      prevUntil(t3, n2, r2 = this) {
+        if (t3 === null)
           return;
-        const i2 = this.allocateCursor(t2, null);
+        const i2 = this.allocateCursor(t3, null);
         for (; i2.prev !== null; ) {
           const o2 = i2.prev;
           if (i2.prev = o2.prev, n2.call(r2, o2.data, o2, this))
@@ -23022,93 +23569,93 @@
         this.head = null, this.tail = null;
       }
       copy() {
-        const t2 = new q2();
+        const t3 = new q2();
         for (let n2 of this)
-          t2.appendData(n2);
-        return t2;
+          t3.appendData(n2);
+        return t3;
       }
-      prepend(t2) {
-        return this.updateCursors(null, t2, this.head, t2), this.head !== null ? (this.head.prev = t2, t2.next = this.head) : this.tail = t2, this.head = t2, this;
+      prepend(t3) {
+        return this.updateCursors(null, t3, this.head, t3), this.head !== null ? (this.head.prev = t3, t3.next = this.head) : this.tail = t3, this.head = t3, this;
       }
-      prependData(t2) {
-        return this.prepend(q2.createItem(t2));
+      prependData(t3) {
+        return this.prepend(q2.createItem(t3));
       }
-      append(t2) {
-        return this.insert(t2);
+      append(t3) {
+        return this.insert(t3);
       }
-      appendData(t2) {
-        return this.insert(q2.createItem(t2));
+      appendData(t3) {
+        return this.insert(q2.createItem(t3));
       }
-      insert(t2, n2 = null) {
+      insert(t3, n2 = null) {
         if (n2 !== null)
-          if (this.updateCursors(n2.prev, t2, n2, t2), n2.prev === null) {
+          if (this.updateCursors(n2.prev, t3, n2, t3), n2.prev === null) {
             if (this.head !== n2)
               throw new Error("before doesn't belong to list");
-            this.head = t2, n2.prev = t2, t2.next = n2, this.updateCursors(null, t2);
+            this.head = t3, n2.prev = t3, t3.next = n2, this.updateCursors(null, t3);
           } else
-            n2.prev.next = t2, t2.prev = n2.prev, n2.prev = t2, t2.next = n2;
+            n2.prev.next = t3, t3.prev = n2.prev, n2.prev = t3, t3.next = n2;
         else
-          this.updateCursors(this.tail, t2, null, t2), this.tail !== null ? (this.tail.next = t2, t2.prev = this.tail) : this.head = t2, this.tail = t2;
+          this.updateCursors(this.tail, t3, null, t3), this.tail !== null ? (this.tail.next = t3, t3.prev = this.tail) : this.head = t3, this.tail = t3;
         return this;
       }
-      insertData(t2, n2) {
-        return this.insert(q2.createItem(t2), n2);
+      insertData(t3, n2) {
+        return this.insert(q2.createItem(t3), n2);
       }
-      remove(t2) {
-        if (this.updateCursors(t2, t2.prev, t2, t2.next), t2.prev !== null)
-          t2.prev.next = t2.next;
+      remove(t3) {
+        if (this.updateCursors(t3, t3.prev, t3, t3.next), t3.prev !== null)
+          t3.prev.next = t3.next;
         else {
-          if (this.head !== t2)
+          if (this.head !== t3)
             throw new Error("item doesn't belong to list");
-          this.head = t2.next;
+          this.head = t3.next;
         }
-        if (t2.next !== null)
-          t2.next.prev = t2.prev;
+        if (t3.next !== null)
+          t3.next.prev = t3.prev;
         else {
-          if (this.tail !== t2)
+          if (this.tail !== t3)
             throw new Error("item doesn't belong to list");
-          this.tail = t2.prev;
+          this.tail = t3.prev;
         }
-        return t2.prev = null, t2.next = null, t2;
+        return t3.prev = null, t3.next = null, t3;
       }
-      push(t2) {
-        this.insert(q2.createItem(t2));
+      push(t3) {
+        this.insert(q2.createItem(t3));
       }
       pop() {
         return this.tail !== null ? this.remove(this.tail) : null;
       }
-      unshift(t2) {
-        this.prepend(q2.createItem(t2));
+      unshift(t3) {
+        this.prepend(q2.createItem(t3));
       }
       shift() {
         return this.head !== null ? this.remove(this.head) : null;
       }
-      prependList(t2) {
-        return this.insertList(t2, this.head);
+      prependList(t3) {
+        return this.insertList(t3, this.head);
       }
-      appendList(t2) {
-        return this.insertList(t2);
+      appendList(t3) {
+        return this.insertList(t3);
       }
-      insertList(t2, n2) {
-        return t2.head === null ? this : (n2 != null ? (this.updateCursors(n2.prev, t2.tail, n2, t2.head), n2.prev !== null ? (n2.prev.next = t2.head, t2.head.prev = n2.prev) : this.head = t2.head, n2.prev = t2.tail, t2.tail.next = n2) : (this.updateCursors(this.tail, t2.tail, null, t2.head), this.tail !== null ? (this.tail.next = t2.head, t2.head.prev = this.tail) : this.head = t2.head, this.tail = t2.tail), t2.head = null, t2.tail = null, this);
+      insertList(t3, n2) {
+        return t3.head === null ? this : (n2 != null ? (this.updateCursors(n2.prev, t3.tail, n2, t3.head), n2.prev !== null ? (n2.prev.next = t3.head, t3.head.prev = n2.prev) : this.head = t3.head, n2.prev = t3.tail, t3.tail.next = n2) : (this.updateCursors(this.tail, t3.tail, null, t3.head), this.tail !== null ? (this.tail.next = t3.head, t3.head.prev = this.tail) : this.head = t3.head, this.tail = t3.tail), t3.head = null, t3.tail = null, this);
       }
-      replace(t2, n2) {
-        "head" in n2 ? this.insertList(n2, t2) : this.insert(n2, t2), this.remove(t2);
+      replace(t3, n2) {
+        "head" in n2 ? this.insertList(n2, t3) : this.insert(n2, t3), this.remove(t3);
       }
     }
-    function bn2(e2, t2) {
+    function bn2(e2, t3) {
       const n2 = Object.create(SyntaxError.prototype), r2 = new Error();
       return Object.assign(n2, {
         name: e2,
-        message: t2,
+        message: t3,
         get stack() {
-          return (r2.stack || "").replace(/^(.+\n){1,3}/, `${e2}: ${t2}
+          return (r2.stack || "").replace(/^(.+\n){1,3}/, `${e2}: ${t3}
 `);
         }
       });
     }
-    const En2 = 100, Ur = 60, qr = "    ";
-    function Gr({ source: e2, line: t2, column: n2, baseLine: r2, baseColumn: i2 }, o2) {
+    const En2 = 100, Ur2 = 60, qr2 = "    ";
+    function Gr2({ source: e2, line: t3, column: n2, baseLine: r2, baseColumn: i2 }, o2) {
       function s2(w2, k2) {
         return a2.slice(w2, k2).map(
           (C2, b2) => String(w2 + b2 + 1).padStart(d2) + " |" + C2
@@ -23116,35 +23663,35 @@
 `);
       }
       const c2 = `
-`.repeat(Math.max(r2 - 1, 0)), l2 = " ".repeat(Math.max(i2 - 1, 0)), a2 = (c2 + l2 + e2).split(/\r\n?|\n|\f/), u2 = Math.max(1, t2 - o2) - 1, h2 = Math.min(t2 + o2, a2.length + 1), d2 = Math.max(4, String(h2).length) + 1;
+`.repeat(Math.max(r2 - 1, 0)), l2 = " ".repeat(Math.max(i2 - 1, 0)), a2 = (c2 + l2 + e2).split(/\r\n?|\n|\f/), u2 = Math.max(1, t3 - o2) - 1, h2 = Math.min(t3 + o2, a2.length + 1), d2 = Math.max(4, String(h2).length) + 1;
       let m2 = 0;
-      n2 += (qr.length - 1) * (a2[t2 - 1].substr(0, n2 - 1).match(/\t/g) || []).length, n2 > En2 && (m2 = n2 - Ur + 3, n2 = Ur - 2);
+      n2 += (qr2.length - 1) * (a2[t3 - 1].substr(0, n2 - 1).match(/\t/g) || []).length, n2 > En2 && (m2 = n2 - Ur2 + 3, n2 = Ur2 - 2);
       for (let w2 = u2; w2 <= h2; w2++)
-        w2 >= 0 && w2 < a2.length && (a2[w2] = a2[w2].replace(/\t/g, qr), a2[w2] = (m2 > 0 && a2[w2].length > m2 ? "\u2026" : "") + a2[w2].substr(m2, En2 - 2) + (a2[w2].length > m2 + En2 - 1 ? "\u2026" : ""));
+        w2 >= 0 && w2 < a2.length && (a2[w2] = a2[w2].replace(/\t/g, qr2), a2[w2] = (m2 > 0 && a2[w2].length > m2 ? "\u2026" : "") + a2[w2].substr(m2, En2 - 2) + (a2[w2].length > m2 + En2 - 1 ? "\u2026" : ""));
       return [
-        s2(u2, t2),
+        s2(u2, t3),
         new Array(n2 + d2 + 2).join("-") + "^",
-        s2(t2, h2)
+        s2(t3, h2)
       ].filter(Boolean).join(`
 `).replace(/^(\s+\d+\s+\|\n)+/, "").replace(/\n(\s+\d+\s+\|)+$/, "");
     }
-    function Vr(e2, t2, n2, r2, i2, o2 = 1, s2 = 1) {
+    function Vr2(e2, t3, n2, r2, i2, o2 = 1, s2 = 1) {
       return Object.assign(bn2("SyntaxError", e2), {
-        source: t2,
+        source: t3,
         offset: n2,
         line: r2,
         column: i2,
         sourceFragment(l2) {
-          return Gr({ source: t2, line: r2, column: i2, baseLine: o2, baseColumn: s2 }, isNaN(l2) ? 0 : l2);
+          return Gr2({ source: t3, line: r2, column: i2, baseLine: o2, baseColumn: s2 }, isNaN(l2) ? 0 : l2);
         },
         get formattedMessage() {
           return `Parse error: ${e2}
-` + Gr({ source: t2, line: r2, column: i2, baseLine: o2, baseColumn: s2 }, 2);
+` + Gr2({ source: t3, line: r2, column: i2, baseLine: o2, baseColumn: s2 }, 2);
         }
       });
     }
     function Za(e2) {
-      const t2 = this.createList();
+      const t3 = this.createList();
       let n2 = false;
       const r2 = {
         recognizer: e2
@@ -23161,49 +23708,49 @@
         let i2 = e2.getNode.call(this, r2);
         if (i2 === void 0)
           break;
-        n2 && (e2.onWhiteSpace && e2.onWhiteSpace.call(this, i2, t2, r2), n2 = false), t2.push(i2);
+        n2 && (e2.onWhiteSpace && e2.onWhiteSpace.call(this, i2, t3, r2), n2 = false), t3.push(i2);
       }
-      return n2 && e2.onWhiteSpace && e2.onWhiteSpace.call(this, null, t2, r2), t2;
+      return n2 && e2.onWhiteSpace && e2.onWhiteSpace.call(this, null, t3, r2), t3;
     }
-    const Kr = () => {
-    }, Ja = 33, el = 35, Ln2 = 59, Yr = 123, Qr = 0;
+    const Kr2 = () => {
+    }, Ja = 33, el = 35, Ln2 = 59, Yr2 = 123, Qr2 = 0;
     function tl(e2) {
       return function() {
         return this[e2]();
       };
     }
-    function $n(e2) {
-      const t2 = /* @__PURE__ */ Object.create(null);
+    function $n2(e2) {
+      const t3 = /* @__PURE__ */ Object.create(null);
       for (const n2 of Object.keys(e2)) {
         const r2 = e2[n2], i2 = r2.parse || r2;
-        i2 && (t2[n2] = i2);
+        i2 && (t3[n2] = i2);
       }
-      return t2;
+      return t3;
     }
     function nl(e2) {
-      const t2 = {
+      const t3 = {
         context: /* @__PURE__ */ Object.create(null),
         features: Object.assign(/* @__PURE__ */ Object.create(null), e2.features),
         scope: Object.assign(/* @__PURE__ */ Object.create(null), e2.scope),
-        atrule: $n(e2.atrule),
-        pseudo: $n(e2.pseudo),
-        node: $n(e2.node)
+        atrule: $n2(e2.atrule),
+        pseudo: $n2(e2.pseudo),
+        node: $n2(e2.node)
       };
       for (const [n2, r2] of Object.entries(e2.parseContext))
         switch (typeof r2) {
           case "function":
-            t2.context[n2] = r2;
+            t3.context[n2] = r2;
             break;
           case "string":
-            t2.context[n2] = tl(r2);
+            t3.context[n2] = tl(r2);
             break;
         }
       return _2(_2({
-        config: t2
-      }, t2), t2.node);
+        config: t3
+      }, t3), t3.node);
     }
     function rl(e2) {
-      let t2 = "", n2 = "<unknown>", r2 = false, i2 = Kr, o2 = false;
+      let t3 = "", n2 = "<unknown>", r2 = false, i2 = Kr2, o2 = false;
       const s2 = new Ya(), c2 = Object.assign(new Xa(), nl(e2 || {}), {
         parseAtrulePrelude: true,
         parseRulePrelude: true,
@@ -23212,10 +23759,10 @@
         readSequence: Za,
         consumeUntilBalanceEnd: () => 0,
         consumeUntilLeftCurlyBracket(a2) {
-          return a2 === Yr ? 1 : 0;
+          return a2 === Yr2 ? 1 : 0;
         },
         consumeUntilLeftCurlyBracketOrSemicolon(a2) {
-          return a2 === Yr || a2 === Ln2 ? 1 : 0;
+          return a2 === Yr2 || a2 === Ln2 ? 1 : 0;
         },
         consumeUntilExclamationMarkOrSemicolon(a2) {
           return a2 === Ja || a2 === Ln2 ? 1 : 0;
@@ -23252,34 +23799,34 @@
           do
             if (u2 = this.lookupType(a2++), u2 !== W2 && u2 !== X2)
               return u2;
-          while (u2 !== Qr);
-          return Qr;
+          while (u2 !== Qr2);
+          return Qr2;
         },
         charCodeAt(a2) {
-          return a2 >= 0 && a2 < t2.length ? t2.charCodeAt(a2) : 0;
+          return a2 >= 0 && a2 < t3.length ? t3.charCodeAt(a2) : 0;
         },
         substring(a2, u2) {
-          return t2.substring(a2, u2);
+          return t3.substring(a2, u2);
         },
         substrToCursor(a2) {
           return this.source.substring(a2, this.tokenStart);
         },
         cmpChar(a2, u2) {
-          return ht2(t2, a2, u2);
+          return ht2(t3, a2, u2);
         },
         cmpStr(a2, u2, h2) {
-          return $t2(t2, a2, u2, h2);
+          return $t2(t3, a2, u2, h2);
         },
         consume(a2) {
           const u2 = this.tokenStart;
           return this.eat(a2), this.substrToCursor(u2);
         },
         consumeFunctionName() {
-          const a2 = t2.substring(this.tokenStart, this.tokenEnd - 1);
+          const a2 = t3.substring(this.tokenStart, this.tokenEnd - 1);
           return this.eat($5), a2;
         },
         consumeNumber(a2) {
-          const u2 = t2.substring(this.tokenStart, mn2(t2, this.tokenStart));
+          const u2 = t3.substring(this.tokenStart, mn2(t3, this.tokenStart));
           return this.eat(a2), u2;
         },
         eat(a2) {
@@ -23326,10 +23873,10 @@
           return null;
         },
         error(a2, u2) {
-          const h2 = typeof u2 != "undefined" && u2 < t2.length ? s2.getLocation(u2) : this.eof ? s2.getLocation(Ga(t2, t2.length - 1)) : s2.getLocation(this.tokenStart);
-          throw new Vr(
+          const h2 = typeof u2 != "undefined" && u2 < t3.length ? s2.getLocation(u2) : this.eof ? s2.getLocation(Ga(t3, t3.length - 1)) : s2.getLocation(this.tokenStart);
+          throw new Vr2(
             a2 || "Unexpected input",
-            t2,
+            t3,
             h2.offset,
             h2.line,
             h2.column,
@@ -23339,74 +23886,74 @@
         }
       });
       return Object.assign(function(a2, u2) {
-        t2 = a2, u2 = u2 || {}, c2.setSource(t2, gn2), s2.setSource(
-          t2,
+        t3 = a2, u2 = u2 || {}, c2.setSource(t3, gn2), s2.setSource(
+          t3,
           u2.offset,
           u2.line,
           u2.column
-        ), n2 = u2.filename || "<unknown>", r2 = !!u2.positions, i2 = typeof u2.onParseError == "function" ? u2.onParseError : Kr, o2 = false, c2.parseAtrulePrelude = "parseAtrulePrelude" in u2 ? !!u2.parseAtrulePrelude : true, c2.parseRulePrelude = "parseRulePrelude" in u2 ? !!u2.parseRulePrelude : true, c2.parseValue = "parseValue" in u2 ? !!u2.parseValue : true, c2.parseCustomProperty = "parseCustomProperty" in u2 ? !!u2.parseCustomProperty : false;
+        ), n2 = u2.filename || "<unknown>", r2 = !!u2.positions, i2 = typeof u2.onParseError == "function" ? u2.onParseError : Kr2, o2 = false, c2.parseAtrulePrelude = "parseAtrulePrelude" in u2 ? !!u2.parseAtrulePrelude : true, c2.parseRulePrelude = "parseRulePrelude" in u2 ? !!u2.parseRulePrelude : true, c2.parseValue = "parseValue" in u2 ? !!u2.parseValue : true, c2.parseCustomProperty = "parseCustomProperty" in u2 ? !!u2.parseCustomProperty : false;
         const { context: h2 = "default", onComment: d2 } = u2;
         if (!(h2 in c2.context))
           throw new Error("Unknown context `" + h2 + "`");
         typeof d2 == "function" && c2.forEachToken((w2, k2, C2) => {
           if (w2 === X2) {
-            const b2 = c2.getLocation(k2, C2), x2 = $t2(t2, C2 - 2, C2, "*/") ? t2.slice(k2 + 2, C2 - 2) : t2.slice(k2 + 2, C2);
+            const b2 = c2.getLocation(k2, C2), x2 = $t2(t3, C2 - 2, C2, "*/") ? t3.slice(k2 + 2, C2 - 2) : t3.slice(k2 + 2, C2);
             d2(x2, b2);
           }
         });
         const m2 = c2.context[h2].call(c2, u2);
         return c2.eof || c2.error(), m2;
       }, {
-        SyntaxError: Vr,
+        SyntaxError: Vr2,
         config: c2.config
       });
     }
-    var gr = {}, br = {}, Xr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
-    br.encode = function(e2) {
-      if (0 <= e2 && e2 < Xr.length)
-        return Xr[e2];
+    var gr2 = {}, br2 = {}, Xr2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
+    br2.encode = function(e2) {
+      if (0 <= e2 && e2 < Xr2.length)
+        return Xr2[e2];
       throw new TypeError("Must be between 0 and 63: " + e2);
     };
-    br.decode = function(e2) {
-      var t2 = 65, n2 = 90, r2 = 97, i2 = 122, o2 = 48, s2 = 57, c2 = 43, l2 = 47, a2 = 26, u2 = 52;
-      return t2 <= e2 && e2 <= n2 ? e2 - t2 : r2 <= e2 && e2 <= i2 ? e2 - r2 + a2 : o2 <= e2 && e2 <= s2 ? e2 - o2 + u2 : e2 == c2 ? 62 : e2 == l2 ? 63 : -1;
+    br2.decode = function(e2) {
+      var t3 = 65, n2 = 90, r2 = 97, i2 = 122, o2 = 48, s2 = 57, c2 = 43, l2 = 47, a2 = 26, u2 = 52;
+      return t3 <= e2 && e2 <= n2 ? e2 - t3 : r2 <= e2 && e2 <= i2 ? e2 - r2 + a2 : o2 <= e2 && e2 <= s2 ? e2 - o2 + u2 : e2 == c2 ? 62 : e2 == l2 ? 63 : -1;
     };
-    var yo = br, yr = 5, ko = 1 << yr, xo = ko - 1, wo = ko;
+    var yo = br2, yr2 = 5, ko = 1 << yr2, xo = ko - 1, wo = ko;
     function il(e2) {
       return e2 < 0 ? (-e2 << 1) + 1 : (e2 << 1) + 0;
     }
     function ol(e2) {
-      var t2 = (e2 & 1) === 1, n2 = e2 >> 1;
-      return t2 ? -n2 : n2;
+      var t3 = (e2 & 1) === 1, n2 = e2 >> 1;
+      return t3 ? -n2 : n2;
     }
-    gr.encode = function(t2) {
-      var n2 = "", r2, i2 = il(t2);
+    gr2.encode = function(t3) {
+      var n2 = "", r2, i2 = il(t3);
       do
-        r2 = i2 & xo, i2 >>>= yr, i2 > 0 && (r2 |= wo), n2 += yo.encode(r2);
+        r2 = i2 & xo, i2 >>>= yr2, i2 > 0 && (r2 |= wo), n2 += yo.encode(r2);
       while (i2 > 0);
       return n2;
     };
-    gr.decode = function(t2, n2, r2) {
-      var i2 = t2.length, o2 = 0, s2 = 0, c2, l2;
+    gr2.decode = function(t3, n2, r2) {
+      var i2 = t3.length, o2 = 0, s2 = 0, c2, l2;
       do {
         if (n2 >= i2)
           throw new Error("Expected more digits in base 64 VLQ value.");
-        if (l2 = yo.decode(t2.charCodeAt(n2++)), l2 === -1)
-          throw new Error("Invalid base64 digit: " + t2.charAt(n2 - 1));
-        c2 = !!(l2 & wo), l2 &= xo, o2 = o2 + (l2 << s2), s2 += yr;
+        if (l2 = yo.decode(t3.charCodeAt(n2++)), l2 === -1)
+          throw new Error("Invalid base64 digit: " + t3.charAt(n2 - 1));
+        c2 = !!(l2 & wo), l2 &= xo, o2 = o2 + (l2 << s2), s2 += yr2;
       } while (c2);
       r2.value = ol(o2), r2.rest = n2;
     };
     var yn2 = {};
     (function(e2) {
-      function t2(p2, f2, S2) {
+      function t3(p2, f2, S2) {
         if (f2 in p2)
           return p2[f2];
         if (arguments.length === 3)
           return S2;
         throw new Error('"' + f2 + '" is a required argument.');
       }
-      e2.getArg = t2;
+      e2.getArg = t3;
       var n2 = /^(?:([\w+\-.]+):)?\/\/(?:(\w+:\w+)@)?([\w.-]*)(?::(\d+))?(.*)$/, r2 = /^data:.+\,.+$/;
       function i2(p2) {
         var f2 = p2.match(n2);
@@ -23558,78 +24105,78 @@
       }
       e2.computeSourceURL = O2;
     })(yn2);
-    var vo = {}, kr = yn2, xr = Object.prototype.hasOwnProperty, Ye2 = typeof Map != "undefined";
+    var vo = {}, kr2 = yn2, xr2 = Object.prototype.hasOwnProperty, Ye2 = typeof Map != "undefined";
     function Re2() {
       this._array = [], this._set = Ye2 ? /* @__PURE__ */ new Map() : /* @__PURE__ */ Object.create(null);
     }
-    Re2.fromArray = function(t2, n2) {
-      for (var r2 = new Re2(), i2 = 0, o2 = t2.length; i2 < o2; i2++)
-        r2.add(t2[i2], n2);
+    Re2.fromArray = function(t3, n2) {
+      for (var r2 = new Re2(), i2 = 0, o2 = t3.length; i2 < o2; i2++)
+        r2.add(t3[i2], n2);
       return r2;
     };
     Re2.prototype.size = function() {
       return Ye2 ? this._set.size : Object.getOwnPropertyNames(this._set).length;
     };
-    Re2.prototype.add = function(t2, n2) {
-      var r2 = Ye2 ? t2 : kr.toSetString(t2), i2 = Ye2 ? this.has(t2) : xr.call(this._set, r2), o2 = this._array.length;
-      (!i2 || n2) && this._array.push(t2), i2 || (Ye2 ? this._set.set(t2, o2) : this._set[r2] = o2);
+    Re2.prototype.add = function(t3, n2) {
+      var r2 = Ye2 ? t3 : kr2.toSetString(t3), i2 = Ye2 ? this.has(t3) : xr2.call(this._set, r2), o2 = this._array.length;
+      (!i2 || n2) && this._array.push(t3), i2 || (Ye2 ? this._set.set(t3, o2) : this._set[r2] = o2);
     };
-    Re2.prototype.has = function(t2) {
+    Re2.prototype.has = function(t3) {
       if (Ye2)
-        return this._set.has(t2);
-      var n2 = kr.toSetString(t2);
-      return xr.call(this._set, n2);
+        return this._set.has(t3);
+      var n2 = kr2.toSetString(t3);
+      return xr2.call(this._set, n2);
     };
-    Re2.prototype.indexOf = function(t2) {
+    Re2.prototype.indexOf = function(t3) {
       if (Ye2) {
-        var n2 = this._set.get(t2);
+        var n2 = this._set.get(t3);
         if (n2 >= 0)
           return n2;
       } else {
-        var r2 = kr.toSetString(t2);
-        if (xr.call(this._set, r2))
+        var r2 = kr2.toSetString(t3);
+        if (xr2.call(this._set, r2))
           return this._set[r2];
       }
-      throw new Error('"' + t2 + '" is not in the set.');
+      throw new Error('"' + t3 + '" is not in the set.');
     };
-    Re2.prototype.at = function(t2) {
-      if (t2 >= 0 && t2 < this._array.length)
-        return this._array[t2];
-      throw new Error("No element indexed by " + t2);
+    Re2.prototype.at = function(t3) {
+      if (t3 >= 0 && t3 < this._array.length)
+        return this._array[t3];
+      throw new Error("No element indexed by " + t3);
     };
     Re2.prototype.toArray = function() {
       return this._array.slice();
     };
     vo.ArraySet = Re2;
     var So = {}, Co = yn2;
-    function sl(e2, t2) {
-      var n2 = e2.generatedLine, r2 = t2.generatedLine, i2 = e2.generatedColumn, o2 = t2.generatedColumn;
-      return r2 > n2 || r2 == n2 && o2 >= i2 || Co.compareByGeneratedPositionsInflated(e2, t2) <= 0;
+    function sl(e2, t3) {
+      var n2 = e2.generatedLine, r2 = t3.generatedLine, i2 = e2.generatedColumn, o2 = t3.generatedColumn;
+      return r2 > n2 || r2 == n2 && o2 >= i2 || Co.compareByGeneratedPositionsInflated(e2, t3) <= 0;
     }
     function kn2() {
       this._array = [], this._sorted = true, this._last = { generatedLine: -1, generatedColumn: 0 };
     }
-    kn2.prototype.unsortedForEach = function(t2, n2) {
-      this._array.forEach(t2, n2);
+    kn2.prototype.unsortedForEach = function(t3, n2) {
+      this._array.forEach(t3, n2);
     };
-    kn2.prototype.add = function(t2) {
-      sl(this._last, t2) ? (this._last = t2, this._array.push(t2)) : (this._sorted = false, this._array.push(t2));
+    kn2.prototype.add = function(t3) {
+      sl(this._last, t3) ? (this._last = t3, this._array.push(t3)) : (this._sorted = false, this._array.push(t3));
     };
     kn2.prototype.toArray = function() {
       return this._sorted || (this._array.sort(Co.compareByGeneratedPositionsInflated), this._sorted = true), this._array;
     };
     So.MappingList = kn2;
-    var yt2 = gr, U2 = yn2, rn2 = vo.ArraySet, al = So.MappingList;
+    var yt2 = gr2, U2 = yn2, rn2 = vo.ArraySet, al = So.MappingList;
     function ge2(e2) {
       e2 || (e2 = {}), this._file = U2.getArg(e2, "file", null), this._sourceRoot = U2.getArg(e2, "sourceRoot", null), this._skipValidation = U2.getArg(e2, "skipValidation", false), this._ignoreInvalidMapping = U2.getArg(e2, "ignoreInvalidMapping", false), this._sources = new rn2(), this._names = new rn2(), this._mappings = new al(), this._sourcesContents = null;
     }
     ge2.prototype._version = 3;
-    ge2.fromSourceMap = function(t2, n2) {
-      var r2 = t2.sourceRoot, i2 = new ge2(Object.assign(n2 || {}, {
-        file: t2.file,
+    ge2.fromSourceMap = function(t3, n2) {
+      var r2 = t3.sourceRoot, i2 = new ge2(Object.assign(n2 || {}, {
+        file: t3.file,
         sourceRoot: r2
       }));
-      return t2.eachMapping(function(o2) {
+      return t3.eachMapping(function(o2) {
         var s2 = {
           generated: {
             line: o2.generatedLine,
@@ -23640,15 +24187,15 @@
           line: o2.originalLine,
           column: o2.originalColumn
         }, o2.name != null && (s2.name = o2.name)), i2.addMapping(s2);
-      }), t2.sources.forEach(function(o2) {
+      }), t3.sources.forEach(function(o2) {
         var s2 = o2;
         r2 !== null && (s2 = U2.relative(r2, o2)), i2._sources.has(s2) || i2._sources.add(s2);
-        var c2 = t2.sourceContentFor(o2);
+        var c2 = t3.sourceContentFor(o2);
         c2 != null && i2.setSourceContent(o2, c2);
       }), i2;
     };
-    ge2.prototype.addMapping = function(t2) {
-      var n2 = U2.getArg(t2, "generated"), r2 = U2.getArg(t2, "original", null), i2 = U2.getArg(t2, "source", null), o2 = U2.getArg(t2, "name", null);
+    ge2.prototype.addMapping = function(t3) {
+      var n2 = U2.getArg(t3, "generated"), r2 = U2.getArg(t3, "original", null), i2 = U2.getArg(t3, "source", null), o2 = U2.getArg(t3, "name", null);
       !this._skipValidation && this._validateMapping(n2, r2, i2, o2) === false || (i2 != null && (i2 = String(i2), this._sources.has(i2) || this._sources.add(i2)), o2 != null && (o2 = String(o2), this._names.has(o2) || this._names.add(o2)), this._mappings.add({
         generatedLine: n2.line,
         generatedColumn: n2.column,
@@ -23658,25 +24205,25 @@
         name: o2
       }));
     };
-    ge2.prototype.setSourceContent = function(t2, n2) {
-      var r2 = t2;
+    ge2.prototype.setSourceContent = function(t3, n2) {
+      var r2 = t3;
       this._sourceRoot != null && (r2 = U2.relative(this._sourceRoot, r2)), n2 != null ? (this._sourcesContents || (this._sourcesContents = /* @__PURE__ */ Object.create(null)), this._sourcesContents[U2.toSetString(r2)] = n2) : this._sourcesContents && (delete this._sourcesContents[U2.toSetString(r2)], Object.keys(this._sourcesContents).length === 0 && (this._sourcesContents = null));
     };
-    ge2.prototype.applySourceMap = function(t2, n2, r2) {
+    ge2.prototype.applySourceMap = function(t3, n2, r2) {
       var i2 = n2;
       if (n2 == null) {
-        if (t2.file == null)
+        if (t3.file == null)
           throw new Error(
             `SourceMapGenerator.prototype.applySourceMap requires either an explicit source file, or the source map's "file" property. Both were omitted.`
           );
-        i2 = t2.file;
+        i2 = t3.file;
       }
       var o2 = this._sourceRoot;
       o2 != null && (i2 = U2.relative(o2, i2));
       var s2 = new rn2(), c2 = new rn2();
       this._mappings.unsortedForEach(function(l2) {
         if (l2.source === i2 && l2.originalLine != null) {
-          var a2 = t2.originalPositionFor({
+          var a2 = t3.originalPositionFor({
             line: l2.originalLine,
             column: l2.originalColumn
           });
@@ -23686,23 +24233,23 @@
         u2 != null && !s2.has(u2) && s2.add(u2);
         var h2 = l2.name;
         h2 != null && !c2.has(h2) && c2.add(h2);
-      }, this), this._sources = s2, this._names = c2, t2.sources.forEach(function(l2) {
-        var a2 = t2.sourceContentFor(l2);
+      }, this), this._sources = s2, this._names = c2, t3.sources.forEach(function(l2) {
+        var a2 = t3.sourceContentFor(l2);
         a2 != null && (r2 != null && (l2 = U2.join(r2, l2)), o2 != null && (l2 = U2.relative(o2, l2)), this.setSourceContent(l2, a2));
       }, this);
     };
-    ge2.prototype._validateMapping = function(t2, n2, r2, i2) {
+    ge2.prototype._validateMapping = function(t3, n2, r2, i2) {
       if (n2 && typeof n2.line != "number" && typeof n2.column != "number") {
         var o2 = "original.line and original.column are not numbers -- you probably meant to omit the original mapping entirely and only map the generated position. If so, pass null for the original mapping instead of an object with empty or null values.";
         if (this._ignoreInvalidMapping)
           return typeof console != "undefined" && console.warn && console.warn(o2), false;
         throw new Error(o2);
       }
-      if (!(t2 && "line" in t2 && "column" in t2 && t2.line > 0 && t2.column >= 0 && !n2 && !r2 && !i2)) {
-        if (t2 && "line" in t2 && "column" in t2 && n2 && "line" in n2 && "column" in n2 && t2.line > 0 && t2.column >= 0 && n2.line > 0 && n2.column >= 0 && r2)
+      if (!(t3 && "line" in t3 && "column" in t3 && t3.line > 0 && t3.column >= 0 && !n2 && !r2 && !i2)) {
+        if (t3 && "line" in t3 && "column" in t3 && n2 && "line" in n2 && "column" in n2 && t3.line > 0 && t3.column >= 0 && n2.line > 0 && n2.column >= 0 && r2)
           return;
         var o2 = "Invalid mapping: " + JSON.stringify({
-          generated: t2,
+          generated: t3,
           source: r2,
           original: n2,
           name: i2
@@ -23713,21 +24260,21 @@
       }
     };
     ge2.prototype._serializeMappings = function() {
-      for (var t2 = 0, n2 = 1, r2 = 0, i2 = 0, o2 = 0, s2 = 0, c2 = "", l2, a2, u2, h2, d2 = this._mappings.toArray(), m2 = 0, w2 = d2.length; m2 < w2; m2++) {
+      for (var t3 = 0, n2 = 1, r2 = 0, i2 = 0, o2 = 0, s2 = 0, c2 = "", l2, a2, u2, h2, d2 = this._mappings.toArray(), m2 = 0, w2 = d2.length; m2 < w2; m2++) {
         if (a2 = d2[m2], l2 = "", a2.generatedLine !== n2)
-          for (t2 = 0; a2.generatedLine !== n2; )
+          for (t3 = 0; a2.generatedLine !== n2; )
             l2 += ";", n2++;
         else if (m2 > 0) {
           if (!U2.compareByGeneratedPositionsInflated(a2, d2[m2 - 1]))
             continue;
           l2 += ",";
         }
-        l2 += yt2.encode(a2.generatedColumn - t2), t2 = a2.generatedColumn, a2.source != null && (h2 = this._sources.indexOf(a2.source), l2 += yt2.encode(h2 - s2), s2 = h2, l2 += yt2.encode(a2.originalLine - 1 - i2), i2 = a2.originalLine - 1, l2 += yt2.encode(a2.originalColumn - r2), r2 = a2.originalColumn, a2.name != null && (u2 = this._names.indexOf(a2.name), l2 += yt2.encode(u2 - o2), o2 = u2)), c2 += l2;
+        l2 += yt2.encode(a2.generatedColumn - t3), t3 = a2.generatedColumn, a2.source != null && (h2 = this._sources.indexOf(a2.source), l2 += yt2.encode(h2 - s2), s2 = h2, l2 += yt2.encode(a2.originalLine - 1 - i2), i2 = a2.originalLine - 1, l2 += yt2.encode(a2.originalColumn - r2), r2 = a2.originalColumn, a2.name != null && (u2 = this._names.indexOf(a2.name), l2 += yt2.encode(u2 - o2), o2 = u2)), c2 += l2;
       }
       return c2;
     };
-    ge2.prototype._generateSourcesContent = function(t2, n2) {
-      return t2.map(function(r2) {
+    ge2.prototype._generateSourcesContent = function(t3, n2) {
+      return t3.map(function(r2) {
         if (!this._sourcesContents)
           return null;
         n2 != null && (r2 = U2.relative(n2, r2));
@@ -23736,21 +24283,21 @@
       }, this);
     };
     ge2.prototype.toJSON = function() {
-      var t2 = {
+      var t3 = {
         version: this._version,
         sources: this._sources.toArray(),
         names: this._names.toArray(),
         mappings: this._serializeMappings()
       };
-      return this._file != null && (t2.file = this._file), this._sourceRoot != null && (t2.sourceRoot = this._sourceRoot), this._sourcesContents && (t2.sourcesContent = this._generateSourcesContent(t2.sources, t2.sourceRoot)), t2;
+      return this._file != null && (t3.file = this._file), this._sourceRoot != null && (t3.sourceRoot = this._sourceRoot), this._sourcesContents && (t3.sourcesContent = this._generateSourcesContent(t3.sources, t3.sourceRoot)), t3;
     };
     ge2.prototype.toString = function() {
       return JSON.stringify(this.toJSON());
     };
     var ll = ge2;
-    const Zr = /* @__PURE__ */ new Set(["Atrule", "Selector", "Declaration"]);
+    const Zr2 = /* @__PURE__ */ new Set(["Atrule", "Selector", "Declaration"]);
     function cl(e2) {
-      const t2 = new ll(), n2 = {
+      const t3 = new ll(), n2 = {
         line: 1,
         column: 0
       }, r2 = {
@@ -23766,15 +24313,15 @@
       let s2 = 1, c2 = 0, l2 = false;
       const a2 = e2.node;
       e2.node = function(d2) {
-        if (d2.loc && d2.loc.start && Zr.has(d2.type)) {
+        if (d2.loc && d2.loc.start && Zr2.has(d2.type)) {
           const m2 = d2.loc.start.line, w2 = d2.loc.start.column - 1;
-          (r2.line !== m2 || r2.column !== w2) && (r2.line = m2, r2.column = w2, n2.line = s2, n2.column = c2, l2 && (l2 = false, (n2.line !== i2.line || n2.column !== i2.column) && t2.addMapping(o2)), l2 = true, t2.addMapping({
+          (r2.line !== m2 || r2.column !== w2) && (r2.line = m2, r2.column = w2, n2.line = s2, n2.column = c2, l2 && (l2 = false, (n2.line !== i2.line || n2.column !== i2.column) && t3.addMapping(o2)), l2 = true, t3.addMapping({
             source: d2.loc.source,
             original: r2,
             generated: n2
           }));
         }
-        a2.call(this, d2), l2 && Zr.has(d2.type) && (i2.line = s2, i2.column = c2);
+        a2.call(this, d2), l2 && Zr2.has(d2.type) && (i2.line = s2, i2.column = c2);
       };
       const u2 = e2.emit;
       e2.emit = function(d2, m2, w2) {
@@ -23784,14 +24331,14 @@
       };
       const h2 = e2.result;
       return e2.result = function() {
-        return l2 && t2.addMapping(o2), {
+        return l2 && t3.addMapping(o2), {
           css: h2(),
-          map: t2
+          map: t3
         };
       }, e2;
     }
-    const ul = 43, hl = 45, _n = (e2, t2) => {
-      if (e2 === I2 && (e2 = t2), typeof e2 == "string") {
+    const ul = 43, hl = 45, _n2 = (e2, t3) => {
+      if (e2 === I2 && (e2 = t3), typeof e2 == "string") {
         const n2 = e2.charCodeAt(0);
         return n2 > 127 ? 32768 : n2 << 8;
       }
@@ -23897,43 +24444,43 @@
       [E2, "-"]
     ]);
     function Ao(e2) {
-      const t2 = new Set(
-        e2.map(([n2, r2]) => _n(n2) << 16 | _n(r2))
+      const t3 = new Set(
+        e2.map(([n2, r2]) => _n2(n2) << 16 | _n2(r2))
       );
       return function(n2, r2, i2) {
-        const o2 = _n(r2, i2), s2 = i2.charCodeAt(0);
-        return (s2 === hl && r2 !== y2 && r2 !== $5 && r2 !== ae2 || s2 === ul ? t2.has(n2 << 16 | s2 << 8) : t2.has(n2 << 16 | o2)) && this.emit(" ", W2, true), o2;
+        const o2 = _n2(r2, i2), s2 = i2.charCodeAt(0);
+        return (s2 === hl && r2 !== y2 && r2 !== $5 && r2 !== ae2 || s2 === ul ? t3.has(n2 << 16 | s2 << 8) : t3.has(n2 << 16 | o2)) && this.emit(" ", W2, true), o2;
       };
     }
-    const fl = Ao(To), Oo = Ao(pl), Jr = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+    const fl = Ao(To), Oo = Ao(pl), Jr2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
       __proto__: null,
       safe: Oo,
       spec: fl
     }, Symbol.toStringTag, { value: "Module" })), dl = 92;
-    function ml(e2, t2) {
-      if (typeof t2 == "function") {
+    function ml(e2, t3) {
+      if (typeof t3 == "function") {
         let n2 = null;
         e2.children.forEach((r2) => {
-          n2 !== null && t2.call(this, n2), this.node(r2), n2 = r2;
+          n2 !== null && t3.call(this, n2), this.node(r2), n2 = r2;
         });
         return;
       }
       e2.children.forEach(this.node, this);
     }
     function gl(e2) {
-      gn2(e2, (t2, n2, r2) => {
-        this.token(t2, e2.slice(n2, r2));
+      gn2(e2, (t3, n2, r2) => {
+        this.token(t3, e2.slice(n2, r2));
       });
     }
     function bl(e2) {
-      const t2 = /* @__PURE__ */ new Map();
+      const t3 = /* @__PURE__ */ new Map();
       for (let [n2, r2] of Object.entries(e2.node))
-        typeof (r2.generate || r2) == "function" && t2.set(n2, r2.generate || r2);
+        typeof (r2.generate || r2) == "function" && t3.set(n2, r2.generate || r2);
       return function(n2, r2) {
         let i2 = "", o2 = 0, s2 = {
           node(l2) {
-            if (t2.has(l2.type))
-              t2.get(l2.type).call(c2, l2);
+            if (t3.has(l2.type))
+              t3.get(l2.type).call(c2, l2);
             else
               throw new Error("Unknown node type: " + l2.type);
           },
@@ -23949,7 +24496,7 @@
             return i2;
           }
         };
-        r2 && (typeof r2.decorator == "function" && (s2 = r2.decorator(s2)), r2.sourceMap && (s2 = cl(s2)), r2.mode in Jr && (s2.tokenBefore = Jr[r2.mode]));
+        r2 && (typeof r2.decorator == "function" && (s2 = r2.decorator(s2)), r2.sourceMap && (s2 = cl(s2)), r2.mode in Jr2 && (s2.tokenBefore = Jr2[r2.mode]));
         const c2 = {
           node: (l2) => s2.node(l2),
           children: ml,
@@ -23961,36 +24508,36 @@
     }
     function yl(e2) {
       return {
-        fromPlainObject(t2) {
-          return e2(t2, {
+        fromPlainObject(t3) {
+          return e2(t3, {
             enter(n2) {
               n2.children && !(n2.children instanceof q2) && (n2.children = new q2().fromArray(n2.children));
             }
-          }), t2;
+          }), t3;
         },
-        toPlainObject(t2) {
-          return e2(t2, {
+        toPlainObject(t3) {
+          return e2(t3, {
             leave(n2) {
               n2.children && n2.children instanceof q2 && (n2.children = n2.children.toArray());
             }
-          }), t2;
+          }), t3;
         }
       };
     }
-    const { hasOwnProperty: wr } = Object.prototype, xt2 = function() {
+    const { hasOwnProperty: wr2 } = Object.prototype, xt2 = function() {
     };
     function ei2(e2) {
       return typeof e2 == "function" ? e2 : xt2;
     }
-    function ti2(e2, t2) {
+    function ti2(e2, t3) {
       return function(n2, r2, i2) {
-        n2.type === t2 && e2.call(this, n2, r2, i2);
+        n2.type === t3 && e2.call(this, n2, r2, i2);
       };
     }
-    function kl(e2, t2) {
-      const n2 = t2.structure, r2 = [];
+    function kl(e2, t3) {
+      const n2 = t3.structure, r2 = [];
       for (const i2 in n2) {
-        if (wr.call(n2, i2) === false)
+        if (wr2.call(n2, i2) === false)
           continue;
         let o2 = n2[i2];
         const s2 = {
@@ -24004,31 +24551,31 @@
         s2.type && r2.push(s2);
       }
       return r2.length ? {
-        context: t2.walkContext,
+        context: t3.walkContext,
         fields: r2
       } : null;
     }
     function xl(e2) {
-      const t2 = {};
+      const t3 = {};
       for (const n2 in e2.node)
-        if (wr.call(e2.node, n2)) {
+        if (wr2.call(e2.node, n2)) {
           const r2 = e2.node[n2];
           if (!r2.structure)
             throw new Error("Missed `structure` field in `" + n2 + "` node type definition");
-          t2[n2] = kl(n2, r2);
+          t3[n2] = kl(n2, r2);
         }
-      return t2;
+      return t3;
     }
-    function ni2(e2, t2) {
+    function ni2(e2, t3) {
       const n2 = e2.fields.slice(), r2 = e2.context, i2 = typeof r2 == "string";
-      return t2 && n2.reverse(), function(o2, s2, c2, l2) {
+      return t3 && n2.reverse(), function(o2, s2, c2, l2) {
         let a2;
         i2 && (a2 = s2[r2], s2[r2] = o2);
         for (const u2 of n2) {
           const h2 = o2[u2.name];
           if (!u2.nullable || h2) {
             if (u2.type === "list") {
-              if (t2 ? h2.reduceRight(l2, false) : h2.reduce(l2, false))
+              if (t3 ? h2.reduceRight(l2, false) : h2.reduce(l2, false))
                 return true;
             } else if (c2(h2))
               return true;
@@ -24039,7 +24586,7 @@
     }
     function ri2({
       StyleSheet: e2,
-      Atrule: t2,
+      Atrule: t3,
       Rule: n2,
       Block: r2,
       DeclarationList: i2
@@ -24047,19 +24594,19 @@
       return {
         Atrule: {
           StyleSheet: e2,
-          Atrule: t2,
+          Atrule: t3,
           Rule: n2,
           Block: r2
         },
         Rule: {
           StyleSheet: e2,
-          Atrule: t2,
+          Atrule: t3,
           Rule: n2,
           Block: r2
         },
         Declaration: {
           StyleSheet: e2,
-          Atrule: t2,
+          Atrule: t3,
           Rule: n2,
           Block: r2,
           DeclarationList: i2
@@ -24067,9 +24614,9 @@
       };
     }
     function wl(e2) {
-      const t2 = xl(e2), n2 = {}, r2 = {}, i2 = Symbol("break-walk"), o2 = Symbol("skip-node");
-      for (const a2 in t2)
-        wr.call(t2, a2) && t2[a2] !== null && (n2[a2] = ni2(t2[a2], false), r2[a2] = ni2(t2[a2], true));
+      const t3 = xl(e2), n2 = {}, r2 = {}, i2 = Symbol("break-walk"), o2 = Symbol("skip-node");
+      for (const a2 in t3)
+        wr2.call(t3, a2) && t3[a2] !== null && (n2[a2] = ni2(t3[a2], false), r2[a2] = ni2(t3[a2], true));
       const s2 = ri2(n2), c2 = ri2(r2), l2 = function(a2, u2) {
         function h2(b2, x2, T2) {
           const v2 = d2.call(C2, b2, x2, T2);
@@ -24094,8 +24641,8 @@
         else if (u2 && (d2 = ei2(u2.enter), m2 = ei2(u2.leave), u2.reverse && (w2 = r2), u2.visit)) {
           if (s2.hasOwnProperty(u2.visit))
             w2 = u2.reverse ? c2[u2.visit] : s2[u2.visit];
-          else if (!t2.hasOwnProperty(u2.visit))
-            throw new Error("Bad value `" + u2.visit + "` for `visit` option (should be: " + Object.keys(t2).sort().join(", ") + ")");
+          else if (!t3.hasOwnProperty(u2.visit))
+            throw new Error("Bad value `" + u2.visit + "` for `visit` option (should be: " + Object.keys(t3).sort().join(", ") + ")");
           d2 = ti2(d2, u2.visit), m2 = ti2(m2, u2.visit);
         }
         if (d2 === xt2 && m2 === xt2)
@@ -24128,8 +24675,8 @@
       return e2;
     }
     function Sl(e2) {
-      const { min: t2, max: n2, comma: r2 } = e2;
-      return t2 === 0 && n2 === 0 ? r2 ? "#?" : "*" : t2 === 0 && n2 === 1 ? "?" : t2 === 1 && n2 === 0 ? r2 ? "#" : "+" : t2 === 1 && n2 === 1 ? "" : (r2 ? "#" : "") + (t2 === n2 ? "{" + t2 + "}" : "{" + t2 + "," + (n2 !== 0 ? n2 : "") + "}");
+      const { min: t3, max: n2, comma: r2 } = e2;
+      return t3 === 0 && n2 === 0 ? r2 ? "#?" : "*" : t3 === 0 && n2 === 1 ? "?" : t3 === 1 && n2 === 0 ? r2 ? "#" : "+" : t3 === 1 && n2 === 1 ? "" : (r2 ? "#" : "") + (t3 === n2 ? "{" + t3 + "}" : "{" + t3 + "," + (n2 !== 0 ? n2 : "") + "}");
     }
     function Cl(e2) {
       switch (e2.type) {
@@ -24139,20 +24686,20 @@
           throw new Error("Unknown node type `" + e2.type + "`");
       }
     }
-    function Tl(e2, t2, n2, r2) {
-      const i2 = e2.combinator === " " || r2 ? e2.combinator : " " + e2.combinator + " ", o2 = e2.terms.map((s2) => vr(s2, t2, n2, r2)).join(i2);
+    function Tl(e2, t3, n2, r2) {
+      const i2 = e2.combinator === " " || r2 ? e2.combinator : " " + e2.combinator + " ", o2 = e2.terms.map((s2) => vr2(s2, t3, n2, r2)).join(i2);
       return e2.explicit || n2 ? (r2 || o2[0] === "," ? "[" : "[ ") + o2 + (r2 ? "]" : " ]") : o2;
     }
-    function vr(e2, t2, n2, r2) {
+    function vr2(e2, t3, n2, r2) {
       let i2;
       switch (e2.type) {
         case "Group":
-          i2 = Tl(e2, t2, n2, r2) + (e2.disallowEmpty ? "!" : "");
+          i2 = Tl(e2, t3, n2, r2) + (e2.disallowEmpty ? "!" : "");
           break;
         case "Multiplier":
-          return vr(e2.term, t2, n2, r2) + t2(Sl(e2), e2);
+          return vr2(e2.term, t3, n2, r2) + t3(Sl(e2), e2);
         case "Type":
-          i2 = "<" + e2.name + (e2.opts ? t2(Cl(e2.opts), e2.opts) : "") + ">";
+          i2 = "<" + e2.name + (e2.opts ? t3(Cl(e2.opts), e2.opts) : "") + ">";
           break;
         case "Property":
           i2 = "<'" + e2.name + "'>";
@@ -24176,21 +24723,21 @@
         default:
           throw new Error("Unknown node type `" + e2.type + "`");
       }
-      return t2(i2, e2);
+      return t3(i2, e2);
     }
-    function Sr(e2, t2) {
+    function Sr2(e2, t3) {
       let n2 = vl, r2 = false, i2 = false;
-      return typeof t2 == "function" ? n2 = t2 : t2 && (r2 = !!t2.forceBraces, i2 = !!t2.compact, typeof t2.decorate == "function" && (n2 = t2.decorate)), vr(e2, n2, r2, i2);
+      return typeof t3 == "function" ? n2 = t3 : t3 && (r2 = !!t3.forceBraces, i2 = !!t3.compact, typeof t3.decorate == "function" && (n2 = t3.decorate)), vr2(e2, n2, r2, i2);
     }
     const ii2 = { offset: 0, line: 1, column: 1 };
-    function Al(e2, t2) {
-      const n2 = e2.tokens, r2 = e2.longestMatch, i2 = r2 < n2.length && n2[r2].node || null, o2 = i2 !== t2 ? i2 : null;
+    function Al(e2, t3) {
+      const n2 = e2.tokens, r2 = e2.longestMatch, i2 = r2 < n2.length && n2[r2].node || null, o2 = i2 !== t3 ? i2 : null;
       let s2 = 0, c2 = 0, l2 = 0, a2 = "", u2, h2;
       for (let d2 = 0; d2 < n2.length; d2++) {
         const m2 = n2[d2].value;
         d2 === r2 && (c2 = m2.length, s2 = a2.length), o2 !== null && n2[d2].node === o2 && (d2 <= r2 ? l2++ : l2 = 0), a2 += m2;
       }
-      return r2 === n2.length || l2 > 1 ? (u2 = jt2(o2 || t2, "end") || wt2(ii2, a2), h2 = wt2(u2)) : (u2 = jt2(o2, "start") || wt2(jt2(t2, "start") || ii2, a2.slice(0, s2)), h2 = jt2(o2, "end") || wt2(u2, a2.substr(s2, c2))), {
+      return r2 === n2.length || l2 > 1 ? (u2 = jt2(o2 || t3, "end") || wt2(ii2, a2), h2 = wt2(u2)) : (u2 = jt2(o2, "start") || wt2(jt2(t3, "start") || ii2, a2.slice(0, s2)), h2 = jt2(o2, "end") || wt2(u2, a2.substr(s2, c2))), {
         css: a2,
         mismatchOffset: s2,
         mismatchLength: c2,
@@ -24198,14 +24745,14 @@
         end: h2
       };
     }
-    function jt2(e2, t2) {
-      const n2 = e2 && e2.loc && e2.loc[t2];
+    function jt2(e2, t3) {
+      const n2 = e2 && e2.loc && e2.loc[t3];
       return n2 ? "line" in n2 ? wt2(n2) : n2 : null;
     }
-    function wt2({ offset: e2, line: t2, column: n2 }, r2) {
+    function wt2({ offset: e2, line: t3, column: n2 }, r2) {
       const i2 = {
         offset: e2,
-        line: t2,
+        line: t3,
         column: n2
       };
       if (r2) {
@@ -24214,13 +24761,13 @@
       }
       return i2;
     }
-    const kt2 = function(e2, t2) {
+    const kt2 = function(e2, t3) {
       const n2 = bn2(
         "SyntaxReferenceError",
-        e2 + (t2 ? " `" + t2 + "`" : "")
+        e2 + (t3 ? " `" + t3 + "`" : "")
       );
-      return n2.reference = t2, n2;
-    }, Ol = function(e2, t2, n2, r2) {
+      return n2.reference = t3, n2;
+    }, Ol = function(e2, t3, n2, r2) {
       const i2 = bn2("SyntaxMatchError", e2), {
         css: o2,
         mismatchOffset: s2,
@@ -24228,7 +24775,7 @@
         start: l2,
         end: a2
       } = Al(r2, n2);
-      return i2.rawMessage = e2, i2.syntax = t2 ? Sr(t2) : "<generic>", i2.css = o2, i2.mismatchOffset = s2, i2.mismatchLength = c2, i2.message = e2 + `
+      return i2.rawMessage = e2, i2.syntax = t3 ? Sr2(t3) : "<generic>", i2.css = o2, i2.mismatchOffset = s2, i2.mismatchLength = c2, i2.message = e2 + `
   syntax: ` + i2.syntax + `
    value: ` + (o2 || "<empty string>") + `
   --------` + new Array(i2.mismatchOffset + 1).join("-") + "^", Object.assign(i2, l2), i2.loc = {
@@ -24237,27 +24784,27 @@
         end: a2
       }, i2;
     }, Ft2 = /* @__PURE__ */ new Map(), rt2 = /* @__PURE__ */ new Map(), on2 = 45, Pn2 = El, oi2 = Ll;
-    function Cr(e2, t2) {
-      return t2 = t2 || 0, e2.length - t2 >= 2 && e2.charCodeAt(t2) === on2 && e2.charCodeAt(t2 + 1) === on2;
+    function Cr2(e2, t3) {
+      return t3 = t3 || 0, e2.length - t3 >= 2 && e2.charCodeAt(t3) === on2 && e2.charCodeAt(t3 + 1) === on2;
     }
-    function Eo(e2, t2) {
-      if (t2 = t2 || 0, e2.length - t2 >= 3 && e2.charCodeAt(t2) === on2 && e2.charCodeAt(t2 + 1) !== on2) {
-        const n2 = e2.indexOf("-", t2 + 2);
+    function Eo(e2, t3) {
+      if (t3 = t3 || 0, e2.length - t3 >= 3 && e2.charCodeAt(t3) === on2 && e2.charCodeAt(t3 + 1) !== on2) {
+        const n2 = e2.indexOf("-", t3 + 2);
         if (n2 !== -1)
-          return e2.substring(t2, n2 + 1);
+          return e2.substring(t3, n2 + 1);
       }
       return "";
     }
     function El(e2) {
       if (Ft2.has(e2))
         return Ft2.get(e2);
-      const t2 = e2.toLowerCase();
-      let n2 = Ft2.get(t2);
+      const t3 = e2.toLowerCase();
+      let n2 = Ft2.get(t3);
       if (n2 === void 0) {
-        const r2 = Cr(t2, 0), i2 = r2 ? "" : Eo(t2, 0);
+        const r2 = Cr2(t3, 0), i2 = r2 ? "" : Eo(t3, 0);
         n2 = Object.freeze({
-          basename: t2.substr(i2.length),
-          name: t2,
+          basename: t3.substr(i2.length),
+          name: t3,
           prefix: i2,
           vendor: i2,
           custom: r2
@@ -24268,16 +24815,16 @@
     function Ll(e2) {
       if (rt2.has(e2))
         return rt2.get(e2);
-      let t2 = e2, n2 = e2[0];
+      let t3 = e2, n2 = e2[0];
       n2 === "/" ? n2 = e2[1] === "/" ? "//" : "/" : n2 !== "_" && n2 !== "*" && n2 !== "$" && n2 !== "#" && n2 !== "+" && n2 !== "&" && (n2 = "");
-      const r2 = Cr(t2, n2.length);
-      if (!r2 && (t2 = t2.toLowerCase(), rt2.has(t2))) {
-        const c2 = rt2.get(t2);
+      const r2 = Cr2(t3, n2.length);
+      if (!r2 && (t3 = t3.toLowerCase(), rt2.has(t3))) {
+        const c2 = rt2.get(t3);
         return rt2.set(e2, c2), c2;
       }
-      const i2 = r2 ? "" : Eo(t2, n2.length), o2 = t2.substr(0, n2.length + i2.length), s2 = Object.freeze({
-        basename: t2.substr(o2.length),
-        name: t2.substr(n2.length),
+      const i2 = r2 ? "" : Eo(t3, n2.length), o2 = t3.substr(0, n2.length + i2.length), s2 = Object.freeze({
+        basename: t3.substr(o2.length),
+        name: t3.substr(n2.length),
         hack: n2,
         vendor: i2,
         prefix: o2,
@@ -24291,39 +24838,39 @@
       "unset",
       "revert",
       "revert-layer"
-    ], _t2 = 43, Oe2 = 45, zn = 110, it2 = true, $l = false;
-    function Qn(e2, t2) {
-      return e2 !== null && e2.type === I2 && e2.value.charCodeAt(0) === t2;
+    ], _t2 = 43, Oe2 = 45, zn2 = 110, it2 = true, $l = false;
+    function Qn2(e2, t3) {
+      return e2 !== null && e2.type === I2 && e2.value.charCodeAt(0) === t3;
     }
-    function Tt2(e2, t2, n2) {
+    function Tt2(e2, t3, n2) {
       for (; e2 !== null && (e2.type === W2 || e2.type === X2); )
-        e2 = n2(++t2);
-      return t2;
+        e2 = n2(++t3);
+      return t3;
     }
-    function Ne2(e2, t2, n2, r2) {
+    function Ne2(e2, t3, n2, r2) {
       if (!e2)
         return 0;
-      const i2 = e2.value.charCodeAt(t2);
+      const i2 = e2.value.charCodeAt(t3);
       if (i2 === _t2 || i2 === Oe2) {
         if (n2)
           return 0;
-        t2++;
+        t3++;
       }
-      for (; t2 < e2.value.length; t2++)
-        if (!Q2(e2.value.charCodeAt(t2)))
+      for (; t3 < e2.value.length; t3++)
+        if (!Q2(e2.value.charCodeAt(t3)))
           return 0;
       return r2 + 1;
     }
-    function In2(e2, t2, n2) {
-      let r2 = false, i2 = Tt2(e2, t2, n2);
+    function In2(e2, t3, n2) {
+      let r2 = false, i2 = Tt2(e2, t3, n2);
       if (e2 = n2(i2), e2 === null)
-        return t2;
+        return t3;
       if (e2.type !== L2)
-        if (Qn(e2, _t2) || Qn(e2, Oe2)) {
+        if (Qn2(e2, _t2) || Qn2(e2, Oe2)) {
           if (r2 = true, i2 = Tt2(n2(++i2), i2, n2), e2 = n2(i2), e2 === null || e2.type !== L2)
             return 0;
         } else
-          return t2;
+          return t3;
       if (!r2) {
         const o2 = e2.value.charCodeAt(0);
         if (o2 !== _t2 && o2 !== Oe2)
@@ -24331,31 +24878,31 @@
       }
       return Ne2(e2, r2 ? 0 : 1, r2, i2);
     }
-    function _l(e2, t2) {
+    function _l(e2, t3) {
       let n2 = 0;
       if (!e2)
         return 0;
       if (e2.type === L2)
         return Ne2(e2, 0, $l, n2);
       if (e2.type === y2 && e2.value.charCodeAt(0) === Oe2) {
-        if (!ht2(e2.value, 1, zn))
+        if (!ht2(e2.value, 1, zn2))
           return 0;
         switch (e2.value.length) {
           case 2:
-            return In2(t2(++n2), n2, t2);
+            return In2(t3(++n2), n2, t3);
           case 3:
-            return e2.value.charCodeAt(2) !== Oe2 ? 0 : (n2 = Tt2(t2(++n2), n2, t2), e2 = t2(n2), Ne2(e2, 0, it2, n2));
+            return e2.value.charCodeAt(2) !== Oe2 ? 0 : (n2 = Tt2(t3(++n2), n2, t3), e2 = t3(n2), Ne2(e2, 0, it2, n2));
           default:
             return e2.value.charCodeAt(2) !== Oe2 ? 0 : Ne2(e2, 3, it2, n2);
         }
-      } else if (e2.type === y2 || Qn(e2, _t2) && t2(n2 + 1).type === y2) {
-        if (e2.type !== y2 && (e2 = t2(++n2)), e2 === null || !ht2(e2.value, 0, zn))
+      } else if (e2.type === y2 || Qn2(e2, _t2) && t3(n2 + 1).type === y2) {
+        if (e2.type !== y2 && (e2 = t3(++n2)), e2 === null || !ht2(e2.value, 0, zn2))
           return 0;
         switch (e2.value.length) {
           case 1:
-            return In2(t2(++n2), n2, t2);
+            return In2(t3(++n2), n2, t3);
           case 2:
-            return e2.value.charCodeAt(1) !== Oe2 ? 0 : (n2 = Tt2(t2(++n2), n2, t2), e2 = t2(n2), Ne2(e2, 0, it2, n2));
+            return e2.value.charCodeAt(1) !== Oe2 ? 0 : (n2 = Tt2(t3(++n2), n2, t3), e2 = t3(n2), Ne2(e2, 0, it2, n2));
           default:
             return e2.value.charCodeAt(1) !== Oe2 ? 0 : Ne2(e2, 2, it2, n2);
         }
@@ -24363,83 +24910,83 @@
         let r2 = e2.value.charCodeAt(0), i2 = r2 === _t2 || r2 === Oe2 ? 1 : 0, o2 = i2;
         for (; o2 < e2.value.length && Q2(e2.value.charCodeAt(o2)); o2++)
           ;
-        return o2 === i2 || !ht2(e2.value, o2, zn) ? 0 : o2 + 1 === e2.value.length ? In2(t2(++n2), n2, t2) : e2.value.charCodeAt(o2 + 1) !== Oe2 ? 0 : o2 + 2 === e2.value.length ? (n2 = Tt2(t2(++n2), n2, t2), e2 = t2(n2), Ne2(e2, 0, it2, n2)) : Ne2(e2, o2 + 2, it2, n2);
+        return o2 === i2 || !ht2(e2.value, o2, zn2) ? 0 : o2 + 1 === e2.value.length ? In2(t3(++n2), n2, t3) : e2.value.charCodeAt(o2 + 1) !== Oe2 ? 0 : o2 + 2 === e2.value.length ? (n2 = Tt2(t3(++n2), n2, t3), e2 = t3(n2), Ne2(e2, 0, it2, n2)) : Ne2(e2, o2 + 2, it2, n2);
       }
       return 0;
     }
     const Pl = 43, $o = 45, _o = 63, zl = 117;
-    function Xn(e2, t2) {
-      return e2 !== null && e2.type === I2 && e2.value.charCodeAt(0) === t2;
+    function Xn2(e2, t3) {
+      return e2 !== null && e2.type === I2 && e2.value.charCodeAt(0) === t3;
     }
-    function Il(e2, t2) {
-      return e2.value.charCodeAt(0) === t2;
+    function Il(e2, t3) {
+      return e2.value.charCodeAt(0) === t3;
     }
-    function vt2(e2, t2, n2) {
+    function vt2(e2, t3, n2) {
       let r2 = 0;
-      for (let i2 = t2; i2 < e2.value.length; i2++) {
+      for (let i2 = t3; i2 < e2.value.length; i2++) {
         const o2 = e2.value.charCodeAt(i2);
         if (o2 === $o && n2 && r2 !== 0)
-          return vt2(e2, t2 + r2 + 1, false), 6;
+          return vt2(e2, t3 + r2 + 1, false), 6;
         if (!He2(o2) || ++r2 > 6)
           return 0;
       }
       return r2;
     }
-    function Bt2(e2, t2, n2) {
+    function Bt2(e2, t3, n2) {
       if (!e2)
         return 0;
-      for (; Xn(n2(t2), _o); ) {
+      for (; Xn2(n2(t3), _o); ) {
         if (++e2 > 6)
           return 0;
-        t2++;
+        t3++;
       }
-      return t2;
+      return t3;
     }
-    function Rl(e2, t2) {
+    function Rl(e2, t3) {
       let n2 = 0;
-      if (e2 === null || e2.type !== y2 || !ht2(e2.value, 0, zl) || (e2 = t2(++n2), e2 === null))
+      if (e2 === null || e2.type !== y2 || !ht2(e2.value, 0, zl) || (e2 = t3(++n2), e2 === null))
         return 0;
-      if (Xn(e2, Pl))
-        return e2 = t2(++n2), e2 === null ? 0 : e2.type === y2 ? Bt2(vt2(e2, 0, true), ++n2, t2) : Xn(e2, _o) ? Bt2(1, ++n2, t2) : 0;
+      if (Xn2(e2, Pl))
+        return e2 = t3(++n2), e2 === null ? 0 : e2.type === y2 ? Bt2(vt2(e2, 0, true), ++n2, t3) : Xn2(e2, _o) ? Bt2(1, ++n2, t3) : 0;
       if (e2.type === L2) {
         const r2 = vt2(e2, 1, true);
-        return r2 === 0 ? 0 : (e2 = t2(++n2), e2 === null ? n2 : e2.type === z2 || e2.type === L2 ? !Il(e2, $o) || !vt2(e2, 1, false) ? 0 : n2 + 1 : Bt2(r2, n2, t2));
+        return r2 === 0 ? 0 : (e2 = t3(++n2), e2 === null ? n2 : e2.type === z2 || e2.type === L2 ? !Il(e2, $o) || !vt2(e2, 1, false) ? 0 : n2 + 1 : Bt2(r2, n2, t3));
       }
-      return e2.type === z2 ? Bt2(vt2(e2, 1, true), ++n2, t2) : 0;
+      return e2.type === z2 ? Bt2(vt2(e2, 1, true), ++n2, t3) : 0;
     }
-    const Ml = ["calc(", "-moz-calc(", "-webkit-calc("], Tr = /* @__PURE__ */ new Map([
+    const Ml = ["calc(", "-moz-calc(", "-webkit-calc("], Tr2 = /* @__PURE__ */ new Map([
       [$5, E2],
       [M2, E2],
       [fe2, Se2],
       [V2, ue2]
     ]);
-    function xe2(e2, t2) {
-      return t2 < e2.length ? e2.charCodeAt(t2) : 0;
+    function xe2(e2, t3) {
+      return t3 < e2.length ? e2.charCodeAt(t3) : 0;
     }
-    function Po(e2, t2) {
-      return $t2(e2, 0, e2.length, t2);
+    function Po(e2, t3) {
+      return $t2(e2, 0, e2.length, t3);
     }
-    function zo(e2, t2) {
-      for (let n2 = 0; n2 < t2.length; n2++)
-        if (Po(e2, t2[n2]))
+    function zo(e2, t3) {
+      for (let n2 = 0; n2 < t3.length; n2++)
+        if (Po(e2, t3[n2]))
           return true;
       return false;
     }
-    function Io(e2, t2) {
-      return t2 !== e2.length - 2 ? false : xe2(e2, t2) === 92 && // U+005C REVERSE SOLIDUS (\)
-      Q2(xe2(e2, t2 + 1));
+    function Io(e2, t3) {
+      return t3 !== e2.length - 2 ? false : xe2(e2, t3) === 92 && // U+005C REVERSE SOLIDUS (\)
+      Q2(xe2(e2, t3 + 1));
     }
-    function xn2(e2, t2, n2) {
+    function xn2(e2, t3, n2) {
       if (e2 && e2.type === "Range") {
         const r2 = Number(
-          n2 !== void 0 && n2 !== t2.length ? t2.substr(0, n2) : t2
+          n2 !== void 0 && n2 !== t3.length ? t3.substr(0, n2) : t3
         );
         if (isNaN(r2) || e2.min !== null && r2 < e2.min && typeof e2.min != "string" || e2.max !== null && r2 > e2.max && typeof e2.max != "string")
           return true;
       }
       return false;
     }
-    function Nl(e2, t2) {
+    function Nl(e2, t3) {
       let n2 = 0, r2 = [], i2 = 0;
       e:
         do {
@@ -24458,28 +25005,28 @@
             case M2:
             case fe2:
             case V2:
-              r2.push(n2), n2 = Tr.get(e2.type);
+              r2.push(n2), n2 = Tr2.get(e2.type);
               break;
           }
           i2++;
-        } while (e2 = t2(i2));
+        } while (e2 = t3(i2));
       return i2;
     }
     function me2(e2) {
-      return function(t2, n2, r2) {
-        return t2 === null ? 0 : t2.type === $5 && zo(t2.value, Ml) ? Nl(t2, n2) : e2(t2, n2, r2);
+      return function(t3, n2, r2) {
+        return t3 === null ? 0 : t3.type === $5 && zo(t3.value, Ml) ? Nl(t3, n2) : e2(t3, n2, r2);
       };
     }
     function j2(e2) {
-      return function(t2) {
-        return t2 === null || t2.type !== e2 ? 0 : 1;
+      return function(t3) {
+        return t3 === null || t3.type !== e2 ? 0 : 1;
       };
     }
     function Dl(e2) {
       if (e2 === null || e2.type !== y2)
         return 0;
-      const t2 = e2.value.toLowerCase();
-      return zo(t2, Lo) || Po(t2, "default") ? 0 : 1;
+      const t3 = e2.value.toLowerCase();
+      return zo(t3, Lo) || Po(t3, "default") ? 0 : 1;
     }
     function Ro(e2) {
       return e2 === null || e2.type !== y2 || xe2(e2.value, 0) !== 45 || xe2(e2.value, 1) !== 45 ? 0 : 1;
@@ -24490,10 +25037,10 @@
     function Fl(e2) {
       if (e2 === null || e2.type !== F2)
         return 0;
-      const t2 = e2.value.length;
-      if (t2 !== 4 && t2 !== 5 && t2 !== 7 && t2 !== 9)
+      const t3 = e2.value.length;
+      if (t3 !== 4 && t3 !== 5 && t3 !== 7 && t3 !== 9)
         return 0;
-      for (let n2 = 1; n2 < t2; n2++)
+      for (let n2 = 1; n2 < t3; n2++)
         if (!He2(xe2(e2.value, n2)))
           return 0;
       return 1;
@@ -24501,7 +25048,7 @@
     function Bl(e2) {
       return e2 === null || e2.type !== F2 || !qt2(xe2(e2.value, 1), xe2(e2.value, 2), xe2(e2.value, 3)) ? 0 : 1;
     }
-    function Wl(e2, t2) {
+    function Wl(e2, t3) {
       if (!e2)
         return 0;
       let n2 = 0, r2 = [], i2 = 0;
@@ -24530,14 +25077,14 @@
             case M2:
             case fe2:
             case V2:
-              r2.push(n2), n2 = Tr.get(e2.type);
+              r2.push(n2), n2 = Tr2.get(e2.type);
               break;
           }
           i2++;
-        } while (e2 = t2(i2));
+        } while (e2 = t3(i2));
       return i2;
     }
-    function Hl(e2, t2) {
+    function Hl(e2, t3) {
       if (!e2)
         return 0;
       let n2 = 0, r2 = [], i2 = 0;
@@ -24558,43 +25105,43 @@
             case M2:
             case fe2:
             case V2:
-              r2.push(n2), n2 = Tr.get(e2.type);
+              r2.push(n2), n2 = Tr2.get(e2.type);
               break;
           }
           i2++;
-        } while (e2 = t2(i2));
+        } while (e2 = t3(i2));
       return i2;
     }
     function Ie2(e2) {
-      return e2 && (e2 = new Set(e2)), function(t2, n2, r2) {
-        if (t2 === null || t2.type !== z2)
+      return e2 && (e2 = new Set(e2)), function(t3, n2, r2) {
+        if (t3 === null || t3.type !== z2)
           return 0;
-        const i2 = mn2(t2.value, 0);
+        const i2 = mn2(t3.value, 0);
         if (e2 !== null) {
-          const o2 = t2.value.indexOf("\\", i2), s2 = o2 === -1 || !Io(t2.value, o2) ? t2.value.substr(i2) : t2.value.substring(i2, o2);
+          const o2 = t3.value.indexOf("\\", i2), s2 = o2 === -1 || !Io(t3.value, o2) ? t3.value.substr(i2) : t3.value.substring(i2, o2);
           if (e2.has(s2.toLowerCase()) === false)
             return 0;
         }
-        return xn2(r2, t2.value, i2) ? 0 : 1;
+        return xn2(r2, t3.value, i2) ? 0 : 1;
       };
     }
-    function Ul(e2, t2, n2) {
+    function Ul(e2, t3, n2) {
       return e2 === null || e2.type !== B2 || xn2(n2, e2.value, e2.value.length - 1) ? 0 : 1;
     }
     function Mo(e2) {
       return typeof e2 != "function" && (e2 = function() {
         return 0;
-      }), function(t2, n2, r2) {
-        return t2 !== null && t2.type === L2 && Number(t2.value) === 0 ? 1 : e2(t2, n2, r2);
+      }), function(t3, n2, r2) {
+        return t3 !== null && t3.type === L2 && Number(t3.value) === 0 ? 1 : e2(t3, n2, r2);
       };
     }
-    function ql(e2, t2, n2) {
+    function ql(e2, t3, n2) {
       if (e2 === null)
         return 0;
       const r2 = mn2(e2.value, 0);
       return !(r2 === e2.value.length) && !Io(e2.value, r2) || xn2(n2, e2.value, r2) ? 0 : 1;
     }
-    function Gl(e2, t2, n2) {
+    function Gl(e2, t3, n2) {
       if (e2 === null || e2.type !== L2)
         return 0;
       let r2 = xe2(e2.value, 0) === 43 || // U+002B PLUS SIGN (+)
@@ -24653,7 +25200,7 @@
     };
     function Yl(e2) {
       const {
-        angle: t2,
+        angle: t3,
         decibel: n2,
         frequency: r2,
         flex: i2,
@@ -24664,7 +25211,7 @@
       } = e2 || {};
       return {
         dimension: me2(Ie2(null)),
-        angle: me2(Ie2(t2)),
+        angle: me2(Ie2(t3)),
         decibel: me2(Ie2(n2)),
         frequency: me2(Ie2(r2)),
         flex: me2(Ie2(i2)),
@@ -24742,23 +25289,23 @@
       semitones: ic,
       time: Jl
     }, Symbol.toStringTag, { value: "Module" }));
-    function oc(e2, t2, n2) {
+    function oc(e2, t3, n2) {
       return Object.assign(bn2("SyntaxError", e2), {
-        input: t2,
+        input: t3,
         offset: n2,
         rawMessage: e2,
         message: e2 + `
-  ` + t2 + `
---` + new Array((n2 || t2.length) + 1).join("-") + "^"
+  ` + t3 + `
+--` + new Array((n2 || t3.length) + 1).join("-") + "^"
       });
     }
     const sc = 9, ac = 10, lc = 12, cc = 13, uc = 32;
     class hc {
-      constructor(t2) {
-        this.str = t2, this.pos = 0;
+      constructor(t3) {
+        this.str = t3, this.pos = 0;
       }
-      charCodeAt(t2) {
-        return t2 < this.str.length ? this.str.charCodeAt(t2) : 0;
+      charCodeAt(t3) {
+        return t3 < this.str.length ? this.str.charCodeAt(t3) : 0;
       }
       charCode() {
         return this.charCodeAt(this.pos);
@@ -24766,35 +25313,35 @@
       nextCharCode() {
         return this.charCodeAt(this.pos + 1);
       }
-      nextNonWsCode(t2) {
-        return this.charCodeAt(this.findWsEnd(t2));
+      nextNonWsCode(t3) {
+        return this.charCodeAt(this.findWsEnd(t3));
       }
       skipWs() {
         this.pos = this.findWsEnd(this.pos);
       }
-      findWsEnd(t2) {
-        for (; t2 < this.str.length; t2++) {
-          const n2 = this.str.charCodeAt(t2);
+      findWsEnd(t3) {
+        for (; t3 < this.str.length; t3++) {
+          const n2 = this.str.charCodeAt(t3);
           if (n2 !== cc && n2 !== ac && n2 !== lc && n2 !== uc && n2 !== sc)
             break;
         }
-        return t2;
+        return t3;
       }
-      substringToPos(t2) {
-        return this.str.substring(this.pos, this.pos = t2);
+      substringToPos(t3) {
+        return this.str.substring(this.pos, this.pos = t3);
       }
-      eat(t2) {
-        this.charCode() !== t2 && this.error("Expect `" + String.fromCharCode(t2) + "`"), this.pos++;
+      eat(t3) {
+        this.charCode() !== t3 && this.error("Expect `" + String.fromCharCode(t3) + "`"), this.pos++;
       }
       peek() {
         return this.pos < this.str.length ? this.str.charAt(this.pos++) : "";
       }
-      error(t2) {
-        throw new oc(t2, this.str, this.pos);
+      error(t3) {
+        throw new oc(t3, this.str, this.pos);
       }
     }
-    const pc = 9, fc = 10, dc = 12, mc = 13, gc = 32, No = 33, Ar = 35, ai2 = 38, sn2 = 39, Do = 40, bc = 41, jo = 42, Or = 43, Er = 44, li2 = 45, Lr = 60, Fo = 62, Zn = 63, yc = 64, wn2 = 91, $r = 93, an2 = 123, ci2 = 124, ui2 = 125, hi2 = 8734, Pt2 = new Uint8Array(128).map(
-      (e2, t2) => /[a-zA-Z0-9\-]/.test(String.fromCharCode(t2)) ? 1 : 0
+    const pc = 9, fc = 10, dc = 12, mc = 13, gc = 32, No = 33, Ar2 = 35, ai2 = 38, sn2 = 39, Do = 40, bc = 41, jo = 42, Or2 = 43, Er2 = 44, li2 = 45, Lr2 = 60, Fo = 62, Zn2 = 63, yc = 64, wn2 = 91, $r2 = 93, an2 = 123, ci2 = 124, ui2 = 125, hi2 = 8734, Pt2 = new Uint8Array(128).map(
+      (e2, t3) => /[a-zA-Z0-9\-]/.test(String.fromCharCode(t3)) ? 1 : 0
     ), pi2 = {
       " ": 1,
       "&&": 2,
@@ -24807,66 +25354,66 @@
       );
     }
     function dt2(e2) {
-      let t2 = e2.pos;
-      for (; t2 < e2.str.length; t2++) {
-        const n2 = e2.str.charCodeAt(t2);
+      let t3 = e2.pos;
+      for (; t3 < e2.str.length; t3++) {
+        const n2 = e2.str.charCodeAt(t3);
         if (n2 >= 128 || Pt2[n2] === 0)
           break;
       }
-      return e2.pos === t2 && e2.error("Expect a keyword"), e2.substringToPos(t2);
+      return e2.pos === t3 && e2.error("Expect a keyword"), e2.substringToPos(t3);
     }
     function cn2(e2) {
-      let t2 = e2.pos;
-      for (; t2 < e2.str.length; t2++) {
-        const n2 = e2.str.charCodeAt(t2);
+      let t3 = e2.pos;
+      for (; t3 < e2.str.length; t3++) {
+        const n2 = e2.str.charCodeAt(t3);
         if (n2 < 48 || n2 > 57)
           break;
       }
-      return e2.pos === t2 && e2.error("Expect a number"), e2.substringToPos(t2);
+      return e2.pos === t3 && e2.error("Expect a number"), e2.substringToPos(t3);
     }
     function kc(e2) {
-      const t2 = e2.str.indexOf("'", e2.pos + 1);
-      return t2 === -1 && (e2.pos = e2.str.length, e2.error("Expect an apostrophe")), e2.substringToPos(t2 + 1);
+      const t3 = e2.str.indexOf("'", e2.pos + 1);
+      return t3 === -1 && (e2.pos = e2.str.length, e2.error("Expect an apostrophe")), e2.substringToPos(t3 + 1);
     }
     function fi2(e2) {
-      let t2 = null, n2 = null;
-      return e2.eat(an2), e2.skipWs(), t2 = cn2(e2), e2.skipWs(), e2.charCode() === Er ? (e2.pos++, e2.skipWs(), e2.charCode() !== ui2 && (n2 = cn2(e2), e2.skipWs())) : n2 = t2, e2.eat(ui2), {
-        min: Number(t2),
+      let t3 = null, n2 = null;
+      return e2.eat(an2), e2.skipWs(), t3 = cn2(e2), e2.skipWs(), e2.charCode() === Er2 ? (e2.pos++, e2.skipWs(), e2.charCode() !== ui2 && (n2 = cn2(e2), e2.skipWs())) : n2 = t3, e2.eat(ui2), {
+        min: Number(t3),
         max: n2 ? Number(n2) : 0
       };
     }
     function xc(e2) {
-      let t2 = null, n2 = false;
+      let t3 = null, n2 = false;
       switch (e2.charCode()) {
         case jo:
-          e2.pos++, t2 = {
+          e2.pos++, t3 = {
             min: 0,
             max: 0
           };
           break;
-        case Or:
-          e2.pos++, t2 = {
+        case Or2:
+          e2.pos++, t3 = {
             min: 1,
             max: 0
           };
           break;
-        case Zn:
-          e2.pos++, t2 = {
+        case Zn2:
+          e2.pos++, t3 = {
             min: 0,
             max: 1
           };
           break;
-        case Ar:
-          e2.pos++, n2 = true, e2.charCode() === an2 ? t2 = fi2(e2) : e2.charCode() === Zn ? (e2.pos++, t2 = {
+        case Ar2:
+          e2.pos++, n2 = true, e2.charCode() === an2 ? t3 = fi2(e2) : e2.charCode() === Zn2 ? (e2.pos++, t3 = {
             min: 0,
             max: 0
-          }) : t2 = {
+          }) : t3 = {
             min: 1,
             max: 0
           };
           break;
         case an2:
-          t2 = fi2(e2);
+          t3 = fi2(e2);
           break;
         default:
           return null;
@@ -24874,56 +25421,56 @@
       return {
         type: "Multiplier",
         comma: n2,
-        min: t2.min,
-        max: t2.max,
+        min: t3.min,
+        max: t3.max,
         term: null
       };
     }
-    function mt2(e2, t2) {
+    function mt2(e2, t3) {
       const n2 = xc(e2);
-      return n2 !== null ? (n2.term = t2, e2.charCode() === Ar && e2.charCodeAt(e2.pos - 1) === Or ? mt2(e2, n2) : n2) : t2;
+      return n2 !== null ? (n2.term = t3, e2.charCode() === Ar2 && e2.charCodeAt(e2.pos - 1) === Or2 ? mt2(e2, n2) : n2) : t3;
     }
     function Rn2(e2) {
-      const t2 = e2.peek();
-      return t2 === "" ? null : {
+      const t3 = e2.peek();
+      return t3 === "" ? null : {
         type: "Token",
-        value: t2
+        value: t3
       };
     }
     function wc(e2) {
-      let t2;
-      return e2.eat(Lr), e2.eat(sn2), t2 = dt2(e2), e2.eat(sn2), e2.eat(Fo), mt2(e2, {
+      let t3;
+      return e2.eat(Lr2), e2.eat(sn2), t3 = dt2(e2), e2.eat(sn2), e2.eat(Fo), mt2(e2, {
         type: "Property",
-        name: t2
+        name: t3
       });
     }
     function vc(e2) {
-      let t2 = null, n2 = null, r2 = 1;
-      return e2.eat(wn2), e2.charCode() === li2 && (e2.peek(), r2 = -1), r2 == -1 && e2.charCode() === hi2 ? e2.peek() : (t2 = r2 * Number(cn2(e2)), Pt2[e2.charCode()] !== 0 && (t2 += dt2(e2))), ln2(e2), e2.eat(Er), ln2(e2), e2.charCode() === hi2 ? e2.peek() : (r2 = 1, e2.charCode() === li2 && (e2.peek(), r2 = -1), n2 = r2 * Number(cn2(e2)), Pt2[e2.charCode()] !== 0 && (n2 += dt2(e2))), e2.eat($r), {
+      let t3 = null, n2 = null, r2 = 1;
+      return e2.eat(wn2), e2.charCode() === li2 && (e2.peek(), r2 = -1), r2 == -1 && e2.charCode() === hi2 ? e2.peek() : (t3 = r2 * Number(cn2(e2)), Pt2[e2.charCode()] !== 0 && (t3 += dt2(e2))), ln2(e2), e2.eat(Er2), ln2(e2), e2.charCode() === hi2 ? e2.peek() : (r2 = 1, e2.charCode() === li2 && (e2.peek(), r2 = -1), n2 = r2 * Number(cn2(e2)), Pt2[e2.charCode()] !== 0 && (n2 += dt2(e2))), e2.eat($r2), {
         type: "Range",
-        min: t2,
+        min: t3,
         max: n2
       };
     }
     function Sc(e2) {
-      let t2, n2 = null;
-      return e2.eat(Lr), t2 = dt2(e2), e2.charCode() === Do && e2.nextCharCode() === bc && (e2.pos += 2, t2 += "()"), e2.charCodeAt(e2.findWsEnd(e2.pos)) === wn2 && (ln2(e2), n2 = vc(e2)), e2.eat(Fo), mt2(e2, {
+      let t3, n2 = null;
+      return e2.eat(Lr2), t3 = dt2(e2), e2.charCode() === Do && e2.nextCharCode() === bc && (e2.pos += 2, t3 += "()"), e2.charCodeAt(e2.findWsEnd(e2.pos)) === wn2 && (ln2(e2), n2 = vc(e2)), e2.eat(Fo), mt2(e2, {
         type: "Type",
-        name: t2,
+        name: t3,
         opts: n2
       });
     }
     function Cc(e2) {
-      const t2 = dt2(e2);
+      const t3 = dt2(e2);
       return e2.charCode() === Do ? (e2.pos++, {
         type: "Function",
-        name: t2
+        name: t3
       }) : mt2(e2, {
         type: "Keyword",
-        name: t2
+        name: t3
       });
     }
-    function Tc(e2, t2) {
+    function Tc(e2, t3) {
       function n2(i2, o2) {
         return {
           type: "Group",
@@ -24934,8 +25481,8 @@
         };
       }
       let r2;
-      for (t2 = Object.keys(t2).sort((i2, o2) => pi2[i2] - pi2[o2]); t2.length > 0; ) {
-        r2 = t2.shift();
+      for (t3 = Object.keys(t3).sort((i2, o2) => pi2[i2] - pi2[o2]); t3.length > 0; ) {
+        r2 = t3.shift();
         let i2 = 0, o2 = 0;
         for (; i2 < e2.length; i2++) {
           const s2 = e2[i2];
@@ -24945,7 +25492,7 @@
             n2(e2.slice(o2, i2), r2)
           ), i2 = o2 + 1), o2 = -1));
         }
-        o2 !== -1 && t2.length && e2.splice(
+        o2 !== -1 && t3.length && e2.splice(
           o2,
           i2 - o2,
           n2(e2.slice(o2, i2), r2)
@@ -24954,35 +25501,35 @@
       return r2;
     }
     function Bo(e2) {
-      const t2 = [], n2 = {};
+      const t3 = [], n2 = {};
       let r2, i2 = null, o2 = e2.pos;
       for (; r2 = Oc(e2); )
-        r2.type !== "Spaces" && (r2.type === "Combinator" ? ((i2 === null || i2.type === "Combinator") && (e2.pos = o2, e2.error("Unexpected combinator")), n2[r2.value] = true) : i2 !== null && i2.type !== "Combinator" && (n2[" "] = true, t2.push({
+        r2.type !== "Spaces" && (r2.type === "Combinator" ? ((i2 === null || i2.type === "Combinator") && (e2.pos = o2, e2.error("Unexpected combinator")), n2[r2.value] = true) : i2 !== null && i2.type !== "Combinator" && (n2[" "] = true, t3.push({
           type: "Combinator",
           value: " "
-        })), t2.push(r2), i2 = r2, o2 = e2.pos);
+        })), t3.push(r2), i2 = r2, o2 = e2.pos);
       return i2 !== null && i2.type === "Combinator" && (e2.pos -= o2, e2.error("Unexpected combinator")), {
         type: "Group",
-        terms: t2,
-        combinator: Tc(t2, n2) || " ",
+        terms: t3,
+        combinator: Tc(t3, n2) || " ",
         disallowEmpty: false,
         explicit: false
       };
     }
     function Ac(e2) {
-      let t2;
-      return e2.eat(wn2), t2 = Bo(e2), e2.eat($r), t2.explicit = true, e2.charCode() === No && (e2.pos++, t2.disallowEmpty = true), t2;
+      let t3;
+      return e2.eat(wn2), t3 = Bo(e2), e2.eat($r2), t3.explicit = true, e2.charCode() === No && (e2.pos++, t3.disallowEmpty = true), t3;
     }
     function Oc(e2) {
-      let t2 = e2.charCode();
-      if (t2 < 128 && Pt2[t2] === 1)
+      let t3 = e2.charCode();
+      if (t3 < 128 && Pt2[t3] === 1)
         return Cc(e2);
-      switch (t2) {
-        case $r:
+      switch (t3) {
+        case $r2:
           break;
         case wn2:
           return mt2(e2, Ac(e2));
-        case Lr:
+        case Lr2:
           return e2.nextCharCode() === sn2 ? wc(e2) : Sc(e2);
         case ci2:
           return {
@@ -24996,7 +25543,7 @@
             type: "Combinator",
             value: "&&"
           };
-        case Er:
+        case Er2:
           return e2.pos++, {
             type: "Comma"
           };
@@ -25015,18 +25562,18 @@
             value: ln2(e2)
           };
         case yc:
-          return t2 = e2.nextCharCode(), t2 < 128 && Pt2[t2] === 1 ? (e2.pos++, {
+          return t3 = e2.nextCharCode(), t3 < 128 && Pt2[t3] === 1 ? (e2.pos++, {
             type: "AtKeyword",
             name: dt2(e2)
           }) : Rn2(e2);
         case jo:
-        case Or:
-        case Zn:
-        case Ar:
+        case Or2:
+        case Zn2:
+        case Ar2:
         case No:
           break;
         case an2:
-          if (t2 = e2.nextCharCode(), t2 < 48 || t2 > 57)
+          if (t3 = e2.nextCharCode(), t3 < 48 || t3 > 57)
             return Rn2(e2);
           break;
         default:
@@ -25034,15 +25581,15 @@
       }
     }
     function Wo(e2) {
-      const t2 = new hc(e2), n2 = Bo(t2);
-      return t2.pos !== e2.length && t2.error("Unexpected input"), n2.terms.length === 1 && n2.terms[0].type === "Group" ? n2.terms[0] : n2;
+      const t3 = new hc(e2), n2 = Bo(t3);
+      return t3.pos !== e2.length && t3.error("Unexpected input"), n2.terms.length === 1 && n2.terms[0].type === "Group" ? n2.terms[0] : n2;
     }
     const St2 = function() {
     };
     function di2(e2) {
       return typeof e2 == "function" ? e2 : St2;
     }
-    function Ec(e2, t2, n2) {
+    function Ec(e2, t3, n2) {
       function r2(s2) {
         switch (i2.call(n2, s2), s2.type) {
           case "Group":
@@ -25066,13 +25613,13 @@
         o2.call(n2, s2);
       }
       let i2 = St2, o2 = St2;
-      if (typeof t2 == "function" ? i2 = t2 : t2 && (i2 = di2(t2.enter), o2 = di2(t2.leave)), i2 === St2 && o2 === St2)
+      if (typeof t3 == "function" ? i2 = t3 : t3 && (i2 = di2(t3.enter), o2 = di2(t3.leave)), i2 === St2 && o2 === St2)
         throw new Error("Neither `enter` nor `leave` walker handler is set or both aren't a function");
       r2(e2);
     }
     const Lc = {
       decorator(e2) {
-        const t2 = [];
+        const t3 = [];
         let n2 = null;
         return Z2(_2({}, e2), {
           node(r2) {
@@ -25080,38 +25627,38 @@
             n2 = r2, e2.node.call(this, r2), n2 = i2;
           },
           emit(r2, i2, o2) {
-            t2.push({
+            t3.push({
               type: i2,
               value: r2,
               node: o2 ? null : n2
             });
           },
           result() {
-            return t2;
+            return t3;
           }
         });
       }
     };
     function $c(e2) {
-      const t2 = [];
+      const t3 = [];
       return gn2(
         e2,
-        (n2, r2, i2) => t2.push({
+        (n2, r2, i2) => t3.push({
           type: n2,
           value: e2.slice(r2, i2),
           node: null
         })
-      ), t2;
+      ), t3;
     }
-    function _c(e2, t2) {
-      return typeof e2 == "string" ? $c(e2) : t2.generate(e2, Lc);
+    function _c(e2, t3) {
+      return typeof e2 == "string" ? $c(e2) : t3.generate(e2, Lc);
     }
-    const N2 = { type: "Match" }, D2 = { type: "Mismatch" }, _r = { type: "DisallowEmpty" }, Pc = 40, zc = 41;
-    function J2(e2, t2, n2) {
-      return t2 === N2 && n2 === D2 || e2 === N2 && t2 === N2 && n2 === N2 ? e2 : (e2.type === "If" && e2.else === D2 && t2 === N2 && (t2 = e2.then, e2 = e2.match), {
+    const N2 = { type: "Match" }, D2 = { type: "Mismatch" }, _r2 = { type: "DisallowEmpty" }, Pc = 40, zc = 41;
+    function J2(e2, t3, n2) {
+      return t3 === N2 && n2 === D2 || e2 === N2 && t3 === N2 && n2 === N2 ? e2 : (e2.type === "If" && e2.else === D2 && t3 === N2 && (t3 = e2.then, e2 = e2.match), {
         type: "If",
         match: e2,
-        then: t2,
+        then: t3,
         else: n2
       });
     }
@@ -25121,12 +25668,12 @@
     function mi2(e2) {
       return e2.type === "Keyword" || e2.type === "AtKeyword" || e2.type === "Function" || e2.type === "Type" && Ho(e2.name);
     }
-    function Jn(e2, t2, n2) {
+    function Jn2(e2, t3, n2) {
       switch (e2) {
         case " ": {
           let r2 = N2;
-          for (let i2 = t2.length - 1; i2 >= 0; i2--) {
-            const o2 = t2[i2];
+          for (let i2 = t3.length - 1; i2 >= 0; i2--) {
+            const o2 = t3[i2];
             r2 = J2(
               o2,
               r2,
@@ -25137,9 +25684,9 @@
         }
         case "|": {
           let r2 = D2, i2 = null;
-          for (let o2 = t2.length - 1; o2 >= 0; o2--) {
-            let s2 = t2[o2];
-            if (mi2(s2) && (i2 === null && o2 > 0 && mi2(t2[o2 - 1]) && (i2 = /* @__PURE__ */ Object.create(null), r2 = J2(
+          for (let o2 = t3.length - 1; o2 >= 0; o2--) {
+            let s2 = t3[o2];
+            if (mi2(s2) && (i2 === null && o2 > 0 && mi2(t3[o2 - 1]) && (i2 = /* @__PURE__ */ Object.create(null), r2 = J2(
               {
                 type: "Enum",
                 map: i2
@@ -25162,19 +25709,19 @@
           return r2;
         }
         case "&&": {
-          if (t2.length > 5)
+          if (t3.length > 5)
             return {
               type: "MatchOnce",
-              terms: t2,
+              terms: t3,
               all: true
             };
           let r2 = D2;
-          for (let i2 = t2.length - 1; i2 >= 0; i2--) {
-            const o2 = t2[i2];
+          for (let i2 = t3.length - 1; i2 >= 0; i2--) {
+            const o2 = t3[i2];
             let s2;
-            t2.length > 1 ? s2 = Jn(
+            t3.length > 1 ? s2 = Jn2(
               e2,
-              t2.filter(function(c2) {
+              t3.filter(function(c2) {
                 return c2 !== o2;
               }),
               false
@@ -25187,19 +25734,19 @@
           return r2;
         }
         case "||": {
-          if (t2.length > 5)
+          if (t3.length > 5)
             return {
               type: "MatchOnce",
-              terms: t2,
+              terms: t3,
               all: false
             };
           let r2 = n2 ? N2 : D2;
-          for (let i2 = t2.length - 1; i2 >= 0; i2--) {
-            const o2 = t2[i2];
+          for (let i2 = t3.length - 1; i2 >= 0; i2--) {
+            const o2 = t3[i2];
             let s2;
-            t2.length > 1 ? s2 = Jn(
+            t3.length > 1 ? s2 = Jn2(
               e2,
-              t2.filter(function(c2) {
+              t3.filter(function(c2) {
                 return c2 !== o2;
               }),
               true
@@ -25214,62 +25761,62 @@
       }
     }
     function Ic(e2) {
-      let t2 = N2, n2 = Pr(e2.term);
+      let t3 = N2, n2 = Pr2(e2.term);
       if (e2.max === 0)
         n2 = J2(
           n2,
-          _r,
+          _r2,
           D2
-        ), t2 = J2(
+        ), t3 = J2(
           n2,
           null,
           // will be a loop
           D2
-        ), t2.then = J2(
+        ), t3.then = J2(
           N2,
           N2,
-          t2
+          t3
           // make a loop
-        ), e2.comma && (t2.then.else = J2(
+        ), e2.comma && (t3.then.else = J2(
           { type: "Comma", syntax: e2 },
-          t2,
+          t3,
           D2
         ));
       else
         for (let r2 = e2.min || 1; r2 <= e2.max; r2++)
-          e2.comma && t2 !== N2 && (t2 = J2(
+          e2.comma && t3 !== N2 && (t3 = J2(
             { type: "Comma", syntax: e2 },
-            t2,
+            t3,
             D2
-          )), t2 = J2(
+          )), t3 = J2(
             n2,
             J2(
               N2,
               N2,
-              t2
+              t3
             ),
             D2
           );
       if (e2.min === 0)
-        t2 = J2(
+        t3 = J2(
           N2,
           N2,
-          t2
+          t3
         );
       else
         for (let r2 = 0; r2 < e2.min - 1; r2++)
-          e2.comma && t2 !== N2 && (t2 = J2(
+          e2.comma && t3 !== N2 && (t3 = J2(
             { type: "Comma", syntax: e2 },
-            t2,
+            t3,
             D2
-          )), t2 = J2(
+          )), t3 = J2(
             n2,
-            t2,
+            t3,
             D2
           );
-      return t2;
+      return t3;
     }
-    function Pr(e2) {
+    function Pr2(e2) {
       if (typeof e2 == "function")
         return {
           type: "Generic",
@@ -25277,16 +25824,16 @@
         };
       switch (e2.type) {
         case "Group": {
-          let t2 = Jn(
+          let t3 = Jn2(
             e2.combinator,
-            e2.terms.map(Pr),
+            e2.terms.map(Pr2),
             false
           );
-          return e2.disallowEmpty && (t2 = J2(
-            t2,
-            _r,
+          return e2.disallowEmpty && (t3 = J2(
+            t3,
+            _r2,
             D2
-          )), t2;
+          )), t3;
         }
         case "Multiplier":
           return Ic(e2);
@@ -25340,26 +25887,26 @@
           throw new Error("Unknown node type:", e2.type);
       }
     }
-    function Vt2(e2, t2) {
+    function Vt2(e2, t3) {
       return typeof e2 == "string" && (e2 = Wo(e2)), {
         type: "MatchGraph",
-        match: Pr(e2),
-        syntax: t2 || null,
+        match: Pr2(e2),
+        syntax: t3 || null,
         source: e2
       };
     }
-    const { hasOwnProperty: gi2 } = Object.prototype, Rc = 0, Mc = 1, er = 2, Uo = 3, bi2 = "Match", Nc = "Mismatch", Dc = "Maximum iteration number exceeded (please fill an issue on https://github.com/csstree/csstree/issues)", yi2 = 15e3;
+    const { hasOwnProperty: gi2 } = Object.prototype, Rc = 0, Mc = 1, er2 = 2, Uo = 3, bi2 = "Match", Nc = "Mismatch", Dc = "Maximum iteration number exceeded (please fill an issue on https://github.com/csstree/csstree/issues)", yi2 = 15e3;
     function jc(e2) {
-      let t2 = null, n2 = null, r2 = e2;
+      let t3 = null, n2 = null, r2 = e2;
       for (; r2 !== null; )
-        n2 = r2.prev, r2.prev = t2, t2 = r2, r2 = n2;
-      return t2;
+        n2 = r2.prev, r2.prev = t3, t3 = r2, r2 = n2;
+      return t3;
     }
-    function Mn(e2, t2) {
-      if (e2.length !== t2.length)
+    function Mn2(e2, t3) {
+      if (e2.length !== t3.length)
         return false;
       for (let n2 = 0; n2 < e2.length; n2++) {
-        const r2 = t2.charCodeAt(n2);
+        const r2 = t3.charCodeAt(n2);
         let i2 = e2.charCodeAt(n2);
         if (i2 >= 65 && i2 <= 90 && (i2 = i2 | 32), i2 !== r2)
           return false;
@@ -25375,7 +25922,7 @@
     function xi2(e2) {
       return e2 === null ? true : e2.type === E2 || e2.type === Se2 || e2.type === ue2 || e2.type === I2 && e2.value === "/";
     }
-    function Bc(e2, t2, n2) {
+    function Bc(e2, t3, n2) {
       function r2() {
         do
           x2++, b2 = x2 < e2.length ? e2[x2] : null;
@@ -25409,25 +25956,25 @@
       function l2() {
         v2 = {
           type: Mc,
-          syntax: t2.syntax,
+          syntax: t3.syntax,
           token: b2,
           prev: v2
         }, r2(), w2 = null, x2 > T2 && (T2 = x2);
       }
       function a2() {
         h2 = {
-          syntax: t2.syntax,
-          opts: t2.syntax.opts || h2 !== null && h2.opts || null,
+          syntax: t3.syntax,
+          opts: t3.syntax.opts || h2 !== null && h2.opts || null,
           prev: h2
         }, v2 = {
-          type: er,
-          syntax: t2.syntax,
+          type: er2,
+          syntax: t3.syntax,
           token: v2.token,
           prev: v2
         };
       }
       function u2() {
-        v2.type === er ? v2 = v2.prev : v2 = {
+        v2.type === er2 ? v2 = v2.prev : v2 = {
           type: Uo,
           syntax: h2.syntax,
           token: v2.token,
@@ -25441,22 +25988,22 @@
         prev: null
       };
       for (r2(); C2 === null && ++k2 < yi2; )
-        switch (t2.type) {
+        switch (t3.type) {
           case "Match":
             if (d2 === null) {
               if (b2 !== null && (x2 !== e2.length - 1 || b2.value !== "\\0" && b2.value !== "\\9")) {
-                t2 = D2;
+                t3 = D2;
                 break;
               }
               C2 = bi2;
               break;
             }
-            if (t2 = d2.nextState, t2 === _r)
+            if (t3 = d2.nextState, t3 === _r2)
               if (d2.matchStack === v2) {
-                t2 = D2;
+                t3 = D2;
                 break;
               } else
-                t2 = N2;
+                t3 = N2;
             for (; d2.syntaxStack !== h2; )
               u2();
             d2 = d2.prev;
@@ -25468,140 +26015,140 @@
               C2 = Nc;
               break;
             }
-            t2 = m2.nextState, d2 = m2.thenStack, h2 = m2.syntaxStack, v2 = m2.matchStack, x2 = m2.tokenIndex, b2 = x2 < e2.length ? e2[x2] : null, m2 = m2.prev;
+            t3 = m2.nextState, d2 = m2.thenStack, h2 = m2.syntaxStack, v2 = m2.matchStack, x2 = m2.tokenIndex, b2 = x2 < e2.length ? e2[x2] : null, m2 = m2.prev;
             break;
           case "MatchGraph":
-            t2 = t2.match;
+            t3 = t3.match;
             break;
           case "If":
-            t2.else !== D2 && c2(t2.else), t2.then !== N2 && s2(t2.then), t2 = t2.match;
+            t3.else !== D2 && c2(t3.else), t3.then !== N2 && s2(t3.then), t3 = t3.match;
             break;
           case "MatchOnce":
-            t2 = {
+            t3 = {
               type: "MatchOnceBuffer",
-              syntax: t2,
+              syntax: t3,
               index: 0,
               mask: 0
             };
             break;
           case "MatchOnceBuffer": {
-            const O2 = t2.syntax.terms;
-            if (t2.index === O2.length) {
-              if (t2.mask === 0 || t2.syntax.all) {
-                t2 = D2;
+            const O2 = t3.syntax.terms;
+            if (t3.index === O2.length) {
+              if (t3.mask === 0 || t3.syntax.all) {
+                t3 = D2;
                 break;
               }
-              t2 = N2;
+              t3 = N2;
               break;
             }
-            if (t2.mask === (1 << O2.length) - 1) {
-              t2 = N2;
+            if (t3.mask === (1 << O2.length) - 1) {
+              t3 = N2;
               break;
             }
-            for (; t2.index < O2.length; t2.index++) {
-              const p2 = 1 << t2.index;
-              if (!(t2.mask & p2)) {
-                c2(t2), s2({
+            for (; t3.index < O2.length; t3.index++) {
+              const p2 = 1 << t3.index;
+              if (!(t3.mask & p2)) {
+                c2(t3), s2({
                   type: "AddMatchOnce",
-                  syntax: t2.syntax,
-                  mask: t2.mask | p2
-                }), t2 = O2[t2.index++];
+                  syntax: t3.syntax,
+                  mask: t3.mask | p2
+                }), t3 = O2[t3.index++];
                 break;
               }
             }
             break;
           }
           case "AddMatchOnce":
-            t2 = {
+            t3 = {
               type: "MatchOnceBuffer",
-              syntax: t2.syntax,
+              syntax: t3.syntax,
               index: 0,
-              mask: t2.mask
+              mask: t3.mask
             };
             break;
           case "Enum":
             if (b2 !== null) {
               let O2 = b2.value.toLowerCase();
-              if (O2.indexOf("\\") !== -1 && (O2 = O2.replace(/\\[09].*$/, "")), gi2.call(t2.map, O2)) {
-                t2 = t2.map[O2];
+              if (O2.indexOf("\\") !== -1 && (O2 = O2.replace(/\\[09].*$/, "")), gi2.call(t3.map, O2)) {
+                t3 = t3.map[O2];
                 break;
               }
             }
-            t2 = D2;
+            t3 = D2;
             break;
           case "Generic": {
-            const O2 = h2 !== null ? h2.opts : null, p2 = x2 + Math.floor(t2.fn(b2, i2, O2));
+            const O2 = h2 !== null ? h2.opts : null, p2 = x2 + Math.floor(t3.fn(b2, i2, O2));
             if (!isNaN(p2) && p2 > x2) {
               for (; x2 < p2; )
                 l2();
-              t2 = N2;
+              t3 = N2;
             } else
-              t2 = D2;
+              t3 = D2;
             break;
           }
           case "Type":
           case "Property": {
-            const O2 = t2.type === "Type" ? "types" : "properties", p2 = gi2.call(n2, O2) ? n2[O2][t2.name] : null;
+            const O2 = t3.type === "Type" ? "types" : "properties", p2 = gi2.call(n2, O2) ? n2[O2][t3.name] : null;
             if (!p2 || !p2.match)
               throw new Error(
-                "Bad syntax reference: " + (t2.type === "Type" ? "<" + t2.name + ">" : "<'" + t2.name + "'>")
+                "Bad syntax reference: " + (t3.type === "Type" ? "<" + t3.name + ">" : "<'" + t3.name + "'>")
               );
-            if (w2 !== false && b2 !== null && t2.type === "Type" && // https://drafts.csswg.org/css-values-4/#custom-idents
+            if (w2 !== false && b2 !== null && t3.type === "Type" && // https://drafts.csswg.org/css-values-4/#custom-idents
             // When parsing positionally-ambiguous keywords in a property value, a <custom-ident> production
             // can only claim the keyword if no other unfulfilled production can claim it.
-            (t2.name === "custom-ident" && b2.type === y2 || // https://drafts.csswg.org/css-values-4/#lengths
+            (t3.name === "custom-ident" && b2.type === y2 || // https://drafts.csswg.org/css-values-4/#lengths
             // ... if a `0` could be parsed as either a <number> or a <length> in a property (such as line-height),
             // it must parse as a <number>
-            t2.name === "length" && b2.value === "0")) {
-              w2 === null && (w2 = o2(t2, m2)), t2 = D2;
+            t3.name === "length" && b2.value === "0")) {
+              w2 === null && (w2 = o2(t3, m2)), t3 = D2;
               break;
             }
-            a2(), t2 = p2.matchRef || p2.match;
+            a2(), t3 = p2.matchRef || p2.match;
             break;
           }
           case "Keyword": {
-            const O2 = t2.name;
+            const O2 = t3.name;
             if (b2 !== null) {
               let p2 = b2.value;
-              if (p2.indexOf("\\") !== -1 && (p2 = p2.replace(/\\[09].*$/, "")), Mn(p2, O2)) {
-                l2(), t2 = N2;
+              if (p2.indexOf("\\") !== -1 && (p2 = p2.replace(/\\[09].*$/, "")), Mn2(p2, O2)) {
+                l2(), t3 = N2;
                 break;
               }
             }
-            t2 = D2;
+            t3 = D2;
             break;
           }
           case "AtKeyword":
           case "Function":
-            if (b2 !== null && Mn(b2.value, t2.name)) {
-              l2(), t2 = N2;
+            if (b2 !== null && Mn2(b2.value, t3.name)) {
+              l2(), t3 = N2;
               break;
             }
-            t2 = D2;
+            t3 = D2;
             break;
           case "Token":
-            if (b2 !== null && b2.value === t2.value) {
-              l2(), t2 = N2;
+            if (b2 !== null && b2.value === t3.value) {
+              l2(), t3 = N2;
               break;
             }
-            t2 = D2;
+            t3 = D2;
             break;
           case "Comma":
-            b2 !== null && b2.type === ce2 ? ki2(v2.token) ? t2 = D2 : (l2(), t2 = xi2(b2) ? D2 : N2) : t2 = ki2(v2.token) || xi2(b2) ? N2 : D2;
+            b2 !== null && b2.type === ce2 ? ki2(v2.token) ? t3 = D2 : (l2(), t3 = xi2(b2) ? D2 : N2) : t3 = ki2(v2.token) || xi2(b2) ? N2 : D2;
             break;
           case "String":
             let A2 = "", P2 = x2;
-            for (; P2 < e2.length && A2.length < t2.value.length; P2++)
+            for (; P2 < e2.length && A2.length < t3.value.length; P2++)
               A2 += e2[P2].value;
-            if (Mn(A2, t2.value)) {
+            if (Mn2(A2, t3.value)) {
               for (; x2 < P2; )
                 l2();
-              t2 = N2;
+              t3 = N2;
             } else
-              t2 = D2;
+              t3 = D2;
             break;
           default:
-            throw new Error("Unknown node type: " + t2.type);
+            throw new Error("Unknown node type: " + t3.type);
         }
       switch (C2) {
         case null:
@@ -25622,18 +26169,18 @@
         longestMatch: T2
       };
     }
-    function wi2(e2, t2, n2) {
-      const r2 = Bc(e2, t2, n2 || {});
+    function wi2(e2, t3, n2) {
+      const r2 = Bc(e2, t3, n2 || {});
       if (r2.match === null)
         return r2;
       let i2 = r2.match, o2 = r2.match = {
-        syntax: t2.syntax || null,
+        syntax: t3.syntax || null,
         match: []
       };
       const s2 = [o2];
       for (i2 = jc(i2).prev; i2 !== null; ) {
         switch (i2.type) {
-          case er:
+          case er2:
             o2.match.push(o2 = {
               syntax: i2.syntax,
               match: []
@@ -25654,32 +26201,32 @@
       return r2;
     }
     function qo(e2) {
-      function t2(i2) {
+      function t3(i2) {
         return i2 === null ? false : i2.type === "Type" || i2.type === "Property" || i2.type === "Keyword";
       }
       function n2(i2) {
         if (Array.isArray(i2.match)) {
           for (let o2 = 0; o2 < i2.match.length; o2++)
             if (n2(i2.match[o2]))
-              return t2(i2.syntax) && r2.unshift(i2.syntax), true;
+              return t3(i2.syntax) && r2.unshift(i2.syntax), true;
         } else if (i2.node === e2)
-          return r2 = t2(i2.syntax) ? [i2.syntax] : [], true;
+          return r2 = t3(i2.syntax) ? [i2.syntax] : [], true;
         return false;
       }
       let r2 = null;
       return this.matched !== null && n2(this.matched), r2;
     }
-    function Wc(e2, t2) {
-      return zr(this, e2, (n2) => n2.type === "Type" && n2.name === t2);
+    function Wc(e2, t3) {
+      return zr2(this, e2, (n2) => n2.type === "Type" && n2.name === t3);
     }
-    function Hc(e2, t2) {
-      return zr(this, e2, (n2) => n2.type === "Property" && n2.name === t2);
+    function Hc(e2, t3) {
+      return zr2(this, e2, (n2) => n2.type === "Property" && n2.name === t3);
     }
     function Uc(e2) {
-      return zr(this, e2, (t2) => t2.type === "Keyword");
+      return zr2(this, e2, (t3) => t3.type === "Keyword");
     }
-    function zr(e2, t2, n2) {
-      const r2 = qo.call(e2, t2);
+    function zr2(e2, t3, n2) {
+      const r2 = qo.call(e2, t3);
       return r2 === null ? false : r2.some(n2);
     }
     const qc = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
@@ -25695,11 +26242,11 @@
     function Vo(e2) {
       return "node" in e2 ? e2.node : Vo(e2.match[e2.match.length - 1]);
     }
-    function vi2(e2, t2, n2, r2, i2) {
+    function vi2(e2, t3, n2, r2, i2) {
       function o2(c2) {
         if (c2.syntax !== null && c2.syntax.type === r2 && c2.syntax.name === i2) {
           const l2 = Go(c2), a2 = Vo(c2);
-          e2.syntax.walk(t2, function(u2, h2, d2) {
+          e2.syntax.walk(t3, function(u2, h2, d2) {
             if (u2 === l2) {
               const m2 = new q2();
               do {
@@ -25726,7 +26273,7 @@
     function Si2(e2) {
       return !!e2 && Nn2(e2.offset) && Nn2(e2.line) && Nn2(e2.column);
     }
-    function Gc(e2, t2) {
+    function Gc(e2, t3) {
       return function(r2, i2) {
         if (!r2 || r2.constructor !== Object)
           return i2(r2, "Type of node should be an Object");
@@ -25748,10 +26295,10 @@
                 else
                   continue;
               s2 = false;
-            } else if (t2.hasOwnProperty(o2)) {
+            } else if (t3.hasOwnProperty(o2)) {
               s2 = false;
-              for (let c2 = 0; !s2 && c2 < t2[o2].length; c2++) {
-                const l2 = t2[o2][c2];
+              for (let c2 = 0; !s2 && c2 < t3[o2].length; c2++) {
+                const l2 = t3[o2][c2];
                 switch (l2) {
                   case String:
                     s2 = typeof r2[o2] == "string";
@@ -25771,11 +26318,11 @@
             s2 || i2(r2, "Bad value for `" + e2 + "." + o2 + "`");
           }
         }
-        for (const o2 in t2)
-          At2.call(t2, o2) && At2.call(r2, o2) === false && i2(r2, "Field `" + e2 + "." + o2 + "` is missed");
+        for (const o2 in t3)
+          At2.call(t3, o2) && At2.call(r2, o2) === false && i2(r2, "Field `" + e2 + "." + o2 + "` is missed");
       };
     }
-    function Ko(e2, t2) {
+    function Ko(e2, t3) {
       const n2 = [];
       for (let r2 = 0; r2 < e2.length; r2++) {
         const i2 = e2[r2];
@@ -25786,14 +26333,14 @@
         else if (typeof i2 == "string")
           n2.push(i2);
         else if (Array.isArray(i2))
-          n2.push("List<" + (Ko(i2, t2) || "any") + ">");
+          n2.push("List<" + (Ko(i2, t3) || "any") + ">");
         else
-          throw new Error("Wrong value `" + i2 + "` in `" + t2 + "` structure definition");
+          throw new Error("Wrong value `" + i2 + "` in `" + t3 + "` structure definition");
       }
       return n2.join(" | ");
     }
-    function Vc(e2, t2) {
-      const n2 = t2.structure, r2 = {
+    function Vc(e2, t3) {
+      const n2 = t3.structure, r2 = {
         type: String,
         loc: true
       }, i2 = {
@@ -25811,93 +26358,93 @@
       };
     }
     function Kc(e2) {
-      const t2 = {};
+      const t3 = {};
       if (e2.node) {
         for (const n2 in e2.node)
           if (At2.call(e2.node, n2)) {
             const r2 = e2.node[n2];
             if (r2.structure)
-              t2[n2] = Vc(n2, r2);
+              t3[n2] = Vc(n2, r2);
             else
               throw new Error("Missed `structure` field in `" + n2 + "` node type definition");
           }
       }
-      return t2;
+      return t3;
     }
     const Yc = Vt2(Lo.join(" | "));
-    function tr(e2, t2, n2) {
+    function tr2(e2, t3, n2) {
       const r2 = {};
       for (const i2 in e2)
-        e2[i2].syntax && (r2[i2] = n2 ? e2[i2].syntax : Sr(e2[i2].syntax, { compact: t2 }));
+        e2[i2].syntax && (r2[i2] = n2 ? e2[i2].syntax : Sr2(e2[i2].syntax, { compact: t3 }));
       return r2;
     }
-    function Qc(e2, t2, n2) {
+    function Qc(e2, t3, n2) {
       const r2 = {};
       for (const [i2, o2] of Object.entries(e2))
         r2[i2] = {
-          prelude: o2.prelude && (n2 ? o2.prelude.syntax : Sr(o2.prelude.syntax, { compact: t2 })),
-          descriptors: o2.descriptors && tr(o2.descriptors, t2, n2)
+          prelude: o2.prelude && (n2 ? o2.prelude.syntax : Sr2(o2.prelude.syntax, { compact: t3 })),
+          descriptors: o2.descriptors && tr2(o2.descriptors, t3, n2)
         };
       return r2;
     }
     function Xc(e2) {
-      for (let t2 = 0; t2 < e2.length; t2++)
-        if (e2[t2].value.toLowerCase() === "var(")
+      for (let t3 = 0; t3 < e2.length; t3++)
+        if (e2[t3].value.toLowerCase() === "var(")
           return true;
       return false;
     }
     function Zc(e2) {
-      const t2 = e2.terms[0];
-      return e2.explicit === false && e2.terms.length === 1 && t2.type === "Multiplier" && t2.comma === true;
+      const t3 = e2.terms[0];
+      return e2.explicit === false && e2.terms.length === 1 && t3.type === "Multiplier" && t3.comma === true;
     }
-    function ye2(e2, t2, n2) {
+    function ye2(e2, t3, n2) {
       return _2({
         matched: e2,
         iterations: n2,
-        error: t2
+        error: t3
       }, qc);
     }
-    function ot2(e2, t2, n2, r2) {
+    function ot2(e2, t3, n2, r2) {
       const i2 = _c(n2, e2.syntax);
       let o2;
-      return Xc(i2) ? ye2(null, new Error("Matching for a tree with var() is not supported")) : (r2 && (o2 = wi2(i2, e2.cssWideKeywordsSyntax, e2)), (!r2 || !o2.match) && (o2 = wi2(i2, t2.match, e2), !o2.match) ? ye2(
+      return Xc(i2) ? ye2(null, new Error("Matching for a tree with var() is not supported")) : (r2 && (o2 = wi2(i2, e2.cssWideKeywordsSyntax, e2)), (!r2 || !o2.match) && (o2 = wi2(i2, t3.match, e2), !o2.match) ? ye2(
         null,
-        new Ol(o2.reason, t2.syntax, n2, o2),
+        new Ol(o2.reason, t3.syntax, n2, o2),
         o2.iterations
       ) : ye2(o2.match, null, o2.iterations));
     }
     class Ci2 {
-      constructor(t2, n2, r2) {
-        if (this.cssWideKeywordsSyntax = Yc, this.syntax = n2, this.generic = false, this.units = _2({}, si2), this.atrules = /* @__PURE__ */ Object.create(null), this.properties = /* @__PURE__ */ Object.create(null), this.types = /* @__PURE__ */ Object.create(null), this.structure = r2 || Kc(t2), t2) {
-          if (t2.units)
+      constructor(t3, n2, r2) {
+        if (this.cssWideKeywordsSyntax = Yc, this.syntax = n2, this.generic = false, this.units = _2({}, si2), this.atrules = /* @__PURE__ */ Object.create(null), this.properties = /* @__PURE__ */ Object.create(null), this.types = /* @__PURE__ */ Object.create(null), this.structure = r2 || Kc(t3), t3) {
+          if (t3.units)
             for (const i2 of Object.keys(si2))
-              Array.isArray(t2.units[i2]) && (this.units[i2] = t2.units[i2]);
-          if (t2.types)
-            for (const [i2, o2] of Object.entries(t2.types))
+              Array.isArray(t3.units[i2]) && (this.units[i2] = t3.units[i2]);
+          if (t3.types)
+            for (const [i2, o2] of Object.entries(t3.types))
               this.addType_(i2, o2);
-          if (t2.generic) {
+          if (t3.generic) {
             this.generic = true;
             for (const [i2, o2] of Object.entries(Ql(this.units)))
               this.addType_(i2, o2);
           }
-          if (t2.atrules)
-            for (const [i2, o2] of Object.entries(t2.atrules))
+          if (t3.atrules)
+            for (const [i2, o2] of Object.entries(t3.atrules))
               this.addAtrule_(i2, o2);
-          if (t2.properties)
-            for (const [i2, o2] of Object.entries(t2.properties))
+          if (t3.properties)
+            for (const [i2, o2] of Object.entries(t3.properties))
               this.addProperty_(i2, o2);
         }
       }
-      checkStructure(t2) {
+      checkStructure(t3) {
         function n2(o2, s2) {
           i2.push({ node: o2, message: s2 });
         }
         const r2 = this.structure, i2 = [];
-        return this.syntax.walk(t2, function(o2) {
+        return this.syntax.walk(t3, function(o2) {
           r2.hasOwnProperty(o2.type) ? r2[o2.type].check(o2, n2) : n2(o2, "Unknown node type `" + o2.type + "`");
         }), i2.length ? i2 : false;
       }
-      createDescriptor(t2, n2, r2, i2 = null) {
+      createDescriptor(t3, n2, r2, i2 = null) {
         const o2 = {
           type: n2,
           name: r2
@@ -25905,19 +26452,19 @@
           type: n2,
           name: r2,
           parent: i2,
-          serializable: typeof t2 == "string" || t2 && typeof t2.type == "string",
+          serializable: typeof t3 == "string" || t3 && typeof t3.type == "string",
           syntax: null,
           match: null,
           matchRef: null
           // used for properties when a syntax referenced as <'property'> in other syntax definitions
         };
-        return typeof t2 == "function" ? s2.match = Vt2(t2, o2) : (typeof t2 == "string" ? Object.defineProperty(s2, "syntax", {
+        return typeof t3 == "function" ? s2.match = Vt2(t3, o2) : (typeof t3 == "string" ? Object.defineProperty(s2, "syntax", {
           get() {
             return Object.defineProperty(s2, "syntax", {
-              value: Wo(t2)
+              value: Wo(t3)
             }), s2.syntax;
           }
-        }) : s2.syntax = t2, Object.defineProperty(s2, "match", {
+        }) : s2.syntax = t3, Object.defineProperty(s2, "match", {
           get() {
             return Object.defineProperty(s2, "match", {
               value: Vt2(s2.syntax, o2)
@@ -25934,164 +26481,164 @@
           }
         })), s2;
       }
-      addAtrule_(t2, n2) {
-        n2 && (this.atrules[t2] = {
+      addAtrule_(t3, n2) {
+        n2 && (this.atrules[t3] = {
           type: "Atrule",
-          name: t2,
-          prelude: n2.prelude ? this.createDescriptor(n2.prelude, "AtrulePrelude", t2) : null,
+          name: t3,
+          prelude: n2.prelude ? this.createDescriptor(n2.prelude, "AtrulePrelude", t3) : null,
           descriptors: n2.descriptors ? Object.keys(n2.descriptors).reduce(
-            (r2, i2) => (r2[i2] = this.createDescriptor(n2.descriptors[i2], "AtruleDescriptor", i2, t2), r2),
+            (r2, i2) => (r2[i2] = this.createDescriptor(n2.descriptors[i2], "AtruleDescriptor", i2, t3), r2),
             /* @__PURE__ */ Object.create(null)
           ) : null
         });
       }
-      addProperty_(t2, n2) {
-        n2 && (this.properties[t2] = this.createDescriptor(n2, "Property", t2));
+      addProperty_(t3, n2) {
+        n2 && (this.properties[t3] = this.createDescriptor(n2, "Property", t3));
       }
-      addType_(t2, n2) {
-        n2 && (this.types[t2] = this.createDescriptor(n2, "Type", t2));
+      addType_(t3, n2) {
+        n2 && (this.types[t3] = this.createDescriptor(n2, "Type", t3));
       }
-      checkAtruleName(t2) {
-        if (!this.getAtrule(t2))
-          return new kt2("Unknown at-rule", "@" + t2);
+      checkAtruleName(t3) {
+        if (!this.getAtrule(t3))
+          return new kt2("Unknown at-rule", "@" + t3);
       }
-      checkAtrulePrelude(t2, n2) {
-        const r2 = this.checkAtruleName(t2);
+      checkAtrulePrelude(t3, n2) {
+        const r2 = this.checkAtruleName(t3);
         if (r2)
           return r2;
-        const i2 = this.getAtrule(t2);
+        const i2 = this.getAtrule(t3);
         if (!i2.prelude && n2)
-          return new SyntaxError("At-rule `@" + t2 + "` should not contain a prelude");
+          return new SyntaxError("At-rule `@" + t3 + "` should not contain a prelude");
         if (i2.prelude && !n2 && !ot2(this, i2.prelude, "", false).matched)
-          return new SyntaxError("At-rule `@" + t2 + "` should contain a prelude");
+          return new SyntaxError("At-rule `@" + t3 + "` should contain a prelude");
       }
-      checkAtruleDescriptorName(t2, n2) {
-        const r2 = this.checkAtruleName(t2);
+      checkAtruleDescriptorName(t3, n2) {
+        const r2 = this.checkAtruleName(t3);
         if (r2)
           return r2;
-        const i2 = this.getAtrule(t2), o2 = Pn2(n2);
+        const i2 = this.getAtrule(t3), o2 = Pn2(n2);
         if (!i2.descriptors)
-          return new SyntaxError("At-rule `@" + t2 + "` has no known descriptors");
+          return new SyntaxError("At-rule `@" + t3 + "` has no known descriptors");
         if (!i2.descriptors[o2.name] && !i2.descriptors[o2.basename])
           return new kt2("Unknown at-rule descriptor", n2);
       }
-      checkPropertyName(t2) {
-        if (!this.getProperty(t2))
-          return new kt2("Unknown property", t2);
+      checkPropertyName(t3) {
+        if (!this.getProperty(t3))
+          return new kt2("Unknown property", t3);
       }
-      matchAtrulePrelude(t2, n2) {
-        const r2 = this.checkAtrulePrelude(t2, n2);
+      matchAtrulePrelude(t3, n2) {
+        const r2 = this.checkAtrulePrelude(t3, n2);
         if (r2)
           return ye2(null, r2);
-        const i2 = this.getAtrule(t2);
+        const i2 = this.getAtrule(t3);
         return i2.prelude ? ot2(this, i2.prelude, n2 || "", false) : ye2(null, null);
       }
-      matchAtruleDescriptor(t2, n2, r2) {
-        const i2 = this.checkAtruleDescriptorName(t2, n2);
+      matchAtruleDescriptor(t3, n2, r2) {
+        const i2 = this.checkAtruleDescriptorName(t3, n2);
         if (i2)
           return ye2(null, i2);
-        const o2 = this.getAtrule(t2), s2 = Pn2(n2);
+        const o2 = this.getAtrule(t3), s2 = Pn2(n2);
         return ot2(this, o2.descriptors[s2.name] || o2.descriptors[s2.basename], r2, false);
       }
-      matchDeclaration(t2) {
-        return t2.type !== "Declaration" ? ye2(null, new Error("Not a Declaration node")) : this.matchProperty(t2.property, t2.value);
+      matchDeclaration(t3) {
+        return t3.type !== "Declaration" ? ye2(null, new Error("Not a Declaration node")) : this.matchProperty(t3.property, t3.value);
       }
-      matchProperty(t2, n2) {
-        if (oi2(t2).custom)
+      matchProperty(t3, n2) {
+        if (oi2(t3).custom)
           return ye2(null, new Error("Lexer matching doesn't applicable for custom properties"));
-        const r2 = this.checkPropertyName(t2);
-        return r2 ? ye2(null, r2) : ot2(this, this.getProperty(t2), n2, true);
+        const r2 = this.checkPropertyName(t3);
+        return r2 ? ye2(null, r2) : ot2(this, this.getProperty(t3), n2, true);
       }
-      matchType(t2, n2) {
-        const r2 = this.getType(t2);
-        return r2 ? ot2(this, r2, n2, false) : ye2(null, new kt2("Unknown type", t2));
+      matchType(t3, n2) {
+        const r2 = this.getType(t3);
+        return r2 ? ot2(this, r2, n2, false) : ye2(null, new kt2("Unknown type", t3));
       }
-      match(t2, n2) {
-        return typeof t2 != "string" && (!t2 || !t2.type) ? ye2(null, new kt2("Bad syntax")) : ((typeof t2 == "string" || !t2.match) && (t2 = this.createDescriptor(t2, "Type", "anonymous")), ot2(this, t2, n2, false));
+      match(t3, n2) {
+        return typeof t3 != "string" && (!t3 || !t3.type) ? ye2(null, new kt2("Bad syntax")) : ((typeof t3 == "string" || !t3.match) && (t3 = this.createDescriptor(t3, "Type", "anonymous")), ot2(this, t3, n2, false));
       }
-      findValueFragments(t2, n2, r2, i2) {
-        return vi2(this, n2, this.matchProperty(t2, n2), r2, i2);
+      findValueFragments(t3, n2, r2, i2) {
+        return vi2(this, n2, this.matchProperty(t3, n2), r2, i2);
       }
-      findDeclarationValueFragments(t2, n2, r2) {
-        return vi2(this, t2.value, this.matchDeclaration(t2), n2, r2);
+      findDeclarationValueFragments(t3, n2, r2) {
+        return vi2(this, t3.value, this.matchDeclaration(t3), n2, r2);
       }
-      findAllFragments(t2, n2, r2) {
+      findAllFragments(t3, n2, r2) {
         const i2 = [];
-        return this.syntax.walk(t2, {
+        return this.syntax.walk(t3, {
           visit: "Declaration",
           enter: (o2) => {
             i2.push.apply(i2, this.findDeclarationValueFragments(o2, n2, r2));
           }
         }), i2;
       }
-      getAtrule(t2, n2 = true) {
-        const r2 = Pn2(t2);
+      getAtrule(t3, n2 = true) {
+        const r2 = Pn2(t3);
         return (r2.vendor && n2 ? this.atrules[r2.name] || this.atrules[r2.basename] : this.atrules[r2.name]) || null;
       }
-      getAtrulePrelude(t2, n2 = true) {
-        const r2 = this.getAtrule(t2, n2);
+      getAtrulePrelude(t3, n2 = true) {
+        const r2 = this.getAtrule(t3, n2);
         return r2 && r2.prelude || null;
       }
-      getAtruleDescriptor(t2, n2) {
-        return this.atrules.hasOwnProperty(t2) && this.atrules.declarators && this.atrules[t2].declarators[n2] || null;
+      getAtruleDescriptor(t3, n2) {
+        return this.atrules.hasOwnProperty(t3) && this.atrules.declarators && this.atrules[t3].declarators[n2] || null;
       }
-      getProperty(t2, n2 = true) {
-        const r2 = oi2(t2);
+      getProperty(t3, n2 = true) {
+        const r2 = oi2(t3);
         return (r2.vendor && n2 ? this.properties[r2.name] || this.properties[r2.basename] : this.properties[r2.name]) || null;
       }
-      getType(t2) {
-        return hasOwnProperty.call(this.types, t2) ? this.types[t2] : null;
+      getType(t3) {
+        return hasOwnProperty.call(this.types, t3) ? this.types[t3] : null;
       }
       validate() {
-        function t2(i2, o2, s2, c2) {
+        function t3(i2, o2, s2, c2) {
           if (s2.has(o2))
             return s2.get(o2);
           s2.set(o2, false), c2.syntax !== null && Ec(c2.syntax, function(l2) {
             if (l2.type !== "Type" && l2.type !== "Property")
               return;
             const a2 = l2.type === "Type" ? i2.types : i2.properties, u2 = l2.type === "Type" ? n2 : r2;
-            (!hasOwnProperty.call(a2, l2.name) || t2(i2, l2.name, u2, a2[l2.name])) && s2.set(o2, true);
+            (!hasOwnProperty.call(a2, l2.name) || t3(i2, l2.name, u2, a2[l2.name])) && s2.set(o2, true);
           }, this);
         }
         let n2 = /* @__PURE__ */ new Map(), r2 = /* @__PURE__ */ new Map();
         for (const i2 in this.types)
-          t2(this, i2, n2, this.types[i2]);
+          t3(this, i2, n2, this.types[i2]);
         for (const i2 in this.properties)
-          t2(this, i2, r2, this.properties[i2]);
+          t3(this, i2, r2, this.properties[i2]);
         return n2 = [...n2.keys()].filter((i2) => n2.get(i2)), r2 = [...r2.keys()].filter((i2) => r2.get(i2)), n2.length || r2.length ? {
           types: n2,
           properties: r2
         } : null;
       }
-      dump(t2, n2) {
+      dump(t3, n2) {
         return {
           generic: this.generic,
           units: this.units,
-          types: tr(this.types, !n2, t2),
-          properties: tr(this.properties, !n2, t2),
-          atrules: Qc(this.atrules, !n2, t2)
+          types: tr2(this.types, !n2, t3),
+          properties: tr2(this.properties, !n2, t3),
+          atrules: Qc(this.atrules, !n2, t3)
         };
       }
       toString() {
         return JSON.stringify(this.dump());
       }
     }
-    function Dn2(e2, t2) {
-      return typeof t2 == "string" && /^\s*\|/.test(t2) ? typeof e2 == "string" ? e2 + t2 : t2.replace(/^\s*\|\s*/, "") : t2 || null;
+    function Dn2(e2, t3) {
+      return typeof t3 == "string" && /^\s*\|/.test(t3) ? typeof e2 == "string" ? e2 + t3 : t3.replace(/^\s*\|\s*/, "") : t3 || null;
     }
-    function Ti2(e2, t2) {
+    function Ti2(e2, t3) {
       const n2 = /* @__PURE__ */ Object.create(null);
       for (const [r2, i2] of Object.entries(e2))
         if (i2) {
           n2[r2] = {};
           for (const o2 of Object.keys(i2))
-            t2.includes(o2) && (n2[r2][o2] = i2[o2]);
+            t3.includes(o2) && (n2[r2][o2] = i2[o2]);
         }
       return n2;
     }
-    function nr(e2, t2) {
+    function nr2(e2, t3) {
       const n2 = _2({}, e2);
-      for (const [r2, i2] of Object.entries(t2))
+      for (const [r2, i2] of Object.entries(t3))
         switch (r2) {
           case "generic":
             n2[r2] = !!i2;
@@ -26142,11 +26689,11 @@
       return n2;
     }
     function Yo(e2) {
-      const t2 = rl(e2), n2 = wl(e2), r2 = bl(e2), { fromPlainObject: i2, toPlainObject: o2 } = yl(n2), s2 = {
+      const t3 = rl(e2), n2 = wl(e2), r2 = bl(e2), { fromPlainObject: i2, toPlainObject: o2 } = yl(n2), s2 = {
         lexer: null,
         createLexer: (c2) => new Ci2(c2, s2, s2.lexer.structure),
         tokenize: gn2,
-        parse: t2,
+        parse: t3,
         generate: r2,
         walk: n2,
         find: n2.find,
@@ -26155,9 +26702,9 @@
         fromPlainObject: i2,
         toPlainObject: o2,
         fork(c2) {
-          const l2 = nr({}, e2);
+          const l2 = nr2({}, e2);
           return Yo(
-            typeof c2 == "function" ? c2(l2, Object.assign) : nr(l2, c2)
+            typeof c2 == "function" ? c2(l2, Object.assign) : nr2(l2, c2)
           );
         }
       };
@@ -26170,7 +26717,7 @@
         node: e2.node
       }, s2), s2;
     }
-    const Jc = (e2) => Yo(nr({}, e2)), eu = {
+    const Jc = (e2) => Yo(nr2({}, e2)), eu = {
       generic: true,
       units: {
         angle: [
@@ -27468,19 +28015,19 @@
         }
       }
     }, Ee2 = 43, he2 = 45, Kt2 = 110, Ge2 = true, tu = false;
-    function Yt2(e2, t2) {
+    function Yt2(e2, t3) {
       let n2 = this.tokenStart + e2;
       const r2 = this.charCodeAt(n2);
-      for ((r2 === Ee2 || r2 === he2) && (t2 && this.error("Number sign is not allowed"), n2++); n2 < this.tokenEnd; n2++)
+      for ((r2 === Ee2 || r2 === he2) && (t3 && this.error("Number sign is not allowed"), n2++); n2 < this.tokenEnd; n2++)
         Q2(this.charCodeAt(n2)) || this.error("Integer is expected", n2);
     }
     function st2(e2) {
       return Yt2.call(this, 0, e2);
     }
-    function Me2(e2, t2) {
-      if (!this.cmpChar(this.tokenStart + e2, t2)) {
+    function Me2(e2, t3) {
+      if (!this.cmpChar(this.tokenStart + e2, t3)) {
         let n2 = "";
-        switch (t2) {
+        switch (t3) {
           case Kt2:
             n2 = "N is expected";
             break;
@@ -27491,20 +28038,20 @@
         this.error(n2, this.tokenStart + e2);
       }
     }
-    function jn() {
-      let e2 = 0, t2 = 0, n2 = this.tokenType;
+    function jn2() {
+      let e2 = 0, t3 = 0, n2 = this.tokenType;
       for (; n2 === W2 || n2 === X2; )
         n2 = this.lookupType(++e2);
       if (n2 !== L2)
         if (this.isDelim(Ee2, e2) || this.isDelim(he2, e2)) {
-          t2 = this.isDelim(Ee2, e2) ? Ee2 : he2;
+          t3 = this.isDelim(Ee2, e2) ? Ee2 : he2;
           do
             n2 = this.lookupType(++e2);
           while (n2 === W2 || n2 === X2);
           n2 !== L2 && (this.skip(e2), st2.call(this, Ge2));
         } else
           return null;
-      return e2 > 0 && this.skip(e2), t2 === 0 && (n2 = this.charCodeAt(this.tokenStart), n2 !== Ee2 && n2 !== he2 && this.error("Number sign is expected")), st2.call(this, t2 !== 0), t2 === he2 ? "-" + this.consume(L2) : this.consume(L2);
+      return e2 > 0 && this.skip(e2), t3 === 0 && (n2 = this.charCodeAt(this.tokenStart), n2 !== Ee2 && n2 !== he2 && this.error("Number sign is expected")), st2.call(this, t3 !== 0), t3 === he2 ? "-" + this.consume(L2) : this.consume(L2);
     }
     const nu = "AnPlusB", ru = {
       a: [String, null],
@@ -27512,13 +28059,13 @@
     };
     function Qo() {
       const e2 = this.tokenStart;
-      let t2 = null, n2 = null;
+      let t3 = null, n2 = null;
       if (this.tokenType === L2)
         st2.call(this, tu), n2 = this.consume(L2);
       else if (this.tokenType === y2 && this.cmpChar(this.tokenStart, he2))
-        switch (t2 = "-1", Me2.call(this, 1, Kt2), this.tokenEnd - this.tokenStart) {
+        switch (t3 = "-1", Me2.call(this, 1, Kt2), this.tokenEnd - this.tokenStart) {
           case 2:
-            this.next(), n2 = jn.call(this);
+            this.next(), n2 = jn2.call(this);
             break;
           case 3:
             Me2.call(this, 2, he2), this.next(), this.skipSC(), st2.call(this, Ge2), n2 = "-" + this.consume(L2);
@@ -27528,9 +28075,9 @@
         }
       else if (this.tokenType === y2 || this.isDelim(Ee2) && this.lookupType(1) === y2) {
         let r2 = 0;
-        switch (t2 = "1", this.isDelim(Ee2) && (r2 = 1, this.next()), Me2.call(this, 0, Kt2), this.tokenEnd - this.tokenStart) {
+        switch (t3 = "1", this.isDelim(Ee2) && (r2 = 1, this.next()), Me2.call(this, 0, Kt2), this.tokenEnd - this.tokenStart) {
           case 1:
-            this.next(), n2 = jn.call(this);
+            this.next(), n2 = jn2.call(this);
             break;
           case 2:
             Me2.call(this, 1, he2), this.next(), this.skipSC(), st2.call(this, Ge2), n2 = "-" + this.consume(L2);
@@ -27543,24 +28090,24 @@
         let o2 = this.tokenStart + i2;
         for (; o2 < this.tokenEnd && Q2(this.charCodeAt(o2)); o2++)
           ;
-        o2 === this.tokenStart + i2 && this.error("Integer is expected", this.tokenStart + i2), Me2.call(this, o2 - this.tokenStart, Kt2), t2 = this.substring(e2, o2), o2 + 1 === this.tokenEnd ? (this.next(), n2 = jn.call(this)) : (Me2.call(this, o2 - this.tokenStart + 1, he2), o2 + 2 === this.tokenEnd ? (this.next(), this.skipSC(), st2.call(this, Ge2), n2 = "-" + this.consume(L2)) : (Yt2.call(this, o2 - this.tokenStart + 2, Ge2), this.next(), n2 = this.substrToCursor(o2 + 1)));
+        o2 === this.tokenStart + i2 && this.error("Integer is expected", this.tokenStart + i2), Me2.call(this, o2 - this.tokenStart, Kt2), t3 = this.substring(e2, o2), o2 + 1 === this.tokenEnd ? (this.next(), n2 = jn2.call(this)) : (Me2.call(this, o2 - this.tokenStart + 1, he2), o2 + 2 === this.tokenEnd ? (this.next(), this.skipSC(), st2.call(this, Ge2), n2 = "-" + this.consume(L2)) : (Yt2.call(this, o2 - this.tokenStart + 2, Ge2), this.next(), n2 = this.substrToCursor(o2 + 1)));
       } else
         this.error();
-      return t2 !== null && t2.charCodeAt(0) === Ee2 && (t2 = t2.substr(1)), n2 !== null && n2.charCodeAt(0) === Ee2 && (n2 = n2.substr(1)), {
+      return t3 !== null && t3.charCodeAt(0) === Ee2 && (t3 = t3.substr(1)), n2 !== null && n2.charCodeAt(0) === Ee2 && (n2 = n2.substr(1)), {
         type: "AnPlusB",
         loc: this.getLocation(e2, this.tokenStart),
-        a: t2,
+        a: t3,
         b: n2
       };
     }
     function iu(e2) {
       if (e2.a) {
-        const t2 = e2.a === "+1" && "n" || e2.a === "1" && "n" || e2.a === "-1" && "-n" || e2.a + "n";
+        const t3 = e2.a === "+1" && "n" || e2.a === "1" && "n" || e2.a === "-1" && "-n" || e2.a + "n";
         if (e2.b) {
           const n2 = e2.b[0] === "-" || e2.b[0] === "+" ? e2.b : "+" + e2.b;
-          this.tokenize(t2 + n2);
+          this.tokenize(t3 + n2);
         } else
-          this.tokenize(t2);
+          this.tokenize(t3);
       } else
         this.tokenize(e2.b);
     }
@@ -27575,10 +28122,10 @@
       return this.Raw(this.consumeUntilLeftCurlyBracketOrSemicolon, true);
     }
     function su() {
-      for (let e2 = 1, t2; t2 = this.lookupType(e2); e2++) {
-        if (t2 === ue2)
+      for (let e2 = 1, t3; t3 = this.lookupType(e2); e2++) {
+        if (t3 === ue2)
           return true;
-        if (t2 === V2 || t2 === G2)
+        if (t3 === V2 || t3 === G2)
           return false;
       }
       return false;
@@ -27589,9 +28136,9 @@
       block: ["Block", null]
     };
     function Xo(e2 = false) {
-      const t2 = this.tokenStart;
+      const t3 = this.tokenStart;
       let n2, r2, i2 = null, o2 = null;
-      switch (this.eat(G2), n2 = this.substrToCursor(t2 + 1), r2 = n2.toLowerCase(), this.skipSC(), this.eof === false && this.tokenType !== V2 && this.tokenType !== re2 && (this.parseAtrulePrelude ? i2 = this.parseWithFallback(this.AtrulePrelude.bind(this, n2, e2), Ai2) : i2 = Ai2.call(this, this.tokenIndex), this.skipSC()), this.tokenType) {
+      switch (this.eat(G2), n2 = this.substrToCursor(t3 + 1), r2 = n2.toLowerCase(), this.skipSC(), this.eof === false && this.tokenType !== V2 && this.tokenType !== re2 && (this.parseAtrulePrelude ? i2 = this.parseWithFallback(this.AtrulePrelude.bind(this, n2, e2), Ai2) : i2 = Ai2.call(this, this.tokenIndex), this.skipSC()), this.tokenType) {
         case re2:
           this.next();
           break;
@@ -27601,7 +28148,7 @@
       }
       return {
         type: "Atrule",
-        loc: this.getLocation(t2, this.tokenStart),
+        loc: this.getLocation(t3, this.tokenStart),
         name: n2,
         prelude: i2,
         block: o2
@@ -27621,11 +28168,11 @@
       children: [[]]
     };
     function Zo(e2) {
-      let t2 = null;
-      return e2 !== null && (e2 = e2.toLowerCase()), this.skipSC(), hasOwnProperty.call(this.atrule, e2) && typeof this.atrule[e2].prelude == "function" ? t2 = this.atrule[e2].prelude.call(this) : t2 = this.readSequence(this.scope.AtrulePrelude), this.skipSC(), this.eof !== true && this.tokenType !== V2 && this.tokenType !== re2 && this.error("Semicolon or block is expected"), {
+      let t3 = null;
+      return e2 !== null && (e2 = e2.toLowerCase()), this.skipSC(), hasOwnProperty.call(this.atrule, e2) && typeof this.atrule[e2].prelude == "function" ? t3 = this.atrule[e2].prelude.call(this) : t3 = this.readSequence(this.scope.AtrulePrelude), this.skipSC(), this.eof !== true && this.tokenType !== V2 && this.tokenType !== re2 && this.error("Semicolon or block is expected"), {
         type: "AtrulePrelude",
-        loc: this.getLocationFromList(t2),
-        children: t2
+        loc: this.getLocationFromList(t3),
+        children: t3
       };
     }
     function mu(e2) {
@@ -27638,25 +28185,25 @@
       parse: Zo,
       structure: du,
       walkContext: fu
-    }, Symbol.toStringTag, { value: "Module" })), bu = 36, Jo = 42, Qt2 = 61, yu = 94, rr = 124, ku = 126;
+    }, Symbol.toStringTag, { value: "Module" })), bu = 36, Jo = 42, Qt2 = 61, yu = 94, rr2 = 124, ku = 126;
     function xu() {
       this.eof && this.error("Unexpected end of input");
       const e2 = this.tokenStart;
-      let t2 = false;
-      return this.isDelim(Jo) ? (t2 = true, this.next()) : this.isDelim(rr) || this.eat(y2), this.isDelim(rr) ? this.charCodeAt(this.tokenStart + 1) !== Qt2 ? (this.next(), this.eat(y2)) : t2 && this.error("Identifier is expected", this.tokenEnd) : t2 && this.error("Vertical line is expected"), {
+      let t3 = false;
+      return this.isDelim(Jo) ? (t3 = true, this.next()) : this.isDelim(rr2) || this.eat(y2), this.isDelim(rr2) ? this.charCodeAt(this.tokenStart + 1) !== Qt2 ? (this.next(), this.eat(y2)) : t3 && this.error("Identifier is expected", this.tokenEnd) : t3 && this.error("Vertical line is expected"), {
         type: "Identifier",
         loc: this.getLocation(e2, this.tokenStart),
         name: this.substrToCursor(e2)
       };
     }
     function wu() {
-      const e2 = this.tokenStart, t2 = this.charCodeAt(e2);
-      return t2 !== Qt2 && // =
-      t2 !== ku && // ~=
-      t2 !== yu && // ^=
-      t2 !== bu && // $=
-      t2 !== Jo && // *=
-      t2 !== rr && this.error("Attribute selector (=, ~=, ^=, $=, *=, |=) is expected"), this.next(), t2 !== Qt2 && (this.isDelim(Qt2) || this.error("Equal sign is expected"), this.next()), this.substrToCursor(e2);
+      const e2 = this.tokenStart, t3 = this.charCodeAt(e2);
+      return t3 !== Qt2 && // =
+      t3 !== ku && // ~=
+      t3 !== yu && // ^=
+      t3 !== bu && // $=
+      t3 !== Jo && // *=
+      t3 !== rr2 && this.error("Attribute selector (=, ~=, ^=, $=, *=, |=) is expected"), this.next(), t3 !== Qt2 && (this.isDelim(Qt2) || this.error("Equal sign is expected"), this.next()), this.substrToCursor(e2);
     }
     const vu = "AttributeSelector", Su = {
       name: "Identifier",
@@ -27666,11 +28213,11 @@
     };
     function es() {
       const e2 = this.tokenStart;
-      let t2, n2 = null, r2 = null, i2 = null;
-      return this.eat(fe2), this.skipSC(), t2 = xu.call(this), this.skipSC(), this.tokenType !== Se2 && (this.tokenType !== y2 && (n2 = wu.call(this), this.skipSC(), r2 = this.tokenType === Te2 ? this.String() : this.Identifier(), this.skipSC()), this.tokenType === y2 && (i2 = this.consume(y2), this.skipSC())), this.eat(Se2), {
+      let t3, n2 = null, r2 = null, i2 = null;
+      return this.eat(fe2), this.skipSC(), t3 = xu.call(this), this.skipSC(), this.tokenType !== Se2 && (this.tokenType !== y2 && (n2 = wu.call(this), this.skipSC(), r2 = this.tokenType === Te2 ? this.String() : this.Identifier(), this.skipSC()), this.tokenType === y2 && (i2 = this.consume(y2), this.skipSC())), this.eat(Se2), {
         type: "AttributeSelector",
         loc: this.getLocation(e2, this.tokenStart),
-        name: t2,
+        name: t3,
         matcher: n2,
         value: r2,
         flags: i2
@@ -27709,7 +28256,7 @@
       ]]
     };
     function ns(e2) {
-      const t2 = e2 ? Ou : Oi2, n2 = this.tokenStart;
+      const t3 = e2 ? Ou : Oi2, n2 = this.tokenStart;
       let r2 = this.createList();
       e:
         for (; !this.eof; )
@@ -27724,7 +28271,7 @@
               r2.push(this.parseWithFallback(this.Atrule.bind(this, e2), ts));
               break;
             default:
-              e2 && this.isDelim(Au) ? r2.push(Oi2.call(this)) : r2.push(t2.call(this));
+              e2 && this.isDelim(Au) ? r2.push(Oi2.call(this)) : r2.push(t3.call(this));
           }
       return {
         type: "Block",
@@ -27733,8 +28280,8 @@
       };
     }
     function _u(e2) {
-      this.children(e2, (t2) => {
-        t2.type === "Declaration" && this.token(re2, ";");
+      this.children(e2, (t3) => {
+        t3.type === "Declaration" && this.token(re2, ";");
       });
     }
     const Pu = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
@@ -27747,10 +28294,10 @@
     }, Symbol.toStringTag, { value: "Module" })), zu = "Brackets", Iu = {
       children: [[]]
     };
-    function rs(e2, t2) {
+    function rs(e2, t3) {
       const n2 = this.tokenStart;
       let r2 = null;
-      return this.eat(fe2), r2 = e2.call(this, t2), this.eof || this.eat(Se2), {
+      return this.eat(fe2), r2 = e2.call(this, t3), this.eof || this.eat(Se2), {
         type: "Brackets",
         loc: this.getLocation(n2, this.tokenStart),
         children: r2
@@ -27823,10 +28370,10 @@
     };
     function as() {
       const e2 = this.tokenStart;
-      let t2;
+      let t3;
       switch (this.tokenType) {
         case W2:
-          t2 = " ";
+          t3 = " ";
           break;
         case I2:
           switch (this.charCodeAt(this.tokenStart)) {
@@ -27841,13 +28388,13 @@
             default:
               this.error("Combinator is expected");
           }
-          t2 = this.substrToCursor(e2);
+          t3 = this.substrToCursor(e2);
           break;
       }
       return {
         type: "Combinator",
         loc: this.getLocation(e2, this.tokenStart),
-        name: t2
+        name: t3
       };
     }
     function th(e2) {
@@ -27864,11 +28411,11 @@
     };
     function ls() {
       const e2 = this.tokenStart;
-      let t2 = this.tokenEnd;
-      return this.eat(X2), t2 - e2 + 2 >= 2 && this.charCodeAt(t2 - 2) === rh && this.charCodeAt(t2 - 1) === ih && (t2 -= 2), {
+      let t3 = this.tokenEnd;
+      return this.eat(X2), t3 - e2 + 2 >= 2 && this.charCodeAt(t3 - 2) === rh && this.charCodeAt(t3 - 1) === ih && (t3 -= 2), {
         type: "Comment",
         loc: this.getLocation(e2, this.tokenStart),
-        value: this.substring(e2 + 2, t2)
+        value: this.substring(e2 + 2, t3)
       };
     }
     function ah(e2) {
@@ -27901,7 +28448,7 @@
       }
     };
     function cs(e2 = "media") {
-      const t2 = this.createList();
+      const t3 = this.createList();
       e: for (; !this.eof; )
         switch (this.tokenType) {
           case X2:
@@ -27909,7 +28456,7 @@
             this.next();
             continue;
           case y2:
-            t2.push(this.Identifier());
+            t3.push(this.Identifier());
             break;
           case M2: {
             let n2 = this.parseWithFallback(
@@ -27923,7 +28470,7 @@
                 return this.eat(E2), r2;
               },
               () => this.GeneralEnclosed(e2)
-            )), t2.push(n2);
+            )), t3.push(n2);
             break;
           }
           case $5: {
@@ -27931,22 +28478,22 @@
               () => this.FeatureFunction(e2),
               () => null
             );
-            n2 || (n2 = this.GeneralEnclosed(e2)), t2.push(n2);
+            n2 || (n2 = this.GeneralEnclosed(e2)), t3.push(n2);
             break;
           }
           default:
             break e;
         }
-      return t2.isEmpty && this.error("Condition is expected"), {
+      return t3.isEmpty && this.error("Condition is expected"), {
         type: "Condition",
-        loc: this.getLocationFromList(t2),
+        loc: this.getLocationFromList(t3),
         kind: e2,
-        children: t2
+        children: t3
       };
     }
     function fh(e2) {
-      e2.children.forEach((t2) => {
-        t2.type === "Condition" ? (this.token(M2, "("), this.node(t2), this.token(E2, ")")) : this.node(t2);
+      e2.children.forEach((t3) => {
+        t3.type === "Condition" ? (this.token(M2, "("), this.node(t3), this.token(E2, ")")) : this.node(t3);
       });
     }
     const dh = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
@@ -27963,8 +28510,8 @@
       return this.Raw(this.consumeUntilExclamationMarkOrSemicolon, false);
     }
     function vh() {
-      const e2 = this.tokenIndex, t2 = this.Value();
-      return t2.type !== "Raw" && this.eof === false && this.tokenType !== re2 && this.isDelim(us) === false && this.isBalanceEdge(e2) === false && this.error(), t2;
+      const e2 = this.tokenIndex, t3 = this.Value();
+      return t3.type !== "Raw" && this.eof === false && this.tokenType !== re2 && this.isDelim(us) === false && this.isBalanceEdge(e2) === false && this.error(), t3;
     }
     const Sh = "Declaration", Ch = "declaration", Th = {
       important: [Boolean, String],
@@ -27972,7 +28519,7 @@
       value: ["Value", "Raw"]
     };
     function hs() {
-      const e2 = this.tokenStart, t2 = this.tokenIndex, n2 = Oh.call(this), r2 = Cr(n2), i2 = r2 ? this.parseCustomProperty : this.parseValue, o2 = r2 ? wh : xh;
+      const e2 = this.tokenStart, t3 = this.tokenIndex, n2 = Oh.call(this), r2 = Cr2(n2), i2 = r2 ? this.parseCustomProperty : this.parseValue, o2 = r2 ? wh : xh;
       let s2 = false, c2;
       this.skipSC(), this.eat(ne2);
       const l2 = this.tokenIndex;
@@ -27987,7 +28534,7 @@
             break;
           }
       }
-      return this.isDelim(us) && (s2 = Eh.call(this), this.skipSC()), this.eof === false && this.tokenType !== re2 && this.isBalanceEdge(t2) === false && this.error(), {
+      return this.isDelim(us) && (s2 = Eh.call(this), this.skipSC()), this.eof === false && this.tokenType !== re2 && this.isBalanceEdge(t3) === false && this.error(), {
         type: "Declaration",
         loc: this.getLocation(e2, this.tokenStart),
         important: s2,
@@ -28060,8 +28607,8 @@
       };
     }
     function zh(e2) {
-      this.children(e2, (t2) => {
-        t2.type === "Declaration" && this.token(re2, ";");
+      this.children(e2, (t3) => {
+        t3.type === "Declaration" && this.token(re2, ";");
       });
     }
     const Ih = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
@@ -28075,12 +28622,12 @@
       unit: String
     };
     function fs() {
-      const e2 = this.tokenStart, t2 = this.consumeNumber(z2);
+      const e2 = this.tokenStart, t3 = this.consumeNumber(z2);
       return {
         type: "Dimension",
         loc: this.getLocation(e2, this.tokenStart),
-        value: t2,
-        unit: this.substring(e2 + t2.length, this.tokenStart)
+        value: t3,
+        unit: this.substring(e2 + t3.length, this.tokenStart)
       };
     }
     function Nh(e2) {
@@ -28098,7 +28645,7 @@
       value: ["Identifier", "Number", "Dimension", "Ratio", "Function", null]
     };
     function ds(e2) {
-      const t2 = this.tokenStart;
+      const t3 = this.tokenStart;
       let n2, r2 = null;
       if (this.eat(M2), this.skipSC(), n2 = this.consume(y2), this.skipSC(), this.tokenType !== E2) {
         switch (this.eat(ne2), this.skipSC(), this.tokenType) {
@@ -28127,7 +28674,7 @@
       }
       return this.eof || this.eat(E2), {
         type: "Feature",
-        loc: this.getLocation(t2, this.tokenStart),
+        loc: this.getLocation(t3, this.tokenStart),
         kind: e2,
         name: n2,
         value: r2
@@ -28147,12 +28694,12 @@
       feature: String,
       value: ["Declaration", "Selector"]
     };
-    function Gh(e2, t2) {
-      const r2 = (this.features[e2] || {})[t2];
-      return typeof r2 != "function" && this.error(`Unknown feature ${t2}()`), r2;
+    function Gh(e2, t3) {
+      const r2 = (this.features[e2] || {})[t3];
+      return typeof r2 != "function" && this.error(`Unknown feature ${t3}()`), r2;
     }
     function ms(e2 = "unknown") {
-      const t2 = this.tokenStart, n2 = this.consumeFunctionName(), r2 = Gh.call(this, e2, n2.toLowerCase());
+      const t3 = this.tokenStart, n2 = this.consumeFunctionName(), r2 = Gh.call(this, e2, n2.toLowerCase());
       this.skipSC();
       const i2 = this.parseWithFallback(
         () => {
@@ -28163,7 +28710,7 @@
       );
       return this.eof || this.eat(E2), {
         type: "FeatureFunction",
-        loc: this.getLocation(t2, this.tokenStart),
+        loc: this.getLocation(t3, this.tokenStart),
         kind: e2,
         feature: n2,
         value: i2
@@ -28208,21 +28755,21 @@
     }
     function Ii2(e2) {
       if (this.skipSC(), this.isDelim(Yh) || this.isDelim(Qh)) {
-        const t2 = this.source[this.tokenStart];
-        return this.next(), this.isDelim(zi2) ? (this.next(), t2 + "=") : t2;
+        const t3 = this.source[this.tokenStart];
+        return this.next(), this.isDelim(zi2) ? (this.next(), t3 + "=") : t3;
       }
       if (this.isDelim(zi2))
         return "=";
       this.error(`Expected ${e2 ? '":", ' : ""}"<", ">", "=" or ")"`);
     }
     function gs(e2 = "unknown") {
-      const t2 = this.tokenStart;
+      const t3 = this.tokenStart;
       this.skipSC(), this.eat(M2);
       const n2 = Bn2.call(this), r2 = Ii2.call(this, n2.type === "Identifier"), i2 = Bn2.call(this);
       let o2 = null, s2 = null;
       return this.lookupNonWSType(0) !== E2 && (o2 = Ii2.call(this), s2 = Bn2.call(this)), this.skipSC(), this.eat(E2), {
         type: "FeatureRange",
-        loc: this.getLocation(t2, this.tokenStart),
+        loc: this.getLocation(t3, this.tokenStart),
         kind: e2,
         left: n2,
         leftComparison: r2,
@@ -28244,10 +28791,10 @@
       name: String,
       children: [[]]
     };
-    function bs(e2, t2) {
+    function bs(e2, t3) {
       const n2 = this.tokenStart, r2 = this.consumeFunctionName(), i2 = r2.toLowerCase();
       let o2;
-      return o2 = t2.hasOwnProperty(i2) ? t2[i2].call(this, t2) : e2.call(this, t2), this.eof || this.eat(E2), {
+      return o2 = t3.hasOwnProperty(i2) ? t3[i2].call(this, t3) : e2.call(this, t3), this.eof || this.eat(E2), {
         type: "Function",
         loc: this.getLocation(n2, this.tokenStart),
         name: r2,
@@ -28270,7 +28817,7 @@
       children: [[]]
     };
     function ys(e2) {
-      const t2 = this.tokenStart;
+      const t3 = this.tokenStart;
       let n2 = null;
       this.tokenType === $5 ? n2 = this.consumeFunctionName() : this.eat(M2);
       const r2 = this.parseWithFallback(
@@ -28284,7 +28831,7 @@
       );
       return this.eof || this.eat(E2), {
         type: "GeneralEnclosed",
-        loc: this.getLocation(t2, this.tokenStart),
+        loc: this.getLocation(t3, this.tokenStart),
         kind: e2,
         function: n2,
         children: r2
@@ -28412,10 +28959,10 @@
     };
     function Cs() {
       const e2 = this.tokenStart;
-      let t2 = null, n2 = null, r2 = null;
+      let t3 = null, n2 = null, r2 = null;
       if (this.skipSC(), this.tokenType === y2 && this.lookupTypeNonSC(1) !== M2) {
         const i2 = this.consume(y2), o2 = i2.toLowerCase();
-        switch (o2 === "not" || o2 === "only" ? (this.skipSC(), t2 = o2, n2 = this.consume(y2)) : n2 = i2, this.lookupTypeNonSC(0)) {
+        switch (o2 === "not" || o2 === "only" ? (this.skipSC(), t3 = o2, n2 = this.consume(y2)) : n2 = i2, this.lookupTypeNonSC(0)) {
           case y2: {
             this.skipSC(), this.eatIdent("and"), r2 = this.Condition("media");
             break;
@@ -28446,7 +28993,7 @@
       return {
         type: "MediaQuery",
         loc: this.getLocation(e2, this.tokenStart),
-        modifier: t2,
+        modifier: t3,
         mediaType: n2,
         condition: r2
       };
@@ -28508,10 +29055,10 @@
     function Os() {
       this.skipSC();
       const e2 = this.tokenStart;
-      let t2 = e2, n2 = null, r2;
-      return this.lookupValue(0, "odd") || this.lookupValue(0, "even") ? r2 = this.Identifier() : r2 = this.AnPlusB(), t2 = this.tokenStart, this.skipSC(), this.lookupValue(0, "of") && (this.next(), n2 = this.SelectorList(), t2 = this.tokenStart), {
+      let t3 = e2, n2 = null, r2;
+      return this.lookupValue(0, "odd") || this.lookupValue(0, "even") ? r2 = this.Identifier() : r2 = this.AnPlusB(), t3 = this.tokenStart, this.skipSC(), this.lookupValue(0, "of") && (this.next(), n2 = this.SelectorList(), t3 = this.tokenStart), {
         type: "Nth",
-        loc: this.getLocation(e2, t2),
+        loc: this.getLocation(e2, t3),
         nth: r2,
         selector: n2
       };
@@ -28567,10 +29114,10 @@
     }, Symbol.toStringTag, { value: "Module" })), rf = "Parentheses", of = {
       children: [[]]
     };
-    function $s(e2, t2) {
+    function $s(e2, t3) {
       const n2 = this.tokenStart;
       let r2 = null;
-      return this.eat(M2), r2 = e2.call(this, t2), this.eof || this.eat(E2), {
+      return this.eat(M2), r2 = e2.call(this, t3), this.eof || this.eat(E2), {
         type: "Parentheses",
         loc: this.getLocation(n2, this.tokenStart),
         children: r2
@@ -28610,14 +29157,14 @@
     };
     function Ps() {
       const e2 = this.tokenStart;
-      let t2 = null, n2, r2;
-      return this.eat(ne2), this.tokenType === $5 ? (n2 = this.consumeFunctionName(), r2 = n2.toLowerCase(), this.lookupNonWSType(0) == E2 ? t2 = this.createList() : hasOwnProperty.call(this.pseudo, r2) ? (this.skipSC(), t2 = this.pseudo[r2].call(this), this.skipSC()) : (t2 = this.createList(), t2.push(
+      let t3 = null, n2, r2;
+      return this.eat(ne2), this.tokenType === $5 ? (n2 = this.consumeFunctionName(), r2 = n2.toLowerCase(), this.lookupNonWSType(0) == E2 ? t3 = this.createList() : hasOwnProperty.call(this.pseudo, r2) ? (this.skipSC(), t3 = this.pseudo[r2].call(this), this.skipSC()) : (t3 = this.createList(), t3.push(
         this.Raw(null, false)
       )), this.eat(E2)) : n2 = this.consume(y2), {
         type: "PseudoClassSelector",
         loc: this.getLocation(e2, this.tokenStart),
         name: n2,
-        children: t2
+        children: t3
       };
     }
     function mf(e2) {
@@ -28636,14 +29183,14 @@
     };
     function zs() {
       const e2 = this.tokenStart;
-      let t2 = null, n2, r2;
-      return this.eat(ne2), this.eat(ne2), this.tokenType === $5 ? (n2 = this.consumeFunctionName(), r2 = n2.toLowerCase(), this.lookupNonWSType(0) == E2 ? t2 = this.createList() : hasOwnProperty.call(this.pseudo, r2) ? (this.skipSC(), t2 = this.pseudo[r2].call(this), this.skipSC()) : (t2 = this.createList(), t2.push(
+      let t3 = null, n2, r2;
+      return this.eat(ne2), this.eat(ne2), this.tokenType === $5 ? (n2 = this.consumeFunctionName(), r2 = n2.toLowerCase(), this.lookupNonWSType(0) == E2 ? t3 = this.createList() : hasOwnProperty.call(this.pseudo, r2) ? (this.skipSC(), t3 = this.pseudo[r2].call(this), this.skipSC()) : (t3 = this.createList(), t3.push(
         this.Raw(null, false)
       )), this.eat(E2)) : n2 = this.consume(y2), {
         type: "PseudoElementSelector",
         loc: this.getLocation(e2, this.tokenStart),
         name: n2,
-        children: t2
+        children: t3
       };
     }
     function xf(e2) {
@@ -28672,12 +29219,12 @@
       right: ["Number", "Function", null]
     };
     function Is() {
-      const e2 = this.tokenStart, t2 = Mi2.call(this);
+      const e2 = this.tokenStart, t3 = Mi2.call(this);
       let n2 = null;
       return this.skipSC(), this.isDelim(Ri2) && (this.eatDelim(Ri2), n2 = Mi2.call(this)), {
         type: "Ratio",
         loc: this.getLocation(e2, this.tokenStart),
-        left: t2,
+        left: t3,
         right: n2
       };
     }
@@ -28697,10 +29244,10 @@
     const Of = "Raw", Ef = {
       value: String
     };
-    function Rs(e2, t2) {
+    function Rs(e2, t3) {
       const n2 = this.getTokenStart(this.tokenIndex);
       let r2;
-      return this.skipUntilBalanced(this.tokenIndex, e2 || this.consumeUntilBalanceEnd), t2 && this.tokenStart > n2 ? r2 = Af.call(this) : r2 = this.tokenStart, {
+      return this.skipUntilBalanced(this.tokenIndex, e2 || this.consumeUntilBalanceEnd), t3 && this.tokenStart > n2 ? r2 = Af.call(this) : r2 = this.tokenStart, {
         type: "Raw",
         loc: this.getLocation(n2, r2),
         value: this.substring(n2, r2)
@@ -28728,11 +29275,11 @@
       block: ["Block"]
     };
     function Ms() {
-      const e2 = this.tokenIndex, t2 = this.tokenStart;
+      const e2 = this.tokenIndex, t3 = this.tokenStart;
       let n2, r2;
       return this.parseRulePrelude ? n2 = this.parseWithFallback(_f, Ni2) : n2 = Ni2.call(this, e2), this.skipSC(), this.eat(V2), r2 = this.Block(true), this.eof || this.eat(ue2), {
         type: "Rule",
-        loc: this.getLocation(t2, this.tokenStart),
+        loc: this.getLocation(t3, this.tokenStart),
         prelude: n2,
         block: r2
       };
@@ -28752,20 +29299,20 @@
       limit: ["SelectorList", "Raw", null]
     };
     function Ns() {
-      let e2 = null, t2 = null;
+      let e2 = null, t3 = null;
       this.skipSC();
       const n2 = this.tokenStart;
       return this.tokenType === M2 && (this.next(), this.skipSC(), e2 = this.parseWithFallback(
         this.SelectorList,
         () => this.Raw(false, true)
-      ), this.skipSC(), this.eat(E2)), this.lookupNonWSType(0) === y2 && (this.skipSC(), this.eatIdent("to"), this.skipSC(), this.eat(M2), this.skipSC(), t2 = this.parseWithFallback(
+      ), this.skipSC(), this.eat(E2)), this.lookupNonWSType(0) === y2 && (this.skipSC(), this.eatIdent("to"), this.skipSC(), this.eat(M2), this.skipSC(), t3 = this.parseWithFallback(
         this.SelectorList,
         () => this.Raw(false, true)
       ), this.skipSC(), this.eat(E2)), {
         type: "Scope",
         loc: this.getLocation(n2, this.tokenStart),
         root: e2,
-        limit: t2
+        limit: t3
       };
     }
     function jf(e2) {
@@ -28836,18 +29383,18 @@
       parse: js,
       structure: Vf,
       walkContext: Gf
-    }, Symbol.toStringTag, { value: "Module" })), ir = 92, Fs = 34, Qf = 39;
+    }, Symbol.toStringTag, { value: "Module" })), ir2 = 92, Fs = 34, Qf = 39;
     function Bs(e2) {
-      const t2 = e2.length, n2 = e2.charCodeAt(0), r2 = n2 === Fs || n2 === Qf ? 1 : 0, i2 = r2 === 1 && t2 > 1 && e2.charCodeAt(t2 - 1) === n2 ? t2 - 2 : t2 - 1;
+      const t3 = e2.length, n2 = e2.charCodeAt(0), r2 = n2 === Fs || n2 === Qf ? 1 : 0, i2 = r2 === 1 && t3 > 1 && e2.charCodeAt(t3 - 1) === n2 ? t3 - 2 : t3 - 1;
       let o2 = "";
       for (let s2 = r2; s2 <= i2; s2++) {
         let c2 = e2.charCodeAt(s2);
-        if (c2 === ir) {
+        if (c2 === ir2) {
           if (s2 === i2) {
-            s2 !== t2 - 1 && (o2 = e2.substr(s2 + 1));
+            s2 !== t3 - 1 && (o2 = e2.substr(s2 + 1));
             break;
           }
-          if (c2 = e2.charCodeAt(++s2), Le2(ir, c2)) {
+          if (c2 = e2.charCodeAt(++s2), Le2(ir2, c2)) {
             const l2 = s2 - 1, a2 = ft2(e2, l2);
             s2 = a2 - 1, o2 += go(e2.substring(l2 + 1, a2));
           } else
@@ -28857,7 +29404,7 @@
       }
       return o2;
     }
-    function Xf(e2, t2) {
+    function Xf(e2, t3) {
       const n2 = '"', r2 = Fs;
       let i2 = "", o2 = false;
       for (let s2 = 0; s2 < e2.length; s2++) {
@@ -28870,7 +29417,7 @@
           i2 += "\\" + c2.toString(16), o2 = true;
           continue;
         }
-        c2 === r2 || c2 === ir ? (i2 += "\\" + e2.charAt(s2), o2 = false) : (o2 && (He2(c2) || Xe2(c2)) && (i2 += " "), i2 += e2.charAt(s2), o2 = false);
+        c2 === r2 || c2 === ir2 ? (i2 += "\\" + e2.charAt(s2), o2 = false) : (o2 && (He2(c2) || Xe2(c2)) && (i2 += " "), i2 += e2.charAt(s2), o2 = false);
       }
       return n2 + i2 + n2;
     }
@@ -28908,7 +29455,7 @@
       ]]
     };
     function Hs() {
-      const e2 = this.tokenStart, t2 = this.createList();
+      const e2 = this.tokenStart, t3 = this.createList();
       let n2;
       for (; !this.eof; ) {
         switch (this.tokenType) {
@@ -28934,12 +29481,12 @@
           default:
             n2 = this.parseWithFallback(this.Rule, Di2);
         }
-        t2.push(n2);
+        t3.push(n2);
       }
       return {
         type: "StyleSheet",
         loc: this.getLocation(e2, this.tokenStart),
-        children: t2
+        children: t3
       };
     }
     function sd(e2) {
@@ -28958,11 +29505,11 @@
     function Us() {
       const e2 = this.tokenStart;
       this.eat(M2), this.skipSC();
-      const t2 = this.Declaration();
+      const t3 = this.Declaration();
       return this.eof || this.eat(E2), {
         type: "SupportsDeclaration",
         loc: this.getLocation(e2, this.tokenStart),
-        declaration: t2
+        declaration: t3
       };
     }
     function ud(e2) {
@@ -28975,7 +29522,7 @@
       parse: Us,
       structure: cd
     }, Symbol.toStringTag, { value: "Module" })), pd = 42, ji2 = 124;
-    function Wn() {
+    function Wn2() {
       this.tokenType !== y2 && this.isDelim(pd) === false && this.error("Identifier or asterisk is expected"), this.next();
     }
     const fd = "TypeSelector", dd = {
@@ -28983,7 +29530,7 @@
     };
     function qs() {
       const e2 = this.tokenStart;
-      return this.isDelim(ji2) ? (this.next(), Wn.call(this)) : (Wn.call(this), this.isDelim(ji2) && (this.next(), Wn.call(this))), {
+      return this.isDelim(ji2) ? (this.next(), Wn2.call(this)) : (Wn2.call(this), this.isDelim(ji2) && (this.next(), Wn2.call(this))), {
         type: "TypeSelector",
         loc: this.getLocation(e2, this.tokenStart),
         name: this.substrToCursor(e2)
@@ -28998,24 +29545,24 @@
       name: fd,
       parse: qs,
       structure: dd
-    }, Symbol.toStringTag, { value: "Module" })), Gs = 43, Vs = 45, or = 63;
-    function Ct2(e2, t2) {
+    }, Symbol.toStringTag, { value: "Module" })), Gs = 43, Vs = 45, or2 = 63;
+    function Ct2(e2, t3) {
       let n2 = 0;
       for (let r2 = this.tokenStart + e2; r2 < this.tokenEnd; r2++) {
         const i2 = this.charCodeAt(r2);
-        if (i2 === Vs && t2 && n2 !== 0)
+        if (i2 === Vs && t3 && n2 !== 0)
           return Ct2.call(this, e2 + n2 + 1, false), -1;
         He2(i2) || this.error(
-          t2 && n2 !== 0 ? "Hyphen minus" + (n2 < 6 ? " or hex digit" : "") + " is expected" : n2 < 6 ? "Hex digit is expected" : "Unexpected input",
+          t3 && n2 !== 0 ? "Hyphen minus" + (n2 < 6 ? " or hex digit" : "") + " is expected" : n2 < 6 ? "Hex digit is expected" : "Unexpected input",
           r2
         ), ++n2 > 6 && this.error("Too many hex digits", r2);
       }
       return this.next(), n2;
     }
     function Wt2(e2) {
-      let t2 = 0;
-      for (; this.isDelim(or); )
-        ++t2 > e2 && this.error("Too many question marks"), this.next();
+      let t3 = 0;
+      for (; this.isDelim(or2); )
+        ++t3 > e2 && this.error("Too many question marks"), this.next();
     }
     function bd(e2) {
       this.charCodeAt(this.tokenStart) !== e2 && this.error((e2 === Gs ? "Plus sign" : "Hyphen minus") + " is expected");
@@ -29024,7 +29571,7 @@
       let e2 = 0;
       switch (this.tokenType) {
         case L2:
-          if (e2 = Ct2.call(this, 1, true), this.isDelim(or)) {
+          if (e2 = Ct2.call(this, 1, true), this.isDelim(or2)) {
             Wt2.call(this, 6 - e2);
             break;
           }
@@ -29041,7 +29588,7 @@
             e2 = Ct2.call(this, 0, true), e2 > 0 && Wt2.call(this, 6 - e2);
             break;
           }
-          if (this.isDelim(or)) {
+          if (this.isDelim(or2)) {
             this.next(), Wt2.call(this, 5);
             break;
           }
@@ -29068,22 +29615,22 @@
       name: kd,
       parse: Ks,
       structure: xd
-    }, Symbol.toStringTag, { value: "Module" })), Sd = 32, sr = 92, Cd = 34, Td = 39, Ad = 40, Ys = 41;
+    }, Symbol.toStringTag, { value: "Module" })), Sd = 32, sr2 = 92, Cd = 34, Td = 39, Ad = 40, Ys = 41;
     function Od(e2) {
-      const t2 = e2.length;
-      let n2 = 4, r2 = e2.charCodeAt(t2 - 1) === Ys ? t2 - 2 : t2 - 1, i2 = "";
+      const t3 = e2.length;
+      let n2 = 4, r2 = e2.charCodeAt(t3 - 1) === Ys ? t3 - 2 : t3 - 1, i2 = "";
       for (; n2 < r2 && Xe2(e2.charCodeAt(n2)); )
         n2++;
       for (; n2 < r2 && Xe2(e2.charCodeAt(r2)); )
         r2--;
       for (let o2 = n2; o2 <= r2; o2++) {
         let s2 = e2.charCodeAt(o2);
-        if (s2 === sr) {
+        if (s2 === sr2) {
           if (o2 === r2) {
-            o2 !== t2 - 1 && (i2 = e2.substr(o2 + 1));
+            o2 !== t3 - 1 && (i2 = e2.substr(o2 + 1));
             break;
           }
-          if (s2 = e2.charCodeAt(++o2), Le2(sr, s2)) {
+          if (s2 = e2.charCodeAt(++o2), Le2(sr2, s2)) {
             const c2 = o2 - 1, l2 = ft2(e2, c2);
             o2 = l2 - 1, i2 += go(e2.substring(c2 + 1, l2));
           } else
@@ -29094,33 +29641,33 @@
       return i2;
     }
     function Ed(e2) {
-      let t2 = "", n2 = false;
+      let t3 = "", n2 = false;
       for (let r2 = 0; r2 < e2.length; r2++) {
         const i2 = e2.charCodeAt(r2);
         if (i2 === 0) {
-          t2 += "\uFFFD";
+          t3 += "\uFFFD";
           continue;
         }
         if (i2 <= 31 || i2 === 127) {
-          t2 += "\\" + i2.toString(16), n2 = true;
+          t3 += "\\" + i2.toString(16), n2 = true;
           continue;
         }
-        i2 === Sd || i2 === sr || i2 === Cd || i2 === Td || i2 === Ad || i2 === Ys ? (t2 += "\\" + e2.charAt(r2), n2 = false) : (n2 && He2(i2) && (t2 += " "), t2 += e2.charAt(r2), n2 = false);
+        i2 === Sd || i2 === sr2 || i2 === Cd || i2 === Td || i2 === Ad || i2 === Ys ? (t3 += "\\" + e2.charAt(r2), n2 = false) : (n2 && He2(i2) && (t3 += " "), t3 += e2.charAt(r2), n2 = false);
       }
-      return "url(" + t2 + ")";
+      return "url(" + t3 + ")";
     }
     const Ld = "Url", $d = {
       value: String
     };
     function Qs() {
       const e2 = this.tokenStart;
-      let t2;
+      let t3;
       switch (this.tokenType) {
         case te2:
-          t2 = Od(this.consume(te2));
+          t3 = Od(this.consume(te2));
           break;
         case $5:
-          this.cmpStr(this.tokenStart, this.tokenEnd, "url(") || this.error("Function name must be `url`"), this.eat($5), this.skipSC(), t2 = Bs(this.consume(Te2)), this.skipSC(), this.eof || this.eat(E2);
+          this.cmpStr(this.tokenStart, this.tokenEnd, "url(") || this.error("Function name must be `url`"), this.eat($5), this.skipSC(), t3 = Bs(this.consume(Te2)), this.skipSC(), this.eof || this.eat(E2);
           break;
         default:
           this.error("Url or Function is expected");
@@ -29128,7 +29675,7 @@
       return {
         type: "Url",
         loc: this.getLocation(e2, this.tokenStart),
-        value: t2
+        value: t3
       };
     }
     function _d(e2) {
@@ -29144,11 +29691,11 @@
       children: [[]]
     };
     function Xs() {
-      const e2 = this.tokenStart, t2 = this.readSequence(this.scope.Value);
+      const e2 = this.tokenStart, t3 = this.readSequence(this.scope.Value);
       return {
         type: "Value",
         loc: this.getLocation(e2, this.tokenStart),
-        children: t2
+        children: t3
       };
     }
     function Rd(e2) {
@@ -29260,10 +29807,10 @@
         case y2:
           return this.cmpChar(this.tokenStart, Vd) && this.cmpChar(this.tokenStart + 1, Fi2) ? this.UnicodeRange() : this.Identifier();
         case I2: {
-          const t2 = this.charCodeAt(this.tokenStart);
-          if (t2 === Gd || t2 === Ud || t2 === Fi2 || t2 === qd)
+          const t3 = this.charCodeAt(this.tokenStart);
+          if (t3 === Gd || t3 === Ud || t3 === Fi2 || t3 === qd)
             return this.Operator();
-          t2 === Hd && this.error("Hex or identifier is expected", this.tokenStart + 1);
+          t3 === Hd && this.error("Hex or identifier is expected", this.tokenStart + 1);
           break;
         }
       }
@@ -29271,8 +29818,8 @@
     const Kd = {
       getNode: ea
     }, Yd = 35, Qd = 38, Xd = 42, Zd = 43, Jd = 47, Bi2 = 46, em = 62, tm = 124, nm = 126;
-    function rm(e2, t2) {
-      t2.last !== null && t2.last.type !== "Combinator" && e2 !== null && e2.type !== "Combinator" && t2.push({
+    function rm(e2, t3) {
+      t3.last !== null && t3.last.type !== "Combinator" && e2 !== null && e2.type !== "Combinator" && t3.push({
         // FIXME: this.Combinator() should be used instead
         type: "Combinator",
         loc: null,
@@ -29329,9 +29876,9 @@
       const e2 = this.createList();
       if (this.skipSC(), e2.push(this.Identifier()), this.skipSC(), this.tokenType === ce2) {
         e2.push(this.Operator());
-        const t2 = this.tokenIndex, n2 = this.parseCustomProperty ? this.Value(null) : this.Raw(this.consumeUntilExclamationMarkOrSemicolon, false);
+        const t3 = this.tokenIndex, n2 = this.parseCustomProperty ? this.Value(null) : this.Raw(this.consumeUntilExclamationMarkOrSemicolon, false);
         if (n2.type === "Value" && n2.children.isEmpty) {
-          for (let r2 = t2 - this.tokenIndex; r2 <= 0; r2++)
+          for (let r2 = t3 - this.tokenIndex; r2 <= 0; r2++)
             if (this.lookupType(r2) === W2) {
               n2.children.appendData({
                 type: "WhiteSpace",
@@ -29350,8 +29897,8 @@
     }
     const lm = {
       getNode: ea,
-      onWhiteSpace(e2, t2) {
-        Wi2(e2) && (e2.value = " " + e2.value), Wi2(t2.last) && (t2.last.value += " ");
+      onWhiteSpace(e2, t3) {
+        Wi2(e2) && (e2.value = " " + e2.value), Wi2(t3.last) && (t3.last.value += " ");
       },
       expression: sm,
       var: am
@@ -29365,8 +29912,8 @@
         prelude() {
           const e2 = this.createList();
           if (this.tokenType === y2) {
-            const t2 = this.substring(this.tokenStart, this.tokenEnd);
-            um.has(t2.toLowerCase()) || e2.push(this.Identifier());
+            const t3 = this.substring(this.tokenStart, this.tokenEnd);
+            um.has(t3.toLowerCase()) || e2.push(this.Identifier());
           }
           return e2.push(this.Condition("container")), e2;
         },
@@ -29382,7 +29929,7 @@
         }
       }
     };
-    function Hn(e2, t2) {
+    function Hn2(e2, t3) {
       return this.parseWithFallback(
         () => {
           try {
@@ -29391,23 +29938,23 @@
             this.skipSC(), this.lookupNonWSType(0) !== E2 && this.error();
           }
         },
-        t2 || (() => this.Raw(null, true))
+        t3 || (() => this.Raw(null, true))
       );
     }
     const Hi2 = {
       layer() {
         this.skipSC();
-        const e2 = this.createList(), t2 = Hn.call(this, this.Layer);
-        return (t2.type !== "Raw" || t2.value !== "") && e2.push(t2), e2;
+        const e2 = this.createList(), t3 = Hn2.call(this, this.Layer);
+        return (t3.type !== "Raw" || t3.value !== "") && e2.push(t3), e2;
       },
       supports() {
         this.skipSC();
-        const e2 = this.createList(), t2 = Hn.call(
+        const e2 = this.createList(), t3 = Hn2.call(
           this,
           this.Declaration,
-          () => Hn.call(this, () => this.Condition("supports"))
+          () => Hn2.call(this, () => this.Condition("supports"))
         );
-        return (t2.type !== "Raw" || t2.value !== "") && e2.push(t2), e2;
+        return (t3.type !== "Raw" || t3.value !== "") && e2.push(t3), e2;
       }
     }, fm = {
       parse: {
@@ -29542,7 +30089,7 @@
           this.SelectorList()
         );
       }
-    }, Un = {
+    }, Un2 = {
       parse() {
         return this.createSingleNodeList(
           this.Selector()
@@ -29576,9 +30123,9 @@
       "nth-last-child": Ht2,
       "nth-last-of-type": Ht2,
       "nth-of-type": Ht2,
-      slotted: Un,
-      host: Un,
-      "host-context": Un
+      slotted: Un2,
+      host: Un2,
+      "host-context": Un2
     }, Am = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
       __proto__: null,
       AnPlusB: Qo,
@@ -29673,12 +30220,12 @@
       node: Js
     }, Lm = Jc(_2(_2(_2({}, Wd), Om), Em));
     function un2(e2) {
-      const t2 = {};
+      const t3 = {};
       for (const n2 of Object.keys(e2)) {
         let r2 = e2[n2];
-        r2 && (Array.isArray(r2) || r2 instanceof q2 ? r2 = r2.map(un2) : r2.constructor === Object && (r2 = un2(r2))), t2[n2] = r2;
+        r2 && (Array.isArray(r2) || r2 instanceof q2 ? r2 = r2.map(un2) : r2.constructor === Object && (r2 = un2(r2))), t3[n2] = r2;
       }
-      return t2;
+      return t3;
     }
     const {
       tokenize: Zg,
@@ -29695,13 +30242,13 @@
       fork: sb
     } = Lm;
     let Pm = "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict", ke2 = (e2 = 21) => {
-      let t2 = "", n2 = e2;
+      let t3 = "", n2 = e2;
       for (; n2--; )
-        t2 += Pm[Math.random() * 64 | 0];
-      return t2;
+        t3 += Pm[Math.random() * 64 | 0];
+      return t3;
     };
     const oe2 = ke2();
-    function Ir(e2) {
+    function Ir2(e2) {
       return !!(e2 && e2.type === "Function" && e2.name === "anchor");
     }
     function Be2(e2) {
@@ -29722,16 +30269,16 @@
     }
     function Im(e2) {
       return e2.toArray().reduce(
-        (t2, n2) => n2.type === "Operator" && n2.value === "," ? (t2.push([]), t2) : (n2.type === "Identifier" && t2[t2.length - 1].push(n2), t2),
+        (t3, n2) => n2.type === "Operator" && n2.value === "," ? (t3.push([]), t3) : (n2.type === "Identifier" && t3[t3.length - 1].push(n2), t3),
         [[]]
       );
     }
-    function ar(e2) {
-      return e2 ? e2.children.map((t2) => {
+    function ar2(e2) {
+      return e2 ? e2.children.map((t3) => {
         var i2;
         let n2;
-        ((i2 = t2.children.last) == null ? void 0 : i2.type) === "PseudoElementSelector" && (t2 = un2(t2), n2 = le2(t2.children.last), t2.children.pop());
-        const r2 = le2(t2);
+        ((i2 = t3.children.last) == null ? void 0 : i2.type) === "PseudoElementSelector" && (t3 = un2(t3), n2 = le2(t3.children.last), t3.children.pop());
+        const r2 = le2(t3);
         return {
           selector: r2 + (n2 != null ? n2 : ""),
           elementPart: r2,
@@ -29739,7 +30286,7 @@
         };
       }).toArray() : [];
     }
-    const lr = {
+    const lr2 = {
       "position-anchor": `--position-anchor-${oe2}`,
       "anchor-scope": `--anchor-scope-${oe2}`,
       "anchor-name": `--anchor-name-${oe2}`,
@@ -29755,15 +30302,15 @@
       "inset-inline": `--inset-inline-${oe2}`,
       inset: `--inset-${oe2}`
     };
-    function Rm(e2, t2) {
-      return zm(e2) && lr[e2.property] && t2 ? (t2.children.appendData(Z2(_2({}, e2), {
-        property: lr[e2.property]
+    function Rm(e2, t3) {
+      return zm(e2) && lr2[e2.property] && t3 ? (t3.children.appendData(Z2(_2({}, e2), {
+        property: lr2[e2.property]
       })), { updated: true }) : {};
     }
     function Mm(e2) {
-      for (const t2 of e2) {
+      for (const t3 of e2) {
         let n2 = false;
-        const r2 = Be2(t2.css);
+        const r2 = Be2(t3.css);
         Fe2(r2, {
           visit: "Declaration",
           enter(i2) {
@@ -29771,47 +30318,47 @@
             const o2 = (c2 = this.rule) == null ? void 0 : c2.block, { updated: s2 } = Rm(i2, o2);
             s2 && (n2 = true);
           }
-        }), n2 && (t2.css = le2(r2), t2.changed = true);
+        }), n2 && (t3.css = le2(r2), t3.changed = true);
       }
-      return e2.some((t2) => t2.changed === true);
+      return e2.some((t3) => t3.changed === true);
     }
     var ta = /* @__PURE__ */ ((e2) => (e2.All = "all", e2.None = "none", e2))(ta || {});
-    function Ce2(e2, t2) {
+    function Ce2(e2, t3) {
       var r2;
-      return t2 = (r2 = lr[t2]) != null ? r2 : t2, (e2 instanceof HTMLElement ? getComputedStyle(e2) : e2.computedStyle).getPropertyValue(t2).trim();
+      return t3 = (r2 = lr2[t3]) != null ? r2 : t3, (e2 instanceof HTMLElement ? getComputedStyle(e2) : e2.computedStyle).getPropertyValue(t3).trim();
     }
-    function gt2(e2, t2, n2) {
-      return Ce2(e2, t2) === n2;
+    function gt2(e2, t3, n2) {
+      return Ce2(e2, t3) === n2;
     }
-    function Nm(e2, { selector: t2, pseudoElementPart: n2 }) {
+    function Nm(e2, { selector: t3, pseudoElementPart: n2 }) {
       const r2 = getComputedStyle(e2, n2), i2 = document.createElement("div"), o2 = document.createElement("style");
       i2.id = `fake-pseudo-element-${ke2()}`;
       for (const c2 of Array.from(r2)) {
         const l2 = r2.getPropertyValue(c2);
         i2.style.setProperty(c2, l2);
       }
-      o2.textContent += `#${i2.id}${n2} { content: ${r2.content}; }`, o2.textContent += `${t2} { display: none !important; }`, document.head.append(o2);
+      o2.textContent += `#${i2.id}${n2} { content: ${r2.content}; }`, o2.textContent += `${t3} { display: none !important; }`, document.head.append(o2);
       const s2 = n2 === "::before" ? "afterbegin" : "beforeend";
       return e2.insertAdjacentElement(s2, i2), { fakePseudoElement: i2, sheet: o2, computedStyle: r2 };
     }
     function Dm(e2) {
-      let t2 = e2;
-      for (; t2; ) {
-        if (gt2(t2, "overflow", "scroll"))
-          return t2;
-        t2 = t2.parentElement;
+      let t3 = e2;
+      for (; t3; ) {
+        if (gt2(t3, "overflow", "scroll"))
+          return t3;
+        t3 = t3.parentElement;
       }
-      return t2;
+      return t3;
     }
     function jm(e2) {
-      let t2 = Dm(e2);
-      return t2 === document.documentElement && (t2 = null), t2 != null ? t2 : { scrollTop: 0, scrollLeft: 0 };
+      let t3 = Dm(e2);
+      return t3 === document.documentElement && (t3 = null), t3 != null ? t3 : { scrollTop: 0, scrollLeft: 0 };
     }
     function Fm(e2) {
-      const { elementPart: t2, pseudoElementPart: n2 } = e2, r2 = [];
+      const { elementPart: t3, pseudoElementPart: n2 } = e2, r2 = [];
       if (n2 && !(n2 === "::before" || n2 === "::after")) return r2;
       const s2 = Array.from(
-        document.querySelectorAll(t2)
+        document.querySelectorAll(t3)
       );
       if (!n2)
         return r2.push(...s2), r2;
@@ -29843,22 +30390,22 @@
       }
       return r2;
     }
-    function Bm(e2, t2) {
+    function Bm(e2, t3) {
       const n2 = Ce2(e2, "anchor-name");
-      return t2 ? n2.split(",").map((r2) => r2.trim()).includes(t2) : !n2;
+      return t3 ? n2.split(",").map((r2) => r2.trim()).includes(t3) : !n2;
     }
-    function Wm(e2, t2) {
+    function Wm(e2, t3) {
       const n2 = Ce2(e2, "anchor-scope");
-      return n2 === t2 || n2 === "all";
+      return n2 === t3 || n2 === "all";
     }
     const Ui2 = "InvalidMimeType";
     function Hm(e2) {
       return !!((e2.type === "text/css" || e2.rel === "stylesheet") && e2.href);
     }
     function Um(e2) {
-      const t2 = new URL(e2.href, document.baseURI);
-      if (Hm(e2) && t2.origin === location.origin)
-        return t2;
+      const t3 = new URL(e2.href, document.baseURI);
+      if (Hm(e2) && t3.origin === location.origin)
+        return t3;
     }
     function qm(e2) {
       return H2(this, null, function* () {
@@ -29890,19 +30437,19 @@
     }
     const qi2 = '[style*="anchor"]';
     function Gm(e2) {
-      const t2 = e2 ? e2.filter(
+      const t3 = e2 ? e2.filter(
         (r2) => r2 instanceof HTMLElement && r2.matches(qi2)
       ) : Array.from(
         document.querySelectorAll(qi2)
       ), n2 = [];
-      return t2.filter((r2) => r2 instanceof HTMLElement).forEach((r2) => {
+      return t3.filter((r2) => r2 instanceof HTMLElement).forEach((r2) => {
         const i2 = ke2(12), o2 = "data-has-inline-styles";
         r2.setAttribute(o2, i2);
         const s2 = r2.getAttribute("style"), c2 = `[${o2}="${i2}"] { ${s2} }`;
         n2.push({ el: r2, css: c2 });
       }), n2;
     }
-    function Vm(e2, t2) {
+    function Vm(e2, t3) {
       return H2(this, null, function* () {
         const n2 = e2 != null ? e2 : Array.from(document.querySelectorAll("link, style")), r2 = [];
         n2.filter((s2) => s2 instanceof HTMLElement).forEach((s2) => {
@@ -29912,7 +30459,7 @@
           }
           s2.tagName.toLowerCase() === "style" && r2.push({ el: s2, css: s2.innerHTML });
         });
-        const i2 = t2 ? e2 != null ? e2 : [] : void 0, o2 = Gm(i2);
+        const i2 = t3 ? e2 != null ? e2 : [] : void 0, o2 = Gm(i2);
         return yield qm([...r2, ...o2]);
       });
     }
@@ -30091,30 +30638,30 @@
     function cg(e2) {
       return tg.includes(e2);
     }
-    function ug(e2, t2) {
+    function ug(e2, t3) {
       const n2 = document.querySelector(e2);
       if (n2) {
         let r2 = pg(n2);
-        return t2.forEach((i2) => {
+        return t3.forEach((i2) => {
           r2 = la(r2, i2);
         }), r2;
       }
     }
-    function hg(e2, t2) {
+    function hg(e2, t3) {
       let n2 = e2.declarations;
-      return t2.forEach((r2) => {
+      return t3.forEach((r2) => {
         n2 = la(n2, r2);
       }), n2;
     }
     function pg(e2) {
-      const t2 = {};
+      const t3 = {};
       return Qm.forEach((n2) => {
         const r2 = Ce2(
           e2,
           `--${n2}-${oe2}`
         );
-        r2 && (t2[n2] = r2);
-      }), t2;
+        r2 && (t3[n2] = r2);
+      }), t3;
     }
     const fg = {
       "flip-block": {
@@ -30185,56 +30732,56 @@
         // TODO: Requires fuller logic
       }
     };
-    function gg(e2, t2) {
-      return fg[t2][e2] || e2;
+    function gg(e2, t3) {
+      return fg[t3][e2] || e2;
     }
-    function bg(e2, t2) {
-      return dg[t2][e2] || e2;
+    function bg(e2, t3) {
+      return dg[t3][e2] || e2;
     }
-    function yg(e2, t2) {
-      if (t2 === "flip-start")
+    function yg(e2, t3) {
+      if (t3 === "flip-start")
         return e2;
       {
-        const n2 = mg[t2];
+        const n2 = mg[t3];
         return e2.split("-").map((r2) => n2[r2] || r2).join("-");
       }
     }
-    function kg(e2, t2, n2) {
+    function kg(e2, t3, n2) {
       if (e2 === "margin") {
-        const [r2, i2, o2, s2] = t2.children.toArray();
-        n2 === "flip-block" ? s2 ? t2.children.fromArray([o2, i2, r2, s2]) : o2 && t2.children.fromArray([o2, i2, r2]) : n2 === "flip-inline" && s2 && t2.children.fromArray([r2, s2, o2, i2]);
+        const [r2, i2, o2, s2] = t3.children.toArray();
+        n2 === "flip-block" ? s2 ? t3.children.fromArray([o2, i2, r2, s2]) : o2 && t3.children.fromArray([o2, i2, r2]) : n2 === "flip-inline" && s2 && t3.children.fromArray([r2, s2, o2, i2]);
       } else if (e2 === "margin-block") {
-        const [r2, i2] = t2.children.toArray();
-        n2 === "flip-block" && i2 && t2.children.fromArray([i2, r2]);
+        const [r2, i2] = t3.children.toArray();
+        n2 === "flip-block" && i2 && t3.children.fromArray([i2, r2]);
       } else if (e2 === "margin-inline") {
-        const [r2, i2] = t2.children.toArray();
-        n2 === "flip-inline" && i2 && t2.children.fromArray([i2, r2]);
+        const [r2, i2] = t3.children.toArray();
+        n2 === "flip-inline" && i2 && t3.children.fromArray([i2, r2]);
       }
     }
-    const xg = (e2, t2) => {
+    const xg = (e2, t3) => {
       var i2;
-      return ((i2 = Be2(`#id{${e2}: ${t2};}`).children.first) == null ? void 0 : i2.block.children.first).value;
+      return ((i2 = Be2(`#id{${e2}: ${t3};}`).children.first) == null ? void 0 : i2.block.children.first).value;
     };
-    function la(e2, t2) {
+    function la(e2, t3) {
       const n2 = {};
       return Object.entries(e2).forEach(([r2, i2]) => {
         var l2;
-        const o2 = r2, s2 = xg(o2, i2), c2 = gg(o2, t2);
+        const o2 = r2, s2 = xg(o2, i2), c2 = gg(o2, t3);
         c2 !== o2 && ((l2 = n2[o2]) != null || (n2[o2] = "revert")), Fe2(s2, {
           visit: "Function",
           enter(a2) {
-            Ir(a2) && a2.children.forEach((u2) => {
-              Ot2(u2) && sa(u2.name) && (u2.name = bg(u2.name, t2));
+            Ir2(a2) && a2.children.forEach((u2) => {
+              Ot2(u2) && sa(u2.name) && (u2.name = bg(u2.name, t3));
             });
           }
         }), o2 === "position-area" && s2.children.forEach((a2) => {
-          Ot2(a2) && aa(a2.name) && (a2.name = yg(a2.name, t2));
-        }), o2.startsWith("margin") && kg(o2, s2, t2), n2[c2] = le2(s2);
+          Ot2(a2) && aa(a2.name) && (a2.name = yg(a2.name, t3));
+        }), o2.startsWith("margin") && kg(o2, s2, t3), n2[c2] = le2(s2);
       }), n2;
     }
     function ca(e2) {
-      const t2 = Im(e2), n2 = [];
-      return t2.forEach((r2) => {
+      const t3 = Im(e2), n2 = [];
+      return t3.forEach((r2) => {
         const i2 = {
           atRules: [],
           tactics: [],
@@ -30263,11 +30810,11 @@
     }
     function vg(e2) {
       if (sg(e2) && e2.value.children.first) {
-        const t2 = un2(e2);
+        const t3 = un2(e2);
         let n2;
-        const r2 = t2.value.children.first.name;
-        r2 && cg(r2) && (n2 = r2, t2.value.children.shift());
-        const i2 = ca(t2.value.children);
+        const r2 = t3.value.children.first.name;
+        r2 && cg(r2) && (n2 = r2, t3.value.children.shift());
+        const i2 = ca(t3.value.children);
         return { order: n2, options: i2 };
       }
       return {};
@@ -30278,9 +30825,9 @@
       } : {};
     }
     function Cg(e2) {
-      const { order: t2, options: n2 } = vg(e2);
-      if (t2 || n2)
-        return { order: t2, options: n2 };
+      const { order: t3, options: n2 } = vg(e2);
+      if (t3 || n2)
+        return { order: t3, options: n2 };
       const { order: r2 } = Sg(e2), i2 = wg(e2);
       return r2 || i2 ? { order: r2, options: i2 } : {};
     }
@@ -30288,8 +30835,8 @@
       return zt2(e2.property) || Km(e2.property) || vn2(e2.property) || Ym(e2.property) || ["position-anchor", "position-area"].includes(e2.property);
     }
     function Ag(e2) {
-      var t2, n2;
-      if (ag(e2) && ((t2 = e2.prelude) != null && t2.value) && ((n2 = e2.block) != null && n2.children)) {
+      var t3, n2;
+      if (ag(e2) && ((t3 = e2.prelude) != null && t3.value) && ((n2 = e2.block) != null && n2.children)) {
         const r2 = e2.prelude.value, i2 = e2.block.children.filter(
           (s2) => rg(s2) && Tg(s2)
         ), o2 = {
@@ -30303,14 +30850,14 @@
       return {};
     }
     function Og(e2) {
-      const t2 = {}, n2 = {}, r2 = {};
+      const t3 = {}, n2 = {}, r2 = {};
       for (const i2 of e2) {
         const o2 = Be2(i2.css);
         Fe2(o2, {
           visit: "Atrule",
           enter(s2) {
             const { name: c2, tryBlock: l2 } = Ag(s2);
-            c2 && l2 && (t2[c2] = l2);
+            c2 && l2 && (t3[c2] = l2);
           }
         });
       }
@@ -30321,7 +30868,7 @@
           visit: "Declaration",
           enter(l2) {
             var w2;
-            const a2 = (w2 = this.rule) == null ? void 0 : w2.prelude, u2 = ar(a2);
+            const a2 = (w2 = this.rule) == null ? void 0 : w2.prelude, u2 = ar2(a2);
             if (!u2.length) return;
             const { order: h2, options: d2 } = Cg(l2), m2 = {};
             h2 && (m2.order = h2), u2.forEach(({ selector: k2 }) => {
@@ -30337,24 +30884,24 @@
                     k2,
                     x2.tactics
                   );
-                  O2 && (t2[T2] = {
+                  O2 && (t3[T2] = {
                     uuid: `${k2}-${x2.tactics.join("-")}-try-${ke2(12)}`,
                     declarations: O2
                   });
                 } else if (x2.type === "at-rule-with-try-tactic") {
                   T2 = `${k2}-${x2.atRule}-${x2.tactics.join("-")}`;
-                  const O2 = t2[x2.atRule], p2 = hg(
+                  const O2 = t3[x2.atRule], p2 = hg(
                     O2,
                     x2.tactics
                   );
-                  p2 && (t2[T2] = {
+                  p2 && (t3[T2] = {
                     uuid: `${k2}-${x2.atRule}-${x2.tactics.join("-")}-try-${ke2(12)}`,
                     declarations: p2
                   });
                 }
-                if (T2 && t2[T2]) {
-                  const O2 = `[data-anchor-polyfill="${t2[T2].uuid}"]`;
-                  (v2 = n2[O2]) != null || (n2[O2] = []), n2[O2].push(k2), s2.has(T2) || ((A2 = m2.fallbacks) != null || (m2.fallbacks = []), m2.fallbacks.push(t2[T2]), s2.add(T2), (P2 = this.stylesheet) == null || P2.children.prependData({
+                if (T2 && t3[T2]) {
+                  const O2 = `[data-anchor-polyfill="${t3[T2].uuid}"]`;
+                  (v2 = n2[O2]) != null || (n2[O2] = []), n2[O2].push(k2), s2.has(T2) || ((A2 = m2.fallbacks) != null || (m2.fallbacks = []), m2.fallbacks.push(t3[T2]), s2.add(T2), (P2 = this.stylesheet) == null || P2.children.prependData({
                     type: "Rule",
                     prelude: {
                       type: "Raw",
@@ -30363,7 +30910,7 @@
                     block: {
                       type: "Block",
                       children: new q2().fromArray(
-                        Object.entries(t2[T2].declarations).map(
+                        Object.entries(t3[T2].declarations).map(
                           ([p2, f2]) => ({
                             type: "Declaration",
                             important: true,
@@ -30387,8 +30934,8 @@
       }
       return { fallbackTargets: n2, validPositions: r2 };
     }
-    function Eg(e2, t2) {
-      return !e2 || e2 === t2 ? false : ua(e2) ? e2.document.contains(t2) : e2.contains(t2);
+    function Eg(e2, t3) {
+      return !e2 || e2 === t3 ? false : ua(e2) ? e2.document.contains(t3) : e2.contains(t3);
     }
     function ua(e2) {
       return !!(e2 && e2 === e2.window);
@@ -30396,42 +30943,42 @@
     function Lg(e2) {
       return gt2(e2, "position", "fixed");
     }
-    function cr(e2) {
+    function cr2(e2) {
       return !!(e2 && (Lg(e2) || gt2(e2, "position", "absolute")));
     }
-    function Gi2(e2, t2) {
-      return e2.compareDocumentPosition(t2) & Node.DOCUMENT_POSITION_FOLLOWING;
+    function Gi2(e2, t3) {
+      return e2.compareDocumentPosition(t3) & Node.DOCUMENT_POSITION_FOLLOWING;
     }
     function $g(e2) {
       return H2(this, null, function* () {
         return yield ee2.getOffsetParent(e2);
       });
     }
-    function qn(e2) {
+    function qn2(e2) {
       return H2(this, null, function* () {
         if (!["absolute", "fixed"].includes(Ce2(e2, "position")))
           return yield $g(e2);
-        let t2 = e2.parentElement;
-        for (; t2; ) {
-          if (!gt2(t2, "position", "static") && gt2(t2, "display", "block"))
-            return t2;
-          t2 = t2.parentElement;
+        let t3 = e2.parentElement;
+        for (; t3; ) {
+          if (!gt2(t3, "position", "static") && gt2(t3, "display", "block"))
+            return t3;
+          t3 = t3.parentElement;
         }
         return window;
       });
     }
-    function _g(e2, t2, n2, r2) {
+    function _g(e2, t3, n2, r2) {
       return H2(this, null, function* () {
-        const i2 = yield qn(e2), o2 = yield qn(n2);
-        if (!(Eg(o2, e2) || ua(o2)) || i2 === o2 && !(!cr(e2) || Gi2(e2, n2)))
+        const i2 = yield qn2(e2), o2 = yield qn2(n2);
+        if (!(Eg(o2, e2) || ua(o2)) || i2 === o2 && !(!cr2(e2) || Gi2(e2, n2)))
           return false;
         if (i2 !== o2) {
           let s2;
           const c2 = [];
           for (s2 = i2; s2 && s2 !== o2 && s2 !== window; )
-            c2.push(s2), s2 = yield qn(s2);
+            c2.push(s2), s2 = yield qn2(s2);
           const l2 = c2[c2.length - 1];
-          if (l2 instanceof HTMLElement && !(!cr(l2) || Gi2(l2, n2)))
+          if (l2 instanceof HTMLElement && !(!cr2(l2) || Gi2(l2, n2)))
             return false;
         }
         {
@@ -30442,27 +30989,27 @@
             s2 = s2.parentElement;
           }
         }
-        return !(t2 && r2 && Vi2(e2, t2, r2) !== Vi2(n2, t2, r2));
+        return !(t3 && r2 && Vi2(e2, t3, r2) !== Vi2(n2, t3, r2));
       });
     }
-    function Vi2(e2, t2, n2) {
-      for (; !(e2.matches(n2) && Wm(e2, t2)); ) {
+    function Vi2(e2, t3, n2) {
+      for (; !(e2.matches(n2) && Wm(e2, t3)); ) {
         if (!e2.parentElement)
           return null;
         e2 = e2.parentElement;
       }
       return e2;
     }
-    function Pg(e2, t2, n2, r2) {
+    function Pg(e2, t3, n2, r2) {
       return H2(this, null, function* () {
-        if (!(e2 instanceof HTMLElement && n2.length && cr(e2)))
+        if (!(e2 instanceof HTMLElement && n2.length && cr2(e2)))
           return null;
-        const i2 = n2.flatMap(Fm).filter((s2) => Bm(s2, t2)), o2 = r2.map((s2) => s2.selector).join(",") || null;
+        const i2 = n2.flatMap(Fm).filter((s2) => Bm(s2, t3)), o2 = r2.map((s2) => s2.selector).join(",") || null;
         for (let s2 = i2.length - 1; s2 >= 0; s2--) {
           const c2 = i2[s2], l2 = "fakePseudoElement" in c2;
           if (yield _g(
             l2 ? c2.fakePseudoElement : c2,
-            t2,
+            t3,
             e2,
             o2
           ))
@@ -30489,7 +31036,7 @@
     function Rg(e2) {
       return !!(e2.type === "Percentage" && e2.value);
     }
-    function Ki2(e2, t2) {
+    function Ki2(e2, t3) {
       let n2, r2, i2, o2 = "", s2 = false, c2;
       const l2 = [];
       e2.children.toArray().forEach((d2) => {
@@ -30505,7 +31052,7 @@
       });
       let [a2, u2] = l2;
       if (u2 || (u2 = a2, a2 = void 0), a2 && (Ot2(a2) && a2.name.startsWith("--") ? n2 = a2.name : Xt2(a2) && a2.children.first && (c2 = a2.children.first.name)), u2)
-        if (Ir(e2)) {
+        if (Ir2(e2)) {
           if (Ot2(u2) && sa(u2.name))
             r2 = u2.name;
           else if (Rg(u2)) {
@@ -30529,34 +31076,34 @@
     }
     function Yi2(e2) {
       return e2.value.children.map(
-        ({ name: t2 }) => t2
+        ({ name: t3 }) => t3
       );
     }
     let at2 = {}, je2 = {}, Ke2 = {}, Et2 = {}, Ve2 = {};
     function Mg() {
       at2 = {}, je2 = {}, Ke2 = {}, Et2 = {}, Ve2 = {};
     }
-    function Ng(e2, t2) {
+    function Ng(e2, t3) {
       var n2;
-      if ((Ir(e2) || ha(e2)) && t2) {
-        if (t2.property.startsWith("--")) {
-          const r2 = le2(t2.value), i2 = Ki2(e2);
-          return Et2[i2.uuid] = r2, Ke2[t2.property] = [
-            ...(n2 = Ke2[t2.property]) != null ? n2 : [],
+      if ((Ir2(e2) || ha(e2)) && t3) {
+        if (t3.property.startsWith("--")) {
+          const r2 = le2(t3.value), i2 = Ki2(e2);
+          return Et2[i2.uuid] = r2, Ke2[t3.property] = [
+            ...(n2 = Ke2[t3.property]) != null ? n2 : [],
             i2
           ], { changed: true };
         }
-        if (zt2(t2.property) || vn2(t2.property)) {
+        if (zt2(t3.property) || vn2(t3.property)) {
           const r2 = Ki2(e2);
-          return { prop: t2.property, data: r2, changed: true };
+          return { prop: t3.property, data: r2, changed: true };
         }
       }
       return {};
     }
-    function Dg(e2, t2) {
+    function Dg(e2, t3) {
       return H2(this, null, function* () {
-        let n2 = t2.anchorName;
-        const r2 = t2.customPropName;
+        let n2 = t3.anchorName;
+        const r2 = t3.customPropName;
         if (e2 && !n2) {
           const c2 = Ce2(
             e2,
@@ -30576,7 +31123,7 @@
     function jg(e2) {
       return H2(this, null, function* () {
         var l2, a2, u2, h2, d2, m2, w2;
-        const t2 = {};
+        const t3 = {};
         Mg();
         const { fallbackTargets: n2, validPositions: r2 } = Og(e2);
         for (const k2 of e2) {
@@ -30584,7 +31131,7 @@
           const b2 = Be2(k2.css);
           Fe2(b2, function(x2) {
             var p2, f2, S2, g2, K2;
-            const T2 = (p2 = this.rule) == null ? void 0 : p2.prelude, v2 = ar(T2);
+            const T2 = (p2 = this.rule) == null ? void 0 : p2.prelude, v2 = ar2(T2);
             if (zg(x2) && v2.length)
               for (const R2 of Yi2(x2))
                 (f2 = at2[R2]) != null || (at2[R2] = []), at2[R2].push(...v2);
@@ -30598,8 +31145,8 @@
             } = Ng(x2, this.declaration);
             if (A2 && P2 && v2.length)
               for (const { selector: R2 } of v2)
-                t2[R2] = Z2(_2({}, t2[R2]), {
-                  [A2]: [...(K2 = (g2 = t2[R2]) == null ? void 0 : g2[A2]) != null ? K2 : [], P2]
+                t3[R2] = Z2(_2({}, t3[R2]), {
+                  [A2]: [...(K2 = (g2 = t3[R2]) == null ? void 0 : g2[A2]) != null ? K2 : [], P2]
                 });
             O2 && (C2 = true);
           }), C2 && (k2.css = le2(b2), k2.changed = true);
@@ -30671,13 +31218,13 @@
                       Ze2.delete(Je2), (S2 = ie2 == null ? void 0 : ie2.names) != null && S2.length && ie2.names.forEach((et2) => Ze2.add(et2));
                     }
                 }
-                const Ue2 = ar(T2);
+                const Ue2 = ar2(T2);
                 for (const Ze2 of [...be2, ...Y2]) {
                   const Je2 = _2({}, Ze2), ie2 = `--anchor-${ke2(12)}-${A2}`, et2 = Je2.uuid;
                   Je2.uuid = ie2;
                   for (const { selector: tt2 } of Ue2)
-                    t2[tt2] = Z2(_2({}, t2[tt2]), {
-                      [A2]: [...(K2 = (g2 = t2[tt2]) == null ? void 0 : g2[A2]) != null ? K2 : [], Je2]
+                    t3[tt2] = Z2(_2({}, t3[tt2]), {
+                      [A2]: [...(K2 = (g2 = t3[tt2]) == null ? void 0 : g2[A2]) != null ? K2 : [], Je2]
                     });
                   Ve2[et2] = Z2(_2({}, Ve2[et2]), {
                     // - `key` (`propUuid`) is the property-specific
@@ -30727,7 +31274,7 @@
             }), C2 && (k2.css = le2(b2), k2.changed = true);
           }
         const c2 = /* @__PURE__ */ new Map();
-        for (const [k2, C2] of Object.entries(t2)) {
+        for (const [k2, C2] of Object.entries(t3)) {
           let b2;
           k2.startsWith("[data-anchor-polyfill=") && ((l2 = n2[k2]) != null && l2.length) ? b2 = document.querySelectorAll(n2[k2].join(",")) : b2 = document.querySelectorAll(k2);
           for (const [x2, T2] of Object.entries(C2))
@@ -30758,7 +31305,7 @@
       "integrity",
       "referrerpolicy"
     ];
-    function Qi2(e2, t2, n2 = false) {
+    function Qi2(e2, t3, n2 = false) {
       return H2(this, null, function* () {
         const r2 = [];
         for (const { el: i2, css: o2, changed: s2 } of e2) {
@@ -30783,7 +31330,7 @@
               if (l2) {
                 const a2 = `[data-has-inline-styles="${l2}"]{`;
                 let h2 = o2.slice(a2.length, 0 - "}".length);
-                const d2 = t2 == null ? void 0 : t2.get(i2);
+                const d2 = t3 == null ? void 0 : t3.get(i2);
                 if (d2)
                   for (const [m2, w2] of Object.entries(d2))
                     h2 = `${m2}: var(${w2}); ${h2}`;
@@ -30796,11 +31343,11 @@
         return r2;
       });
     }
-    const Bg = Z2(_2({}, ee2), { _c: /* @__PURE__ */ new Map() }), pa = (e2) => H2(Rr, null, function* () {
+    const Bg = Z2(_2({}, ee2), { _c: /* @__PURE__ */ new Map() }), pa = (e2) => H2(Rr2, null, function* () {
       var n2, r2, i2;
-      let t2 = yield (n2 = ee2.getOffsetParent) == null ? void 0 : n2.call(ee2, e2);
-      return (yield (r2 = ee2.isElement) == null ? void 0 : r2.call(ee2, t2)) || (t2 = (yield (i2 = ee2.getDocumentElement) == null ? void 0 : i2.call(ee2, e2)) || window.document.documentElement), t2;
-    }), Wg = (e2, t2) => {
+      let t3 = yield (n2 = ee2.getOffsetParent) == null ? void 0 : n2.call(ee2, e2);
+      return (yield (r2 = ee2.isElement) == null ? void 0 : r2.call(ee2, t3)) || (t3 = (yield (i2 = ee2.getDocumentElement) == null ? void 0 : i2.call(ee2, e2)) || window.document.documentElement), t3;
+    }), Wg = (e2, t3) => {
       let n2;
       switch (e2) {
         case "start":
@@ -30815,17 +31362,17 @@
           typeof e2 == "number" && !Number.isNaN(e2) && (n2 = e2);
       }
       if (n2 !== void 0)
-        return t2 ? 100 - n2 : n2;
-    }, Hg = (e2, t2) => {
+        return t3 ? 100 - n2 : n2;
+    }, Hg = (e2, t3) => {
       let n2;
       switch (e2) {
         case "block":
         case "self-block":
-          n2 = t2 ? "width" : "height";
+          n2 = t3 ? "width" : "height";
           break;
         case "inline":
         case "self-inline":
-          n2 = t2 ? "height" : "width";
+          n2 = t3 ? "height" : "width";
           break;
       }
       return n2;
@@ -30847,17 +31394,17 @@
           return "height";
       }
       return null;
-    }, Zi2 = (e2) => Ce2(e2, "display") === "inline", Ji2 = (e2, t2) => (t2 === "x" ? ["border-left-width", "border-right-width"] : ["border-top-width", "border-bottom-width"]).reduce(
+    }, Zi2 = (e2) => Ce2(e2, "display") === "inline", Ji2 = (e2, t3) => (t3 === "x" ? ["border-left-width", "border-right-width"] : ["border-top-width", "border-bottom-width"]).reduce(
       (r2, i2) => r2 + parseInt(Ce2(e2, i2), 10),
       0
-    ) || 0, Ut2 = (e2, t2) => parseInt(Ce2(e2, `margin-${t2}`), 10) || 0, qg = (e2) => ({
+    ) || 0, Ut2 = (e2, t3) => parseInt(Ce2(e2, `margin-${t3}`), 10) || 0, qg = (e2) => ({
       top: Ut2(e2, "top"),
       right: Ut2(e2, "right"),
       bottom: Ut2(e2, "bottom"),
       left: Ut2(e2, "left")
-    }), eo = (s2) => H2(Rr, [s2], function* ({
+    }), eo2 = (s2) => H2(Rr2, [s2], function* ({
       targetEl: e2,
-      targetProperty: t2,
+      targetProperty: t3,
       anchorRect: n2,
       anchorSide: r2,
       anchorSize: i2,
@@ -30867,7 +31414,7 @@
       if (!((i2 || r2 !== void 0) && e2 && n2))
         return o2;
       if (i2) {
-        if (!vn2(t2))
+        if (!vn2(t3))
           return o2;
         let l2;
         switch (i2) {
@@ -30885,8 +31432,8 @@
       }
       if (r2 !== void 0) {
         let l2, a2;
-        const u2 = Xi2(t2);
-        if (!(zt2(t2) && u2 && (!zt2(r2) || u2 === Xi2(r2))))
+        const u2 = Xi2(t3);
+        if (!(zt2(t3) && u2 && (!zt2(r2) || u2 === Xi2(r2))))
           return o2;
         switch (r2) {
           case "left":
@@ -30912,9 +31459,9 @@
         }
         const h2 = typeof l2 == "number" && !Number.isNaN(l2), d2 = Ug(u2);
         if (h2 && d2) {
-          (t2 === "bottom" || t2 === "right") && (a2 = yield pa(e2));
+          (t3 === "bottom" || t3 === "right") && (a2 = yield pa(e2));
           let m2 = n2[u2] + n2[d2] * (l2 / 100);
-          switch (t2) {
+          switch (t3) {
             case "bottom": {
               if (!a2)
                 break;
@@ -30943,7 +31490,7 @@
       }
       return o2;
     });
-    function Gg(e2, t2 = false) {
+    function Gg(e2, t3 = false) {
       return H2(this, null, function* () {
         const n2 = document.documentElement;
         for (const [r2, i2] of Object.entries(e2))
@@ -30958,7 +31505,7 @@
                     reference: s2,
                     floating: c2,
                     strategy: "absolute"
-                  }), a2 = yield eo({
+                  }), a2 = yield eo2({
                     targetEl: c2,
                     targetProperty: r2,
                     anchorRect: l2.reference,
@@ -30968,10 +31515,10 @@
                   });
                   n2.style.setProperty(o2.uuid, a2);
                 }),
-                { animationFrame: t2 }
+                { animationFrame: t3 }
               );
             else {
-              const l2 = yield eo({
+              const l2 = yield eo2({
                 targetProperty: r2,
                 anchorSide: o2.anchorSide,
                 anchorSize: o2.anchorSize,
@@ -30982,7 +31529,7 @@
           }
       });
     }
-    function to(e2, t2) {
+    function to2(e2, t3) {
       return H2(this, null, function* () {
         const n2 = yield ee2.getElementRects({
           reference: e2,
@@ -30999,16 +31546,16 @@
             strategy: "absolute"
           },
           {
-            boundary: t2,
+            boundary: t3,
             rootBoundary: "document",
             padding: qg(e2)
           }
         );
       });
     }
-    function Vg(e2, t2, n2 = false) {
+    function Vg(e2, t3, n2 = false) {
       return H2(this, null, function* () {
-        if (!t2.length)
+        if (!t3.length)
           return;
         const r2 = document.querySelectorAll(e2);
         for (const i2 of r2) {
@@ -31025,19 +31572,19 @@
               if (o2)
                 return;
               o2 = true, i2.removeAttribute("data-anchor-polyfill");
-              const c2 = yield to(i2, s2);
+              const c2 = yield to2(i2, s2);
               if (Object.values(c2).every((l2) => l2 <= 0)) {
                 i2.removeAttribute("data-anchor-polyfill-last-successful"), o2 = false;
                 return;
               }
-              for (const [l2, { uuid: a2 }] of t2.entries()) {
+              for (const [l2, { uuid: a2 }] of t3.entries()) {
                 i2.setAttribute("data-anchor-polyfill", a2);
-                const u2 = yield to(i2, s2);
+                const u2 = yield to2(i2, s2);
                 if (Object.values(u2).every((h2) => h2 <= 0)) {
                   i2.setAttribute("data-anchor-polyfill-last-successful", a2), o2 = false;
                   break;
                 }
-                if (l2 === t2.length - 1) {
+                if (l2 === t3.length - 1) {
                   const h2 = i2.getAttribute(
                     "data-anchor-polyfill-last-successful"
                   );
@@ -31051,37 +31598,37 @@
         }
       });
     }
-    function Kg(e2, t2 = false) {
+    function Kg(e2, t3 = false) {
       return H2(this, null, function* () {
         var n2, r2;
         for (const i2 of Object.values(e2))
-          yield Gg((n2 = i2.declarations) != null ? n2 : {}, t2);
+          yield Gg((n2 = i2.declarations) != null ? n2 : {}, t3);
         for (const [i2, o2] of Object.entries(e2))
           yield Vg(
             i2,
             (r2 = o2.fallbacks) != null ? r2 : [],
-            t2
+            t3
           );
       });
     }
     function Yg(e2 = {}) {
-      const t2 = typeof e2 == "boolean" ? { useAnimationFrame: e2 } : e2, n2 = t2.useAnimationFrame === void 0 ? !!window.UPDATE_ANCHOR_ON_ANIMATION_FRAME : t2.useAnimationFrame;
-      return Array.isArray(t2.elements) || (t2.elements = void 0), Object.assign(t2, { useAnimationFrame: n2 });
+      const t3 = typeof e2 == "boolean" ? { useAnimationFrame: e2 } : e2, n2 = t3.useAnimationFrame === void 0 ? !!window.UPDATE_ANCHOR_ON_ANIMATION_FRAME : t3.useAnimationFrame;
+      return Array.isArray(t3.elements) || (t3.elements = void 0), Object.assign(t3, { useAnimationFrame: n2 });
     }
-    function no(e2) {
+    function no2(e2) {
       return H2(this, null, function* () {
-        const t2 = Yg(
+        const t3 = Yg(
           window.ANCHOR_POSITIONING_POLYFILL_OPTIONS
         );
-        let n2 = yield Vm(t2.elements, t2.excludeInlineStyles);
+        let n2 = yield Vm(t3.elements, t3.excludeInlineStyles);
         (yield Mm(n2)) && (n2 = yield Qi2(n2));
         const { rules: i2, inlineStyles: o2 } = yield jg(n2);
-        return Object.values(i2).length && (yield Qi2(n2, o2, true), yield Kg(i2, t2.useAnimationFrame)), i2;
+        return Object.values(i2).length && (yield Qi2(n2, o2, true), yield Kg(i2, t3.useAnimationFrame)), i2;
       });
     }
     document.readyState !== "complete" ? window.addEventListener("load", () => {
-      no();
-    }) : no();
+      no2();
+    }) : no2();
   });
   var css_anchor_positioning_default = Qg();
 })();
@@ -31101,6 +31648,9 @@ jquery/dist/jquery.js:
 
 selectize/dist/js/selectize.min.js:
   (*! selectize.js - v0.12.6 | https://github.com/selectize/selectize.js | Apache License (v2) *)
+
+trix/dist/trix.esm.min.js:
+  (*! @license DOMPurify 3.2.5 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.2.5/LICENSE *)
 
 @hotwired/turbo/dist/turbo.es2017-esm.js:
   (*!
