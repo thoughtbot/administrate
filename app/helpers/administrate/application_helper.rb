@@ -48,11 +48,15 @@ module Administrate
     #   instance or class.
     def accessible_action?(target, action_name)
       target = target.to_sym if target.is_a?(String)
-      target_class_or_class_name =
-        target.is_a?(ActiveRecord::Base) ? target.class : target
 
-      existing_action?(target_class_or_class_name, action_name) &&
-        authorized_action?(target, action_name)
+      target_class_or_class_name, base_class = if target.is_a?(ActiveRecord::Base)
+                                                 [target.class, target.class.base_class]
+                                               else
+                                                 [target, nil]
+                                               end
+
+      (existing_action?(target_class_or_class_name, action_name) && authorized_action?(target, action_name)) ||
+        (base_class.present? && existing_action?(base_class, action_name) && authorized_action?(target, action_name))
     end
 
     def display_resource_name(resource_name, opts = {})
@@ -96,6 +100,16 @@ module Administrate
     def default_resource_name(name, opts = {})
       resource_name = (opts[:singular] ? name.to_s : name.to_s.pluralize)
       resource_name.tr("/", "_").titleize
+    end
+
+    def target_class(target)
+      sti_model = target.class.column_names.include?(target.class.inheritance_column)
+
+      if sti_model
+        target.class.base_class? ? target.class : target.class.base_class
+      else
+        target.class
+      end
     end
   end
 end
