@@ -74,5 +74,9 @@ FactoryBot.define do
     sequence(:code) { |n| "C#{n}" }
   end
 
+  factory :host do
+    name { Faker::Internet.ip_v4_address }
+  end
+
   factory :page
 end

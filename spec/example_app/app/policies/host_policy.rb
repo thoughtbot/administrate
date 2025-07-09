@@ -1,0 +1,2 @@
+class HostPolicy < ApplicationPolicy
+end

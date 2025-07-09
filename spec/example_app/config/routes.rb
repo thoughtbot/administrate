@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
 
     resources :stats, only: [:index]
+    resources :hosts, only: [:index]
 
     root to: "customers#index"
   end
