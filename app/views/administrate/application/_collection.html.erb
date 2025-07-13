@@ -32,7 +32,7 @@ to display a collection of resources in an HTML table.
           <% end %>
         >
           <% if attr_type.sortable? %>
-            <%= link_to(sanitized_order_params(page, collection_field_name).merge(
+            <%= link_to(params: sanitized_order_params(page, collection_field_name).merge(
               collection_presenter.order_params_for(attr_name, key: collection_field_name)
             )) do %>
               <%= t(
