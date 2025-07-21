@@ -9,13 +9,21 @@ module Features
     end
 
     Capybara.add_selector :rich_text_area do
-      xpath do |label|
-        trix_editor = XPath.descendant(:"trix-editor")
-
-        if label.nil?
-          trix_editor
+      # Lifted straight from https://github.com/rails/rails/blob/3235827585d87661942c91bc81f64f56d710f0b2/actiontext/lib/action_text/system_test_helper.rb
+      label "rich-text area"
+      xpath do |locator|
+        if locator.nil?
+          XPath.descendant(:"trix-editor")
         else
-          trix_editor.where XPath.attr(:"aria-label").equals(label)
+          input_located_by_name = XPath.anywhere(:input).where(XPath.attr(:name) == locator).attr(:id)
+          input_located_by_label = XPath.anywhere(:label).where(XPath.string.n.is(locator)).attr(:for)
+
+          XPath.descendant(:"trix-editor").where \
+            XPath.attr(:id).equals(locator) |
+              XPath.attr(:placeholder).equals(locator) |
+              XPath.attr(:"aria-label").equals(locator) |
+              XPath.attr(:input).equals(input_located_by_name) |
+              XPath.attr(:id).equals(input_located_by_label)
         end
       end
     end
