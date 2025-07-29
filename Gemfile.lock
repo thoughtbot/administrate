@@ -232,7 +232,7 @@ GEM
     parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
-    pg (1.5.9)
+    pg (1.6.0)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
