@@ -14,7 +14,7 @@ jobs:
       contents: read
       checks: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: StandardRB Linter
         uses: testdouble/standard-ruby-action@main
         env:
@@ -23,7 +23,7 @@ jobs:
   stylelint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Set up JS
         uses: actions/setup-node@v4
         with:
