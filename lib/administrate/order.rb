@@ -1,9 +1,8 @@
 module Administrate
   class Order
-    def initialize(attribute = nil, direction = nil, association_attribute: nil, sorting_column: nil)
+    def initialize(attribute = nil, direction = nil, sorting_column: nil)
       @attribute = attribute
       @direction = sanitize_direction(direction)
-      # @association_attribute = association_attribute
       @sorting_column = sorting_column || attribute
     end
 
@@ -34,7 +33,7 @@ module Administrate
 
     private
 
-    attr_reader :attribute, :association_attribute, :sorting_column
+    attr_reader :attribute, :sorting_column
 
     def sanitize_direction(direction)
       %w[asc desc].include?(direction.to_s) ? direction.to_sym : :asc
