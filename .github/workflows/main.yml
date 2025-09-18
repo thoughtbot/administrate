@@ -40,7 +40,7 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
       - name: Set up JS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           cache: yarn
       - name: Install Ruby dependencies
@@ -102,7 +102,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
       - name: Set up JS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           cache: yarn
       - name: Remove Ruby version specification
