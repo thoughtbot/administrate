@@ -13,6 +13,7 @@ module Administrate
   module Generators
     class RoutesGenerator < Rails::Generators::Base
       include Administrate::GeneratorHelpers
+
       source_root File.expand_path("../templates", __FILE__)
       class_option(
         :namespace,

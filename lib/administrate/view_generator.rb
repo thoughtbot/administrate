@@ -5,6 +5,7 @@ require "administrate/namespace"
 module Administrate
   class ViewGenerator < Rails::Generators::Base
     include Administrate::GeneratorHelpers
+
     class_option(
       :namespace,
       type: :string,
