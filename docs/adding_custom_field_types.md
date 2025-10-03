@@ -58,6 +58,21 @@ Since we want to display an image, we can change it to:
 You can customize the other generated partials in the same way
 for custom behavior on the index and form pages.
 
+## Using a Custom Look
+
+If you want to generate a different look, run the following:
+
+```bash
+rails generate administrate:field gravatar --look custom
+```
+
+This will generate three files:
+
+- `app/fields/gravatar_field.rb`
+- `app/views/fields/gravatar_field/looks/custom/_show.html.erb`
+- `app/views/fields/gravatar_field/looks/custom/_index.html.erb`
+- `app/views/fields/gravatar_field/looks/custom/_form.html.erb`
+
 ## Using your custom field
 
 We need to tell Administrate which attributes we'd like to be displayed as a
