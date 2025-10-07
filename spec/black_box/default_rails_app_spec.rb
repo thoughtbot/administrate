@@ -28,6 +28,6 @@ RSpec.describe "with a Default Rails app" do
   end
 
   def app
-    @app ||= RailsProcess.new(session)
+    @app ||= TestAppProcess.new(session)
   end
 end

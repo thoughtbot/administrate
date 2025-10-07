@@ -1,4 +1,4 @@
-class RailsProcess
+class TestAppProcess
   def initialize(session)
     @session = session
     @process =
