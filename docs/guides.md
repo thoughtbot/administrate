@@ -6,3 +6,4 @@ title: Guides
 - [Customising the search](./guides/customising_search)
 - [Scoping HasMany Relations](./guides/scoping_has_many_relations.md)
 - [Switching templates with view variants](./guides/switching_templates_with_view_variants.md)
+- [Stable sorting](./guides/stable_sorting.md)
