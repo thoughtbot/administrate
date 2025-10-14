@@ -30,7 +30,7 @@ describe Administrate::Order do
     end
 
     context "when `order` argument is valid" do
-      it "orders by the column" do
+      it "orders by the column and tiebreaks by the primary key" do
         order = Administrate::Order.new(:name, :asc)
         relation = relation_with_column(:name)
         allow(relation).to receive(:reorder).and_return(relation)
@@ -38,7 +38,8 @@ describe Administrate::Order do
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:reorder).with(
-          to_sql('"table_name"."name" ASC')
+          to_sql('"table_name"."name" ASC'),
+          to_sql('"table_name"."id" ASC')
         )
         expect(ordered).to eq(relation)
       end
@@ -51,7 +52,8 @@ describe Administrate::Order do
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:reorder).with(
-          to_sql('"table_name"."name" DESC')
+          to_sql('"table_name"."name" DESC'),
+          to_sql('"table_name"."id" DESC')
         )
         expect(ordered).to eq(relation)
       end
@@ -64,9 +66,46 @@ describe Administrate::Order do
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:reorder).with(
-          to_sql('"table_name"."name" ASC')
+          to_sql('"table_name"."name" ASC'),
+          to_sql('"table_name"."id" ASC')
         )
         expect(ordered).to eq(relation)
+      end
+
+      context "and same with own primary key" do
+        it "orders by the primary key" do
+          order = Administrate::Order.new(:id, :asc)
+          relation = relation_with_column(:name)
+          allow(relation).to receive(:reorder).and_return(relation)
+
+          ordered = order.apply(relation)
+
+          expect(relation).to have_received(:reorder).with(
+            to_sql('"table_name"."id" ASC')
+          )
+          expect(ordered).to eq(relation)
+        end
+      end
+
+      context "when the relation has no primary key" do
+        it "orders by the column without tiebreaks" do
+          order = Administrate::Order.new(:name, :asc)
+          relation = double(
+            klass: double(reflect_on_association: nil),
+            columns_hash: {"name" => :column_info},
+            table_name: "table_name",
+            arel_table: Arel::Table.new("table_name"),
+            primary_key: nil
+          )
+          allow(relation).to receive(:reorder).and_return(relation)
+
+          ordered = order.apply(relation)
+
+          expect(relation).to have_received(:reorder).with(
+            to_sql('"table_name"."name" ASC')
+          )
+          expect(ordered).to eq(relation)
+        end
       end
     end
 
@@ -329,9 +368,10 @@ describe Administrate::Order do
   def relation_with_column(column)
     double(
       klass: double(reflect_on_association: nil),
-      columns_hash: {column.to_s => :column_info},
+      columns_hash: {column.to_s => :column_info, "id" => :column_info},
       table_name: "table_name",
-      arel_table: Arel::Table.new("table_name")
+      arel_table: Arel::Table.new("table_name"),
+      primary_key: "id"
     )
   end
 
