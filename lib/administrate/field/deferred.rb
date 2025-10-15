@@ -31,6 +31,10 @@ module Administrate
 
       # RINSED: add support for exact matches only in search for query efficiency
       # eg. searching by email address in the (very large) emails table
+      def search_skip_cast?
+        options.fetch(:search_skip_cast, deferred_class.search_skip_cast?)
+      end
+
       def search_exact?
         options.fetch(:search_exact, deferred_class.search_exact?)
       end

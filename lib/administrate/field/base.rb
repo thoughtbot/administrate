@@ -22,6 +22,10 @@ module Administrate
 
       # RINSED: add support for exact matches only in search for query efficiency
       # eg. searching by email address in the (very large) emails table
+      def self.search_skip_cast?
+        false
+      end
+
       def self.search_exact?
         false
       end

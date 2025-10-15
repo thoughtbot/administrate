@@ -88,7 +88,7 @@ module Administrate
           attribute_type = attribute_types[attr]
 
           search_target = "#{table_name}.#{column_name}"
-          search_target = "CAST(#{search_target} AS CHAR(256))" unless attribute_type.search_exact?
+          search_target = "CAST(#{search_target} AS CHAR(256))" unless attribute_type.search_skip_cast?
           search_target = "LOWER(#{search_target})" if attribute_type.search_lower?
 
           if attribute_type.search_exact?
