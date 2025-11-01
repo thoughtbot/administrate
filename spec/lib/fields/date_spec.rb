@@ -6,12 +6,21 @@ describe Administrate::Field::Date do
   let(:formats) do
     {
       date: {
-        formats: {default: "%m/%d/%Y", short: "%b %d"},
+        formats: {
+          default: "%m/%d/%Y",
+          short: "%b %d",
+          administrate_date_default: "%m/%d, %Y"
+        },
         abbr_month_names: Array.new(13) { |i| "Dec" if i == 12 },
         abbr_day_names: Array.new(7) { |i| "Fri" if i == 5 }
       },
       time: {
-        formats: {default: "%a, %b %-d, %Y", short: "%d %b"}
+        formats: {
+          default: "%a, %b %-d, %Y at %r",
+          short: "%d %b %H:%M",
+          administrate_datetime_default: "%a, %b %-d, %Y, %r",
+          administrate_time_default: "%I:%M%p"
+        }
       }
     }
   end
@@ -21,7 +30,7 @@ describe Administrate::Field::Date do
       with_translations(:en, formats) do
         field = Administrate::Field::Date
           .new(:start_date, start_date, :show)
-        expect(field.date).to eq("12/25/2015")
+        expect(field.date).to eq("12/25, 2015")
       end
     end
 
