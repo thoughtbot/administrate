@@ -24,7 +24,7 @@ class DocsController < ApplicationController
     title ||= page.title
     @page_title = [title, "Administrate"].compact.join(" - ")
     # rubocop:disable Rails/OutputSafety
-    render layout: "docs", html: page.body.html_safe
+    render layout: "docs", html: page.body.html_safe, formats: :html
     # rubocop:enable Rails/OutputSafety
   rescue DocPage::PageNotAllowed, DocPage::PageNotFound
     render(
