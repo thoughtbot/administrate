@@ -128,7 +128,10 @@ module Administrate
 
       def association_type(attribute)
         relationship = klass.reflections[attribute.to_s]
-        if relationship.has_one?
+        if relationship.name.start_with?("rich_text_") &&
+            relationship.options[:class_name]&.start_with?("ActionText::")
+          "Field::RichText"
+        elsif relationship.has_one?
           "Field::HasOne"
         elsif relationship.collection?
           "Field::HasMany"
