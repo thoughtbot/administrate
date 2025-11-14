@@ -1,8 +1,8 @@
 body {
-  color: $base-font-color;
-  font-family: $base-font-family;
-  font-size: $base-font-size;
-  line-height: $base-line-height;
+  color: var(--base-font-color);
+  font-family: var(--base-font-family);
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
 }
 
 h1,
@@ -11,14 +11,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $heading-font-family;
-  font-size: $base-font-size;
-  line-height: $heading-line-height;
+  font-family: var(--heading-font-family);
+  font-size: var(--base-font-size);
+  line-height: var(--heading-line-height);
   margin: 0;
 }
 
 p {
-  margin: 0 0 $small-spacing;
+  margin: 0 0 var(--small-spacing);
 }
 
 a,
@@ -28,32 +28,32 @@ a,
   [type="reset"],
   [type="submit"]
 ) {
-  color: $action-color;
+  color: var(--action-color);
   text-decoration-skip-ink: auto;
-  transition: color $base-duration $base-timing;
+  transition: color var(--base-duration) var(--base-timing);
 
   &:hover {
-    color: mix($black, $action-color, 25%);
+    color: var(--action-color-active);
   }
 
   &:focus {
-    outline: $focus-outline;
-    outline-offset: $focus-outline-offset;
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
   }
   /* stylelint-disable selector-no-qualifying-type */
   &.link--danger {
-    color: $red;
+    color: var(--danger-color);
   }
 
   &.link--danger:hover {
-    color: mix($black, $red, 20%);
+    color: var(--danger-color-active);
   }
 }
 
 hr {
-  border-bottom: $base-border;
+  border-bottom: var(--base-border);
   border-left: 0;
   border-right: 0;
   border-top: 0;
-  margin: $base-spacing 0;
+  margin: var(--base-spacing) 0;
 }

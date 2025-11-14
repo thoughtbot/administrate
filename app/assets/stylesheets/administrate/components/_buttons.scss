@@ -4,20 +4,20 @@ button,
 [type="submit"],
 .button {
   appearance: none;
-  background-color: $action-color;
+  background-color: var(--action-color);
   border: 0;
-  border-radius: $base-border-radius;
-  color: $white;
+  border-radius: var(--base-border-radius);
+  color: var(--white);
   cursor: pointer;
   display: inline-block;
-  font-family: $base-font-family;
-  font-size: $base-font-size;
+  font-family: var(--base-font-family);
+  font-size: var(--base-font-size);
   -webkit-font-smoothing: antialiased;
-  font-weight: $bold-font-weight;
+  font-weight: var(--bold-font-weight);
   line-height: 1;
-  padding: $small-spacing $base-spacing;
+  padding: var(--small-spacing) var(--base-spacing);
   text-decoration: none;
-  transition: background-color $base-duration $base-timing;
+  transition: background-color var(--base-duration) var(--base-timing);
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
@@ -28,17 +28,17 @@ button,
   }
 
   &:not(.link):hover {
-    background-color: mix($black, $action-color, 20%);
-    color: $white;
+    background-color: var(--action-color-active);
+    color: var(--white);
   }
 
   &:not(.link):focus {
-    outline: $focus-outline;
-    outline-offset: $focus-outline-offset;
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
   }
 
   &:not(.link):disabled:hover {
-    background-color: $action-color;
+    background-color: var(--action-color);
   }
 }
 
@@ -52,26 +52,26 @@ form.button_to { /* stylelint-disable selector-no-qualifying-type, selector-clas
 
 .button--alt {
   background-color: transparent;
-  border: $base-border;
-  border-color: $blue;
-  color: $blue;
+  border: var(--base-border);
+  border-color: var(--action-color);
+  color: var(--action-color);
 }
 
 .button--danger {
-  background-color: $red;
+  background-color: var(--danger-color);
 
   &:not(.link):hover {
-    background-color: mix($black, $red, 20%);
-    color: $white;
+    background-color: var(--danger-color-active);
+    color: var(--white);
   }
 
   &:not(.link):disabled:hover {
-    background-color: mix($black, $red, 20%);
+    background-color: var(--danger-color-active);
   }
 }
 
 .button--nav {
-  margin-bottom: $base-spacing;
+  margin-bottom: var(--base-spacing);
 }
 
 .button--tooltip {

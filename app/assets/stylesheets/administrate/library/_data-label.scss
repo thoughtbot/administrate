@@ -1,5 +1,5 @@
 @mixin data-label {
-  color: $hint-grey;
+  color: var(--hint-grey);
   font-size: 0.8em;
   font-weight: 400;
   letter-spacing: 0.0357em;

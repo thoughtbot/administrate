@@ -6,11 +6,11 @@ ol {
 }
 
 dl {
-  margin-bottom: $small-spacing;
+  margin-bottom: var(--small-spacing);
 
   dt {
-    font-weight: $bold-font-weight;
-    margin-top: $small-spacing;
+    font-weight: var(--bold-font-weight);
+    margin-top: var(--small-spacing);
   }
 
   dd {
