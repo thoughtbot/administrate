@@ -147,7 +147,7 @@ feature "Search" do
     expect(page).not_to have_content(kind_mismatch.email)
   end
 
-  scenario "admin searches with an a term similiar to a filter", :js do
+  scenario "admin searches with an a term similar to a filter", :js do
     query = "whatevs:"
     some_customer = create(:customer, name: "whatevs:")
     another_customer = create(:customer)
