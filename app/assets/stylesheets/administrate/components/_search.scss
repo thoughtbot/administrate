@@ -74,12 +74,12 @@ $search-icon-size: 1rem;
 
 /* stylelint-disable property-no-unknown */
 .search__tooltip-popover-positioning {
-  left: anchor(center);
+  left: anchor(right);
   margin: 1rem;
   position: fixed;
   position-anchor: --tooltip-anchor;
   top: anchor(bottom);
-  transform: translateX(-50%);
+  transform: translateX(-100%);
 }
 
 .search__tooltip-popover-value {
