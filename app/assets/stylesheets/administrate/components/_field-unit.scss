@@ -4,7 +4,7 @@
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: $base-spacing;
+  margin-bottom: var(--base-spacing);
   position: relative;
   width: 100%;
 }
@@ -22,7 +22,7 @@
   margin-left: 2rem;
 
   .optgroup-header {
-    font-weight: $bold-font-weight;
+    font-weight: var(--bold-font-weight);
   }
 }
 
@@ -33,10 +33,10 @@
 }
 
 .field-unit--nested {
-  border: $base-border;
+  border: var(--base-border);
   margin-left: 7.5%;
   max-width: 60rem;
-  padding: $small-spacing;
+  padding: var(--small-spacing);
   width: 100%;
 
   .field-unit__field {
@@ -50,7 +50,7 @@
 
 .field-unit--required {
   label::after {
-    color: $red;
+    color: var(--red);
     content: " *";
   }
 }
