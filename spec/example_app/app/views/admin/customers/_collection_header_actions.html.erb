@@ -1,8 +1,11 @@
-<%
-  [
-    existing_action?(collection_presenter.resource_name, :edit),
-    existing_action?(collection_presenter.resource_name, :destroy),
-    resources.klass == Customer, # "Become" action
-  ].count(true).times do %>
-  <th scope="col" class="cell-label--action-button"></th>
+<% colspan = [
+  existing_action?(collection_presenter.resource_name, :edit),
+  existing_action?(collection_presenter.resource_name, :destroy),
+  # "Become" action
+  resources.klass == Customer
+].count(true)
+%>
+
+<% if colspan > 0 %>
+<th scope="col" class="cell-label--action-button" colspan="<%= colspan %>"><%= t("administrate.table.actions") %></th>
 <% end %>
