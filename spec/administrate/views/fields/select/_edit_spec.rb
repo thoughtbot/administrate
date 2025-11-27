@@ -9,8 +9,8 @@ describe "fields/select/_form", type: :view do
       attribute: :email_subscriber,
       data: false,
       selectable_options: [true, false, nil],
-      include_blank_option: false,
-      html_controller: "select"
+      tag_options: {include_blank: false},
+      html_options: {data: {controller: "select"}}
     )
 
     fields model: customer do |f|
@@ -33,8 +33,8 @@ describe "fields/select/_form", type: :view do
       attribute: :email_subscriber,
       data: "Yes",
       selectable_options: ["Yes", "No"],
-      include_blank_option: "Unknown",
-      html_controller: "select"
+      tag_options: {include_blank: "Unknown"},
+      html_options: {data: {controller: "select"}}
     )
 
     fields model: customer do |f|

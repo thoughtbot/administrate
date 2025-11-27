@@ -167,6 +167,72 @@ describe Administrate::Field::BelongsTo do
         expect(candidates).to eq([])
       end
     end
+
+    context "when given an include_blank option is true" do
+      it "returns include_blank and placeholder options with '---'" do
+        customer = create(:customer, territory: nil)
+        association = Administrate::Field::BelongsTo.with_options(
+          include_blank: true
+        )
+        field = association.new(
+          :territory,
+          [],
+          :edit,
+          resource: customer
+        )
+
+        tag_options = field.tag_options
+        html_options = field.html_options
+
+        expect(tag_options[:include_blank]).to eq("---")
+        expect(html_options[:placeholder]).to eq("---")
+        expect(html_options.dig(:data, :"selectize-required")).to be_nil
+      end
+    end
+
+    context "when given an include_blank option is a string" do
+      it "returns include_blank and placeholder options with the given string" do
+        customer = create(:customer, territory: nil)
+        association = Administrate::Field::BelongsTo.with_options(
+          include_blank: "Select an option"
+        )
+        field = association.new(
+          :territory,
+          [],
+          :edit,
+          resource: customer
+        )
+
+        tag_options = field.tag_options
+        html_options = field.html_options
+
+        expect(tag_options[:include_blank]).to eq("Select an option")
+        expect(html_options[:placeholder]).to eq("Select an option")
+        expect(html_options.dig(:data, :"selectize-required")).to be_nil
+      end
+    end
+
+    context "when given an include_blank option is false" do
+      it "returns include_blank and placeholder options with nil" do
+        customer = create(:customer, territory: nil)
+        association = Administrate::Field::BelongsTo.with_options(
+          include_blank: false
+        )
+        field = association.new(
+          :territory,
+          [],
+          :edit,
+          resource: customer
+        )
+
+        tag_options = field.tag_options
+        html_options = field.html_options
+
+        expect(tag_options[:include_blank]).to eq(nil)
+        expect(html_options[:placeholder]).to eq(nil)
+        expect(html_options.dig(:data, :"selectize-required")).to eq(true)
+      end
+    end
   end
 
   describe "#associated_resource_options" do
