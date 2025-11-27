@@ -17,14 +17,18 @@ describe Administrate::Field::HasMany do
   end
 
   describe "#partial_prefixes" do
-    it "returns a partial based on the page being rendered" do
+    it "returns the partial prefixes based on the field class" do
       page = :show
       items = double
       field = Administrate::Field::HasMany.new(:items, items, page)
 
       prefixes = field.partial_prefixes
 
-      expect(prefixes).to eq(["fields/has_many", "fields/associative", "fields/base"])
+      expect(prefixes).to eq([
+        "fields/has_many/looks/default", "fields/has_many",
+        "fields/associative/looks/default", "fields/associative",
+        "fields/base/looks/default", "fields/base"
+      ])
     end
   end
 
