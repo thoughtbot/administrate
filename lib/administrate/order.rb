@@ -12,10 +12,18 @@ module Administrate
 
       order = relation.arel_table[sorting_column].public_send(direction)
 
-      return relation.reorder(order) if
-        column_exist?(relation, sorting_column)
+      tiebreak_key = relation.primary_key
+      tiebreak_order = relation.arel_table[tiebreak_key].public_send(direction)
 
-      relation
+      if column_exist?(relation, sorting_column)
+        if column_exist?(relation, tiebreak_key) && sorting_column.to_s != tiebreak_key.to_s
+          relation.reorder(order, tiebreak_order)
+        else
+          relation.reorder(order)
+        end
+      else
+        relation
+      end
     end
 
     def ordered_by?(attr)
