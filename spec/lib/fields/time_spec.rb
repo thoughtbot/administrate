@@ -3,14 +3,17 @@ require "administrate/field/time"
 
 describe Administrate::Field::Time do
   describe "#partial_prefixes" do
-    it "returns a partial based on the page being rendered" do
+    it "returns the partial prefixes based on the field class" do
       page = :show
       time = Time.zone.local(2000, 1, 1, 15, 45, 33)
       field = Administrate::Field::Time.new(:time, time, page)
 
       prefixes = field.partial_prefixes
 
-      expect(prefixes).to eq(["fields/time", "fields/base"])
+      expect(prefixes).to eq([
+        "fields/time/looks/default", "fields/time",
+        "fields/base/looks/default", "fields/base"
+      ])
     end
   end
 

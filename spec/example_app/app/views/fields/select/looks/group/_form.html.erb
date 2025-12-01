@@ -1,0 +1,19 @@
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%=
+    f.select(
+      field.attribute,
+      {include_blank: field.include_blank_option},
+      data: {controller: field.html_controller}
+    ) do
+  %>
+    <%= grouped_options_for_select(
+        field.selectable_options,
+        field.data,
+        prompt: true
+      )
+    %>
+  <% end %>
+</div>
