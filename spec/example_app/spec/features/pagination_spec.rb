@@ -71,11 +71,11 @@ RSpec.feature "Pagination", type: :feature do
 
   context "with resources of type Page" do
     it "can paginate and sort" do
-      FactoryBot.create(:page, title: "Page 2")
-      FactoryBot.create(:page, title: "Page 4")
-      FactoryBot.create(:page, title: "Page 1")
-      FactoryBot.create(:page, title: "Page 5")
-      FactoryBot.create(:page, title: "Page 3")
+      create(:page, title: "Page 2")
+      create(:page, title: "Page 4")
+      create(:page, title: "Page 1")
+      create(:page, title: "Page 5")
+      create(:page, title: "Page 3")
 
       visit admin_pages_path(per_page: 3)
       click_on "Title"
