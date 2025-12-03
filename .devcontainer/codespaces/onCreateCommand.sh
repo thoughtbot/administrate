@@ -13,3 +13,8 @@ wget https://storage.googleapis.com/chrome-for-testing-public/${CHROMEDRIVER_VER
 unzip chromedriver-linux64.zip
 sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
 rm -rf chromedriver-linux64.zip chromedriver-linux64
+
+sudo apt install -y libvips
+
+sudo apt-get clean
+sudo rm -rf /var/lib/apt/lists/*
