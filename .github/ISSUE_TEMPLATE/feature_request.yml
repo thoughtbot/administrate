@@ -1,0 +1,32 @@
+name: Feature Request
+description: Is there something new you'd like to see in administrate?
+title: "[Feat]: "
+labels: ["feature-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Is there something new you'd like to see in administrate?
+
+  - type: textarea
+    id: what-would-you-want
+    attributes:
+      label: What would you like to be able to do?
+      description: Also tell us, can you provide some examples?
+    validations:
+      required: true
+
+  - type: textarea
+    id: how-could-we-go
+    attributes:
+      label: How could we go about implementing that?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: other-approaches
+    attributes:
+      label: Can you think of other approaches to the problem?
+      options:
+        - label: Yes, I can.
+          required: true
