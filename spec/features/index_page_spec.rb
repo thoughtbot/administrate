@@ -11,6 +11,14 @@ describe "customer index page" do
     expect(page).to have_content(customer.email)
   end
 
+  it "displays table headers" do
+    visit admin_customers_path
+
+    expect(page).to have_table_header("Name")
+    expect(page).to have_table_header("Email")
+    expect(page).to have_table_header("Actions")
+  end
+
   it "adds resource/attribute name to table headers" do
     visit admin_customers_path
 
