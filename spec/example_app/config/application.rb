@@ -14,6 +14,7 @@ Bundler.require(*Rails.groups)
 
 module AdministratePrototype
   class Application < Rails::Application
+    config.load_defaults "#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}"
     config.i18n.enforce_available_locales = true
 
     config.generators do |generate|
