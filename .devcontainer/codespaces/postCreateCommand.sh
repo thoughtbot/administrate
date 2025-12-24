@@ -9,6 +9,7 @@ until docker exec postgres pg_isready -U postgres; do sleep 1; done
 # Setup &  Create .env
 ./bin/setup
 
-RAILS_ENV=test bundle exec rake db:setup dev:prime
+# Create test database and run seeds
+RAILS_ENV=test ./bin/rails dev:prime
 
 docker stop postgres
