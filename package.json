@@ -12,7 +12,7 @@
     "esbuild": "^0.25.0",
     "jquery": "^3.7.0",
     "sass": "^1.63.6",
-    "trix": "^2.1.15"
+    "trix": "^2.1.16"
   },
   "devDependencies": {
     "@thoughtbot/stylelint-config": "^4.0.0",
