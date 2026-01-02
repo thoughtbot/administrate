@@ -1277,10 +1277,10 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-trix@^2.1.15:
-  version "2.1.15"
-  resolved "https://registry.yarnpkg.com/trix/-/trix-2.1.15.tgz#fabad796ea779a8ae96522402fbc214cbfc4015f"
-  integrity sha512-LoaXWczdTUV8+3Box92B9b1iaDVbxD14dYemZRxi3PwY+AuDm97BUJV2aHLBUFPuDABhxp0wzcbf0CxHCVmXiw==
+trix@^2.1.16:
+  version "2.1.16"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-2.1.16.tgz#601be839258b87cc83019915650c50eb7cbc161e"
+  integrity sha512-XtZgWI+oBvLzX7CWnkIf+ZWC+chL+YG/TkY43iMTV0Zl+CJjn18B1GJUCEWJ8qgfpcyMBuysnNAfPWiv2sV14A==
   dependencies:
     dompurify "^3.2.5"
 
