@@ -1,20 +1,23 @@
 source "https://rubygems.org"
-ruby "3.4.6" unless ENV["CI"] && !ENV["DIFF_CHECK_APPRAISAL"]
+ruby "4.0.0" unless ENV["CI"] && !ENV["DIFF_CHECK_APPRAISAL"]
 
 gemspec
 
 gem "administrate-field-image"
+gem "benchmark"
 gem "faker"
 gem "front_matter_parser"
 gem "globalid"
 gem "image_processing"
 gem "kaminari-i18n"
+gem "ostruct"
 gem "pg"
 gem "puma"
 gem "pundit"
 gem "redcarpet"
 gem "sentry-rails"
 gem "sentry-ruby"
+gem "tsort"
 
 gem "cssbundling-rails", "~> 1.4"
 gem "jsbundling-rails", "~> 1.3"
@@ -26,7 +29,7 @@ group :development, :test do
   gem "byebug"
   gem "dotenv-rails"
   gem "factory_bot_rails"
-  gem "i18n-tasks", "1.0.15"
+  gem "i18n-tasks"
   gem "standard"
   gem "yard"
 end
