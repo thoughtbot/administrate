@@ -2,20 +2,23 @@
 
 source "https://rubygems.org"
 
-ruby "3.4.6"
+ruby "4.0.0"
 
 gem "administrate-field-image"
+gem "benchmark"
 gem "faker"
 gem "front_matter_parser"
 gem "globalid"
 gem "image_processing"
 gem "kaminari-i18n"
+gem "ostruct"
 gem "pg"
 gem "puma"
 gem "pundit", "~> 2.1.0"
 gem "redcarpet"
 gem "sentry-rails"
 gem "sentry-ruby"
+gem "tsort"
 gem "cssbundling-rails", "~> 1.4"
 gem "jsbundling-rails", "~> 1.3"
 gem "sprockets-rails", "~> 3.5"
@@ -26,7 +29,7 @@ group :development, :test do
   gem "byebug"
   gem "dotenv-rails"
   gem "factory_bot_rails"
-  gem "i18n-tasks", "1.0.15"
+  gem "i18n-tasks"
   gem "standard"
   gem "yard"
 end
