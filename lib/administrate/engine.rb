@@ -30,6 +30,10 @@ module Administrate
       end
     end
 
+    initializer "administrate.deprecator" do |app|
+      app.deprecators[:administrate] = Administrate.deprecator if app.respond_to?(:deprecators)
+    end
+
     def self.add_javascript(script)
       @@javascripts << script
     end
