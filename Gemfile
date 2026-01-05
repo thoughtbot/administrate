@@ -32,6 +32,7 @@ group :development, :test do
   gem "i18n-tasks"
   gem "standard"
   gem "yard"
+  gem "yard-lint"
 end
 
 group :test do
