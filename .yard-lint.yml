@@ -1,0 +1,256 @@
+---
+AllValidators:
+  YardOptions:
+    - --private
+    - --protected
+  Exclude:
+    - '\.git'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'spec/**/*'
+    - 'test/**/*'
+  FailOnSeverity: warning
+
+Documentation/UndocumentedObjects:
+  Description: 'Checks for classes, modules, and methods without documentation.'
+  Enabled: true
+  Severity: warning
+  ExcludedMethods:
+    - 'initialize/0'  # Exclude parameter-less initialize
+    - '/^_/'          # Exclude private methods (by convention)
+
+Documentation/UndocumentedMethodArguments:
+  Description: 'Checks for method parameters without @param tags.'
+  Enabled: true
+  Severity: warning
+
+Documentation/UndocumentedBooleanMethods:
+  Description: 'Checks that question mark methods document their boolean return.'
+  Enabled: true
+  Severity: warning
+
+Documentation/UndocumentedOptions:
+  Description: 'Detects methods with options hash parameters but no @option tags.'
+  Enabled: true
+  Severity: warning
+
+Documentation/MarkdownSyntax:
+  Description: 'Detects common markdown syntax errors in documentation.'
+  Enabled: true
+  Severity: warning
+
+Documentation/EmptyCommentLine:
+  Description: 'Detects empty comment lines at the start or end of documentation blocks.'
+  Enabled: true
+  Severity: convention
+  EnabledPatterns:
+    Leading: true
+    Trailing: true
+
+Documentation/BlankLineBeforeDefinition:
+  Description: 'Detects blank lines between YARD documentation and method definition.'
+  Enabled: true
+  Severity: convention
+  OrphanedSeverity: convention
+  EnabledPatterns:
+    SingleBlankLine: true
+    OrphanedDocs: true
+
+Tags/Order:
+  Description: 'Enforces consistent ordering of YARD tags.'
+  Enabled: true
+  Severity: convention
+  EnforcedOrder:
+    - param
+    - option
+    - yield
+    - yieldparam
+    - yieldreturn
+    - return
+    - raise
+    - see
+    - example
+    - note
+    - todo
+
+Tags/InvalidTypes:
+  Description: 'Validates type definitions in @param, @return, @option tags.'
+  Enabled: true
+  Severity: warning
+  ValidatedTags:
+    - param
+    - option
+    - return
+
+Tags/TypeSyntax:
+  Description: 'Validates YARD type syntax using YARD parser.'
+  Enabled: true
+  Severity: warning
+  ValidatedTags:
+    - param
+    - option
+    - return
+    - yieldreturn
+
+Tags/MeaninglessTag:
+  Description: 'Detects @param/@option tags on classes, modules, or constants.'
+  Enabled: true
+  Severity: warning
+  CheckedTags:
+    - param
+    - option
+  InvalidObjectTypes:
+    - class
+    - module
+    - constant
+
+Tags/CollectionType:
+  Description: 'Validates Hash collection syntax consistency.'
+  Enabled: true
+  Severity: convention
+  EnforcedStyle: long  # 'long' for Hash{K => V} (YARD standard), 'short' for {K => V}
+  ValidatedTags:
+    - param
+    - option
+    - return
+    - yieldreturn
+
+Tags/TagTypePosition:
+  Description: 'Validates type annotation position in tags.'
+  Enabled: true
+  Severity: convention
+  CheckedTags:
+    - param
+    - option
+  EnforcedStyle: type_after_name
+
+Tags/ApiTags:
+  Description: 'Enforces @api tags on public objects.'
+  Enabled: false  # Opt-in validator
+  Severity: warning
+  AllowedApis:
+    - public
+    - private
+    - internal
+
+Tags/OptionTags:
+  Description: 'Requires @option tags for methods with options parameters.'
+  Enabled: true
+  Severity: warning
+
+Tags/ExampleSyntax:
+  Description: 'Validates Ruby syntax in @example tags.'
+  Enabled: true
+  Severity: warning
+
+Tags/RedundantParamDescription:
+  Description: 'Detects meaningless parameter descriptions that add no value.'
+  Enabled: true
+  Severity: convention
+  CheckedTags:
+    - param
+    - option
+  Articles:
+    - The
+    - the
+    - A
+    - a
+    - An
+    - an
+  MaxRedundantWords: 6
+  GenericTerms:
+    - object
+    - instance
+    - value
+    - data
+    - item
+    - element
+  EnabledPatterns:
+    ArticleParam: true
+    PossessiveParam: true
+    TypeRestatement: true
+    ParamToVerb: true
+    IdPattern: true
+    DirectionalDate: true
+    TypeGeneric: true
+
+Tags/InformalNotation:
+  Description: 'Detects informal tag notation patterns like "Note:" instead of @note.'
+  Enabled: true
+  Severity: warning
+  CaseSensitive: false
+  RequireStartOfLine: true
+  Patterns:
+    Note: '@note'
+    Todo: '@todo'
+    TODO: '@todo'
+    FIXME: '@todo'
+    See: '@see'
+    See also: '@see'
+    Warning: '@deprecated'
+    Deprecated: '@deprecated'
+    Author: '@author'
+    Version: '@version'
+    Since: '@since'
+    Returns: '@return'
+    Raises: '@raise'
+    Example: '@example'
+
+Tags/NonAsciiType:
+  Description: 'Detects non-ASCII characters in type annotations.'
+  Enabled: true
+  Severity: warning
+  ValidatedTags:
+    - param
+    - option
+    - return
+    - yieldreturn
+    - yieldparam
+
+Tags/TagGroupSeparator:
+  Description: 'Enforces blank line separators between different YARD tag groups.'
+  Enabled: false  # Opt-in validator
+  Severity: convention
+  TagGroups:
+    param: [param, option]
+    return: [return]
+    error: [raise, throws]
+    example: [example]
+    meta: [see, note, todo, deprecated, since, version, api]
+    yield: [yield, yieldparam, yieldreturn]
+  RequireAfterDescription: false
+
+Warnings/UnknownTag:
+  Description: 'Detects unknown YARD tags.'
+  Enabled: true
+  Severity: error
+
+Warnings/UnknownDirective:
+  Description: 'Detects unknown YARD directives.'
+  Enabled: true
+  Severity: error
+
+Warnings/InvalidTagFormat:
+  Description: 'Detects malformed tag syntax.'
+  Enabled: true
+  Severity: error
+
+Warnings/InvalidDirectiveFormat:
+  Description: 'Detects malformed directive syntax.'
+  Enabled: true
+  Severity: error
+
+Warnings/DuplicatedParameterName:
+  Description: 'Detects duplicate @param tags.'
+  Enabled: true
+  Severity: error
+
+Warnings/UnknownParameterName:
+  Description: 'Detects @param tags for non-existent parameters.'
+  Enabled: true
+  Severity: error
+
+Semantic/AbstractMethods:
+  Description: 'Ensures @abstract methods do not have real implementations.'
+  Enabled: true
+  Severity: warning
