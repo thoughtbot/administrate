@@ -1,8 +1,7 @@
-RUBY_VERSION=3.4.6
-rvm list
+RUBY_VERSION=4.0.0
+rvm install 3.4.6
 rvm install $RUBY_VERSION
 rvm --default use $RUBY_VERSION
-ruby -v
 
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome.deb
 sudo apt update && sudo apt install -y /tmp/google-chrome.deb && rm /tmp/google-chrome.deb
