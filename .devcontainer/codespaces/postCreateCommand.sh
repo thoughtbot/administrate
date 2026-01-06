@@ -1,3 +1,4 @@
+rvm --default use $(cat ./.ruby-version)
 
 until docker info >/dev/null 2>&1; do sleep 1; done
 docker rm postgres >/dev/null 2>&1
