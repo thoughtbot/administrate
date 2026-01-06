@@ -1,7 +1,16 @@
-RUBY_VERSION=4.0.0
+# Workaround for install Ruby 4.0.0 with RVM
+rvm list
+curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
+rvm get master
+rvm list known
+
+# Install Ruby
 rvm install 3.4.6
-rvm install $RUBY_VERSION
-rvm --default use $RUBY_VERSION
+rvm install 4.0.0
+rvm --default use 4.0.0
+rvm list
+ruby --version
 
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome.deb
 sudo apt update && sudo apt install -y /tmp/google-chrome.deb && rm /tmp/google-chrome.deb
