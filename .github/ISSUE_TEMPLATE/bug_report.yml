@@ -9,7 +9,7 @@ body:
         Did something not work as expected?
 
   - type: textarea
-    id: what-happend
+    id: what-happened
     attributes:
       label: What were you trying to do?
       description: Also tell us, what did you expect to happen?
