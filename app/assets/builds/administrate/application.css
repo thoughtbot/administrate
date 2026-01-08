@@ -2776,7 +2776,7 @@ form.button_to .link {
   width: 10rem;
 }
 
-.field-unit--required label::after {
+.field-unit--required .field-unit__label label::after {
   color: #d32f2f;
   content: " *";
 }
