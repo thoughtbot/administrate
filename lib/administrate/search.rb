@@ -111,7 +111,7 @@ module Administrate
       fields_count = search_attributes.sum do |attr|
         searchable_fields(attr).count
       end
-      ["%#{term.mb_chars.downcase}%"] * fields_count
+      ["%#{term.downcase}%"] * fields_count
     end
 
     def search_attributes
