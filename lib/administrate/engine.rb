@@ -38,6 +38,22 @@ module Administrate
       @@stylesheets << stylesheet
     end
 
+    def self.delete_stylesheet(stylesheet)
+      @@stylesheets.delete(stylesheet)
+    end
+
+    def self.delete_javascript(script)
+      @@javascripts.delete(script)
+    end
+
+    def self.clear_stylesheets
+      @@stylesheets.clear
+    end
+
+    def self.clear_javascripts
+      @@javascripts.clear
+    end
+
     def self.stylesheets
       @@stylesheets
     end
