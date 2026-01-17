@@ -32,5 +32,22 @@ module Admin
     def pundit_user
       @current_user
     end
+
+    after_action :audit_log, only: %i[create update destroy]
+
+    def audit_log
+      if (resource = @requested_resource || @new_resource)
+        Rails.logger.info(
+          sprintf(
+            "Audit Log: %<action>s %<class>s #%<id>d by %<user>s at %<time>s",
+            action: action_name.capitalize,
+            class: resource.class,
+            id: resource.id || 0,
+            user: pundit_user.name,
+            time: Time.zone.now.to_s
+          )
+        )
+      end
+    end
   end
 end
