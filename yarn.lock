@@ -183,9 +183,9 @@
     "@rails/actioncable" "^7.0"
 
 "@hotwired/turbo@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.2.tgz#c31cdadfe66b98983066a94073b26fc7e15835f0"
-  integrity sha512-3K6QZkwWfosAV8zuM5bY+kKF02jp1lMQGsWfSE6wXdZBRBP3ah+Vj26YNqYtkEomBwRWA0QKhZgyJP7xOQkVEg==
+  version "8.0.21"
+  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.21.tgz#a3e80c01d70048200f64bbe3582b84f9bfac034e"
+  integrity sha512-fJTv3JnzFHeDxBb23esZSOhT4r142xf5o3lKMFMvzPC6AllkqbBKk5Yb31UZhtIsKQCwmO/pUQrtTUlYl5CHAQ==
 
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
