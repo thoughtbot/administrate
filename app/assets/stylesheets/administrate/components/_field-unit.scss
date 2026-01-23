@@ -49,8 +49,10 @@
 }
 
 .field-unit--required {
-  label::after {
-    color: $red;
-    content: " *";
+  .field-unit__label {
+    label::after {
+      color: $red;
+      content: " *";
+    }
   }
 }
