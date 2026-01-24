@@ -100,4 +100,130 @@ RSpec.describe Admin::ApplicationController, type: :controller do
         .to raise_error(Administrate::NotAuthorizedError)
     end
   end
+
+  describe "Authorization flow" do
+    controller(Administrate::ApplicationController) do
+      def resource_resolver
+        @resource_resolver ||=
+          Administrate::ResourceResolver.new("admin/orders")
+      end
+    end
+
+    before do
+      allow(controller).to receive(:find_resource).and_call_original
+      allow(controller).to receive(:scoped_resource).with(no_args).and_call_original
+      allow(controller).to receive(:authorize_resource).and_call_original
+      allow(controller).to receive(:contextualize_resource).and_call_original
+      allow(controller).to receive(:after_resource_destroyed_path).with(any_args).and_return(controller.controller_path)
+    end
+
+    context "on index" do
+      it "passes all necessary authorization methods" do
+        get :index, params: {}
+        expect(controller).not_to have_received(:find_resource)
+        expect(controller).to have_received(:scoped_resource).exactly(2).times
+        expect(controller).to have_received(:authorize_resource)
+        expect(controller).not_to have_received(:contextualize_resource)
+      end
+    end
+
+    context "on new" do
+      it "passes all necessary authorization methods" do
+        get :new, params: {}
+        expect(controller).not_to have_received(:find_resource)
+        expect(controller).not_to have_received(:scoped_resource)
+        expect(controller).to have_received(:authorize_resource)
+        expect(controller).to have_received(:contextualize_resource)
+      end
+    end
+
+    context "on create" do
+      it "passes all necessary authorization methods" do
+        params = attributes_for(:order)
+        post :create, params: {order: params}
+        expect(controller).not_to have_received(:find_resource)
+        expect(controller).not_to have_received(:scoped_resource)
+        expect(controller).to have_received(:authorize_resource)
+        expect(controller).to have_received(:contextualize_resource)
+      end
+    end
+
+    context "on show" do
+      it "passes all necessary authorization methods" do
+        order = create(:order)
+        get :show, params: {id: order.to_param}
+        expect(controller).to have_received(:find_resource)
+        expect(controller).to have_received(:scoped_resource)
+        expect(controller).to have_received(:authorize_resource)
+        expect(controller).to have_received(:contextualize_resource)
+      end
+    end
+
+    context "on edit" do
+      it "passes all necessary authorization methods" do
+        order = create(:order)
+        get :edit, params: {id: order.to_param}
+        expect(controller).to have_received(:find_resource)
+        expect(controller).to have_received(:scoped_resource)
+        expect(controller).to have_received(:authorize_resource)
+        expect(controller).to have_received(:contextualize_resource)
+      end
+    end
+
+    context "on update" do
+      it "passes all necessary authorization methods" do
+        order = create(:order)
+        put :update, params: {id: order.to_param, order: {address_zip: "666"}}
+        expect(controller).to have_received(:find_resource)
+        expect(controller).to have_received(:scoped_resource)
+        expect(controller).to have_received(:authorize_resource)
+        expect(controller).to have_received(:contextualize_resource)
+      end
+    end
+
+    context "on destroy" do
+      it "passes all necessary authorization methods" do
+        order = create(:order)
+        delete :destroy, params: {id: order.to_param}
+        expect(controller).to have_received(:find_resource)
+        expect(controller).to have_received(:scoped_resource)
+        expect(controller).to have_received(:authorize_resource)
+        expect(controller).to have_received(:contextualize_resource)
+      end
+    end
+  end
+
+  describe "validation contexts" do
+    render_views
+    controller(Admin::ProductsController) do
+      def validation_contexts_on_create(resource)
+        super + [:some_unclear_situation]
+      end
+
+      def validation_contexts_on_update(resource)
+        super + [:some_unclear_situation]
+      end
+    end
+
+    context "on create" do
+      it "raise a validation error due to custom validation context" do
+        params = attributes_for(:product)
+        post :create, params: {product: params}
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.body).to include("Product meta tag can&#39;t be blank")
+      end
+    end
+
+    context "on update" do
+      it "raise a validation error due to custom validation context" do
+        product = create(:product, product_meta_tag: nil)
+        params = {name: "New Name"}
+        put :update, params: {id: product.to_param, product: params}
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.body).to include("Product meta tag can&#39;t be blank")
+      end
+    end
+  end
 end

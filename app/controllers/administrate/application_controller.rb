@@ -10,6 +10,7 @@ module Administrate
       resources = order.apply(resources)
       resources = paginate_resources(resources)
       page = Administrate::Page::Collection.new(dashboard, order: order)
+      page.context = self
       filters = Administrate::Search.new(scoped_resource, dashboard, search_term).valid_filters
 
       render locals: {
@@ -22,52 +23,69 @@ module Administrate
     end
 
     def show
+      page = Administrate::Page::Show.new(dashboard, requested_resource)
+      page.context = self
       render locals: {
-        page: Administrate::Page::Show.new(dashboard, requested_resource)
+        page: page
       }
     end
 
     def new
-      resource = new_resource
-      authorize_resource(resource)
+      resource = new_resource.tap do |resource|
+        authorize_resource(resource)
+        contextualize_resource(resource)
+      end
+
+      page = Administrate::Page::Form.new(dashboard, resource)
+      page.context = self
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, resource)
+        page: page
       }
     end
 
     def edit
+      page = Administrate::Page::Form.new(dashboard, requested_resource)
+      page.context = self
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, requested_resource)
+        page: page
       }
     end
 
     def create
-      resource = new_resource(resource_params)
-      authorize_resource(resource)
+      resource = new_resource(resource_params).tap do |resource|
+        authorize_resource(resource)
+        contextualize_resource(resource)
+      end
 
-      if resource.save
+      if resource.save(context: validation_contexts_on_create(resource))
         yield(resource) if block_given?
         redirect_to(
           after_resource_created_path(resource),
           notice: translate_with_resource("create.success")
         )
       else
+        page = Administrate::Page::Form.new(dashboard, resource)
+        page.context = self
         render :new, locals: {
-          page: Administrate::Page::Form.new(dashboard, resource)
+          page: page
         }, status: :unprocessable_entity
       end
     end
 
     def update
-      if requested_resource.update(resource_params)
+      requested_resource.assign_attributes(resource_params)
+
+      if requested_resource.save(context: validation_contexts_on_update(requested_resource))
         redirect_to(
           after_resource_updated_path(requested_resource),
           notice: translate_with_resource("update.success"),
           status: :see_other
         )
       else
+        page = Administrate::Page::Form.new(dashboard, requested_resource)
+        page.context = self
         render :edit, locals: {
-          page: Administrate::Page::Form.new(dashboard, requested_resource)
+          page: page
         }, status: :unprocessable_entity
       end
     end
@@ -173,19 +191,31 @@ module Administrate
     end
 
     def dashboard
-      @dashboard ||= dashboard_class.new
+      @dashboard ||= dashboard_class.new.tap do |d|
+        d.context = self
+      end
     end
 
     def requested_resource
       @requested_resource ||= find_resource(params[:id]).tap do |resource|
         authorize_resource(resource)
+        contextualize_resource(resource)
       end
     end
 
+    # Override this method to specify custom lookup behavior.
+    # This will be used to set the resource for the `show`, `edit`, `update` and `destroy` actions.
+    #
+    # @param param [ActiveSupport::Parameter]
+    # @return [ActiveRecord::Base]
     def find_resource(param)
       scoped_resource.find(param)
     end
 
+    # Override this if you have certain roles that require a subset.
+    # This will be used in all actions except for the `new` and `create` actions.
+    #
+    # @return [ActiveRecord::Relation]
     def scoped_resource
       resource_class.default_scoped
     end
@@ -261,6 +291,13 @@ module Administrate
     end
     helper_method :new_resource
 
+    # Override this if you want to authorize the resource differently.
+    # This will be used to authorize the resource for the all actions without `index`.
+    # In the case of `index`, it is used to authorize the resource class.
+    #
+    # @param resource [ActiveRecord::Base]
+    # @return [ActiveRecord::Base]
+    # @raise [Administrate::NotAuthorizedError] if the resource is not authorized.
     def authorize_resource(resource)
       if authorized_action?(resource, action_name)
         resource
@@ -270,6 +307,33 @@ module Administrate
           resource: resource
         )
       end
+    end
+
+    # Override this if you want to contextualize the resource differently.
+    #
+    # @param resource A resource to be contextualized.
+    # @return nothing
+    def contextualize_resource(resource)
+    end
+
+    # Override this if you want to provide additional validation contexts.
+    #
+    # @param resource [ActiveRecord::Base] The resource to be validated.
+    # @return [Array<Symbol>] The validation contexts to be used.
+    def validation_contexts_on_create(resource)
+      default_validation_contexts(resource)
+    end
+
+    # Override this if you want to provide additional validation contexts.
+    #
+    # @param resource [ActiveRecord::Base] The resource to be validated.
+    # @return [Array<Symbol>] The validation contexts to be used.
+    def validation_contexts_on_update(resource)
+      default_validation_contexts(resource)
+    end
+
+    def default_validation_contexts(resource)
+      resource.new_record? ? [:create] : [:update]
     end
 
     def paginate_resources(resources)
