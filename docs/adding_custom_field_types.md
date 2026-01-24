@@ -68,7 +68,7 @@ rails generate administrate:field gravatar --look custom
 
 This will generate three files:
 
-- `app/fields/gravatar_field.rb`
+- `app/fields/gravatar_field.rb` (assuming it doesn't exist already)
 - `app/views/fields/gravatar_field/looks/custom/_show.html.erb`
 - `app/views/fields/gravatar_field/looks/custom/_index.html.erb`
 - `app/views/fields/gravatar_field/looks/custom/_form.html.erb`

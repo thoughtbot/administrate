@@ -4,7 +4,7 @@ module Administrate
       class_option(
         :look,
         type: :string,
-        desc: "Specify the look for the field",
+        desc: "Generate templates for a \"look\" (alternative representation of the field)",
         default: ""
       )
 
