@@ -1,6 +1,13 @@
 module Administrate
   module Generators
     class FieldGenerator < Rails::Generators::NamedBase
+      class_option(
+        :look,
+        type: :string,
+        desc: "Generate templates for a \"look\" (alternative representation of the field)",
+        default: ""
+      )
+
       source_root File.expand_path("../templates", __FILE__)
 
       def template_field_object
@@ -18,12 +25,17 @@ module Administrate
 
       private
 
+      def look
+        options[:look]
+      end
+
       def copy_partial(partial_name)
         partial = "_#{partial_name}.html.erb"
+        looks_dir = look.present? ? "looks/#{look}/" : ""
 
         copy_file(
           partial,
-          "app/views/fields/#{file_name}_field/#{partial}"
+          "app/views/fields/#{file_name}_field/#{looks_dir}#{partial}"
         )
       end
     end

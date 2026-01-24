@@ -4,6 +4,17 @@ require "active_support/core_ext/string/inflections"
 module Administrate
   module Field
     class Base
+      @partial_prefixes = {}
+
+      class << self
+        attr_writer :partial_prefixes
+      end
+
+      def self.inherited(subclass)
+        super
+        subclass.partial_prefixes = {}
+      end
+
       def self.with_options(options = {})
         Deferred.new(self, options)
       end
@@ -36,17 +47,22 @@ module Administrate
         attr
       end
 
-      def self.partial_prefixes
-        @partial_prefixes ||=
+      def self.partial_prefixes(look: :default)
+        @partial_prefixes[look] ||=
           if superclass.respond_to?(:partial_prefixes)
-            local_partial_prefixes + superclass.partial_prefixes
+            local_partial_prefixes(look: look) + superclass.partial_prefixes(look: look)
           else
-            local_partial_prefixes
+            local_partial_prefixes(look: look)
           end
       end
 
-      def self.local_partial_prefixes
-        ["fields/#{field_type}"]
+      def self.local_partial_prefixes(look: :default)
+        fallback = ["fields/#{field_type}/looks/default", "fields/#{field_type}"]
+        if look == :default
+          fallback
+        else
+          ["fields/#{field_type}/looks/#{look}"] + fallback
+        end
       end
 
       def initialize(attribute, data, page, options = {})
@@ -84,7 +100,11 @@ module Administrate
       end
 
       def partial_prefixes
-        self.class.partial_prefixes
+        self.class.partial_prefixes(look: look)
+      end
+
+      def look
+        (options.fetch(:look, :default).presence || :default).to_sym
       end
 
       def required?

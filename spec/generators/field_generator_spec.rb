@@ -49,4 +49,16 @@ describe Administrate::Generators::FieldGenerator, :generator do
       expect(f).to have_received(:text_field).with(:attr_name)
     end
   end
+
+  describe "administrate:field field_name --look=custom" do
+    it "generates field partials in a custom look directory" do
+      field = double(to_s: "data")
+
+      run_generator ["foobar", "--look=custom"]
+      erb = File.read(file("app/views/fields/foobar_field/looks/custom/_index.html.erb"))
+      rendered = ERB.new(erb).result(binding).strip
+
+      expect(rendered).to eq(field.to_s)
+    end
+  end
 end
