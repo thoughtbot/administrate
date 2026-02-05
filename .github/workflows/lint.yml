@@ -32,3 +32,18 @@ jobs:
         run: yarn install
       - name: Run Stylelint
         run: yarn run lint:css
+
+  yard-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Install Ruby dependencies
+        run: bundle install
+      - name: Run YARD Lint
+        run: bundle exec yard-lint --diff origin/${{ github.base_ref }}
