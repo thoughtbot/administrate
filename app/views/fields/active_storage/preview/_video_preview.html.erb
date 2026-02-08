@@ -1,0 +1,10 @@
+<%# locals: { field:, attachment:, variant: nil, size: [100, 100] } %>
+
+<%= 
+  video_tag(
+    field.url(attachment),
+    poster: field.preview(attachment, resize_to_limit: size),
+    controls: true,
+    autobuffer: true,
+    class: "as-field-video"
+  ) %>

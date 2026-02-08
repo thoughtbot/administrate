@@ -1,0 +1,18 @@
+
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+
+<div class="field-unit__field">
+  <%= render field.items_renderer %>
+
+  <div>
+    <% if field.attached? %>
+      <% field.attachments.each do |attachment| %>
+        <%= f.hidden_field field.attribute, multiple: field.many?, value: attachment.signed_id %>
+      <% end %>
+    <% end %>
+
+    <%= f.file_field field.attribute, field.file_field_options %>
+  </div>
+</div>

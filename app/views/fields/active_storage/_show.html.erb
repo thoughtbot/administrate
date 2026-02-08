@@ -1,0 +1,6 @@
+
+<% if field.attached? %>
+  <%= render field.items_renderer %>
+<% else %>
+  <%= I18n.t("administrate.fields.active_storage.no_attachment", default: 'No attachment') %>
+<% end %>
