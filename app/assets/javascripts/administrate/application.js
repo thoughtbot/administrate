@@ -1,3 +1,4 @@
+import "./active_storage";
 import "./add_jquery";
 import "trix";
 import "@rails/actiontext";
