@@ -28,3 +28,5 @@ sv:
     search:
       clear: Rensa sökningen
       label: Sök %{resource}
+    table:
+      actions: Åtgärder
