@@ -25,7 +25,7 @@ class ProductDashboard < Administrate::BaseDashboard
     release_year: Field::Select.with_options(
       collection: -> {
         ((Time.current.year - 10)..Time.current.year).to_a.reverse
-          .group_by { |year| "'#{(year / 10) * 10}s" }
+          .group_by { |year| "#{(year / 10) * 10}s" }
       },
       look: :group
     )
