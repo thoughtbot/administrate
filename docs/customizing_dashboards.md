@@ -651,7 +651,7 @@ ATTRIBUTE_TYPES = {
 ```
 
 The template path is derived from the class name of the field and falls back sequentially to its ancestor classes.
-For example, the path lookup order for a `BelongsTo` field is as follows:
+For example, the path lookup order for the example above is as follows:
 
 ```
 fields/belongs_to/looks/customer_card/
