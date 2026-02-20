@@ -639,3 +639,28 @@ end
   <%= button_to "some action 3", [:some_action_3, namespace, field.resource] %>
 <% end %>
 ```
+
+## Custom Look
+
+You can use the `look` option to change the field template.
+
+```ruby
+ATTRIBUTE_TYPES = {
+  customer: Field::BelongsTo.with_options(look: :customer_card)
+}
+```
+
+The template path is derived from the class name of the field and falls back sequentially to its ancestor classes.
+For example, the path lookup order for the example above is as follows:
+
+```
+fields/belongs_to/looks/customer_card/
+fields/belongs_to/looks/default/
+fields/belongs_to/
+fields/associative/looks/customer_card/
+fields/associative/looks/default/
+fields/associative/
+fields/base/looks/customer_card/
+fields/base/looks/default/
+fields/base/
+```

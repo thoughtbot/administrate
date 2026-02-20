@@ -14,7 +14,7 @@ describe Administrate::Field::RichText do
   end
 
   describe "#partial_prefixes" do
-    it "returns a partial based on the page being rendered" do
+    it "returns the partial prefixes based on the field class" do
       page = :show
       action_text = ActionText::RichText.new(
         body: "<div class='trix'><p>Foo</p></div>"
@@ -23,7 +23,10 @@ describe Administrate::Field::RichText do
 
       prefixes = field.partial_prefixes
 
-      expect(prefixes).to eq(["fields/rich_text", "fields/base"])
+      expect(prefixes).to eq([
+        "fields/rich_text/looks/default", "fields/rich_text",
+        "fields/base/looks/default", "fields/base"
+      ])
     end
   end
 

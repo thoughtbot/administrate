@@ -54,3 +54,17 @@ Changing numbers to display to three decimal places might look like this:
 
 If you only want to change how an attribute appears
 on a single page (e.g. `index`), you may delete the unnecessary templates.
+
+## Using a Custom Look
+
+If you want to generate a different look, run the following:
+
+```bash
+rails generate administrate:views:field number --look custom
+```
+
+This will generate three files:
+
+- `app/view/fields/number/looks/custom/_form.html.erb`
+- `app/view/fields/number/looks/custom/_index.html.erb`
+- `app/view/fields/number/looks/custom/_show.html.erb`
