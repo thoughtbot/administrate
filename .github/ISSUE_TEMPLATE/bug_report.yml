@@ -1,0 +1,45 @@
+name: Bug Report
+description: Did something not work as expected?
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Did something not work as expected?
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What were you trying to do?
+      description: Also tell us, what did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: What did you end up with?
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      placeholder: logs, or, even better, example apps are great!
+      render: shell
+    validations:
+      required: false
+
+  - type: input
+    id: rails-versions
+    attributes:
+      label: What Rails versions are you running?
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex) 7.0, 7.1
+    validations:
+      required: false
+
+  - type: input
+    id: administrate-versions
+    attributes:
+      label: What Administrate versions are you running?
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex) 1.0.0, 0.20.1
+    validations:
+      required: false
