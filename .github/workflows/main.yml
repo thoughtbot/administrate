@@ -97,6 +97,13 @@ jobs:
       - run: cp spec/example_app/config/database.yml.sample spec/example_app/config/database.yml
       - name: Prepare main database schema
         run: bin/generate-database-schema
+
+
+      # Workaround for https://github.com/ruby/rubygems/issues/9284.
+      - name: Remove pre-installed Ruby 4.0
+        if: ${{ matrix.ruby == '4.0' }}
+        run: rm -rf /opt/hostedtoolcache/Ruby/4.0*
+
       - name: Set up Ruby ${{ matrix.ruby }}
         uses: ruby/setup-ruby@v1
         with:
