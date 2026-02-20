@@ -4,7 +4,8 @@ class Customer < ApplicationRecord
     :territory,
     class_name: "Country",
     foreign_key: :country_code,
-    primary_key: :code
+    primary_key: :code,
+    optional: true
   )
   has_many :log_entries, as: :logeable
 
@@ -12,7 +13,7 @@ class Customer < ApplicationRecord
   validates :email, presence: true
 
   if Rails.gem_version >= Gem::Version.new("7.0")
-    enum :kind, {"standard" => "kind:std", "vip" => "kind:vip"}
+    enum :kind, {"standard" => "kind:std", "vip" => "kind:vip"}, default: "standard"
   else
     enum kind: {"standard" => "kind:std", "vip" => "kind:vip"}
   end
