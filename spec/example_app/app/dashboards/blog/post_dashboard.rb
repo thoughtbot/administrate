@@ -9,7 +9,9 @@ module Blog
       title: Field::String,
       published_at: Field::DateTime,
       body: Field::Text,
-      tags: Field::HasMany
+      tags: Field::HasMany,
+      cover_image: Field::ActiveStorage.with_options(index_display_preview: true, show_display_preview: true, direct_upload: true),
+      images: Field::ActiveStorage.with_options(multiple: true, direct_upload: true),
     }
 
     READ_ONLY_ATTRIBUTES = [
@@ -20,6 +22,7 @@ module Blog
 
     COLLECTION_ATTRIBUTES = [
       :id,
+      :cover_image,
       :title,
       :tags,
       :published_at

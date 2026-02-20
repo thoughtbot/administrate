@@ -623,39 +623,39 @@
               }
             });
             if (support.getById) {
-              Expr.filter.ID = function(id2) {
-                var attrId = id2.replace(runescape, funescape);
+              Expr.filter.ID = function(id3) {
+                var attrId = id3.replace(runescape, funescape);
                 return function(elem) {
                   return elem.getAttribute("id") === attrId;
                 };
               };
-              Expr.find.ID = function(id2, context) {
+              Expr.find.ID = function(id3, context) {
                 if (typeof context.getElementById !== "undefined" && documentIsHTML) {
-                  var elem = context.getElementById(id2);
+                  var elem = context.getElementById(id3);
                   return elem ? [elem] : [];
                 }
               };
             } else {
-              Expr.filter.ID = function(id2) {
-                var attrId = id2.replace(runescape, funescape);
+              Expr.filter.ID = function(id3) {
+                var attrId = id3.replace(runescape, funescape);
                 return function(elem) {
                   var node2 = typeof elem.getAttributeNode !== "undefined" && elem.getAttributeNode("id");
                   return node2 && node2.value === attrId;
                 };
               };
-              Expr.find.ID = function(id2, context) {
+              Expr.find.ID = function(id3, context) {
                 if (typeof context.getElementById !== "undefined" && documentIsHTML) {
-                  var node2, i3, elems, elem = context.getElementById(id2);
+                  var node2, i3, elems, elem = context.getElementById(id3);
                   if (elem) {
                     node2 = elem.getAttributeNode("id");
-                    if (node2 && node2.value === id2) {
+                    if (node2 && node2.value === id3) {
                       return [elem];
                     }
-                    elems = context.getElementsByName(id2);
+                    elems = context.getElementsByName(id3);
                     i3 = 0;
                     while (elem = elems[i3++]) {
                       node2 = elem.getAttributeNode("id");
-                      if (node2 && node2.value === id2) {
+                      if (node2 && node2.value === id3) {
                         return [elem];
                       }
                     }
@@ -905,7 +905,7 @@
                     return !!elem.parentNode;
                   }
                 ) : function(elem, _context, xml) {
-                  var cache2, outerCache, node, nodeIndex, start3, dir2 = simple !== forward ? "nextSibling" : "previousSibling", parent = elem.parentNode, name = ofType && elem.nodeName.toLowerCase(), useCache = !xml && !ofType, diff = false;
+                  var cache2, outerCache, node, nodeIndex, start4, dir2 = simple !== forward ? "nextSibling" : "previousSibling", parent = elem.parentNode, name = ofType && elem.nodeName.toLowerCase(), useCache = !xml && !ofType, diff = false;
                   if (parent) {
                     if (simple) {
                       while (dir2) {
@@ -915,11 +915,11 @@
                             return false;
                           }
                         }
-                        start3 = dir2 = type === "only" && !start3 && "nextSibling";
+                        start4 = dir2 = type === "only" && !start4 && "nextSibling";
                       }
                       return true;
                     }
-                    start3 = [forward ? parent.firstChild : parent.lastChild];
+                    start4 = [forward ? parent.firstChild : parent.lastChild];
                     if (forward && useCache) {
                       outerCache = parent[expando] || (parent[expando] = {});
                       cache2 = outerCache[type] || [];
@@ -927,7 +927,7 @@
                       diff = nodeIndex && cache2[2];
                       node = nodeIndex && parent.childNodes[nodeIndex];
                       while (node = ++nodeIndex && node && node[dir2] || // Fallback to seeking `elem` from the start
-                      (diff = nodeIndex = 0) || start3.pop()) {
+                      (diff = nodeIndex = 0) || start4.pop()) {
                         if (node.nodeType === 1 && ++diff && node === elem) {
                           outerCache[type] = [dirruns, nodeIndex, diff];
                           break;
@@ -941,7 +941,7 @@
                         diff = nodeIndex;
                       }
                       if (diff === false) {
-                        while (node = ++nodeIndex && node && node[dir2] || (diff = nodeIndex = 0) || start3.pop()) {
+                        while (node = ++nodeIndex && node && node[dir2] || (diff = nodeIndex = 0) || start4.pop()) {
                           if ((ofType ? nodeName(node, name) : node.nodeType === 1) && ++diff) {
                             if (useCache) {
                               outerCache = node[expando] || (node[expando] = {});
@@ -7776,6 +7776,862 @@
     }
   });
 
+  // node_modules/@rails/activestorage/app/assets/javascripts/activestorage.esm.js
+  var sparkMd5 = {
+    exports: {}
+  };
+  (function(module, exports) {
+    (function(factory) {
+      {
+        module.exports = factory();
+      }
+    })(function(undefined$1) {
+      var hex_chr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
+      function md5cycle(x2, k2) {
+        var a2 = x2[0], b2 = x2[1], c2 = x2[2], d2 = x2[3];
+        a2 += (b2 & c2 | ~b2 & d2) + k2[0] - 680876936 | 0;
+        a2 = (a2 << 7 | a2 >>> 25) + b2 | 0;
+        d2 += (a2 & b2 | ~a2 & c2) + k2[1] - 389564586 | 0;
+        d2 = (d2 << 12 | d2 >>> 20) + a2 | 0;
+        c2 += (d2 & a2 | ~d2 & b2) + k2[2] + 606105819 | 0;
+        c2 = (c2 << 17 | c2 >>> 15) + d2 | 0;
+        b2 += (c2 & d2 | ~c2 & a2) + k2[3] - 1044525330 | 0;
+        b2 = (b2 << 22 | b2 >>> 10) + c2 | 0;
+        a2 += (b2 & c2 | ~b2 & d2) + k2[4] - 176418897 | 0;
+        a2 = (a2 << 7 | a2 >>> 25) + b2 | 0;
+        d2 += (a2 & b2 | ~a2 & c2) + k2[5] + 1200080426 | 0;
+        d2 = (d2 << 12 | d2 >>> 20) + a2 | 0;
+        c2 += (d2 & a2 | ~d2 & b2) + k2[6] - 1473231341 | 0;
+        c2 = (c2 << 17 | c2 >>> 15) + d2 | 0;
+        b2 += (c2 & d2 | ~c2 & a2) + k2[7] - 45705983 | 0;
+        b2 = (b2 << 22 | b2 >>> 10) + c2 | 0;
+        a2 += (b2 & c2 | ~b2 & d2) + k2[8] + 1770035416 | 0;
+        a2 = (a2 << 7 | a2 >>> 25) + b2 | 0;
+        d2 += (a2 & b2 | ~a2 & c2) + k2[9] - 1958414417 | 0;
+        d2 = (d2 << 12 | d2 >>> 20) + a2 | 0;
+        c2 += (d2 & a2 | ~d2 & b2) + k2[10] - 42063 | 0;
+        c2 = (c2 << 17 | c2 >>> 15) + d2 | 0;
+        b2 += (c2 & d2 | ~c2 & a2) + k2[11] - 1990404162 | 0;
+        b2 = (b2 << 22 | b2 >>> 10) + c2 | 0;
+        a2 += (b2 & c2 | ~b2 & d2) + k2[12] + 1804603682 | 0;
+        a2 = (a2 << 7 | a2 >>> 25) + b2 | 0;
+        d2 += (a2 & b2 | ~a2 & c2) + k2[13] - 40341101 | 0;
+        d2 = (d2 << 12 | d2 >>> 20) + a2 | 0;
+        c2 += (d2 & a2 | ~d2 & b2) + k2[14] - 1502002290 | 0;
+        c2 = (c2 << 17 | c2 >>> 15) + d2 | 0;
+        b2 += (c2 & d2 | ~c2 & a2) + k2[15] + 1236535329 | 0;
+        b2 = (b2 << 22 | b2 >>> 10) + c2 | 0;
+        a2 += (b2 & d2 | c2 & ~d2) + k2[1] - 165796510 | 0;
+        a2 = (a2 << 5 | a2 >>> 27) + b2 | 0;
+        d2 += (a2 & c2 | b2 & ~c2) + k2[6] - 1069501632 | 0;
+        d2 = (d2 << 9 | d2 >>> 23) + a2 | 0;
+        c2 += (d2 & b2 | a2 & ~b2) + k2[11] + 643717713 | 0;
+        c2 = (c2 << 14 | c2 >>> 18) + d2 | 0;
+        b2 += (c2 & a2 | d2 & ~a2) + k2[0] - 373897302 | 0;
+        b2 = (b2 << 20 | b2 >>> 12) + c2 | 0;
+        a2 += (b2 & d2 | c2 & ~d2) + k2[5] - 701558691 | 0;
+        a2 = (a2 << 5 | a2 >>> 27) + b2 | 0;
+        d2 += (a2 & c2 | b2 & ~c2) + k2[10] + 38016083 | 0;
+        d2 = (d2 << 9 | d2 >>> 23) + a2 | 0;
+        c2 += (d2 & b2 | a2 & ~b2) + k2[15] - 660478335 | 0;
+        c2 = (c2 << 14 | c2 >>> 18) + d2 | 0;
+        b2 += (c2 & a2 | d2 & ~a2) + k2[4] - 405537848 | 0;
+        b2 = (b2 << 20 | b2 >>> 12) + c2 | 0;
+        a2 += (b2 & d2 | c2 & ~d2) + k2[9] + 568446438 | 0;
+        a2 = (a2 << 5 | a2 >>> 27) + b2 | 0;
+        d2 += (a2 & c2 | b2 & ~c2) + k2[14] - 1019803690 | 0;
+        d2 = (d2 << 9 | d2 >>> 23) + a2 | 0;
+        c2 += (d2 & b2 | a2 & ~b2) + k2[3] - 187363961 | 0;
+        c2 = (c2 << 14 | c2 >>> 18) + d2 | 0;
+        b2 += (c2 & a2 | d2 & ~a2) + k2[8] + 1163531501 | 0;
+        b2 = (b2 << 20 | b2 >>> 12) + c2 | 0;
+        a2 += (b2 & d2 | c2 & ~d2) + k2[13] - 1444681467 | 0;
+        a2 = (a2 << 5 | a2 >>> 27) + b2 | 0;
+        d2 += (a2 & c2 | b2 & ~c2) + k2[2] - 51403784 | 0;
+        d2 = (d2 << 9 | d2 >>> 23) + a2 | 0;
+        c2 += (d2 & b2 | a2 & ~b2) + k2[7] + 1735328473 | 0;
+        c2 = (c2 << 14 | c2 >>> 18) + d2 | 0;
+        b2 += (c2 & a2 | d2 & ~a2) + k2[12] - 1926607734 | 0;
+        b2 = (b2 << 20 | b2 >>> 12) + c2 | 0;
+        a2 += (b2 ^ c2 ^ d2) + k2[5] - 378558 | 0;
+        a2 = (a2 << 4 | a2 >>> 28) + b2 | 0;
+        d2 += (a2 ^ b2 ^ c2) + k2[8] - 2022574463 | 0;
+        d2 = (d2 << 11 | d2 >>> 21) + a2 | 0;
+        c2 += (d2 ^ a2 ^ b2) + k2[11] + 1839030562 | 0;
+        c2 = (c2 << 16 | c2 >>> 16) + d2 | 0;
+        b2 += (c2 ^ d2 ^ a2) + k2[14] - 35309556 | 0;
+        b2 = (b2 << 23 | b2 >>> 9) + c2 | 0;
+        a2 += (b2 ^ c2 ^ d2) + k2[1] - 1530992060 | 0;
+        a2 = (a2 << 4 | a2 >>> 28) + b2 | 0;
+        d2 += (a2 ^ b2 ^ c2) + k2[4] + 1272893353 | 0;
+        d2 = (d2 << 11 | d2 >>> 21) + a2 | 0;
+        c2 += (d2 ^ a2 ^ b2) + k2[7] - 155497632 | 0;
+        c2 = (c2 << 16 | c2 >>> 16) + d2 | 0;
+        b2 += (c2 ^ d2 ^ a2) + k2[10] - 1094730640 | 0;
+        b2 = (b2 << 23 | b2 >>> 9) + c2 | 0;
+        a2 += (b2 ^ c2 ^ d2) + k2[13] + 681279174 | 0;
+        a2 = (a2 << 4 | a2 >>> 28) + b2 | 0;
+        d2 += (a2 ^ b2 ^ c2) + k2[0] - 358537222 | 0;
+        d2 = (d2 << 11 | d2 >>> 21) + a2 | 0;
+        c2 += (d2 ^ a2 ^ b2) + k2[3] - 722521979 | 0;
+        c2 = (c2 << 16 | c2 >>> 16) + d2 | 0;
+        b2 += (c2 ^ d2 ^ a2) + k2[6] + 76029189 | 0;
+        b2 = (b2 << 23 | b2 >>> 9) + c2 | 0;
+        a2 += (b2 ^ c2 ^ d2) + k2[9] - 640364487 | 0;
+        a2 = (a2 << 4 | a2 >>> 28) + b2 | 0;
+        d2 += (a2 ^ b2 ^ c2) + k2[12] - 421815835 | 0;
+        d2 = (d2 << 11 | d2 >>> 21) + a2 | 0;
+        c2 += (d2 ^ a2 ^ b2) + k2[15] + 530742520 | 0;
+        c2 = (c2 << 16 | c2 >>> 16) + d2 | 0;
+        b2 += (c2 ^ d2 ^ a2) + k2[2] - 995338651 | 0;
+        b2 = (b2 << 23 | b2 >>> 9) + c2 | 0;
+        a2 += (c2 ^ (b2 | ~d2)) + k2[0] - 198630844 | 0;
+        a2 = (a2 << 6 | a2 >>> 26) + b2 | 0;
+        d2 += (b2 ^ (a2 | ~c2)) + k2[7] + 1126891415 | 0;
+        d2 = (d2 << 10 | d2 >>> 22) + a2 | 0;
+        c2 += (a2 ^ (d2 | ~b2)) + k2[14] - 1416354905 | 0;
+        c2 = (c2 << 15 | c2 >>> 17) + d2 | 0;
+        b2 += (d2 ^ (c2 | ~a2)) + k2[5] - 57434055 | 0;
+        b2 = (b2 << 21 | b2 >>> 11) + c2 | 0;
+        a2 += (c2 ^ (b2 | ~d2)) + k2[12] + 1700485571 | 0;
+        a2 = (a2 << 6 | a2 >>> 26) + b2 | 0;
+        d2 += (b2 ^ (a2 | ~c2)) + k2[3] - 1894986606 | 0;
+        d2 = (d2 << 10 | d2 >>> 22) + a2 | 0;
+        c2 += (a2 ^ (d2 | ~b2)) + k2[10] - 1051523 | 0;
+        c2 = (c2 << 15 | c2 >>> 17) + d2 | 0;
+        b2 += (d2 ^ (c2 | ~a2)) + k2[1] - 2054922799 | 0;
+        b2 = (b2 << 21 | b2 >>> 11) + c2 | 0;
+        a2 += (c2 ^ (b2 | ~d2)) + k2[8] + 1873313359 | 0;
+        a2 = (a2 << 6 | a2 >>> 26) + b2 | 0;
+        d2 += (b2 ^ (a2 | ~c2)) + k2[15] - 30611744 | 0;
+        d2 = (d2 << 10 | d2 >>> 22) + a2 | 0;
+        c2 += (a2 ^ (d2 | ~b2)) + k2[6] - 1560198380 | 0;
+        c2 = (c2 << 15 | c2 >>> 17) + d2 | 0;
+        b2 += (d2 ^ (c2 | ~a2)) + k2[13] + 1309151649 | 0;
+        b2 = (b2 << 21 | b2 >>> 11) + c2 | 0;
+        a2 += (c2 ^ (b2 | ~d2)) + k2[4] - 145523070 | 0;
+        a2 = (a2 << 6 | a2 >>> 26) + b2 | 0;
+        d2 += (b2 ^ (a2 | ~c2)) + k2[11] - 1120210379 | 0;
+        d2 = (d2 << 10 | d2 >>> 22) + a2 | 0;
+        c2 += (a2 ^ (d2 | ~b2)) + k2[2] + 718787259 | 0;
+        c2 = (c2 << 15 | c2 >>> 17) + d2 | 0;
+        b2 += (d2 ^ (c2 | ~a2)) + k2[9] - 343485551 | 0;
+        b2 = (b2 << 21 | b2 >>> 11) + c2 | 0;
+        x2[0] = a2 + x2[0] | 0;
+        x2[1] = b2 + x2[1] | 0;
+        x2[2] = c2 + x2[2] | 0;
+        x2[3] = d2 + x2[3] | 0;
+      }
+      function md5blk(s2) {
+        var md5blks = [], i2;
+        for (i2 = 0; i2 < 64; i2 += 4) {
+          md5blks[i2 >> 2] = s2.charCodeAt(i2) + (s2.charCodeAt(i2 + 1) << 8) + (s2.charCodeAt(i2 + 2) << 16) + (s2.charCodeAt(i2 + 3) << 24);
+        }
+        return md5blks;
+      }
+      function md5blk_array(a2) {
+        var md5blks = [], i2;
+        for (i2 = 0; i2 < 64; i2 += 4) {
+          md5blks[i2 >> 2] = a2[i2] + (a2[i2 + 1] << 8) + (a2[i2 + 2] << 16) + (a2[i2 + 3] << 24);
+        }
+        return md5blks;
+      }
+      function md51(s2) {
+        var n2 = s2.length, state = [1732584193, -271733879, -1732584194, 271733878], i2, length, tail, tmp, lo, hi2;
+        for (i2 = 64; i2 <= n2; i2 += 64) {
+          md5cycle(state, md5blk(s2.substring(i2 - 64, i2)));
+        }
+        s2 = s2.substring(i2 - 64);
+        length = s2.length;
+        tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        for (i2 = 0; i2 < length; i2 += 1) {
+          tail[i2 >> 2] |= s2.charCodeAt(i2) << (i2 % 4 << 3);
+        }
+        tail[i2 >> 2] |= 128 << (i2 % 4 << 3);
+        if (i2 > 55) {
+          md5cycle(state, tail);
+          for (i2 = 0; i2 < 16; i2 += 1) {
+            tail[i2] = 0;
+          }
+        }
+        tmp = n2 * 8;
+        tmp = tmp.toString(16).match(/(.*?)(.{0,8})$/);
+        lo = parseInt(tmp[2], 16);
+        hi2 = parseInt(tmp[1], 16) || 0;
+        tail[14] = lo;
+        tail[15] = hi2;
+        md5cycle(state, tail);
+        return state;
+      }
+      function md51_array(a2) {
+        var n2 = a2.length, state = [1732584193, -271733879, -1732584194, 271733878], i2, length, tail, tmp, lo, hi2;
+        for (i2 = 64; i2 <= n2; i2 += 64) {
+          md5cycle(state, md5blk_array(a2.subarray(i2 - 64, i2)));
+        }
+        a2 = i2 - 64 < n2 ? a2.subarray(i2 - 64) : new Uint8Array(0);
+        length = a2.length;
+        tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        for (i2 = 0; i2 < length; i2 += 1) {
+          tail[i2 >> 2] |= a2[i2] << (i2 % 4 << 3);
+        }
+        tail[i2 >> 2] |= 128 << (i2 % 4 << 3);
+        if (i2 > 55) {
+          md5cycle(state, tail);
+          for (i2 = 0; i2 < 16; i2 += 1) {
+            tail[i2] = 0;
+          }
+        }
+        tmp = n2 * 8;
+        tmp = tmp.toString(16).match(/(.*?)(.{0,8})$/);
+        lo = parseInt(tmp[2], 16);
+        hi2 = parseInt(tmp[1], 16) || 0;
+        tail[14] = lo;
+        tail[15] = hi2;
+        md5cycle(state, tail);
+        return state;
+      }
+      function rhex(n2) {
+        var s2 = "", j2;
+        for (j2 = 0; j2 < 4; j2 += 1) {
+          s2 += hex_chr[n2 >> j2 * 8 + 4 & 15] + hex_chr[n2 >> j2 * 8 & 15];
+        }
+        return s2;
+      }
+      function hex(x2) {
+        var i2;
+        for (i2 = 0; i2 < x2.length; i2 += 1) {
+          x2[i2] = rhex(x2[i2]);
+        }
+        return x2.join("");
+      }
+      if (hex(md51("hello")) !== "5d41402abc4b2a76b9719d911017c592") ;
+      if (typeof ArrayBuffer !== "undefined" && !ArrayBuffer.prototype.slice) {
+        (function() {
+          function clamp(val, length) {
+            val = val | 0 || 0;
+            if (val < 0) {
+              return Math.max(val + length, 0);
+            }
+            return Math.min(val, length);
+          }
+          ArrayBuffer.prototype.slice = function(from, to2) {
+            var length = this.byteLength, begin = clamp(from, length), end = length, num, target, targetArray, sourceArray;
+            if (to2 !== undefined$1) {
+              end = clamp(to2, length);
+            }
+            if (begin > end) {
+              return new ArrayBuffer(0);
+            }
+            num = end - begin;
+            target = new ArrayBuffer(num);
+            targetArray = new Uint8Array(target);
+            sourceArray = new Uint8Array(this, begin, num);
+            targetArray.set(sourceArray);
+            return target;
+          };
+        })();
+      }
+      function toUtf8(str2) {
+        if (/[\u0080-\uFFFF]/.test(str2)) {
+          str2 = unescape(encodeURIComponent(str2));
+        }
+        return str2;
+      }
+      function utf8Str2ArrayBuffer(str2, returnUInt8Array) {
+        var length = str2.length, buff = new ArrayBuffer(length), arr = new Uint8Array(buff), i2;
+        for (i2 = 0; i2 < length; i2 += 1) {
+          arr[i2] = str2.charCodeAt(i2);
+        }
+        return returnUInt8Array ? arr : buff;
+      }
+      function arrayBuffer2Utf8Str(buff) {
+        return String.fromCharCode.apply(null, new Uint8Array(buff));
+      }
+      function concatenateArrayBuffers(first, second, returnUInt8Array) {
+        var result = new Uint8Array(first.byteLength + second.byteLength);
+        result.set(new Uint8Array(first));
+        result.set(new Uint8Array(second), first.byteLength);
+        return returnUInt8Array ? result : result.buffer;
+      }
+      function hexToBinaryString(hex2) {
+        var bytes = [], length = hex2.length, x2;
+        for (x2 = 0; x2 < length - 1; x2 += 2) {
+          bytes.push(parseInt(hex2.substr(x2, 2), 16));
+        }
+        return String.fromCharCode.apply(String, bytes);
+      }
+      function SparkMD53() {
+        this.reset();
+      }
+      SparkMD53.prototype.append = function(str2) {
+        this.appendBinary(toUtf8(str2));
+        return this;
+      };
+      SparkMD53.prototype.appendBinary = function(contents) {
+        this._buff += contents;
+        this._length += contents.length;
+        var length = this._buff.length, i2;
+        for (i2 = 64; i2 <= length; i2 += 64) {
+          md5cycle(this._hash, md5blk(this._buff.substring(i2 - 64, i2)));
+        }
+        this._buff = this._buff.substring(i2 - 64);
+        return this;
+      };
+      SparkMD53.prototype.end = function(raw) {
+        var buff = this._buff, length = buff.length, i2, tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ret;
+        for (i2 = 0; i2 < length; i2 += 1) {
+          tail[i2 >> 2] |= buff.charCodeAt(i2) << (i2 % 4 << 3);
+        }
+        this._finish(tail, length);
+        ret = hex(this._hash);
+        if (raw) {
+          ret = hexToBinaryString(ret);
+        }
+        this.reset();
+        return ret;
+      };
+      SparkMD53.prototype.reset = function() {
+        this._buff = "";
+        this._length = 0;
+        this._hash = [1732584193, -271733879, -1732584194, 271733878];
+        return this;
+      };
+      SparkMD53.prototype.getState = function() {
+        return {
+          buff: this._buff,
+          length: this._length,
+          hash: this._hash.slice()
+        };
+      };
+      SparkMD53.prototype.setState = function(state) {
+        this._buff = state.buff;
+        this._length = state.length;
+        this._hash = state.hash;
+        return this;
+      };
+      SparkMD53.prototype.destroy = function() {
+        delete this._hash;
+        delete this._buff;
+        delete this._length;
+      };
+      SparkMD53.prototype._finish = function(tail, length) {
+        var i2 = length, tmp, lo, hi2;
+        tail[i2 >> 2] |= 128 << (i2 % 4 << 3);
+        if (i2 > 55) {
+          md5cycle(this._hash, tail);
+          for (i2 = 0; i2 < 16; i2 += 1) {
+            tail[i2] = 0;
+          }
+        }
+        tmp = this._length * 8;
+        tmp = tmp.toString(16).match(/(.*?)(.{0,8})$/);
+        lo = parseInt(tmp[2], 16);
+        hi2 = parseInt(tmp[1], 16) || 0;
+        tail[14] = lo;
+        tail[15] = hi2;
+        md5cycle(this._hash, tail);
+      };
+      SparkMD53.hash = function(str2, raw) {
+        return SparkMD53.hashBinary(toUtf8(str2), raw);
+      };
+      SparkMD53.hashBinary = function(content, raw) {
+        var hash = md51(content), ret = hex(hash);
+        return raw ? hexToBinaryString(ret) : ret;
+      };
+      SparkMD53.ArrayBuffer = function() {
+        this.reset();
+      };
+      SparkMD53.ArrayBuffer.prototype.append = function(arr) {
+        var buff = concatenateArrayBuffers(this._buff.buffer, arr, true), length = buff.length, i2;
+        this._length += arr.byteLength;
+        for (i2 = 64; i2 <= length; i2 += 64) {
+          md5cycle(this._hash, md5blk_array(buff.subarray(i2 - 64, i2)));
+        }
+        this._buff = i2 - 64 < length ? new Uint8Array(buff.buffer.slice(i2 - 64)) : new Uint8Array(0);
+        return this;
+      };
+      SparkMD53.ArrayBuffer.prototype.end = function(raw) {
+        var buff = this._buff, length = buff.length, tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], i2, ret;
+        for (i2 = 0; i2 < length; i2 += 1) {
+          tail[i2 >> 2] |= buff[i2] << (i2 % 4 << 3);
+        }
+        this._finish(tail, length);
+        ret = hex(this._hash);
+        if (raw) {
+          ret = hexToBinaryString(ret);
+        }
+        this.reset();
+        return ret;
+      };
+      SparkMD53.ArrayBuffer.prototype.reset = function() {
+        this._buff = new Uint8Array(0);
+        this._length = 0;
+        this._hash = [1732584193, -271733879, -1732584194, 271733878];
+        return this;
+      };
+      SparkMD53.ArrayBuffer.prototype.getState = function() {
+        var state = SparkMD53.prototype.getState.call(this);
+        state.buff = arrayBuffer2Utf8Str(state.buff);
+        return state;
+      };
+      SparkMD53.ArrayBuffer.prototype.setState = function(state) {
+        state.buff = utf8Str2ArrayBuffer(state.buff, true);
+        return SparkMD53.prototype.setState.call(this, state);
+      };
+      SparkMD53.ArrayBuffer.prototype.destroy = SparkMD53.prototype.destroy;
+      SparkMD53.ArrayBuffer.prototype._finish = SparkMD53.prototype._finish;
+      SparkMD53.ArrayBuffer.hash = function(arr, raw) {
+        var hash = md51_array(new Uint8Array(arr)), ret = hex(hash);
+        return raw ? hexToBinaryString(ret) : ret;
+      };
+      return SparkMD53;
+    });
+  })(sparkMd5);
+  var SparkMD5 = sparkMd5.exports;
+  var fileSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
+  var FileChecksum = class _FileChecksum {
+    static create(file, callback) {
+      const instance = new _FileChecksum(file);
+      instance.create(callback);
+    }
+    constructor(file) {
+      this.file = file;
+      this.chunkSize = 2097152;
+      this.chunkCount = Math.ceil(this.file.size / this.chunkSize);
+      this.chunkIndex = 0;
+    }
+    create(callback) {
+      this.callback = callback;
+      this.md5Buffer = new SparkMD5.ArrayBuffer();
+      this.fileReader = new FileReader();
+      this.fileReader.addEventListener("load", (event) => this.fileReaderDidLoad(event));
+      this.fileReader.addEventListener("error", (event) => this.fileReaderDidError(event));
+      this.readNextChunk();
+    }
+    fileReaderDidLoad(event) {
+      this.md5Buffer.append(event.target.result);
+      if (!this.readNextChunk()) {
+        const binaryDigest = this.md5Buffer.end(true);
+        const base64digest = btoa(binaryDigest);
+        this.callback(null, base64digest);
+      }
+    }
+    fileReaderDidError(event) {
+      this.callback(`Error reading ${this.file.name}`);
+    }
+    readNextChunk() {
+      if (this.chunkIndex < this.chunkCount || this.chunkIndex == 0 && this.chunkCount == 0) {
+        const start4 = this.chunkIndex * this.chunkSize;
+        const end = Math.min(start4 + this.chunkSize, this.file.size);
+        const bytes = fileSlice.call(this.file, start4, end);
+        this.fileReader.readAsArrayBuffer(bytes);
+        this.chunkIndex++;
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
+  function getMetaValue(name) {
+    const element = findElement(document.head, `meta[name="${name}"]`);
+    if (element) {
+      return element.getAttribute("content");
+    }
+  }
+  function findElements(root, selector) {
+    if (typeof root == "string") {
+      selector = root;
+      root = document;
+    }
+    const elements = root.querySelectorAll(selector);
+    return toArray(elements);
+  }
+  function findElement(root, selector) {
+    if (typeof root == "string") {
+      selector = root;
+      root = document;
+    }
+    return root.querySelector(selector);
+  }
+  function dispatchEvent2(element, type, eventInit = {}) {
+    const { disabled } = element;
+    const { bubbles, cancelable, detail } = eventInit;
+    const event = document.createEvent("Event");
+    event.initEvent(type, bubbles || true, cancelable || true);
+    event.detail = detail || {};
+    try {
+      element.disabled = false;
+      element.dispatchEvent(event);
+    } finally {
+      element.disabled = disabled;
+    }
+    return event;
+  }
+  function toArray(value) {
+    if (Array.isArray(value)) {
+      return value;
+    } else if (Array.from) {
+      return Array.from(value);
+    } else {
+      return [].slice.call(value);
+    }
+  }
+  var BlobRecord = class {
+    constructor(file, checksum, url, customHeaders = {}) {
+      this.file = file;
+      this.attributes = {
+        filename: file.name,
+        content_type: file.type || "application/octet-stream",
+        byte_size: file.size,
+        checksum
+      };
+      this.xhr = new XMLHttpRequest();
+      this.xhr.open("POST", url, true);
+      this.xhr.responseType = "json";
+      this.xhr.setRequestHeader("Content-Type", "application/json");
+      this.xhr.setRequestHeader("Accept", "application/json");
+      this.xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+      Object.keys(customHeaders).forEach((headerKey) => {
+        this.xhr.setRequestHeader(headerKey, customHeaders[headerKey]);
+      });
+      const csrfToken = getMetaValue("csrf-token");
+      if (csrfToken != void 0) {
+        this.xhr.setRequestHeader("X-CSRF-Token", csrfToken);
+      }
+      this.xhr.addEventListener("load", (event) => this.requestDidLoad(event));
+      this.xhr.addEventListener("error", (event) => this.requestDidError(event));
+    }
+    get status() {
+      return this.xhr.status;
+    }
+    get response() {
+      const { responseType, response } = this.xhr;
+      if (responseType == "json") {
+        return response;
+      } else {
+        return JSON.parse(response);
+      }
+    }
+    create(callback) {
+      this.callback = callback;
+      this.xhr.send(JSON.stringify({
+        blob: this.attributes
+      }));
+    }
+    requestDidLoad(event) {
+      if (this.status >= 200 && this.status < 300) {
+        const { response } = this;
+        const { direct_upload } = response;
+        delete response.direct_upload;
+        this.attributes = response;
+        this.directUploadData = direct_upload;
+        this.callback(null, this.toJSON());
+      } else {
+        this.requestDidError(event);
+      }
+    }
+    requestDidError(event) {
+      this.callback(`Error creating Blob for "${this.file.name}". Status: ${this.status}`);
+    }
+    toJSON() {
+      const result = {};
+      for (const key in this.attributes) {
+        result[key] = this.attributes[key];
+      }
+      return result;
+    }
+  };
+  var BlobUpload = class {
+    constructor(blob) {
+      this.blob = blob;
+      this.file = blob.file;
+      const { url, headers } = blob.directUploadData;
+      this.xhr = new XMLHttpRequest();
+      this.xhr.open("PUT", url, true);
+      this.xhr.responseType = "text";
+      for (const key in headers) {
+        this.xhr.setRequestHeader(key, headers[key]);
+      }
+      this.xhr.addEventListener("load", (event) => this.requestDidLoad(event));
+      this.xhr.addEventListener("error", (event) => this.requestDidError(event));
+    }
+    create(callback) {
+      this.callback = callback;
+      this.xhr.send(this.file.slice());
+    }
+    requestDidLoad(event) {
+      const { status, response } = this.xhr;
+      if (status >= 200 && status < 300) {
+        this.callback(null, response);
+      } else {
+        this.requestDidError(event);
+      }
+    }
+    requestDidError(event) {
+      this.callback(`Error storing "${this.file.name}". Status: ${this.xhr.status}`);
+    }
+  };
+  var id = 0;
+  var DirectUpload = class {
+    constructor(file, url, delegate, customHeaders = {}) {
+      this.id = ++id;
+      this.file = file;
+      this.url = url;
+      this.delegate = delegate;
+      this.customHeaders = customHeaders;
+    }
+    create(callback) {
+      FileChecksum.create(this.file, (error2, checksum) => {
+        if (error2) {
+          callback(error2);
+          return;
+        }
+        const blob = new BlobRecord(this.file, checksum, this.url, this.customHeaders);
+        notify(this.delegate, "directUploadWillCreateBlobWithXHR", blob.xhr);
+        blob.create((error3) => {
+          if (error3) {
+            callback(error3);
+          } else {
+            const upload = new BlobUpload(blob);
+            notify(this.delegate, "directUploadWillStoreFileWithXHR", upload.xhr);
+            upload.create((error4) => {
+              if (error4) {
+                callback(error4);
+              } else {
+                callback(null, blob.toJSON());
+              }
+            });
+          }
+        });
+      });
+    }
+  };
+  function notify(object, methodName, ...messages) {
+    if (object && typeof object[methodName] == "function") {
+      return object[methodName](...messages);
+    }
+  }
+  var DirectUploadController = class {
+    constructor(input, file) {
+      this.input = input;
+      this.file = file;
+      this.directUpload = new DirectUpload(this.file, this.url, this);
+      this.dispatch("initialize");
+    }
+    start(callback) {
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = this.input.name;
+      this.input.insertAdjacentElement("beforebegin", hiddenInput);
+      this.dispatch("start");
+      this.directUpload.create((error2, attributes) => {
+        if (error2) {
+          hiddenInput.parentNode.removeChild(hiddenInput);
+          this.dispatchError(error2);
+        } else {
+          hiddenInput.value = attributes.signed_id;
+        }
+        this.dispatch("end");
+        callback(error2);
+      });
+    }
+    uploadRequestDidProgress(event) {
+      const progress = event.loaded / event.total * 100;
+      if (progress) {
+        this.dispatch("progress", {
+          progress
+        });
+      }
+    }
+    get url() {
+      return this.input.getAttribute("data-direct-upload-url");
+    }
+    dispatch(name, detail = {}) {
+      detail.file = this.file;
+      detail.id = this.directUpload.id;
+      return dispatchEvent2(this.input, `direct-upload:${name}`, {
+        detail
+      });
+    }
+    dispatchError(error2) {
+      const event = this.dispatch("error", {
+        error: error2
+      });
+      if (!event.defaultPrevented) {
+        alert(error2);
+      }
+    }
+    directUploadWillCreateBlobWithXHR(xhr) {
+      this.dispatch("before-blob-request", {
+        xhr
+      });
+    }
+    directUploadWillStoreFileWithXHR(xhr) {
+      this.dispatch("before-storage-request", {
+        xhr
+      });
+      xhr.upload.addEventListener("progress", (event) => this.uploadRequestDidProgress(event));
+    }
+  };
+  var inputSelector = "input[type=file][data-direct-upload-url]:not([disabled])";
+  var DirectUploadsController = class {
+    constructor(form) {
+      this.form = form;
+      this.inputs = findElements(form, inputSelector).filter((input) => input.files.length);
+    }
+    start(callback) {
+      const controllers = this.createDirectUploadControllers();
+      const startNextController = () => {
+        const controller = controllers.shift();
+        if (controller) {
+          controller.start((error2) => {
+            if (error2) {
+              callback(error2);
+              this.dispatch("end");
+            } else {
+              startNextController();
+            }
+          });
+        } else {
+          callback();
+          this.dispatch("end");
+        }
+      };
+      this.dispatch("start");
+      startNextController();
+    }
+    createDirectUploadControllers() {
+      const controllers = [];
+      this.inputs.forEach((input) => {
+        toArray(input.files).forEach((file) => {
+          const controller = new DirectUploadController(input, file);
+          controllers.push(controller);
+        });
+      });
+      return controllers;
+    }
+    dispatch(name, detail = {}) {
+      return dispatchEvent2(this.form, `direct-uploads:${name}`, {
+        detail
+      });
+    }
+  };
+  var processingAttribute = "data-direct-uploads-processing";
+  var submitButtonsByForm = /* @__PURE__ */ new WeakMap();
+  var started = false;
+  function start() {
+    if (!started) {
+      started = true;
+      document.addEventListener("click", didClick, true);
+      document.addEventListener("submit", didSubmitForm, true);
+      document.addEventListener("ajax:before", didSubmitRemoteElement);
+    }
+  }
+  function didClick(event) {
+    const button = event.target.closest("button, input");
+    if (button && button.type === "submit" && button.form) {
+      submitButtonsByForm.set(button.form, button);
+    }
+  }
+  function didSubmitForm(event) {
+    handleFormSubmissionEvent(event);
+  }
+  function didSubmitRemoteElement(event) {
+    if (event.target.tagName == "FORM") {
+      handleFormSubmissionEvent(event);
+    }
+  }
+  function handleFormSubmissionEvent(event) {
+    const form = event.target;
+    if (form.hasAttribute(processingAttribute)) {
+      event.preventDefault();
+      return;
+    }
+    const controller = new DirectUploadsController(form);
+    const { inputs } = controller;
+    if (inputs.length) {
+      event.preventDefault();
+      form.setAttribute(processingAttribute, "");
+      inputs.forEach(disable);
+      controller.start((error2) => {
+        form.removeAttribute(processingAttribute);
+        if (error2) {
+          inputs.forEach(enable);
+        } else {
+          submitForm(form);
+        }
+      });
+    }
+  }
+  function submitForm(form) {
+    let button = submitButtonsByForm.get(form) || findElement(form, "input[type=submit], button[type=submit]");
+    if (button) {
+      const { disabled } = button;
+      button.disabled = false;
+      button.focus();
+      button.click();
+      button.disabled = disabled;
+    } else {
+      button = document.createElement("input");
+      button.type = "submit";
+      button.style.display = "none";
+      form.appendChild(button);
+      button.click();
+      form.removeChild(button);
+    }
+    submitButtonsByForm.delete(form);
+  }
+  function disable(input) {
+    input.disabled = true;
+  }
+  function enable(input) {
+    input.disabled = false;
+  }
+  function autostart() {
+    if (window.ActiveStorage) {
+      start();
+    }
+  }
+  setTimeout(autostart, 1);
+
+  // app/assets/javascripts/administrate/vendor/direct_upload.js
+  addEventListener("direct-upload:initialize", (event) => {
+    const { target, detail } = event;
+    const { id: id3, file } = detail;
+    target.insertAdjacentHTML("beforebegin", `
+    <div id="direct-upload-${id3}" class="direct-upload direct-upload--pending">
+      <div id="direct-upload-progress-${id3}" class="direct-upload__progress" style="width: 0%"></div>
+      <span class="direct-upload__filename"></span>
+    </div>
+  `);
+    target.previousElementSibling.querySelector(`.direct-upload__filename`).textContent = file.name;
+  });
+  addEventListener("direct-upload:start", (event) => {
+    const { id: id3 } = event.detail;
+    const element = document.getElementById(`direct-upload-${id3}`);
+    element.classList.remove("direct-upload--pending");
+  });
+  addEventListener("direct-upload:progress", (event) => {
+    const { id: id3, progress } = event.detail;
+    const progressElement = document.getElementById(`direct-upload-progress-${id3}`);
+    progressElement.style.width = `${progress}%`;
+  });
+  addEventListener("direct-upload:error", (event) => {
+    event.preventDefault();
+    const { id: id3, error: error2 } = event.detail;
+    const element = document.getElementById(`direct-upload-${id3}`);
+    element.classList.add("direct-upload--error");
+    element.setAttribute("title", error2);
+  });
+  addEventListener("direct-upload:end", (event) => {
+    const { id: id3 } = event.detail;
+    const element = document.getElementById(`direct-upload-${id3}`);
+    element.classList.add("direct-upload--complete");
+  });
+
+  // app/assets/javascripts/administrate/active_storage.js
+  start();
+
   // app/assets/javascripts/administrate/add_jquery.js
   var import_jquery = __toESM(require_jquery());
   window.jQuery = import_jquery.default;
@@ -13466,7 +14322,7 @@
   }, 0);
 
   // node_modules/@rails/actiontext/app/assets/javascripts/actiontext.esm.js
-  var sparkMd5 = {
+  var sparkMd52 = {
     exports: {}
   };
   (function(module, exports) {
@@ -13749,14 +14605,14 @@
         }
         return String.fromCharCode.apply(String, bytes);
       }
-      function SparkMD52() {
+      function SparkMD53() {
         this.reset();
       }
-      SparkMD52.prototype.append = function(str2) {
+      SparkMD53.prototype.append = function(str2) {
         this.appendBinary(toUtf8(str2));
         return this;
       };
-      SparkMD52.prototype.appendBinary = function(contents) {
+      SparkMD53.prototype.appendBinary = function(contents) {
         this._buff += contents;
         this._length += contents.length;
         var length = this._buff.length, i2;
@@ -13766,7 +14622,7 @@
         this._buff = this._buff.substring(i2 - 64);
         return this;
       };
-      SparkMD52.prototype.end = function(raw) {
+      SparkMD53.prototype.end = function(raw) {
         var buff = this._buff, length = buff.length, i2, tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ret;
         for (i2 = 0; i2 < length; i2 += 1) {
           tail[i2 >> 2] |= buff.charCodeAt(i2) << (i2 % 4 << 3);
@@ -13779,31 +14635,31 @@
         this.reset();
         return ret;
       };
-      SparkMD52.prototype.reset = function() {
+      SparkMD53.prototype.reset = function() {
         this._buff = "";
         this._length = 0;
         this._hash = [1732584193, -271733879, -1732584194, 271733878];
         return this;
       };
-      SparkMD52.prototype.getState = function() {
+      SparkMD53.prototype.getState = function() {
         return {
           buff: this._buff,
           length: this._length,
           hash: this._hash.slice()
         };
       };
-      SparkMD52.prototype.setState = function(state) {
+      SparkMD53.prototype.setState = function(state) {
         this._buff = state.buff;
         this._length = state.length;
         this._hash = state.hash;
         return this;
       };
-      SparkMD52.prototype.destroy = function() {
+      SparkMD53.prototype.destroy = function() {
         delete this._hash;
         delete this._buff;
         delete this._length;
       };
-      SparkMD52.prototype._finish = function(tail, length) {
+      SparkMD53.prototype._finish = function(tail, length) {
         var i2 = length, tmp, lo, hi2;
         tail[i2 >> 2] |= 128 << (i2 % 4 << 3);
         if (i2 > 55) {
@@ -13820,17 +14676,17 @@
         tail[15] = hi2;
         md5cycle(this._hash, tail);
       };
-      SparkMD52.hash = function(str2, raw) {
-        return SparkMD52.hashBinary(toUtf8(str2), raw);
+      SparkMD53.hash = function(str2, raw) {
+        return SparkMD53.hashBinary(toUtf8(str2), raw);
       };
-      SparkMD52.hashBinary = function(content, raw) {
+      SparkMD53.hashBinary = function(content, raw) {
         var hash = md51(content), ret = hex(hash);
         return raw ? hexToBinaryString(ret) : ret;
       };
-      SparkMD52.ArrayBuffer = function() {
+      SparkMD53.ArrayBuffer = function() {
         this.reset();
       };
-      SparkMD52.ArrayBuffer.prototype.append = function(arr) {
+      SparkMD53.ArrayBuffer.prototype.append = function(arr) {
         var buff = concatenateArrayBuffers(this._buff.buffer, arr, true), length = buff.length, i2;
         this._length += arr.byteLength;
         for (i2 = 64; i2 <= length; i2 += 64) {
@@ -13839,7 +14695,7 @@
         this._buff = i2 - 64 < length ? new Uint8Array(buff.buffer.slice(i2 - 64)) : new Uint8Array(0);
         return this;
       };
-      SparkMD52.ArrayBuffer.prototype.end = function(raw) {
+      SparkMD53.ArrayBuffer.prototype.end = function(raw) {
         var buff = this._buff, length = buff.length, tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], i2, ret;
         for (i2 = 0; i2 < length; i2 += 1) {
           tail[i2 >> 2] |= buff[i2] << (i2 % 4 << 3);
@@ -13852,33 +14708,33 @@
         this.reset();
         return ret;
       };
-      SparkMD52.ArrayBuffer.prototype.reset = function() {
+      SparkMD53.ArrayBuffer.prototype.reset = function() {
         this._buff = new Uint8Array(0);
         this._length = 0;
         this._hash = [1732584193, -271733879, -1732584194, 271733878];
         return this;
       };
-      SparkMD52.ArrayBuffer.prototype.getState = function() {
-        var state = SparkMD52.prototype.getState.call(this);
+      SparkMD53.ArrayBuffer.prototype.getState = function() {
+        var state = SparkMD53.prototype.getState.call(this);
         state.buff = arrayBuffer2Utf8Str(state.buff);
         return state;
       };
-      SparkMD52.ArrayBuffer.prototype.setState = function(state) {
+      SparkMD53.ArrayBuffer.prototype.setState = function(state) {
         state.buff = utf8Str2ArrayBuffer(state.buff, true);
-        return SparkMD52.prototype.setState.call(this, state);
+        return SparkMD53.prototype.setState.call(this, state);
       };
-      SparkMD52.ArrayBuffer.prototype.destroy = SparkMD52.prototype.destroy;
-      SparkMD52.ArrayBuffer.prototype._finish = SparkMD52.prototype._finish;
-      SparkMD52.ArrayBuffer.hash = function(arr, raw) {
+      SparkMD53.ArrayBuffer.prototype.destroy = SparkMD53.prototype.destroy;
+      SparkMD53.ArrayBuffer.prototype._finish = SparkMD53.prototype._finish;
+      SparkMD53.ArrayBuffer.hash = function(arr, raw) {
         var hash = md51_array(new Uint8Array(arr)), ret = hex(hash);
         return raw ? hexToBinaryString(ret) : ret;
       };
-      return SparkMD52;
+      return SparkMD53;
     });
-  })(sparkMd5);
-  var SparkMD5 = sparkMd5.exports;
-  var fileSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
-  var FileChecksum = class _FileChecksum {
+  })(sparkMd52);
+  var SparkMD52 = sparkMd52.exports;
+  var fileSlice2 = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
+  var FileChecksum2 = class _FileChecksum {
     static create(file, callback) {
       const instance = new _FileChecksum(file);
       instance.create(callback);
@@ -13891,7 +14747,7 @@
     }
     create(callback) {
       this.callback = callback;
-      this.md5Buffer = new SparkMD5.ArrayBuffer();
+      this.md5Buffer = new SparkMD52.ArrayBuffer();
       this.fileReader = new FileReader();
       this.fileReader.addEventListener("load", (event) => this.fileReaderDidLoad(event));
       this.fileReader.addEventListener("error", (event) => this.fileReaderDidError(event));
@@ -13910,9 +14766,9 @@
     }
     readNextChunk() {
       if (this.chunkIndex < this.chunkCount || this.chunkIndex == 0 && this.chunkCount == 0) {
-        const start3 = this.chunkIndex * this.chunkSize;
-        const end = Math.min(start3 + this.chunkSize, this.file.size);
-        const bytes = fileSlice.call(this.file, start3, end);
+        const start4 = this.chunkIndex * this.chunkSize;
+        const end = Math.min(start4 + this.chunkSize, this.file.size);
+        const bytes = fileSlice2.call(this.file, start4, end);
         this.fileReader.readAsArrayBuffer(bytes);
         this.chunkIndex++;
         return true;
@@ -13921,28 +14777,28 @@
       }
     }
   };
-  function getMetaValue(name) {
-    const element = findElement(document.head, `meta[name="${name}"]`);
+  function getMetaValue2(name) {
+    const element = findElement2(document.head, `meta[name="${name}"]`);
     if (element) {
       return element.getAttribute("content");
     }
   }
-  function findElements(root, selector) {
+  function findElements2(root, selector) {
     if (typeof root == "string") {
       selector = root;
       root = document;
     }
     const elements = root.querySelectorAll(selector);
-    return toArray(elements);
+    return toArray2(elements);
   }
-  function findElement(root, selector) {
+  function findElement2(root, selector) {
     if (typeof root == "string") {
       selector = root;
       root = document;
     }
     return root.querySelector(selector);
   }
-  function dispatchEvent2(element, type, eventInit = {}) {
+  function dispatchEvent3(element, type, eventInit = {}) {
     const { disabled } = element;
     const { bubbles, cancelable, detail } = eventInit;
     const event = document.createEvent("Event");
@@ -13956,7 +14812,7 @@
     }
     return event;
   }
-  function toArray(value) {
+  function toArray2(value) {
     if (Array.isArray(value)) {
       return value;
     } else if (Array.from) {
@@ -13965,7 +14821,7 @@
       return [].slice.call(value);
     }
   }
-  var BlobRecord = class {
+  var BlobRecord2 = class {
     constructor(file, checksum, url, customHeaders = {}) {
       this.file = file;
       this.attributes = {
@@ -13983,7 +14839,7 @@
       Object.keys(customHeaders).forEach((headerKey) => {
         this.xhr.setRequestHeader(headerKey, customHeaders[headerKey]);
       });
-      const csrfToken = getMetaValue("csrf-token");
+      const csrfToken = getMetaValue2("csrf-token");
       if (csrfToken != void 0) {
         this.xhr.setRequestHeader("X-CSRF-Token", csrfToken);
       }
@@ -14030,7 +14886,7 @@
       return result;
     }
   };
-  var BlobUpload = class {
+  var BlobUpload2 = class {
     constructor(blob) {
       this.blob = blob;
       this.file = blob.file;
@@ -14060,29 +14916,29 @@
       this.callback(`Error storing "${this.file.name}". Status: ${this.xhr.status}`);
     }
   };
-  var id = 0;
-  var DirectUpload = class {
+  var id2 = 0;
+  var DirectUpload2 = class {
     constructor(file, url, delegate, customHeaders = {}) {
-      this.id = ++id;
+      this.id = ++id2;
       this.file = file;
       this.url = url;
       this.delegate = delegate;
       this.customHeaders = customHeaders;
     }
     create(callback) {
-      FileChecksum.create(this.file, (error2, checksum) => {
+      FileChecksum2.create(this.file, (error2, checksum) => {
         if (error2) {
           callback(error2);
           return;
         }
-        const blob = new BlobRecord(this.file, checksum, this.url, this.customHeaders);
-        notify(this.delegate, "directUploadWillCreateBlobWithXHR", blob.xhr);
+        const blob = new BlobRecord2(this.file, checksum, this.url, this.customHeaders);
+        notify2(this.delegate, "directUploadWillCreateBlobWithXHR", blob.xhr);
         blob.create((error3) => {
           if (error3) {
             callback(error3);
           } else {
-            const upload = new BlobUpload(blob);
-            notify(this.delegate, "directUploadWillStoreFileWithXHR", upload.xhr);
+            const upload = new BlobUpload2(blob);
+            notify2(this.delegate, "directUploadWillStoreFileWithXHR", upload.xhr);
             upload.create((error4) => {
               if (error4) {
                 callback(error4);
@@ -14095,16 +14951,16 @@
       });
     }
   };
-  function notify(object, methodName, ...messages) {
+  function notify2(object, methodName, ...messages) {
     if (object && typeof object[methodName] == "function") {
       return object[methodName](...messages);
     }
   }
-  var DirectUploadController = class {
+  var DirectUploadController2 = class {
     constructor(input, file) {
       this.input = input;
       this.file = file;
-      this.directUpload = new DirectUpload(this.file, this.url, this);
+      this.directUpload = new DirectUpload2(this.file, this.url, this);
       this.dispatch("initialize");
     }
     start(callback) {
@@ -14138,7 +14994,7 @@
     dispatch(name, detail = {}) {
       detail.file = this.file;
       detail.id = this.directUpload.id;
-      return dispatchEvent2(this.input, `direct-upload:${name}`, {
+      return dispatchEvent3(this.input, `direct-upload:${name}`, {
         detail
       });
     }
@@ -14162,11 +15018,11 @@
       xhr.upload.addEventListener("progress", (event) => this.uploadRequestDidProgress(event));
     }
   };
-  var inputSelector = "input[type=file][data-direct-upload-url]:not([disabled])";
-  var DirectUploadsController = class {
+  var inputSelector2 = "input[type=file][data-direct-upload-url]:not([disabled])";
+  var DirectUploadsController2 = class {
     constructor(form) {
       this.form = form;
-      this.inputs = findElements(form, inputSelector).filter((input) => input.files.length);
+      this.inputs = findElements2(form, inputSelector2).filter((input) => input.files.length);
     }
     start(callback) {
       const controllers = this.createDirectUploadControllers();
@@ -14192,68 +15048,68 @@
     createDirectUploadControllers() {
       const controllers = [];
       this.inputs.forEach((input) => {
-        toArray(input.files).forEach((file) => {
-          const controller = new DirectUploadController(input, file);
+        toArray2(input.files).forEach((file) => {
+          const controller = new DirectUploadController2(input, file);
           controllers.push(controller);
         });
       });
       return controllers;
     }
     dispatch(name, detail = {}) {
-      return dispatchEvent2(this.form, `direct-uploads:${name}`, {
+      return dispatchEvent3(this.form, `direct-uploads:${name}`, {
         detail
       });
     }
   };
-  var processingAttribute = "data-direct-uploads-processing";
-  var submitButtonsByForm = /* @__PURE__ */ new WeakMap();
-  var started = false;
-  function start() {
-    if (!started) {
-      started = true;
-      document.addEventListener("click", didClick, true);
-      document.addEventListener("submit", didSubmitForm, true);
-      document.addEventListener("ajax:before", didSubmitRemoteElement);
+  var processingAttribute2 = "data-direct-uploads-processing";
+  var submitButtonsByForm2 = /* @__PURE__ */ new WeakMap();
+  var started2 = false;
+  function start2() {
+    if (!started2) {
+      started2 = true;
+      document.addEventListener("click", didClick2, true);
+      document.addEventListener("submit", didSubmitForm2, true);
+      document.addEventListener("ajax:before", didSubmitRemoteElement2);
     }
   }
-  function didClick(event) {
+  function didClick2(event) {
     const button = event.target.closest("button, input");
     if (button && button.type === "submit" && button.form) {
-      submitButtonsByForm.set(button.form, button);
+      submitButtonsByForm2.set(button.form, button);
     }
   }
-  function didSubmitForm(event) {
-    handleFormSubmissionEvent(event);
+  function didSubmitForm2(event) {
+    handleFormSubmissionEvent2(event);
   }
-  function didSubmitRemoteElement(event) {
+  function didSubmitRemoteElement2(event) {
     if (event.target.tagName == "FORM") {
-      handleFormSubmissionEvent(event);
+      handleFormSubmissionEvent2(event);
     }
   }
-  function handleFormSubmissionEvent(event) {
+  function handleFormSubmissionEvent2(event) {
     const form = event.target;
-    if (form.hasAttribute(processingAttribute)) {
+    if (form.hasAttribute(processingAttribute2)) {
       event.preventDefault();
       return;
     }
-    const controller = new DirectUploadsController(form);
+    const controller = new DirectUploadsController2(form);
     const { inputs } = controller;
     if (inputs.length) {
       event.preventDefault();
-      form.setAttribute(processingAttribute, "");
-      inputs.forEach(disable);
+      form.setAttribute(processingAttribute2, "");
+      inputs.forEach(disable2);
       controller.start((error2) => {
-        form.removeAttribute(processingAttribute);
+        form.removeAttribute(processingAttribute2);
         if (error2) {
-          inputs.forEach(enable);
+          inputs.forEach(enable2);
         } else {
-          submitForm(form);
+          submitForm2(form);
         }
       });
     }
   }
-  function submitForm(form) {
-    let button = submitButtonsByForm.get(form) || findElement(form, "input[type=submit], button[type=submit]");
+  function submitForm2(form) {
+    let button = submitButtonsByForm2.get(form) || findElement2(form, "input[type=submit], button[type=submit]");
     if (button) {
       const { disabled } = button;
       button.disabled = false;
@@ -14268,25 +15124,25 @@
       button.click();
       form.removeChild(button);
     }
-    submitButtonsByForm.delete(form);
+    submitButtonsByForm2.delete(form);
   }
-  function disable(input) {
+  function disable2(input) {
     input.disabled = true;
   }
-  function enable(input) {
+  function enable2(input) {
     input.disabled = false;
   }
-  function autostart() {
+  function autostart2() {
     if (window.ActiveStorage) {
-      start();
+      start2();
     }
   }
-  setTimeout(autostart, 1);
+  setTimeout(autostart2, 1);
   var AttachmentUpload = class {
     constructor(attachment, element) {
       this.attachment = attachment;
       this.element = element;
-      this.directUpload = new DirectUpload(attachment.file, this.directUploadUrl, this);
+      this.directUpload = new DirectUpload2(attachment.file, this.directUploadUrl, this);
     }
     start() {
       this.directUpload.create(this.directUploadDidComplete.bind(this));
@@ -14319,7 +15175,7 @@
     }
     dispatch(name, detail = {}) {
       detail.attachment = this.attachment;
-      return dispatchEvent2(this.element, `direct-upload:${name}`, {
+      return dispatchEvent3(this.element, `direct-upload:${name}`, {
         detail
       });
     }
@@ -14376,7 +15232,7 @@
     setConfirmMethod: () => setConfirmMethod,
     setFormMode: () => setFormMode,
     setProgressBarDelay: () => setProgressBarDelay,
-    start: () => start2,
+    start: () => start3,
     visit: () => visit
   });
   (function(prototype) {
@@ -15411,23 +16267,23 @@
     get permanentElements() {
       return queryPermanentElementsAll(this.element);
     }
-    getPermanentElementById(id2) {
-      return getPermanentElementById(this.element, id2);
+    getPermanentElementById(id3) {
+      return getPermanentElementById(this.element, id3);
     }
     getPermanentElementMapForSnapshot(snapshot) {
       const permanentElementMap = {};
       for (const currentPermanentElement of this.permanentElements) {
-        const { id: id2 } = currentPermanentElement;
-        const newPermanentElement = snapshot.getPermanentElementById(id2);
+        const { id: id3 } = currentPermanentElement;
+        const newPermanentElement = snapshot.getPermanentElementById(id3);
         if (newPermanentElement) {
-          permanentElementMap[id2] = [currentPermanentElement, newPermanentElement];
+          permanentElementMap[id3] = [currentPermanentElement, newPermanentElement];
         }
       }
       return permanentElementMap;
     }
   };
-  function getPermanentElementById(node, id2) {
-    return node.querySelector(`#${id2}[data-turbo-permanent]`);
+  function getPermanentElementById(node, id3) {
+    return node.querySelector(`#${id3}[data-turbo-permanent]`);
   }
   function queryPermanentElementsAll(node) {
     return node.querySelectorAll("[id][data-turbo-permanent]");
@@ -15726,15 +16582,15 @@
       this.permanentElementMap = permanentElementMap;
     }
     enter() {
-      for (const id2 in this.permanentElementMap) {
-        const [currentPermanentElement, newPermanentElement] = this.permanentElementMap[id2];
+      for (const id3 in this.permanentElementMap) {
+        const [currentPermanentElement, newPermanentElement] = this.permanentElementMap[id3];
         this.delegate.enteringBardo(currentPermanentElement, newPermanentElement);
         this.replaceNewPermanentElementWithPlaceholder(newPermanentElement);
       }
     }
     leave() {
-      for (const id2 in this.permanentElementMap) {
-        const [currentPermanentElement] = this.permanentElementMap[id2];
+      for (const id3 in this.permanentElementMap) {
+        const [currentPermanentElement] = this.permanentElementMap[id3];
         this.replaceCurrentPermanentElementWithClone(currentPermanentElement);
         this.replacePlaceholderWithPermanentElement(currentPermanentElement);
         this.delegate.leavingBardo(currentPermanentElement);
@@ -15752,8 +16608,8 @@
       const placeholder = this.getPlaceholderById(permanentElement.id);
       placeholder?.replaceWith(permanentElement);
     }
-    getPlaceholderById(id2) {
-      return this.placeholders.find((element) => element.content == id2);
+    getPlaceholderById(id3) {
+      return this.placeholders.find((element) => element.content == id3);
     }
     get placeholders() {
       return [...document.querySelectorAll("meta[name=turbo-permanent-placeholder][content]")];
@@ -16739,9 +17595,9 @@
       }
     }
     #findFrameElement(element, submitter) {
-      const id2 = submitter?.getAttribute("data-turbo-frame") || element.getAttribute("data-turbo-frame");
-      if (id2 && id2 != "_top") {
-        const frame = this.element.querySelector(`#${id2}:not([disabled])`);
+      const id3 = submitter?.getAttribute("data-turbo-frame") || element.getAttribute("data-turbo-frame");
+      if (id3 && id3 != "_top") {
+        const frame = this.element.querySelector(`#${id3}:not([disabled])`);
         if (frame instanceof FrameElement) {
           return frame;
         }
@@ -17206,11 +18062,11 @@
     const permanentElementsInDocument = queryPermanentElementsAll(document.documentElement);
     const permanentElementMap = {};
     for (const permanentElementInDocument of permanentElementsInDocument) {
-      const { id: id2 } = permanentElementInDocument;
+      const { id: id3 } = permanentElementInDocument;
       for (const streamElement of fragment.querySelectorAll("turbo-stream")) {
-        const elementInStream = getPermanentElementById(streamElement.templateElement.content, id2);
+        const elementInStream = getPermanentElementById(streamElement.templateElement.content, id3);
         if (elementInStream) {
-          permanentElementMap[id2] = [permanentElementInDocument, elementInStream];
+          permanentElementMap[id3] = [permanentElementInDocument, elementInStream];
         }
       }
     }
@@ -17842,24 +18698,24 @@
       tempNode.remove();
       ctx.callbacks.afterNodeRemoved(tempNode);
     }
-    function isIdInConsideration(ctx, id2) {
-      return !ctx.deadIds.has(id2);
+    function isIdInConsideration(ctx, id3) {
+      return !ctx.deadIds.has(id3);
     }
-    function idIsWithinNode(ctx, id2, targetNode) {
+    function idIsWithinNode(ctx, id3, targetNode) {
       let idSet = ctx.idMap.get(targetNode) || EMPTY_SET;
-      return idSet.has(id2);
+      return idSet.has(id3);
     }
     function removeIdsFromConsideration(ctx, node) {
       let idSet = ctx.idMap.get(node) || EMPTY_SET;
-      for (const id2 of idSet) {
-        ctx.deadIds.add(id2);
+      for (const id3 of idSet) {
+        ctx.deadIds.add(id3);
       }
     }
     function getIdIntersectionCount(ctx, node1, node2) {
       let sourceSet = ctx.idMap.get(node1) || EMPTY_SET;
       let matchCount = 0;
-      for (const id2 of sourceSet) {
-        if (isIdInConsideration(ctx, id2) && idIsWithinNode(ctx, id2, node2)) {
+      for (const id3 of sourceSet) {
+        if (isIdInConsideration(ctx, id3) && idIsWithinNode(ctx, id3, node2)) {
           ++matchCount;
         }
       }
@@ -18690,7 +19546,7 @@
   };
   var session = new Session(recentRequests);
   var { cache, navigator: navigator$1 } = session;
-  function start2() {
+  function start3() {
     session.start();
   }
   function registerAdapter(adapter) {
@@ -18732,7 +19588,7 @@
     PageSnapshot,
     FrameRenderer,
     fetch: fetchWithTurboHeaders,
-    start: start2,
+    start: start3,
     registerAdapter,
     visit,
     connectStreamSource,
@@ -19071,18 +19927,18 @@
       return session.visit(location2, { response: { redirected, statusCode, responseHTML } });
     }
     #findFrameElement(element, submitter) {
-      const id2 = getAttribute("data-turbo-frame", submitter, element) || this.element.getAttribute("target");
-      return getFrameElementById(id2) ?? this.element;
+      const id3 = getAttribute("data-turbo-frame", submitter, element) || this.element.getAttribute("target");
+      return getFrameElementById(id3) ?? this.element;
     }
     async extractForeignFrameElement(container) {
       let element;
-      const id2 = CSS.escape(this.id);
+      const id3 = CSS.escape(this.id);
       try {
-        element = activateElement(container.querySelector(`turbo-frame#${id2}`), this.sourceURL);
+        element = activateElement(container.querySelector(`turbo-frame#${id3}`), this.sourceURL);
         if (element) {
           return element;
         }
-        element = activateElement(container.querySelector(`turbo-frame[src][recurse~=${id2}]`), this.sourceURL);
+        element = activateElement(container.querySelector(`turbo-frame[src][recurse~=${id3}]`), this.sourceURL);
         if (element) {
           await element.loaded;
           return await this.extractForeignFrameElement(element);
@@ -19098,15 +19954,15 @@
       return locationIsVisitable(expandURL(action), this.rootLocation);
     }
     #shouldInterceptNavigation(element, submitter) {
-      const id2 = getAttribute("data-turbo-frame", submitter, element) || this.element.getAttribute("target");
+      const id3 = getAttribute("data-turbo-frame", submitter, element) || this.element.getAttribute("target");
       if (element instanceof HTMLFormElement && !this.#formActionIsVisitable(element, submitter)) {
         return false;
       }
-      if (!this.enabled || id2 == "_top") {
+      if (!this.enabled || id3 == "_top") {
         return false;
       }
-      if (id2) {
-        const frameElement = getFrameElementById(id2);
+      if (id3) {
+        const frameElement = getFrameElementById(id3);
         if (frameElement) {
           return !frameElement.disabled;
         }
@@ -19176,9 +20032,9 @@
       delete this.currentNavigationElement;
     }
   };
-  function getFrameElementById(id2) {
-    if (id2 != null) {
-      const element = document.getElementById(id2);
+  function getFrameElementById(id3) {
+    if (id3 != null) {
+      const element = document.getElementById(id3);
       if (element instanceof FrameElement) {
         return element;
       }
@@ -19423,7 +20279,7 @@
     }
   })();
   window.Turbo = { ...Turbo2, StreamActions };
-  start2();
+  start3();
 
   // node_modules/@hotwired/turbo-rails/app/javascript/turbo/cable.js
   var consumer;
@@ -29205,7 +30061,7 @@
     function Di2() {
       return this.Raw(null, false);
     }
-    const rd = "StyleSheet", id2 = "stylesheet", od = {
+    const rd = "StyleSheet", id3 = "stylesheet", od = {
       children: [[
         "Comment",
         "CDO",
@@ -29259,7 +30115,7 @@
       name: rd,
       parse: Hs,
       structure: od,
-      walkContext: id2
+      walkContext: id3
     }, Symbol.toStringTag, { value: "Module" })), ld = "SupportsDeclaration", cd = {
       declaration: "Declaration"
     };
