@@ -13,7 +13,7 @@ module Administrate
       private
 
       def format
-        options.fetch(:format, "%I:%M%p")
+        options.fetch(:format, :administrate_time_default)
       end
     end
   end
