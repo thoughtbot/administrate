@@ -12,6 +12,11 @@ rvm --default use 4.0.0
 rvm list
 ruby --version
 
+# Workaround for Yarn GPG key
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --dearmor -o /usr/share/keyrings/yarnkey.gpg
+echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update
+
 # Install Google Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome.deb
 sudo apt update && sudo apt install -y /tmp/google-chrome.deb && rm /tmp/google-chrome.deb
