@@ -57,7 +57,7 @@ module Administrate
         contextualize_resource(resource)
       end
 
-      if resource.save(context: validation_contexts_on_create(resource))
+      if resource.save
         yield(resource) if block_given?
         redirect_to(
           after_resource_created_path(resource),
@@ -73,9 +73,7 @@ module Administrate
     end
 
     def update
-      requested_resource.assign_attributes(resource_params)
-
-      if requested_resource.save(context: validation_contexts_on_update(requested_resource))
+      if requested_resource.update(resource_params)
         redirect_to(
           after_resource_updated_path(requested_resource),
           notice: translate_with_resource("update.success"),
@@ -314,26 +312,6 @@ module Administrate
     # @param resource A resource to be contextualized.
     # @return nothing
     def contextualize_resource(resource)
-    end
-
-    # Override this if you want to provide additional validation contexts.
-    #
-    # @param resource [ActiveRecord::Base] The resource to be validated.
-    # @return [Array<Symbol>] The validation contexts to be used.
-    def validation_contexts_on_create(resource)
-      default_validation_contexts(resource)
-    end
-
-    # Override this if you want to provide additional validation contexts.
-    #
-    # @param resource [ActiveRecord::Base] The resource to be validated.
-    # @return [Array<Symbol>] The validation contexts to be used.
-    def validation_contexts_on_update(resource)
-      default_validation_contexts(resource)
-    end
-
-    def default_validation_contexts(resource)
-      resource.new_record? ? [:create] : [:update]
     end
 
     def paginate_resources(resources)
