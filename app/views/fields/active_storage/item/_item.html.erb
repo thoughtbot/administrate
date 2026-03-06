@@ -1,0 +1,15 @@
+<%# locals: { field:, attachment:, variant: nil, size: [100, 100], display_preview: true, preview_only: false } %>
+
+<% if display_preview && attachment.persisted? %>
+  <div>
+    <%= render field.preview_renderer(attachment, local_assigns) %>
+  </div>
+<% end %>
+
+<% unless preview_only %>
+  <% if attachment.persisted? %>
+    <div>
+      <%= link_to attachment.filename, field.blob_url(attachment), title: attachment.filename %>
+    </div>
+  <% end %>
+<% end %>

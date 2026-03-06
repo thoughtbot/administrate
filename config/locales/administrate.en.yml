@@ -17,6 +17,9 @@ en:
       update:
         success: "%{resource} was successfully updated."
     fields:
+      active_storage:
+        attachment: Attachment
+        no_attachment: No attachment
       has_many:
         more: Showing %{count} of %{total_count}
         none: None
