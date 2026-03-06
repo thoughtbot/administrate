@@ -80,7 +80,9 @@ class DocPage
             #{source_text}
           MARKDOWN
 
-          markdown.render(source_text_with_heading)
+          processed_text = replace_demo_link(source_text_with_heading)
+
+          markdown.render(processed_text)
         end
     end
 
@@ -97,6 +99,10 @@ class DocPage
         fenced_code_blocks: true,
         autolink: true
       }
+    end
+
+    def replace_demo_link(text)
+      text.gsub(/^\[demo\]:.*$/, "[demo]: /admin")
     end
   end
 end
