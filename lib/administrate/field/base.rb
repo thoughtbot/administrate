@@ -104,7 +104,17 @@ module Administrate
       end
 
       def look
-        (options.fetch(:look, :default).presence || :default).to_sym
+        val = options.fetch(:look, :default).presence || :default
+        case val
+        when Symbol
+          val
+        when ::String
+          val.to_sym
+        when Hash
+          val.fetch(page, :default).to_sym
+        else
+          :default
+        end
       end
 
       def required?
