@@ -16,3 +16,8 @@ ignore_unused:
   - simple_form.*
   - time.*
   - titles.*
+
+ignore_missing: # Temporarily ignore missing keys until development is complete
+  - administrate.fields.active_storage.attachment
+  - administrate.fields.active_storage.no_attachment
+

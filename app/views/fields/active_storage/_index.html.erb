@@ -1,0 +1,18 @@
+
+<% if field.attached? %>
+  <%= render(
+        field.items_renderer(
+          display_preview: field.index_display_preview?,
+          preview_only: field.index_preview_only?)
+      ) %>
+
+  <% if field.index_display_count? %>
+    <div class="attachments-count">
+      <%= pluralize(
+            field.attachments.count,
+            I18n.t("administrate.fields.active_storage.attachment", default: 'Attachment')
+          )
+      %>
+    </div>
+  <% end %>
+<% end %>
