@@ -15,6 +15,7 @@
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   <%= csrf_meta_tags %>
   <%= render "javascript" %>
+  <%= Sentry.get_trace_propagation_meta.html_safe %>
 </head>
 
 <body class="<%= body_class %>">
