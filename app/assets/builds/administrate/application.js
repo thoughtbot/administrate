@@ -13942,7 +13942,7 @@
     }
     return root.querySelector(selector);
   }
-  function dispatchEvent2(element, type, eventInit = {}) {
+  function dispatchEvent(element, type, eventInit = {}) {
     const { disabled } = element;
     const { bubbles, cancelable, detail } = eventInit;
     const event = document.createEvent("Event");
@@ -14138,7 +14138,7 @@
     dispatch(name, detail = {}) {
       detail.file = this.file;
       detail.id = this.directUpload.id;
-      return dispatchEvent2(this.input, `direct-upload:${name}`, {
+      return dispatchEvent(this.input, `direct-upload:${name}`, {
         detail
       });
     }
@@ -14200,7 +14200,7 @@
       return controllers;
     }
     dispatch(name, detail = {}) {
-      return dispatchEvent2(this.form, `direct-uploads:${name}`, {
+      return dispatchEvent(this.form, `direct-uploads:${name}`, {
         detail
       });
     }
@@ -14319,7 +14319,7 @@
     }
     dispatch(name, detail = {}) {
       detail.attachment = this.attachment;
-      return dispatchEvent2(this.element, `direct-upload:${name}`, {
+      return dispatchEvent(this.element, `direct-upload:${name}`, {
         detail
       });
     }
@@ -14362,14 +14362,18 @@
     StreamElement: () => StreamElement,
     StreamSourceElement: () => StreamSourceElement,
     cache: () => cache,
-    clearCache: () => clearCache,
+    config: () => config,
     connectStreamSource: () => connectStreamSource,
     disconnectStreamSource: () => disconnectStreamSource,
     fetch: () => fetchWithTurboHeaders,
     fetchEnctypeFromString: () => fetchEnctypeFromString,
     fetchMethodFromString: () => fetchMethodFromString,
     isSafe: () => isSafe,
-    navigator: () => navigator$1,
+    morphBodyElements: () => morphBodyElements,
+    morphChildren: () => morphChildren,
+    morphElements: () => morphElements,
+    morphTurboFrameElements: () => morphTurboFrameElements,
+    navigator: () => sessionNavigator,
     registerAdapter: () => registerAdapter,
     renderStreamMessage: () => renderStreamMessage,
     session: () => session,
@@ -14379,62 +14383,6 @@
     start: () => start2,
     visit: () => visit
   });
-  (function(prototype) {
-    if (typeof prototype.requestSubmit == "function") return;
-    prototype.requestSubmit = function(submitter) {
-      if (submitter) {
-        validateSubmitter(submitter, this);
-        submitter.click();
-      } else {
-        submitter = document.createElement("input");
-        submitter.type = "submit";
-        submitter.hidden = true;
-        this.appendChild(submitter);
-        submitter.click();
-        this.removeChild(submitter);
-      }
-    };
-    function validateSubmitter(submitter, form) {
-      submitter instanceof HTMLElement || raise(TypeError, "parameter 1 is not of type 'HTMLElement'");
-      submitter.type == "submit" || raise(TypeError, "The specified element is not a submit button");
-      submitter.form == form || raise(DOMException, "The specified element is not owned by this form element", "NotFoundError");
-    }
-    function raise(errorConstructor, message, name) {
-      throw new errorConstructor("Failed to execute 'requestSubmit' on 'HTMLFormElement': " + message + ".", name);
-    }
-  })(HTMLFormElement.prototype);
-  var submittersByForm = /* @__PURE__ */ new WeakMap();
-  function findSubmitterFromClickTarget(target) {
-    const element = target instanceof Element ? target : target instanceof Node ? target.parentElement : null;
-    const candidate = element ? element.closest("input, button") : null;
-    return candidate?.type == "submit" ? candidate : null;
-  }
-  function clickCaptured(event) {
-    const submitter = findSubmitterFromClickTarget(event.target);
-    if (submitter && submitter.form) {
-      submittersByForm.set(submitter.form, submitter);
-    }
-  }
-  (function() {
-    if ("submitter" in Event.prototype) return;
-    let prototype = window.Event.prototype;
-    if ("SubmitEvent" in window) {
-      const prototypeOfSubmitEvent = window.SubmitEvent.prototype;
-      if (/Apple Computer/.test(navigator.vendor) && !("submitter" in prototypeOfSubmitEvent)) {
-        prototype = prototypeOfSubmitEvent;
-      } else {
-        return;
-      }
-    }
-    addEventListener("click", clickCaptured, true);
-    Object.defineProperty(prototype, "submitter", {
-      get() {
-        if (this.type == "submit" && this.target instanceof HTMLFormElement) {
-          return submittersByForm.get(this.target);
-        }
-      }
-    });
-  })();
   var FrameLoadingStyle = {
     eager: "eager",
     lazy: "lazy"
@@ -14443,7 +14391,7 @@
     static delegateConstructor = void 0;
     loaded = Promise.resolve();
     static get observedAttributes() {
-      return ["disabled", "complete", "loading", "src"];
+      return ["disabled", "loading", "src"];
     }
     constructor() {
       super();
@@ -14461,11 +14409,9 @@
     attributeChangedCallback(name) {
       if (name == "loading") {
         this.delegate.loadingStyleChanged();
-      } else if (name == "complete") {
-        this.delegate.completeChanged();
       } else if (name == "src") {
         this.delegate.sourceURLChanged();
-      } else {
+      } else if (name == "disabled") {
         this.delegate.disabledChanged();
       }
     }
@@ -14500,6 +14446,9 @@
       } else {
         this.removeAttribute("refresh");
       }
+    }
+    get shouldReloadWithMorph() {
+      return this.src && this.refresh === "morph";
     }
     /**
      * Determines if the element is loading
@@ -14588,107 +14537,74 @@
         return FrameLoadingStyle.eager;
     }
   }
-  function expandURL(locatable) {
-    return new URL(locatable.toString(), document.baseURI);
-  }
-  function getAnchor(url) {
-    let anchorMatch;
-    if (url.hash) {
-      return url.hash.slice(1);
-    } else if (anchorMatch = url.href.match(/#(.*)$/)) {
-      return anchorMatch[1];
-    }
-  }
-  function getAction$1(form, submitter) {
-    const action = submitter?.getAttribute("formaction") || form.getAttribute("action") || form.action;
-    return expandURL(action);
-  }
-  function getExtension(url) {
-    return (getLastPathComponent(url).match(/\.[^.]*$/) || [])[0] || "";
-  }
-  function isHTML(url) {
-    return !!getExtension(url).match(/^(?:|\.(?:htm|html|xhtml|php))$/);
-  }
-  function isPrefixedBy(baseURL, url) {
-    const prefix = getPrefix(url);
-    return baseURL.href === expandURL(prefix).href || baseURL.href.startsWith(prefix);
-  }
-  function locationIsVisitable(location2, rootLocation) {
-    return isPrefixedBy(location2, rootLocation) && isHTML(location2);
-  }
-  function getRequestURL(url) {
-    const anchor = getAnchor(url);
-    return anchor != null ? url.href.slice(0, -(anchor.length + 1)) : url.href;
-  }
-  function toCacheKey(url) {
-    return getRequestURL(url);
-  }
-  function urlsAreEqual(left, right) {
-    return expandURL(left).href == expandURL(right).href;
-  }
-  function getPathComponents(url) {
-    return url.pathname.split("/").slice(1);
-  }
-  function getLastPathComponent(url) {
-    return getPathComponents(url).slice(-1)[0];
-  }
-  function getPrefix(url) {
-    return addTrailingSlash(url.origin + url.pathname);
-  }
-  function addTrailingSlash(value) {
-    return value.endsWith("/") ? value : value + "/";
-  }
-  var FetchResponse = class {
-    constructor(response) {
-      this.response = response;
-    }
-    get succeeded() {
-      return this.response.ok;
-    }
-    get failed() {
-      return !this.succeeded;
-    }
-    get clientError() {
-      return this.statusCode >= 400 && this.statusCode <= 499;
-    }
-    get serverError() {
-      return this.statusCode >= 500 && this.statusCode <= 599;
-    }
-    get redirected() {
-      return this.response.redirected;
-    }
-    get location() {
-      return expandURL(this.response.url);
-    }
-    get isHTML() {
-      return this.contentType && this.contentType.match(/^(?:text\/([^\s;,]+\b)?html|application\/xhtml\+xml)\b/);
-    }
-    get statusCode() {
-      return this.response.status;
-    }
-    get contentType() {
-      return this.header("Content-Type");
-    }
-    get responseText() {
-      return this.response.clone().text();
-    }
-    get responseHTML() {
-      if (this.isHTML) {
-        return this.response.clone().text();
-      } else {
-        return Promise.resolve(void 0);
-      }
-    }
-    header(name) {
-      return this.response.headers.get(name);
-    }
+  var drive = {
+    enabled: true,
+    progressBarDelay: 500,
+    unvisitableExtensions: /* @__PURE__ */ new Set(
+      [
+        ".7z",
+        ".aac",
+        ".apk",
+        ".avi",
+        ".bmp",
+        ".bz2",
+        ".css",
+        ".csv",
+        ".deb",
+        ".dmg",
+        ".doc",
+        ".docx",
+        ".exe",
+        ".gif",
+        ".gz",
+        ".heic",
+        ".heif",
+        ".ico",
+        ".iso",
+        ".jpeg",
+        ".jpg",
+        ".js",
+        ".json",
+        ".m4a",
+        ".mkv",
+        ".mov",
+        ".mp3",
+        ".mp4",
+        ".mpeg",
+        ".mpg",
+        ".msi",
+        ".ogg",
+        ".ogv",
+        ".pdf",
+        ".pkg",
+        ".png",
+        ".ppt",
+        ".pptx",
+        ".rar",
+        ".rtf",
+        ".svg",
+        ".tar",
+        ".tif",
+        ".tiff",
+        ".txt",
+        ".wav",
+        ".webm",
+        ".webp",
+        ".wma",
+        ".wmv",
+        ".xls",
+        ".xlsx",
+        ".xml",
+        ".zip"
+      ]
+    )
   };
   function activateScriptElement(element) {
     if (element.getAttribute("data-turbo-eval") == "false") {
       return element;
     } else {
       const createdScriptElement = document.createElement("script");
-      const cspNonce = getMetaContent("csp-nonce");
+      const cspNonce = getCspNonce();
       if (cspNonce) {
         createdScriptElement.nonce = cspNonce;
       }
@@ -14722,6 +14638,10 @@
     }
     return event;
   }
+  function cancelEvent(event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
   function nextRepaint() {
     if (document.visibilityState === "hidden") {
       return nextEventLoopTick();
@@ -14734,9 +14654,6 @@
   }
   function nextEventLoopTick() {
     return new Promise((resolve) => setTimeout(() => resolve(), 0));
-  }
-  function nextMicrotask() {
-    return Promise.resolve();
   }
   function parseHTMLDocument(html = "") {
     return new DOMParser().parseFromString(html, "text/html");
@@ -14762,7 +14679,7 @@
       } else if (i2 == 19) {
         return (Math.floor(Math.random() * 4) + 8).toString(16);
       } else {
-        return Math.floor(Math.random() * 15).toString(16);
+        return Math.floor(Math.random() * 16).toString(16);
       }
     }).join("");
   }
@@ -14826,6 +14743,13 @@
     const element = getMetaElement(name);
     return element && element.content;
   }
+  function getCspNonce() {
+    const element = getMetaElement("csp-nonce");
+    if (element) {
+      const { nonce, content } = element;
+      return nonce == "" ? content : nonce;
+    }
+  }
   function setMetaContent(name, content) {
     let element = getMetaElement(name);
     if (!element) {
@@ -14855,19 +14779,26 @@
     const after = reader();
     return [before, after];
   }
-  function doesNotTargetIFrame(anchor) {
-    if (anchor.hasAttribute("target")) {
-      for (const element of document.getElementsByName(anchor.target)) {
+  function doesNotTargetIFrame(name) {
+    if (name === "_blank") {
+      return false;
+    } else if (name) {
+      for (const element of document.getElementsByName(name)) {
         if (element instanceof HTMLIFrameElement) return false;
       }
+      return true;
+    } else {
+      return true;
     }
-    return true;
   }
   function findLinkFromClickTarget(target) {
-    return findClosestRecursively(target, "a[href]:not([target^=_]):not([download])");
-  }
-  function getLocationForLink(link) {
-    return expandURL(link.getAttribute("href") || "");
+    const link = findClosestRecursively(target, "a[href], a[xlink\\:href]");
+    if (!link) return null;
+    if (link.href.startsWith("#")) return null;
+    if (link.hasAttribute("download")) return null;
+    const linkTarget = link.getAttribute("target");
+    if (linkTarget && linkTarget !== "_self") return null;
+    return link;
   }
   function debounce(fn2, delay) {
     let timeoutId = null;
@@ -14877,6 +14808,134 @@
       timeoutId = setTimeout(callback, delay);
     };
   }
+  var submitter = {
+    "aria-disabled": {
+      beforeSubmit: (submitter2) => {
+        submitter2.setAttribute("aria-disabled", "true");
+        submitter2.addEventListener("click", cancelEvent);
+      },
+      afterSubmit: (submitter2) => {
+        submitter2.removeAttribute("aria-disabled");
+        submitter2.removeEventListener("click", cancelEvent);
+      }
+    },
+    "disabled": {
+      beforeSubmit: (submitter2) => submitter2.disabled = true,
+      afterSubmit: (submitter2) => submitter2.disabled = false
+    }
+  };
+  var Config = class {
+    #submitter = null;
+    constructor(config2) {
+      Object.assign(this, config2);
+    }
+    get submitter() {
+      return this.#submitter;
+    }
+    set submitter(value) {
+      this.#submitter = submitter[value] || value;
+    }
+  };
+  var forms = new Config({
+    mode: "on",
+    submitter: "disabled"
+  });
+  var config = {
+    drive,
+    forms
+  };
+  function expandURL(locatable) {
+    return new URL(locatable.toString(), document.baseURI);
+  }
+  function getAnchor(url) {
+    let anchorMatch;
+    if (url.hash) {
+      return url.hash.slice(1);
+    } else if (anchorMatch = url.href.match(/#(.*)$/)) {
+      return anchorMatch[1];
+    }
+  }
+  function getAction$1(form, submitter2) {
+    const action = submitter2?.getAttribute("formaction") || form.getAttribute("action") || form.action;
+    return expandURL(action);
+  }
+  function getExtension(url) {
+    return (getLastPathComponent(url).match(/\.[^.]*$/) || [])[0] || "";
+  }
+  function isPrefixedBy(baseURL, url) {
+    const prefix = addTrailingSlash(url.origin + url.pathname);
+    return addTrailingSlash(baseURL.href) === prefix || baseURL.href.startsWith(prefix);
+  }
+  function locationIsVisitable(location2, rootLocation) {
+    return isPrefixedBy(location2, rootLocation) && !config.drive.unvisitableExtensions.has(getExtension(location2));
+  }
+  function getLocationForLink(link) {
+    return expandURL(link.getAttribute("href") || "");
+  }
+  function getRequestURL(url) {
+    const anchor = getAnchor(url);
+    return anchor != null ? url.href.slice(0, -(anchor.length + 1)) : url.href;
+  }
+  function toCacheKey(url) {
+    return getRequestURL(url);
+  }
+  function urlsAreEqual(left, right) {
+    return expandURL(left).href == expandURL(right).href;
+  }
+  function getPathComponents(url) {
+    return url.pathname.split("/").slice(1);
+  }
+  function getLastPathComponent(url) {
+    return getPathComponents(url).slice(-1)[0];
+  }
+  function addTrailingSlash(value) {
+    return value.endsWith("/") ? value : value + "/";
+  }
+  var FetchResponse = class {
+    constructor(response) {
+      this.response = response;
+    }
+    get succeeded() {
+      return this.response.ok;
+    }
+    get failed() {
+      return !this.succeeded;
+    }
+    get clientError() {
+      return this.statusCode >= 400 && this.statusCode <= 499;
+    }
+    get serverError() {
+      return this.statusCode >= 500 && this.statusCode <= 599;
+    }
+    get redirected() {
+      return this.response.redirected;
+    }
+    get location() {
+      return expandURL(this.response.url);
+    }
+    get isHTML() {
+      return this.contentType && this.contentType.match(/^(?:text\/([^\s;,]+\b)?html|application\/xhtml\+xml)\b/);
+    }
+    get statusCode() {
+      return this.response.status;
+    }
+    get contentType() {
+      return this.header("Content-Type");
+    }
+    get responseText() {
+      return this.response.clone().text();
+    }
+    get responseHTML() {
+      if (this.isHTML) {
+        return this.response.clone().text();
+      } else {
+        return Promise.resolve(void 0);
+      }
+    }
+    header(name) {
+      return this.response.headers.get(name);
+    }
+  };
   var LimitedSet = class extends Set {
     constructor(maxSize) {
       super();
@@ -14892,13 +14951,12 @@
     }
   };
   var recentRequests = new LimitedSet(20);
-  var nativeFetch = window.fetch;
   function fetchWithTurboHeaders(url, options = {}) {
     const modifiedHeaders = new Headers(options.headers || {});
     const requestUID = uuid();
     recentRequests.add(requestUID);
     modifiedHeaders.append("X-Turbo-Request-Id", requestUID);
-    return nativeFetch(url, {
+    return window.fetch(url, {
       ...options,
       headers: modifiedHeaders
     });
@@ -14951,7 +15009,7 @@
       this.fetchOptions = {
         credentials: "same-origin",
         redirect: "follow",
-        method,
+        method: method.toUpperCase(),
         headers: { ...this.defaultHeaders },
         body,
         signal: this.abortSignal,
@@ -14969,7 +15027,7 @@
       const [url, body] = buildResourceAndBody(this.url, fetchMethod, fetchBody, this.enctype);
       this.url = url;
       this.fetchOptions.body = body;
-      this.fetchOptions.method = fetchMethod;
+      this.fetchOptions.method = fetchMethod.toUpperCase();
     }
     get headers() {
       return this.fetchOptions.headers;
@@ -15152,29 +15210,92 @@
     }
     return fragment;
   }
-  var PREFETCH_DELAY = 100;
-  var PrefetchCache = class {
-    #prefetchTimeout = null;
-    #prefetched = null;
-    get(url) {
-      if (this.#prefetched && this.#prefetched.url === url && this.#prefetched.expire > Date.now()) {
-        return this.#prefetched.request;
+  var identity = (key) => key;
+  var LRUCache = class {
+    keys = [];
+    entries = {};
+    #toCacheKey;
+    constructor(size, toCacheKey2 = identity) {
+      this.size = size;
+      this.#toCacheKey = toCacheKey2;
+    }
+    has(key) {
+      return this.#toCacheKey(key) in this.entries;
+    }
+    get(key) {
+      if (this.has(key)) {
+        const entry = this.read(key);
+        this.touch(key);
+        return entry;
       }
     }
-    setLater(url, request, ttl) {
-      this.clear();
-      this.#prefetchTimeout = setTimeout(() => {
-        request.perform();
-        this.set(url, request, ttl);
-        this.#prefetchTimeout = null;
-      }, PREFETCH_DELAY);
-    }
-    set(url, request, ttl) {
-      this.#prefetched = { url, request, expire: new Date((/* @__PURE__ */ new Date()).getTime() + ttl) };
+    put(key, entry) {
+      this.write(key, entry);
+      this.touch(key);
+      return entry;
     }
     clear() {
+      for (const key of Object.keys(this.entries)) {
+        this.evict(key);
+      }
+    }
+    // Private
+    read(key) {
+      return this.entries[this.#toCacheKey(key)];
+    }
+    write(key, entry) {
+      this.entries[this.#toCacheKey(key)] = entry;
+    }
+    touch(key) {
+      key = this.#toCacheKey(key);
+      const index = this.keys.indexOf(key);
+      if (index > -1) this.keys.splice(index, 1);
+      this.keys.unshift(key);
+      this.trim();
+    }
+    trim() {
+      for (const key of this.keys.splice(this.size)) {
+        this.evict(key);
+      }
+    }
+    evict(key) {
+      delete this.entries[key];
+    }
+  };
+  var PREFETCH_DELAY = 100;
+  var PrefetchCache = class extends LRUCache {
+    #prefetchTimeout = null;
+    #maxAges = {};
+    constructor(size = 1, prefetchDelay = PREFETCH_DELAY) {
+      super(size, toCacheKey);
+      this.prefetchDelay = prefetchDelay;
+    }
+    putLater(url, request, ttl) {
+      this.#prefetchTimeout = setTimeout(() => {
+        request.perform();
+        this.put(url, request, ttl);
+        this.#prefetchTimeout = null;
+      }, this.prefetchDelay);
+    }
+    put(url, request, ttl = cacheTtl) {
+      super.put(url, request);
+      this.#maxAges[toCacheKey(url)] = new Date((/* @__PURE__ */ new Date()).getTime() + ttl);
+    }
+    clear() {
+      super.clear();
       if (this.#prefetchTimeout) clearTimeout(this.#prefetchTimeout);
-      this.#prefetched = null;
+    }
+    evict(key) {
+      super.evict(key);
+      delete this.#maxAges[key];
+    }
+    has(key) {
+      if (super.has(key)) {
+        const maxAge = this.#maxAges[toCacheKey(key)];
+        return maxAge && maxAge > Date.now();
+      } else {
+        return false;
+      }
     }
   };
   var cacheTtl = 10 * 1e3;
@@ -15189,17 +15310,17 @@
   };
   var FormSubmission = class _FormSubmission {
     state = FormSubmissionState.initialized;
-    static confirmMethod(message, _element, _submitter) {
+    static confirmMethod(message) {
       return Promise.resolve(confirm(message));
     }
-    constructor(delegate, formElement, submitter, mustRedirect = false) {
-      const method = getMethod(formElement, submitter);
-      const action = getAction(getFormAction(formElement, submitter), method);
-      const body = buildFormData(formElement, submitter);
-      const enctype = getEnctype(formElement, submitter);
+    constructor(delegate, formElement, submitter2, mustRedirect = false) {
+      const method = getMethod(formElement, submitter2);
+      const action = getAction(getFormAction(formElement, submitter2), method);
+      const body = buildFormData(formElement, submitter2);
+      const enctype = getEnctype(formElement, submitter2);
       this.delegate = delegate;
       this.formElement = formElement;
-      this.submitter = submitter;
+      this.submitter = submitter2;
       this.fetchRequest = new FetchRequest(this, method, action, body, formElement, enctype);
       this.mustRedirect = mustRedirect;
     }
@@ -15232,7 +15353,8 @@
       const { initialized, requesting } = FormSubmissionState;
       const confirmationMessage = getAttribute("data-turbo-confirm", this.submitter, this.formElement);
       if (typeof confirmationMessage === "string") {
-        const answer = await _FormSubmission.confirmMethod(confirmationMessage, this.formElement, this.submitter);
+        const confirmMethod = typeof config.forms.confirm === "function" ? config.forms.confirm : _FormSubmission.confirmMethod;
+        const answer = await confirmMethod(confirmationMessage, this.formElement, this.submitter);
         if (!answer) {
           return;
         }
@@ -15264,7 +15386,7 @@
     }
     requestStarted(_request) {
       this.state = FormSubmissionState.waiting;
-      this.submitter?.setAttribute("disabled", "");
+      if (this.submitter) config.forms.submitter.beforeSubmit(this.submitter);
       this.setSubmitsWith();
       markAsBusy(this.formElement);
       dispatch("turbo:submit-start", {
@@ -15302,7 +15424,7 @@
     }
     requestFinished(_request) {
       this.state = FormSubmissionState.stopped;
-      this.submitter?.removeAttribute("disabled");
+      if (this.submitter) config.forms.submitter.afterSubmit(this.submitter);
       this.resetSubmitterText();
       clearBusyState(this.formElement);
       dispatch("turbo:submit-end", {
@@ -15342,10 +15464,10 @@
       return this.submitter?.getAttribute("data-turbo-submits-with");
     }
   };
-  function buildFormData(formElement, submitter) {
+  function buildFormData(formElement, submitter2) {
     const formData = new FormData(formElement);
-    const name = submitter?.getAttribute("name");
-    const value = submitter?.getAttribute("value");
+    const name = submitter2?.getAttribute("name");
+    const value = submitter2?.getAttribute("value");
     if (name) {
       formData.append(name, value || "");
     }
@@ -15364,10 +15486,10 @@
   function responseSucceededWithoutRedirect(response) {
     return response.statusCode == 200 && !response.redirected;
   }
-  function getFormAction(formElement, submitter) {
+  function getFormAction(formElement, submitter2) {
     const formElementAction = typeof formElement.action === "string" ? formElement.action : null;
-    if (submitter?.hasAttribute("formaction")) {
-      return submitter.getAttribute("formaction") || "";
+    if (submitter2?.hasAttribute("formaction")) {
+      return submitter2.getAttribute("formaction") || "";
     } else {
       return formElement.getAttribute("action") || formElementAction || "";
     }
@@ -15379,12 +15501,12 @@
     }
     return action;
   }
-  function getMethod(formElement, submitter) {
-    const method = submitter?.getAttribute("formmethod") || formElement.getAttribute("method") || "";
+  function getMethod(formElement, submitter2) {
+    const method = submitter2?.getAttribute("formmethod") || formElement.getAttribute("method") || "";
     return fetchMethodFromString(method.toLowerCase()) || FetchMethod.get;
   }
-  function getEnctype(formElement, submitter) {
-    return fetchEnctypeFromString(submitter?.getAttribute("formenctype") || formElement.enctype);
+  function getEnctype(formElement, submitter2) {
+    return fetchEnctypeFromString(submitter2?.getAttribute("formenctype") || formElement.enctype);
   }
   var Snapshot = class {
     constructor(element) {
@@ -15457,29 +15579,22 @@
     submitBubbled = (event) => {
       if (!event.defaultPrevented) {
         const form = event.target instanceof HTMLFormElement ? event.target : void 0;
-        const submitter = event.submitter || void 0;
-        if (form && submissionDoesNotDismissDialog(form, submitter) && submissionDoesNotTargetIFrame(form, submitter) && this.delegate.willSubmitForm(form, submitter)) {
+        const submitter2 = event.submitter || void 0;
+        if (form && submissionDoesNotDismissDialog(form, submitter2) && submissionDoesNotTargetIFrame(form, submitter2) && this.delegate.willSubmitForm(form, submitter2)) {
           event.preventDefault();
           event.stopImmediatePropagation();
-          this.delegate.formSubmitted(form, submitter);
+          this.delegate.formSubmitted(form, submitter2);
         }
       }
     };
   };
-  function submissionDoesNotDismissDialog(form, submitter) {
-    const method = submitter?.getAttribute("formmethod") || form.getAttribute("method");
+  function submissionDoesNotDismissDialog(form, submitter2) {
+    const method = submitter2?.getAttribute("formmethod") || form.getAttribute("method");
     return method != "dialog";
   }
-  function submissionDoesNotTargetIFrame(form, submitter) {
-    if (submitter?.hasAttribute("formtarget") || form.hasAttribute("target")) {
-      const target = submitter?.getAttribute("formtarget") || form.target;
-      for (const element of document.getElementsByName(target)) {
-        if (element instanceof HTMLIFrameElement) return false;
-      }
-      return true;
-    } else {
-      return true;
-    }
+  function submissionDoesNotTargetIFrame(form, submitter2) {
+    const target = submitter2?.getAttribute("formtarget") || form.getAttribute("target");
+    return doesNotTargetIFrame(target);
   }
   var View = class {
     #resolveRenderPromise = (_value) => {
@@ -15494,8 +15609,8 @@
     scrollToAnchor(anchor) {
       const element = this.snapshot.getElementForAnchor(anchor);
       if (element) {
-        this.scrollToElement(element);
         this.focusElement(element);
+        this.scrollToElement(element);
       } else {
         this.scrollToPosition({ x: 0, y: 0 });
       }
@@ -15603,14 +15718,14 @@
       document.removeEventListener("turbo:before-visit", this.willVisit);
     }
     clickBubbled = (event) => {
-      if (this.respondsToEventTarget(event.target)) {
+      if (this.clickEventIsSignificant(event)) {
         this.clickEvent = event;
       } else {
         delete this.clickEvent;
       }
     };
     linkClicked = (event) => {
-      if (this.clickEvent && this.respondsToEventTarget(event.target) && event.target instanceof Element) {
+      if (this.clickEvent && this.clickEventIsSignificant(event)) {
         if (this.delegate.shouldInterceptLinkClick(event.target, event.detail.url, event.detail.originalEvent)) {
           this.clickEvent.preventDefault();
           event.preventDefault();
@@ -15622,9 +15737,10 @@
     willVisit = (_event) => {
       delete this.clickEvent;
     };
-    respondsToEventTarget(target) {
-      const element = target instanceof Element ? target : target instanceof Node ? target.parentElement : null;
-      return element && element.closest("turbo-frame, html") == this.element;
+    clickEventIsSignificant(event) {
+      const target = event.composed ? event.target?.parentElement : event.target;
+      const element = findLinkFromClickTarget(target) || target;
+      return element instanceof Element && element.closest("turbo-frame, html") == this.element;
     }
   };
   var LinkClickObserver = class {
@@ -15653,7 +15769,7 @@
       if (event instanceof MouseEvent && this.clickEventIsSignificant(event)) {
         const target = event.composedPath && event.composedPath()[0] || event.target;
         const link = findLinkFromClickTarget(target);
-        if (link && doesNotTargetIFrame(link)) {
+        if (link && doesNotTargetIFrame(link.target)) {
           const location2 = getLocationForLink(link);
           if (this.delegate.willFollowLinkToLocation(link, location2, event)) {
             event.preventDefault();
@@ -15767,15 +15883,20 @@
   }
   var Renderer = class {
     #activeElement = null;
-    constructor(currentSnapshot, newSnapshot, renderElement, isPreview, willRender = true) {
+    static renderElement(currentElement, newElement) {
+    }
+    constructor(currentSnapshot, newSnapshot, isPreview, willRender = true) {
       this.currentSnapshot = currentSnapshot;
       this.newSnapshot = newSnapshot;
       this.isPreview = isPreview;
       this.willRender = willRender;
-      this.renderElement = renderElement;
+      this.renderElement = this.constructor.renderElement;
       this.promise = new Promise((resolve, reject) => this.resolvingFunctions = { resolve, reject });
     }
     get shouldRender() {
+      return true;
+    }
+    get shouldAutofocus() {
       return true;
     }
     get reloadReason() {
@@ -15796,9 +15917,11 @@
       await Bardo.preservingPermanentElements(this, this.permanentElementMap, callback);
     }
     focusFirstAutofocusableElement() {
-      const element = this.connectedSnapshot.firstAutofocusableElement;
-      if (element) {
-        element.focus();
+      if (this.shouldAutofocus) {
+        const element = this.connectedSnapshot.firstAutofocusableElement;
+        if (element) {
+          element.focus();
+        }
       }
     }
     // Bardo delegate
@@ -15900,6 +16023,842 @@
       return defaultValue;
     }
   }
+  var Idiomorph = function() {
+    const noOp = () => {
+    };
+    const defaults = {
+      morphStyle: "outerHTML",
+      callbacks: {
+        beforeNodeAdded: noOp,
+        afterNodeAdded: noOp,
+        beforeNodeMorphed: noOp,
+        afterNodeMorphed: noOp,
+        beforeNodeRemoved: noOp,
+        afterNodeRemoved: noOp,
+        beforeAttributeUpdated: noOp
+      },
+      head: {
+        style: "merge",
+        shouldPreserve: (elt) => elt.getAttribute("im-preserve") === "true",
+        shouldReAppend: (elt) => elt.getAttribute("im-re-append") === "true",
+        shouldRemove: noOp,
+        afterHeadMorphed: noOp
+      },
+      restoreFocus: true
+    };
+    function morph(oldNode, newContent, config2 = {}) {
+      oldNode = normalizeElement(oldNode);
+      const newNode = normalizeParent(newContent);
+      const ctx = createMorphContext(oldNode, newNode, config2);
+      const morphedNodes = saveAndRestoreFocus(ctx, () => {
+        return withHeadBlocking(
+          ctx,
+          oldNode,
+          newNode,
+          /** @param {MorphContext} ctx */
+          (ctx2) => {
+            if (ctx2.morphStyle === "innerHTML") {
+              morphChildren2(ctx2, oldNode, newNode);
+              return Array.from(oldNode.childNodes);
+            } else {
+              return morphOuterHTML(ctx2, oldNode, newNode);
+            }
+          }
+        );
+      });
+      ctx.pantry.remove();
+      return morphedNodes;
+    }
+    function morphOuterHTML(ctx, oldNode, newNode) {
+      const oldParent = normalizeParent(oldNode);
+      morphChildren2(
+        ctx,
+        oldParent,
+        newNode,
+        // these two optional params are the secret sauce
+        oldNode,
+        // start point for iteration
+        oldNode.nextSibling
+        // end point for iteration
+      );
+      return Array.from(oldParent.childNodes);
+    }
+    function saveAndRestoreFocus(ctx, fn2) {
+      if (!ctx.config.restoreFocus) return fn2();
+      let activeElement = (
+        /** @type {HTMLInputElement|HTMLTextAreaElement|null} */
+        document.activeElement
+      );
+      if (!(activeElement instanceof HTMLInputElement || activeElement instanceof HTMLTextAreaElement)) {
+        return fn2();
+      }
+      const { id: activeElementId, selectionStart, selectionEnd } = activeElement;
+      const results = fn2();
+      if (activeElementId && activeElementId !== document.activeElement?.getAttribute("id")) {
+        activeElement = ctx.target.querySelector(`[id="${activeElementId}"]`);
+        activeElement?.focus();
+      }
+      if (activeElement && !activeElement.selectionEnd && selectionEnd) {
+        activeElement.setSelectionRange(selectionStart, selectionEnd);
+      }
+      return results;
+    }
+    const morphChildren2 = /* @__PURE__ */ function() {
+      function morphChildren3(ctx, oldParent, newParent, insertionPoint = null, endPoint = null) {
+        if (oldParent instanceof HTMLTemplateElement && newParent instanceof HTMLTemplateElement) {
+          oldParent = oldParent.content;
+          newParent = newParent.content;
+        }
+        insertionPoint ||= oldParent.firstChild;
+        for (const newChild of newParent.childNodes) {
+          if (insertionPoint && insertionPoint != endPoint) {
+            const bestMatch = findBestMatch(
+              ctx,
+              newChild,
+              insertionPoint,
+              endPoint
+            );
+            if (bestMatch) {
+              if (bestMatch !== insertionPoint) {
+                removeNodesBetween(ctx, insertionPoint, bestMatch);
+              }
+              morphNode(bestMatch, newChild, ctx);
+              insertionPoint = bestMatch.nextSibling;
+              continue;
+            }
+          }
+          if (newChild instanceof Element) {
+            const newChildId = (
+              /** @type {String} */
+              newChild.getAttribute("id")
+            );
+            if (ctx.persistentIds.has(newChildId)) {
+              const movedChild = moveBeforeById(
+                oldParent,
+                newChildId,
+                insertionPoint,
+                ctx
+              );
+              morphNode(movedChild, newChild, ctx);
+              insertionPoint = movedChild.nextSibling;
+              continue;
+            }
+          }
+          const insertedNode = createNode(
+            oldParent,
+            newChild,
+            insertionPoint,
+            ctx
+          );
+          if (insertedNode) {
+            insertionPoint = insertedNode.nextSibling;
+          }
+        }
+        while (insertionPoint && insertionPoint != endPoint) {
+          const tempNode = insertionPoint;
+          insertionPoint = insertionPoint.nextSibling;
+          removeNode(ctx, tempNode);
+        }
+      }
+      function createNode(oldParent, newChild, insertionPoint, ctx) {
+        if (ctx.callbacks.beforeNodeAdded(newChild) === false) return null;
+        if (ctx.idMap.has(newChild)) {
+          const newEmptyChild = document.createElement(
+            /** @type {Element} */
+            newChild.tagName
+          );
+          oldParent.insertBefore(newEmptyChild, insertionPoint);
+          morphNode(newEmptyChild, newChild, ctx);
+          ctx.callbacks.afterNodeAdded(newEmptyChild);
+          return newEmptyChild;
+        } else {
+          const newClonedChild = document.importNode(newChild, true);
+          oldParent.insertBefore(newClonedChild, insertionPoint);
+          ctx.callbacks.afterNodeAdded(newClonedChild);
+          return newClonedChild;
+        }
+      }
+      const findBestMatch = /* @__PURE__ */ function() {
+        function findBestMatch2(ctx, node, startPoint, endPoint) {
+          let softMatch = null;
+          let nextSibling = node.nextSibling;
+          let siblingSoftMatchCount = 0;
+          let cursor = startPoint;
+          while (cursor && cursor != endPoint) {
+            if (isSoftMatch(cursor, node)) {
+              if (isIdSetMatch(ctx, cursor, node)) {
+                return cursor;
+              }
+              if (softMatch === null) {
+                if (!ctx.idMap.has(cursor)) {
+                  softMatch = cursor;
+                }
+              }
+            }
+            if (softMatch === null && nextSibling && isSoftMatch(cursor, nextSibling)) {
+              siblingSoftMatchCount++;
+              nextSibling = nextSibling.nextSibling;
+              if (siblingSoftMatchCount >= 2) {
+                softMatch = void 0;
+              }
+            }
+            if (ctx.activeElementAndParents.includes(cursor)) break;
+            cursor = cursor.nextSibling;
+          }
+          return softMatch || null;
+        }
+        function isIdSetMatch(ctx, oldNode, newNode) {
+          let oldSet = ctx.idMap.get(oldNode);
+          let newSet = ctx.idMap.get(newNode);
+          if (!newSet || !oldSet) return false;
+          for (const id2 of oldSet) {
+            if (newSet.has(id2)) {
+              return true;
+            }
+          }
+          return false;
+        }
+        function isSoftMatch(oldNode, newNode) {
+          const oldElt = (
+            /** @type {Element} */
+            oldNode
+          );
+          const newElt = (
+            /** @type {Element} */
+            newNode
+          );
+          return oldElt.nodeType === newElt.nodeType && oldElt.tagName === newElt.tagName && // If oldElt has an `id` with possible state and it doesn't match newElt.id then avoid morphing.
+          // We'll still match an anonymous node with an IDed newElt, though, because if it got this far,
+          // its not persistent, and new nodes can't have any hidden state.
+          // We can't use .id because of form input shadowing, and we can't count on .getAttribute's presence because it could be a document-fragment
+          (!oldElt.getAttribute?.("id") || oldElt.getAttribute?.("id") === newElt.getAttribute?.("id"));
+        }
+        return findBestMatch2;
+      }();
+      function removeNode(ctx, node) {
+        if (ctx.idMap.has(node)) {
+          moveBefore(ctx.pantry, node, null);
+        } else {
+          if (ctx.callbacks.beforeNodeRemoved(node) === false) return;
+          node.parentNode?.removeChild(node);
+          ctx.callbacks.afterNodeRemoved(node);
+        }
+      }
+      function removeNodesBetween(ctx, startInclusive, endExclusive) {
+        let cursor = startInclusive;
+        while (cursor && cursor !== endExclusive) {
+          let tempNode = (
+            /** @type {Node} */
+            cursor
+          );
+          cursor = cursor.nextSibling;
+          removeNode(ctx, tempNode);
+        }
+        return cursor;
+      }
+      function moveBeforeById(parentNode, id2, after, ctx) {
+        const target = (
+          /** @type {Element} - will always be found */
+          // ctx.target.id unsafe because of form input shadowing
+          // ctx.target could be a document fragment which doesn't have `getAttribute`
+          ctx.target.getAttribute?.("id") === id2 && ctx.target || ctx.target.querySelector(`[id="${id2}"]`) || ctx.pantry.querySelector(`[id="${id2}"]`)
+        );
+        removeElementFromAncestorsIdMaps(target, ctx);
+        moveBefore(parentNode, target, after);
+        return target;
+      }
+      function removeElementFromAncestorsIdMaps(element, ctx) {
+        const id2 = (
+          /** @type {String} */
+          element.getAttribute("id")
+        );
+        while (element = element.parentNode) {
+          let idSet = ctx.idMap.get(element);
+          if (idSet) {
+            idSet.delete(id2);
+            if (!idSet.size) {
+              ctx.idMap.delete(element);
+            }
+          }
+        }
+      }
+      function moveBefore(parentNode, element, after) {
+        if (parentNode.moveBefore) {
+          try {
+            parentNode.moveBefore(element, after);
+          } catch (e2) {
+            parentNode.insertBefore(element, after);
+          }
+        } else {
+          parentNode.insertBefore(element, after);
+        }
+      }
+      return morphChildren3;
+    }();
+    const morphNode = /* @__PURE__ */ function() {
+      function morphNode2(oldNode, newContent, ctx) {
+        if (ctx.ignoreActive && oldNode === document.activeElement) {
+          return null;
+        }
+        if (ctx.callbacks.beforeNodeMorphed(oldNode, newContent) === false) {
+          return oldNode;
+        }
+        if (oldNode instanceof HTMLHeadElement && ctx.head.ignore) ;
+        else if (oldNode instanceof HTMLHeadElement && ctx.head.style !== "morph") {
+          handleHeadElement(
+            oldNode,
+            /** @type {HTMLHeadElement} */
+            newContent,
+            ctx
+          );
+        } else {
+          morphAttributes(oldNode, newContent, ctx);
+          if (!ignoreValueOfActiveElement(oldNode, ctx)) {
+            morphChildren2(ctx, oldNode, newContent);
+          }
+        }
+        ctx.callbacks.afterNodeMorphed(oldNode, newContent);
+        return oldNode;
+      }
+      function morphAttributes(oldNode, newNode, ctx) {
+        let type = newNode.nodeType;
+        if (type === 1) {
+          const oldElt = (
+            /** @type {Element} */
+            oldNode
+          );
+          const newElt = (
+            /** @type {Element} */
+            newNode
+          );
+          const oldAttributes = oldElt.attributes;
+          const newAttributes = newElt.attributes;
+          for (const newAttribute of newAttributes) {
+            if (ignoreAttribute(newAttribute.name, oldElt, "update", ctx)) {
+              continue;
+            }
+            if (oldElt.getAttribute(newAttribute.name) !== newAttribute.value) {
+              oldElt.setAttribute(newAttribute.name, newAttribute.value);
+            }
+          }
+          for (let i2 = oldAttributes.length - 1; 0 <= i2; i2--) {
+            const oldAttribute = oldAttributes[i2];
+            if (!oldAttribute) continue;
+            if (!newElt.hasAttribute(oldAttribute.name)) {
+              if (ignoreAttribute(oldAttribute.name, oldElt, "remove", ctx)) {
+                continue;
+              }
+              oldElt.removeAttribute(oldAttribute.name);
+            }
+          }
+          if (!ignoreValueOfActiveElement(oldElt, ctx)) {
+            syncInputValue(oldElt, newElt, ctx);
+          }
+        }
+        if (type === 8 || type === 3) {
+          if (oldNode.nodeValue !== newNode.nodeValue) {
+            oldNode.nodeValue = newNode.nodeValue;
+          }
+        }
+      }
+      function syncInputValue(oldElement, newElement, ctx) {
+        if (oldElement instanceof HTMLInputElement && newElement instanceof HTMLInputElement && newElement.type !== "file") {
+          let newValue = newElement.value;
+          let oldValue = oldElement.value;
+          syncBooleanAttribute(oldElement, newElement, "checked", ctx);
+          syncBooleanAttribute(oldElement, newElement, "disabled", ctx);
+          if (!newElement.hasAttribute("value")) {
+            if (!ignoreAttribute("value", oldElement, "remove", ctx)) {
+              oldElement.value = "";
+              oldElement.removeAttribute("value");
+            }
+          } else if (oldValue !== newValue) {
+            if (!ignoreAttribute("value", oldElement, "update", ctx)) {
+              oldElement.setAttribute("value", newValue);
+              oldElement.value = newValue;
+            }
+          }
+        } else if (oldElement instanceof HTMLOptionElement && newElement instanceof HTMLOptionElement) {
+          syncBooleanAttribute(oldElement, newElement, "selected", ctx);
+        } else if (oldElement instanceof HTMLTextAreaElement && newElement instanceof HTMLTextAreaElement) {
+          let newValue = newElement.value;
+          let oldValue = oldElement.value;
+          if (ignoreAttribute("value", oldElement, "update", ctx)) {
+            return;
+          }
+          if (newValue !== oldValue) {
+            oldElement.value = newValue;
+          }
+          if (oldElement.firstChild && oldElement.firstChild.nodeValue !== newValue) {
+            oldElement.firstChild.nodeValue = newValue;
+          }
+        }
+      }
+      function syncBooleanAttribute(oldElement, newElement, attributeName, ctx) {
+        const newLiveValue = newElement[attributeName], oldLiveValue = oldElement[attributeName];
+        if (newLiveValue !== oldLiveValue) {
+          const ignoreUpdate = ignoreAttribute(
+            attributeName,
+            oldElement,
+            "update",
+            ctx
+          );
+          if (!ignoreUpdate) {
+            oldElement[attributeName] = newElement[attributeName];
+          }
+          if (newLiveValue) {
+            if (!ignoreUpdate) {
+              oldElement.setAttribute(attributeName, "");
+            }
+          } else {
+            if (!ignoreAttribute(attributeName, oldElement, "remove", ctx)) {
+              oldElement.removeAttribute(attributeName);
+            }
+          }
+        }
+      }
+      function ignoreAttribute(attr, element, updateType, ctx) {
+        if (attr === "value" && ctx.ignoreActiveValue && element === document.activeElement) {
+          return true;
+        }
+        return ctx.callbacks.beforeAttributeUpdated(attr, element, updateType) === false;
+      }
+      function ignoreValueOfActiveElement(possibleActiveElement, ctx) {
+        return !!ctx.ignoreActiveValue && possibleActiveElement === document.activeElement && possibleActiveElement !== document.body;
+      }
+      return morphNode2;
+    }();
+    function withHeadBlocking(ctx, oldNode, newNode, callback) {
+      if (ctx.head.block) {
+        const oldHead = oldNode.querySelector("head");
+        const newHead = newNode.querySelector("head");
+        if (oldHead && newHead) {
+          const promises = handleHeadElement(oldHead, newHead, ctx);
+          return Promise.all(promises).then(() => {
+            const newCtx = Object.assign(ctx, {
+              head: {
+                block: false,
+                ignore: true
+              }
+            });
+            return callback(newCtx);
+          });
+        }
+      }
+      return callback(ctx);
+    }
+    function handleHeadElement(oldHead, newHead, ctx) {
+      let added = [];
+      let removed = [];
+      let preserved = [];
+      let nodesToAppend = [];
+      let srcToNewHeadNodes = /* @__PURE__ */ new Map();
+      for (const newHeadChild of newHead.children) {
+        srcToNewHeadNodes.set(newHeadChild.outerHTML, newHeadChild);
+      }
+      for (const currentHeadElt of oldHead.children) {
+        let inNewContent = srcToNewHeadNodes.has(currentHeadElt.outerHTML);
+        let isReAppended = ctx.head.shouldReAppend(currentHeadElt);
+        let isPreserved = ctx.head.shouldPreserve(currentHeadElt);
+        if (inNewContent || isPreserved) {
+          if (isReAppended) {
+            removed.push(currentHeadElt);
+          } else {
+            srcToNewHeadNodes.delete(currentHeadElt.outerHTML);
+            preserved.push(currentHeadElt);
+          }
+        } else {
+          if (ctx.head.style === "append") {
+            if (isReAppended) {
+              removed.push(currentHeadElt);
+              nodesToAppend.push(currentHeadElt);
+            }
+          } else {
+            if (ctx.head.shouldRemove(currentHeadElt) !== false) {
+              removed.push(currentHeadElt);
+            }
+          }
+        }
+      }
+      nodesToAppend.push(...srcToNewHeadNodes.values());
+      let promises = [];
+      for (const newNode of nodesToAppend) {
+        let newElt = (
+          /** @type {ChildNode} */
+          document.createRange().createContextualFragment(newNode.outerHTML).firstChild
+        );
+        if (ctx.callbacks.beforeNodeAdded(newElt) !== false) {
+          if ("href" in newElt && newElt.href || "src" in newElt && newElt.src) {
+            let resolve;
+            let promise = new Promise(function(_resolve) {
+              resolve = _resolve;
+            });
+            newElt.addEventListener("load", function() {
+              resolve();
+            });
+            promises.push(promise);
+          }
+          oldHead.appendChild(newElt);
+          ctx.callbacks.afterNodeAdded(newElt);
+          added.push(newElt);
+        }
+      }
+      for (const removedElement of removed) {
+        if (ctx.callbacks.beforeNodeRemoved(removedElement) !== false) {
+          oldHead.removeChild(removedElement);
+          ctx.callbacks.afterNodeRemoved(removedElement);
+        }
+      }
+      ctx.head.afterHeadMorphed(oldHead, {
+        added,
+        kept: preserved,
+        removed
+      });
+      return promises;
+    }
+    const createMorphContext = /* @__PURE__ */ function() {
+      function createMorphContext2(oldNode, newContent, config2) {
+        const { persistentIds, idMap } = createIdMaps(oldNode, newContent);
+        const mergedConfig = mergeDefaults(config2);
+        const morphStyle = mergedConfig.morphStyle || "outerHTML";
+        if (!["innerHTML", "outerHTML"].includes(morphStyle)) {
+          throw `Do not understand how to morph style ${morphStyle}`;
+        }
+        return {
+          target: oldNode,
+          newContent,
+          config: mergedConfig,
+          morphStyle,
+          ignoreActive: mergedConfig.ignoreActive,
+          ignoreActiveValue: mergedConfig.ignoreActiveValue,
+          restoreFocus: mergedConfig.restoreFocus,
+          idMap,
+          persistentIds,
+          pantry: createPantry(),
+          activeElementAndParents: createActiveElementAndParents(oldNode),
+          callbacks: mergedConfig.callbacks,
+          head: mergedConfig.head
+        };
+      }
+      function mergeDefaults(config2) {
+        let finalConfig = Object.assign({}, defaults);
+        Object.assign(finalConfig, config2);
+        finalConfig.callbacks = Object.assign(
+          {},
+          defaults.callbacks,
+          config2.callbacks
+        );
+        finalConfig.head = Object.assign({}, defaults.head, config2.head);
+        return finalConfig;
+      }
+      function createPantry() {
+        const pantry = document.createElement("div");
+        pantry.hidden = true;
+        document.body.insertAdjacentElement("afterend", pantry);
+        return pantry;
+      }
+      function createActiveElementAndParents(oldNode) {
+        let activeElementAndParents = [];
+        let elt = document.activeElement;
+        if (elt?.tagName !== "BODY" && oldNode.contains(elt)) {
+          while (elt) {
+            activeElementAndParents.push(elt);
+            if (elt === oldNode) break;
+            elt = elt.parentElement;
+          }
+        }
+        return activeElementAndParents;
+      }
+      function findIdElements(root) {
+        let elements = Array.from(root.querySelectorAll("[id]"));
+        if (root.getAttribute?.("id")) {
+          elements.push(root);
+        }
+        return elements;
+      }
+      function populateIdMapWithTree(idMap, persistentIds, root, elements) {
+        for (const elt of elements) {
+          const id2 = (
+            /** @type {String} */
+            elt.getAttribute("id")
+          );
+          if (persistentIds.has(id2)) {
+            let current = elt;
+            while (current) {
+              let idSet = idMap.get(current);
+              if (idSet == null) {
+                idSet = /* @__PURE__ */ new Set();
+                idMap.set(current, idSet);
+              }
+              idSet.add(id2);
+              if (current === root) break;
+              current = current.parentElement;
+            }
+          }
+        }
+      }
+      function createIdMaps(oldContent, newContent) {
+        const oldIdElements = findIdElements(oldContent);
+        const newIdElements = findIdElements(newContent);
+        const persistentIds = createPersistentIds(oldIdElements, newIdElements);
+        let idMap = /* @__PURE__ */ new Map();
+        populateIdMapWithTree(idMap, persistentIds, oldContent, oldIdElements);
+        const newRoot = newContent.__idiomorphRoot || newContent;
+        populateIdMapWithTree(idMap, persistentIds, newRoot, newIdElements);
+        return { persistentIds, idMap };
+      }
+      function createPersistentIds(oldIdElements, newIdElements) {
+        let duplicateIds = /* @__PURE__ */ new Set();
+        let oldIdTagNameMap = /* @__PURE__ */ new Map();
+        for (const { id: id2, tagName } of oldIdElements) {
+          if (oldIdTagNameMap.has(id2)) {
+            duplicateIds.add(id2);
+          } else {
+            oldIdTagNameMap.set(id2, tagName);
+          }
+        }
+        let persistentIds = /* @__PURE__ */ new Set();
+        for (const { id: id2, tagName } of newIdElements) {
+          if (persistentIds.has(id2)) {
+            duplicateIds.add(id2);
+          } else if (oldIdTagNameMap.get(id2) === tagName) {
+            persistentIds.add(id2);
+          }
+        }
+        for (const id2 of duplicateIds) {
+          persistentIds.delete(id2);
+        }
+        return persistentIds;
+      }
+      return createMorphContext2;
+    }();
+    const { normalizeElement, normalizeParent } = /* @__PURE__ */ function() {
+      const generatedByIdiomorph = /* @__PURE__ */ new WeakSet();
+      function normalizeElement2(content) {
+        if (content instanceof Document) {
+          return content.documentElement;
+        } else {
+          return content;
+        }
+      }
+      function normalizeParent2(newContent) {
+        if (newContent == null) {
+          return document.createElement("div");
+        } else if (typeof newContent === "string") {
+          return normalizeParent2(parseContent(newContent));
+        } else if (generatedByIdiomorph.has(
+          /** @type {Element} */
+          newContent
+        )) {
+          return (
+            /** @type {Element} */
+            newContent
+          );
+        } else if (newContent instanceof Node) {
+          if (newContent.parentNode) {
+            return (
+              /** @type {any} */
+              new SlicedParentNode(newContent)
+            );
+          } else {
+            const dummyParent = document.createElement("div");
+            dummyParent.append(newContent);
+            return dummyParent;
+          }
+        } else {
+          const dummyParent = document.createElement("div");
+          for (const elt of [...newContent]) {
+            dummyParent.append(elt);
+          }
+          return dummyParent;
+        }
+      }
+      class SlicedParentNode {
+        /** @param {Node} node */
+        constructor(node) {
+          this.originalNode = node;
+          this.realParentNode = /** @type {Element} */
+          node.parentNode;
+          this.previousSibling = node.previousSibling;
+          this.nextSibling = node.nextSibling;
+        }
+        /** @returns {Node[]} */
+        get childNodes() {
+          const nodes = [];
+          let cursor = this.previousSibling ? this.previousSibling.nextSibling : this.realParentNode.firstChild;
+          while (cursor && cursor != this.nextSibling) {
+            nodes.push(cursor);
+            cursor = cursor.nextSibling;
+          }
+          return nodes;
+        }
+        /**
+         * @param {string} selector
+         * @returns {Element[]}
+         */
+        querySelectorAll(selector) {
+          return this.childNodes.reduce(
+            (results, node) => {
+              if (node instanceof Element) {
+                if (node.matches(selector)) results.push(node);
+                const nodeList = node.querySelectorAll(selector);
+                for (let i2 = 0; i2 < nodeList.length; i2++) {
+                  results.push(nodeList[i2]);
+                }
+              }
+              return results;
+            },
+            /** @type {Element[]} */
+            []
+          );
+        }
+        /**
+         * @param {Node} node
+         * @param {Node} referenceNode
+         * @returns {Node}
+         */
+        insertBefore(node, referenceNode) {
+          return this.realParentNode.insertBefore(node, referenceNode);
+        }
+        /**
+         * @param {Node} node
+         * @param {Node} referenceNode
+         * @returns {Node}
+         */
+        moveBefore(node, referenceNode) {
+          return this.realParentNode.moveBefore(node, referenceNode);
+        }
+        /**
+         * for later use with populateIdMapWithTree to halt upwards iteration
+         * @returns {Node}
+         */
+        get __idiomorphRoot() {
+          return this.originalNode;
+        }
+      }
+      function parseContent(newContent) {
+        let parser = new DOMParser();
+        let contentWithSvgsRemoved = newContent.replace(
+          /<svg(\s[^>]*>|>)([\s\S]*?)<\/svg>/gim,
+          ""
+        );
+        if (contentWithSvgsRemoved.match(/<\/html>/) || contentWithSvgsRemoved.match(/<\/head>/) || contentWithSvgsRemoved.match(/<\/body>/)) {
+          let content = parser.parseFromString(newContent, "text/html");
+          if (contentWithSvgsRemoved.match(/<\/html>/)) {
+            generatedByIdiomorph.add(content);
+            return content;
+          } else {
+            let htmlElement = content.firstChild;
+            if (htmlElement) {
+              generatedByIdiomorph.add(htmlElement);
+            }
+            return htmlElement;
+          }
+        } else {
+          let responseDoc = parser.parseFromString(
+            "<body><template>" + newContent + "</template></body>",
+            "text/html"
+          );
+          let content = (
+            /** @type {HTMLTemplateElement} */
+            responseDoc.body.querySelector("template").content
+          );
+          generatedByIdiomorph.add(content);
+          return content;
+        }
+      }
+      return { normalizeElement: normalizeElement2, normalizeParent: normalizeParent2 };
+    }();
+    return {
+      morph,
+      defaults
+    };
+  }();
+  function morphElements(currentElement, newElement, { callbacks, ...options } = {}) {
+    Idiomorph.morph(currentElement, newElement, {
+      ...options,
+      callbacks: new DefaultIdiomorphCallbacks(callbacks)
+    });
+  }
+  function morphChildren(currentElement, newElement, options = {}) {
+    morphElements(currentElement, newElement.childNodes, {
+      ...options,
+      morphStyle: "innerHTML"
+    });
+  }
+  function shouldRefreshFrameWithMorphing(currentFrame, newFrame) {
+    return currentFrame instanceof FrameElement && currentFrame.shouldReloadWithMorph && (!newFrame || areFramesCompatibleForRefreshing(currentFrame, newFrame)) && !currentFrame.closest("[data-turbo-permanent]");
+  }
+  function areFramesCompatibleForRefreshing(currentFrame, newFrame) {
+    return newFrame instanceof Element && newFrame.nodeName === "TURBO-FRAME" && currentFrame.id === newFrame.id && (!newFrame.getAttribute("src") || urlsAreEqual(currentFrame.src, newFrame.getAttribute("src")));
+  }
+  function closestFrameReloadableWithMorphing(node) {
+    return node.parentElement.closest("turbo-frame[src][refresh=morph]");
+  }
+  var DefaultIdiomorphCallbacks = class {
+    #beforeNodeMorphed;
+    constructor({ beforeNodeMorphed } = {}) {
+      this.#beforeNodeMorphed = beforeNodeMorphed || (() => true);
+    }
+    beforeNodeAdded = (node) => {
+      return !(node.id && node.hasAttribute("data-turbo-permanent") && document.getElementById(node.id));
+    };
+    beforeNodeMorphed = (currentElement, newElement) => {
+      if (currentElement instanceof Element) {
+        if (!currentElement.hasAttribute("data-turbo-permanent") && this.#beforeNodeMorphed(currentElement, newElement)) {
+          const event = dispatch("turbo:before-morph-element", {
+            cancelable: true,
+            target: currentElement,
+            detail: { currentElement, newElement }
+          });
+          return !event.defaultPrevented;
+        } else {
+          return false;
+        }
+      }
+    };
+    beforeAttributeUpdated = (attributeName, target, mutationType) => {
+      const event = dispatch("turbo:before-morph-attribute", {
+        cancelable: true,
+        target,
+        detail: { attributeName, mutationType }
+      });
+      return !event.defaultPrevented;
+    };
+    beforeNodeRemoved = (node) => {
+      return this.beforeNodeMorphed(node);
+    };
+    afterNodeMorphed = (currentElement, newElement) => {
+      if (currentElement instanceof Element) {
+        dispatch("turbo:morph-element", {
+          target: currentElement,
+          detail: { currentElement, newElement }
+        });
+      }
+    };
+  };
+  var MorphingFrameRenderer = class extends FrameRenderer {
+    static renderElement(currentElement, newElement) {
+      dispatch("turbo:before-frame-morph", {
+        target: currentElement,
+        detail: { currentElement, newElement }
+      });
+      morphChildren(currentElement, newElement, {
+        callbacks: {
+          beforeNodeMorphed: (node, newNode) => {
+            if (shouldRefreshFrameWithMorphing(node, newNode) && closestFrameReloadableWithMorphing(node) === currentElement) {
+              node.reload();
+              return false;
+            }
+            return true;
+          }
+        }
+      });
+    }
+    async preservingPermanentElements(callback) {
+      return await callback();
+    }
+  };
   var ProgressBar = class _ProgressBar {
     static animationDuration = 300;
     /*ms*/
@@ -15991,8 +16950,9 @@
       const element = document.createElement("style");
       element.type = "text/css";
       element.textContent = _ProgressBar.defaultCSS;
-      if (this.cspNonce) {
-        element.nonce = this.cspNonce;
+      const cspNonce = getCspNonce();
+      if (cspNonce) {
+        element.nonce = cspNonce;
       }
       return element;
     }
@@ -16000,9 +16960,6 @@
       const element = document.createElement("div");
       element.className = "turbo-progress-bar";
       return element;
-    }
-    get cspNonce() {
-      return getMetaContent("csp-nonce");
     }
   };
   var HeadSnapshot = class extends Snapshot {
@@ -16117,10 +17074,16 @@
       for (const clonedPasswordInput of clonedElement.querySelectorAll('input[type="password"]')) {
         clonedPasswordInput.value = "";
       }
+      for (const clonedNoscriptElement of clonedElement.querySelectorAll("noscript")) {
+        clonedNoscriptElement.remove();
+      }
       return new _PageSnapshot(this.documentElement, clonedElement, this.headSnapshot);
     }
     get lang() {
       return this.documentElement.getAttribute("lang");
+    }
+    get dir() {
+      return this.documentElement.getAttribute("dir");
     }
     get headElement() {
       return this.headSnapshot.element;
@@ -16142,13 +17105,14 @@
       return this.getSetting("visit-control") != "reload";
     }
     get prefersViewTransitions() {
-      return this.headSnapshot.getMetaValue("view-transition") === "same-origin";
+      const viewTransitionEnabled = this.getSetting("view-transition") === "true" || this.headSnapshot.getMetaValue("view-transition") === "same-origin";
+      return viewTransitionEnabled && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     }
-    get shouldMorphPage() {
-      return this.getSetting("refresh-method") === "morph";
+    get refreshMethod() {
+      return this.getSetting("refresh-method");
     }
-    get shouldPreserveScrollPosition() {
-      return this.getSetting("refresh-scroll") === "preserve";
+    get refreshScroll() {
+      return this.getSetting("refresh-scroll");
     }
     // Private
     getSetting(name) {
@@ -16181,7 +17145,8 @@
     willRender: true,
     updateHistory: true,
     shouldCacheSnapshot: true,
-    acceptsStreamResponse: false
+    acceptsStreamResponse: false,
+    refresh: {}
   };
   var TimingMetric = {
     visitStart: "visitStart",
@@ -16234,7 +17199,8 @@
         updateHistory,
         shouldCacheSnapshot,
         acceptsStreamResponse,
-        direction
+        direction,
+        refresh
       } = {
         ...defaultOptions,
         ...options
@@ -16245,7 +17211,6 @@
       this.snapshot = snapshot;
       this.snapshotHTML = snapshotHTML;
       this.response = response;
-      this.isSamePage = this.delegate.locationWithActionIsSamePage(this.location, this.action);
       this.isPageRefresh = this.view.isPageRefresh(this);
       this.visitCachedSnapshot = visitCachedSnapshot;
       this.willRender = willRender;
@@ -16254,6 +17219,7 @@
       this.shouldCacheSnapshot = shouldCacheSnapshot;
       this.acceptsStreamResponse = acceptsStreamResponse;
       this.direction = direction || Direction[action];
+      this.refresh = refresh;
     }
     get adapter() {
       return this.delegate.adapter;
@@ -16266,9 +17232,6 @@
     }
     get restorationData() {
       return this.history.getRestorationDataForIdentifier(this.restorationIdentifier);
-    }
-    get silent() {
-      return this.isSamePage;
     }
     start() {
       if (this.state == VisitState.initialized) {
@@ -16388,7 +17351,7 @@
         const isPreview = this.shouldIssueRequest();
         this.render(async () => {
           this.cacheSnapshot();
-          if (this.isSamePage || this.isPageRefresh) {
+          if (this.isPageRefresh) {
             this.adapter.visitRendered(this);
           } else {
             if (this.view.renderPromise) await this.view.renderPromise;
@@ -16410,16 +17373,6 @@
           willRender: false
         });
         this.followedRedirect = true;
-      }
-    }
-    goToSamePageAnchor() {
-      if (this.isSamePage) {
-        this.render(async () => {
-          this.cacheSnapshot();
-          this.performScroll();
-          this.changeHistory();
-          this.adapter.visitRendered(this);
-        });
       }
     }
     // Fetch request delegate
@@ -16475,9 +17428,6 @@
         } else {
           this.scrollToAnchor() || this.view.scrollToTop();
         }
-        if (this.isSamePage) {
-          this.delegate.visitScrolledToSamePageLocation(this.view.lastRenderedLocation, this.location);
-        }
         this.scrolled = true;
       }
     }
@@ -16503,22 +17453,11 @@
       return { ...this.timingMetrics };
     }
     // Private
-    getHistoryMethodForAction(action) {
-      switch (action) {
-        case "replace":
-          return history.replaceState;
-        case "advance":
-        case "restore":
-          return history.pushState;
-      }
-    }
     hasPreloadedResponse() {
       return typeof this.response == "object";
     }
     shouldIssueRequest() {
-      if (this.isSamePage) {
-        return false;
-      } else if (this.action == "restore") {
+      if (this.action == "restore") {
         return !this.hasCachedSnapshot();
       } else {
         return this.willRender;
@@ -16532,7 +17471,9 @@
     }
     async render(callback) {
       this.cancelRender();
-      this.frame = await nextRepaint();
+      await new Promise((resolve) => {
+        this.frame = document.visibilityState === "hidden" ? setTimeout(() => resolve(), 0) : requestAnimationFrame(() => resolve());
+      });
       await callback();
       delete this.frame;
     }
@@ -16566,9 +17507,9 @@
     }
     visitStarted(visit2) {
       this.location = visit2.location;
+      this.redirectedToLocation = null;
       visit2.loadCachedSnapshot();
       visit2.issueRequest();
-      visit2.goToSamePageAnchor();
     }
     visitRequestStarted(visit2) {
       this.progressBar.setValue(0);
@@ -16580,6 +17521,9 @@
     }
     visitRequestCompleted(visit2) {
       visit2.loadResponse();
+      if (visit2.response.redirected) {
+        this.redirectedToLocation = visit2.redirectedToLocation;
+      }
     }
     visitRequestFailedWithStatusCode(visit2, statusCode) {
       switch (statusCode) {
@@ -16610,6 +17554,10 @@
       this.hideVisitProgressBar();
     }
     visitRendered(_visit) {
+    }
+    // Link prefetching
+    linkPrefetchingIsEnabledForLocation(location2) {
+      return true;
     }
     // Form Submission Delegate
     formSubmissionStarted(_formSubmission) {
@@ -16648,7 +17596,7 @@
     };
     reload(reason) {
       dispatch("turbo:reload", { detail: reason });
-      window.location.href = this.location?.toString() || window.location.href;
+      window.location.href = (this.redirectedToLocation || this.location)?.toString() || window.location.href;
     }
     get navigator() {
       return this.session.navigator;
@@ -16656,7 +17604,6 @@
   };
   var CacheObserver = class {
     selector = "[data-turbo-temporary]";
-    deprecatedSelector = "[data-turbo-cache=false]";
     started = false;
     start() {
       if (!this.started) {
@@ -16676,16 +17623,7 @@
       }
     };
     get temporaryElements() {
-      return [...document.querySelectorAll(this.selector), ...this.temporaryElementsWithDeprecation];
-    }
-    get temporaryElementsWithDeprecation() {
-      const elements = document.querySelectorAll(this.deprecatedSelector);
-      if (elements.length) {
-        console.warn(
-          `The ${this.deprecatedSelector} selector is deprecated and will be removed in a future version. Use ${this.selector} instead.`
-        );
-      }
-      return [...elements];
+      return [...document.querySelectorAll(this.selector)];
     }
   };
   var FrameRedirector = class {
@@ -16714,32 +17652,32 @@
       }
     }
     // Form submit observer delegate
-    willSubmitForm(element, submitter) {
-      return element.closest("turbo-frame") == null && this.#shouldSubmit(element, submitter) && this.#shouldRedirect(element, submitter);
+    willSubmitForm(element, submitter2) {
+      return element.closest("turbo-frame") == null && this.#shouldSubmit(element, submitter2) && this.#shouldRedirect(element, submitter2);
     }
-    formSubmitted(element, submitter) {
-      const frame = this.#findFrameElement(element, submitter);
+    formSubmitted(element, submitter2) {
+      const frame = this.#findFrameElement(element, submitter2);
       if (frame) {
-        frame.delegate.formSubmitted(element, submitter);
+        frame.delegate.formSubmitted(element, submitter2);
       }
     }
-    #shouldSubmit(form, submitter) {
-      const action = getAction$1(form, submitter);
+    #shouldSubmit(form, submitter2) {
+      const action = getAction$1(form, submitter2);
       const meta = this.element.ownerDocument.querySelector(`meta[name="turbo-root"]`);
       const rootLocation = expandURL(meta?.content ?? "/");
-      return this.#shouldRedirect(form, submitter) && locationIsVisitable(action, rootLocation);
+      return this.#shouldRedirect(form, submitter2) && locationIsVisitable(action, rootLocation);
     }
-    #shouldRedirect(element, submitter) {
-      const isNavigatable = element instanceof HTMLFormElement ? this.session.submissionIsNavigatable(element, submitter) : this.session.elementIsNavigatable(element);
+    #shouldRedirect(element, submitter2) {
+      const isNavigatable = element instanceof HTMLFormElement ? this.session.submissionIsNavigatable(element, submitter2) : this.session.elementIsNavigatable(element);
       if (isNavigatable) {
-        const frame = this.#findFrameElement(element, submitter);
+        const frame = this.#findFrameElement(element, submitter2);
         return frame ? frame != element.closest("turbo-frame") : false;
       } else {
         return false;
       }
     }
-    #findFrameElement(element, submitter) {
-      const id2 = submitter?.getAttribute("data-turbo-frame") || element.getAttribute("data-turbo-frame");
+    #findFrameElement(element, submitter2) {
+      const id2 = submitter2?.getAttribute("data-turbo-frame") || element.getAttribute("data-turbo-frame");
       if (id2 && id2 != "_top") {
         const frame = this.element.querySelector(`#${id2}:not([disabled])`);
         if (frame instanceof FrameElement) {
@@ -16753,7 +17691,6 @@
     restorationIdentifier = uuid();
     restorationData = {};
     started = false;
-    pageLoaded = false;
     currentIndex = 0;
     constructor(delegate) {
       this.delegate = delegate;
@@ -16761,7 +17698,6 @@
     start() {
       if (!this.started) {
         addEventListener("popstate", this.onPopState, false);
-        addEventListener("load", this.onPageLoad, false);
         this.currentIndex = history.state?.turbo?.restorationIndex || 0;
         this.started = true;
         this.replace(new URL(window.location.href));
@@ -16770,7 +17706,6 @@
     stop() {
       if (this.started) {
         removeEventListener("popstate", this.onPopState, false);
-        removeEventListener("load", this.onPageLoad, false);
         this.started = false;
       }
     }
@@ -16814,29 +17749,19 @@
     }
     // Event handlers
     onPopState = (event) => {
-      if (this.shouldHandlePopState()) {
-        const { turbo } = event.state || {};
-        if (turbo) {
-          this.location = new URL(window.location.href);
-          const { restorationIdentifier, restorationIndex } = turbo;
-          this.restorationIdentifier = restorationIdentifier;
-          const direction = restorationIndex > this.currentIndex ? "forward" : "back";
-          this.delegate.historyPoppedToLocationWithRestorationIdentifierAndDirection(this.location, restorationIdentifier, direction);
-          this.currentIndex = restorationIndex;
-        }
+      const { turbo } = event.state || {};
+      this.location = new URL(window.location.href);
+      if (turbo) {
+        const { restorationIdentifier, restorationIndex } = turbo;
+        this.restorationIdentifier = restorationIdentifier;
+        const direction = restorationIndex > this.currentIndex ? "forward" : "back";
+        this.delegate.historyPoppedToLocationWithRestorationIdentifierAndDirection(this.location, restorationIdentifier, direction);
+        this.currentIndex = restorationIndex;
+      } else {
+        this.currentIndex++;
+        this.delegate.historyPoppedWithEmptyState(this.location);
       }
     };
-    onPageLoad = async (_event) => {
-      await nextMicrotask();
-      this.pageLoaded = true;
-    };
-    // Private
-    shouldHandlePopState() {
-      return this.pageIsLoaded();
-    }
-    pageIsLoaded() {
-      return this.pageLoaded || document.readyState == "complete";
-    }
   };
   var LinkPrefetchObserver = class {
     started = false;
@@ -16894,7 +17819,8 @@
             new URLSearchParams(),
             target
           );
-          prefetchCache.setLater(location2.toString(), fetchRequest, this.#cacheTtl);
+          fetchRequest.fetchOptions.priority = "low";
+          prefetchCache.putLater(location2, fetchRequest, this.#cacheTtl);
         }
       }
     };
@@ -16906,8 +17832,8 @@
       this.#prefetchedLink = null;
     };
     #tryToUsePrefetchedRequest = (event) => {
-      if (event.target.tagName !== "FORM" && event.detail.fetchOptions.method === "get") {
-        const cached = prefetchCache.get(event.detail.url.toString());
+      if (event.target.tagName !== "FORM" && event.detail.fetchOptions.method === "GET") {
+        const cached = prefetchCache.get(event.detail.url);
         if (cached) {
           event.detail.fetchRequest = cached;
         }
@@ -16995,9 +17921,9 @@
       });
       this.currentVisit.start();
     }
-    submitForm(form, submitter) {
+    submitForm(form, submitter2) {
       this.stop();
-      this.formSubmission = new FormSubmission(this, form, submitter, true);
+      this.formSubmission = new FormSubmission(this, form, submitter2, true);
       this.formSubmission.start();
     }
     stop() {
@@ -17056,7 +17982,7 @@
         } else {
           await this.view.renderPage(snapshot, false, true, this.currentVisit);
         }
-        if (!snapshot.shouldPreserveScrollPosition) {
+        if (snapshot.refreshScroll !== "preserve") {
           this.view.scrollToTop();
         }
         this.view.clearSnapshotCache();
@@ -17070,21 +17996,25 @@
         this.adapter.formSubmissionFinished(formSubmission);
       }
     }
+    // Link prefetching
+    linkPrefetchingIsEnabledForLocation(location2) {
+      if (typeof this.adapter.linkPrefetchingIsEnabledForLocation === "function") {
+        return this.adapter.linkPrefetchingIsEnabledForLocation(location2);
+      }
+      return true;
+    }
     // Visit delegate
     visitStarted(visit2) {
       this.delegate.visitStarted(visit2);
     }
     visitCompleted(visit2) {
       this.delegate.visitCompleted(visit2);
+      delete this.currentVisit;
     }
+    // Same-page links are no longer handled with a Visit.
+    // This method is still needed for Turbo Native adapters.
     locationWithActionIsSamePage(location2, action) {
-      const anchor = getAnchor(location2);
-      const currentAnchor = getAnchor(this.view.lastRenderedLocation);
-      const isRestorationToTop = action === "restore" && typeof anchor === "undefined";
-      return action !== "replace" && getRequestURL(location2) === getRequestURL(this.view.lastRenderedLocation) && (isRestorationToTop || anchor != null && anchor !== currentAnchor);
-    }
-    visitScrolledToSamePageLocation(oldURL, newURL) {
-      this.delegate.visitScrolledToSamePageLocation(oldURL, newURL);
+      return false;
     }
     // Visits
     get location() {
@@ -17094,8 +18024,8 @@
       return this.history.restorationIdentifier;
     }
     #getActionForFormSubmission(formSubmission, fetchResponse) {
-      const { submitter, formElement } = formSubmission;
-      return getVisitAction(submitter, formElement) || this.#getDefaultAction(fetchResponse);
+      const { submitter: submitter2, formElement } = formSubmission;
+      return getVisitAction(submitter2, formElement) || this.#getDefaultAction(fetchResponse);
     }
     #getDefaultAction(fetchResponse) {
       const sameLocationRedirect = fetchResponse.redirected && fetchResponse.location.href === this.location?.href;
@@ -17354,544 +18284,6 @@
       return document.documentElement.querySelectorAll("script");
     }
   };
-  var Idiomorph = /* @__PURE__ */ function() {
-    let EMPTY_SET = /* @__PURE__ */ new Set();
-    let defaults = {
-      morphStyle: "outerHTML",
-      callbacks: {
-        beforeNodeAdded: noOp,
-        afterNodeAdded: noOp,
-        beforeNodeMorphed: noOp,
-        afterNodeMorphed: noOp,
-        beforeNodeRemoved: noOp,
-        afterNodeRemoved: noOp,
-        beforeAttributeUpdated: noOp
-      },
-      head: {
-        style: "merge",
-        shouldPreserve: function(elt) {
-          return elt.getAttribute("im-preserve") === "true";
-        },
-        shouldReAppend: function(elt) {
-          return elt.getAttribute("im-re-append") === "true";
-        },
-        shouldRemove: noOp,
-        afterHeadMorphed: noOp
-      }
-    };
-    function morph(oldNode, newContent, config = {}) {
-      if (oldNode instanceof Document) {
-        oldNode = oldNode.documentElement;
-      }
-      if (typeof newContent === "string") {
-        newContent = parseContent(newContent);
-      }
-      let normalizedContent = normalizeContent(newContent);
-      let ctx = createMorphContext(oldNode, normalizedContent, config);
-      return morphNormalizedContent(oldNode, normalizedContent, ctx);
-    }
-    function morphNormalizedContent(oldNode, normalizedNewContent, ctx) {
-      if (ctx.head.block) {
-        let oldHead = oldNode.querySelector("head");
-        let newHead = normalizedNewContent.querySelector("head");
-        if (oldHead && newHead) {
-          let promises = handleHeadElement(newHead, oldHead, ctx);
-          Promise.all(promises).then(function() {
-            morphNormalizedContent(oldNode, normalizedNewContent, Object.assign(ctx, {
-              head: {
-                block: false,
-                ignore: true
-              }
-            }));
-          });
-          return;
-        }
-      }
-      if (ctx.morphStyle === "innerHTML") {
-        morphChildren(normalizedNewContent, oldNode, ctx);
-        return oldNode.children;
-      } else if (ctx.morphStyle === "outerHTML" || ctx.morphStyle == null) {
-        let bestMatch = findBestNodeMatch(normalizedNewContent, oldNode, ctx);
-        let previousSibling = bestMatch?.previousSibling;
-        let nextSibling = bestMatch?.nextSibling;
-        let morphedNode = morphOldNodeTo(oldNode, bestMatch, ctx);
-        if (bestMatch) {
-          return insertSiblings(previousSibling, morphedNode, nextSibling);
-        } else {
-          return [];
-        }
-      } else {
-        throw "Do not understand how to morph style " + ctx.morphStyle;
-      }
-    }
-    function ignoreValueOfActiveElement(possibleActiveElement, ctx) {
-      return ctx.ignoreActiveValue && possibleActiveElement === document.activeElement && possibleActiveElement !== document.body;
-    }
-    function morphOldNodeTo(oldNode, newContent, ctx) {
-      if (ctx.ignoreActive && oldNode === document.activeElement) ;
-      else if (newContent == null) {
-        if (ctx.callbacks.beforeNodeRemoved(oldNode) === false) return oldNode;
-        oldNode.remove();
-        ctx.callbacks.afterNodeRemoved(oldNode);
-        return null;
-      } else if (!isSoftMatch(oldNode, newContent)) {
-        if (ctx.callbacks.beforeNodeRemoved(oldNode) === false) return oldNode;
-        if (ctx.callbacks.beforeNodeAdded(newContent) === false) return oldNode;
-        oldNode.parentElement.replaceChild(newContent, oldNode);
-        ctx.callbacks.afterNodeAdded(newContent);
-        ctx.callbacks.afterNodeRemoved(oldNode);
-        return newContent;
-      } else {
-        if (ctx.callbacks.beforeNodeMorphed(oldNode, newContent) === false) return oldNode;
-        if (oldNode instanceof HTMLHeadElement && ctx.head.ignore) ;
-        else if (oldNode instanceof HTMLHeadElement && ctx.head.style !== "morph") {
-          handleHeadElement(newContent, oldNode, ctx);
-        } else {
-          syncNodeFrom(newContent, oldNode, ctx);
-          if (!ignoreValueOfActiveElement(oldNode, ctx)) {
-            morphChildren(newContent, oldNode, ctx);
-          }
-        }
-        ctx.callbacks.afterNodeMorphed(oldNode, newContent);
-        return oldNode;
-      }
-    }
-    function morphChildren(newParent, oldParent, ctx) {
-      let nextNewChild = newParent.firstChild;
-      let insertionPoint = oldParent.firstChild;
-      let newChild;
-      while (nextNewChild) {
-        newChild = nextNewChild;
-        nextNewChild = newChild.nextSibling;
-        if (insertionPoint == null) {
-          if (ctx.callbacks.beforeNodeAdded(newChild) === false) return;
-          oldParent.appendChild(newChild);
-          ctx.callbacks.afterNodeAdded(newChild);
-          removeIdsFromConsideration(ctx, newChild);
-          continue;
-        }
-        if (isIdSetMatch(newChild, insertionPoint, ctx)) {
-          morphOldNodeTo(insertionPoint, newChild, ctx);
-          insertionPoint = insertionPoint.nextSibling;
-          removeIdsFromConsideration(ctx, newChild);
-          continue;
-        }
-        let idSetMatch = findIdSetMatch(newParent, oldParent, newChild, insertionPoint, ctx);
-        if (idSetMatch) {
-          insertionPoint = removeNodesBetween(insertionPoint, idSetMatch, ctx);
-          morphOldNodeTo(idSetMatch, newChild, ctx);
-          removeIdsFromConsideration(ctx, newChild);
-          continue;
-        }
-        let softMatch = findSoftMatch(newParent, oldParent, newChild, insertionPoint, ctx);
-        if (softMatch) {
-          insertionPoint = removeNodesBetween(insertionPoint, softMatch, ctx);
-          morphOldNodeTo(softMatch, newChild, ctx);
-          removeIdsFromConsideration(ctx, newChild);
-          continue;
-        }
-        if (ctx.callbacks.beforeNodeAdded(newChild) === false) return;
-        oldParent.insertBefore(newChild, insertionPoint);
-        ctx.callbacks.afterNodeAdded(newChild);
-        removeIdsFromConsideration(ctx, newChild);
-      }
-      while (insertionPoint !== null) {
-        let tempNode = insertionPoint;
-        insertionPoint = insertionPoint.nextSibling;
-        removeNode(tempNode, ctx);
-      }
-    }
-    function ignoreAttribute(attr, to2, updateType, ctx) {
-      if (attr === "value" && ctx.ignoreActiveValue && to2 === document.activeElement) {
-        return true;
-      }
-      return ctx.callbacks.beforeAttributeUpdated(attr, to2, updateType) === false;
-    }
-    function syncNodeFrom(from, to2, ctx) {
-      let type = from.nodeType;
-      if (type === 1) {
-        const fromAttributes = from.attributes;
-        const toAttributes = to2.attributes;
-        for (const fromAttribute of fromAttributes) {
-          if (ignoreAttribute(fromAttribute.name, to2, "update", ctx)) {
-            continue;
-          }
-          if (to2.getAttribute(fromAttribute.name) !== fromAttribute.value) {
-            to2.setAttribute(fromAttribute.name, fromAttribute.value);
-          }
-        }
-        for (let i2 = toAttributes.length - 1; 0 <= i2; i2--) {
-          const toAttribute = toAttributes[i2];
-          if (ignoreAttribute(toAttribute.name, to2, "remove", ctx)) {
-            continue;
-          }
-          if (!from.hasAttribute(toAttribute.name)) {
-            to2.removeAttribute(toAttribute.name);
-          }
-        }
-      }
-      if (type === 8 || type === 3) {
-        if (to2.nodeValue !== from.nodeValue) {
-          to2.nodeValue = from.nodeValue;
-        }
-      }
-      if (!ignoreValueOfActiveElement(to2, ctx)) {
-        syncInputValue(from, to2, ctx);
-      }
-    }
-    function syncBooleanAttribute(from, to2, attributeName, ctx) {
-      if (from[attributeName] !== to2[attributeName]) {
-        let ignoreUpdate = ignoreAttribute(attributeName, to2, "update", ctx);
-        if (!ignoreUpdate) {
-          to2[attributeName] = from[attributeName];
-        }
-        if (from[attributeName]) {
-          if (!ignoreUpdate) {
-            to2.setAttribute(attributeName, from[attributeName]);
-          }
-        } else {
-          if (!ignoreAttribute(attributeName, to2, "remove", ctx)) {
-            to2.removeAttribute(attributeName);
-          }
-        }
-      }
-    }
-    function syncInputValue(from, to2, ctx) {
-      if (from instanceof HTMLInputElement && to2 instanceof HTMLInputElement && from.type !== "file") {
-        let fromValue = from.value;
-        let toValue = to2.value;
-        syncBooleanAttribute(from, to2, "checked", ctx);
-        syncBooleanAttribute(from, to2, "disabled", ctx);
-        if (!from.hasAttribute("value")) {
-          if (!ignoreAttribute("value", to2, "remove", ctx)) {
-            to2.value = "";
-            to2.removeAttribute("value");
-          }
-        } else if (fromValue !== toValue) {
-          if (!ignoreAttribute("value", to2, "update", ctx)) {
-            to2.setAttribute("value", fromValue);
-            to2.value = fromValue;
-          }
-        }
-      } else if (from instanceof HTMLOptionElement) {
-        syncBooleanAttribute(from, to2, "selected", ctx);
-      } else if (from instanceof HTMLTextAreaElement && to2 instanceof HTMLTextAreaElement) {
-        let fromValue = from.value;
-        let toValue = to2.value;
-        if (ignoreAttribute("value", to2, "update", ctx)) {
-          return;
-        }
-        if (fromValue !== toValue) {
-          to2.value = fromValue;
-        }
-        if (to2.firstChild && to2.firstChild.nodeValue !== fromValue) {
-          to2.firstChild.nodeValue = fromValue;
-        }
-      }
-    }
-    function handleHeadElement(newHeadTag, currentHead, ctx) {
-      let added = [];
-      let removed = [];
-      let preserved = [];
-      let nodesToAppend = [];
-      let headMergeStyle = ctx.head.style;
-      let srcToNewHeadNodes = /* @__PURE__ */ new Map();
-      for (const newHeadChild of newHeadTag.children) {
-        srcToNewHeadNodes.set(newHeadChild.outerHTML, newHeadChild);
-      }
-      for (const currentHeadElt of currentHead.children) {
-        let inNewContent = srcToNewHeadNodes.has(currentHeadElt.outerHTML);
-        let isReAppended = ctx.head.shouldReAppend(currentHeadElt);
-        let isPreserved = ctx.head.shouldPreserve(currentHeadElt);
-        if (inNewContent || isPreserved) {
-          if (isReAppended) {
-            removed.push(currentHeadElt);
-          } else {
-            srcToNewHeadNodes.delete(currentHeadElt.outerHTML);
-            preserved.push(currentHeadElt);
-          }
-        } else {
-          if (headMergeStyle === "append") {
-            if (isReAppended) {
-              removed.push(currentHeadElt);
-              nodesToAppend.push(currentHeadElt);
-            }
-          } else {
-            if (ctx.head.shouldRemove(currentHeadElt) !== false) {
-              removed.push(currentHeadElt);
-            }
-          }
-        }
-      }
-      nodesToAppend.push(...srcToNewHeadNodes.values());
-      let promises = [];
-      for (const newNode of nodesToAppend) {
-        let newElt = document.createRange().createContextualFragment(newNode.outerHTML).firstChild;
-        if (ctx.callbacks.beforeNodeAdded(newElt) !== false) {
-          if (newElt.href || newElt.src) {
-            let resolve = null;
-            let promise = new Promise(function(_resolve) {
-              resolve = _resolve;
-            });
-            newElt.addEventListener("load", function() {
-              resolve();
-            });
-            promises.push(promise);
-          }
-          currentHead.appendChild(newElt);
-          ctx.callbacks.afterNodeAdded(newElt);
-          added.push(newElt);
-        }
-      }
-      for (const removedElement of removed) {
-        if (ctx.callbacks.beforeNodeRemoved(removedElement) !== false) {
-          currentHead.removeChild(removedElement);
-          ctx.callbacks.afterNodeRemoved(removedElement);
-        }
-      }
-      ctx.head.afterHeadMorphed(currentHead, { added, kept: preserved, removed });
-      return promises;
-    }
-    function noOp() {
-    }
-    function mergeDefaults(config) {
-      let finalConfig = {};
-      Object.assign(finalConfig, defaults);
-      Object.assign(finalConfig, config);
-      finalConfig.callbacks = {};
-      Object.assign(finalConfig.callbacks, defaults.callbacks);
-      Object.assign(finalConfig.callbacks, config.callbacks);
-      finalConfig.head = {};
-      Object.assign(finalConfig.head, defaults.head);
-      Object.assign(finalConfig.head, config.head);
-      return finalConfig;
-    }
-    function createMorphContext(oldNode, newContent, config) {
-      config = mergeDefaults(config);
-      return {
-        target: oldNode,
-        newContent,
-        config,
-        morphStyle: config.morphStyle,
-        ignoreActive: config.ignoreActive,
-        ignoreActiveValue: config.ignoreActiveValue,
-        idMap: createIdMap(oldNode, newContent),
-        deadIds: /* @__PURE__ */ new Set(),
-        callbacks: config.callbacks,
-        head: config.head
-      };
-    }
-    function isIdSetMatch(node1, node2, ctx) {
-      if (node1 == null || node2 == null) {
-        return false;
-      }
-      if (node1.nodeType === node2.nodeType && node1.tagName === node2.tagName) {
-        if (node1.id !== "" && node1.id === node2.id) {
-          return true;
-        } else {
-          return getIdIntersectionCount(ctx, node1, node2) > 0;
-        }
-      }
-      return false;
-    }
-    function isSoftMatch(node1, node2) {
-      if (node1 == null || node2 == null) {
-        return false;
-      }
-      return node1.nodeType === node2.nodeType && node1.tagName === node2.tagName;
-    }
-    function removeNodesBetween(startInclusive, endExclusive, ctx) {
-      while (startInclusive !== endExclusive) {
-        let tempNode = startInclusive;
-        startInclusive = startInclusive.nextSibling;
-        removeNode(tempNode, ctx);
-      }
-      removeIdsFromConsideration(ctx, endExclusive);
-      return endExclusive.nextSibling;
-    }
-    function findIdSetMatch(newContent, oldParent, newChild, insertionPoint, ctx) {
-      let newChildPotentialIdCount = getIdIntersectionCount(ctx, newChild, oldParent);
-      let potentialMatch = null;
-      if (newChildPotentialIdCount > 0) {
-        let potentialMatch2 = insertionPoint;
-        let otherMatchCount = 0;
-        while (potentialMatch2 != null) {
-          if (isIdSetMatch(newChild, potentialMatch2, ctx)) {
-            return potentialMatch2;
-          }
-          otherMatchCount += getIdIntersectionCount(ctx, potentialMatch2, newContent);
-          if (otherMatchCount > newChildPotentialIdCount) {
-            return null;
-          }
-          potentialMatch2 = potentialMatch2.nextSibling;
-        }
-      }
-      return potentialMatch;
-    }
-    function findSoftMatch(newContent, oldParent, newChild, insertionPoint, ctx) {
-      let potentialSoftMatch = insertionPoint;
-      let nextSibling = newChild.nextSibling;
-      let siblingSoftMatchCount = 0;
-      while (potentialSoftMatch != null) {
-        if (getIdIntersectionCount(ctx, potentialSoftMatch, newContent) > 0) {
-          return null;
-        }
-        if (isSoftMatch(newChild, potentialSoftMatch)) {
-          return potentialSoftMatch;
-        }
-        if (isSoftMatch(nextSibling, potentialSoftMatch)) {
-          siblingSoftMatchCount++;
-          nextSibling = nextSibling.nextSibling;
-          if (siblingSoftMatchCount >= 2) {
-            return null;
-          }
-        }
-        potentialSoftMatch = potentialSoftMatch.nextSibling;
-      }
-      return potentialSoftMatch;
-    }
-    function parseContent(newContent) {
-      let parser = new DOMParser();
-      let contentWithSvgsRemoved = newContent.replace(/<svg(\s[^>]*>|>)([\s\S]*?)<\/svg>/gim, "");
-      if (contentWithSvgsRemoved.match(/<\/html>/) || contentWithSvgsRemoved.match(/<\/head>/) || contentWithSvgsRemoved.match(/<\/body>/)) {
-        let content = parser.parseFromString(newContent, "text/html");
-        if (contentWithSvgsRemoved.match(/<\/html>/)) {
-          content.generatedByIdiomorph = true;
-          return content;
-        } else {
-          let htmlElement = content.firstChild;
-          if (htmlElement) {
-            htmlElement.generatedByIdiomorph = true;
-            return htmlElement;
-          } else {
-            return null;
-          }
-        }
-      } else {
-        let responseDoc = parser.parseFromString("<body><template>" + newContent + "</template></body>", "text/html");
-        let content = responseDoc.body.querySelector("template").content;
-        content.generatedByIdiomorph = true;
-        return content;
-      }
-    }
-    function normalizeContent(newContent) {
-      if (newContent == null) {
-        const dummyParent = document.createElement("div");
-        return dummyParent;
-      } else if (newContent.generatedByIdiomorph) {
-        return newContent;
-      } else if (newContent instanceof Node) {
-        const dummyParent = document.createElement("div");
-        dummyParent.append(newContent);
-        return dummyParent;
-      } else {
-        const dummyParent = document.createElement("div");
-        for (const elt of [...newContent]) {
-          dummyParent.append(elt);
-        }
-        return dummyParent;
-      }
-    }
-    function insertSiblings(previousSibling, morphedNode, nextSibling) {
-      let stack = [];
-      let added = [];
-      while (previousSibling != null) {
-        stack.push(previousSibling);
-        previousSibling = previousSibling.previousSibling;
-      }
-      while (stack.length > 0) {
-        let node = stack.pop();
-        added.push(node);
-        morphedNode.parentElement.insertBefore(node, morphedNode);
-      }
-      added.push(morphedNode);
-      while (nextSibling != null) {
-        stack.push(nextSibling);
-        added.push(nextSibling);
-        nextSibling = nextSibling.nextSibling;
-      }
-      while (stack.length > 0) {
-        morphedNode.parentElement.insertBefore(stack.pop(), morphedNode.nextSibling);
-      }
-      return added;
-    }
-    function findBestNodeMatch(newContent, oldNode, ctx) {
-      let currentElement;
-      currentElement = newContent.firstChild;
-      let bestElement = currentElement;
-      let score = 0;
-      while (currentElement) {
-        let newScore = scoreElement(currentElement, oldNode, ctx);
-        if (newScore > score) {
-          bestElement = currentElement;
-          score = newScore;
-        }
-        currentElement = currentElement.nextSibling;
-      }
-      return bestElement;
-    }
-    function scoreElement(node1, node2, ctx) {
-      if (isSoftMatch(node1, node2)) {
-        return 0.5 + getIdIntersectionCount(ctx, node1, node2);
-      }
-      return 0;
-    }
-    function removeNode(tempNode, ctx) {
-      removeIdsFromConsideration(ctx, tempNode);
-      if (ctx.callbacks.beforeNodeRemoved(tempNode) === false) return;
-      tempNode.remove();
-      ctx.callbacks.afterNodeRemoved(tempNode);
-    }
-    function isIdInConsideration(ctx, id2) {
-      return !ctx.deadIds.has(id2);
-    }
-    function idIsWithinNode(ctx, id2, targetNode) {
-      let idSet = ctx.idMap.get(targetNode) || EMPTY_SET;
-      return idSet.has(id2);
-    }
-    function removeIdsFromConsideration(ctx, node) {
-      let idSet = ctx.idMap.get(node) || EMPTY_SET;
-      for (const id2 of idSet) {
-        ctx.deadIds.add(id2);
-      }
-    }
-    function getIdIntersectionCount(ctx, node1, node2) {
-      let sourceSet = ctx.idMap.get(node1) || EMPTY_SET;
-      let matchCount = 0;
-      for (const id2 of sourceSet) {
-        if (isIdInConsideration(ctx, id2) && idIsWithinNode(ctx, id2, node2)) {
-          ++matchCount;
-        }
-      }
-      return matchCount;
-    }
-    function populateIdMapForNode(node, idMap) {
-      let nodeParent = node.parentElement;
-      let idElements = node.querySelectorAll("[id]");
-      for (const elt of idElements) {
-        let current = elt;
-        while (current !== nodeParent && current != null) {
-          let idSet = idMap.get(current);
-          if (idSet == null) {
-            idSet = /* @__PURE__ */ new Set();
-            idMap.set(current, idSet);
-          }
-          idSet.add(elt.id);
-          current = current.parentElement;
-        }
-      }
-    }
-    function createIdMap(oldContent, newContent) {
-      let idMap = /* @__PURE__ */ new Map();
-      populateIdMapForNode(oldContent, idMap);
-      populateIdMapForNode(newContent, idMap);
-      return idMap;
-    }
-    return {
-      morph,
-      defaults
-    };
-  }();
   var PageRenderer = class extends Renderer {
     static renderElement(currentElement, newElement) {
       if (document.body && newElement instanceof HTMLBodyElement) {
@@ -17941,11 +18333,16 @@
     }
     #setLanguage() {
       const { documentElement } = this.currentSnapshot;
-      const { lang } = this.newSnapshot;
+      const { dir, lang } = this.newSnapshot;
       if (lang) {
         documentElement.setAttribute("lang", lang);
       } else {
         documentElement.removeAttribute("lang");
+      }
+      if (dir) {
+        documentElement.setAttribute("dir", dir);
+      } else {
+        documentElement.removeAttribute("dir");
       }
     }
     async mergeHead() {
@@ -18026,7 +18423,13 @@
     }
     activateNewBody() {
       document.adoptNode(this.newElement);
+      this.removeNoscriptElements();
       this.activateNewBodyScriptElements();
+    }
+    removeNoscriptElements() {
+      for (const noscriptElement of this.newElement.querySelectorAll("noscript")) {
+        noscriptElement.remove();
+      }
     }
     activateNewBodyScriptElements() {
       for (const inertScriptElement of this.newBodyScriptElements) {
@@ -18061,145 +18464,37 @@
       return this.newElement.querySelectorAll("script");
     }
   };
-  var MorphRenderer = class extends PageRenderer {
-    async render() {
-      if (this.willRender) await this.#morphBody();
+  var MorphingPageRenderer = class extends PageRenderer {
+    static renderElement(currentElement, newElement) {
+      morphElements(currentElement, newElement, {
+        callbacks: {
+          beforeNodeMorphed: (node, newNode) => {
+            if (shouldRefreshFrameWithMorphing(node, newNode) && !closestFrameReloadableWithMorphing(node)) {
+              node.reload();
+              return false;
+            }
+            return true;
+          }
+        }
+      });
+      dispatch("turbo:morph", { detail: { currentElement, newElement } });
+    }
+    async preservingPermanentElements(callback) {
+      return await callback();
     }
     get renderMethod() {
       return "morph";
     }
-    // Private
-    async #morphBody() {
-      this.#morphElements(this.currentElement, this.newElement);
-      this.#reloadRemoteFrames();
-      dispatch("turbo:morph", {
-        detail: {
-          currentElement: this.currentElement,
-          newElement: this.newElement
-        }
-      });
-    }
-    #morphElements(currentElement, newElement, morphStyle = "outerHTML") {
-      this.isMorphingTurboFrame = this.#isFrameReloadedWithMorph(currentElement);
-      Idiomorph.morph(currentElement, newElement, {
-        ignoreActiveValue: true,
-        morphStyle,
-        callbacks: {
-          beforeNodeAdded: this.#shouldAddElement,
-          beforeNodeMorphed: this.#shouldMorphElement,
-          beforeAttributeUpdated: this.#shouldUpdateAttribute,
-          beforeNodeRemoved: this.#shouldRemoveElement,
-          afterNodeMorphed: this.#didMorphElement
-        }
-      });
-    }
-    #shouldAddElement = (node) => {
-      return !(node.id && node.hasAttribute("data-turbo-permanent") && document.getElementById(node.id));
-    };
-    #shouldMorphElement = (oldNode, newNode) => {
-      if (oldNode instanceof HTMLElement) {
-        if (!oldNode.hasAttribute("data-turbo-permanent") && (this.isMorphingTurboFrame || !this.#isFrameReloadedWithMorph(oldNode))) {
-          const event = dispatch("turbo:before-morph-element", {
-            cancelable: true,
-            target: oldNode,
-            detail: {
-              newElement: newNode
-            }
-          });
-          return !event.defaultPrevented;
-        } else {
-          return false;
-        }
-      }
-    };
-    #shouldUpdateAttribute = (attributeName, target, mutationType) => {
-      const event = dispatch("turbo:before-morph-attribute", { cancelable: true, target, detail: { attributeName, mutationType } });
-      return !event.defaultPrevented;
-    };
-    #didMorphElement = (oldNode, newNode) => {
-      if (newNode instanceof HTMLElement) {
-        dispatch("turbo:morph-element", {
-          target: oldNode,
-          detail: {
-            newElement: newNode
-          }
-        });
-      }
-    };
-    #shouldRemoveElement = (node) => {
-      return this.#shouldMorphElement(node);
-    };
-    #reloadRemoteFrames() {
-      this.#remoteFrames().forEach((frame) => {
-        if (this.#isFrameReloadedWithMorph(frame)) {
-          this.#renderFrameWithMorph(frame);
-          frame.reload();
-        }
-      });
-    }
-    #renderFrameWithMorph(frame) {
-      frame.addEventListener("turbo:before-frame-render", (event) => {
-        event.detail.render = this.#morphFrameUpdate;
-      }, { once: true });
-    }
-    #morphFrameUpdate = (currentElement, newElement) => {
-      dispatch("turbo:before-frame-morph", {
-        target: currentElement,
-        detail: { currentElement, newElement }
-      });
-      this.#morphElements(currentElement, newElement.children, "innerHTML");
-    };
-    #isFrameReloadedWithMorph(element) {
-      return element.src && element.refresh === "morph";
-    }
-    #remoteFrames() {
-      return Array.from(document.querySelectorAll("turbo-frame[src]")).filter((frame) => {
-        return !frame.closest("[data-turbo-permanent]");
-      });
+    get shouldAutofocus() {
+      return false;
     }
   };
-  var SnapshotCache = class {
-    keys = [];
-    snapshots = {};
+  var SnapshotCache = class extends LRUCache {
     constructor(size) {
-      this.size = size;
+      super(size, toCacheKey);
     }
-    has(location2) {
-      return toCacheKey(location2) in this.snapshots;
-    }
-    get(location2) {
-      if (this.has(location2)) {
-        const snapshot = this.read(location2);
-        this.touch(location2);
-        return snapshot;
-      }
-    }
-    put(location2, snapshot) {
-      this.write(location2, snapshot);
-      this.touch(location2);
-      return snapshot;
-    }
-    clear() {
-      this.snapshots = {};
-    }
-    // Private
-    read(location2) {
-      return this.snapshots[toCacheKey(location2)];
-    }
-    write(location2, snapshot) {
-      this.snapshots[toCacheKey(location2)] = snapshot;
-    }
-    touch(location2) {
-      const key = toCacheKey(location2);
-      const index = this.keys.indexOf(key);
-      if (index > -1) this.keys.splice(index, 1);
-      this.keys.unshift(key);
-      this.trim();
-    }
-    trim() {
-      for (const key of this.keys.splice(this.size)) {
-        delete this.snapshots[key];
-      }
+    get snapshots() {
+      return this.entries;
     }
   };
   var PageView = class extends View {
@@ -18210,9 +18505,9 @@
       return this.snapshot.prefersViewTransitions && newSnapshot.prefersViewTransitions;
     }
     renderPage(snapshot, isPreview = false, willRender = true, visit2) {
-      const shouldMorphPage = this.isPageRefresh(visit2) && this.snapshot.shouldMorphPage;
-      const rendererClass = shouldMorphPage ? MorphRenderer : PageRenderer;
-      const renderer = new rendererClass(this.snapshot, snapshot, PageRenderer.renderElement, isPreview, willRender);
+      const shouldMorphPage = this.isPageRefresh(visit2) && (visit2?.refresh?.method || this.snapshot.refreshMethod) === "morph";
+      const rendererClass = shouldMorphPage ? MorphingPageRenderer : PageRenderer;
+      const renderer = new rendererClass(this.snapshot, snapshot, isPreview, willRender);
       if (!renderer.shouldRender) {
         this.forceReloaded = true;
       } else {
@@ -18222,7 +18517,7 @@
     }
     renderError(snapshot, visit2) {
       visit2?.changeHistory();
-      const renderer = new ErrorRenderer(this.snapshot, snapshot, ErrorRenderer.renderElement, false);
+      const renderer = new ErrorRenderer(this.snapshot, snapshot, false);
       return this.render(renderer);
     }
     clearSnapshotCache() {
@@ -18245,7 +18540,7 @@
       return !visit2 || this.lastRenderedLocation.pathname === visit2.location.pathname && visit2.action === "replace";
     }
     shouldPreserveScrollPosition(visit2) {
-      return this.isPageRefresh(visit2) && this.snapshot.shouldPreserveScrollPosition;
+      return this.isPageRefresh(visit2) && (visit2?.refresh?.scroll || this.snapshot.refreshScroll) === "preserve";
     }
     get snapshot() {
       return PageSnapshot.fromElement(this.element);
@@ -18344,11 +18639,8 @@
     frameRedirector = new FrameRedirector(this, document.documentElement);
     streamMessageRenderer = new StreamMessageRenderer();
     cache = new Cache(this);
-    drive = true;
     enabled = true;
-    progressBarDelay = 500;
     started = false;
-    formMode = "on";
     #pageRefreshDebouncePeriod = 150;
     constructor(recentRequests2) {
       this.recentRequests = recentRequests2;
@@ -18405,11 +18697,13 @@
         this.navigator.proposeVisit(expandURL(location2), options);
       }
     }
-    refresh(url, requestId) {
+    refresh(url, options = {}) {
+      options = typeof options === "string" ? { requestId: options } : options;
+      const { method, requestId, scroll } = options;
       const isRecentRequest = requestId && this.recentRequests.has(requestId);
-      if (!isRecentRequest) {
-        this.cache.exemptPageFromPreview();
-        this.visit(url, { action: "replace" });
+      const isCurrentUrl = url === document.baseURI;
+      if (!isRecentRequest && !this.navigator.currentVisit && isCurrentUrl) {
+        this.visit(url, { action: "replace", shouldCacheSnapshot: false, refresh: { method, scroll } });
       }
     }
     connectStreamSource(source) {
@@ -18425,10 +18719,28 @@
       this.view.clearSnapshotCache();
     }
     setProgressBarDelay(delay) {
+      console.warn(
+        "Please replace `session.setProgressBarDelay(delay)` with `session.progressBarDelay = delay`. The function is deprecated and will be removed in a future version of Turbo.`"
+      );
       this.progressBarDelay = delay;
     }
-    setFormMode(mode) {
-      this.formMode = mode;
+    set progressBarDelay(delay) {
+      config.drive.progressBarDelay = delay;
+    }
+    get progressBarDelay() {
+      return config.drive.progressBarDelay;
+    }
+    set drive(value) {
+      config.drive.enabled = value;
+    }
+    get drive() {
+      return config.drive.enabled;
+    }
+    set formMode(value) {
+      config.forms.mode = value;
+    }
+    get formMode() {
+      return config.forms.mode;
     }
     get location() {
       return this.history.location;
@@ -18470,6 +18782,11 @@
         });
       }
     }
+    historyPoppedWithEmptyState(location2) {
+      this.history.replace(location2);
+      this.view.lastRenderedLocation = location2;
+      this.view.cacheSnapshot();
+    }
     // Scroll observer delegate
     scrollPositionChanged(position) {
       this.history.updateRestorationData({ scrollPosition: position });
@@ -18482,7 +18799,7 @@
     }
     // Link hover observer delegate
     canPrefetchRequestToLocation(link, location2) {
-      return this.elementIsNavigatable(link) && locationIsVisitable(location2, this.snapshot.rootLocation);
+      return this.elementIsNavigatable(link) && locationIsVisitable(location2, this.snapshot.rootLocation) && this.navigator.linkPrefetchingIsEnabledForLocation(location2);
     }
     // Link click observer delegate
     willFollowLinkToLocation(link, location2, event) {
@@ -18495,7 +18812,7 @@
     }
     // Navigator delegate
     allowsVisitingLocationWithAction(location2, action) {
-      return this.locationWithActionIsSamePage(location2, action) || this.applicationAllowsVisitingLocation(location2);
+      return this.applicationAllowsVisitingLocation(location2);
     }
     visitProposedToLocation(location2, options) {
       extendURLWithDeprecatedProperties(location2);
@@ -18508,28 +18825,20 @@
         this.view.markVisitDirection(visit2.direction);
       }
       extendURLWithDeprecatedProperties(visit2.location);
-      if (!visit2.silent) {
-        this.notifyApplicationAfterVisitingLocation(visit2.location, visit2.action);
-      }
+      this.notifyApplicationAfterVisitingLocation(visit2.location, visit2.action);
     }
     visitCompleted(visit2) {
       this.view.unmarkVisitDirection();
       clearBusyState(document.documentElement);
       this.notifyApplicationAfterPageLoad(visit2.getTimingMetrics());
     }
-    locationWithActionIsSamePage(location2, action) {
-      return this.navigator.locationWithActionIsSamePage(location2, action);
-    }
-    visitScrolledToSamePageLocation(oldURL, newURL) {
-      this.notifyApplicationAfterVisitingSamePageLocation(oldURL, newURL);
-    }
     // Form submit observer delegate
-    willSubmitForm(form, submitter) {
-      const action = getAction$1(form, submitter);
-      return this.submissionIsNavigatable(form, submitter) && locationIsVisitable(expandURL(action), this.snapshot.rootLocation);
+    willSubmitForm(form, submitter2) {
+      const action = getAction$1(form, submitter2);
+      return this.submissionIsNavigatable(form, submitter2) && locationIsVisitable(expandURL(action), this.snapshot.rootLocation);
     }
-    formSubmitted(form, submitter) {
-      this.navigator.submitForm(form, submitter);
+    formSubmitted(form, submitter2) {
+      this.navigator.submitForm(form, submitter2);
     }
     // Page observer delegate
     pageBecameInteractive() {
@@ -18548,9 +18857,7 @@
     }
     // Page view delegate
     viewWillCacheSnapshot() {
-      if (!this.navigator.currentVisit?.silent) {
-        this.notifyApplicationBeforeCachingSnapshot();
-      }
+      this.notifyApplicationBeforeCachingSnapshot();
     }
     allowsImmediateRender({ element }, options) {
       const event = this.notifyApplicationBeforeRender(element, options);
@@ -18622,14 +18929,6 @@
         detail: { url: this.location.href, timing }
       });
     }
-    notifyApplicationAfterVisitingSamePageLocation(oldURL, newURL) {
-      dispatchEvent(
-        new HashChangeEvent("hashchange", {
-          oldURL: oldURL.toString(),
-          newURL: newURL.toString()
-        })
-      );
-    }
     notifyApplicationAfterFrameLoad(frame) {
       return dispatch("turbo:frame-load", { target: frame });
     }
@@ -18641,12 +18940,12 @@
       });
     }
     // Helpers
-    submissionIsNavigatable(form, submitter) {
-      if (this.formMode == "off") {
+    submissionIsNavigatable(form, submitter2) {
+      if (config.forms.mode == "off") {
         return false;
       } else {
-        const submitterIsNavigatable = submitter ? this.elementIsNavigatable(submitter) : true;
-        if (this.formMode == "optin") {
+        const submitterIsNavigatable = submitter2 ? this.elementIsNavigatable(submitter2) : true;
+        if (config.forms.mode == "optin") {
           return submitterIsNavigatable && form.closest('[data-turbo="true"]') != null;
         } else {
           return submitterIsNavigatable && this.elementIsNavigatable(form);
@@ -18656,7 +18955,7 @@
     elementIsNavigatable(element) {
       const container = findClosestRecursively(element, "[data-turbo]");
       const withinFrame = findClosestRecursively(element, "turbo-frame");
-      if (this.drive || withinFrame) {
+      if (config.drive.enabled || withinFrame) {
         if (container) {
           return container.getAttribute("data-turbo") != "false";
         } else {
@@ -18689,7 +18988,7 @@
     }
   };
   var session = new Session(recentRequests);
-  var { cache, navigator: navigator$1 } = session;
+  var { cache, navigator: sessionNavigator } = session;
   function start2() {
     session.start();
   }
@@ -18708,40 +19007,53 @@
   function renderStreamMessage(message) {
     session.renderStreamMessage(message);
   }
-  function clearCache() {
-    console.warn(
-      "Please replace `Turbo.clearCache()` with `Turbo.cache.clear()`. The top-level function is deprecated and will be removed in a future version of Turbo.`"
-    );
-    session.clearCache();
-  }
   function setProgressBarDelay(delay) {
-    session.setProgressBarDelay(delay);
+    console.warn(
+      "Please replace `Turbo.setProgressBarDelay(delay)` with `Turbo.config.drive.progressBarDelay = delay`. The top-level function is deprecated and will be removed in a future version of Turbo.`"
+    );
+    config.drive.progressBarDelay = delay;
   }
   function setConfirmMethod(confirmMethod) {
-    FormSubmission.confirmMethod = confirmMethod;
+    console.warn(
+      "Please replace `Turbo.setConfirmMethod(confirmMethod)` with `Turbo.config.forms.confirm = confirmMethod`. The top-level function is deprecated and will be removed in a future version of Turbo.`"
+    );
+    config.forms.confirm = confirmMethod;
   }
   function setFormMode(mode) {
-    session.setFormMode(mode);
+    console.warn(
+      "Please replace `Turbo.setFormMode(mode)` with `Turbo.config.forms.mode = mode`. The top-level function is deprecated and will be removed in a future version of Turbo.`"
+    );
+    config.forms.mode = mode;
+  }
+  function morphBodyElements(currentBody, newBody) {
+    MorphingPageRenderer.renderElement(currentBody, newBody);
+  }
+  function morphTurboFrameElements(currentFrame, newFrame) {
+    MorphingFrameRenderer.renderElement(currentFrame, newFrame);
   }
   var Turbo2 = /* @__PURE__ */ Object.freeze({
     __proto__: null,
-    navigator: navigator$1,
-    session,
-    cache,
     PageRenderer,
     PageSnapshot,
     FrameRenderer,
     fetch: fetchWithTurboHeaders,
+    config,
+    session,
+    cache,
+    navigator: sessionNavigator,
     start: start2,
     registerAdapter,
     visit,
     connectStreamSource,
     disconnectStreamSource,
     renderStreamMessage,
-    clearCache,
     setProgressBarDelay,
     setConfirmMethod,
-    setFormMode
+    setFormMode,
+    morphBodyElements,
+    morphTurboFrameElements,
+    morphChildren,
+    morphElements
   });
   var TurboFrameMissingError = class extends Error {
   };
@@ -18753,6 +19065,7 @@
     #connected = false;
     #hasBeenLoaded = false;
     #ignoredAttributes = /* @__PURE__ */ new Set();
+    #shouldMorphFrame = false;
     action = null;
     constructor(element) {
       this.element = element;
@@ -18784,15 +19097,23 @@
         this.formLinkClickObserver.stop();
         this.linkInterceptor.stop();
         this.formSubmitObserver.stop();
+        if (!this.element.hasAttribute("recurse")) {
+          this.#currentFetchRequest?.cancel();
+        }
       }
     }
     disabledChanged() {
-      if (this.loadingStyle == FrameLoadingStyle.eager) {
+      if (this.disabled) {
+        this.#currentFetchRequest?.cancel();
+      } else if (this.loadingStyle == FrameLoadingStyle.eager) {
         this.#loadSourceURL();
       }
     }
     sourceURLChanged() {
       if (this.#isIgnoringChangesTo("src")) return;
+      if (!this.sourceURL) {
+        this.#currentFetchRequest?.cancel();
+      }
       if (this.element.isConnected) {
         this.complete = false;
       }
@@ -18801,17 +19122,12 @@
       }
     }
     sourceURLReloaded() {
-      const { src } = this.element;
-      this.#ignoringChangesToAttribute("complete", () => {
-        this.element.removeAttribute("complete");
-      });
+      const { refresh, src } = this.element;
+      this.#shouldMorphFrame = src && refresh === "morph";
+      this.element.removeAttribute("complete");
       this.element.src = null;
       this.element.src = src;
       return this.element.loaded;
-    }
-    completeChanged() {
-      if (this.#isIgnoringChangesTo("complete")) return;
-      this.#loadSourceURL();
     }
     loadingStyleChanged() {
       if (this.loadingStyle == FrameLoadingStyle.lazy) {
@@ -18845,6 +19161,7 @@
           }
         }
       } finally {
+        this.#shouldMorphFrame = false;
         this.fetchResponseLoaded = () => Promise.resolve();
       }
     }
@@ -18869,21 +19186,22 @@
       this.#navigateFrame(element, location2);
     }
     // Form submit observer delegate
-    willSubmitForm(element, submitter) {
-      return element.closest("turbo-frame") == this.element && this.#shouldInterceptNavigation(element, submitter);
+    willSubmitForm(element, submitter2) {
+      return element.closest("turbo-frame") == this.element && this.#shouldInterceptNavigation(element, submitter2);
     }
-    formSubmitted(element, submitter) {
+    formSubmitted(element, submitter2) {
       if (this.formSubmission) {
         this.formSubmission.stop();
       }
-      this.formSubmission = new FormSubmission(this, element, submitter);
+      this.formSubmission = new FormSubmission(this, element, submitter2);
       const { fetchRequest } = this.formSubmission;
-      this.prepareRequest(fetchRequest);
+      const frame = this.#findFrameElement(element, submitter2);
+      this.prepareRequest(fetchRequest, frame);
       this.formSubmission.start();
     }
     // Fetch request delegate
-    prepareRequest(request) {
-      request.headers["Turbo-Frame"] = this.id;
+    prepareRequest(request, frame = this) {
+      request.headers["Turbo-Frame"] = frame.id;
       if (this.currentNavigationElement?.hasAttribute("data-turbo-stream")) {
         request.acceptResponseType(StreamMessage.contentType);
       }
@@ -18968,9 +19286,10 @@
     // Private
     async #loadFrameResponse(fetchResponse, document2) {
       const newFrameElement = await this.extractForeignFrameElement(document2.body);
+      const rendererClass = this.#shouldMorphFrame ? MorphingFrameRenderer : FrameRenderer;
       if (newFrameElement) {
         const snapshot = new Snapshot(newFrameElement);
-        const renderer = new FrameRenderer(this, this.view.snapshot, snapshot, FrameRenderer.renderElement, false, false);
+        const renderer = new rendererClass(this, this.view.snapshot, snapshot, false, false);
         if (this.view.renderPromise) await this.view.renderPromise;
         this.changeHistory();
         await this.view.render(renderer);
@@ -18996,9 +19315,9 @@
         request.perform();
       });
     }
-    #navigateFrame(element, url, submitter) {
-      const frame = this.#findFrameElement(element, submitter);
-      frame.delegate.proposeVisitIfNavigatedWithAction(frame, getVisitAction(submitter, element, frame));
+    #navigateFrame(element, url, submitter2) {
+      const frame = this.#findFrameElement(element, submitter2);
+      frame.delegate.proposeVisitIfNavigatedWithAction(frame, getVisitAction(submitter2, element, frame));
       this.#withCurrentNavigationElement(element, () => {
         frame.src = url;
       });
@@ -19070,9 +19389,10 @@
       const { location: location2, redirected, statusCode } = wrapped;
       return session.visit(location2, { response: { redirected, statusCode, responseHTML } });
     }
-    #findFrameElement(element, submitter) {
-      const id2 = getAttribute("data-turbo-frame", submitter, element) || this.element.getAttribute("target");
-      return getFrameElementById(id2) ?? this.element;
+    #findFrameElement(element, submitter2) {
+      const id2 = getAttribute("data-turbo-frame", submitter2, element) || this.element.getAttribute("target");
+      const target = this.#getFrameElementById(id2);
+      return target instanceof FrameElement ? target : this.element;
     }
     async extractForeignFrameElement(container) {
       let element;
@@ -19093,28 +19413,30 @@
       }
       return null;
     }
-    #formActionIsVisitable(form, submitter) {
-      const action = getAction$1(form, submitter);
+    #formActionIsVisitable(form, submitter2) {
+      const action = getAction$1(form, submitter2);
       return locationIsVisitable(expandURL(action), this.rootLocation);
     }
-    #shouldInterceptNavigation(element, submitter) {
-      const id2 = getAttribute("data-turbo-frame", submitter, element) || this.element.getAttribute("target");
-      if (element instanceof HTMLFormElement && !this.#formActionIsVisitable(element, submitter)) {
+    #shouldInterceptNavigation(element, submitter2) {
+      const id2 = getAttribute("data-turbo-frame", submitter2, element) || this.element.getAttribute("target");
+      if (element instanceof HTMLFormElement && !this.#formActionIsVisitable(element, submitter2)) {
         return false;
       }
       if (!this.enabled || id2 == "_top") {
         return false;
       }
       if (id2) {
-        const frameElement = getFrameElementById(id2);
+        const frameElement = this.#getFrameElementById(id2);
         if (frameElement) {
           return !frameElement.disabled;
+        } else if (id2 == "_parent") {
+          return false;
         }
       }
       if (!session.elementIsNavigatable(element)) {
         return false;
       }
-      if (submitter && !session.elementIsNavigatable(submitter)) {
+      if (submitter2 && !session.elementIsNavigatable(submitter2)) {
         return false;
       }
       return true;
@@ -19123,8 +19445,11 @@
     get id() {
       return this.element.id;
     }
+    get disabled() {
+      return this.element.disabled;
+    }
     get enabled() {
-      return !this.element.disabled;
+      return !this.disabled;
     }
     get sourceURL() {
       if (this.element.src) {
@@ -19146,13 +19471,11 @@
       return this.element.hasAttribute("complete");
     }
     set complete(value) {
-      this.#ignoringChangesToAttribute("complete", () => {
-        if (value) {
-          this.element.setAttribute("complete", "");
-        } else {
-          this.element.removeAttribute("complete");
-        }
-      });
+      if (value) {
+        this.element.setAttribute("complete", "");
+      } else {
+        this.element.removeAttribute("complete");
+      }
     }
     get isActive() {
       return this.element.isActive && this.#connected;
@@ -19175,15 +19498,15 @@
       callback();
       delete this.currentNavigationElement;
     }
-  };
-  function getFrameElementById(id2) {
-    if (id2 != null) {
-      const element = document.getElementById(id2);
-      if (element instanceof FrameElement) {
-        return element;
+    #getFrameElementById(id2) {
+      if (id2 != null) {
+        const element = id2 === "_parent" ? this.element.parentElement.closest("turbo-frame") : document.getElementById(id2);
+        if (element instanceof FrameElement) {
+          return element;
+        }
       }
     }
-  }
+  };
   function activateElement(element, currentURL) {
     if (element) {
       const src = element.getAttribute("src");
@@ -19202,6 +19525,7 @@
   }
   var StreamActions = {
     after() {
+      this.removeDuplicateTargetSiblings();
       this.targetElements.forEach((e2) => e2.parentElement?.insertBefore(this.templateContent, e2.nextSibling));
     },
     append() {
@@ -19209,6 +19533,7 @@
       this.targetElements.forEach((e2) => e2.append(this.templateContent));
     },
     before() {
+      this.removeDuplicateTargetSiblings();
       this.targetElements.forEach((e2) => e2.parentElement?.insertBefore(this.templateContent, e2));
     },
     prepend() {
@@ -19219,16 +19544,31 @@
       this.targetElements.forEach((e2) => e2.remove());
     },
     replace() {
-      this.targetElements.forEach((e2) => e2.replaceWith(this.templateContent));
+      const method = this.getAttribute("method");
+      this.targetElements.forEach((targetElement) => {
+        if (method === "morph") {
+          morphElements(targetElement, this.templateContent);
+        } else {
+          targetElement.replaceWith(this.templateContent);
+        }
+      });
     },
     update() {
+      const method = this.getAttribute("method");
       this.targetElements.forEach((targetElement) => {
-        targetElement.innerHTML = "";
-        targetElement.append(this.templateContent);
+        if (method === "morph") {
+          morphChildren(targetElement, this.templateContent);
+        } else {
+          targetElement.innerHTML = "";
+          targetElement.append(this.templateContent);
+        }
       });
     },
     refresh() {
-      session.refresh(this.baseURI, this.requestId);
+      const method = this.getAttribute("method");
+      const requestId = this.requestId;
+      const scroll = this.getAttribute("scroll");
+      session.refresh(this.baseURI, { method, requestId, scroll });
     }
   };
   var StreamElement = class _StreamElement extends HTMLElement {
@@ -19269,7 +19609,21 @@
      * Gets the list of duplicate children (i.e. those with the same ID)
      */
     get duplicateChildren() {
-      const existingChildren = this.targetElements.flatMap((e2) => [...e2.children]).filter((c2) => !!c2.id);
+      const existingChildren = this.targetElements.flatMap((e2) => [...e2.children]).filter((c2) => !!c2.getAttribute("id"));
+      const newChildrenIds = [...this.templateContent?.children || []].filter((c2) => !!c2.getAttribute("id")).map((c2) => c2.getAttribute("id"));
+      return existingChildren.filter((c2) => newChildrenIds.includes(c2.getAttribute("id")));
+    }
+    /**
+    * Removes duplicate siblings (by ID)
+    */
+    removeDuplicateTargetSiblings() {
+      this.duplicateSiblings.forEach((c2) => c2.remove());
+    }
+    /**
+    * Gets the list of duplicate siblings (i.e. those with the same ID)
+    */
+    get duplicateSiblings() {
+      const existingChildren = this.targetElements.flatMap((e2) => [...e2.parentElement.children]).filter((c2) => !!c2.id);
       const newChildrenIds = [...this.templateContent?.children || []].filter((c2) => !!c2.id).map((c2) => c2.id);
       return existingChildren.filter((c2) => newChildrenIds.includes(c2.id));
     }
@@ -19399,10 +19753,10 @@
     customElements.define("turbo-stream-source", StreamSourceElement);
   }
   (() => {
-    let element = document.currentScript;
-    if (!element) return;
-    if (element.hasAttribute("data-turbo-suppress-warning")) return;
-    element = element.parentElement;
+    const scriptElement = document.currentScript;
+    if (!scriptElement) return;
+    if (scriptElement.hasAttribute("data-turbo-suppress-warning")) return;
+    let element = scriptElement.parentElement;
     while (element) {
       if (element == document.body) {
         return console.warn(
@@ -19416,7 +19770,7 @@
         ——
         Suppress this warning by adding a "data-turbo-suppress-warning" attribute to: %s
       `,
-          element.outerHTML
+          scriptElement.outerHTML
         );
       }
       element = element.parentElement;
@@ -19494,9 +19848,9 @@
   function encodeMethodIntoRequestBody(event) {
     if (event.target instanceof HTMLFormElement) {
       const { target: form, detail: { fetchOptions } } = event;
-      form.addEventListener("turbo:submit-start", ({ detail: { formSubmission: { submitter } } }) => {
+      form.addEventListener("turbo:submit-start", ({ detail: { formSubmission: { submitter: submitter2 } } }) => {
         const body = isBodyInit(fetchOptions.body) ? fetchOptions.body : new URLSearchParams();
-        const method = determineFetchMethod(submitter, body, form);
+        const method = determineFetchMethod(submitter2, body, form);
         if (!/get/i.test(method)) {
           if (/post/i.test(method)) {
             body.delete("_method");
@@ -19508,8 +19862,8 @@
       }, { once: true });
     }
   }
-  function determineFetchMethod(submitter, body, form) {
-    const formMethod = determineFormMethod(submitter);
+  function determineFetchMethod(submitter2, body, form) {
+    const formMethod = determineFormMethod(submitter2);
     const overrideMethod = body.get("_method");
     const method = form.getAttribute("method") || "get";
     if (typeof formMethod == "string") {
@@ -19520,12 +19874,12 @@
       return method;
     }
   }
-  function determineFormMethod(submitter) {
-    if (submitter instanceof HTMLButtonElement || submitter instanceof HTMLInputElement) {
-      if (submitter.name === "_method") {
-        return submitter.value;
-      } else if (submitter.hasAttribute("formmethod")) {
-        return submitter.formMethod;
+  function determineFormMethod(submitter2) {
+    if (submitter2 instanceof HTMLButtonElement || submitter2 instanceof HTMLInputElement) {
+      if (submitter2.name === "_method") {
+        return submitter2.value;
+      } else if (submitter2.hasAttribute("formmethod")) {
+        return submitter2.formMethod;
       } else {
         return null;
       }
@@ -31412,8 +31766,8 @@ trix/dist/trix.esm.min.js:
 
 @hotwired/turbo/dist/turbo.es2017-esm.js:
   (*!
-  Turbo 8.0.2
-  Copyright © 2024 37signals LLC
+  Turbo 8.0.23
+  Copyright © 2026 37signals LLC
    *)
 */
 //# sourceMappingURL=/assets/administrate/application.js.map
