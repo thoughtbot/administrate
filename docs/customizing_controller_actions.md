@@ -24,15 +24,14 @@ class Admin::FoosController < Admin::ApplicationController
   # end
 
   # Override this method to specify custom lookup behavior.
-  # This will be used to set the resource for the `show`, `edit`, and `update`
-  # actions.
+  # This will be used to set the resource for the `show`, `edit`, `update` and `destroy` actions.
   #
   # def find_resource(param)
   #   Foo.find_by!(slug: param)
   # end
 
-  # Override this if you have certain roles that require a subset
-  # this will be used to set the records shown on the `index` action.
+  # Override this if you have certain roles that require a subset.
+  # This will be used in all actions except for the `new` and `create` actions
   #
   # def scoped_resource
   #  if current_user.super_admin?
@@ -40,6 +39,17 @@ class Admin::FoosController < Admin::ApplicationController
   #  else
   #    resource_class.with_less_stuff
   #  end
+  # end
+
+
+  # Override this if you want to contextualize the resource differently.
+  # This will be used to contextualize the resource for the all actions without `index`.
+  #
+  # def contextualize_resource(resource)
+  #   case action_name
+  #   when "new", "create"
+  #     resource.author = current_user
+  #   end
   # end
 end
 ```
