@@ -140,4 +140,23 @@ you of this step if you miss it):
 /// app/assets/config/manifest.js
 //= link admin.css
 //= link admin.js
+
+## Removing custom CSS and JS
+
+Administrate also provides APIs to remove added CSS or JS files, or clear all at once.
+
+Sometimes you may want to remove custom CSS or JS files that you previously added to Administrate　—　for example, when cleaning up unused assets, switching to a new design, or troubleshooting conflicts. Administrate provides simple APIs to help you manage these files directly from your configuration.
+
+To remove a specific CSS or JS file, use:
+
+```ruby
+Administrate::Engine.delete_stylesheet("admin")
+Administrate::Engine.delete_javascript("admin")
+```
+
+If you want to clear all custom CSS or JS files at once, use:
+
+```ruby
+Administrate::Engine.clear_stylesheets
+Administrate::Engine.clear_javascripts
 ```
