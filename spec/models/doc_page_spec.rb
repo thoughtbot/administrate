@@ -36,5 +36,15 @@ RSpec.describe DocPage do
         )
       )
     end
+
+    context "with README.md" do
+      it "replaces global demo links with relative ones" do
+        page = DocPage.find("README")
+
+        expect(page).to have_attributes(
+          body: a_string_matching(/<a href="\/admin">Try the demo<\/a>.<\/p>/)
+        )
+      end
+    end
   end
 end
