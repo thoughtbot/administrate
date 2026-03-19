@@ -141,7 +141,7 @@ describe Administrate::Order do
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:left_joins).with(:name)
-        expect(relation).to have_received(:group).with(:id)
+        expect(relation).to have_received(:group).with("id")
         expect(relation).to have_received(:reorder).with(
           to_sql('COUNT("users"."uid") ASC')
         )
@@ -151,8 +151,39 @@ describe Administrate::Order do
         expect(ordered).to eq(relation)
       end
 
+      context "when the parent relation has custom primary key" do
+        it "groups and tiebreaks by the parent primary key" do
+          order = Administrate::Order.new(:name)
+          relation = relation_with_association(
+            :has_many,
+            primary_key: "uuid",
+            klass: double(
+              table_name: "users",
+              arel_table: Arel::Table.new("users"),
+              primary_key: "uid"
+            )
+          )
+          allow(relation).to receive(:reorder).and_return(relation)
+          allow(relation).to receive(:left_joins).and_return(relation)
+          allow(relation).to receive(:group).and_return(relation)
+          allow(relation).to receive(:order).and_return(relation)
+
+          ordered = order.apply(relation)
+
+          expect(relation).to have_received(:left_joins).with(:name)
+          expect(relation).to have_received(:group).with("uuid")
+          expect(relation).to have_received(:reorder).with(
+            to_sql('COUNT("users"."uid") ASC')
+          )
+          expect(relation).to have_received(:order).with(
+            to_sql('"table_name"."uuid" ASC')
+          )
+          expect(ordered).to eq(relation)
+        end
+      end
+
       context "when the parent relation has no primary key" do
-        it "orders the column by count without tiebreaks" do
+        it "does not apply count ordering" do
           order = Administrate::Order.new(:name)
           relation = relation_with_association(
             :has_many,
@@ -170,11 +201,9 @@ describe Administrate::Order do
 
           ordered = order.apply(relation)
 
-          expect(relation).to have_received(:left_joins).with(:name)
-          expect(relation).to have_received(:group).with(:id)
-          expect(relation).to have_received(:reorder).with(
-            to_sql('COUNT("users"."uid") ASC')
-          )
+          expect(relation).not_to have_received(:left_joins)
+          expect(relation).not_to have_received(:group)
+          expect(relation).not_to have_received(:reorder)
           expect(relation).not_to have_received(:order)
           expect(ordered).to eq(relation)
         end
@@ -573,6 +602,9 @@ describe Administrate::Order do
     reflection: {},
     primary_key: "id"
   )
+    columns_hash = {"id" => :column_info}
+    columns_hash[primary_key.to_s] = :column_info if primary_key
+
     double(
       klass: double(
         reflect_on_association: double(
@@ -585,7 +617,7 @@ describe Administrate::Order do
           **reflection
         )
       ),
-      columns_hash: {"id" => :column_info},
+      columns_hash: columns_hash,
       table_name: "table_name",
       arel_table: Arel::Table.new("table_name"),
       primary_key: primary_key

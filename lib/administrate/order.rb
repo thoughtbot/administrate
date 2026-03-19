@@ -60,7 +60,11 @@ module Administrate
     def order_by_association(relation)
       case relation_type(relation)
       when :has_many
-        with_tiebreak(order_by_count(relation))
+        if relation.primary_key.present?
+          with_tiebreak(order_by_count(relation))
+        else
+          relation
+        end
       when :belongs_to
         with_tiebreak(order_by_belongs_to(relation))
       when :has_one
@@ -75,7 +79,7 @@ module Administrate
       query = klass.arel_table[klass.primary_key].count.public_send(direction)
       relation
         .left_joins(attribute.to_sym)
-        .group(:id)
+        .group(relation.primary_key)
         .reorder(query)
     end
 
