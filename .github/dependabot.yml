@@ -5,8 +5,32 @@ updates:
   - package-ecosystem: bundler
     directory: "/"
     schedule:
-      interval: daily
-    open-pull-requests-limit: 10
+      interval: weekly
+    groups:
+      bundler-dependencies:
+        applies-to: version-updates
+        update-types:
+          - minor
+          - patch
+      bundler-security:
+        applies-to: security-updates
+    cooldown:
+      default-days: 5
+
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      npm-dependencies:
+        applies-to: version-updates
+        update-types:
+          - minor
+          - patch
+      npm-security:
+        applies-to: security-updates
+    cooldown:
+      default-days: 5
 
   - package-ecosystem: github-actions
     directory: "/"
