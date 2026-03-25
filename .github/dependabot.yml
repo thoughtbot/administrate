@@ -14,6 +14,8 @@ updates:
           - patch
       bundler-security:
         applies-to: security-updates
+        patterns:
+          - '*'
     cooldown:
       default-days: 5
 
@@ -29,6 +31,8 @@ updates:
           - patch
       npm-security:
         applies-to: security-updates
+        patterns:
+          - '*'
     cooldown:
       default-days: 5
 
