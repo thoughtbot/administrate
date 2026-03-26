@@ -14,6 +14,7 @@ Bundler.require(*Rails.groups)
 
 module AdministratePrototype
   class Application < Rails::Application
+    config.load_defaults "#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}"
     config.i18n.enforce_available_locales = true
 
     config.generators do |generate|
@@ -27,9 +28,9 @@ module AdministratePrototype
     end
 
     config.action_controller.action_on_unpermitted_parameters = :raise
-    config.active_record.time_zone_aware_types = %i[datetime time]
-    config.active_support.to_time_preserves_timezone = :zone
-    config.action_view.form_with_generates_ids = true
+    if Rails.gem_version < Gem::Version.new("7.0")
+      config.active_support.to_time_preserves_timezone = :zone
+    end
 
     # Opt-out of FLoC: https://amifloced.org/
     config.action_dispatch
