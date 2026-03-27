@@ -1,0 +1,6 @@
+<%# locals: (page:, f:, form_group:, attribute:, attribute_counter: nil, attribute_iteration: nil) %>
+
+<div class="field-unit field-unit--<%= attribute.html_class %> field-unit--<%= requireness(attribute) %>">
+  <%= yield %>
+  <%= render "form_item_hint", page: page, f: f, form_group: form_group, attribute: attribute %>
+</div>
