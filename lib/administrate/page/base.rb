@@ -29,10 +29,6 @@ module Administrate
 
       attr_accessor :context
 
-      def dashboard_context=(context)
-        dashboard.context = context
-      end
-
       private
 
       def attribute_field(dashboard, resource, attribute_name, page)

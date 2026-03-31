@@ -28,7 +28,6 @@ module Administrate
           data || resolver.resource_class.new
         ).tap do |page|
           page.context = context
-          page.dashboard_context = context
         end
       end
 
@@ -38,7 +37,6 @@ module Administrate
           data || resolver.resource_class.new
         ) do |page|
           page.context = context
-          page.dashboard_context = context
         end
       end
 
