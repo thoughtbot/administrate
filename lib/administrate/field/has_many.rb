@@ -78,7 +78,7 @@ module Administrate
       end
 
       def data
-        @data ||= associated_class.none
+        super || associated_class.none
       end
 
       def order_from_params(params)
