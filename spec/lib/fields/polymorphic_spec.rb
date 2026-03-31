@@ -97,10 +97,10 @@ describe Administrate::Field::Polymorphic do
 
     context "present in options as a call-able object" do
       it "returns the called value" do
-        classes = -> { ["one", "two", "three"] }
+        classes = ->(field) { ["one", "two", "three"] }
         allow(field).to receive(:options).and_return(classes: classes)
 
-        expect(field.send(:classes)).to eq(classes.call)
+        expect(field.send(:classes)).to eq(classes.call(field))
       end
     end
   end

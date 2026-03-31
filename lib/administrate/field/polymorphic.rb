@@ -33,7 +33,7 @@ module Administrate
 
       def classes
         klasses = options.fetch(:classes, [])
-        klasses.respond_to?(:call) ? klasses.call : klasses
+        klasses.respond_to?(:call) ? klasses.call(self) : klasses
       end
 
       private
