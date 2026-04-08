@@ -57,6 +57,17 @@ feature "order index page" do
     )
   end
 
+  scenario "clicking destroy does not navigate to show page", js: true do
+    create(:order)
+
+    visit admin_orders_path
+    dismiss_confirm do
+      click_on t("administrate.actions.destroy")
+    end
+
+    expect(page).to have_current_path(admin_orders_path)
+  end
+
   scenario "cannot delete because associated payment", js: true do
     create(:payment, order: create(:order))
 
