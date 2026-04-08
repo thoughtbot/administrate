@@ -11,6 +11,10 @@ Gem::Specification.new do |s|
   s.summary = "A Rails engine for creating super-flexible admin dashboards"
   s.license = "MIT"
 
+  s.metadata = {
+    "rubygems_mfa_required" => "true"
+  }
+
   s.files = Dir["{app,lib,docs}/**/*", "config/locales/**/*", "LICENSE", "Rakefile"]
 
   s.add_dependency "actionpack", ">= 6.0", "< 9.0"
