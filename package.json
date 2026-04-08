@@ -15,7 +15,7 @@
     "trix": "^2.1.17"
   },
   "devDependencies": {
-    "@thoughtbot/stylelint-config": "^4.0.0",
+    "@thoughtbot/stylelint-config": "^5.0.0",
     "stylelint": "^16.2.1"
   }
 }
