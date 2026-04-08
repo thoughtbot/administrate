@@ -6,13 +6,13 @@
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.0",
-    "@rails/actiontext": "^8.0.0",
+    "@hotwired/turbo-rails": "^8.0.23",
+    "@rails/actiontext": "^8.1.300",
     "@selectize/selectize": "^0.15.2",
-    "esbuild": "^0.25.0",
+    "esbuild": "^0.28.0",
     "jquery": "^3.7.0",
-    "sass": "^1.63.6",
-    "trix": "^2.1.17"
+    "sass": "^1.99.0",
+    "trix": "^2.1.18"
   },
   "devDependencies": {
     "@thoughtbot/stylelint-config": "^4.0.0",
