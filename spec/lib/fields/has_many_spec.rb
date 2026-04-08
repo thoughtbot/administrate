@@ -54,6 +54,7 @@ describe Administrate::Field::HasMany do
     before do
       stub_const("FooDashboard", Class.new)
       allow(FooDashboard).to receive(:new).and_return(dashboard_double)
+      allow(dashboard_double).to receive(:context=).with(nil).and_return(nil)
     end
 
     it "determines what dashboard is used to present the association" do
@@ -247,6 +248,58 @@ describe Administrate::Field::HasMany do
         )
 
         expect(field.selected_options).to be_nil
+      end
+    end
+  end
+
+  describe "#associated_resource_options" do
+    context "with `order` option" do
+      it "returns the resources in correct order" do
+        order = create(:order)
+        create_list(:customer, 5)
+        options = {order: "name"}
+        association = Administrate::Field::HasMany.with_options(options)
+
+        field = association.new(:customer, [], :show, resource: order)
+
+        correct_order = Customer.order("name").pluck(:id)
+
+        resources = field.associated_resource_options.compact.to_h.values
+        expect(resources).to eq correct_order
+      end
+
+      it "ignores the order passed in `scope`" do
+        order = create(:order)
+        create_list(:customer, 3)
+        options = {
+          order: "name",
+          scope: ->(_field) { Customer.order(name: :desc) }
+        }
+        association = Administrate::Field::HasMany.with_options(options)
+
+        field = association.new(:customer, [], :show, resource: order)
+
+        correct_order = Customer.order("name").pluck(:id)
+
+        resources = field.associated_resource_options.compact.to_h.values
+        expect(resources).to eq correct_order
+      end
+    end
+
+    context "with `scope` option" do
+      it "returns the resources within the passed scope" do
+        # Building instead of creating, to avoid a dependent customer being
+        # created, leading to random failures
+        order = build(:order)
+
+        1.upto(3) { |i| create :customer, name: "customer-#{i}" }
+        scope = ->(_field) { Customer.order(name: :desc).limit(2) }
+
+        association = Administrate::Field::HasMany.with_options(scope: scope)
+        field = association.new(:customer, [], :show, resource: order)
+        resources = field.associated_resource_options.compact.to_h.keys
+
+        expect(resources).to eq ["customer-3", "customer-2"]
       end
     end
   end

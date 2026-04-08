@@ -26,7 +26,9 @@ module Administrate
           associated_dashboard,
           order: order,
           collection_attributes: options[:collection_attributes]
-        )
+        ).tap do |page|
+          page.context = context
+        end
       end
 
       def attribute_key
@@ -76,7 +78,7 @@ module Administrate
       end
 
       def data
-        @data ||= associated_class.none
+        super || associated_class.none
       end
 
       def order_from_params(params)
@@ -106,12 +108,11 @@ module Administrate
       end
 
       def candidate_resources
-        if options.key?(:includes)
-          includes = options.fetch(:includes)
-          associated_class.includes(*includes).all
-        else
-          associated_class.all
-        end
+        scope = options[:scope] ? options[:scope].call(self) : associated_class.all
+        scope = scope.includes(*options.fetch(:includes)) if options.key?(:includes)
+
+        order = options.delete(:order)
+        order ? scope.reorder(order) : scope
       end
 
       def display_candidate_resource(resource)
