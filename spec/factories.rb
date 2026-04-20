@@ -43,11 +43,14 @@ FactoryBot.define do
     image_url do
       "https://cdn.recombu.com/mobile/images/news/M11370/1264769196_w670.jpg"
     end
-    product_meta_tag
+    trait :with_product_meta_tag do
+      association :product_meta_tag
+    end
     release_year { [2018, 2019, 2020].sample }
   end
 
   factory :product_meta_tag do
+    association :product
     meta_title { "meta_title" }
     meta_description { "meta_description" }
   end
@@ -78,5 +81,9 @@ FactoryBot.define do
     name { Faker::Internet.ip_v4_address }
   end
 
-  factory :page
+  factory :page do
+    sequence(:title) { |n| "Page #{n}" }
+    body { "Sample body text" }
+    association :product
+  end
 end
