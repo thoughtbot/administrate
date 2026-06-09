@@ -75,7 +75,9 @@ class OrderDashboard < Administrate::BaseDashboard
     if %w[new create].include?(action.to_s) && context.try(:pundit_user).try(:admin?)
       super
     else
-      super.dup.tap { |attrs| attrs[""] = attrs[""] - %i[customer] }.delete_if { |_k, v| v.blank? }
+      super.dup
+        .transform_values { |v| v.without(:customer) }
+        .delete_if { |_k, v| v.blank? }
     end
   end
 end
