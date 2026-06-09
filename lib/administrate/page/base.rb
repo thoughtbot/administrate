@@ -38,10 +38,6 @@ module Administrate
         end
       end
 
-      def get_attribute_value(resource, attribute_name)
-        resource.public_send(attribute_name)
-      end
-
       attr_reader :dashboard, :options
     end
   end
