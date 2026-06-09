@@ -34,7 +34,7 @@ describe Admin::OrdersController, type: :controller do
     end
 
     describe "GET new" do
-      it "allows me to new my records" do
+      it "allows access to /new" do
         expect { get :new }.not_to raise_error
       end
     end
@@ -117,13 +117,13 @@ describe Admin::OrdersController, type: :controller do
     let!(:user) { create(:customer, name: "Current User") }
 
     describe "GET new" do
-      it "allows me to new records" do
+      it "allows access to /new" do
         expect { get :new }.not_to raise_error
       end
     end
 
     describe "POST create" do
-      it "allows me to create my records with current customer" do
+      it "allows creating records with the current customer" do
         post(
           :create,
           params: {

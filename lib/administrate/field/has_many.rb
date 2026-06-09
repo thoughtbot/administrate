@@ -109,9 +109,9 @@ module Administrate
 
       def candidate_resources
         scope = options[:scope] ? options[:scope].call(self) : associated_class.all
-        scope = scope.includes(*options.fetch(:includes)) if options.key?(:includes)
+        scope = scope.includes(options.fetch(:includes, []))
 
-        order = options.delete(:order)
+        order = options[:order]
         order ? scope.reorder(order) : scope
       end
 
