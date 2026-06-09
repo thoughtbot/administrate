@@ -23,6 +23,7 @@ class Admin::FoosController < Admin::ApplicationController
   #   send_foo_updated_email
   # end
 
+  # Override this method to specify custom lookup behavior.
   # This will be used to set the resource for the `show`, `edit`, and `update`
   # actions.
   #
