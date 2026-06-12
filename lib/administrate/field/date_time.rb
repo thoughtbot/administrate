@@ -6,21 +6,35 @@ module Administrate
       def date
         I18n.localize(
           data.in_time_zone(timezone).to_date,
-          format: format
+          format: format(type: :date),
+          default: fallback_format(type: :date)
         )
       end
 
       def datetime
         I18n.localize(
           data.in_time_zone(timezone),
-          format: format
+          format: format(type: :datetime),
+          default: fallback_format(type: :datetime)
         )
       end
 
       private
 
-      def format
-        options.fetch(:format, :default)
+      def format(type: :date)
+        options.fetch(:format, default_format(type: type))
+      end
+
+      def default_format(type: :date)
+        :"administrate_#{type}_default"
+      end
+
+      def fallback_format(type: :date)
+        if type == :date
+          I18n.t("date.formats.default", default: "%Y-%m-%d")
+        else
+          I18n.t("time.formats.default", default: "%Y-%m-%d %H:%M")
+        end
       end
 
       def timezone
