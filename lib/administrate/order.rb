@@ -10,20 +10,10 @@ module Administrate
       return order_by_association(relation) unless
         reflect_association(relation).nil?
 
-      order = relation.arel_table[sorting_column].public_send(direction)
+      return order_by_column(relation) if
+        column_exist?(relation, sorting_column)
 
-      tiebreak_key = relation.primary_key
-      tiebreak_order = relation.arel_table[tiebreak_key].public_send(direction)
-
-      if column_exist?(relation, sorting_column)
-        if column_exist?(relation, tiebreak_key) && sorting_column.to_s != tiebreak_key.to_s
-          relation.reorder(order, tiebreak_order)
-        else
-          relation.reorder(order)
-        end
-      else
-        relation
-      end
+      relation
     end
 
     def ordered_by?(attr)
@@ -59,14 +49,26 @@ module Administrate
       (direction == :asc) ? :desc : :asc
     end
 
+    def order_by_column(relation)
+      order = relation.arel_table[sorting_column].public_send(direction)
+      with_tiebreak(
+        relation.reorder(order),
+        ordered_column: sorting_column
+      )
+    end
+
     def order_by_association(relation)
       case relation_type(relation)
       when :has_many
-        order_by_count(relation)
+        if relation.primary_key.present?
+          with_tiebreak(order_by_count(relation))
+        else
+          relation
+        end
       when :belongs_to
-        order_by_belongs_to(relation)
+        with_tiebreak(order_by_belongs_to(relation))
       when :has_one
-        order_by_has_one(relation)
+        with_tiebreak(order_by_has_one(relation))
       else
         relation
       end
@@ -77,7 +79,7 @@ module Administrate
       query = klass.arel_table[klass.primary_key].count.public_send(direction)
       relation
         .left_joins(attribute.to_sym)
-        .group(:id)
+        .group(relation.primary_key)
         .reorder(query)
     end
 
@@ -110,6 +112,25 @@ module Administrate
 
     def column_exist?(table, column_name)
       table.columns_hash.key?(column_name.to_s)
+    end
+
+    def with_tiebreak(relation, ordered_column: nil)
+      tiebreak_key = relation.primary_key
+      tiebreak_order = tiebreak_order_for(relation)
+
+      if tiebreak_order && ordered_column.to_s != tiebreak_key.to_s
+        relation.order(tiebreak_order)
+      else
+        relation
+      end
+    end
+
+    def tiebreak_order_for(relation)
+      tiebreak_key = relation.primary_key
+
+      if tiebreak_key && column_exist?(relation, tiebreak_key)
+        relation.arel_table[tiebreak_key].public_send(direction)
+      end
     end
 
     def order_by_id_query(relation)
