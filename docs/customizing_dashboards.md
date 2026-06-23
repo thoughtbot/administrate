@@ -664,3 +664,11 @@ fields/base/looks/customer_card/
 fields/base/looks/default/
 fields/base/
 ```
+
+You can also select a different look for each page by passing a Hash to `look` option.
+
+```ruby
+ATTRIBUTE_TYPES = {
+  created_at: Field::DateTime.with_options(look: {index: :relative})
+}
+```
