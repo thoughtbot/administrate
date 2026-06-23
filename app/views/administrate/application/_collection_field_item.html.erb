@@ -1,0 +1,12 @@
+<%# locals: (collection_presenter:, collection_field_name:, page:, resource:, attribute:, attribute_counter: nil, attribute_iteration: nil) %>
+
+<% if accessible_action?(resource, :show) -%>
+  <a href="<%= polymorphic_path([namespace, resource]) -%>"
+      tabindex="-1"
+      class="action-show"
+      >
+    <%= render_field attribute %>
+  </a>
+<% else %>
+  <%= render_field attribute %>
+<% end -%>
