@@ -31,8 +31,8 @@ class Admin::FoosController < Admin::ApplicationController
   #   Foo.find_by!(slug: param)
   # end
 
-  # Override this if you have certain roles that require a subset
-  # this will be used to set the records shown on the `index` action.
+  # Override this if you have certain roles that require a subset.
+  # This will be used in all actions except for the `new` and `create` actions
   #
   # def scoped_resource
   #  if current_user.super_admin?
