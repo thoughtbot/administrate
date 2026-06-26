@@ -60,7 +60,7 @@ describe "product form has_one relationship" do
   end
 
   it "edits product and meta tag data correctly", js: true do
-    product = create(:product, banner: <<~HTML)
+    product = create(:product, :with_product_meta_tag, banner: <<~HTML)
       <div>A banner with a <a href="https://example.com">link</a>.</div>
     HTML
 
