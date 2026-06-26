@@ -1,0 +1,18 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/universal
+{
+	"name": "For Codespaces",
+
+	"image": "mcr.microsoft.com/devcontainers/universal:4",
+
+	"containerEnv": {
+		"DATABASE_URL": "postgresql://postgres:@localhost"
+	},
+
+	"onCreateCommand": "bash --login .devcontainer/codespaces/onCreateCommand.sh",
+
+	"postCreateCommand": "bash --login .devcontainer/codespaces/postCreateCommand.sh",
+
+	"postStartCommand": "bash --login .devcontainer/codespaces/postStartCommand.sh"
+
+}
