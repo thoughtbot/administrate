@@ -3073,4 +3073,12 @@ form.button_to .link {
   opacity: 0.5;
 }
 
+.selectize-dropdown-content .optgroup-header {
+  font-size: 1em;
+}
+
+.selectize-dropdown-content .optgroup .option {
+  padding-left: 1em;
+}
+
 /*# sourceMappingURL=application.css.map */
