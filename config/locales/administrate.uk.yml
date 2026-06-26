@@ -28,3 +28,5 @@ uk:
     search:
       clear: Очистити пошук
       label: пошук %{resource}
+    table:
+      actions: Дії

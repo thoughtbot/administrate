@@ -28,3 +28,5 @@ fi:
     search:
       clear: Tyhjennä haku
       label: Etsi %{resource}
+    table:
+      actions: Toiminnot
