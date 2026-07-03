@@ -146,7 +146,6 @@ GEM
       railties (>= 6.1.0)
     faker (3.6.1)
       i18n (>= 1.8.11, < 2)
-    ffi (1.17.1)
     formulaic (0.4.2)
       activesupport
       capybara
@@ -171,9 +170,7 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.8, >= 1.8.1)
       terminal-table (>= 1.5.1)
-    image_processing (1.14.0)
-      mini_magick (>= 4.9.5, < 6)
-      ruby-vips (>= 2.0.17, < 3)
+    image_processing (2.0.2)
     io-console (0.8.2)
     irb (1.17.0)
       pp (>= 0.6.0)
@@ -215,9 +212,6 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
-    mini_magick (5.1.2)
-      benchmark
-      logger
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (6.0.2)
@@ -344,9 +338,6 @@ GEM
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.47.1, < 2.0)
     ruby-progressbar (1.13.0)
-    ruby-vips (2.2.3)
-      ffi (~> 1.12)
-      logger
     rubyzip (3.2.2)
     securerandom (0.4.1)
     selenium-webdriver (4.41.0)
