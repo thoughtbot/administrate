@@ -86,6 +86,11 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [:id]
 
+  # Configure local disk for ActiveStorage
+  # Running on Heroku means that the filesystem is ephemeral, but we rebuild the
+  # demo app daily.
+  config.active_storage.service = :local
+
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
