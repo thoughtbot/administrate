@@ -10,7 +10,7 @@
     "@rails/actiontext": "^8.0.0",
     "@selectize/selectize": "^0.15.2",
     "esbuild": "^0.25.0",
-    "jquery": "^3.7.0",
+    "jquery": "^3.7.1",
     "sass": "^1.63.6",
     "trix": "^2.1.17"
   },
