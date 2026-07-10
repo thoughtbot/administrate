@@ -1,14 +1,12 @@
 ---
 name: Bundler Audit
 on:
-  push:
-    branches:
-      - 'main'
   pull_request:
     types: [opened, synchronize, reopened]
 
 jobs:
   audit:
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && startsWith(github.head_ref, 'dependabot/bundler/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
