@@ -50,16 +50,16 @@ describe Admin::CustomersController, type: :controller do
     context "when the user is an admin" do
       controller(Admin::CustomersController) do
         def authenticate_admin
-          @current_user = Customer.last
+          @current_user = Customer.find_by!(name: "Current User")
         end
       end
 
-      it "passes one customers to the view" do
-        _other_customers = create_list(:customer, 5)
-        customer = create(:customer)
+      let!(:current_user) { create(:customer, name: "Current User") }
+      let!(:other_customers) { create_list(:customer, 5) }
 
+      it "passes one customers to the view" do
         locals = capture_view_locals { get :index }
-        expect(locals[:resources]).to eq([customer])
+        expect(locals[:resources]).to eq([current_user])
       end
     end
 
