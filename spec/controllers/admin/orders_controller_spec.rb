@@ -5,10 +5,8 @@ require "rails_helper"
 
 # standard:disable Lint/ConstantDefinitionInBlock
 describe Admin::OrdersController, type: :controller do
-  context "with namespaced Punditize concern" do
+  context "using Punditize with a namespaced policy" do
     controller(Admin::OrdersController) do
-      include Administrate::Punditize
-
       def policy_namespace
         [:own]
       end
