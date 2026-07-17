@@ -1,8 +1,8 @@
 require "rails_helper"
 
-# standard:disable Lint/ConstantDefinitionInBlock
 describe "authorization" do
   before do
+    # standard:disable Lint/ConstantDefinitionInBlock
     class TestProductPolicy < ProductPolicy
       class Scope < ProductPolicy::Scope
         def resolve
@@ -14,6 +14,7 @@ describe "authorization" do
         false
       end
     end
+    # standard:enable Lint/ConstantDefinitionInBlock
 
     @original_product_policy = Product.policy_class
     Product.policy_class = TestProductPolicy
@@ -55,4 +56,3 @@ describe "authorization" do
     expect(page).to have_css(".js-table-row", count: 1)
   end
 end
-# standard:enable Lint/ConstantDefinitionInBlock
