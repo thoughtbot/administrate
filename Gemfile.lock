@@ -231,7 +231,7 @@ GEM
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     ostruct (0.6.3)
-    parallel (2.1.0)
+    parallel (1.28.0)
     parser (3.3.12.0)
       ast (~> 2.4.1)
       racc
@@ -342,7 +342,7 @@ GEM
     ruby-progressbar (1.13.0)
     rubyzip (3.4.1)
     securerandom (0.4.1)
-    selenium-webdriver (4.46.0)
+    selenium-webdriver (4.44.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -432,12 +432,13 @@ DEPENDENCIES
   kaminari-i18n
   launchy
   ostruct
+  parallel (< 2.0)
   pg
   puma
   pundit
   rack-timeout
   redcarpet
-  selenium-webdriver
+  selenium-webdriver (< 4.45)
   sentry-rails
   sentry-ruby
   shoulda-matchers

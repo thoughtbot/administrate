@@ -32,6 +32,9 @@ group :development, :test do
   gem "i18n-tasks"
   gem "standard"
   gem "yard"
+
+  # Dependency of Rubocop. Pinned for compatibility with Ruby 3.2
+  gem "parallel", "< 2.0"
 end
 
 group :test do
@@ -40,7 +43,7 @@ group :test do
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
-  gem "selenium-webdriver"
+  gem "selenium-webdriver", "< 4.45" # Pinned for compatibility with Ruby 3.2
   gem "shoulda-matchers"
   gem "timecop"
   gem "webmock"
