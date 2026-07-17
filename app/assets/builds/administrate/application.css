@@ -2562,6 +2562,7 @@ a,
   color: var(--action-color);
   text-decoration-skip-ink: auto;
   transition: color var(--base-duration) var(--base-timing);
+  /* stylelint-disable selector-no-qualifying-type */
 }
 a:hover,
 .link:is(button,
@@ -2577,13 +2578,6 @@ a:focus,
 [type=submit]):focus {
   outline: var(--focus-outline);
   outline-offset: var(--focus-outline-offset);
-}
-a,
-.link:is(button,
-[type=button],
-[type=reset],
-[type=submit]) {
-  /* stylelint-disable selector-no-qualifying-type */
 }
 a.link--danger,
 .link:is(button,
@@ -2796,11 +2790,6 @@ form.button_to .link {
   width: 1rem;
 }
 
-.field-unit::after {
-  clear: both;
-  content: "";
-  display: block;
-}
 .field-unit {
   align-items: center;
   display: flex;
@@ -2808,6 +2797,11 @@ form.button_to .link {
   margin-bottom: var(--base-spacing);
   position: relative;
   width: 100%;
+}
+.field-unit::after {
+  clear: both;
+  content: "";
+  display: block;
 }
 
 .field-unit__label {
