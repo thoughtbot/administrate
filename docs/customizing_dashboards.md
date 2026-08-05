@@ -84,6 +84,7 @@ You can set multiple columns as well with direction. E.g.: `"name, email DESC"`.
 `:scope` - Specifies a custom scope inside a callable. Useful for preloading.
 Example #1: `.with_options(scope: -> { MyModel.includes(:rel).limit(5) })`
 Example #2: `.with_options(scope: -> (field) { field.resource.my_models.includes(:rel).limit(5) })`
+Example #3: `.with_options(scope: -> (field) { field.context.try(:current_user).try(:admin?) ? MyModel.all : MyModel.none })`
 
 `:include_blank` - Specifies if the select element to be rendered should include
 blank option. Default is `true`.
@@ -119,6 +120,14 @@ If neither is specified, sorting will be done using the foreign key.
 
 `:collection_attributes` - Set the columns to display in the show view.
 Default is COLLECTION_ATTRIBUTES in dashboard.
+
+`:order` - Specifies the column used to order the records. It will apply both in
+the table views and in the dropdown menu on the record forms.
+You can set multiple columns as well with direction. E.g.: `"name, email DESC"`.
+
+`:scope` - Specifies a custom scope inside a callable. Useful for preloading or
+filtering associated records based on the current request.
+Example: `.with_options(scope: ->(field) { field.context.try(:current_user).try(:admin?) ? MyModel.all : MyModel.none })`
 
 `:limit` - The number of resources (paginated) to display in the show view. To disable pagination,
 set this to `0` or `false`. Default is `5`.
@@ -475,6 +484,38 @@ en:
     field_hints:
       customer:
         email: field_hint
+```
+
+## Accessing the Controller from a Dashboard
+
+Dashboard instances have access to the current controller via `context`.
+This allows you to vary dashboard behavior based on the current request.
+For example, you can show or hide fields depending on the current user:
+
+```ruby
+class OrderDashboard < Administrate::BaseDashboard
+  # ...
+
+  def form_attributes(action = nil)
+    if context.try(:current_user).try(:admin?)
+      super
+    else
+      super.transform_values { |v| v.without(:customer) }
+           .delete_if { |_k, v| v.blank? }
+    end
+  end
+end
+```
+
+`context` is also available on field instances, so `getter` lambdas can
+reference it via `field.context`:
+
+```ruby
+ATTRIBUTE_TYPES = {
+  greeting: Field::String.with_options(
+    getter: ->(field) { "Hello, #{field.context.try(:current_user).try(:name)}" }
+  )
+}
 ```
 
 ## Grouped Attributes
