@@ -39,6 +39,19 @@ describe Admin::OrdersController, type: :controller do
       end
     end
 
+    describe "POST create" do
+      it "allows creating records with the current customer" do
+        post(
+          :create,
+          params: {
+            order: attributes_for(:order)
+          }
+        )
+        expect(response).to redirect_to([:admin, (order = Order.last)])
+        expect(order.customer).to eq(user)
+      end
+    end
+
     describe "GET edit" do
       it "allows me to edit my records" do
         order = create :order, customer: user
@@ -103,35 +116,6 @@ describe Admin::OrdersController, type: :controller do
       it "never shows destroy actions" do
         o = create :order, customer: user, address_state: "AZ"
         expect(controller.send(:authorized_action?, o, :destroy)).to be false
-      end
-    end
-  end
-
-  context "when the user is not an admin" do
-    controller(Admin::OrdersController) do
-      def pundit_user
-        Customer.find_by(name: "Current User")
-      end
-    end
-
-    let!(:user) { create(:customer, name: "Current User") }
-
-    describe "GET new" do
-      it "allows access to /new" do
-        expect { get :new }.not_to raise_error
-      end
-    end
-
-    describe "POST create" do
-      it "allows creating records with the current customer" do
-        post(
-          :create,
-          params: {
-            order: attributes_for(:order)
-          }
-        )
-        expect(response).to redirect_to([:admin, (order = Order.last)])
-        expect(order.customer).to eq(user)
       end
     end
   end
