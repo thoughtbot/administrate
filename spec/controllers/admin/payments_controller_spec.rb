@@ -1,7 +1,5 @@
 require "rails_helper"
 
-# Ensure we keep explicit coverage for authorization errors on `new` actions.
-# standard:disable Lint/ConstantDefinitionInBlock
 RSpec.describe Admin::PaymentsController, type: :controller do
   controller(Admin::PaymentsController) do
     include Administrate::Punditize
@@ -19,4 +17,3 @@ RSpec.describe Admin::PaymentsController, type: :controller do
     end
   end
 end
-# standard:enable Lint/ConstantDefinitionInBlock

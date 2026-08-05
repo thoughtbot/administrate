@@ -260,7 +260,7 @@ describe Administrate::Field::BelongsTo do
         create_list(:customer, 3)
         options = {
           order: "name",
-          scope: ->(_field) { Customer.order(name: :desc) }
+          scope: -> { Customer.order(name: :desc) }
         }
         association = Administrate::Field::BelongsTo.with_options(options)
 

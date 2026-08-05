@@ -47,7 +47,7 @@ describe Admin::CustomersController, type: :controller do
       expect(locals[:resources].map(&:id)).to eq customers.map(&:id).sort
     end
 
-    context "when the user is an admin" do
+    context "when the user is not an admin" do
       controller(Admin::CustomersController) do
         def authenticate_admin
           @current_user = Customer.find_by!(name: "Current User")
