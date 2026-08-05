@@ -65,16 +65,20 @@ module Administrate
         end
       end
 
-      def initialize(attribute, data, page, options = {})
+      def initialize(attribute, raw_data, page, options = {})
         @attribute = attribute
         @page = page
         @resource = options.delete(:resource)
         @options = options
-        @data = read_value(data)
+        @raw_data = raw_data
       end
 
       def html_class
         self.class.html_class
+      end
+
+      def data
+        read_value(@raw_data)
       end
 
       def html_controller
@@ -133,7 +137,8 @@ module Administrate
         end
       end
 
-      attr_reader :attribute, :data, :options, :page, :resource
+      attr_reader :attribute, :options, :page, :resource
+      attr_accessor :context
     end
   end
 end

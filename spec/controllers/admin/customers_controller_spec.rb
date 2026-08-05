@@ -3,10 +3,10 @@ require "rails_helper"
 describe Admin::CustomersController, type: :controller do
   describe "GET index" do
     it "passes all customers to the view" do
-      customer = create(:customer)
+      customers = create_list(:customer, 5)
 
       locals = capture_view_locals { get :index }
-      expect(locals[:resources]).to eq([customer])
+      expect(locals[:resources]).to eq(customers)
     end
 
     it "applies any scope overrides" do
@@ -45,6 +45,22 @@ describe Admin::CustomersController, type: :controller do
 
       locals = capture_view_locals { get :index }
       expect(locals[:resources].map(&:id)).to eq customers.map(&:id).sort
+    end
+
+    context "when the user is not an admin" do
+      controller(Admin::CustomersController) do
+        def authenticate_admin
+          @current_user = Customer.find_by!(name: "Current User")
+        end
+      end
+
+      let!(:current_user) { create(:customer, name: "Current User") }
+      let!(:other_customers) { create_list(:customer, 5) }
+
+      it "passes one customers to the view" do
+        locals = capture_view_locals { get :index }
+        expect(locals[:resources]).to eq([current_user])
+      end
     end
 
     context "with alternate sorting attributes" do

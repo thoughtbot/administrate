@@ -11,6 +11,7 @@ module Administrate
       resources = paginate_resources(resources)
       @resources = resources
       page = Administrate::Page::Collection.new(dashboard, order: order)
+      page.context = self
       filters = Administrate::Search.new(scoped_resource, dashboard, search_term).valid_filters
 
       render locals: {
@@ -24,29 +25,38 @@ module Administrate
 
     def show
       @resource = resource = requested_resource
+      page = Administrate::Page::Show.new(dashboard, resource)
+      page.context = self
       render locals: {
-        page: Administrate::Page::Show.new(dashboard, resource)
+        page: page
       }
     end
 
     def new
-      @resource = resource = new_resource
-      authorize_resource(resource)
+      @resource = resource = new_resource.tap do |resource|
+        authorize_resource(resource)
+      end
+
+      page = Administrate::Page::Form.new(dashboard, resource)
+      page.context = self
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, resource)
+        page: page
       }
     end
 
     def edit
       @resource = resource = requested_resource
+      page = Administrate::Page::Form.new(dashboard, resource)
+      page.context = self
       render locals: {
-        page: Administrate::Page::Form.new(dashboard, resource)
+        page: page
       }
     end
 
     def create
-      @resource = resource = new_resource(resource_params)
-      authorize_resource(resource)
+      @resource = resource = new_resource(resource_params).tap do |resource|
+        authorize_resource(resource)
+      end
 
       if resource.save
         yield(resource) if block_given?
@@ -55,8 +65,10 @@ module Administrate
           notice: translate_with_resource("create.success")
         )
       else
+        page = Administrate::Page::Form.new(dashboard, resource)
+        page.context = self
         render :new, locals: {
-          page: Administrate::Page::Form.new(dashboard, resource)
+          page: page
         }, status: :unprocessable_entity
       end
     end
@@ -70,8 +82,10 @@ module Administrate
           status: :see_other
         )
       else
+        page = Administrate::Page::Form.new(dashboard, resource)
+        page.context = self
         render :edit, locals: {
-          page: Administrate::Page::Form.new(dashboard, resource)
+          page: page
         }, status: :unprocessable_entity
       end
     end
@@ -178,7 +192,9 @@ module Administrate
     end
 
     def dashboard
-      @dashboard ||= dashboard_class.new
+      @dashboard ||= dashboard_class.new.tap do |d|
+        d.context = self
+      end
     end
 
     def requested_resource

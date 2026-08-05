@@ -34,8 +34,21 @@ describe Admin::OrdersController, type: :controller do
     end
 
     describe "GET new" do
-      it "raises a Pundit error" do
-        expect { get :new }.to raise_error(Pundit::NotAuthorizedError)
+      it "allows access to /new" do
+        expect { get :new }.not_to raise_error
+      end
+    end
+
+    describe "POST create" do
+      it "allows creating records with the current customer" do
+        post(
+          :create,
+          params: {
+            order: attributes_for(:order)
+          }
+        )
+        expect(response).to redirect_to([:admin, (order = Order.last)])
+        expect(order.customer).to eq(user)
       end
     end
 

@@ -300,5 +300,15 @@ describe Administrate::Field::Base do
         expect(field.data).to eq(nil)
       end
     end
+
+    context "when context is set and a getter block is provided" do
+      it "lazily reads the value from the context" do
+        resource = double("Model")
+        field = field_class.new(:attribute, :date, :page, resource: resource, getter: ->(f) { f.context.custom_value + " from block" })
+        field.context = double("Context", custom_value: "custom value")
+
+        expect(field.data).to eq("custom value from block")
+      end
+    end
   end
 end
