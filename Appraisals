@@ -18,8 +18,10 @@ end
 
 appraise "rails80" do
   gem "rails", "~> 8.0"
+  gem "ruby-vips"
 end
 
 appraise "pundit21" do
   gem "pundit", "~> 2.1.0"
+  gem "ruby-vips"
 end
