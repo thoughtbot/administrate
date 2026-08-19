@@ -3,7 +3,6 @@ require "rails_helper"
 # Test Authorization by using the Pundit concern and an example policy,
 # which will test all the authorization functionality.
 
-# standard:disable Lint/ConstantDefinitionInBlock
 describe Admin::OrdersController, type: :controller do
   context "with namespaced Punditize concern" do
     controller(Admin::OrdersController) do
@@ -107,4 +106,3 @@ describe Admin::OrdersController, type: :controller do
     end
   end
 end
-# standard:enable Lint/ConstantDefinitionInBlock

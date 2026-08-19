@@ -10,9 +10,9 @@ require "administrate/field/number"
 require "administrate/base_dashboard"
 require "administrate/search"
 
-# standard:disable Lint/ConstantDefinitionInBlock
 describe Administrate::Search do
   before :all do
+    # standard:disable Lint/ConstantDefinitionInBlock
     module Administrate
       module SearchSpecMocks
         class MockRecord < ApplicationRecord
@@ -69,6 +69,7 @@ describe Administrate::Search do
         end
       end
     end
+    # standard:enable Lint/ConstantDefinitionInBlock
   end
 
   after :all do
@@ -225,4 +226,3 @@ describe Administrate::Search do
     end
   end
 end
-# standard:enable Lint/ConstantDefinitionInBlock
