@@ -21,7 +21,6 @@ describe "order form" do
 
   describe "belongs_to relationships" do
     it "has stored value selected" do
-      create(:customer)
       order = create(:order)
 
       visit edit_admin_order_path(order)
