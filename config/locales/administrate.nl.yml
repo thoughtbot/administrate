@@ -28,3 +28,5 @@ nl:
     search:
       clear: Wissen
       label: Zoeken %{resource}
+    table:
+      actions: Acties
