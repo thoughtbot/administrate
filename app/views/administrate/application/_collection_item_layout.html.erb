@@ -1,0 +1,19 @@
+<%# locals: (collection_presenter:, collection_field_name:, page:, resource:, resource_counter:, resource_iteration:) %>
+
+<tr class="js-table-row"
+  <% if accessible_action?(resource, :show) %>
+    <%= %(tabindex=0 data-url=#{polymorphic_path([namespace, resource])}) %>
+  <% end %>
+  >
+
+  <%= yield %>
+
+  <%= render(
+    "collection_item_actions",
+    collection_presenter: collection_presenter,
+    collection_field_name: collection_field_name,
+    page: page,
+    namespace: namespace,
+    resource: resource
+  ) %>
+</tr>
