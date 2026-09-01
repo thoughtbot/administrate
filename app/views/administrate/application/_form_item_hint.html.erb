@@ -1,0 +1,8 @@
+<%# locals: (page:, f:, form_group:, attribute:) %>
+
+<% hint_key = "administrate.field_hints.#{page.resource_name}.#{attribute.name}" %>
+<% if I18n.exists?(hint_key) -%>
+<div class="field-unit__hint">
+  <%= I18n.t(hint_key) %>
+</div>
+<% end -%>
