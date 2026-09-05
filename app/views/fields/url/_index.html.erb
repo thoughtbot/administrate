@@ -16,5 +16,5 @@ By default, the value is rendered as an `a` element.
 %>
 
 <%= content_tag :a, href: field.data, **field.html_options do %>
-  <%= field.data %>
+  <%= field.truncate %>
 <% end %>
