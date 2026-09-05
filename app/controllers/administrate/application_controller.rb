@@ -64,6 +64,7 @@ module Administrate
     def update
       @resource = resource = requested_resource
       if resource.update(resource_params)
+        yield(resource) if block_given?
         redirect_to(
           after_resource_updated_path(resource),
           notice: translate_with_resource("update.success"),
