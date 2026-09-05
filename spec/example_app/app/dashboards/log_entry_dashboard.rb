@@ -6,12 +6,13 @@ class LogEntryDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     action: Field::String,
-    logeable: Field::Polymorphic.with_options(classes: [Customer, ::Order])
+    logeable: Field::Polymorphic.with_options(classes: [Customer, ::Order]),
+    created_at: Field::DateTime.with_options(look: {index: :relative})
   }.freeze
 
-  COLLECTION_ATTRIBUTES = [:id] + ATTRIBUTES
+  COLLECTION_ATTRIBUTES = [:id] + ATTRIBUTES + [:created_at]
   FORM_ATTRIBUTES = ATTRIBUTES
-  SHOW_PAGE_ATTRIBUTES = ATTRIBUTES
+  SHOW_PAGE_ATTRIBUTES = ATTRIBUTES + [:created_at]
 
   def display_resource(resource)
     "#{resource.action}[#{safe_display_logeable(resource.logeable)}]"
