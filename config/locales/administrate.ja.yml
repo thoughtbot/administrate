@@ -28,3 +28,5 @@ ja:
     search:
       clear: 検索をクリアする
       label: "%{resource}を検索"
+    table:
+      actions: 操作

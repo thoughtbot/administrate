@@ -28,3 +28,5 @@ da:
     search:
       clear: Ryd søgning
       label: Søg %{resource}
+    table:
+      actions: Handlinger

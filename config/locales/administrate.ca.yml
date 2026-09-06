@@ -28,3 +28,5 @@ ca:
     search:
       clear: Esborrar la cerca
       label: Cerca %{resource}
+    table:
+      actions: Accions
