@@ -1,4 +1,4 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// For format details, see https://containers.dev/implementors/json_reference/. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/universal
 {
 	"name": "For Codespaces",
