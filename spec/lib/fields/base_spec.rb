@@ -46,6 +46,34 @@ describe Administrate::Field::Base do
         end
       end
 
+      context "when the look option is a hash" do
+        it "returns the partial prefixes based on the look option and page" do
+          field = field_class.new(:attribute, nil, :show, look: {show: :custom_show, form: :custom_form})
+          allow(field_class).to receive(:to_s).and_return("Administrate::Field::String")
+
+          prefixes = field.partial_prefixes
+
+          expect(prefixes).to eq([
+            "fields/string/looks/custom_show", "fields/string/looks/default", "fields/string",
+            "fields/base/looks/custom_show", "fields/base/looks/default", "fields/base"
+          ])
+        end
+
+        context "when the page is not in the look option" do
+          it "returns the partial prefixes based on the default look" do
+            field = field_class.new(:attribute, nil, :show, look: {form: :custom_form})
+            allow(field_class).to receive(:to_s).and_return("Administrate::Field::String")
+
+            prefixes = field.partial_prefixes
+
+            expect(prefixes).to eq([
+              "fields/string/looks/default", "fields/string",
+              "fields/base/looks/default", "fields/base"
+            ])
+          end
+        end
+      end
+
       context "when the look option is explicitly default" do
         it "returns the partial prefixes based on the field class" do
           field = field_class.new(:attribute, nil, :show, look: :default)
@@ -63,6 +91,20 @@ describe Administrate::Field::Base do
       context "when the look option is explicitly nil" do
         it "returns the partial prefixes based on the field class" do
           field = field_class.new(:attribute, nil, :show, look: nil)
+          allow(field_class).to receive(:to_s).and_return("Administrate::Field::String")
+
+          prefixes = field.partial_prefixes
+
+          expect(prefixes).to eq([
+            "fields/string/looks/default", "fields/string",
+            "fields/base/looks/default", "fields/base"
+          ])
+        end
+      end
+
+      context "when the look option is an unexpected type (ex. Array)" do
+        it "returns the partial prefixes based on the default look (instead of raising an error)" do
+          field = field_class.new(:attribute, nil, :show, look: [])
           allow(field_class).to receive(:to_s).and_return("Administrate::Field::String")
 
           prefixes = field.partial_prefixes
