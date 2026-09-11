@@ -1,0 +1,26 @@
+<%# locals: (collection_presenter:, collection_field_name:, page:, attribute_type:, attribute_type_counter: nil, attribute_type_iteration: nil) %>
+<% attr_name = attribute_type.first %>
+<% attr_type = attribute_type.second %>
+
+<% if attr_type.sortable? %>
+  <%= link_to(params: sanitized_order_params(page, collection_field_name).merge(
+    collection_presenter.order_params_for(attr_name, key: collection_field_name)
+  )) do %>
+    <%= t(
+      "helpers.label.#{collection_presenter.resource_name}.#{attr_name}",
+      default: resource_class.human_attribute_name(attr_name).titleize,
+    ) %>
+    <% if collection_presenter.ordered_by?(attr_name) %>
+      <span class="cell-label__sort-indicator cell-label__sort-indicator--<%= collection_presenter.ordered_html_class(attr_name) %>">
+        <svg aria-hidden="true">
+          <use xlink:href="#icon-up-caret" />
+        </svg>
+      </span>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= t(
+    "helpers.label.#{collection_presenter.resource_name}.#{attr_name}",
+    default: resource_class.human_attribute_name(attr_name).titleize,
+  ) %>
+<% end %>
