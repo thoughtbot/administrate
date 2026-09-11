@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e
+
+if [ -z "$ZSH_VERSION" ] && [ -z "$BASH_VERSION" ]; then
+  echo "This script must be sourced. Please run with 'source bin/setup-codespaces'."
+  exit 1;
+fi
+
+rvm install $(cat .ruby-version)
+rvm --default use $(cat .ruby-version)
+ruby -v
+
+docker run -d -i --name postgres -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust postgres
+export DATABASE_URL=postgresql://postgres:@localhost
+
+# Create config/database.yml
+./bin/setup
+# Setup &  Create .env
+./bin/setup
+RAILS_ENV=test bundle exec rake db:setup dev:prime
+
+echo "" >> .env && echo "DATABASE_URL=postgresql://postgres:@localhost" >> .env
