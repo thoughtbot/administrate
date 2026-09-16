@@ -1,15 +1,13 @@
-# Workaround for install Ruby 4.0.0 with RVM
-rvm list
-curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
-curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
-rvm get master
-rvm list known
-
-# Install Ruby
-rvm install 3.4.6
-rvm install 4.0.0
-rvm --default use 4.0.0
-rvm list
+# Install Ruby via rv
+curl -LsSf https://rv.dev/install | sh
+source ~/.cargo/env
+rv ruby list
+rv ruby install 3.4.6
+rv ruby install 4.0.0
+rv ruby list
+echo 'eval "$(rv shell init bash)"' >> ~/.bashrc
+source ~/.bashrc
+which ruby
 ruby --version
 
 # Workaround for Yarn GPG key
