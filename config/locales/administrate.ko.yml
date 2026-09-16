@@ -28,3 +28,5 @@ ko:
     search:
       clear: 검색 초기화
       label: "%{resource} 검색"
+    table:
+      actions: 작업
