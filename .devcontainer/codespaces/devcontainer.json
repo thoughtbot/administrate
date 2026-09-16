@@ -3,10 +3,11 @@
 {
 	"name": "For Codespaces",
 
-	"image": "mcr.microsoft.com/devcontainers/universal:4",
+	"image": "mcr.microsoft.com/devcontainers/universal:6",
 
 	"containerEnv": {
-		"DATABASE_URL": "postgresql://postgres:@localhost"
+		"DATABASE_URL": "postgresql://postgres:@localhost",
+		"COREPACK_ENABLE_DOWNLOAD_PROMPT": "0"
 	},
 
 	"onCreateCommand": "bash --login .devcontainer/codespaces/onCreateCommand.sh",
