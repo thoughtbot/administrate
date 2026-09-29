@@ -1,5 +1,5 @@
 ---
-title: Customizing date, datetime, and time formats
+title: Customizing time and date formats
 ---
 
 Administrate uses its own default I18n formats for date, datetime, and time
