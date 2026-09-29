@@ -45,7 +45,8 @@ app][prerelease_docs].
 
 ## Contributing
 
-Please see [CONTRIBUTING.md](/CONTRIBUTING.md).
+Please see [CONTRIBUTING.md](/CONTRIBUTING.md). We do not accept LLM generated
+contributions.
 
 Administrate was originally written by Grace Youngblood and is now maintained by
 Nick Charlton. Many improvements and bugfixes were contributed by the [open
