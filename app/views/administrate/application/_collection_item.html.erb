@@ -1,0 +1,14 @@
+<%# locals: (collection_presenter:, collection_field_name:, page:, resource:, resource_counter:, resource_iteration:) %>
+
+<%= render(
+  partial: "collection_field_item",
+  layout: "collection_field_item_layout",
+  collection: collection_presenter.attributes_for(resource),
+  as: :attribute,
+  locals: {
+    collection_presenter: collection_presenter,
+    collection_field_name: collection_field_name,
+    page: page,
+    resource: resource
+  }
+) %>
