@@ -10,6 +10,12 @@ project codebases, issue trackers, chat-rooms, and mailing lists.
 
 [code of conduct]: https://thoughtbot.com/open-source-code-of-conduct
 
+## Use of LLM/AI tools
+
+We will not accept any contributions generated from LLMs.
+
+
+
 ## Getting Started
 
 Administrate is a [Rails Engine][], but ships with everything needed to
