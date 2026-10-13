@@ -5,6 +5,13 @@ set -e
 EXAMPLE_APP_PATH="spec/example_app"
 SAMPLE_DB_CONFIG_PATH="$EXAMPLE_APP_PATH/config/database.yml.sample"
 DB_CONFIG_PATH="$EXAMPLE_APP_PATH/config/database.yml"
+
+if [ -n "${CODESPACES+set}" ]; then
+	cp "$SAMPLE_DB_CONFIG_PATH" "$DB_CONFIG_PATH"
+
+	npm install --global yarn@1
+fi
+
 if [ ! -e "$DB_CONFIG_PATH" ]; then
   cp "$SAMPLE_DB_CONFIG_PATH" "$DB_CONFIG_PATH"
   echo "A new database config file was created at $DB_CONFIG_PATH."
