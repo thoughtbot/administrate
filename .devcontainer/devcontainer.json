@@ -4,7 +4,6 @@
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "service": "app",
   "runServices": ["db"],
-  "updateContentCommand": "bin/setup",
   "forwardPorts": [3000],
   "portsAttributes": {
     "3000": {
