@@ -27,4 +27,6 @@ zh-TW:
       back_to_app: 返回首頁
     search:
       clear: 清除搜尋
-      label: 搜尋 %{resource}
+      label: 搜尋 %{resource} 
+    table:
+      actions: 操作

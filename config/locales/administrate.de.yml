@@ -28,3 +28,5 @@ de:
     search:
       clear: Suche zurücksetzen
       label: "%{resource} durchsuchen"
+    table:
+      actions: Aktionen

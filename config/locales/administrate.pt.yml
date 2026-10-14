@@ -29,3 +29,5 @@ pt:
     search:
       clear: Limpar pesquisa
       label: Pesquisa %{resource}
+    table:
+      actions: Ações
