@@ -1,5 +1,6 @@
 appraise "rails60" do
   gem "drb"
+  gem "json", "< 3"
   gem "mutex_m"
   gem "psych", "< 4"
   gem "rails", "~> 6.0.3.4"
@@ -7,12 +8,14 @@ appraise "rails60" do
 end
 
 appraise "rails61" do
+  gem "json", "< 3"
   gem "drb"
   gem "mutex_m"
   gem "rails", "~> 6.1"
 end
 
 appraise "rails70" do
+  gem "json", "< 3"
   gem "rails", "~> 7.0"
 end
 
