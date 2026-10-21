@@ -9,7 +9,7 @@ export default class extends Controller {
         event.keyCode == keycodes.space ||
         event.keyCode == keycodes.enter) {
 
-      if (event.target.href) {
+      if (event.target.closest("[href]")) {
         return;
       }
 
