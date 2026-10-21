@@ -17,6 +17,11 @@
 
 ## Changes
 
+* `[BUGFIX]`: [#3049][] Fix support for index queries against Active Record
+  classes not connected to the primary database
+
+[#3049]: https://github.com/thoughtbot/administrate/pull/3049
+
 ### 1.0.0 (October 31, 2025)
 
 After a long time in the making, and contributions from many different people, 
