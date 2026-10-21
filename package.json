@@ -7,11 +7,11 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.23",
-    "@rails/actiontext": "^8.1.301",
+    "@rails/actiontext": "^8.1.400",
     "@selectize/selectize": "^0.15.2",
     "esbuild": "^0.28.2",
     "jquery": "^3.7.0",
-    "sass": "^1.104.0",
+    "sass": "^1.105.2",
     "trix": "^2.1.19"
   },
   "devDependencies": {

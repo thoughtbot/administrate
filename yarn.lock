@@ -324,10 +324,10 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-8.1.300.tgz#bfd50813be0225a0403bddb11e8ba9a00b1fb135"
   integrity sha512-zOENQsq3NM2jyBY6Z2qtZa3V/R/6OEqA+LGKixQbBMl7kk/J3FXDRcszPe74LsHNgB01jCl/DXu/xA8sHt4I/g==
 
-"@rails/actiontext@^8.1.301":
-  version "8.1.301"
-  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-8.1.301.tgz#00a97c68af150649ad182ba001c1861ecc20523c"
-  integrity sha512-v8anL1G27LqjO42aTN+xuPw8JYGuk3xF29MsBAoBIX0VJ3ALU3ceJOEudFSjbRqjfRJqESxfBlypeC3Udqibmw==
+"@rails/actiontext@^8.1.400":
+  version "8.1.400"
+  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-8.1.400.tgz#3554cecf31b9d9c17474c126d3f53da8ad69b2e3"
+  integrity sha512-WufXWPjzpRyj5/o/J7RW7TSgC3bWUPwmz1uib9asdqXPdC7pARbDHRCJJBfmzE6bqlHeJDA5qqu/AXrbfUlmpQ==
   dependencies:
     "@rails/activestorage" ">= 8.1.0-alpha"
 
@@ -1117,10 +1117,10 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
-sass@^1.104.0:
-  version "1.104.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.104.0.tgz#40a6dfc42f8cc469f7f2c10b40c6a0b8577895ac"
-  integrity sha512-btHMApW2bgolvClhRW8AlQJzgI9lUB3pPSofBQQT+E46GWvf9o0TVQ13SYv5riWZVFyPN+JNz3TKW9XhBlc10w==
+sass@^1.105.2:
+  version "1.105.2"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.105.2.tgz#81e25b304e086832b1ba8095db48614970f14d1c"
+  integrity sha512-KxW6ZKZiBKWK3ziQ4YZ3cpqo8/1TlHXE8t9nBNvGDZFoBFbk2MD7RacxYFs8zy8hzeFwpFYkVyAhboi47uYPEQ==
   dependencies:
     chokidar "^5.0.0"
     immutable "^5.1.5"
