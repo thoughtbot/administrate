@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "actionpack", ">= 6.0", "< 9.0"
   s.add_dependency "actionview", ">= 6.0", "< 9.0"
   s.add_dependency "activerecord", ">= 6.0", "< 9.0"
-  s.add_dependency "kaminari", "~> 1.2.2"
+  s.add_dependency "kaminari", ">= 1.2.2", "< 1.4.0"
 
   s.description = <<~DESCRIPTION
     Administrate is a library for Rails that generates admin dashboards. These
