@@ -1,0 +1,14 @@
+<%# locals: (page:, f:, form_group:, form_group_counter: nil, form_group_iteration: nil) %>
+<% attributes = form_group.second %>
+
+<%= render(
+  partial: "form_item",
+  layout: "form_item_layout",
+  collection: attributes,
+  as: :attribute,
+  locals: {
+    page: page,
+    f: f,
+    form_group: form_group,
+  }
+) %>
