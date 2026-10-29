@@ -3079,6 +3079,10 @@ form.button_to .link {
   opacity: 0.5;
 }
 
+.search__tooltip-popover-hint {
+  margin-left: 1rem;
+}
+
 .selectize-dropdown-content .optgroup-header {
   font-size: 1em;
 }

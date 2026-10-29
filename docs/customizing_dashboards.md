@@ -450,6 +450,17 @@ COLLECTION_FILTERS = {
 You can now search your resource with 'state:open' and your
 collection filter Proc will be called with with attr = open.
 
+Filters can have an associated hint to provide more information. Filter hints
+are defined using a translation where the string key is the name of the filter:
+
+```yml
+en:
+  administrate:
+    filter_hints:
+      customer:
+        inactive: "Only show customers who haven't logged in in the past week"
+```
+
 ## Form Attributes
 
 You can define different attributes for new/create or edit/update actions:
