@@ -1,6 +1,6 @@
 module Admin
   class LogEntriesController < Admin::ApplicationController
-    def filter_resources(resources, search_term:)
+    def filter_resources(resources)
       return resources if search_term.blank?
 
       customer_ids = Customer.where(

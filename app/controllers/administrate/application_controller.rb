@@ -1,300 +1,81 @@
 module Administrate
   class ApplicationController < ActionController::Base
+    include Administrate::Authorizable
+    include Administrate::CollectionPaginator
+    include Administrate::CollectionSearchable
+    include Administrate::CollectionSortable
+    include Administrate::ControllerDeprecator
+    include Administrate::ControllerI18n
+    include Administrate::DashboardManager
+    include Administrate::HtmlRenderer
+    include Administrate::ResourceManager
+
     protect_from_forgery with: :exception
 
     def index
-      authorize_resource(resource_class)
-      search_term = params[:search].to_s.strip
-      resources = filter_resources(scoped_resource, search_term: search_term)
-      resources = apply_collection_includes(resources)
-      resources = order.apply(resources)
-      resources = paginate_resources(resources)
-      @resources = resources
-      page = Administrate::Page::Collection.new(dashboard, order: order)
-      page.context = self
-      filters = Administrate::Search.new(scoped_resource, dashboard, search_term).valid_filters
-
-      render locals: {
-        resources: resources,
-        search_term: search_term,
-        page: page,
-        show_search_bar: show_search_bar?,
-        filters: filters
-      }
+      respond_to do |format|
+        format.html { respond_to_index_html }
+        format.json { render json: collection_resources }
+      end
     end
 
     def show
-      @resource = resource = requested_resource
-      page = Administrate::Page::Show.new(dashboard, resource)
-      page.context = self
-      render locals: {
-        page: page
-      }
+      respond_to do |format|
+        format.html { respond_to_show_html }
+        format.json { render json: requested_resource }
+      end
     end
 
     def new
-      @resource = resource = new_resource.tap do |resource|
-        authorize_resource(resource)
+      respond_to do |format|
+        format.html { respond_to_new_html }
       end
-
-      page = Administrate::Page::Form.new(dashboard, resource)
-      page.context = self
-      render locals: {
-        page: page
-      }
     end
 
     def edit
-      @resource = resource = requested_resource
-      page = Administrate::Page::Form.new(dashboard, resource)
-      page.context = self
-      render locals: {
-        page: page
-      }
+      respond_to do |format|
+        format.html { respond_to_edit_html }
+      end
     end
 
     def create
-      @resource = resource = new_resource(resource_params).tap do |resource|
-        authorize_resource(resource)
-      end
+      if save_built_resource
+        yield(built_resource) if block_given?
 
-      if resource.save
-        yield(resource) if block_given?
-        redirect_to(
-          after_resource_created_path(resource),
-          notice: translate_with_resource("create.success")
-        )
+        respond_to do |format|
+          format.html { respond_to_create_html }
+        end
       else
-        page = Administrate::Page::Form.new(dashboard, resource)
-        page.context = self
-        render :new, locals: {
-          page: page
-        }, status: :unprocessable_entity
+        respond_to do |format|
+          format.html { respond_to_create_error_html }
+        end
       end
     end
 
     def update
-      @resource = resource = requested_resource
-      if resource.update(resource_params)
-        redirect_to(
-          after_resource_updated_path(resource),
-          notice: translate_with_resource("update.success"),
-          status: :see_other
-        )
+      requested_resource.assign_attributes(resource_params)
+
+      if save_requested_resource
+        respond_to do |format|
+          format.html { respond_to_update_html }
+        end
       else
-        page = Administrate::Page::Form.new(dashboard, resource)
-        page.context = self
-        render :edit, locals: {
-          page: page
-        }, status: :unprocessable_entity
+        respond_to do |format|
+          format.html { respond_to_update_error_html }
+        end
       end
     end
 
     def destroy
-      @resource = resource = requested_resource
-      if resource.destroy
-        flash[:notice] = translate_with_resource("destroy.success")
-      else
-        flash[:error] = resource.errors.full_messages.join("<br/>")
-      end
-      redirect_to after_resource_destroyed_path(resource), status: :see_other
-    end
-
-    private
-
-    def filter_resources(resources, search_term:)
-      Administrate::Search.new(
-        resources,
-        dashboard,
-        search_term
-      ).run
-    end
-
-    def after_resource_destroyed_path(_requested_resource)
-      {action: :index}
-    end
-
-    def after_resource_created_path(requested_resource)
-      [namespace, requested_resource]
-    end
-
-    def after_resource_updated_path(requested_resource)
-      [namespace, requested_resource]
-    end
-
-    helper_method :nav_link_state
-    def nav_link_state(resource)
-      underscore_resource = resource.to_s.split("/").join("__")
-      (resource_name.to_s.pluralize == underscore_resource) ? :active : :inactive
-    end
-
-    # Whether the named action route exists for the resource class.
-    #
-    # @param resource [Class, String, Symbol] A class of resources, or the name
-    #   of a class of resources.
-    # @param action_name [String, Symbol] The name of an action that might be
-    #   possible to perform on a resource or resource class.
-    # @return [Boolean] `true` if a route exists for the resource class and the
-    #   action. `false` otherwise.
-    def existing_action?(resource, action_name)
-      routes.include?([resource.to_s.underscore.pluralize, action_name.to_s])
-    end
-    helper_method :existing_action?
-
-    def routes
-      @routes ||= Namespace.new(namespace).routes.to_set
-    end
-
-    def records_per_page
-      params[:per_page] || 20
-    end
-
-    def order
-      @order ||= Administrate::Order.new(
-        sorting_attribute,
-        sorting_direction,
-        sorting_column: sorting_column(
-          dashboard_attribute(sorting_attribute)
-        )
-      )
-    end
-
-    def sorting_column(dashboard_attribute)
-      return unless dashboard_attribute.try(:options)
-
-      dashboard_attribute.options.fetch(:sorting_column) {
-        dashboard_attribute.options.fetch(:order, nil)
-      }
-    end
-
-    def dashboard_attribute(attribute)
-      dashboard.attribute_types[attribute.to_sym] if attribute
-    end
-
-    def sorting_attribute
-      sorting_params.fetch(:order) { default_sorting_attribute }
-    end
-
-    def default_sorting_attribute
-      nil
-    end
-
-    def sorting_direction
-      sorting_params.fetch(:direction) { default_sorting_direction }
-    end
-
-    def default_sorting_direction
-      nil
-    end
-
-    def sorting_params
-      Hash.try_convert(request.query_parameters[resource_name]) || {}
-    end
-
-    def dashboard
-      @dashboard ||= dashboard_class.new.tap do |d|
-        d.context = self
-      end
-    end
-
-    def requested_resource
-      @requested_resource ||= find_resource(params[:id]).tap do |resource|
-        authorize_resource(resource)
-      end
-    end
-
-    def find_resource(param)
-      scoped_resource.find(param)
-    end
-
-    def scoped_resource
-      resource_class.default_scoped
-    end
-
-    def apply_collection_includes(relation)
-      resource_includes = dashboard.collection_includes
-      return relation if resource_includes.empty?
-      relation.includes(*resource_includes)
-    end
-
-    def resource_params
-      params.require(resource_class.model_name.param_key)
-        .permit(dashboard.permitted_attributes(action_name))
-        .transform_values { |v| read_param_value(v) }
-    end
-
-    def read_param_value(data)
-      if data.is_a?(ActionController::Parameters) && data[:type]
-        if data[:type] == Administrate::Field::Polymorphic.to_s
-          GlobalID::Locator.locate(data[:value])
-        else
-          raise "Unrecognised param data: #{data.inspect}"
+      if requested_resource.destroy
+        respond_to do |format|
+          format.html { respond_to_destroy_html }
         end
-      elsif data.is_a?(ActionController::Parameters)
-        data.transform_values { |v| read_param_value(v) }
-      elsif data.is_a?(String) && data.blank?
-        nil
       else
-        data
+        respond_to do |format|
+          format.html { respond_to_destroy_error_html }
+        end
       end
-    end
-
-    delegate :dashboard_class, :resource_class, :resource_name, :namespace,
-      to: :resource_resolver
-    helper_method :namespace
-    helper_method :resource_name
-    helper_method :resource_class
-
-    def resource_resolver
-      @resource_resolver ||=
-        Administrate::ResourceResolver.new(controller_path)
-    end
-
-    def translate_with_resource(key)
-      t(
-        "administrate.controller.#{key}",
-        resource: resource_resolver.resource_title
-      )
-    end
-
-    def show_search_bar?
-      dashboard.attribute_types_for(
-        dashboard.all_attributes
-      ).any? { |_name, attribute| attribute.searchable? }
-    end
-
-    # Whether the current user is authorized to perform the named action on the
-    # resource.
-    #
-    # @param _resource [ActiveRecord::Base, Class, String, Symbol] The
-    #   temptative target of the action, or the name of its class.
-    # @param _action_name [String, Symbol] The name of an action that might be
-    #   possible to perform on a resource or resource class.
-    # @return [Boolean] `true` if the current user is authorized to perform the
-    #   action on the resource. `false` otherwise.
-    def authorized_action?(_resource, _action_name)
-      true
-    end
-    helper_method :authorized_action?
-
-    def new_resource(params = {})
-      resource_class.new(params)
-    end
-    helper_method :new_resource
-
-    def authorize_resource(resource)
-      if authorized_action?(resource, action_name)
-        resource
-      else
-        raise Administrate::NotAuthorizedError.new(
-          action: action_name,
-          resource: resource
-        )
-      end
-    end
-
-    def paginate_resources(resources)
-      resources.page(params[:_page]).per(records_per_page)
     end
   end
 end
