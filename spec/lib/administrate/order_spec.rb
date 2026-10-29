@@ -34,11 +34,14 @@ describe Administrate::Order do
         order = Administrate::Order.new(:name, :asc)
         relation = relation_with_column(:name)
         allow(relation).to receive(:reorder).and_return(relation)
+        allow(relation).to receive(:order).and_return(relation)
 
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:reorder).with(
-          to_sql('"table_name"."name" ASC'),
+          to_sql('"table_name"."name" ASC')
+        )
+        expect(relation).to have_received(:order).with(
           to_sql('"table_name"."id" ASC')
         )
         expect(ordered).to eq(relation)
@@ -48,11 +51,14 @@ describe Administrate::Order do
         order = Administrate::Order.new(:name, :desc)
         relation = relation_with_column(:name)
         allow(relation).to receive(:reorder).and_return(relation)
+        allow(relation).to receive(:order).and_return(relation)
 
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:reorder).with(
-          to_sql('"table_name"."name" DESC'),
+          to_sql('"table_name"."name" DESC')
+        )
+        expect(relation).to have_received(:order).with(
           to_sql('"table_name"."id" DESC')
         )
         expect(ordered).to eq(relation)
@@ -62,11 +68,14 @@ describe Administrate::Order do
         order = Administrate::Order.new(:name, :foo)
         relation = relation_with_column(:name)
         allow(relation).to receive(:reorder).and_return(relation)
+        allow(relation).to receive(:order).and_return(relation)
 
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:reorder).with(
-          to_sql('"table_name"."name" ASC'),
+          to_sql('"table_name"."name" ASC')
+        )
+        expect(relation).to have_received(:order).with(
           to_sql('"table_name"."id" ASC')
         )
         expect(ordered).to eq(relation)
@@ -77,12 +86,14 @@ describe Administrate::Order do
           order = Administrate::Order.new(:id, :asc)
           relation = relation_with_column(:name)
           allow(relation).to receive(:reorder).and_return(relation)
+          allow(relation).to receive(:order).and_return(relation)
 
           ordered = order.apply(relation)
 
           expect(relation).to have_received(:reorder).with(
             to_sql('"table_name"."id" ASC')
           )
+          expect(relation).not_to have_received(:order)
           expect(ordered).to eq(relation)
         end
       end
@@ -98,19 +109,21 @@ describe Administrate::Order do
             primary_key: nil
           )
           allow(relation).to receive(:reorder).and_return(relation)
+          allow(relation).to receive(:order).and_return(relation)
 
           ordered = order.apply(relation)
 
           expect(relation).to have_received(:reorder).with(
             to_sql('"table_name"."name" ASC')
           )
+          expect(relation).not_to have_received(:order)
           expect(ordered).to eq(relation)
         end
       end
     end
 
     context "when relation has_many association" do
-      it "orders the column by count" do
+      it "orders the column by count and tiebreaks" do
         order = Administrate::Order.new(:name)
         relation = relation_with_association(
           :has_many,
@@ -123,6 +136,7 @@ describe Administrate::Order do
         allow(relation).to receive(:reorder).and_return(relation)
         allow(relation).to receive(:left_joins).and_return(relation)
         allow(relation).to receive(:group).and_return(relation)
+        allow(relation).to receive(:order).and_return(relation)
 
         ordered = order.apply(relation)
 
@@ -131,29 +145,86 @@ describe Administrate::Order do
         expect(relation).to have_received(:reorder).with(
           to_sql('COUNT("users"."uid") ASC')
         )
+        expect(relation).to have_received(:order).with(
+          to_sql('"table_name"."id" ASC')
+        )
         expect(ordered).to eq(relation)
+      end
+
+      context "when the parent relation has no primary key" do
+        it "orders the column by count without tiebreaks" do
+          order = Administrate::Order.new(:name)
+          relation = relation_with_association(
+            :has_many,
+            primary_key: nil,
+            klass: double(
+              table_name: "users",
+              arel_table: Arel::Table.new("users"),
+              primary_key: "uid"
+            )
+          )
+          allow(relation).to receive(:reorder).and_return(relation)
+          allow(relation).to receive(:left_joins).and_return(relation)
+          allow(relation).to receive(:group).and_return(relation)
+          allow(relation).to receive(:order).and_return(relation)
+
+          ordered = order.apply(relation)
+
+          expect(relation).to have_received(:left_joins).with(:name)
+          expect(relation).to have_received(:group).with(:id)
+          expect(relation).to have_received(:reorder).with(
+            to_sql('COUNT("users"."uid") ASC')
+          )
+          expect(relation).not_to have_received(:order)
+          expect(ordered).to eq(relation)
+        end
       end
     end
 
     context "when relation has belongs_to association" do
-      it "orders by id" do
+      it "orders by id and tiebreaks" do
         order = Administrate::Order.new
         relation = relation_with_association(
           :belongs_to,
           foreign_key: "some_foreign_key"
         )
         allow(relation).to receive(:reorder).and_return(relation)
+        allow(relation).to receive(:order).and_return(relation)
 
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:reorder).with(
           to_sql('"table_name"."some_foreign_key" ASC')
         )
+        expect(relation).to have_received(:order).with(
+          to_sql('"table_name"."id" ASC')
+        )
         expect(ordered).to eq(relation)
       end
 
+      context "when the parent relation has no primary key" do
+        it "orders by id without tiebreaks" do
+          order = Administrate::Order.new
+          relation = relation_with_association(
+            :belongs_to,
+            primary_key: nil,
+            foreign_key: "some_foreign_key"
+          )
+          allow(relation).to receive(:reorder).and_return(relation)
+          allow(relation).to receive(:order).and_return(relation)
+
+          ordered = order.apply(relation)
+
+          expect(relation).to have_received(:reorder).with(
+            to_sql('"table_name"."some_foreign_key" ASC')
+          )
+          expect(relation).not_to have_received(:order)
+          expect(ordered).to eq(relation)
+        end
+      end
+
       context "when `order` argument valid" do
-        it "orders by the column" do
+        it "orders by the column and tiebreaks" do
           order = Administrate::Order.new(
             :user,
             nil,
@@ -168,10 +239,14 @@ describe Administrate::Order do
           )
           allow(relation).to receive(:joins).and_return(relation)
           allow(relation).to receive(:reorder).and_return(relation)
+          allow(relation).to receive(:order).and_return(relation)
 
           ordered = order.apply(relation)
           expect(relation).to have_received(:reorder).with(
             to_sql('"users"."name" ASC')
+          )
+          expect(relation).to have_received(:order).with(
+            to_sql('"table_name"."id" ASC')
           )
           expect(relation).to have_received(:joins).with(:user)
           expect(ordered).to eq(relation)
@@ -179,7 +254,7 @@ describe Administrate::Order do
       end
 
       context "when `order` argument invalid" do
-        it "orders by id" do
+        it "orders by id and tiebreaks" do
           order = Administrate::Order.new(
             :user,
             nil,
@@ -193,11 +268,15 @@ describe Administrate::Order do
             )
           )
           allow(relation).to receive(:reorder).and_return(relation)
+          allow(relation).to receive(:order).and_return(relation)
 
           ordered = order.apply(relation)
 
           expect(relation).to have_received(:reorder).with(
             to_sql('"table_name"."belongs_to_id" ASC')
+          )
+          expect(relation).to have_received(:order).with(
+            to_sql('"table_name"."id" ASC')
           )
           expect(ordered).to eq(relation)
         end
@@ -205,7 +284,7 @@ describe Administrate::Order do
     end
 
     context "when relation has has_one association" do
-      it "orders by id" do
+      it "orders by id and tiebreaks" do
         order = Administrate::Order.new(
           :user
         )
@@ -216,18 +295,48 @@ describe Administrate::Order do
 
         allow(relation).to receive(:joins).and_return(relation)
         allow(relation).to receive(:reorder).and_return(relation)
+        allow(relation).to receive(:order).and_return(relation)
 
         ordered = order.apply(relation)
 
         expect(relation).to have_received(:reorder).with(
           to_sql('"users"."uid" ASC')
         )
+        expect(relation).to have_received(:order).with(
+          to_sql('"table_name"."id" ASC')
+        )
         expect(relation).to have_received(:joins).with(:user)
         expect(ordered).to eq(relation)
       end
 
+      context "when the parent relation has no primary key" do
+        it "orders by id without tiebreaks" do
+          order = Administrate::Order.new(
+            :user
+          )
+          relation = relation_with_association(
+            :has_one,
+            primary_key: nil,
+            reflection: {table_name: "users", association_primary_key: "uid"}
+          )
+
+          allow(relation).to receive(:joins).and_return(relation)
+          allow(relation).to receive(:reorder).and_return(relation)
+          allow(relation).to receive(:order).and_return(relation)
+
+          ordered = order.apply(relation)
+
+          expect(relation).to have_received(:reorder).with(
+            to_sql('"users"."uid" ASC')
+          )
+          expect(relation).not_to have_received(:order)
+          expect(relation).to have_received(:joins).with(:user)
+          expect(ordered).to eq(relation)
+        end
+      end
+
       context "when `order` argument valid" do
-        it "orders by the column" do
+        it "orders by the column and tiebreaks" do
           order = Administrate::Order.new(
             :user,
             nil,
@@ -242,10 +351,14 @@ describe Administrate::Order do
           )
           allow(relation).to receive(:joins).and_return(relation)
           allow(relation).to receive(:reorder).and_return(relation)
+          allow(relation).to receive(:order).and_return(relation)
 
           ordered = order.apply(relation)
           expect(relation).to have_received(:reorder).with(
             to_sql('"users"."name" ASC')
+          )
+          expect(relation).to have_received(:order).with(
+            to_sql('"table_name"."id" ASC')
           )
           expect(relation).to have_received(:joins).with(:user)
           expect(ordered).to eq(relation)
@@ -253,7 +366,7 @@ describe Administrate::Order do
       end
 
       context "when `order` argument invalid" do
-        it "orders by id" do
+        it "orders by id and tiebreaks" do
           order = Administrate::Order.new(
             :user,
             nil,
@@ -268,11 +381,15 @@ describe Administrate::Order do
           )
           allow(relation).to receive(:joins).and_return(relation)
           allow(relation).to receive(:reorder).and_return(relation)
+          allow(relation).to receive(:order).and_return(relation)
 
           ordered = order.apply(relation)
 
           expect(relation).to have_received(:reorder).with(
             to_sql('"users"."pk" ASC')
+          )
+          expect(relation).to have_received(:order).with(
+            to_sql('"table_name"."id" ASC')
           )
           expect(relation).to have_received(:joins).with(:user)
           expect(ordered).to eq(relation)
@@ -365,6 +482,80 @@ describe Administrate::Order do
     end
   end
 
+  describe "#with_tiebreak" do
+    it "returns relation ordered by tiebreak" do
+      order = Administrate::Order.new(:name)
+      relation = relation_with_column(:name)
+      allow(relation).to receive(:order).and_return(relation)
+
+      ordered_relation = order.send(:with_tiebreak, relation, ordered_column: :name)
+
+      expect(relation).to have_received(:order).with(
+        to_sql('"table_name"."id" ASC')
+      )
+      expect(ordered_relation).to eq(relation)
+    end
+
+    it "returns relation unchanged when ordered column is primary key" do
+      order = Administrate::Order.new(:id)
+      relation = relation_with_column(:id)
+      allow(relation).to receive(:order).and_return(relation)
+
+      ordered_relation = order.send(:with_tiebreak, relation, ordered_column: :id)
+
+      expect(relation).not_to have_received(:order)
+      expect(ordered_relation).to eq(relation)
+    end
+
+    it "returns relation unchanged when relation has no primary key" do
+      order = Administrate::Order.new(:name)
+      relation = double(
+        columns_hash: {"name" => :column_info},
+        arel_table: Arel::Table.new("table_name"),
+        primary_key: nil
+      )
+      allow(relation).to receive(:order).and_return(relation)
+
+      ordered_relation = order.send(:with_tiebreak, relation, ordered_column: :name)
+
+      expect(relation).not_to have_received(:order)
+      expect(ordered_relation).to eq(relation)
+    end
+  end
+
+  describe "#tiebreak_order_for" do
+    it "returns order by primary key" do
+      order = Administrate::Order.new(:name)
+      relation = relation_with_column(:name)
+
+      tiebreak_order = order.send(:tiebreak_order_for, relation)
+
+      expect(tiebreak_order).to to_sql('"table_name"."id" ASC')
+    end
+
+    it "returns nil when relation has no primary key" do
+      order = Administrate::Order.new(:name)
+      relation = double(
+        columns_hash: {"name" => :column_info},
+        arel_table: Arel::Table.new("table_name"),
+        primary_key: nil
+      )
+
+      expect(order.send(:tiebreak_order_for, relation)).to be_nil
+    end
+
+    it "returns nil when primary key column does not exist" do
+      order = Administrate::Order.new(:name)
+      relation = double(
+        columns_hash: {"name" => :column_info},
+        arel_table: Arel::Table.new("table_name"),
+        primary_key: "id"
+      )
+
+      expect(order.send(:tiebreak_order_for, relation)).to be_nil
+    end
+  end
+
   def relation_with_column(column)
     double(
       klass: double(reflect_on_association: nil),
@@ -379,7 +570,8 @@ describe Administrate::Order do
     association,
     foreign_key: "#{association}_id",
     klass: nil,
-    reflection: {}
+    reflection: {},
+    primary_key: "id"
   )
     double(
       klass: double(
@@ -393,8 +585,10 @@ describe Administrate::Order do
           **reflection
         )
       ),
+      columns_hash: {"id" => :column_info},
       table_name: "table_name",
-      arel_table: Arel::Table.new("table_name")
+      arel_table: Arel::Table.new("table_name"),
+      primary_key: primary_key
     )
   end
 end
