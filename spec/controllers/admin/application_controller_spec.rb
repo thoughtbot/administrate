@@ -46,7 +46,7 @@ RSpec.describe Admin::ApplicationController, type: :controller do
     end
   end
 
-  describe "creation yeilds resource" do
+  describe "creation yields resource" do
     controller(Admin::OrdersController) do
       attr_reader :resource
 
@@ -73,6 +73,31 @@ RSpec.describe Admin::ApplicationController, type: :controller do
     end
   end
 
+  describe "updating yields resource" do
+    controller(Admin::OrdersController) do
+      attr_reader :resource
+
+      def update
+        super do |resource|
+          @resource = resource
+        end
+      end
+    end
+
+    it "yields the updated resource after creation" do
+      order = create(:order)
+      params = order.attributes.except(
+        "id",
+        "created_at",
+        "updated_at",
+        "shipped_at"
+      )
+
+      put :update, params: {id: order.to_param, order: params}
+
+      expect(controller.resource).to be_a(Order)
+    end
+  end
   describe "authorization" do
     controller(Administrate::ApplicationController) do
       def resource_class
