@@ -19,5 +19,8 @@
         "shopify.ruby-lsp"
       ],
     }
+  },
+  "containerEnv": {
+    "RAILS_DEVELOPMENT_HOSTS": ".githubpreview.dev,.preview.app.github.dev,.app.github.dev"
   }
 }
