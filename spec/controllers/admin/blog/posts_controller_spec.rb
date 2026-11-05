@@ -44,6 +44,14 @@ describe Admin::Blog::PostsController, type: :controller do
 
       expect(locals[:page]).to be_instance_of(Administrate::Page::Form)
     end
+
+    it "prefills the new namespaced resource from params" do
+      locals = capture_view_locals do
+        get :new, params: {blog_post: {title: "Hello"}}
+      end
+
+      expect(locals[:page].resource.title).to eq("Hello")
+    end
   end
 
   describe "GET edit" do
