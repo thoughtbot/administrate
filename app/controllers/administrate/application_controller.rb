@@ -33,7 +33,7 @@ module Administrate
     end
 
     def new
-      @resource = resource = new_resource.tap do |resource|
+      @resource = resource = new_resource(new_resource_params).tap do |resource|
         authorize_resource(resource)
       end
 
@@ -215,6 +215,14 @@ module Administrate
       resource_includes = dashboard.collection_includes
       return relation if resource_includes.empty?
       relation.includes(*resource_includes)
+    end
+
+    def new_resource_params
+      if params.key?(resource_class.model_name.param_key)
+        resource_params
+      else
+        {}
+      end
     end
 
     def resource_params
