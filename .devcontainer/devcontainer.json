@@ -11,5 +11,13 @@
       "label": "Application",
       "onAutoForward": "openPreview"
     }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.vscode-pull-request-github",
+        "shopify.ruby-lsp"
+      ],
+    }
   }
 }
