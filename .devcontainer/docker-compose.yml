@@ -1,0 +1,19 @@
+---
+services:
+  app:
+    image: ghcr.io/thoughtbot/devcontainers/images/universal:latest
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
+    environment:
+      PGHOST: db
+      PGPASSWORD: codespace
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    volumes:
+      - ./create-db-user.sql:/docker-entrypoint-initdb.d/create-db-user.sql
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres

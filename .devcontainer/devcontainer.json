@@ -1,0 +1,26 @@
+{
+  "name": "Administrate",
+  "dockerComposeFile": "docker-compose.yml",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "service": "app",
+  "runServices": ["db"],
+  "updateContentCommand": "bin/setup",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Application",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.vscode-pull-request-github",
+        "shopify.ruby-lsp"
+      ],
+    }
+  },
+  "containerEnv": {
+    "RAILS_DEVELOPMENT_HOSTS": ".githubpreview.dev,.preview.app.github.dev,.app.github.dev"
+  }
+}
