@@ -6,16 +6,6 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
-    groups:
-      bundler-dependencies:
-        applies-to: version-updates
-        update-types:
-          - minor
-          - patch
-      bundler-security:
-        applies-to: security-updates
-        patterns:
-          - '*'
     cooldown:
       default-days: 5
 
@@ -23,16 +13,6 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
-    groups:
-      npm-dependencies:
-        applies-to: version-updates
-        update-types:
-          - minor
-          - patch
-      npm-security:
-        applies-to: security-updates
-        patterns:
-          - '*'
     cooldown:
       default-days: 5
 
@@ -40,5 +20,3 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
-      time: '02:00'
-      timezone: 'Etc/UTC'
