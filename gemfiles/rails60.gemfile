@@ -47,7 +47,6 @@ group :test do
   gem "launchy"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
-  gem "timecop"
   gem "webmock"
   gem "webrick"
   gem "xpath", "3.2.0"
