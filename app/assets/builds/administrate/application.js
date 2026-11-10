@@ -22548,7 +22548,7 @@
   var table_controller_default = class extends Controller {
     visitDataUrl(event) {
       if (event.type == "click" || event.keyCode == keycodes.space || event.keyCode == keycodes.enter) {
-        if (event.target.href) {
+        if (event.target.closest("a[href], button, input[type='submit']")) {
           return;
         }
         var dataUrl = (0, import_jquery3.default)(event.target).closest("tr").data("url");

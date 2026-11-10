@@ -57,6 +57,24 @@ feature "order index page" do
     )
   end
 
+  scenario "user cancels deleting a record", js: true do
+    create(:order)
+
+    visit admin_orders_path
+    page.execute_script(<<~JS)
+      window.turboVisits = [];
+      document.addEventListener("turbo:before-visit", (event) => {
+        window.turboVisits.push(event.detail.url);
+        event.preventDefault();
+      });
+    JS
+    dismiss_confirm do
+      click_on t("administrate.actions.destroy")
+    end
+
+    expect(page.evaluate_script("window.turboVisits")).to be_empty
+  end
+
   scenario "cannot delete because associated payment", js: true do
     create(:payment, order: create(:order))
 
