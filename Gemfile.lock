@@ -402,6 +402,9 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.45)
+    yard-lint (1.13.1)
+      yard (~> 0.9)
+      zeitwerk (~> 2.6)
     zeitwerk (2.7.5)
 
 PLATFORMS
@@ -447,6 +450,7 @@ DEPENDENCIES
   webrick
   xpath (= 3.2.0)
   yard
+  yard-lint
 
 RUBY VERSION
    ruby 4.0.9p0
