@@ -1,0 +1,18 @@
+<%# locals: (page:, f:) %>
+<% return if page.resource.errors.empty? %>
+
+<div id="error_explanation">
+  <h2>
+    <%= t(
+      "administrate.form.errors",
+      pluralized_errors: pluralize(page.resource.errors.count, t("administrate.form.error")),
+      resource_name: display_resource_name(page.resource_name, singular: true)
+    ) %>
+  </h2>
+
+  <ul>
+    <% page.resource.errors.full_messages.each do |message| %>
+      <li class="flash-error"><%= message %></li>
+    <% end %>
+  </ul>
+</div>
