@@ -104,12 +104,12 @@ RSpec.describe Admin::ApplicationController, type: :controller do
   describe "validation contexts" do
     render_views
     controller(Admin::ProductsController) do
-      def validation_contexts_on_create(resource)
-        super + [:some_unclear_situation]
+      def save_on_create(resource)
+        resource.save(context: :some_unclear_situation)
       end
 
-      def validation_contexts_on_update(resource)
-        super + [:some_unclear_situation]
+      def save_on_update(resource)
+        resource.save(context: :some_unclear_situation)
       end
     end
 

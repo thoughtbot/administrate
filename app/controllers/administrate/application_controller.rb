@@ -58,7 +58,7 @@ module Administrate
         authorize_resource(resource)
       end
 
-      if resource.save(context: validation_contexts_on_create(resource))
+      if save_on_create(resource)
         yield(resource) if block_given?
         redirect_to(
           after_resource_created_path(resource),
@@ -77,7 +77,7 @@ module Administrate
       @resource = resource = requested_resource
       resource.assign_attributes(resource_params)
 
-      if resource.save(context: validation_contexts_on_update(resource))
+      if save_on_update(resource)
         redirect_to(
           after_resource_updated_path(resource),
           notice: translate_with_resource("update.success"),
@@ -295,24 +295,34 @@ module Administrate
       end
     end
 
-    # Override this if you want to provide additional validation contexts.
+    # Override this if you want to customize how resources are saved on creation.
+    # By default, it saves the resource with the :create validation context.
     #
-    # @param resource [ActiveRecord::Base] The resource to be validated.
-    # @return [Array<Symbol>] The validation contexts to be used.
-    def validation_contexts_on_create(resource)
-      default_validation_contexts(resource)
+    # @param resource [ActiveRecord::Base] The resource to be saved.
+    # @return [Boolean] Whether the save was successful.
+    #
+    # @example With custom validation context
+    #   def save_on_create(resource)
+    #     context = current_user.super_admin? ? :create : :create_regular_user
+    #     resource.save(context: context)
+    #   end
+    def save_on_create(resource)
+      resource.save(context: resource.new_record? ? :create : :update)
     end
 
-    # Override this if you want to provide additional validation contexts.
+    # Override this if you want to customize how resources are saved on update.
+    # By default, it saves the resource with the :update validation context.
     #
-    # @param resource [ActiveRecord::Base] The resource to be validated.
-    # @return [Array<Symbol>] The validation contexts to be used.
-    def validation_contexts_on_update(resource)
-      default_validation_contexts(resource)
-    end
-
-    def default_validation_contexts(resource)
-      resource.new_record? ? [:create] : [:update]
+    # @param resource [ActiveRecord::Base] The resource to be saved.
+    # @return [Boolean] Whether the save was successful.
+    #
+    # @example With custom validation context
+    #   def save_on_update(resource)
+    #     context = current_user.super_admin? ? :update : :update_regular_user
+    #     resource.save(context: context)
+    #   end
+    def save_on_update(resource)
+      resource.save(context: :update)
     end
 
     def paginate_resources(resources)
