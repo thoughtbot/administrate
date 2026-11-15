@@ -28,3 +28,5 @@ sl:
     search:
       clear: Počisti iskanje
       label: Išči %{resource}
+    table:
+      actions: Dejanja

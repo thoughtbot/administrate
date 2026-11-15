@@ -28,3 +28,5 @@ id:
     search:
       clear: Kosongkan pencarian
       label: Cari %{resource}
+    table:
+      actions: Aksi
