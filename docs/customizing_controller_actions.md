@@ -107,3 +107,31 @@ def create
   end
 end
 ```
+
+## Validation Contexts
+
+You can customize the context when saving a resource in the controller by overriding `save_on_create` and `save_on_update`. For example, with the following settings, regular admins are required to input a name, but super admins can update the resource *without* a name.
+
+```ruby
+# Model
+validates :name, presence: true, on: :save_by_regular_admin
+
+# Controller
+def save_on_create(resource)
+  context = if current_user.super_admin?
+    :save_by_super_admin
+  else
+    :save_by_regular_admin
+  end
+  resource.save(context: context)
+end
+
+def save_on_update(resource)
+  context = if current_user.super_admin?
+    :save_by_super_admin
+  else
+    :save_by_regular_admin
+  end
+  resource.save(context: context)
+end
+```
