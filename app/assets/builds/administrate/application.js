@@ -99,7 +99,9 @@
               }
             }
           }
-          doc.head.appendChild(script).parentNode.removeChild(script);
+          if (doc.head.appendChild(script).parentNode) {
+            script.parentNode.removeChild(script);
+          }
         }
         function toType(obj) {
           if (obj == null) {
@@ -107,7 +109,7 @@
           }
           return typeof obj === "object" || typeof obj === "function" ? class2type[toString.call(obj)] || "object" : typeof obj;
         }
-        var version = "3.7.1", rhtmlSuffix = /HTML$/i, jQuery = function(selector, context) {
+        var version = "3.8.0", rhtmlSuffix = /HTML$/i, jQuery = function(selector, context) {
           return new jQuery.fn.init(selector, context);
         };
         jQuery.fn = jQuery.prototype = {
@@ -168,12 +170,7 @@
           },
           end: function() {
             return this.prevObject || this.constructor();
-          },
-          // For internal use only.
-          // Behaves like an Array's method, not like a jQuery method.
-          push,
-          sort: arr.sort,
-          splice: arr.splice
+          }
         };
         jQuery.extend = jQuery.fn.extend = function() {
           var options, name, src, copy, copyIsArray, clone, target = arguments[0] || {}, i2 = 1, length = arguments.length, deep = false;
@@ -388,7 +385,7 @@
           // IE doesn't have `contains` on SVG.
           (a2.contains ? a2.contains(bup) : a2.compareDocumentPosition && a2.compareDocumentPosition(bup) & 16));
         };
-        var rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\x80-\uFFFF\w-]/g;
+        var rcssescape = /^-$|([\0-\x1f\x7f]|^-?\d)|[^\x80-\uFFFF\w-]/g;
         function fcssescape(ch, asCodePoint) {
           if (asCodePoint) {
             if (ch === "\0") {
@@ -408,7 +405,7 @@
               hasDuplicate = true;
             }
             return 0;
-          }, booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped", identifier = "(?:\\\\[\\da-fA-F]{1,6}" + whitespace + "?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+", attributes = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace + // Operator (capture 2)
+          }, booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped", escape = "\\\\[\\da-fA-F]{1,6}" + whitespace + "?|\\\\[^\\da-fA-F\\r\\n\\f]", identifier = "(?:" + escape + "|[\\w-]|[^\\0-\\x7f])+", attributes = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace + // Operator (capture 2)
           "*([*^$|!~]?=)" + whitespace + // "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
           `*(?:'((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)"|(` + identifier + "))|)" + whitespace + "*\\]", pseudos = ":(" + identifier + `)(?:\\((('((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)")|((?:\\\\.|[^\\\\()[\\]]|` + attributes + ")*)|.*)\\)|)", rwhitespace = new RegExp(whitespace + "+", "g"), rcomma = new RegExp("^" + whitespace + "*," + whitespace + "*"), rleadingCombinator = new RegExp("^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*"), rdescend = new RegExp(whitespace + "|>"), rpseudo = new RegExp(pseudos), ridentifier = new RegExp("^" + identifier + "$"), matchExpr = {
             ID: new RegExp("^#(" + identifier + ")"),
@@ -424,8 +421,8 @@
             // For use in libraries implementing .is()
             // We use this for POS matching in `select`
             needsContext: new RegExp("^" + whitespace + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + whitespace + "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i")
-          }, rinputs = /^(?:input|select|textarea|button)$/i, rheader = /^h\d$/i, rquickExpr2 = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/, rsibling = /[+~]/, runescape = new RegExp("\\\\[\\da-fA-F]{1,6}" + whitespace + "?|\\\\([^\\r\\n\\f])", "g"), funescape = function(escape, nonHex) {
-            var high = "0x" + escape.slice(1) - 65536;
+          }, rinputs = /^(?:input|select|textarea|button)$/i, rheader = /^h\d$/i, rquickExpr2 = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/, rsibling = /[+~]/, runescape = new RegExp("\\\\[\\da-fA-F]{1,6}" + whitespace + "?|\\\\([^\\da-fA-F\\r\\n\\f])", "g"), funescape = function(escape2, nonHex) {
+            var high = "0x" + escape2.slice(1) - 65536;
             if (nonHex) {
               return nonHex;
             }
@@ -441,7 +438,7 @@
           function safeActiveElement() {
             try {
               return document3.activeElement;
-            } catch (err) {
+            } catch (_3) {
             }
           }
           try {
@@ -450,7 +447,7 @@
               preferredDoc.childNodes
             );
             arr[preferredDoc.childNodes.length].nodeType;
-          } catch (e2) {
+          } catch (_3) {
             push2 = {
               apply: function(target, els) {
                 pushNative.apply(target, slice.call(els));
@@ -520,7 +517,7 @@
                       newContext.querySelectorAll(newSelector)
                     );
                     return results;
-                  } catch (qsaError) {
+                  } catch (_3) {
                     nonnativeSelectorCache(selector, true);
                   } finally {
                     if (nid === expando) {
@@ -550,7 +547,7 @@
             var el = document3.createElement("fieldset");
             try {
               return !!fn2(el);
-            } catch (e2) {
+            } catch (_3) {
               return false;
             } finally {
               if (el.parentNode) {
@@ -636,7 +633,7 @@
               try {
                 document3.querySelector(":has(*,:jqfake)");
                 return false;
-              } catch (e2) {
+              } catch (_3) {
                 return true;
               }
             });
@@ -729,7 +726,7 @@
             }
             rbuggyQSA = rbuggyQSA.length && new RegExp(rbuggyQSA.join("|"));
             sortOrder = function(a2, b2) {
-              if (a2 === b2) {
+              if (a2 == b2) {
                 hasDuplicate = true;
                 return 0;
               }
@@ -742,10 +739,10 @@
                 1
               );
               if (compare & 1 || !support.sortDetached && b2.compareDocumentPosition(a2) === compare) {
-                if (a2 === document3 || a2.ownerDocument == preferredDoc && find.contains(preferredDoc, a2)) {
+                if (a2 == document3 || a2.ownerDocument == preferredDoc && find.contains(preferredDoc, a2)) {
                   return -1;
                 }
-                if (b2 === document3 || b2.ownerDocument == preferredDoc && find.contains(preferredDoc, b2)) {
+                if (b2 == document3 || b2.ownerDocument == preferredDoc && find.contains(preferredDoc, b2)) {
                   return 1;
                 }
                 return sortInput ? indexOf2.call(sortInput, a2) - indexOf2.call(sortInput, b2) : 0;
@@ -767,7 +764,7 @@
                 elem.document && elem.document.nodeType !== 11) {
                   return ret;
                 }
-              } catch (e2) {
+              } catch (_3) {
                 nonnativeSelectorCache(expr, true);
               }
             }
@@ -1157,7 +1154,7 @@
           }
           function setFilters() {
           }
-          setFilters.prototype = Expr.filters = Expr.pseudos;
+          setFilters.prototype = Expr.pseudos;
           Expr.setFilters = new setFilters();
           function tokenize2(selector, parseOnly) {
             var matched, match, tokens, type, soFar, groups, preFilters, cached = tokenCache[selector + " "];
@@ -1534,8 +1531,6 @@
             return el.compareDocumentPosition(document3.createElement("fieldset")) & 1;
           });
           jQuery.find = find;
-          jQuery.expr[":"] = jQuery.expr.pseudos;
-          jQuery.unique = jQuery.uniqueSort;
           find.compile = compile;
           find.select = select;
           find.setDocument = setDocument;
@@ -2412,7 +2407,7 @@
             if (typeof data === "string") {
               try {
                 data = getData(data);
-              } catch (e2) {
+              } catch (_3) {
               }
               dataUser.set(elem, key, data);
             } else {
@@ -2468,17 +2463,8 @@
               });
             }
             return access(this, function(value2) {
-              var data2;
               if (elem && value2 === void 0) {
-                data2 = dataUser.get(elem, key);
-                if (data2 !== void 0) {
-                  return data2;
-                }
-                data2 = dataAttr(elem, key);
-                if (data2 !== void 0) {
-                  return data2;
-                }
-                return;
+                return dataAttr(elem, key, dataUser.get(elem, key));
               }
               this.each(function() {
                 dataUser.set(this, key, value2);
@@ -2740,7 +2726,7 @@
         function getAll(context, tag) {
           var ret;
           if (typeof context.getElementsByTagName !== "undefined") {
-            ret = context.getElementsByTagName(tag || "*");
+            ret = arr.slice.call(context.getElementsByTagName(tag || "*"));
           } else if (typeof context.querySelectorAll !== "undefined") {
             ret = context.querySelectorAll(tag || "*");
           } else {
@@ -3123,7 +3109,7 @@
             handler: function(event) {
               var result, saved = dataPriv.get(this, type);
               if (event.isTrigger & 1 && this[type]) {
-                if (!saved) {
+                if (!saved.length) {
                   saved = slice.call(arguments);
                   dataPriv.set(this, type, saved);
                   this[type]();
@@ -3132,17 +3118,19 @@
                   if (saved !== result) {
                     event.stopImmediatePropagation();
                     event.preventDefault();
-                    return result;
+                    return result && result.value;
                   }
                 } else if ((jQuery.event.special[type] || {}).delegateType) {
                   event.stopPropagation();
                 }
-              } else if (saved) {
-                dataPriv.set(this, type, jQuery.event.trigger(
-                  saved[0],
-                  saved.slice(1),
-                  this
-                ));
+              } else if (saved.length) {
+                dataPriv.set(this, type, {
+                  value: jQuery.event.trigger(
+                    saved[0],
+                    saved.slice(1),
+                    this
+                  )
+                });
                 event.stopPropagation();
                 event.isImmediatePropagationStopped = returnTrue;
               }
@@ -3629,7 +3617,7 @@
                     }
                   }
                   elem = 0;
-                } catch (e2) {
+                } catch (_3) {
                 }
               }
               if (elem) {
@@ -3690,6 +3678,13 @@
         };
         var rboxStyle = new RegExp(cssExpand.join("|"), "i");
         (function() {
+          var pixelPositionVal, boxSizingReliableVal, scrollboxSizeVal, pixelBoxStylesVal, reliableMarginLeftVal, reliableTrDimensionsVal, reliableColDimensionsVal, container = document2.createElement("div"), div = document2.createElement("div"), table = document2.createElement("table");
+          if (!div.style) {
+            return;
+          }
+          function roundPixelMeasures(measure) {
+            return Math.round(parseFloat(measure));
+          }
           function computeStyleTests() {
             if (!div) {
               return;
@@ -3698,7 +3693,11 @@
             div.style.cssText = "position:relative;display:block;box-sizing:border-box;overflow:scroll;margin:auto;border:1px;padding:1px;width:60%;top:1%";
             documentElement.appendChild(container).appendChild(div);
             var divStyle = window2.getComputedStyle(div);
-            pixelPositionVal = divStyle.top !== "1%";
+            pixelPositionVal = divStyle && divStyle.top !== "1%";
+            if (div.offsetWidth === 0) {
+              documentElement.removeChild(container).textContent = "";
+              return;
+            }
             reliableMarginLeftVal = roundPixelMeasures(divStyle.marginLeft) === 12;
             div.style.right = "60%";
             pixelBoxStylesVal = roundPixelMeasures(divStyle.right) === 36;
@@ -3708,12 +3707,29 @@
             documentElement.removeChild(container);
             div = null;
           }
-          function roundPixelMeasures(measure) {
-            return Math.round(parseFloat(measure));
-          }
-          var pixelPositionVal, boxSizingReliableVal, scrollboxSizeVal, pixelBoxStylesVal, reliableTrDimensionsVal, reliableMarginLeftVal, container = document2.createElement("div"), div = document2.createElement("div");
-          if (!div.style) {
-            return;
+          function computeTableStyleTests() {
+            if (!table) {
+              return;
+            }
+            var trStyle, col = document2.createElement("col"), tr2 = document2.createElement("tr"), td = document2.createElement("td");
+            table.style.cssText = "position:absolute;left:-11111px;border-collapse:separate;border-spacing:0";
+            tr2.style.cssText = "box-sizing:content-box;border:1px solid;height:1px";
+            td.style.cssText = "height:9px;width:9px;padding:0";
+            col.span = 2;
+            documentElement.appendChild(table).appendChild(col).parentNode.appendChild(tr2).appendChild(td).parentNode.appendChild(td.cloneNode(true));
+            if (table.offsetWidth === 0) {
+              documentElement.removeChild(table);
+              return;
+            }
+            trStyle = window2.getComputedStyle(tr2);
+            reliableColDimensionsVal = !!documentElement.msMatchesSelector || Math.round(
+              parseFloat(
+                window2.getComputedStyle(col).width
+              )
+            ) === 18;
+            reliableTrDimensionsVal = Math.round(parseFloat(trStyle.height) + parseFloat(trStyle.borderTopWidth) + parseFloat(trStyle.borderBottomWidth)) === tr2.offsetHeight;
+            documentElement.removeChild(table);
+            table = null;
           }
           div.style.backgroundClip = "content-box";
           div.cloneNode(true).style.backgroundClip = "";
@@ -3739,32 +3755,13 @@
               computeStyleTests();
               return scrollboxSizeVal;
             },
-            // Support: IE 9 - 11+, Edge 15 - 18+
-            // IE/Edge misreport `getComputedStyle` of table rows with width/height
-            // set in CSS while `offset*` properties report correct values.
-            // Behavior in IE 9 is more subtle than in newer versions & it passes
-            // some versions of this test; make sure not to make it pass there!
-            //
-            // Support: Firefox 70+
-            // Only Firefox includes border widths
-            // in computed dimensions. (gh-4529)
             reliableTrDimensions: function() {
-              var table, tr2, trChild, trStyle;
-              if (reliableTrDimensionsVal == null) {
-                table = document2.createElement("table");
-                tr2 = document2.createElement("tr");
-                trChild = document2.createElement("div");
-                table.style.cssText = "position:absolute;left:-11111px;border-collapse:separate";
-                tr2.style.cssText = "box-sizing:content-box;border:1px solid";
-                tr2.style.height = "1px";
-                trChild.style.height = "9px";
-                trChild.style.display = "block";
-                documentElement.appendChild(table).appendChild(tr2).appendChild(trChild);
-                trStyle = window2.getComputedStyle(tr2);
-                reliableTrDimensionsVal = parseInt(trStyle.height, 10) + parseInt(trStyle.borderTopWidth, 10) + parseInt(trStyle.borderBottomWidth, 10) === tr2.offsetHeight;
-                documentElement.removeChild(table);
-              }
+              computeTableStyleTests();
               return reliableTrDimensionsVal;
+            },
+            reliableColDimensions: function() {
+              computeTableStyleTests();
+              return reliableColDimensionsVal;
             }
           });
         })();
@@ -3827,7 +3824,7 @@
           }
           return vendorProps[name] = vendorPropName(name) || name;
         }
-        var rdisplayswap = /^(none|table(?!-c[ea]).+)/, cssShow = { position: "absolute", visibility: "hidden", display: "block" }, cssNormalTransform = {
+        var cssShow = { position: "absolute", visibility: "hidden", display: "block" }, cssNormalTransform = {
           letterSpacing: "0",
           fontWeight: "400"
         };
@@ -3880,16 +3877,17 @@
             }
             val = "auto";
           }
-          if ((!support.boxSizingReliable() && isBorderBox || // Support: IE 10 - 11+, Edge 15 - 18+
-          // IE/Edge misreport `getComputedStyle` of table rows with width/height
-          // set in CSS while `offset*` properties report correct values.
-          // Interestingly, in some cases IE 9 doesn't suffer from this issue.
-          !support.reliableTrDimensions() && nodeName(elem, "tr") || // Fall back to offsetWidth/offsetHeight when value is "auto"
-          // This happens for inline elements with no explicit setting (gh-3571)
-          val === "auto" || // Support: Android <=4.1 - 4.3 only
-          // Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
-          !parseFloat(val) && jQuery.css(elem, "display", false, styles) === "inline") && // Make sure the element is visible & connected
-          elem.getClientRects().length) {
+          if (
+            // Fall back to offsetWidth/offsetHeight when value is "auto"
+            // This happens for inline elements with no explicit setting (gh-3571)
+            (val === "auto" || // Support: IE 9 - 11 only
+            // Use offsetWidth/offsetHeight for when box sizing is unreliable.
+            // In those cases, the computed value can be trusted to be border-box.
+            !support.boxSizingReliable() && isBorderBox || !support.reliableColDimensions() && nodeName(elem, "col") || !support.reliableTrDimensions() && nodeName(elem, "tr") || // Support: Android <=4.1 - 4.3 only
+            // Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
+            !parseFloat(val) && jQuery.css(elem, "display", false, styles) === "inline") && // Make sure the element is visible & connected
+            elem.getClientRects().length
+          ) {
             isBorderBox = jQuery.css(elem, "boxSizing", false, styles) === "border-box";
             valueIsBorderBox = offsetProp in elem;
             if (valueIsBorderBox) {
@@ -4019,13 +4017,7 @@
           jQuery.cssHooks[dimension] = {
             get: function(elem, computed, extra) {
               if (computed) {
-                return rdisplayswap.test(jQuery.css(elem, "display")) && // Support: Safari 8+
-                // Table columns in Safari have non-zero offsetWidth & zero
-                // getBoundingClientRect().width unless display is changed.
-                // Support: IE <=11 only
-                // Running getBoundingClientRect on a disconnected node
-                // in IE throws an error.
-                (!elem.getClientRects().length || !elem.getBoundingClientRect().width) ? swap(elem, cssShow, function() {
+                return jQuery.css(elem, "display") === "none" ? swap(elem, cssShow, function() {
                   return getWidthOrHeight(elem, dimension, extra);
                 }) : getWidthOrHeight(elem, dimension, extra);
               }
@@ -4481,7 +4473,7 @@
         });
         jQuery.speed = function(speed, easing, fn2) {
           var opt = speed && typeof speed === "object" ? jQuery.extend({}, speed) : {
-            complete: fn2 || !fn2 && easing || isFunction(speed) && speed,
+            complete: fn2 || easing || isFunction(speed) && speed,
             duration: speed,
             easing: fn2 && easing || easing && !isFunction(easing) && easing
           };
@@ -4728,10 +4720,14 @@
         });
         boolHook = {
           set: function(elem, value, name) {
+            var strValue = String(value);
             if (value === false) {
               jQuery.removeAttr(elem, name);
             } else {
-              elem.setAttribute(name, name);
+              elem.setAttribute(
+                name,
+                name.toLowerCase() === "hidden" && strValue.toLowerCase() === "until-found" ? strValue : name
+              );
             }
             return name;
           }
@@ -4743,7 +4739,8 @@
             if (!isXML) {
               handle = attrHandle[lowercaseName];
               attrHandle[lowercaseName] = ret;
-              ret = getter(elem, name2, isXML) != null ? lowercaseName : null;
+              ret = getter(elem, name2, isXML);
+              ret = ret == null || lowercaseName === "hidden" && ret.toLowerCase() === "until-found" ? ret : lowercaseName;
               attrHandle[lowercaseName] = handle;
             }
             return ret;
@@ -5080,7 +5077,7 @@
           }
           try {
             xml = new window2.DOMParser().parseFromString(data, "text/xml");
-          } catch (e2) {
+          } catch (_3) {
           }
           parserErrorElem = xml && xml.getElementsByTagName("parsererror")[0];
           if (!xml || parserErrorElem) {
@@ -5571,7 +5568,7 @@
                 urlAnchor.href = s2.url;
                 urlAnchor.href = urlAnchor.href;
                 s2.crossDomain = originAnchor.protocol + "//" + originAnchor.host !== urlAnchor.protocol + "//" + urlAnchor.host;
-              } catch (e2) {
+              } catch (_3) {
                 s2.crossDomain = true;
               }
             }
@@ -5655,7 +5652,14 @@
               }
             }
             function done(status, nativeStatusText, responses, headers) {
-              var isSuccess, success, error2, response, modified, statusText = nativeStatusText;
+              var isSuccess, success, error2, response, modified, statusText;
+              if (typeof status === "object") {
+                nativeStatusText = status.statusText;
+                responses = status.responses;
+                headers = status.headers;
+                status = status.status;
+              }
+              statusText = nativeStatusText;
               if (completed2) {
                 return;
               }
@@ -5840,7 +5844,7 @@
         jQuery.ajaxSettings.xhr = function() {
           try {
             return new window2.XMLHttpRequest();
-          } catch (e2) {
+          } catch (_3) {
           }
         };
         var xhrSuccessStatus = {
@@ -5889,22 +5893,22 @@
                         if (typeof xhr.status !== "number") {
                           complete(0, "error");
                         } else {
-                          complete(
+                          complete({
                             // File: protocol always yields status 0; see trac-8605, trac-14207
-                            xhr.status,
-                            xhr.statusText
-                          );
+                            status: xhr.status,
+                            statusText: xhr.statusText
+                          });
                         }
                       } else {
-                        complete(
-                          xhrSuccessStatus[xhr.status] || xhr.status,
-                          xhr.statusText,
+                        complete({
+                          status: xhrSuccessStatus[xhr.status] || xhr.status,
+                          statusText: xhr.statusText,
                           // Support: IE <=9 only
                           // IE9 has no XHR2 but throws on binary (trac-11426)
                           // For XHR2 non-text, let the caller handle it (gh-2498)
-                          (xhr.responseType || "text") !== "text" || typeof xhr.responseText !== "string" ? { binary: xhr.response } : { text: xhr.responseText },
-                          xhr.getAllResponseHeaders()
-                        );
+                          responses: (xhr.responseType || "text") !== "text" || typeof xhr.responseText !== "string" ? { binary: xhr.response } : { text: xhr.responseText },
+                          headers: xhr.getAllResponseHeaders()
+                        });
                       }
                     }
                   };
@@ -6368,6 +6372,13 @@
         jQuery.trim = function(text) {
           return text == null ? "" : (text + "").replace(rtrim, "$1");
         };
+        jQuery.expr[":"] = jQuery.expr.filters = jQuery.expr.pseudos;
+        jQuery.unique = jQuery.uniqueSort;
+        jQuery.fn.extend({
+          push,
+          sort: arr.sort,
+          splice: arr.splice
+        });
         if (typeof define === "function" && define.amd) {
           define("jquery", [], function() {
             return jQuery;
@@ -31910,14 +31921,14 @@
 
 jquery/dist/jquery.js:
   (*!
-   * jQuery JavaScript Library v3.7.1
+   * jQuery JavaScript Library v3.8.0
    * https://jquery.com/
    *
    * Copyright OpenJS Foundation and other contributors
    * Released under the MIT license
-   * https://jquery.org/license
+   * https://jquery.com/license/
    *
-   * Date: 2023-08-28T13:37Z
+   * Date: 2026-11-17T15:47Z
    *)
 
 trix/dist/trix.esm.min.js:
