@@ -23,7 +23,10 @@ module Administrate
 
     class << self
       def model
-        to_s.chomp(DASHBOARD_SUFFIX).classify.constantize
+        # The dashboard's own name already carries the model's constant name,
+        # so it needs no inflection. classify singularizes, which turns a model
+        # whose name ends in a false plural, such as Bonus, into Bonu.
+        to_s.chomp(DASHBOARD_SUFFIX).constantize
       end
 
       def resource_name(opts)
