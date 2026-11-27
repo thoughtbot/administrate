@@ -28,3 +28,5 @@ sq:
     search:
       clear: Pastro kërkimin
       label: Kërko %{resource}
+    table:
+      actions: Veprime
