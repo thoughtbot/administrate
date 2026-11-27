@@ -104,6 +104,24 @@ describe Admin::CustomersController, type: :controller do
 
       expect(locals[:page]).to be_instance_of(Administrate::Page::Form)
     end
+
+    it "builds a new resource without params" do
+      locals = capture_view_locals { get :new }
+
+      expect(locals[:page].resource).to be_a_new(Customer)
+      expect(locals[:page].resource.name).to be_nil
+    end
+
+    it "prefills the new resource from params" do
+      locals = capture_view_locals do
+        get :new, params: {customer: {name: "Bob", email: "bob@example.com"}}
+      end
+
+      resource = locals[:page].resource
+      expect(resource).to be_a_new(Customer)
+      expect(resource.name).to eq("Bob")
+      expect(resource.email).to eq("bob@example.com")
+    end
   end
 
   describe "GET edit" do
