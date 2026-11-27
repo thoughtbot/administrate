@@ -50,6 +50,29 @@ feature "Search" do
         expect(page).to have_content("vip:<value>")
         expect(page).to have_content("kind:<value>")
       end
+
+      it "shows associated filter hints" do
+        filter_hint = "Show only customers of the kind specified"
+
+        translations = {
+          administrate: {
+            filter_hints: {
+              customer: {
+                kind: filter_hint
+              }
+            }
+          }
+        }
+
+        with_translations(:en, translations) do
+          visit admin_customers_path
+
+          search_tooltip_icon.click
+
+          css_tooltip_hint_element = ".search__tooltip-popover > ul > li > .search__tooltip-popover-hint"
+          expect(page).to have_css(css_tooltip_hint_element, text: filter_hint)
+        end
+      end
     end
 
     it "is hidden when the current dashboard has no collection filters" do

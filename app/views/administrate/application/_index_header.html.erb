@@ -28,7 +28,13 @@
           <p><strong>Use filters to refine your search</strong></p>
           <ul>
             <% filters.keys.each do |filter_key| %>
-            <li><%= filter_key %>:<span class="search__tooltip-popover-value">&lt;value&gt;</span></li>
+            <li>
+              <%= filter_key %>:<span class="search__tooltip-popover-value">&lt;value&gt;</span>
+              <% hint_key = "administrate.filter_hints.#{page.resource_name}.#{filter_key}" %>
+              <% if I18n.exists?(hint_key) %>
+                <span class="search__tooltip-popover-hint"><%= I18n.t(hint_key) %></span>
+              <% end %>
+            </li>
             <% end %>
           </ul>
         </div>

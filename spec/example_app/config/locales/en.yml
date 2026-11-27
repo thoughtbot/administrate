@@ -29,3 +29,8 @@ en:
 
   titles:
     application: Administrate-prototype
+
+  administrate:
+    filter_hints:
+      customer:
+        kind: "Show only customers of the kind specified"
