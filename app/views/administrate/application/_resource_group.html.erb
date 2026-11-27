@@ -1,0 +1,9 @@
+<% attributes = resource_group.second %>
+
+<%= render(
+  partial: 'resource_item',
+  layout: 'resource_item_layout',
+  collection: attributes,
+  as: :attribute,
+  locals: local_assigns
+) %>

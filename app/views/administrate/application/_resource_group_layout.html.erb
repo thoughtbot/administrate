@@ -1,0 +1,16 @@
+<% group_title = resource_group.first %>
+
+<% if group_title.present? %>
+  <%# grouped attributes: { title => attributes } %>
+  <fieldset class="field-unit--nested">
+    <legend><%= t "helpers.label.#{page.resource_name}.#{group_title}", default: group_title %></legend>
+    <dl>
+      <%= yield %>
+    </dl>
+  </fieldset>
+<% else %>
+  <%# non-grouped attributes: { "" => attributes } %>
+  <dl>
+    <%= yield %>
+  </dl>
+<% end %>
